@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-06T23:48:05",
+ "updated": "2026-09-07T00:36:34",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -61,7 +61,7 @@
  "focus": [
   "R33：a30b（a30 +1600 iter，GPU1）约 04:00 训完、~06:00 出 stack_fix 四门；a30@stack_fix_la06 四门在 GPU0 跑（22:35 起）",
   "R33④ 速度感知阻尼带 lookahead_s 已落地：τ≥0.06 s 恢复全部硬门并留 25–32 mm 余量，保真随 τ 单调下降 → τ 与“只对 cross 行开带”应与在其下训练的策略一起定",
-  "新方向（owner 09-06）：R34 工业协作装配任务族 + 真实物体资产；R35 SAI/TRACE 启发实验——均为提案，待 owner 拍板启动时机与首个子族",
+  "R34 已开工（两条线并行）：设计线 10 件工业装配资产 USDA + 目录 + 录制 yaml 已入库；实验线做 chembench 实验室资产 + table_objects USD schema。owner 需定资产路线取舍（D5）与 GPU 探针排期",
   "面板与仓库：safeduo-dashboard 上线（本页，launchd 每 10 分钟刷服务器快照）；SafeDuo 代码已入私有仓库 asimfish/safeduo（~/Desktop/research/safeduo 直接 git 管理，sync_to_server.sh 已排除 .git）"
  ],
  "decisions": [
@@ -99,10 +99,10 @@
   },
   {
    "id": "D5",
-   "topic": "R34 启动时机与首个子族",
-   "options": "(a) 现在并行开工（不占 GPU、不改现有文件）；(b) 等原会话空闲；首选子族 A 型材 / B 分拣 / C 包装",
-   "rec": "(a) + A",
-   "since": "09-06 23:00",
+   "topic": "R34 资产路线与探针排期（启动时机已由 owner 重复指令确认为“现在”）",
+   "options": "(a) 并行保留两条路线：工业型材族（装配/递送/共抬叙事）+ 实验室器皿族（精细分拣/交接叙事）；(b) 只做工业装配；(c) 只做实验室器皿",
+   "rec": "(a)。两族共用同一 table_objects schema，成本主要在任务设计而非资产；先跑 4080 梁的 rod_pick 物理探针（GPU 空档）",
+   "since": "09-06 23:00 → 09-07 00:40 更新",
    "status": "open"
   },
   {
@@ -183,19 +183,27 @@
   },
   {
    "goal": "G4/R34",
+   "task": "实验线：chembench 实验室资产接入（object_catalog_lab.yaml + task_objects usd/catalog + duo_env UsdFileCfg）→ 首个器皿抓取探针",
+   "status": "run",
+   "owner": "实验线（原会话）",
+   "eta": "09-07 凌晨",
+   "note": "与设计线资产共用 schema；未 commit（由设计线在下一次快照提交）"
+  },
+  {
+   "goal": "G4/R34",
    "task": "R34-A 资产：程序化 4040 T 槽型材 + 角码 USD、KLT_Bin/YCB 下载、凸分解与白名单登记（不占 GPU）",
-   "status": "wait",
+   "status": "done",
    "owner": "设计线（本面板维护者）",
-   "eta": "待 D5",
-   "note": "只加新文件 assets_src/tasks/r34/、task_library_r34.py"
+   "eta": "09-07 00:35",
+   "note": "10 件 USDA + 预览图 + 目录 + yaml + 测试；commit 0b5a02e"
   },
   {
    "goal": "G4/R34",
    "task": "R34-A 任务设计：型材递送 / 共持插接 / 框架共抬 的相位与判据；设计期 IK 审计（CPU）",
-   "status": "wait",
+   "status": "run",
    "owner": "设计线",
    "eta": "待 D5",
-   "note": "复用 _screen/_screened_combos、IK_MULTISEED、PalmFrame"
+   "note": "判据草案在 r34_assets.yaml tasks:（profile_handover / beam_seat / sleeve_insert / frame_colift）；实装 task_library_r34.py 待 GPU 探针先验证型材随手"
   },
   {
    "goal": "G4/R34",
@@ -282,6 +290,10 @@
   }
  ],
  "changelog": [
+  {
+   "time": "09-07 00:40",
+   "text": "R34 开工：设计线生成 10 件工业装配资产（4040/4080 T 槽型材、三通角件、套管、料架、底框夹具）+ 目录/yaml/测试（commit 0b5a02e）；实验线并行接入 chembench 实验室资产并扩展 table_objects USD schema；设计线撤回重复的 task_objects_r34.py 以统一 schema"
+  },
   {
    "time": "09-06 23:50",
    "text": "SafeDuo 代码入私有仓库 asimfish/safeduo（首个快照 6c43487）；面板 launchd 定时任务上线；MASTER 镜像因 macOS TCC 只能在交互式运行时同步"
