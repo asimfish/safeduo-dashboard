@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T02:42:43",
+ "updated": "2026-09-07T02:57:15",
  "note": "任务族与物体资产现状（来源 MASTER §9 R17/R24/R26/R27）+ R34 工业协作装配提案。视频在 ~/Code/safeduo_media（本地）与 bjxy_5090:~/Code/safeduo_media；缩略图在面板仓库 gallery/。",
  "families": [
   {
@@ -8,7 +8,7 @@
    "objects": "真实 4080 T 槽铝型材 300 mm（程序化 USD，convexHull 碰撞，0.20 kg 平价 → 下一步 0.39/0.78）",
    "arms": "F 双臂各捏一根 + U 双臂方块",
    "grasp": "rod_pick 物理原语零改动：F2 跨 4 cm 宽面中段捏",
-   "phys": "✓ 0.20 kg raw success 零违规；0.39/0.78 kg 滑脱（增益、摩擦均非瓶颈 → 闭合深度，探针 5）",
+   "phys": "✓ 0.20 kg（squeeze 0.06）与 0.39 kg（squeeze 0.15）raw success 零违规、全程随手；0.78 kg 实心需双臂共搬",
    "gate": "门控版待跑（WITH_S0=1）",
    "video": "r34_beam1_raw_camW.mp4（全景）/ r34_beam1_raw_camX.mp4（近景）",
    "thumb": "gallery/r34/r34_beam1_raw_camW_frame.jpg",
@@ -181,6 +181,11 @@
    "首个 GPU 探针：beam_l/beam_r（4080）沿 rod_pick 物理轨迹重放 → 验证型材真随手；需 GPU 空档（a30b 链之后）"
   ],
   "progress": [
+   {
+    "time": "09-07 02:45–02:57",
+    "line": "设计线",
+    "text": "探针 5：不改实验线文件，用包装脚本把 rod_pick 的手指闭合量从 0.06 提到 0.15 重建轨迹（设计期硬门仍全过）→ 0.39 kg 两根型材全程随手、真成功；0.78 kg 提起后搬运加速时掉落。定案：型材目录 squeeze_extra=0.15；实心 4080 作为双臂共搬对象（正好是协作叙事）"
+   },
    {
     "time": "09-07 02:30–02:41",
     "line": "设计线",

@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T02:42:43",
+ "updated": "2026-09-07T02:57:15",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -132,6 +132,12 @@
   }
  ],
  "verdicts": [
+  {
+   "date": "09-07 02:57",
+   "topic": "探针 5：rod_pick 轨迹以 squeeze_extra 0.15 重建（原 0.06），手指 100/5/5、摩擦 0.35",
+   "verdict": "0.39 kg：两根型材全程随手（rod_l z 0.84→0.98、rod_r →0.95，搬运 15 cm 后放置），真成功——证实瓶颈是闭合深度；0.78 kg：两根都被提起（z 0.93/0.92）但 t≈8.6 s 搬运加速时掉落（moved 0.066 < 0.12 m）。结论：目录里型材的 squeeze_extra 定为 0.15（已改）；实心 4080（0.78 kg）留给双臂共搬，或再试 squeeze 0.20 + 增益 200/10/20",
+   "evidence": "artifacts/forensics/20260907/r34_beam5_sq15_m039_raw.log / _m078_raw.log；artifacts/task_trajs_r34_sq15/rod_pick；scripts/forensics/r34_build_rod_squeeze.py"
+  },
   {
    "date": "09-07 02:20",
    "topic": "探针 4：0.78 kg 型材 + 物体摩擦 0.9/0.8（铝对橡胶指垫口径），手指 100/5/5 与 200/10/20 各一次",
@@ -269,10 +275,10 @@
   {
    "goal": "G4/R34",
    "task": "R34-A GPU 探针 + 多机位成片 + VLM 质检",
-   "status": "run",
+   "status": "done",
    "owner": "设计线",
-   "eta": "09-07 01:15",
-   "note": "探针 1 success（00:59）；带渲染录制 r34_beam1_raw_camX 在跑；探针 2 质量扫描脚本就位（WITH_MASS=1）"
+   "eta": "09-07 02:57",
+   "note": "探针 1–5：几何 ✓（USD 生成路径通）、质量扫描 → 闭合深度 0.15 定案；0.78 kg 待双臂方案"
   },
   {
    "goal": "G1/R35",
@@ -352,6 +358,10 @@
  ],
  "changelog": [
   {
+   "time": "09-07 02:57",
+   "text": "探针 5 定案：闭合深度 0.15 让 0.39 kg 型材全程随手；0.78 kg 中途掉落 → 目录 squeeze_extra 0.06→0.15；实心 4080 归双臂共搬"
+  },
+  {
    "time": "09-07 02:42",
    "text": "全景机位 camW 录像入库（r34_beam1_raw_camW）；视频同步管线修复半截文件 bug（去掉 --ignore-existing，加 2 分钟落盘窗口与 ffprobe 完整性校验）"
   },
@@ -407,9 +417,9 @@
   {
    "name": "设计线（面板维护者）",
    "status": "run",
-   "now": "R34 探针 1–4 完成：0.20 kg 成功；0.39/0.78 kg 滑脱，增益 ×2 与摩擦 ×2.6 都无效 → 定位到闭合深度（squeeze_extra）；布局 v8（130 cm）文件/设计期几何/评测 env/测试入库；全景机位 camW 录像在 GPU0 跑；面板视频库加全景/近景",
-   "next": "探针 5：--squeeze-extra 0.15 重建 rod_pick 后测 0.39/0.78 kg；a27@stack_fix_v8 四门（量化布局代价，需 GPU 空档，建议实验线在 a30b 链后跑）；等 owner 定 D5/D7/D8",
-   "updated": "09-07 02:32"
+   "now": "R34 探针 1–5 完成：闭合深度 0.15 是关键（0.39 kg 全程随手，0.78 kg 需双臂/更深闭合）；catalog squeeze_extra 已改 0.15；布局 v8（130 cm）与全景机位 camW 落地；面板视频库 136 部",
+   "next": "探针 6（可选）：squeeze 0.20 + 200/10/20 @0.78 kg；型材递送/搁梁任务设计（v8 布局上直接做）；等 owner 定 D5/D7/D8 与桌子是否随臂前移",
+   "updated": "09-07 02:57"
   }
  ]
 }
