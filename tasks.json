@@ -1,0 +1,40 @@
+{
+ "updated": "2026-09-06T23:30:00",
+ "note": "任务族与物体资产现状（来源 MASTER §9 R17/R24/R26/R27）+ R34 工业协作装配提案。视频在 ~/Code/safeduo_media（本地）与 bjxy_5090:~/Code/safeduo_media；缩略图在面板仓库 gallery/。",
+ "families": [
+  {"id": "S9", "name": "S9 三棒：grasp / pick_place / handover", "objects": "5 cm cube（参数化几何体）", "arms": "F 单臂 / F→U 交接", "grasp": "F2 面对面捏取（指根→指垫接近、捏合深 2.5 cm、r16 壳）", "phys": "grasp / pick_place 纯物理 ✓（09-05）；handover 物理版被跨机守卫拒绝 → R32", "gate": "a27@0.5:0.2 门控 success 零违规（grasp / pick_place）", "video": "r27_final_grasp_s0_a27t50_phys_camN.mp4 / r27_final_pickplace_s0_a27t50_phys_camN.mp4", "thumb": "gallery/r27_final_pickplace_s0_a27t50_phys_camN.jpg", "status": "done"},
+  {"id": "R24", "name": "R24 三族：four_lift / relay_chain / pillow_sheath", "objects": "长板 / 5 cm cube 链 / 枕套（参数化几何体）", "arms": "四臂全动", "grasp": "运动学吸附（旧口径，已退役不再出片）", "phys": "未物理化（R27 口径下需重做）", "gate": "过 S9 同款硬门（吸附版）", "video": "r26_multicam/", "thumb": "", "status": "idle"},
+  {"id": "R26-bottle", "name": "bottle_pick（细高瓶）", "objects": "圆柱瓶 r 3.3 × 18.5 cm（参数化几何体）", "arms": "F 双臂 + U 双臂（DFX 抓 cube）", "grasp": "瓶身中部直立握（顶下 8.5 cm=质心，四指包远侧、拇指压近侧，夹紧 0.12）", "phys": "✓ 09-05（v2.46）", "gate": "a27 门控 success 零违规", "video": "r27_bottle7_s0_phys_camU.mp4", "thumb": "gallery/r27_bottle7_s0_phys_camU.jpg", "status": "done"},
+  {"id": "R26-rod", "name": "rod_pick（长棒 → 4×30×8 cm 梁）", "objects": "4×30×8 cm 梁（参数化几何体；原 4 cm 低棒指尖触桌改梁）", "arms": "F 双臂各握一梁 + U 双臂方块同抓同放", "grasp": "finger 接近中段捏；多起点 IK；棒外移 y ∓0.35", "phys": "✓ 09-06 00:30（v2.47）：raw 位移 15.9 cm / 落点 5 mm / 抬 13.9 cm", "gate": "s0 门控 success 零违规", "video": "r27_rod5_s0_phys_camX.mp4", "thumb": "gallery/r27_rod5_s0_phys_camX.jpg", "status": "done"},
+  {"id": "R26-box", "name": "box_colift（大盒双臂共抬）", "objects": "15×20×10 cm 箱（参数化几何体）", "arms": "F 双臂双掌对夹 + U 双臂方块", "grasp": "PalmFrame 双掌对夹：掌面贴 ±y 端面向内压 1.5 cm、手指竖直向下、四指微曲拇指张开", "phys": "✓ 09-06 01:00（v2.48）：raw 抬 7.9 cm / 位移 14.1 cm / 落点 1 mm", "gate": "s0 门控 success 零违规（落点 4 mm）", "video": "r27_box2_s0_phys_camX.mp4", "thumb": "gallery/r27_box2_s0_phys_camX.jpg", "status": "done"},
+  {"id": "R26-relay", "name": "tray_relay → 放-取式间接接力（接力棒）", "objects": "4×4×20 cm 立棒（参数化几何体；贴桌扁盘无可捏边沿弃用）", "arms": "F_L 中段捏抓起 → 车道立放 → U_R DFX 顶部爪抓取走", "grasp": "瓶族中段捏（深 8.5 cm/夹紧 0.12）+ DFX 顶抓（接手目标含标定拖动 +2.8/+1.7 cm）", "phys": "✓ 09-06 06:45（v2.49）；直接双手同握 8 轮失败 → R32", "gate": "raw / s0 门控 success 零违规，两手最近 17 cm，alpha 1.0", "video": "r27_baton11_s0_phys_camY.mp4", "thumb": "gallery/r27_baton11_s0_phys_camY.jpg", "status": "done"},
+  {"id": "attach-vs-phys", "name": "对照：旧运动学吸附 vs 纯物理抓取", "objects": "5 cm cube", "arms": "F", "grasp": "左：attach（接收手距物 3–43 cm 即“抓住”）；右：物理闭合", "phys": "R23 吸附版轨迹 + 物理开关 = never lifted", "gate": "—", "video": "pair_grasp_attach_vs_phys_camN.mp4", "thumb": "gallery/pair_grasp_attach_vs_phys_camN.jpg", "status": "done"}
+ ],
+ "assets_now": {
+  "summary": "全部物体为 assets_src/tasks/task_assets.yaml → generate_task_assets.py 生成的参数化 USDA 几何体：obj_bottle（圆柱）、obj_box、obj_tool（T 形）、obj_plank（0.25×0.90×0.02 长板）、obj_peg/obj_socket（方 peg 公差 3 mm），R26/R27 又加 4×4×20 立棒、4×30×8 梁、15×20×10 箱。owner 09-06 判定“太粗糙”。",
+  "constraints": [
+   "F2 捏合接触开度 4.3 cm（f=0.5）、最小 2.6–3.7 cm；DFX 接触态开度 4.4 cm 且闭合时四指沿轴回缩 8 cm → 对 4 cm 物侧捏可用窗口 1–2 cm",
+   "可捏特征宽度建议 3.5–5 cm；更大物体走双掌对夹（PalmFrame）；质量 0.05–0.5 kg；摩擦按材质（塑料-木 0.4–0.55 / 金属-木 0.3–0.5）",
+   "每个网格需过 convex_decomp_v5 凸分解、进入 contact_semantics 白名单、设计期球审计；物体 solver 迭代与手指执行器旋钮沿 r27 录制 yaml",
+   "UR5 在车道处臂展有限：竖直长物体顶部 ≤1.10 m；DFX 爪抓需从上方进入"
+  ]
+ },
+ "r34": {
+  "title": "R34 工业协作装配任务族（提案，参照四臂铝型材装配 MuJoCo benchmark）",
+  "why": "① 让 G4 演示数据看起来像真实协作工作而非“搬 lego”；② 工业装配天然产生跨机近距离协作（递送、共持插接、共抬），正是离合器要保护的共享工作区风险；③ 30–60 cm 型材是 R32(b) 需要的长物体，直接交接可能不再需要跨机豁免。",
+  "subfamilies": [
+   {"id": "R34-A", "name": "4040 铝型材框架搭建", "objects": "4×4 cm T 槽铝型材 30/45/60 cm（程序化精确截面或 Misumi/OpenBuilds STEP）、角码/连接件（放大到 ≥3.5 cm 可捏）、U 桌底框夹具", "tasks": "① 型材递送：F 中段捏 → 横向搬到车道 → U DFX 顶抓另一端（两手相距 ≥20 cm）；② 共持插接：U 扶框、F 把型材端部插入角码（间隙 3–5 mm，复用 peg/socket 判据）；③ 框架共抬：装好的框四臂共抬平移（替代长板）", "grasp_reuse": "瓶族中段捏 / DFX 顶抓 / PalmFrame 对夹 / peg-in-socket 判据 —— 全部已验证", "accept": "raw + a27 门控 success、零违规、≥2 机位成片、VLM 逐帧 PASS；型材真实随手（obj−flange 恒定）", "priority": "首选"},
+   {"id": "R34-B", "name": "KLT 料箱分拣", "objects": "Isaac Sim Nucleus Isaac/Props/KLT_Bin + YCB（cracker box / mustard / drill / clamp / wood block）+ Google Scanned Objects 工业小件", "tasks": "共享车道散放零件，四臂按类别分拣到各自料箱；随机流下抢件冲突最密（对应 SAI 的 Laundry Collection 共享工作区干扰）", "grasp_reuse": "捏取（3.5–5 cm 特征）/ 顶抓；大件双掌对夹", "accept": "每臂 ≥3 件入箱、零违规、离合器介入不造成死锁；新增 phase-sync/抢件冲突过程指标", "priority": "次选"},
+   {"id": "R34-C", "name": "包装", "objects": "真实纸箱网格（GSO）/ 带盖 KLT（关节盖）、待装物", "tasks": "装箱 → 双臂共抬满箱 → 合盖（关节物体）", "grasp_reuse": "PalmFrame 对夹 / 捏取；合盖为推压动作", "accept": "装箱 ≥2 件、共抬 ≥10 cm、盖角度 <10°", "priority": "备选"}
+  ],
+  "asset_sources": [
+   {"src": "Isaac Sim Nucleus Props（Isaac/Props/KLT_Bin、YCB 全套、Blocks、工业托盘/仓储件）", "why": "USD 原生、物理已配、零转换", "license": "NVIDIA Omniverse 资产许可（可研究使用）"},
+   {"src": "Isaac Lab Factory / AutoMate 装配资产（螺母螺栓 M16–M20、齿轮、100 对插头插座）", "why": "接触密集装配在 PhysX 下已验证；公差可参数化", "license": "BSD-3 / 数据集许可"},
+   {"src": "Google Scanned Objects（1000+ 扫描件，含工具/盒/瓶）", "why": "真实纹理与尺寸；OBJ→USD 一步转换", "license": "CC-BY 4.0"},
+   {"src": "程序化 T 槽铝型材（trimesh 截面挤出 + 阳极氧化材质）/ Misumi、OpenBuilds STEP", "why": "尺寸精确可控（4040 与已验证 4 cm 捏取一致）", "license": "自制 / 厂商 CAD 条款"},
+   {"src": "Objaverse（-XL）", "why": "只作补充：版权与网格质量不齐，需人工筛选", "license": "逐件"}
+  ],
+  "pipeline": ["下载/转换（trimesh → OBJ → USD，单位 m，重心与质量按实物）", "CoACD 凸分解（复用 assets_src/real/convex_decomp_v5 流程）+ 球包（球审计口径）", "task_assets.yaml schema 登记质量/摩擦/随机化范围；contact_semantics 白名单", "task_library_r34.py（不动 r26）：逐臂可行性筛选 _screen、多起点 IK、PHYS 模式", "多机位录制（B 近景 / C 斜俯 / 任务专用机位）+ VLM 逐帧质检 + 遥测读数", "GPU 探针只在 a30b 链让出 GPU 后跑；资产采集/转换/设计期审计不占 GPU"],
+  "open_questions": ["启动时机：现在并行（不改现有文件、只加新文件）vs 等原会话空闲", "首个子族：A 型材（推荐）/ B 分拣 / C 包装", "角码/连接件尺寸是否放大到 ≥3.5 cm（否则 DFX 捏不住），还是只让 F2 处理小件"]
+ }
+}

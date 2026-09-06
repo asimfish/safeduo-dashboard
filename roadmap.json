@@ -1,0 +1,321 @@
+{
+ "updated": "2026-09-06T23:09:12",
+ "source": "safeduo/paper/MASTER_REPORT.html §9（R1–R33 自动提取 + R26–R33 精简；R34/R35 为面板提案）",
+ "rows": [
+  {
+   "id": "R1",
+   "prio": "P0",
+   "name": "wandb 遥测集成（§5 规范）",
+   "accept": "六组面板齐全；offline+sync 不阻塞训练；v6 起跑前就位",
+   "status_text": "已完成（2026-08-17 闭案）：v6 全程 2000 迭代六组面板落云端 wandb.ai/xiongdi/safeduo/runs/tnd404lk；持续同步循环 a11_wandb_sync.sh（10min 追加 + done.json 终同步）；命名规约入册（project=safeduo / run=<线>_<版>_<角色>_s<种子> / group 按版本线）；指标阅读指南入 §5.1",
+   "status": "done",
+   "goal": "G0"
+  },
+  {
+   "id": "R2",
+   "prio": "P0",
+   "name": "v6 训练配方：T3 课程实装（幅度 0.03→0.10 + 技能混流 0.2 + 全域漫游）+ v6 安全补丁（泵钳制/per-link d_min/豁免感知 cost）",
+   "accept": "训练幅度域 ⊇ 测试幅度域；block1 全档违规不劣于 v5；cross 深穿刺清零",
+   "status_text": "代码侧三步全部完成 2026-08-16（①C12 安全补丁 env 侧：backstop 泵钳制 F1+出口箱不变量 / per-link table d_min 机制 / duo_env_v6.yaml（cross d_min 0.038 + d_warn 0.08，link2 d_min=0.015 暂定待裁决），test_backstop 17 例；②C13 课程接线：learn 循环逐迭代 set_progress(it/max_it) + --curriculum-yaml 透传，默认空零漂移；③C14 跨侧同步：训练器 d_warn/逐类 d_min 经 cost_sync_from_env_cfg 从 env yaml 单源透传（v6={0.08, cross 0.038, self 0.013, table 0.020}，v4 解析值=旧硬编码零漂移）+ 豁免感知逐类 cost（env 侧 active_dm…",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R3",
+   "prio": "P1",
+   "name": "算法淘汰赛：SAC-Lag / WCSAC 第一批，CPO / OmniSafe 组第二批（§6 协议）；并入 λ 消融（ctrl_off/dual）",
+   "accept": "同 block1 协议下 Pareto 图 + 每候选一份结论卡",
+   "status_text": "进行中（C15，2026-08-16：第一批 SAC-Lag 本地实装完成——algo/sac_lagrangian.py（tanh 压缩高斯 actor + reward twin-Q 取 min / 逐通道 cost twin-Q 取 max + PIDLagrangian 复用 + α_temp 自动温度 + GPU 环形 replay 默认 524288 ≈ 4096 envs 下 5.3 迭代新鲜度）+ train_sac_lagrangian.py 入口；证据：tests/test_sac_lagrangian.py 17 例绿、--smoke 9/9 检查 PASS、全套件 417/417 绿、现有文件零改动，见 artifacts/C15_PROGRESS.md；待办：服务器 block1 淘汰赛 + WCSAC + λ 消融臂）",
+   "status": "wait",
+   "goal": "G1"
+  },
+  {
+   "id": "R4",
+   "prio": "P1",
+   "name": "泛化课程：G1 基座 ±2-5cm（先行）→ G2 灯光 → G3 桌面材质",
+   "accept": "G1: 基座随机化下 block1 违规率与固定基座差距 <2×；G2/G3: 随机化渲染管线可用",
+   "status_text": "未开工",
+   "status": "planned",
+   "goal": "G2"
+  },
+  {
+   "id": "R5",
+   "prio": "P1",
+   "name": "技能库扩容 + 任务完成度判据",
+   "accept": "每技能 EE 到位判据 + 成功率入 block1；技能数 13→20+",
+   "status_text": "前半（任务完成度判据）完成（T4，2026-08-16）：eval/skill_success.py（EE 航点按序到位判据 + 交接类双臂会合判据，v5 法兰 FK 口径）+ configs/skill_success.yaml 逐技能阈值（tier-0 实测标定：radius 0.05 留百倍裕量、交接阈值 0.30-0.40 低于出生对距不许躺赢）；endurance_eval 技能流只增列接入（task_success/task_waypoint_frac/task_miss_reason 三列 + skill_task_matrix_<method> 输出，success_report.skill_matrix_from_runs 增 success_key 默认位不变）。验收：tier-0 判定 13/13（25 种子/格），tier0-3 成功率表 + 起止裁剪/噪声归因见 artifacts/T4_SKILL_…",
+   "status": "done",
+   "goal": "G4"
+  },
+  {
+   "id": "R6",
+   "prio": "P2",
+   "name": "奖励 PBRS 消融（margin 项改 Φ 差分）",
+   "accept": "单臂对照，跟踪/违规双指标不劣化才考虑采纳",
+   "status_text": "未开工",
+   "status": "planned",
+   "goal": "G1"
+  },
+  {
+   "id": "R7",
+   "prio": "P2",
+   "name": "观测增强：意图历史窗 / TTC / EE 位姿 / 基座偏移量（§2 清单）",
+   "accept": "逐项消融，采纳线 = 违规率显著改善",
+   "status_text": "未开工",
+   "status": "planned",
+   "goal": "G1"
+  },
+  {
+   "id": "R8",
+   "prio": "P1",
+   "name": "self 通道拆分（self_F/self_U 各自 λ）",
+   "accept": "四通道臂 vs 三通道臂对照",
+   "status_text": "未开工（2026-08-17 提级 P2→P1：battery4 显示 self 已成第一拦路者，F/U 两族成本分布差异大，共享 λ 互相干扰的假设成立概率上升；与 R10 同批做）",
+   "status": "planned",
+   "goal": "G1"
+  },
+  {
+   "id": "R9",
+   "prio": "P2",
+   "name": "delta_clip 0.08 vs FR3 腕 0.0877 包络核对",
+   "accept": "结论入册；若需改动附影响面分析",
+   "status_text": "未开工",
+   "status": "planned",
+   "goal": "G0"
+  },
+  {
+   "id": "R10",
+   "prio": "P0",
+   "name": "λ 重定标（v6.1 训练配方）：self/table 通道 cost 刻度与 limit 可达性校准——方案候选：①提高积分限幅（1.4→5+）；②cost 归一化除以通道基线；③limit 从 0.05 分通道重设为可达值。同时解除 α 保守税（准固定罚压制放行度）",
+   "accept": "self/table cost 训练末端收敛至 limit 1.5 倍内；λ 曲线脱离限幅横线；α 均值无险情段 >0.85；battery5 随机漫游 GT 成功率 >50/100 且 cross 保持清零",
+   "status_text": "方案②已实装并发射（2026-08-17 16:47）：G3 数值分析定稿（R10R11_ANALYSIS：根因=cost/limit 量纲失配，self/table 末端 P50 0.807/0.912 vs limit 0.05 达 16-18×，PID 积分第 23-27 次更新即顶 20 直到 2000）→ 采纳方案② cost_scale=(1,17,19)（归一化后末端 P90 self 0.0477/table 0.0481 < 0.05 可达）。实装：lagrangian_ppo cost_scale 配置 + collect() 单点缩放（critic/GAE/PID/日志四视图一致），tests/test_cost_scale.py 5 例（含 PID 消费缩放流验证）、全套件 432 绿；v6.1 = a12_v6p1_main_s46（GPU1，fresh PID，T3 课程，其余与 v6 同配）。G3…",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R11",
+   "prio": "P1",
+   "name": "self_U 保守球假象归因：battery4 中 self_U 违规窗 99/100 但被 GT 口径剔除——审计 U 臂球包络（JAKA 相邻连杆对），区分真自碰 vs 球模型过保守；过保守则出 per-link 修正（复用 v6 per-link d_min 机制）",
+   "accept": "self_U 违规的 top 连杆对清单 + 真/假判定证据 + 修正后 battery 对照",
+   "status_text": "归因分析完成（G3，2026-08-17）：裁决 LIKELY_MIXED_WITH_STRONG_WRIST_SHELL_ARTIFACT 未闭案——腕环 link4↔hand_base 为强候选（v5 专项 665/1681 格球 margin<0 而 mesh 碰撞 0 格，mesh-sphere 间隙 18.2-42.6mm），但 battery4 归档无 pair-id 无法定罪；裁定不改 self d_min（现行 per-link 机制仅作用 link×table，且 d_min 不改评测 margin<0 口径）。pair recorder 开发中（G3，Round 165 派工）：endurance_eval 可选开关落 (run,step,pair_id,links,margin,d_min)，v6.1 收官后跑 25 窗诊断出 top-pair 直方图。诊断跑收官（2026-08-18，r11_v6p1_…",
+   "status": "done",
+   "goal": "G0"
+  },
+  {
+   "id": "R12",
+   "prio": "P1",
+   "name": "技能任务完成度在门控下的达成：开环回放 × α<1 = 结构性行程削减（battery4 tier0 任务 0/13，航点缺口 ≈ (1-α)×行程）。方向：①R10 解保守税让无险情段 α→1；②评测侧加闭环回放模式（操作者纠偏模型：EE 误差反馈进 delta）；③训练加\"无险情时 α 偏离 1 罚\"消融",
+   "accept": "tier0 任务成功 ≥10/13（门控在环）；安全成功率不回退",
+   "status_text": "被 R17 产品语义（安全滤波器：安全时输出=原指令）取代；归因闭环（2026-08-17）：raw 对照 8/13 满分证明判据无误、门控行程削减坐实；5 个 raw 也失败的技能剥离给 R5 后半（物理回放层问题）。实装待 R10 后：预期 α 无险情段→1 即可直接回收大部分任务成功率",
+   "status": "idle",
+   "goal": "G4"
+  },
+  {
+   "id": "R13",
+   "prio": "P0",
+   "name": "v6.1 inversion 塌缩 RCA + v6.2 抗塌缩配方与训练",
+   "accept": "v6.2 训练全程哨兵无 STOP；末端 100 iter：α 均值≥.55/四臂 max-min≤.20/熵中位≥-5.0/|p_mean|≤.30/cross P90≤.12；独立 battery 过 G3 修订验收口径（步级暴露+深度主门）",
+   "status_text": "RCA 交卷 + v6.2_core 发射（2026-08-18 05:4x）。G3 R13_ANALYSIS 裁决：主根因=cross 目标/奖励相对尺度失配——λ_cross 长期饱和 ~1.0（积分自 iter 547 贴 20）而塌缩窗收支平衡影子价仅 0.343（超价 2.94×），\"少动\"成为受约束目标优势解；负 p 优势几乎全由 cross cost+终止违规规避解释（正 p 行去终止罚 reward 反而最好）；课程事实修正：塌缩发生在 0.08 段（iter 1001 起），0.10 从未进入；v6 未塌为耦合机制（self/table λ≈1.4 额外 cost advantage + value loss 34.8 vs 3.9 经 global grad clip 隐式缩 actor 步长，无分路 grad 日志不能拆占比）；哨兵覆写 bug 确认（shard66 hard FAIL 被 final c…",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R14",
+   "prio": "P0",
+   "name": "真机资产迁移 v7：U 侧 JAKA Zu7→UR5、手 RH56F2→RH56DFX（owner 2026-08-18 供新资产：UR5_only.urdf / ur5+RH56DFX.zip 含左右整臂组合 URDF+全 mesh / robot_base.json 四臂标定外参 T_WB）。新布局：FR3 间距 100cm、UR5…",
+   "accept": "v7 场景四臂基座与标定外参偏差 ≤2cm；UR5 球模型经 mesh 对拍；13 技能族 UR5 运动学重录 tier-0 全过；v7 训练+battery 用 v6.2 配方复现或超越 v6.2 安全线",
+   "status_text": "资产已入库 assets_src/real/ur5_20260818/（zip 解压含 Left/Right_UR5_RH56DFX_with_flange.urdf + Multi_UR5 + 左右手独立 URDF + meshes/{ur5,hand_left,hand_right}；UR5 6 关节 revolute，肩肘 effort 150/腕 28，速度限 π rad/s）。盘点代理已派（第一阶段只读：URDF 树/标定外参 vs 名义尺寸对照/scene_layout v7 数值提案/语义 link 映射/迁移清单），报告落 artifacts/R14_UR5_INVENTORY_20260818.md。注意：训练/评测暂沿用 v6 场景（JAKA），v6.2 配方验证与 R14 场景迁移并行，汇合点=v7 训练。标定对照（2026-08-18 15:5x 主线复算）：robot_base.json 四臂两两距离…",
+   "status": "done",
+   "goal": "G0/G3"
+  },
+  {
+   "id": "R15",
+   "prio": "P0",
+   "name": "v7 训练配方修正（utility 回收，R13 补诊 A1/A2 三强因对症）：①arm-aware pair 观测 + 逐臂 α 均衡正则 w·(max−min)（打 F_L 约束汇，小权重起步防好臂被拉低）；②熵调度阈值重标 -4.8→-3.5 并联动 cost 余量（EMA≤-3.5 且 cost_cross<0.9×limit…",
+   "accept": "末端 α≥0.62 且 F_L α≥0.55；battery 技能航点 ≥0.70（回 v6.1 水平）；安全不回吐：GT 步率不高于 battery6、cross P90 裕度回归门、哨兵零 STOP",
+   "status_text": "结案：安全门全过，航点门残留移交 R16（2026-08-20；训练 wandb 69i7qqci）。训练侧验收门全过：tail100 α 0.6973（门 ≥0.62，v6.2 仅 0.555）、最低臂 0.684（v6.2 F_L 0.4725）、四臂 spread 0.034（v6.2 0.191）、sat_lo 0.0095/P90 0.0116（v6.2 挂门 0.089/0.096）、熵中位 -3.07、哨兵零 STOP；iter~431 分化episode自愈=三修正实战证据；λ 升速限下零抖振（v6.2 帽上 on/off 65 次病理消失）。battery7 六格 v7 全口径自动接力中（06:29 双 lane），评测侧门待出：技能航点 ≥0.70、GT 步率不劣于 battery6、cross P90 裕度。前置全清：S4 出生位+reach 盒 / S5 技能 13 族 v7 重录 / S6 三修正实装…",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R16",
+   "prio": "P0",
+   "name": "utility 二期 + 几何壳修正（battery7 残留对症）：①F2 手指球包 v7fix 接线（S7 已 staged：单球/指→3球/指顶点拟合，侧向悬垂 ~35mm→~2mm；注意非 flexion 稳健，真机部署前须 flexion 扫描复核）+ fr3_link3 减肥候选（r77→~60mm 顶点拟合复核）——batt…",
+   "accept": "battery 技能航点 ≥0.70 且任务成功破零；self_F 随机流最深裕度 ≥-15mm（壳修正后）；安全不回吐：GT 步率不高于 battery7、cross 零违规保持；训练哨兵零 STOP",
+   "status_text": "①几何壳修正备料完成（S12，2026-08-21）：r16 球包版本化落盘（assets_src/real/spheres_r16/ + contact_semantics_v7r16.yaml + duo_env_v7_r16.yaml overlay，v7/v7_r18 在用文件零字节改动，接线待 owner 审）——fr3_link3 顶点拟合 2球(r80/77)→3球(r72.8/59.1/57.2，S7 定罪肘球 r77→59)；fr3_link6 单球(r75)→4球(r55-65)：发现旧球不覆盖自身 mesh（缺口 +60.7mm）靠链邻补位，全覆盖后暴露 link6↔hand_base 结构对（q7 全扫裕度变化 0.63mm 任何位形撞不上）→ r16 语义 hand_wrist.fr3 增补 fr3_link6（S1 腕环先例）；F2 手指 1球/指(r45)→3球/指(r15-18，S7 v7fix…",
+   "status": "done",
+   "goal": "G0"
+  },
+  {
+   "id": "R17",
+   "prio": "P0",
+   "name": "产品语义对齐(owner 2026-08-20 纲领性修正):s0 模型的最终用途 = 遥操数据采集的安全滤波器。执行语义:安全时输出 = 遥操输入(逐位直通,零衰减);不安全时涉险手刹停(冻结);恢复 = 用户逐臂解锁(例:左右手将碰 → 双手静止 → 用户看到后先解锁左手调整,安全后右手才恢复)。派生工作:①执行层\"离合器\"模式——…",
+   "accept": "安全段直通保真 ≥99%(逐位);注入冲突 100% 刹停无碰撞;脚本化解锁-调整-恢复无死锁;误刹率 ≤5%;带物体任务视频(grasp/pick_place/handover)+ OOD 随机流视频各 ≥2 支,任务可辨识",
+   "status_text": "开工(2026-08-20 18:40):S8 子线=离合器执行层+四指标评测;S9 子线=带物体任务场景——已交付(2026-08-20 20:00):duo_env 可选桌面物体(默认零漂移有测试钉)+ 三族任务编排(grasp/pick_place/handover,运动学吸附+手指开合动画)+ 物体位姿判定函数;raw 回放三支全成功零违规,a21 连续门控对照三支全失败(α 均值 0.17~0.32,效用税任务级实证),视频 artifacts/videos/task_demos/,报告 artifacts/report_20260820/S9_object_tasks.md;阿里 PPU 机(16×ZW810E,无 NVIDIA 不能跑 Isaac)立项为离线渲染农场(轨迹 npz → CPU 渲染 → ffmpeg),卸掉 5090 的视频负载。S8 子线交付(2026-08-21 04:00):离合器执行层(e…",
+   "status": "done",
+   "goal": "G1/G4"
+  },
+  {
+   "id": "R18",
+   "prio": "P0",
+   "name": "离合器语义重训(R17 落地主体,S8 配方 2026-08-21):①α 头改逐臂危险概率,训练与执行同用 clutch 语义(straight-through 二值化消除 train-exec 失配);②BCE 辅助监督——hindsight 自动标注(未来 0.5s 内裕度跌破锁线记 1,SphereDistanceModule …",
+   "accept": "离合器口径四门:安全段直通保真 ≥99%(@1e-6)、误刹 ≤5%、注入冲突刹停+解析栈兜底 100% 零违规、解锁-恢复零死锁且对侧回接 ≥90%;S9 三族带物体任务回归:clutch 模式下与 raw 同等成功;随机流安全不回吐(GT 步率不高于 battery7)",
+   "status_text": "训练中(2026-08-21 04:42 发射):S10 子线五件套已实现并发射 a22_v7_r18_s46(4096env×2000iter seed46 GPU1,tmux v7_r18 四窗,wandb vflnbf0o)。实现:①damper 介入门 BackstopConfig.engage_dist(yaml safety.damper_warn_mm,r18 profile 40mm,cap<0 强制退开行无条件保留)②--clutch-train STE 0.5 二值化(存储样本保持连续,PPO 重放/freeze 门不扰)③--w-hazard-bce 0.5 hindsight 标注(锁线 30 步前瞻,arm_hazard_gray_flags 豁免/结构行剔除)④--w-alpha-deadzone 0.5 双向罚(灰带 cross/self/table 10/7/10mm 零罚,与 w_alpha_…",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R19",
+   "prio": "P0",
+   "name": "执行层旁通改造(d5 四门裁决对症,免重训):d5 数据定罪——a22 失真步 85% 源自解析栈在 safe 区仍触碰指令(imperfect_stack 303346 vs alpha 117745,safe 步均值衰减 0.34),40mm 死区不够,因 safe 判定线(锁线+30mm)在死区(40mm)之内,[30,40) 带…",
+   "accept": "四门齐过:保真 ≥95%(bitwise@1e-6,safe 段)、误刹 ≤10%(过渡)/≤5%(目标)、刹停+兜底 100% 零违规(含 extreme 档)、解锁-恢复无死锁;S9 三族回归保持 3/3",
+   "status_text": "立项(2026-08-21 15:10,Round 180):S15 子线=旁通实现+θ 校准扫参+四门复评;S16 子线=d5_npz raw vs 离合对比诊断片(PPU 渲染,简报素材)",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R20",
+   "prio": "P0",
+   "name": "D034 资产资格链 GPU 隔离 successor（double_hand 远程线 bjxy_5090:/home/liyufeng/safeduo，该线内部轮次编号亦为 R20）：ADR-0006 第 8 条裁定旧 R19 资格 manifest 作废（绑定隔离补丁前 AppLauncher 与共享 Kit log root，唯一…",
+   "accept": "CPU 门全绿（focused 双解释器 + isaac_gpu_job + Ruff/双编译/import-safety）；异人审冻结候选 → GO 后 fresh content-addressed manifest 再独审 → 至多一次 retry=0 child；rc0 也只到 READY_FOR_SEMANTIC_REVIEW，不授权 activation/训练/demo",
+   "status_text": "唯一资格 child 已执行并 PASS：READY_FOR_SEMANTIC_REVIEW（2026-08-26 04:02）。两道异审全过（一阶段 66 项攻击零缺口 GO_R20_SPEC；二阶段 manifest 独立复验 argv 逐字节一致 GO_ONE_QUALIFICATION_R20_CHILD）；concrete manifest e3d8fc40…b95400；自动发射器在 GPU-828bb172 空出后 attempt 1 命中（retry=0 保持），child 26.2s：GPU receipt PASS/cross_gpu_observed=false（物理 GPU1→沙箱逻辑 cuda:0），三方比对 6/6 True，日志 0 系统错误，successor receipt 82cf2e92…54816c，activation_ready=false。CPU 侧 semantic/postfl…",
+   "status": "done",
+   "goal": "G0"
+  },
+  {
+   "id": "R21",
+   "prio": "P1",
+   "name": "A100 扩容线（tianyiyun-30109，8×A100-SXM4-80GB）：把 state-based headless PPO-Lagrangian 训练扩到 A100 服务器。2026-08-27 可行性调研收口，结论 CONDITIONAL GO——官方 requirements 明文 A100/H100 无 RT co…",
+   "accept": "A100 上 safeduo train_lagrangian --headless 4096 envs 跑通 ≥100 iter 无渲染栈报错，wall_s 实测入册；A100 run 不与 5090 run 做同批配对比较（跨架构可比性红线）",
+   "status_text": "调研完成(2026-08-27)，待部署实测",
+   "status": "wait",
+   "goal": "G0"
+  },
+  {
+   "id": "R22",
+   "prio": "P0",
+   "name": "训练稳定性迭代线（算法-实验 loop 主线，2026-08-27 诊断收口）：a21/a22/a23 stats.jsonl 证据定性——不稳定主因是设计缺陷而非步数：F1 R18 hindsight 窗口从未配对（horizon 30 > rollout T 24，a22 负标签全为截断噪声；a23 开 tail-mask 未配 h…",
+   "accept": "a24/a24b 800-iter 中期门：braked-frac/hazard-rate ≤1.5、cost_cross 达标且 λ 离帽、熵 ≥-3.5、valid_frac ≥0.5；过门后 d5 四门复测",
+   "status_text": "loop-1 判门毕(08-28 凌晨)：a24 中期门 FAIL(熵/λ帽/过刹)、F1 修复成立(vf 0.45)后于 2790 终止；a24b 续跑验 P4(vl_cross 50→3.5 ✓)；loop-2 主候选 a25(P1+P2+P3+P4 全栈, 01:13 GPU0)在跑，中期门 iter 800；loop-4 温度校准方案定稿（08-31，只读调研）：链路核实评测检测 α=Beta 策略均值（softplus 比值，全链无 sigmoid/EMA），唯一消费端为 ClutchDriver θ 双阈值比较器 ⇒ 任何静态单调重映射（温度/幂/标定）与重扫 θ 严格等价、已被 a26 θ 扫描证伪——纯温度缩放判死；方案改为检测源切换到 ckpt 内已 BCE 训练但评测从未接线的 hazard 头（α_det=1−sigmoid(hazard_logits/T)，hindsight 前瞻监督对症\"爬升慢+常态…",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R23",
+   "prio": "P1",
+   "name": "抓取质量线（S9 穿模修复 + 抓取生成）：审计定性（owner 2026-08-27 指出\"没真抓起来、穿模蹭\"）——S9 抓取是运动学吸附而非物理抓取：attach 把 cube 以实测法兰偏移 0.197 m（handover 接收侧 0.358 m）钉住悬空跟随、每步写位姿+清零速度；手指闭合为 60% 行程 0.6s 位置动画…",
+   "accept": "重录 S9：cube 位于指间、无悬空/穿插帧；②档起加接触保持判据；抓取表通过 plan_grasp 可达性筛选",
+   "status_text": "代码侧完成（2026-08-28，R23 执行线）：解析 antipodal 路线落地（调研线首选档 + ①档全部）——①新增 delta/grasp_gen.py 抓取候选生成（顶抓×4偏航+侧抓×4面，pre-grasp 0.10m/抓取深度/腕姿态对齐主轴，按自然度排序逐候选试解；min_flange_z=1.0434 场景标定钳位：绑定桌面通道的是四指根部 r=0.045 球（球底=flange−0.2314），探针 /tmp/r23_probe_finger_span.py）；②solve_waypoint 六维位姿 DLS-IK（Phase.ori_targets 零漂移扩展，旋转雅可比=FK 关节轴）+ S9 相位化 reach→descend→close→lift，抓持全程姿态保持；③a22 attach 三重门控（闭爪完成度 ≥0.8×目标 + TCP-物体距离 ≤0.12m + flange 0.45 保底…",
+   "status": "done",
+   "goal": "G4"
+  },
+  {
+   "id": "R24",
+   "prio": "P1",
+   "name": "任务库扩充线（四臂全动 + 双臂共持 + 真机 demo 任务族）：盘点（2026-08-27）——v7 技能库 13 族中四臂同动仅 mirror_sync/perimeter_sweep（+轮动 2 族），handover 族 2 臂动 2 臂微 lerp\"呼吸\"（~0.0005 rad/步），cross_pick_place 族与…",
+   "accept": "新任务族清单入库（含四臂参与度审计表）；tier1 通过率不塌；新任务演示视频",
+   "status_text": "三族落地（v1.6.6）：four_lift/relay_chain/pillow_sheath 过全部硬门槛+四臂参与度新审计（EE 行程 0.82-1.55m 全动）；dual_pick_swap F 对互换通过、U 排跨线为 DLS 腕折盆地刀刃问题（40+ 探针定位机理，fail-closed，待关节样条/cuRobo 根治）。三族 GPU 录像全绿（08-29 凌晨）：relay_chain 四臂接力链 F_L→U_R→U_L→F_R 完整传递（'transferred and carried by receiver' viol=0）、four_lift F 对共抬 0.44m 长杆+U 对各自顶抓 cube 三物体同场（'placed in zone at rest'，8 步 table 触桌为放置沉降）、pillow_sheath F 对共抬枕头+U 对轮流裹套（'lifted and held' viol=0）…",
+   "status": "done",
+   "goal": "G4"
+  },
+  {
+   "id": "R25",
+   "prio": "P1",
+   "name": "随机流覆盖线（l1_full 大范围覆盖流）：审计定性（owner 2026-08-27 指出\"原地转手腕没意义\"）——amp 0.015-0.03 是每步每关节弧度钳位（60Hz 即 0.9-1.8 rad/s 关节速度帽），对 l1_ws（EE 伺服流，waypoint 分量仅需 0.005-0.012 rad/步）接近空转旋钮；\"…",
+   "accept": "v7_l1_cov_smoke：60s 单臂卦限 8/8、EE x 极差 ≥0.5m、y 极差 ≥0.9m、姿态指令/漂移 >3:1、带内驻留 ≥15%",
+   "status_text": "实现完成（2026-08-28）：delta/l1_coverage.py（卦限 LRU+p_band0.3/p_deep0.1+到达触发换段+6D 姿态 w_ori0.4+速度三档）+ full_boxes_v7 + FLOW_CHOICES l1_full + duo_env delta_source:l1_full 五行分支 + delta_curriculum_v7_cov.yaml（l1 0.15/l1_full 0.25/sweep_across 1.5），l1_ws 一字未动；本地+远端 py_compile 过、相关单测 60/60、64env×60 步混流采样无 NaN、amp 课程联动验证过；开环冒烟(60s×4env,amp0.03)：分位盒体积 3.9×、卦限 8/8、y 极差 0.98-1.10m、带内驻留 28-44%、姿态净偏移 179-185°（另修 FR3 肘伸直折叠伪逆困住：零空间姿态居中 …",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R26",
+   "prio": "P1",
+   "name": "演示质量线：多机位录像 / 抓取真实性 VLM 逐帧质检 / 物体多样化（≥4 种非 cube 物体任务族）",
+   "accept": "每任务 ≥2 机位（含近景）；VLM 逐帧质检零穿模悬浮或有整改项；≥4 新物体任务过 S9 硬门",
+   "status_text": "达成（v2.27）：机位 B 近景 / C 斜俯标定；悬浮根因（attach 提前 3–6 cm 触发）修复；task_library_r26 四族 bottle_pick / tray_relay / box_colift / rod_pick 全 success；四部成片入 PROGRESS_REPORT_20260831。物体仍为参数化几何体 → R34 升级",
+   "status": "done",
+   "goal": "G4"
+  },
+  {
+   "id": "R27",
+   "prio": "P0",
+   "name": "真物理抓取：运动学吸附（ObjectAttach）全面退役，改手指真实闭合夹持（参考 chembench 配方）",
+   "accept": "S9 三棒 + R24/R26 任务族纯物理抓取 success（物体 z 全程跟随手、零 attach）且近景 VLM PASS，每部片带手指-物体接触/距离读数",
+   "status_text": "09-05 手部开度标定（F2 捏合接触开度 4.3 cm / DFX 3.7 cm）+ 标定抓取系 + 物理旋钮（手指 100/5/5、迭代 64）+ r16 壳；S9 grasp/pick_place 面对面捏取达成；09-06 R26 四族全部物理化：rod（4×30×8 梁、多起点 IK、棒外移）、bottle（瓶身中部直立握）、box（双掌对夹 PalmFrame）、tray_relay → 放-取式间接接力（20 cm 立棒）。直接双手同握 8 轮失败量化 → R32",
+   "status": "done",
+   "goal": "G4"
+  },
+  {
+   "id": "R28",
+   "prio": "P0",
+   "name": "loop-4 训练侧收口：受控会合豁免（coop_vmax 0.15）→ a27",
+   "accept": "四门口径（25 env×60 s）：brake 1.0 / viol-free 1.0 / no-deadlock 1.0 + 误刹 any < a25 冠军 0.536 + done(manual) ≥ 0.733",
+   "status_text": "09-02 验收达成：a27@0.5:0.2 四门全过且全面优于 a25 冠军（done(manual) 1.000、误刹 any 0.452 −16%）；θ 五点全景；推荐操作配置 a27@0.5:0.2 取代 a25@0.35:0.1",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R29",
+   "prio": "P0",
+   "name": "L2 backstop 结构行豁免（handover 门控失败真根因：UR5 upper_arm×table 结构行永远在 damper 门内）",
+   "accept": "handover s0@推荐点 success 且十任务族回归不掉；四门复测无回归",
+   "status_text": "09-02 主验收达成（handover 门控 success 项目首次）；R29b 证伪弃用；v2.32 复盘后默认开由\"互有胜负\"上调为明确推荐（待 owner 确认）；七任务族门控回归 6/7",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R30",
+   "prio": "P0",
+   "name": "离合器执行语义：后撤直通 retreat_release（静止自锁根治）",
+   "accept": "tray_relay/pick_place 门控 success；handover/grasp 不退；四门安全硬门保持、恢复门不劣、误刹不升",
+   "status_text": "v2.35 定稿：R30b 驻留 dwell=10——安全与 R29 逐位同，滞回无死锁 0.92、误刹 0.390；默认值已改；待与 R29 一并默认开（owner 确认）",
+   "status": "done",
+   "goal": "G1"
+  },
+  {
+   "id": "R31",
+   "prio": "P2",
+   "name": "训练侧与最终执行栈对齐（stack 环境内 warm-start a28 / a28b / a29）",
+   "accept": "stack 四门相对 a27 同栈基线全门不劣；十任务门控回归 ≥ 9/10",
+   "status_text": "三臂全部判负（09-05 收口）：共同签名 = U 臂误刹翻倍；杠杆不在 cost 通道（a29 λ 恒 0）而在 hazard 标签语义（R29 解禁后 U 臂随机流更常进危险，30 步前瞻标签更密）。定论：a27（旧节流环境训练）+ stack 执行栈更优；若重开须改 U 臂 hazard 标签语义",
+   "status": "negative",
+   "goal": "G1"
+  },
+  {
+   "id": "R32",
+   "prio": "P1",
+   "name": "协作接触豁免（双手交接的安全契约）：(a) coop_handover 条件豁免 / (b) 长物体 / (c) 并行 / (d) 放-取式间接接力",
+   "accept": "选定方案后：交接物理版 raw+门控 success、接收臂真实携物 ≥10 cm、零 attach、跨机违规 0；若采 (a) 四门跨机零违规不退",
+   "status_text": "09-06 (d) 间接接力已可用（raw+门控 success、两手最近 17 cm、alpha 1.0）；(b) 实测约束：F2+DFX 同握竖棒需 ≥25 cm 间距且 DFX 需从上方进入 → 长物体 ≥60 cm；(a) 待 owner 裁决。R34 的 4040 型材（30–60 cm 横握）可能直接以真实物体满足 (b)",
+   "status": "wait",
+   "goal": "G1/G4"
+  },
+  {
+   "id": "R33",
+   "prio": "P0",
+   "name": "臂执行器保真两处隐性缺陷：①UR5 wrist_3 驱动数值失稳（armature 0.05 修复）②FR3/UR5 重力下垂（重力补偿）③四门在修复环境复测 ④越线机制 + 速度感知阻尼带 lookahead_s",
+   "accept": "a30@0.5:0.2 在 stack_fix 四门：硬门不退于 a27@stack（死腕）；U 臂步响应无超调；十任务门控回归不退",
+   "status_text": "①② 落地（录制 yaml 全开）；③ a27 在活腕下失效（viol-free 0.92、误刹 ×2.8）——论文全部 v7 四门数字为\"死腕（有效 5 DOF）\"环境结果，必须标注并重训；a30（+800）未适应，a30b（+1600）在跑（GPU1，~04:00 完 / ~06:00 出四门）；④ 越线机制复现到毫米，lookahead_s 速度感知带：τ=0.06 s 硬门全回、min cross 25.5 mm、fidelity 0.067；τ=0.15 s 31.6 mm / 0.045。a30@la06 四门在跑（GPU0）",
+   "status": "run",
+   "goal": "G1"
+  },
+  {
+   "id": "R34",
+   "prio": "P1",
+   "name": "【提案】工业协作装配任务族 + 真实物体资产（参照四臂铝型材装配 benchmark；owner 09-06：\"目前的物体太粗糙\"）",
+   "accept": "① 4040 铝型材框架搭建（型材递送 / 共持插接 / 框架共抬）raw + a27 门控 success、零违规、≥2 机位成片；② KLT 料箱分拣；③ 包装（装箱 + 共抬 + 合盖）；全部资产过凸分解 + 白名单 + 球审计；物体质量/摩擦按实物",
+   "status_text": "方案已写 docs/R34_SCENE_ASSETS.md；待 owner 确认启动时机（原会话在跑 R33）与首个子族。资产来源优先级：Isaac Sim Nucleus Props（KLT_Bin、YCB、工业托盘）→ Isaac Lab Factory/AutoMate 装配件 → Google Scanned Objects → 程序化 T 槽型材",
+   "status": "planned",
+   "goal": "G4"
+  },
+  {
+   "id": "R35",
+   "prio": "P2",
+   "name": "【提案】文献启发实验：SAI 式分臂顺序微调（解 R31/R33 的 U 臂误刹翻倍）+ TRACE 式路径签名意图特征（解误刹-安全张力）+ Phase-Sync / 伙伴延迟探针指标",
+   "accept": "① 分臂顺序微调后 stack_fix 四门：硬门全回且误刹(arm) ≤ a27@死腕栈 0.143×1.5；② 路径签名特征消融：同硬门下误刹或 fidelity 显著改善；③ 四门新增 phase-sync 保持率与伙伴延迟探针",
+   "status_text": "分析见 docs/LITERATURE_SAI_TRACE.md；作为\"完整课程重训（≈24 h GPU）\"之前的低成本候选，待 owner 拍板",
+   "status": "planned",
+   "goal": "G1/论文"
+  }
+ ]
+}

@@ -1,0 +1,2340 @@
+{
+ "theta_hi": 0.7,
+ "theta_lo": 0.5,
+ "clutch": true,
+ "ckpt": "artifacts/runs/a21_v7_r15_s46/model_2000.pt",
+ "env_yaml": "duo_env_v7.yaml",
+ "geometry": "v7",
+ "num_envs": 25,
+ "duration_s": 60.0,
+ "steps_per_window": 3600,
+ "dt": 0.016666,
+ "seed": 20260820,
+ "regular_amps": [
+  0.015,
+  0.03
+ ],
+ "directed_amps": [
+  0.03,
+  0.06
+ ],
+ "date": "2026-08-21 00:09:49",
+ "fidelity": {
+  "fidelity_at_tol": {
+   "1e-06": 0.004211657680571079,
+   "1e-04": 0.004361867439001799,
+   "1e-03": 0.006089282687753439
+  },
+  "imperfect_dev_linf_quantiles": {
+   "p50": 0.011286,
+   "p90": 0.016159,
+   "p99": 0.022926,
+   "max": 0.03
+  },
+  "clutch_engaged_frac_safe": 0.20137962698936462,
+  "n_steps": 180000,
+  "n_safe_steps": 173091,
+  "safe_step_frac": 0.9616166949272156,
+  "safe_frac_by_class": {
+   "cross": 0.996844470500946,
+   "self_F": 0.9991999864578247,
+   "self_U": 0.9656888842582703,
+   "table": 0.9919221997261047
+  },
+  "safe_frac_blanket_30mm": 0.0,
+  "fidelity_bitwise": 0.004211657680571079,
+  "fidelity_per_arm": {
+   "F_L": 0.449231892824173,
+   "F_R": 0.2742256820201874,
+   "U_L": 0.045993149280548096,
+   "U_R": 0.06479250639677048
+  },
+  "mean_attenuation_safe": 0.6525498712563045,
+  "imperfect_arm_steps": 547964,
+  "imperfect_alpha_source": 402902,
+  "imperfect_stack_source": 145969,
+  "imperfect_both_sources": 907,
+  "tol": 1e-06,
+  "safe_lines": {
+   "cross": 0.03,
+   "self_F": 0.01,
+   "self_U": 0.03
+  }
+ },
+ "false_brake": {
+  "n_safe_steps": 173091,
+  "false_brake_arm_rate": 0.5819222331047058,
+  "false_brake_any_rate": 0.7986204028129578,
+  "false_brake_per_arm": {
+   "F_L": 0.32103344798088074,
+   "F_R": 0.6023016571998596,
+   "U_L": 0.7752223014831543,
+   "U_R": 0.6291314959526062
+  },
+  "safe_lines": {
+   "cross": 0.03,
+   "self_F": 0.01,
+   "self_U": 0.03
+  }
+ },
+ "diag_regular": {
+  "margin_quantiles": {
+   "cross": {
+    "p1": 0.03487,
+    "p5": 0.04407,
+    "p50": 0.21
+   },
+   "self_F": {
+    "p1": 0.02308,
+    "p5": 0.02308,
+    "p50": 0.02308
+   },
+   "self_U": {
+    "p1": 0.02054,
+    "p5": 0.03602,
+    "p50": 0.05922
+   },
+   "table": {
+    "p1": 0.00086,
+    "p5": 0.00164,
+    "p50": 0.00174
+   }
+  },
+  "margin_frac_above_line": {
+   "cross": 0.9968,
+   "self_F": 0.9992,
+   "self_U": 0.9657,
+   "table": 0.9919
+  },
+  "alpha_policy_quantiles": {
+   "F_L": {
+    "p10": 0.4102,
+    "p50": 0.8057,
+    "p90": 0.8472
+   },
+   "F_R": {
+    "p10": 0.3272,
+    "p50": 0.5251,
+    "p90": 0.8044
+   },
+   "U_L": {
+    "p10": 0.188,
+    "p50": 0.4145,
+    "p90": 0.7467
+   },
+   "U_R": {
+    "p10": 0.1447,
+    "p50": 0.4901,
+    "p90": 0.8206
+   }
+  },
+  "locked_frac_per_arm": {
+   "F_L": 0.3109,
+   "F_R": 0.5832,
+   "U_L": 0.7665,
+   "U_R": 0.6106
+  }
+ },
+ "brake": {
+  "aggregate": {
+   "n_runs": 50,
+   "n_triggered": 32,
+   "n_braked": 32,
+   "brake_rate": 1.0,
+   "n_brake_success": 32,
+   "n_locked_untriggered": 18,
+   "violation_free_rate": 1.0,
+   "violation_free_any_class_rate": 1.0,
+   "n_cmd_stop_all": 10,
+   "lock_delay_steps": {
+    "mean": 0.0,
+    "p50": 0.0,
+    "p95": 0.0,
+    "max": 0
+   },
+   "cmd_stop_delay_steps": {
+    "mean": 0.0,
+    "p50": 0.0,
+    "p95": 0.0,
+    "max": 0
+   },
+   "cmd_stop_all_delay_steps": {
+    "mean": 2499.0,
+    "p50": 2461.0,
+    "p95": 2738.0,
+    "max": 2738
+   },
+   "phys_stop_delay_steps": {
+    "mean": -1.0,
+    "p50": -1.0,
+    "p95": -1.0,
+    "max": -1
+   },
+   "phys_stop_all_delay_steps": {
+    "mean": -1.0,
+    "p50": -1.0,
+    "p95": -1.0,
+    "max": -1
+   },
+   "min_cross_margin": 0.04653
+  },
+  "rows": [
+   {
+    "env_idx": 0,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.06381,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1844,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 1,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05577,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 811,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2738,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 2,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05164,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1162,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 3,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.049,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 780,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2370,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 4,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05416,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 824,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 5,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.06773,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 2210,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 6,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.06199,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1849,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 7,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 8,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05975,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1497,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 9,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54818,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 10,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05892,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1164,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2352,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 11,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.0532,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 814,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 12,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04924,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 830,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 13,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04703,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 832,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 14,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 15,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54818,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 16,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05179,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 787,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2461,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 17,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04653,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 796,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2574,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 18,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54818,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 19,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 20,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54826,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 21,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04815,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1151,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 22,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 23,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04742,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1155,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 24,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.03,
+    "window": 0
+   },
+   {
+    "env_idx": 0,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.06381,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1844,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 1,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05577,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 811,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2738,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 2,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05164,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1162,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 3,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.049,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 780,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2370,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 4,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05416,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 824,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 5,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.06773,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 2210,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 6,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.06199,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1849,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 7,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 8,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05975,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1497,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 9,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54818,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 10,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05892,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1164,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2352,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 11,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.0532,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 814,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 12,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04924,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 830,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 13,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04703,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 832,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 14,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 15,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54818,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 16,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.05179,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 787,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2461,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 17,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04653,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 796,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": 2574,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 18,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54818,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 19,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 20,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54826,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 21,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04815,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1151,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 22,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 23,
+    "triggered": true,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.04742,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "trigger_step": 1155,
+    "at_risk_arms": [
+     "F_L",
+     "U_R"
+    ],
+    "lock_delay_steps": 0,
+    "lock_all_delay_steps": -1,
+    "cmd_stop_delay_steps": 0,
+    "cmd_stop_all_delay_steps": -1,
+    "phys_stop_delay_steps": -1,
+    "phys_stop_all_delay_steps": -1,
+    "cmd_stop_delay_ms": 0.0,
+    "phys_stop_delay_ms": -1.0,
+    "braked": true,
+    "brake_success": true,
+    "amp": 0.06,
+    "window": 1
+   },
+   {
+    "env_idx": 24,
+    "triggered": false,
+    "locked_any": true,
+    "min_margin_by_class": {
+     "cross": 0.54827,
+     "self_F": 0.02308,
+     "self_U": 0.0568,
+     "table": 0.00163
+    },
+    "violation_steps_any": 0,
+    "violation_steps_cross": 0,
+    "amp": 0.06,
+    "window": 1
+   }
+  ]
+ },
+ "diag_directed": {
+  "margin_quantiles": {
+   "cross": {
+    "p1": 0.05195,
+    "p5": 0.06678,
+    "p50": 0.36697
+   },
+   "self_F": {
+    "p1": 0.02308,
+    "p5": 0.02308,
+    "p50": 0.02308
+   },
+   "self_U": {
+    "p1": 0.05682,
+    "p5": 0.05686,
+    "p50": 0.05817
+   },
+   "table": {
+    "p1": 0.00163,
+    "p5": 0.00163,
+    "p50": 0.00163
+   }
+  },
+  "margin_frac_above_line": {
+   "cross": 1.0,
+   "self_F": 1.0,
+   "self_U": 1.0,
+   "table": 1.0
+  },
+  "alpha_policy_quantiles": {
+   "F_L": {
+    "p10": 0.4728,
+    "p50": 0.8254,
+    "p90": 0.835
+   },
+   "F_R": {
+    "p10": 0.3236,
+    "p50": 0.4484,
+    "p90": 0.4832
+   },
+   "U_L": {
+    "p10": 0.2002,
+    "p50": 0.3402,
+    "p90": 0.4412
+   },
+   "U_R": {
+    "p10": 0.1336,
+    "p50": 0.3007,
+    "p90": 0.4358
+   }
+  },
+  "locked_frac_per_arm": {
+   "F_L": 0.2141,
+   "F_R": 0.9997,
+   "U_L": 0.9997,
+   "U_R": 0.9997
+  }
+ },
+ "recovery_hysteresis": {
+  "aggregate": {
+   "n_runs": 25,
+   "n_froze": 16,
+   "n_retreat": 16,
+   "n_deadlock": 0,
+   "no_deadlock_rate": 1.0,
+   "retreat_moved_rate": 0.0,
+   "re_engage_rate": 0.0,
+   "margin_recovered_rate": 1.0,
+   "other_resumed_rate": 1.0,
+   "done_rate": 1.0,
+   "re_engage_delay_steps": {
+    "mean": -1.0,
+    "p50": -1.0,
+    "p95": -1.0,
+    "max": -1
+   },
+   "margin_recover_delay_steps": {
+    "mean": 43.19,
+    "p50": 39.0,
+    "p95": 65.8,
+    "max": 68
+   },
+   "other_resume_delay_steps": {
+    "mean": 43.19,
+    "p50": 39.0,
+    "p95": 65.8,
+    "max": 68
+   }
+  },
+  "rows": [
+   {
+    "env_idx": 0,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1844,
+    "retreat_start": 1874,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1914,
+    "other_resume_step": 1914,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 1,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 811,
+    "retreat_start": 841,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 876,
+    "other_resume_step": 876,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 2,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1162,
+    "retreat_start": 1192,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1224,
+    "other_resume_step": 1224,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 3,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 780,
+    "retreat_start": 810,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 878,
+    "other_resume_step": 878,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 4,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 824,
+    "retreat_start": 854,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 889,
+    "other_resume_step": 889,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 5,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 2210,
+    "retreat_start": 2240,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 2271,
+    "other_resume_step": 2271,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 6,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1849,
+    "retreat_start": 1879,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1918,
+    "other_resume_step": 1918,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 7,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 8,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1497,
+    "retreat_start": 1527,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1574,
+    "other_resume_step": 1574,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 9,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 10,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1164,
+    "retreat_start": 1194,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1231,
+    "other_resume_step": 1231,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 11,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 814,
+    "retreat_start": 844,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 890,
+    "other_resume_step": 890,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 12,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 830,
+    "retreat_start": 860,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 892,
+    "other_resume_step": 892,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 13,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 832,
+    "retreat_start": 862,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 895,
+    "other_resume_step": 895,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 14,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 15,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 16,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 787,
+    "retreat_start": 817,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 879,
+    "other_resume_step": 879,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 17,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 796,
+    "retreat_start": 826,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 891,
+    "other_resume_step": 891,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 18,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 19,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 20,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 21,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1151,
+    "retreat_start": 1181,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1226,
+    "other_resume_step": 1226,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 22,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 23,
+    "mode": "hysteresis",
+    "froze": true,
+    "freeze_step": 1155,
+    "retreat_start": 1185,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": 1229,
+    "other_resume_step": 1229,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 24,
+    "mode": "hysteresis",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   }
+  ]
+ },
+ "recovery_manual": {
+  "aggregate": {
+   "n_runs": 25,
+   "n_froze": 16,
+   "n_retreat": 16,
+   "n_deadlock": 0,
+   "no_deadlock_rate": 1.0,
+   "retreat_moved_rate": 1.0,
+   "re_engage_rate": 1.0,
+   "margin_recovered_rate": 1.0,
+   "other_resumed_rate": 1.0,
+   "done_rate": 1.0,
+   "re_engage_delay_steps": {
+    "mean": 1.0,
+    "p50": 1.0,
+    "p95": 1.0,
+    "max": 1
+   },
+   "margin_recover_delay_steps": {
+    "mean": 48.88,
+    "p50": 46.0,
+    "p95": 71.0,
+    "max": 74
+   },
+   "other_resume_delay_steps": {
+    "mean": 48.88,
+    "p50": 46.0,
+    "p95": 71.0,
+    "max": 74
+   }
+  },
+  "rows": [
+   {
+    "env_idx": 0,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1844,
+    "retreat_start": 1874,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1875,
+    "retreat_moved_step": 1876,
+    "margin_recover_step": 1920,
+    "other_resume_step": 1920,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 1,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 811,
+    "retreat_start": 841,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 842,
+    "retreat_moved_step": 842,
+    "margin_recover_step": 883,
+    "other_resume_step": 883,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 2,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1162,
+    "retreat_start": 1192,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1193,
+    "retreat_moved_step": 1193,
+    "margin_recover_step": 1230,
+    "other_resume_step": 1230,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 3,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 780,
+    "retreat_start": 810,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 811,
+    "retreat_moved_step": 812,
+    "margin_recover_step": 884,
+    "other_resume_step": 884,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 4,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 824,
+    "retreat_start": 854,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 855,
+    "retreat_moved_step": 855,
+    "margin_recover_step": 894,
+    "other_resume_step": 894,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 5,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 2210,
+    "retreat_start": 2240,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 2241,
+    "retreat_moved_step": 2241,
+    "margin_recover_step": 2278,
+    "other_resume_step": 2278,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 6,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1849,
+    "retreat_start": 1879,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1880,
+    "retreat_moved_step": 1881,
+    "margin_recover_step": 1925,
+    "other_resume_step": 1925,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 7,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 8,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1497,
+    "retreat_start": 1527,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1528,
+    "retreat_moved_step": 1529,
+    "margin_recover_step": 1579,
+    "other_resume_step": 1579,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 9,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 10,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1164,
+    "retreat_start": 1194,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1195,
+    "retreat_moved_step": 1195,
+    "margin_recover_step": 1238,
+    "other_resume_step": 1238,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 11,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 814,
+    "retreat_start": 844,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 845,
+    "retreat_moved_step": 845,
+    "margin_recover_step": 895,
+    "other_resume_step": 895,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 12,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 830,
+    "retreat_start": 860,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 861,
+    "retreat_moved_step": 861,
+    "margin_recover_step": 896,
+    "other_resume_step": 896,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 13,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 832,
+    "retreat_start": 862,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 863,
+    "retreat_moved_step": 864,
+    "margin_recover_step": 899,
+    "other_resume_step": 899,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 14,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 15,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 16,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 787,
+    "retreat_start": 817,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 818,
+    "retreat_moved_step": 819,
+    "margin_recover_step": 886,
+    "other_resume_step": 886,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 17,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 796,
+    "retreat_start": 826,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 827,
+    "retreat_moved_step": 827,
+    "margin_recover_step": 896,
+    "other_resume_step": 896,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 18,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 19,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 20,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 21,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1151,
+    "retreat_start": 1181,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1182,
+    "retreat_moved_step": 1183,
+    "margin_recover_step": 1231,
+    "other_resume_step": 1231,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 22,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 23,
+    "mode": "manual",
+    "froze": true,
+    "freeze_step": 1155,
+    "retreat_start": 1185,
+    "retreat_arm": "U_R",
+    "other_arm": "F_L",
+    "re_engage_step": 1186,
+    "retreat_moved_step": 1187,
+    "margin_recover_step": 1234,
+    "other_resume_step": 1234,
+    "deadlock": false,
+    "done": true,
+    "violation_steps_any": 0
+   },
+   {
+    "env_idx": 24,
+    "mode": "manual",
+    "froze": false,
+    "freeze_step": -1,
+    "retreat_start": -1,
+    "retreat_arm": null,
+    "other_arm": null,
+    "re_engage_step": -1,
+    "retreat_moved_step": -1,
+    "margin_recover_step": -1,
+    "other_resume_step": -1,
+    "deadlock": false,
+    "done": false,
+    "violation_steps_any": 0
+   }
+  ]
+ }
+}
