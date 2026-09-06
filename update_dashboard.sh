@@ -35,8 +35,15 @@ else
   echo "$(ts) data no change" >> "$LOG"
 fi
 # MASTER_REPORT mirror (living doc maintained by the experiment line) into the Pages branch
-if [ -f "$SRC/paper/MASTER_REPORT.html" ] && ! cmp -s "$SRC/paper/MASTER_REPORT.html" "$TOOLS/MASTER_REPORT.html"; then
-  cp "$SRC/paper/MASTER_REPORT.html" "$TOOLS/MASTER_REPORT.html"
-  (cd "$TOOLS" && git add MASTER_REPORT.html && git commit -q -m "mirror: MASTER_REPORT $(date '+%m-%d %H:%M')" && git push -q origin main 2>>"$LOG") && echo "$(ts) MASTER mirrored" >> "$LOG"
+# NOTE: ~/Desktop is TCC-protected; under launchd/cron this read fails (Operation not permitted) unless
+# /bin/bash has Full Disk Access. Run this script interactively after editing MASTER to mirror it.
+if cat "$SRC/paper/MASTER_REPORT.html" > "$TOOLS/.master.tmp" 2>/dev/null && [ -s "$TOOLS/.master.tmp" ]; then
+  if ! cmp -s "$TOOLS/.master.tmp" "$TOOLS/MASTER_REPORT.html"; then
+    mv "$TOOLS/.master.tmp" "$TOOLS/MASTER_REPORT.html"
+    (cd "$TOOLS" && git add MASTER_REPORT.html && git commit -q -m "mirror: MASTER_REPORT $(date '+%m-%d %H:%M')" && git push -q origin main 2>>"$LOG") && echo "$(ts) MASTER mirrored" >> "$LOG"
+  fi
+  rm -f "$TOOLS/.master.tmp"
+else
+  rm -f "$TOOLS/.master.tmp"; echo "$(ts) MASTER source not readable here (TCC); run interactively to mirror" >> "$LOG"
 fi
 exit 0
