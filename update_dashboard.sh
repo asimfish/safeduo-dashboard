@@ -34,6 +34,8 @@ if ! git diff --cached --quiet; then
 else
   echo "$(ts) data no change" >> "$LOG"
 fi
+# videos: pull + transcode + push the media repo (independent of the data branch)
+bash "$TOOLS/sync_media.sh" >/dev/null 2>&1
 # MASTER_REPORT mirror (living doc maintained by the experiment line) into the Pages branch
 # NOTE: ~/Desktop is TCC-protected; under launchd/cron this read fails (Operation not permitted) unless
 # /bin/bash has Full Disk Access. Run this script interactively after editing MASTER to mirror it.
