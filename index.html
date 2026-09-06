@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeDuo 计划面板</title>
+<style>
+  :root { color-scheme: light; --blue:#2563eb; --green:#059669; --amber:#d97706; --red:#dc2626; --muted:#64748b; --line:#d7dbe0; --purple:#7c3aed; }
+  * { box-sizing: border-box; }
+  body { margin:0; color:#1a1a2e; background:#fafbfc; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.5; }
+  .layout { display:flex; max-width:1760px; margin:0 auto; }
+  nav.sidebar { position:sticky; top:0; align-self:flex-start; width:225px; min-height:100vh; padding:16px 10px; border-right:1px solid var(--line); background:#f8fafc; font-size:12.5px; }
+  nav.sidebar a { display:block; padding:4px 8px; color:#334155; text-decoration:none; border-radius:4px; }
+  nav.sidebar a:hover { background:#e2e8f0; }
+  nav.sidebar .nav-title { font-weight:700; margin:8px 0 4px; color:#1e293b; }
+  main.content { flex:1; padding:22px 18px 40px; max-width:1530px; min-width:0; }
+  h1 { font-size:23px; border-bottom:3px solid var(--blue); padding-bottom:8px; margin-bottom:6px; }
+  h2 { margin-top:28px; padding:7px 10px; border-left:4px solid var(--blue); background:#eef2ff; font-size:17px; }
+  h3 { margin:16px 0 6px; font-size:14px; color:#334155; }
+  .meta,.small { color:var(--muted); font-size:12px; }
+  .cards { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin:12px 0; }
+  @media (max-width:1200px) { .cards { grid-template-columns:repeat(3,1fr); } }
+  .card { padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+  .card .t { font-weight:700; font-size:13px; color:#1e293b; }
+  .card .pct { font-size:21px; font-weight:700; margin:2px 0; }
+  .bar { height:7px; background:#e5e7eb; border-radius:4px; overflow:hidden; margin:3px 0 5px; }
+  .bar > i { display:block; height:100%; background:var(--blue); }
+  .pill { display:inline-block; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:600; color:#fff; white-space:nowrap; }
+  .pill.done { background:var(--green); } .pill.run,.pill.training { background:var(--blue); } .pill.verifying,.pill.wait { background:var(--amber); } .pill.negative { background:var(--red); } .pill.planned,.pill.idle { background:var(--muted); } .pill.open { background:var(--purple); }
+  .table-wrap { overflow-x:auto; border:1px solid var(--line); background:#fff; margin-bottom:8px; border-radius:6px; }
+  table { width:100%; border-collapse:collapse; font-size:12.3px; }
+  th { padding:5px 7px; color:#fff; background:#1e293b; text-align:left; white-space:nowrap; position:sticky; top:0; }
+  td { padding:4px 7px; border-top:1px solid #eef0f3; vertical-align:top; }
+  tr:hover td { background:#f8fafc; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  tr.grp td { background:#f1f5f9; font-weight:700; color:#1e293b; }
+  .ok { color:var(--green); font-weight:600; } .bad { color:var(--red); font-weight:600; } .warn { color:var(--amber); font-weight:600; }
+  .mbar { display:inline-block; width:90px; height:9px; background:#e5e7eb; border-radius:3px; vertical-align:middle; overflow:hidden; margin-right:5px; }
+  .mbar > i { display:block; height:100%; background:#94a3b8; } .mbar.hot > i { background:var(--blue); } .mbar.util > i { background:var(--green); }
+  .tag { display:inline-block; padding:0 5px; border-radius:3px; font-size:11px; margin:1px 2px 1px 0; background:#e2e8f0; color:#334155; }
+  .tag.safeduo { background:#dbeafe; color:#1e40af; font-weight:600; } .tag.chembench,.tag.other { background:#f3e8ff; color:#5b21b6; }
+  .gallery { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:10px 0; }
+  @media (max-width:1200px) { .gallery { grid-template-columns:repeat(2,1fr); } }
+  .gcard { border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; }
+  .gcard img { width:100%; display:block; aspect-ratio:16/9; object-fit:cover; background:#e5e7eb; }
+  .gcard .b { padding:8px 10px; font-size:12px; }
+  .gcard .b b { display:block; font-size:13px; color:#1e293b; margin-bottom:2px; }
+  ul.q { margin:6px 0; padding-left:20px; font-size:13px; } ul.q li { margin:3px 0; }
+  code { background:#f1f5f9; padding:1px 4px; border-radius:3px; font-size:12px; }
+  .stale { color:var(--red); }
+  .srvhead { display:flex; gap:14px; align-items:baseline; margin:12px 0 4px; flex-wrap:wrap; }
+  .srvhead b { font-size:14px; }
+  details.st summary { cursor:pointer; color:#334155; }
+  details.st summary::marker { color:var(--muted); }
+  .northstar { background:#fff; border:1px solid var(--line); border-left:4px solid var(--purple); border-radius:6px; padding:10px 12px; font-size:13.5px; margin:10px 0; }
+  .filters { font-size:12px; color:#334155; margin:6px 0; display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .filters label { cursor:pointer; }
+  .decision { background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:8px 0; font-size:13px; }
+  .decision b.tp { color:#1e293b; }
+  .decision .rec { color:var(--green); font-weight:600; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <div class="nav-title">大纲</div>
+  <a href="#secS">S 服务器与算力（实时）</a>
+  <a href="#sec1">1 北极星与目标进度</a>
+  <a href="#sec2">2 工作项路线图 R1–R35</a>
+  <a href="#sec3">3 四门实验矩阵</a>
+  <a href="#sec4">4 任务族与物体资产 · R34</a>
+  <a href="#sec5">5 待 owner 决策</a>
+  <a href="#sec6">6 判决记录</a>
+  <a href="#sec7">7 工作队列（agent 按此干活）</a>
+  <a href="#sec8">8 文献启发</a>
+  <a href="#sec9">9 变更日志</a>
+  <a href="#secX">10 维护契约</a>
+  <div class="nav-title" style="margin-top:14px">文档</div>
+  <a href="MASTER_REPORT.html" target="_blank">MASTER_REPORT 活文档（镜像）→</a>
+  <a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/R34_SCENE_ASSETS.md" target="_blank">R34 场景与资产方案 →</a>
+  <a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/LITERATURE_SAI_TRACE.md" target="_blank">SAI / TRACE 启发 →</a>
+  <div class="nav-title" style="margin-top:14px">数据源</div>
+  <a href="https://github.com/asimfish/safeduo-dashboard/tree/data" target="_blank">data 分支（JSON 快照）</a>
+  <a href="https://github.com/asimfish/safeduo-dashboard" target="_blank">仓库</a>
+</nav>
+<main class="content">
+  <h1>SafeDuo 计划面板</h1>
+  <div class="meta">内容快照 <span id="upd-status">-</span> · 服务器快照 <span id="upd-runs">-</span> · 四门矩阵 <span id="upd-gates">-</span> · 每 60 秒自动刷新 · <span id="stale" class="stale"></span></div>
+
+  <h2 id="secS">S 服务器与算力（bjxy_5090 · 2×RTX 5090：每卡显存 / 利用率 / 正在跑的作业）</h2>
+  <div id="servers"></div>
+  <h3>训练运行（stats.jsonl 末行）</h3>
+  <div class="table-wrap"><table id="runs"><thead><tr><th>run</th><th>iter</th><th>α_exec</th><th>α</th><th>cost cross/self/table</th><th>λ</th><th>hazard_rate</th><th>熵</th><th>ckpt</th><th>最近更新</th><th>状态</th></tr></thead><tbody></tbody></table></div>
+  <h3>四门评测目录（最近）</h3>
+  <ul class="q" id="gatedirs"></ul>
+  <div class="small">tmux：<span id="tmux"></span></div>
+
+  <h2 id="sec1">1 北极星与目标进度</h2>
+  <div class="northstar" id="northstar"></div>
+  <div class="cards" id="goals"></div>
+  <div class="small" id="pctnote"></div>
+  <h3>今日焦点</h3>
+  <ul class="q" id="focus"></ul>
+
+  <h2 id="sec2">2 工作项路线图（MASTER §9 R 行 + 面板提案 R34/R35）</h2>
+  <div class="filters" id="rmfilters">
+    <span>筛选：</span>
+    <label><input type="checkbox" data-st="run" checked> 进行中</label>
+    <label><input type="checkbox" data-st="wait" checked> 待决/待续</label>
+    <label><input type="checkbox" data-st="planned" checked> 未开工/提案</label>
+    <label><input type="checkbox" data-st="negative" checked> 负结果</label>
+    <label><input type="checkbox" data-st="done"> 已完成</label>
+    <label><input type="checkbox" data-st="idle"> 搁置</label>
+    <span class="small" id="rmsum"></span>
+  </div>
+  <div class="table-wrap"><table id="roadmap"><thead><tr><th>ID</th><th>优先</th><th>目标</th><th>工作项</th><th>状态</th><th>进展（点开看全文）</th><th>验收标准</th></tr></thead><tbody></tbody></table></div>
+
+  <h2 id="sec3">3 四门实验矩阵（策略 × 执行栈 × θ；多 agent 对齐用）</h2>
+  <div class="meta" id="protocol"></div>
+  <h3>计划 vs 完成（plan.json ⨝ gates.json ⨝ runs.json）</h3>
+  <div class="meta" id="msum"></div>
+  <div class="table-wrap"><table id="matrix"><thead><tr><th>策略</th><th>执行栈</th><th>θ</th><th>目的</th><th>目标</th><th>状态</th><th>brake</th><th>viol-free</th><th>min cross</th><th>no-dl(hys)</th><th>done h/m</th><th>误刹(arm)</th><th>fidelity</th><th>硬门</th><th>日期</th></tr></thead><tbody></tbody></table></div>
+  <h3>全部四门 cell（自动从 artifacts/clutch/*/cell_*.json 生成）</h3>
+  <div class="filters"><label><input type="checkbox" id="fullonly" checked> 只看完整四门（含 brake 窗口）</label><label><input type="checkbox" id="recentonly" checked> 只看 a25 及之后</label><span class="small" id="gsum"></span></div>
+  <div class="table-wrap"><table id="gates"><thead><tr><th>日期</th><th>策略</th><th>执行栈</th><th>栈标签</th><th>θ</th><th>brake</th><th>viol-free cross/any</th><th>min cross mm</th><th>cmd-stop p50/p95</th><th>no-dl(hys)</th><th>done hys/man</th><th>误刹 arm/any</th><th>fidelity</th><th>衰减</th><th>硬门</th><th>grid</th></tr></thead><tbody></tbody></table></div>
+  <div class="small">硬门 = brake 1.0 ∧ viol-free(cross) 1.0 ∧ no-deadlock(hys) 1.0（R28 口径）；fidelity 越高越好（安全区内逐位等于原指令的步占比）；误刹 越低越好。执行栈：r18 = 死腕（有效 5 DOF）旧栈；stack = R29+R30b；fix = 活腕 armature + F 重力补偿；fix2 = 双臂重力补偿；bl = backlog-aware；la/la06 = lookahead 0.15/0.06 s。</div>
+
+  <h2 id="sec4">4 任务族与物体资产 · R34 工业协作装配提案</h2>
+  <div class="meta" id="tasknote"></div>
+  <div class="gallery" id="gallery"></div>
+  <h3>资产现状与硬约束</h3>
+  <div class="small" id="assets-summary"></div>
+  <ul class="q" id="assets-constraints"></ul>
+  <h3 id="r34title"></h3>
+  <div class="small" id="r34why"></div>
+  <div class="table-wrap"><table id="r34sub"><thead><tr><th>子族</th><th>物体</th><th>任务</th><th>复用原语</th><th>验收</th><th>优先</th></tr></thead><tbody></tbody></table></div>
+  <h3>资产来源（优先级）</h3>
+  <div class="table-wrap"><table id="r34src"><thead><tr><th>来源</th><th>为什么</th><th>许可</th></tr></thead><tbody></tbody></table></div>
+  <h3>流水线 / 待定问题</h3>
+  <ul class="q" id="r34pipe"></ul>
+  <ul class="q" id="r34open"></ul>
+
+  <h2 id="sec5">5 待 owner 决策</h2>
+  <div id="decisions"></div>
+
+  <h2 id="sec6">6 判决记录</h2>
+  <div class="table-wrap"><table id="verdicts"><thead><tr><th>日期</th><th>主题</th><th>判词</th><th>证据</th></tr></thead><tbody></tbody></table></div>
+
+  <h2 id="sec7">7 工作队列（agent 按此干活）</h2>
+  <div class="table-wrap"><table id="queue"><thead><tr><th>#</th><th>目标</th><th>任务</th><th>状态</th><th>负责</th><th>预计</th><th>备注</th></tr></thead><tbody></tbody></table></div>
+
+  <h2 id="sec8">8 文献启发</h2>
+  <div id="literature"></div>
+
+  <h2 id="sec9">9 变更日志</h2>
+  <div class="table-wrap"><table id="changelog"><thead><tr><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div>
+
+  <h2 id="secX">10 维护契约（人 + 多 agent）</h2>
+  <ul class="q">
+    <li><b>服务器快照</b>（<code>runs.json</code>：bjxy_5090 每卡显存/利用率/进程标签、tmux、训练 run 末行统计、四门目录进度）由 Mac 端 <code>update_dashboard.sh</code>（launchd，每 10 分钟）通过 ssh 运行 <code>collect_remote.py</code> 采集，推送到 <code>data</code> 分支；Mac 休眠或服务器不可达时停更并标红。</li>
+    <li><b>四门矩阵</b>：<code>gates.json</code> 由 <code>build_gates.py</code> 从远端 <code>~/safeduo/artifacts/clutch/*/cell_*.json</code> 镜像自动生成，禁止手改数字；<code>plan.json</code> 是计划网格（策略 × 执行栈 × θ），<b>新增实验先写进 plan.json 再发车</b>；<code>build_matrix.py</code> 合成 <code>matrix.json</code>。</li>
+    <li><b>内容快照</b>（<code>status.json</code>：目标、焦点、决策、判决、队列、文献、日志；<code>roadmap.json</code>：R 行；<code>tasks.json</code>：任务族/资产/R34）由 agent 在里程碑手工更新——每条判决必须带证据路径，与 <code>safeduo/paper/MASTER_REPORT.html</code>（活文档，实验线维护）一致；面板不替代 MASTER，只做索引与看板。</li>
+    <li><b>分工</b>：实验线（原 <code>safeduo_实验</code> 会话）= 训练/四门/录制与 MASTER §9/§10；设计线（本面板维护者）= 方案设计、总结、文献、面板与仓库。两线不同时改同一文件：设计线只加新文件（<code>docs/</code>、<code>task_library_r34.py</code>、<code>assets_src/tasks/r34/</code>）。</li>
+    <li><b>编码红线</b>：含中文文件一律 shell heredoc 写入并 <code>file --mime-encoding</code> 验证（本机编辑器 Write 工具会损坏非 ASCII）。</li>
+    <li><b>安全红线</b>：远程服务器不 kill 他人进程；GPU 探针只在空档跑；训练/评测 yaml 默认值改动须经 owner。</li>
+  </ul>
+</main>
+</div>
+<script>
+const RAW = "https://raw.githubusercontent.com/asimfish/safeduo-dashboard/data/";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const PILL = {done:"完成", run:"在跑", training:"训练中", verifying:"验证中", wait:"待决/待续", negative:"负结果", planned:"未开工/提案", idle:"搁置", open:"待决"};
+const pill = (st) => `<span class="pill ${st}">${PILL[st] || st}</span>`;
+const fmtAge = (iso) => { if (!iso) return "-"; const m = Math.round((Date.now() - new Date(iso)) / 60000); return `${iso.replace("T"," ").slice(0,16)}（${m < 60 ? m + " 分钟前" : (m/60).toFixed(1) + " 小时前"}）`; };
+const f = (x, d=3) => (x === null || x === undefined || isNaN(x)) ? "-" : Number(x).toFixed(d);
+const fmtEpoch = (s) => s ? new Date(s*1000).toISOString().slice(5,16).replace("T"," ") : "-";
+async function getJSON(name) { const r = await fetch(RAW + name + "?v=" + Math.floor(Date.now()/60000), {cache:"no-store"}); if (!r.ok) throw new Error(name); return r.json(); }
+const clsRate = (v, good=0.999, warn=0.95) => v === null || v === undefined ? "" : (v >= good ? "ok" : (v >= warn ? "warn" : "bad"));
+const clsMm = (v) => v === null || v === undefined ? "" : (v < 0 ? "bad" : (v < 3 ? "warn" : "ok"));
+
+function renderServers(r) {
+  $("#upd-runs").textContent = fmtAge(r.updated);
+  const ageMin = (Date.now() - new Date(r.updated)) / 60000;
+  $("#stale").textContent = ageMin > 40 ? `服务器快照已过期 ${(ageMin/60).toFixed(1)} 小时（Mac 端采集停摆或服务器不可达）` : "";
+  const busy = (r.gpus||[]).filter(c => c.used_mb > 2000).length, mine = (r.gpus||[]).filter(c => c.mine).length;
+  const rows = (r.gpus||[]).map(c => {
+    const mem = Math.round(100 * c.used_mb / Math.max(1, c.total_mb));
+    const tags = (c.procs || []).map(p => `<span class="tag ${p.tag}">${esc(p.label)} ${(p.mem_mb/1024).toFixed(1)}G</span>`).join("") || `<span class="small">空闲</span>`;
+    return `<tr><td class="num">g${c.idx}</td><td><span class="mbar ${c.mine ? "hot" : ""}"><i style="width:${mem}%"></i></span><span class="small">${(c.used_mb/1024).toFixed(1)} / ${Math.round(c.total_mb/1024)} G</span></td><td><span class="mbar util"><i style="width:${Math.max(0,c.util)}%"></i></span><span class="small">${c.util}%</span></td><td>${tags}</td></tr>`;
+  }).join("");
+  $("#servers").innerHTML = `<div class="srvhead"><b>${esc(r.host||"bjxy_5090")}</b><span class="small">load ${esc(r.load||"-")} / ${r.ncpu||"-"} 核 · ${busy}/${(r.gpus||[]).length} 卡在用 · SafeDuo 占 ${mine} 卡 · 快照 ${(r.updated||"").slice(11,16)}</span></div>
+    <div class="table-wrap"><table><thead><tr><th style="width:40px">卡</th><th style="width:190px">显存</th><th style="width:160px">利用率</th><th>正在跑（蓝 = SafeDuo；紫 = 其它项目）</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  $("#runs tbody").innerHTML = (r.runs||[]).map(x => `<tr><td><code>${esc(x.name)}</code></td><td class="num">${x.iter ?? "-"}</td><td class="num">${f(x.alpha_exec)}</td><td class="num">${f(x.alpha)}</td><td class="num">${(x.costs||[]).map(c=>f(c)).join(" / ")}</td><td class="num">${(x.lambdas||[]).map(c=>f(c,2)).join(" / ")}</td><td class="num">${f(x.hazard_rate,4)}</td><td class="num">${f(x.entropy,2)}</td><td class="num">${x.n_ckpt}${x.has_last ? " ✓" : ""}</td><td class="small">${fmtEpoch(x.mtime)}</td><td>${x.active ? pill("training") : "<span class='small'>停</span>"}</td></tr>`).join("") || "<tr><td colspan=11 class='small'>无</td></tr>";
+  $("#gatedirs").innerHTML = (r.gates||[]).slice(0,8).map(g => `<li><code>${esc(g.dir)}</code> · ${g.n_cells} cell${g.cells.length ? "（" + g.cells.join(", ") + "）" : ""} · ${fmtEpoch(g.mtime)} ${g.active ? pill("run") : ""}</li>`).join("");
+  $("#tmux").textContent = (r.tmux||[]).join(" · ");
+}
+function renderStatus(s) {
+  $("#upd-status").textContent = fmtAge(s.updated);
+  $("#northstar").innerHTML = `<b>北极星</b> · ${esc(s.north_star)}`;
+  $("#pctnote").textContent = s.pct_note || "";
+  $("#goals").innerHTML = s.goals.map(g => `<div class="card"><div class="t">${esc(g.id)} ${esc(g.name)}</div><div class="pct">${g.pct}%</div><div class="bar"><i style="width:${g.pct}%"></i></div>${pill(g.status)} <span class="small">${esc(g.summary)}</span><div class="small" style="margin-top:4px">证据：${esc(g.evidence)}</div>${g.next ? `<div class="small">下一步：${esc(g.next)}</div>` : ""}</div>`).join("");
+  $("#focus").innerHTML = s.focus.map(x => `<li>${esc(x)}</li>`).join("");
+  $("#decisions").innerHTML = (s.decisions||[]).map(d => `<div class="decision">${pill(d.status)} <b class="tp">${esc(d.id)} ${esc(d.topic)}</b><div>选项：${esc(d.options)}</div><div class="rec">建议：${esc(d.rec)}</div><div class="small">提出：${esc(d.since)}</div></div>`).join("");
+  $("#verdicts tbody").innerHTML = s.verdicts.map(v => `<tr><td style="white-space:nowrap">${esc(v.date)}</td><td>${esc(v.topic)}</td><td>${esc(v.verdict)}</td><td class="small">${esc(v.evidence)}</td></tr>`).join("");
+  $("#queue tbody").innerHTML = s.queue.map((q, i) => `<tr><td>${i+1}</td><td>${esc(q.goal)}</td><td>${esc(q.task)}</td><td>${pill(q.status)}</td><td class="small">${esc(q.owner)}</td><td class="small">${esc(q.eta)}</td><td class="small">${esc(q.note)}</td></tr>`).join("");
+  $("#literature").innerHTML = (s.literature||[]).map(l => `<div class="decision"><b class="tp">${esc(l.key)}</b> · <a href="${esc(l.url)}" target="_blank">${esc(l.title)}</a><div class="small" style="margin:4px 0">${esc(l.gist)}</div><ul class="q">${(l.for_safeduo||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
+  $("#changelog tbody").innerHTML = s.changelog.map(c => `<tr><td style="white-space:nowrap">${esc(c.time)}</td><td>${esc(c.text)}</td></tr>`).join("");
+}
+let ROADMAP = null;
+function renderRoadmap() {
+  if (!ROADMAP) return;
+  const on = new Set([...document.querySelectorAll("#rmfilters input:checked")].map(i => i.dataset.st));
+  const rows = ROADMAP.rows.filter(r => on.has(r.status));
+  $("#rmsum").textContent = `显示 ${rows.length} / ${ROADMAP.rows.length} 行 · 来源：${ROADMAP.source || ""}`;
+  $("#roadmap tbody").innerHTML = rows.map(r => `<tr><td><b>${esc(r.id)}</b></td><td>${esc(r.prio)}</td><td class="small">${esc(r.goal)}</td><td>${esc(r.name)}</td><td>${pill(r.status)}</td><td><details class="st"><summary>${esc((r.status_text||"").slice(0,90))}${(r.status_text||"").length > 90 ? "…" : ""}</summary><div style="margin-top:4px">${esc(r.status_text)}</div></details></td><td class="small">${esc(r.accept)}</td></tr>`).join("");
+}
+function renderMatrix(m) {
+  $("#protocol").textContent = m.protocol || "";
+  const s = m.summary || {};
+  $("#msum").textContent = `共 ${s.total} 格 · 完成 ${s.done} · 在跑/训练 ${s.run} · 计划 ${s.planned} · 更新 ${fmtAge(m.updated)}`;
+  $("#matrix tbody").innerHTML = m.rows.map(r => `<tr><td><b>${esc(r.policy)}</b></td><td><code>${esc(r.env)}</code></td><td>${esc(r.theta)}</td><td class="small">${esc(r.purpose)}</td><td class="small">${esc(r.goal)}</td><td>${pill(r.status)}</td><td class="num ${clsRate(r.brake_rate)}">${f(r.brake_rate,2)}</td><td class="num ${clsRate(r.viol_free_cross)}">${f(r.viol_free_cross,2)}</td><td class="num ${clsMm(r.min_cross_mm)}">${r.min_cross_mm ?? "-"}</td><td class="num ${clsRate(r.no_deadlock_hys, 0.999, 0.9)}">${f(r.no_deadlock_hys,2)}</td><td class="num">${f(r.done_hys,2)}/${f(r.done_man,2)}</td><td class="num">${f(r.false_brake_arm)}</td><td class="num">${f(r.fidelity)}</td><td>${r.hard_pass === true ? "<span class='ok'>✓</span>" : (r.hard_pass === false ? "<span class='bad'>✗</span>" : "")}</td><td class="small">${esc((r.date||"").slice(5,16))}</td></tr>`).join("");
+}
+let GATES = null;
+function renderGates() {
+  if (!GATES) return;
+  $("#upd-gates").textContent = fmtAge(GATES.updated);
+  const full = $("#fullonly").checked, recent = $("#recentonly").checked;
+  const order = ["a25","a26","a27","a28","a28b","a29","a30","a30b","a31","a32"];
+  const rows = GATES.rows.filter(r => !r.error && (!full || r.brake_rate !== null && r.brake_rate !== undefined) && (!recent || order.includes(r.policy)));
+  $("#gsum").textContent = `显示 ${rows.length} / ${GATES.n} cells`;
+  $("#gates tbody").innerHTML = rows.map(r => `<tr><td class="small" style="white-space:nowrap">${esc((r.date||"").slice(5,16))}</td><td><b>${esc(r.policy)}</b></td><td><code>${esc(r.env)}</code></td><td>${(r.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</td><td>${esc(r.theta)}</td><td class="num ${clsRate(r.brake_rate)}">${f(r.brake_rate,2)}</td><td class="num ${clsRate(r.viol_free_cross)}">${f(r.viol_free_cross,2)}/${f(r.viol_free_any,2)}</td><td class="num ${clsMm(r.min_cross_mm)}">${r.min_cross_mm ?? "-"}</td><td class="num">${r.cmd_stop_p50 ?? "-"}/${r.cmd_stop_p95 ?? "-"}</td><td class="num ${clsRate(r.no_deadlock_hys, 0.999, 0.9)}">${f(r.no_deadlock_hys,2)}</td><td class="num">${f(r.done_hys,2)}/${f(r.done_man,2)}</td><td class="num">${f(r.false_brake_arm)}/${f(r.false_brake_any,2)}</td><td class="num">${f(r.fidelity)}</td><td class="num">${f(r.mean_atten,2)}</td><td>${r.hard_pass === true ? "<span class='ok'>✓</span>" : (r.hard_pass === false ? "<span class='bad'>✗</span>" : "")}</td><td class="small"><code>${esc(r.grid)}</code></td></tr>`).join("");
+}
+function renderTasks(t) {
+  $("#tasknote").textContent = t.note || "";
+  $("#gallery").innerHTML = (t.families||[]).map(x => `<div class="gcard">${x.thumb ? `<img src="${esc(x.thumb)}" alt="${esc(x.name)}" loading="lazy">` : `<div style="aspect-ratio:16/9;background:#e5e7eb"></div>`}<div class="b"><b>${esc(x.name)} ${pill(x.status)}</b><div><span class="small">物体：</span>${esc(x.objects)}</div><div><span class="small">抓法：</span>${esc(x.grasp)}</div><div><span class="small">物理化：</span>${esc(x.phys)}</div><div><span class="small">门控：</span>${esc(x.gate)}</div><div class="small">视频：${esc(x.video)}</div></div></div>`).join("");
+  $("#assets-summary").textContent = t.assets_now?.summary || "";
+  $("#assets-constraints").innerHTML = (t.assets_now?.constraints||[]).map(c => `<li>${esc(c)}</li>`).join("");
+  const r = t.r34 || {};
+  $("#r34title").textContent = r.title || "";
+  $("#r34why").textContent = r.why || "";
+  $("#r34sub tbody").innerHTML = (r.subfamilies||[]).map(s => `<tr><td><b>${esc(s.id)}</b> ${esc(s.name)}</td><td>${esc(s.objects)}</td><td>${esc(s.tasks)}</td><td class="small">${esc(s.grasp_reuse)}</td><td class="small">${esc(s.accept)}</td><td>${esc(s.priority)}</td></tr>`).join("");
+  $("#r34src tbody").innerHTML = (r.asset_sources||[]).map(s => `<tr><td>${esc(s.src)}</td><td>${esc(s.why)}</td><td class="small">${esc(s.license)}</td></tr>`).join("");
+  $("#r34pipe").innerHTML = (r.pipeline||[]).map((p,i) => `<li>${i+1}. ${esc(p)}</li>`).join("");
+  $("#r34open").innerHTML = (r.open_questions||[]).map(p => `<li><b>待定：</b>${esc(p)}</li>`).join("");
+}
+async function refresh() {
+  try { renderServers(await getJSON("runs.json")); } catch (e) { $("#upd-runs").textContent = "加载失败"; }
+  try { renderStatus(await getJSON("status.json")); } catch (e) { $("#upd-status").textContent = "加载失败"; console.warn(e); }
+  try { ROADMAP = await getJSON("roadmap.json"); renderRoadmap(); } catch (e) { console.warn(e); }
+  try { renderMatrix(await getJSON("matrix.json")); } catch (e) { console.warn(e); }
+  try { GATES = await getJSON("gates.json"); renderGates(); } catch (e) { $("#upd-gates").textContent = "加载失败"; }
+  try { renderTasks(await getJSON("tasks.json")); } catch (e) { console.warn(e); }
+}
+document.querySelectorAll("#rmfilters input").forEach(i => i.addEventListener("change", renderRoadmap));
+$("#fullonly").addEventListener("change", renderGates); $("#recentonly").addEventListener("change", renderGates);
+refresh(); setInterval(refresh, 60000);
+</script>
+</body>
+</html>
