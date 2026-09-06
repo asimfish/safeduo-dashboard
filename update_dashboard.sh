@@ -39,3 +39,4 @@ if [ -f "$SRC/paper/MASTER_REPORT.html" ] && ! cmp -s "$SRC/paper/MASTER_REPORT.
   cp "$SRC/paper/MASTER_REPORT.html" "$TOOLS/MASTER_REPORT.html"
   (cd "$TOOLS" && git add MASTER_REPORT.html && git commit -q -m "mirror: MASTER_REPORT $(date '+%m-%d %H:%M')" && git push -q origin main 2>>"$LOG") && echo "$(ts) MASTER mirrored" >> "$LOG"
 fi
+exit 0
