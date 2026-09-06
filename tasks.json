@@ -1,7 +1,19 @@
 {
- "updated": "2026-09-07T00:36:34",
+ "updated": "2026-09-07T01:52:14",
  "note": "任务族与物体资产现状（来源 MASTER §9 R17/R24/R26/R27）+ R34 工业协作装配提案。视频在 ~/Code/safeduo_media（本地）与 bjxy_5090:~/Code/safeduo_media；缩略图在面板仓库 gallery/。",
  "families": [
+  {
+   "id": "R34-A",
+   "name": "R34-A 4080 型材 pick（探针 1）",
+   "objects": "真实 4080 T 槽铝型材 300 mm（程序化 USD，convexHull 碰撞，0.20 kg 平价 → 下一步 0.39/0.78）",
+   "arms": "F 双臂各捏一根 + U 双臂方块",
+   "grasp": "rod_pick 物理原语零改动：F2 跨 4 cm 宽面中段捏",
+   "phys": "✓ 09-07 00:59 raw success 零违规（探针 1）",
+   "gate": "门控版待跑（WITH_S0=1）",
+   "video": "r34_beam1_raw_camX.mp4（视频库置顶）",
+   "thumb": "gallery/r34/r34_beam1_raw_camX_frame.jpg",
+   "status": "run"
+  },
   {
    "id": "S9",
    "name": "S9 三棒：grasp / pick_place / handover",
@@ -169,6 +181,14 @@
    "首个 GPU 探针：beam_l/beam_r（4080）沿 rod_pick 物理轨迹重放 → 验证型材真随手；需 GPU 空档（a30b 链之后）"
   ],
   "progress": [
+   {
+    "time": "09-07 00:56–01:49",
+    "line": "设计线",
+    "text": "探针 1：R27 rod_pick 物理轨迹 + 真 4080 T 槽型材（质量 0.20 平价）raw success、零违规，型材刚性随手（obj−flange 恒 −13.3 cm）；带渲染录制 r34_beam1_raw_camX.mp4 已入视频库（首次出现真实工业件的画面）。第一次录制因实验线当时正在改 duo_env.py 而导入失败，01:15 修好后重发成功",
+    "thumbs": [
+     "gallery/r34/r34_beam1_raw_camX_frame.jpg"
+    ]
+   },
    {
     "time": "09-07 00:17–00:35",
     "line": "设计线",
