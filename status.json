@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T01:52:14",
+ "updated": "2026-09-07T02:06:17",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -115,14 +115,26 @@
   },
   {
    "id": "D7",
-   "topic": "训练/四门迁到 A100（tianyiyun-30109 8×A100-80G；volc 2×A100 现被占满）",
-   "options": "(a) 按 R21 部署清单在 30109 装 isaacsim 5.1 + IsaacLab（落 dataset-local，Vulkan ICD 免 root 预案），冒烟 Cartpole → train_lagrangian 64 env → 4096 env 100 iter 对照 wall_s；训练/四门去 A100，5090 只留渲染录制；(b) 继续只用 5090（两卡长期满载）",
-   "rec": "(a)，约半天工作量，需协调 30109 上 dp 任务占卡；注意红线：A100 run 不得与 5090 run 同批配对比较（跨架构），作独立 seed / 扫参吞吐",
-   "since": "09-07 01:10",
+   "topic": "训练/四门迁到 A100——09-07 02:00 只读复核后各机现状",
+   "options": "tianyiyun-30109：OS 22.04/glibc 2.35/驱动 580.65.06 均合格，但 dataset-local 只剩 29 GB（环境预算 ~30 GB，共享盘随时被填满）、8 卡全部重负载（g0 100%、g5 90%、g6 74%…），容器无 NVIDIA Vulkan ICD（有免 root 预案）；lotus-1：4 张卡 0% 利用率、dataset-local 剩 115 GB，但容器是 Ubuntu 20.04 / glibc 2.31，Isaac Sim 5.1 的 manylinux_2_35 wheel 装不上（硬伤）；volc-a100：22.04/glibc 2.35、图形库齐，但驱动 535.129.03 < 5.1 要求的 580，且两卡 100% 被 SafeOT 占用，升驱动会中断他人任务；mainskill 当前不可达；aliyun PPU 非 CUDA 不适用",
+   "rec": "30109 是唯一 glibc/驱动都合格的机器；建议 owner 与 30109 上占卡/占盘的同学协调出 ≥40 GB dataset-local 空间与 1 张卡，届时按 R21 清单半天部署。今晚不宜动手（磁盘会写爆）。中期方案：让平台给容器加 NVIDIA_DRIVER_CAPABILITIES=all 并清盘",
+   "since": "09-07 01:10 → 02:05 复核更新",
    "status": "open"
   }
  ],
  "verdicts": [
+  {
+   "date": "09-07 01:59",
+   "topic": "R34-A 探针 2：真 4080 型材质量扫描（手指执行器 100/5/5）",
+   "verdict": "0.20 kg：两根都搬起放下（探针 1）；0.39 kg：F_L 提起随手（z +9.5 cm、dz 恒 −14.2 cm），F_R 滑脱未提起（该轮 t≈8 s 因 GPU0 接近满载 Kit 崩溃，正在重跑）；0.78 kg（实心 4080 真实质量）：两手均 “object never picked up”。结论：当前五指握力对真实铝型材不足，需提高手指增益/力矩（探针 3：200/10/20）或双臂共搬或用薄壁轻型材",
+   "evidence": "artifacts/forensics/20260907/r34_beam2_m039_raw.log / r34_beam2_m078_raw.log"
+  },
+  {
+   "date": "09-07 02:00",
+   "topic": "A100 迁移复核（30109 / lotus-1 / volc）",
+   "verdict": "30109：系统合格但 dataset-local 仅 29 GB、8 卡全忙；lotus-1：卡闲但 glibc 2.31 装不了 Isaac Sim 5.1；volc：驱动 535 且两卡 100%。结论：目前没有一台可以立刻部署，30109 需先协调磁盘与卡（D7）",
+   "evidence": "面板会话 02:00 只读 ssh 复核；artifacts/a100_recon_20260827.md"
+  },
   {
    "date": "09-07 00:59",
    "topic": "R34-A 探针 1：真 4080 T 槽型材替换 R27 盒梁（rod_pick 轨迹、质量 0.20 平价）",
@@ -191,7 +203,7 @@
    "status": "wait",
    "owner": "设计线（待 D7）",
    "eta": "半天",
-   "note": "R21 调研已完成（artifacts/a100_recon_20260827.md）；30109 g0/g4/g6 低占用"
+   "note": "02:00 复核：30109 dataset-local 仅 29 GB 且 8 卡全忙；lotus-1 glibc 2.31 不可用；volc 驱动 535。需 owner 协调后再部署"
   },
   {
    "goal": "G1/R33",
@@ -319,6 +331,10 @@
  ],
  "changelog": [
   {
+   "time": "09-07 02:06",
+   "text": "探针 2 质量扫描出结论（0.78 kg 抓不起，0.39 kg 单手滑脱）→ 探针 3 提高手指增益 200/10/20 在跑；A100 三机复核：今晚不部署（30109 磁盘 29 GB、全卡忙；lotus glibc 2.31；volc 驱动 535）；代码仓库快照 9cd310e 含实验线 WIP"
+  },
+  {
    "time": "09-07 01:52",
    "text": "R34-A 首条真实工业件录像 r34_beam1_raw_camX 入视频库；视频库 131 部（转码后共 ~60 MB）；面板 v2 分页版上线"
   },
@@ -362,9 +378,9 @@
   {
    "name": "设计线（面板维护者）",
    "status": "run",
-   "now": "R34 工业路线：10 件 4040/4080 型材装配资产入库；探针 1（rod_pick 轨迹 + 真 4080 型材）raw success 零违规、型材刚性随手；带渲染录像 r34_beam1_raw_camX 已入视频库；面板 v2（分页 + 视频库 safeduo-media，131 部自动同步转码）上线",
-   "next": "探针 2 质量扫描（0.39 / 0.78 kg）；夹具 env 的 U 侧搁梁任务设计；A100 扩容部署（待 D7）",
-   "updated": "09-07 01:52"
+   "now": "R34 工业路线：探针 1 success（0.20 kg）；探针 2 质量扫描：0.39 kg 单手滑脱、0.78 kg 抓不起 → 探针 3（手指 200/10/20 @0.78 kg + 0.39 kg 重跑）在 GPU0 跑；A100 三机复核完成（今晚不部署，见 D7）；面板 v2 + 视频库上线",
+   "next": "探针 3 出分后定“用力”方案（增益 / 双臂共搬 / 轻型材）；夹具 env 的 U 侧搁梁任务设计；等 owner 协调 30109 磁盘与卡",
+   "updated": "09-07 02:06"
   }
  ]
 }
