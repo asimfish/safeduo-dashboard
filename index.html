@@ -83,7 +83,7 @@
   <div class="grid g2" id="ov-lines"></div>
   <h2>今日焦点</h2>
   <ul class="q" id="focus"></ul>
-  <h2>最新视频 <span class="small">（<a href="#videos">全部 →</a>）</span></h2>
+  <h2>最新视频（全景机位优先） <span class="small">（<a href="#videos">全部 →</a>）</span></h2>
   <div class="vgrid" id="ov-videos"></div>
   <h2>最近判决</h2>
   <div class="table-wrap"><table id="ov-verdicts"><thead><tr><th>日期</th><th>主题</th><th>判词</th></tr></thead><tbody></tbody></table></div>
@@ -295,22 +295,24 @@ function renderTasks(t) {
   $("#r34open").innerHTML = (r.open_questions||[]).map(p => `<li><b>待定：</b>${esc(p)}</li>`).join("");
 }
 // ---- videos
-let VIDEOS = null, VF = {round:"all", mode:"all"}, VLIMIT = 16;
+let VIDEOS = null, VF = {round:"all", mode:"all", view:"all"}, VLIMIT = 16;
 function vcard(v) {
-  return `<div class="vcard"><video controls preload="none" poster="${MEDIA + esc(v.thumb)}" src="${MEDIA + esc(v.file)}"></video><div class="b"><b>${esc(v.name)}</b><span class="small">${esc(v.date)} · ${v.dur_s ?? "-"} s · ${v.size_mb} MB · ${esc(v.round)} / ${esc(v.family)} / ${v.mode === "gated" ? "门控" : v.mode}${v.cam ? " / cam" + esc(v.cam) : ""}</span></div></div>`;
+  return `<div class="vcard"><video controls preload="none" poster="${MEDIA + esc(v.thumb)}" src="${MEDIA + esc(v.file)}"></video><div class="b"><b>${esc(v.name)}</b><span class="small">${esc(v.date)} · ${v.dur_s ?? "-"} s · ${v.size_mb} MB · ${esc(v.round)} / ${esc(v.family)} / ${v.mode === "gated" ? "门控" : v.mode}${v.cam ? " / cam" + esc(v.cam) : ""} / ${v.view === "wide" ? "全景" : "近景"}</span></div></div>`;
 }
 function renderVideos() {
   if (!VIDEOS) return;
   $("#upd-media").textContent = fmtAge(VIDEOS.updated) + `，${VIDEOS.n} 部`;
   const rounds = ["all", ...Array.from(new Set(VIDEOS.videos.map(v => v.round))).sort()];
   $("#vchips").innerHTML = `<span class="small">轮次：</span>` + rounds.map(r => `<span class="chip ${VF.round===r?"on":""}" data-k="round" data-v="${esc(r)}">${r === "all" ? "全部" : esc(r)}</span>`).join("");
-  $("#vchips2").innerHTML = `<span class="small">模式：</span>` + ["all","gated","raw","attach"].map(m => `<span class="chip ${VF.mode===m?"on":""}" data-k="mode" data-v="${m}">${{all:"全部",gated:"门控 s0",raw:"raw 直通",attach:"旧吸附对照"}[m]}</span>`).join("");
+  $("#vchips2").innerHTML = `<span class="small">模式：</span>` + ["all","gated","raw","attach"].map(m => `<span class="chip ${VF.mode===m?"on":""}" data-k="mode" data-v="${m}">${{all:"全部",gated:"门控 s0",raw:"raw 直通",attach:"旧吸附对照"}[m]}</span>`).join("")
+    + `<span class="small" style="margin-left:14px">视角：</span>` + ["all","wide","close"].map(m => `<span class="chip ${VF.view===m?"on":""}" data-k="view" data-v="${m}">${{all:"全部",wide:"全景（camW/camC/远景）",close:"近景特写"}[m]}</span>`).join("");
   document.querySelectorAll(".chip").forEach(c => c.onclick = () => { VF[c.dataset.k] = c.dataset.v; VLIMIT = 16; renderVideos(); });
-  const rows = VIDEOS.videos.filter(v => (VF.round === "all" || v.round === VF.round) && (VF.mode === "all" || v.mode === VF.mode));
+  const rows = VIDEOS.videos.filter(v => (VF.round === "all" || v.round === VF.round) && (VF.mode === "all" || v.mode === VF.mode) && (VF.view === "all" || v.view === VF.view));
   $("#videos").innerHTML = rows.slice(0, VLIMIT).map(vcard).join("") || "<div class='small'>无匹配视频</div>";
   $("#vcount").textContent = `显示 ${Math.min(VLIMIT, rows.length)} / ${rows.length}`;
   $("#vmore").style.display = rows.length > VLIMIT ? "" : "none";
-  $("#ov-videos").innerHTML = VIDEOS.videos.slice(0,4).map(vcard).join("");
+  const wide = VIDEOS.videos.filter(v => v.view === "wide");
+  $("#ov-videos").innerHTML = (wide.length >= 2 ? wide : VIDEOS.videos).slice(0,4).map(vcard).join("");
 }
 $("#vmore").onclick = () => { VLIMIT += 16; renderVideos(); };
 async function refresh() {

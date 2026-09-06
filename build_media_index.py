@@ -40,7 +40,10 @@ def parse_meta(name: str) -> dict:
     cam = (re.search(r"cam([a-z])", n) or [None, None])[1]
     theta = (re.search(r"t(\d{2})", n) or [None, None])[1]
     policy = (re.search(r"(a\d\d[a-z]?)", n) or [None, None])[1]
-    return {"round": rnd, "family": fam, "mode": mode, "cam": (cam.upper() if cam else None),
+    camu = cam.upper() if cam else None
+    # wide overview cameras: W (R34 design-line overview), C (R26 oblique demo), and the pre-R26 default 3 m view
+    view = "wide" if camu in (None, "W", "C") else "close"
+    return {"round": rnd, "family": fam, "mode": mode, "cam": camu, "view": view,
             "theta": theta, "policy": policy}
 
 
@@ -93,6 +96,8 @@ for src_dir in srcs:
         added += 1
         print("added", name, meta)
 
+for e in index.values():        # metadata is derived from the name: refresh it for old entries too
+    e.update(parse_meta(e["name"]))
 videos = sorted(index.values(), key=lambda e: -e["mtime"])
 json.dump({"updated": time.strftime("%Y-%m-%dT%H:%M:%S"), "n": len(videos), "videos": videos},
           open(idx_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
