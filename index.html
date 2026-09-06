@@ -48,6 +48,7 @@
   ul.q { margin:6px 0; padding-left:20px; font-size:13px; } ul.q li { margin:3px 0; }
   code { background:#f1f5f9; padding:1px 4px; border-radius:3px; font-size:12px; }
   .stale { color:var(--red); }
+  td.tags { min-width:300px; } td.tags .tag { white-space:nowrap; }
   .srvhead { display:flex; gap:14px; align-items:baseline; margin:12px 0 4px; flex-wrap:wrap; }
   .srvhead b { font-size:14px; }
   details.st summary { cursor:pointer; color:#334155; }
@@ -174,7 +175,7 @@ const PILL = {done:"完成", run:"在跑", training:"训练中", verifying:"验�
 const pill = (st) => `<span class="pill ${st}">${PILL[st] || st}</span>`;
 const fmtAge = (iso) => { if (!iso) return "-"; const m = Math.round((Date.now() - new Date(iso)) / 60000); return `${iso.replace("T"," ").slice(0,16)}（${m < 60 ? m + " 分钟前" : (m/60).toFixed(1) + " 小时前"}）`; };
 const f = (x, d=3) => (x === null || x === undefined || isNaN(x)) ? "-" : Number(x).toFixed(d);
-const fmtEpoch = (s) => s ? new Date(s*1000).toISOString().slice(5,16).replace("T"," ") : "-";
+const fmtEpoch = (s) => { if (!s) return "-"; const d = new Date(s*1000); const p = (n) => String(n).padStart(2,"0"); return `${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; };
 async function getJSON(name) { const r = await fetch(RAW + name + "?v=" + Math.floor(Date.now()/60000), {cache:"no-store"}); if (!r.ok) throw new Error(name); return r.json(); }
 const clsRate = (v, good=0.999, warn=0.95) => v === null || v === undefined ? "" : (v >= good ? "ok" : (v >= warn ? "warn" : "bad"));
 const clsMm = (v) => v === null || v === undefined ? "" : (v < 0 ? "bad" : (v < 3 ? "warn" : "ok"));
@@ -229,7 +230,7 @@ function renderGates() {
   const order = ["a25","a26","a27","a28","a28b","a29","a30","a30b","a31","a32"];
   const rows = GATES.rows.filter(r => !r.error && (!full || r.brake_rate !== null && r.brake_rate !== undefined) && (!recent || order.includes(r.policy)));
   $("#gsum").textContent = `显示 ${rows.length} / ${GATES.n} cells`;
-  $("#gates tbody").innerHTML = rows.map(r => `<tr><td class="small" style="white-space:nowrap">${esc((r.date||"").slice(5,16))}</td><td><b>${esc(r.policy)}</b></td><td><code>${esc(r.env)}</code></td><td>${(r.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</td><td>${esc(r.theta)}</td><td class="num ${clsRate(r.brake_rate)}">${f(r.brake_rate,2)}</td><td class="num ${clsRate(r.viol_free_cross)}">${f(r.viol_free_cross,2)}/${f(r.viol_free_any,2)}</td><td class="num ${clsMm(r.min_cross_mm)}">${r.min_cross_mm ?? "-"}</td><td class="num">${r.cmd_stop_p50 ?? "-"}/${r.cmd_stop_p95 ?? "-"}</td><td class="num ${clsRate(r.no_deadlock_hys, 0.999, 0.9)}">${f(r.no_deadlock_hys,2)}</td><td class="num">${f(r.done_hys,2)}/${f(r.done_man,2)}</td><td class="num">${f(r.false_brake_arm)}/${f(r.false_brake_any,2)}</td><td class="num">${f(r.fidelity)}</td><td class="num">${f(r.mean_atten,2)}</td><td>${r.hard_pass === true ? "<span class='ok'>✓</span>" : (r.hard_pass === false ? "<span class='bad'>✗</span>" : "")}</td><td class="small"><code>${esc(r.grid)}</code></td></tr>`).join("");
+  $("#gates tbody").innerHTML = rows.map(r => `<tr><td class="small" style="white-space:nowrap">${esc((r.date||"").slice(5,16))}</td><td><b>${esc(r.policy)}</b></td><td><code>${esc(r.env)}</code></td><td class="tags">${(r.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</td><td>${esc(r.theta)}</td><td class="num ${clsRate(r.brake_rate)}">${f(r.brake_rate,2)}</td><td class="num ${clsRate(r.viol_free_cross)}">${f(r.viol_free_cross,2)}/${f(r.viol_free_any,2)}</td><td class="num ${clsMm(r.min_cross_mm)}">${r.min_cross_mm ?? "-"}</td><td class="num">${r.cmd_stop_p50 ?? "-"}/${r.cmd_stop_p95 ?? "-"}</td><td class="num ${clsRate(r.no_deadlock_hys, 0.999, 0.9)}">${f(r.no_deadlock_hys,2)}</td><td class="num">${f(r.done_hys,2)}/${f(r.done_man,2)}</td><td class="num">${f(r.false_brake_arm)}/${f(r.false_brake_any,2)}</td><td class="num">${f(r.fidelity)}</td><td class="num">${f(r.mean_atten,2)}</td><td>${r.hard_pass === true ? "<span class='ok'>✓</span>" : (r.hard_pass === false ? "<span class='bad'>✗</span>" : "")}</td><td class="small"><code>${esc(r.grid)}</code></td></tr>`).join("");
 }
 function renderTasks(t) {
   $("#tasknote").textContent = t.note || "";
