@@ -1,69 +1,306 @@
 {
- "updated": "2026-09-06T23:40:00",
+ "updated": "2026-09-06T23:48:05",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
-  {"id": "G0", "name": "基建：吞吐 / 距离正确性 / 稳定性 / 一致性", "pct": 100, "status": "done", "summary": "35,769 步/s @4096 env；可追责口径零漏检；2 h 烤机零崩溃；投影 vs QP P99 1.47%", "evidence": "VISION §3 四项 [x]；R1/R11/R16/R20", "next": "r16 壳与活腕 yaml 是否转正为训练/评测默认（待 owner）"},
-  {"id": "G1", "name": "安全 + 协调增益（离合器 a27 四门）", "pct": 70, "status": "verifying", "summary": "a27@0.5:0.2 四门全过且优于 a25 与 CBF-QP 基线；但 R33 证明这些数字来自“U 手死腕（有效 5 DOF）”环境，修复环境下 a27 失效、a30 未适应", "evidence": "R28 验收；R33 ③④；gates.json 矩阵", "next": "a30b（~06:00 出四门）→ 若仍不收敛：完整课程重训（≈24 h GPU，待 owner）或 R35 分臂顺序微调"},
-  {"id": "G2", "name": "对抗鲁棒：L2 场景库 / L3 对抗课程", "pct": 40, "status": "wait", "summary": "L2 定向场景（迎头/边缘逼近）与 directed 窗口已是四门组成部分；L3 adversary 代码在（algo/adversary.py），留出攻击集评测未做", "evidence": "R28 directed 取证；eval/clutch_eval 四窗口", "next": "伙伴延迟探针（SAI 式）入 L2 场景库；L3 留出集评测排期"},
-  {"id": "G3", "name": "真机：conformance + shadow → 双人会话", "pct": 5, "status": "planned", "summary": "v7 真机资产（UR5 + RH56DFX / FR3 + RH56F2）已入库；ROS 桥 / adapter 未开工", "evidence": "R14", "next": "M3 计划 11-24 前；先 hardware-in-the-loop"},
-  {"id": "G4", "name": "数据与演示：协作任务资产 + ≥200 条演示 + 视频", "pct": 40, "status": "verifying", "summary": "R26 四族 + S9 三棒全部纯物理抓取、多机位成片 46 部；但物体全是参数化几何体（owner：太粗糙）→ R34 工业装配任务族与真实资产", "evidence": "R26/R27；tasks.json；gallery/", "next": "R34-A 4040 型材框架搭建（递送 / 共持插接 / 框架共抬）"},
-  {"id": "P", "name": "论文（RSS 2027）", "pct": 25, "status": "wait", "summary": "TECH_REPORT / PAPER_NOTES / MASTER 活文档齐；主表四门数字需按死腕环境重标或用修复环境重跑；相关工作需补 SAI/TRACE（CoRL 2026）", "evidence": "paper/PAPER_NOTES.md；R33 推论", "next": "决策：四门数字处理口径（标注 vs 重跑）"}
+  {
+   "id": "G0",
+   "name": "基建：吞吐 / 距离正确性 / 稳定性 / 一致性",
+   "pct": 100,
+   "status": "done",
+   "summary": "35,769 步/s @4096 env；可追责口径零漏检；2 h 烤机零崩溃；投影 vs QP P99 1.47%",
+   "evidence": "VISION §3 四项 [x]；R1/R11/R16/R20",
+   "next": "r16 壳与活腕 yaml 是否转正为训练/评测默认（待 owner）"
+  },
+  {
+   "id": "G1",
+   "name": "安全 + 协调增益（离合器 a27 四门）",
+   "pct": 70,
+   "status": "verifying",
+   "summary": "a27@0.5:0.2 四门全过且优于 a25 与 CBF-QP 基线；但 R33 证明这些数字来自“U 手死腕（有效 5 DOF）”环境，修复环境下 a27 失效、a30 未适应",
+   "evidence": "R28 验收；R33 ③④；gates.json 矩阵",
+   "next": "a30b（~06:00 出四门）→ 若仍不收敛：完整课程重训（≈24 h GPU，待 owner）或 R35 分臂顺序微调"
+  },
+  {
+   "id": "G2",
+   "name": "对抗鲁棒：L2 场景库 / L3 对抗课程",
+   "pct": 40,
+   "status": "wait",
+   "summary": "L2 定向场景（迎头/边缘逼近）与 directed 窗口已是四门组成部分；L3 adversary 代码在（algo/adversary.py），留出攻击集评测未做",
+   "evidence": "R28 directed 取证；eval/clutch_eval 四窗口",
+   "next": "伙伴延迟探针（SAI 式）入 L2 场景库；L3 留出集评测排期"
+  },
+  {
+   "id": "G3",
+   "name": "真机：conformance + shadow → 双人会话",
+   "pct": 5,
+   "status": "planned",
+   "summary": "v7 真机资产（UR5 + RH56DFX / FR3 + RH56F2）已入库；ROS 桥 / adapter 未开工",
+   "evidence": "R14",
+   "next": "M3 计划 11-24 前；先 hardware-in-the-loop"
+  },
+  {
+   "id": "G4",
+   "name": "数据与演示：协作任务资产 + ≥200 条演示 + 视频",
+   "pct": 40,
+   "status": "verifying",
+   "summary": "R26 四族 + S9 三棒全部纯物理抓取、多机位成片 46 部；但物体全是参数化几何体（owner：太粗糙）→ R34 工业装配任务族与真实资产",
+   "evidence": "R26/R27；tasks.json；gallery/",
+   "next": "R34-A 4040 型材框架搭建（递送 / 共持插接 / 框架共抬）"
+  },
+  {
+   "id": "P",
+   "name": "论文（RSS 2027）",
+   "pct": 25,
+   "status": "wait",
+   "summary": "TECH_REPORT / PAPER_NOTES / MASTER 活文档齐；主表四门数字需按死腕环境重标或用修复环境重跑；相关工作需补 SAI/TRACE（CoRL 2026）",
+   "evidence": "paper/PAPER_NOTES.md；R33 推论",
+   "next": "决策：四门数字处理口径（标注 vs 重跑）"
+  }
  ],
  "focus": [
   "R33：a30b（a30 +1600 iter，GPU1）约 04:00 训完、~06:00 出 stack_fix 四门；a30@stack_fix_la06 四门在 GPU0 跑（22:35 起）",
   "R33④ 速度感知阻尼带 lookahead_s 已落地：τ≥0.06 s 恢复全部硬门并留 25–32 mm 余量，保真随 τ 单调下降 → τ 与“只对 cross 行开带”应与在其下训练的策略一起定",
   "新方向（owner 09-06）：R34 工业协作装配任务族 + 真实物体资产；R35 SAI/TRACE 启发实验——均为提案，待 owner 拍板启动时机与首个子族",
-  "面板与仓库：safeduo-dashboard 上线（本页）；SafeDuo 代码目前不在 git 下（本地镜像 + rsync 到 bjxy_5090），建议建私有仓库 asimfish/safeduo"
+  "面板与仓库：safeduo-dashboard 上线（本页，launchd 每 10 分钟刷服务器快照）；SafeDuo 代码已入私有仓库 asimfish/safeduo（~/Desktop/research/safeduo 直接 git 管理，sync_to_server.sh 已排除 .git）"
  ],
  "decisions": [
-  {"id": "D1", "topic": "论文四门数字：全部 v7 四门（a25–a27）为“U 手死腕”环境结果", "options": "(a) 正文如实标注“5 DOF 有效自由度”并附修复环境复测；(b) 主表改用修复环境重跑数字（依赖 a30b/重训）", "rec": "先 (a) 保底，a30b 出结果后决定是否 (b)", "since": "09-06 01:10", "status": "open"},
-  {"id": "D2", "topic": "修复环境完整课程重训（≈24 h GPU）", "options": "(a) 立即排队；(b) 等 a30b 四门；(c) 先试 R35 分臂顺序微调（成本 ~1/4）", "rec": "(b)→(c)→(a) 顺序", "since": "09-06 10:00", "status": "open"},
-  {"id": "D3", "topic": "R32 交接安全语义", "options": "(a) coop_handover 条件豁免（改安全契约）；(b) 长物体 ≥60 cm；(d) 接受放-取式间接接力为交接的物理口径", "rec": "(d) 现在可用；R34-A 型材（30–60 cm 横握）可能让 (b) 自然成立，再评估是否需要 (a)", "since": "09-05", "status": "open"},
-  {"id": "D4", "topic": "R29 + R30b 默认开、r16 壳与活腕/重力补偿 yaml 转正", "options": "(a) 转正为训练/评测默认；(b) 仍作录制专用", "rec": "(a)，随 a30b 结果一并", "since": "09-03 / 09-05", "status": "open"},
-  {"id": "D5", "topic": "R34 启动时机与首个子族", "options": "(a) 现在并行开工（不占 GPU、不改现有文件）；(b) 等原会话空闲；首选子族 A 型材 / B 分拣 / C 包装", "rec": "(a) + A", "since": "09-06 23:00", "status": "open"},
-  {"id": "D6", "topic": "SafeDuo 代码入 GitHub（私有 asimfish/safeduo，忽略 artifacts/媒体）", "options": "(a) 现在建；(b) 等原会话空闲后建", "rec": "(a)，.gitignore 排除 artifacts/、*.mp4、*.pt、third_party", "since": "09-06 23:00", "status": "open"}
+  {
+   "id": "D1",
+   "topic": "论文四门数字：全部 v7 四门（a25–a27）为“U 手死腕”环境结果",
+   "options": "(a) 正文如实标注“5 DOF 有效自由度”并附修复环境复测；(b) 主表改用修复环境重跑数字（依赖 a30b/重训）",
+   "rec": "先 (a) 保底，a30b 出结果后决定是否 (b)",
+   "since": "09-06 01:10",
+   "status": "open"
+  },
+  {
+   "id": "D2",
+   "topic": "修复环境完整课程重训（≈24 h GPU）",
+   "options": "(a) 立即排队；(b) 等 a30b 四门；(c) 先试 R35 分臂顺序微调（成本 ~1/4）",
+   "rec": "(b)→(c)→(a) 顺序",
+   "since": "09-06 10:00",
+   "status": "open"
+  },
+  {
+   "id": "D3",
+   "topic": "R32 交接安全语义",
+   "options": "(a) coop_handover 条件豁免（改安全契约）；(b) 长物体 ≥60 cm；(d) 接受放-取式间接接力为交接的物理口径",
+   "rec": "(d) 现在可用；R34-A 型材（30–60 cm 横握）可能让 (b) 自然成立，再评估是否需要 (a)",
+   "since": "09-05",
+   "status": "open"
+  },
+  {
+   "id": "D4",
+   "topic": "R29 + R30b 默认开、r16 壳与活腕/重力补偿 yaml 转正",
+   "options": "(a) 转正为训练/评测默认；(b) 仍作录制专用",
+   "rec": "(a)，随 a30b 结果一并",
+   "since": "09-03 / 09-05",
+   "status": "open"
+  },
+  {
+   "id": "D5",
+   "topic": "R34 启动时机与首个子族",
+   "options": "(a) 现在并行开工（不占 GPU、不改现有文件）；(b) 等原会话空闲；首选子族 A 型材 / B 分拣 / C 包装",
+   "rec": "(a) + A",
+   "since": "09-06 23:00",
+   "status": "open"
+  },
+  {
+   "id": "D6",
+   "topic": "SafeDuo 代码入 GitHub（私有 asimfish/safeduo，忽略 artifacts/媒体）",
+   "options": "(a) 现在建；(b) 等原会话空闲后建",
+   "rec": "已执行：私有仓库 asimfish/safeduo，首个快照 6c43487（870 文件，artifacts/third_party/媒体排除）；后续由设计线定期 commit",
+   "since": "09-06 23:00",
+   "status": "done"
+  }
  ],
  "verdicts": [
-  {"date": "09-06 22:30", "topic": "R33④ lookahead 速度感知阻尼带", "verdict": "a27@stack_fix：无带 viol-free 0.96 / min cross −2.3 mm / fid 0.116；τ=0.06 s → 1.0 / 25.5 mm / 0.067；τ=0.15 s → 1.0 / 31.6 mm / 0.045。硬门靠带能兜住，保真要靠在带下训练的策略", "evidence": "artifacts/clutch/a27_grid_stack_fix_la{,06}/；headon_trace_r16a_w1.npz"},
-  {"date": "09-06 18:10", "topic": "跨机越线机制", "verdict": "迎头两臂 1.1/0.8 rad/s 相向、裕度 0.7 m/s 下降；离合在 36 mm（已在 40 mm 带内）才锁；锁后关节 150 ms 才停，惯性 7–10 cm 冲过带宽。结构原因 = R18 40 mm 参与门换保真的代价", "evidence": "forensics/20260906/headon_violation_trace.py"},
-  {"date": "09-06 09:36", "topic": "a30（a27 warm-start +800 @fix）", "verdict": "viol-free 1.0、刹停 0/2 步，但 fidelity 0.094、误刹 0.476、no-deadlock 0.56——未适应活腕；启动 a30b +1600", "evidence": "a30_grid_stack_fix"},
-  {"date": "09-06 06:45", "topic": "R26 四族全部物理化", "verdict": "bottle / rod / box / relay 均 raw + a27 门控 success 零违规；直接双手同握 8 轮失败量化（F2 抓取拖动 +4.5/+4.7 cm、DFX 侧捏窗口 1–2 cm、同握需 ≥25 cm 间距）", "evidence": "r27_*_s0_phys_cam*.mp4；forensics/20260906/r27_baton1-11"},
-  {"date": "09-06 01:10", "topic": "R33③ a27 在活腕环境失效", "verdict": "fidelity 0.302→0.156、误刹 ×2.8、viol-free(cross) 1.0→0.92；全部 v7 四门数字为死腕环境结果", "evidence": "a27_r18_grid_stack_r16a"},
-  {"date": "09-05 22:30", "topic": "R33① UR5 wrist_3 驱动数值失稳", "verdict": "3e-4 kg·m² 惯量 × kp 1200 @120 Hz 隐式驱动不稳定，自 R14 v7 起 U 手绕腕轴朝向不受控；armature 0.05 修复", "evidence": "forensics/20260905/wrist3_*_probe.py"},
-  {"date": "09-05 03:15", "topic": "R31 三臂（a28/a28b/a29）", "verdict": "全部判负；共同签名 U 臂误刹翻倍，杠杆在 hazard 标签语义而非 cost 通道；a27 + stack 执行栈更优", "evidence": "a28*_r18_grid_stack / a29_r18_grid_stack"},
-  {"date": "09-02", "topic": "R28 a27 验收 / R29 handover 真根因", "verdict": "a27@0.5:0.2 四门全过且优于 a25 冠军；handover 门控失败真根因 = UR5 upper_arm×table 结构行永远在 damper 门内（非策略问题）", "evidence": "a27_r18_grid；tests/test_r28_r29_pins.py"}
+  {
+   "date": "09-06 22:30",
+   "topic": "R33④ lookahead 速度感知阻尼带",
+   "verdict": "a27@stack_fix：无带 viol-free 0.96 / min cross −2.3 mm / fid 0.116；τ=0.06 s → 1.0 / 25.5 mm / 0.067；τ=0.15 s → 1.0 / 31.6 mm / 0.045。硬门靠带能兜住，保真要靠在带下训练的策略",
+   "evidence": "artifacts/clutch/a27_grid_stack_fix_la{,06}/；headon_trace_r16a_w1.npz"
+  },
+  {
+   "date": "09-06 18:10",
+   "topic": "跨机越线机制",
+   "verdict": "迎头两臂 1.1/0.8 rad/s 相向、裕度 0.7 m/s 下降；离合在 36 mm（已在 40 mm 带内）才锁；锁后关节 150 ms 才停，惯性 7–10 cm 冲过带宽。结构原因 = R18 40 mm 参与门换保真的代价",
+   "evidence": "forensics/20260906/headon_violation_trace.py"
+  },
+  {
+   "date": "09-06 09:36",
+   "topic": "a30（a27 warm-start +800 @fix）",
+   "verdict": "viol-free 1.0、刹停 0/2 步，但 fidelity 0.094、误刹 0.476、no-deadlock 0.56——未适应活腕；启动 a30b +1600",
+   "evidence": "a30_grid_stack_fix"
+  },
+  {
+   "date": "09-06 06:45",
+   "topic": "R26 四族全部物理化",
+   "verdict": "bottle / rod / box / relay 均 raw + a27 门控 success 零违规；直接双手同握 8 轮失败量化（F2 抓取拖动 +4.5/+4.7 cm、DFX 侧捏窗口 1–2 cm、同握需 ≥25 cm 间距）",
+   "evidence": "r27_*_s0_phys_cam*.mp4；forensics/20260906/r27_baton1-11"
+  },
+  {
+   "date": "09-06 01:10",
+   "topic": "R33③ a27 在活腕环境失效",
+   "verdict": "fidelity 0.302→0.156、误刹 ×2.8、viol-free(cross) 1.0→0.92；全部 v7 四门数字为死腕环境结果",
+   "evidence": "a27_r18_grid_stack_r16a"
+  },
+  {
+   "date": "09-05 22:30",
+   "topic": "R33① UR5 wrist_3 驱动数值失稳",
+   "verdict": "3e-4 kg·m² 惯量 × kp 1200 @120 Hz 隐式驱动不稳定，自 R14 v7 起 U 手绕腕轴朝向不受控；armature 0.05 修复",
+   "evidence": "forensics/20260905/wrist3_*_probe.py"
+  },
+  {
+   "date": "09-05 03:15",
+   "topic": "R31 三臂（a28/a28b/a29）",
+   "verdict": "全部判负；共同签名 U 臂误刹翻倍，杠杆在 hazard 标签语义而非 cost 通道；a27 + stack 执行栈更优",
+   "evidence": "a28*_r18_grid_stack / a29_r18_grid_stack"
+  },
+  {
+   "date": "09-02",
+   "topic": "R28 a27 验收 / R29 handover 真根因",
+   "verdict": "a27@0.5:0.2 四门全过且优于 a25 冠军；handover 门控失败真根因 = UR5 upper_arm×table 结构行永远在 damper 门内（非策略问题）",
+   "evidence": "a27_r18_grid；tests/test_r28_r29_pins.py"
+  }
  ],
  "queue": [
-  {"goal": "G1/R33", "task": "等 a30b 四门（stack_fix）；出分后五列对照表更新，判定是否需要完整重训", "status": "run", "owner": "原会话（实验线）", "eta": "09-07 06:00", "note": "GPU1 训练 + 链式四门"},
-  {"goal": "G1/R33", "task": "a30@stack_fix_la06 四门（活腕训练策略 + 0.06 s 带）", "status": "run", "owner": "原会话", "eta": "09-07 01:00", "note": "GPU0"},
-  {"goal": "G4/R34", "task": "R34-A 资产：程序化 4040 T 槽型材 + 角码 USD、KLT_Bin/YCB 下载、凸分解与白名单登记（不占 GPU）", "status": "wait", "owner": "设计线（本面板维护者）", "eta": "待 D5", "note": "只加新文件 assets_src/tasks/r34/、task_library_r34.py"},
-  {"goal": "G4/R34", "task": "R34-A 任务设计：型材递送 / 共持插接 / 框架共抬 的相位与判据；设计期 IK 审计（CPU）", "status": "wait", "owner": "设计线", "eta": "待 D5", "note": "复用 _screen/_screened_combos、IK_MULTISEED、PalmFrame"},
-  {"goal": "G4/R34", "task": "R34-A GPU 探针 + 多机位成片 + VLM 质检", "status": "planned", "owner": "实验线", "eta": "a30b 链让出 GPU 后", "note": ""},
-  {"goal": "G1/R35", "task": "SAI 式分臂顺序微调：冻结 F 侧门控只微调 U 侧头（stack_fix），再交换，最后在迎头窗口做稀疏干预微调", "status": "planned", "owner": "实验线", "eta": "待 D2", "note": "作为完整重训前的低成本候选"},
-  {"goal": "G1/R35", "task": "TRACE 式路径签名意图特征：每臂最近 H 步关节速度截断签名（2–3 阶）入 α/p 头，消融", "status": "planned", "owner": "实验线", "eta": "待 D2", "note": "纯 torch，4096 env 流水线可直接验证"},
-  {"goal": "G2/R35", "task": "四门新增过程指标：phase-sync 保持率、伙伴延迟探针（暂停一方操作员）", "status": "planned", "owner": "设计线→实验线", "eta": "", "note": "对应 SAI 的 Phase Sync / Yield-Wait"},
-  {"goal": "P", "task": "PAPER_NOTES 相关工作补 SAI / TRACE；死腕标注段落草稿", "status": "wait", "owner": "设计线", "eta": "09-07", "note": "待 D1"},
-  {"goal": "基建", "task": "SafeDuo 代码建私有 GitHub 仓库（asimfish/safeduo），MASTER_REPORT 同步进面板", "status": "wait", "owner": "设计线", "eta": "待 D6", "note": ""}
+  {
+   "goal": "G1/R33",
+   "task": "等 a30b 四门（stack_fix）；出分后五列对照表更新，判定是否需要完整重训",
+   "status": "run",
+   "owner": "原会话（实验线）",
+   "eta": "09-07 06:00",
+   "note": "GPU1 训练 + 链式四门"
+  },
+  {
+   "goal": "G1/R33",
+   "task": "a30@stack_fix_la06 四门（活腕训练策略 + 0.06 s 带）",
+   "status": "run",
+   "owner": "原会话",
+   "eta": "09-07 01:00",
+   "note": "GPU0"
+  },
+  {
+   "goal": "G4/R34",
+   "task": "R34-A 资产：程序化 4040 T 槽型材 + 角码 USD、KLT_Bin/YCB 下载、凸分解与白名单登记（不占 GPU）",
+   "status": "wait",
+   "owner": "设计线（本面板维护者）",
+   "eta": "待 D5",
+   "note": "只加新文件 assets_src/tasks/r34/、task_library_r34.py"
+  },
+  {
+   "goal": "G4/R34",
+   "task": "R34-A 任务设计：型材递送 / 共持插接 / 框架共抬 的相位与判据；设计期 IK 审计（CPU）",
+   "status": "wait",
+   "owner": "设计线",
+   "eta": "待 D5",
+   "note": "复用 _screen/_screened_combos、IK_MULTISEED、PalmFrame"
+  },
+  {
+   "goal": "G4/R34",
+   "task": "R34-A GPU 探针 + 多机位成片 + VLM 质检",
+   "status": "planned",
+   "owner": "实验线",
+   "eta": "a30b 链让出 GPU 后",
+   "note": ""
+  },
+  {
+   "goal": "G1/R35",
+   "task": "SAI 式分臂顺序微调：冻结 F 侧门控只微调 U 侧头（stack_fix），再交换，最后在迎头窗口做稀疏干预微调",
+   "status": "planned",
+   "owner": "实验线",
+   "eta": "待 D2",
+   "note": "作为完整重训前的低成本候选"
+  },
+  {
+   "goal": "G1/R35",
+   "task": "TRACE 式路径签名意图特征：每臂最近 H 步关节速度截断签名（2–3 阶）入 α/p 头，消融",
+   "status": "planned",
+   "owner": "实验线",
+   "eta": "待 D2",
+   "note": "纯 torch，4096 env 流水线可直接验证"
+  },
+  {
+   "goal": "G2/R35",
+   "task": "四门新增过程指标：phase-sync 保持率、伙伴延迟探针（暂停一方操作员）",
+   "status": "planned",
+   "owner": "设计线→实验线",
+   "eta": "",
+   "note": "对应 SAI 的 Phase Sync / Yield-Wait"
+  },
+  {
+   "goal": "P",
+   "task": "PAPER_NOTES 相关工作补 SAI / TRACE；死腕标注段落草稿",
+   "status": "wait",
+   "owner": "设计线",
+   "eta": "09-07",
+   "note": "待 D1"
+  },
+  {
+   "goal": "基建",
+   "task": "SafeDuo 代码建私有 GitHub 仓库（asimfish/safeduo），MASTER_REPORT 同步进面板",
+   "status": "done",
+   "owner": "设计线",
+   "eta": "09-06 23:50",
+   "note": "MASTER_REPORT 镜像随手工更新同步（launchd 读不到 ~/Desktop，见契约）"
+  }
  ],
  "literature": [
-  {"key": "SAI", "title": "Robots that Collaborate: Sequential Asymmetric Imitation for Learning Coupled Robot Policies（CoRL 2026，Zihao Li / Weiming Zhi 组）", "url": "https://arxiv.org/abs/2606.16490", "gist": "单遥操作员三阶段课程：A 对柔顺人类伙伴学 → 冻结 A、遥操 B 对着 A 学 → 双机闭环稀疏干预微调 A；无通信、去中心化；指标 Success / Phase Sync / Yield-Wait", "for_safeduo": [
+  {
+   "key": "SAI",
+   "title": "Robots that Collaborate: Sequential Asymmetric Imitation for Learning Coupled Robot Policies（CoRL 2026，Zihao Li / Weiming Zhi 组）",
+   "url": "https://arxiv.org/abs/2606.16490",
+   "gist": "单遥操作员三阶段课程：A 对柔顺人类伙伴学 → 冻结 A、遥操 B 对着 A 学 → 双机闭环稀疏干预微调 A；无通信、去中心化；指标 Success / Phase Sync / Yield-Wait",
+   "for_safeduo": [
     "动机对位：SAI 声称不需要同步双操作员示范——论文须正面回应；但其 Stage-2/3 都是人与自主机器人共享工作区，恰需离合器保护 → SafeDuo 是 SAI 式与同步式采数的共同安全前提（相关工作 + 动机段）",
     "R31/R33 对症：a28/a29/a30 warm-start 失败本质是伙伴分布漂移（死腕→活腕）；SAI 的非对称分阶段适应 → 冻结 F 侧门控只微调 U 侧头，再交换，最后只在失败态（headon trace 可复现）稀疏干预 → R35 候选实验",
     "过程指标：Phase Sync / Yield-Wait 迁移为四门新增“相位保持率”，直接度量离合器是否保住两位操作员示范的协作结构（G4 数据质量）；“暂停一方操作员”的伙伴延迟探针入 L2 场景库",
-    "动作维度掩码干预 ≈ 我们的逐臂 α 进展预算，可作框架对照"]},
-  {"key": "TRACE", "title": "TRACE: Trajectory-Routed Causal Evidence / Memory for Delayed-Evidence Visuomotor Imitation（CoRL 2026，同组）", "url": "https://arxiv.org/abs/2606.14551", "gist": "早期线索消失后的决策：用机器人状态轨迹的路径签名（有序、定长）作键，写入/读取固定预算的潜在记忆；轻量适配器接入任意 visuomotor policy", "for_safeduo": [
+    "动作维度掩码干预 ≈ 我们的逐臂 α 进展预算，可作框架对照"
+   ]
+  },
+  {
+   "key": "TRACE",
+   "title": "TRACE: Trajectory-Routed Causal Evidence / Memory for Delayed-Evidence Visuomotor Imitation（CoRL 2026，同组）",
+   "url": "https://arxiv.org/abs/2606.14551",
+   "gist": "早期线索消失后的决策：用机器人状态轨迹的路径签名（有序、定长）作键，写入/读取固定预算的潜在记忆；轻量适配器接入任意 visuomotor policy",
+   "for_safeduo": [
     "误刹-安全张力的一部分是记忆问题：一次接近是受控交接还是迎头冲撞，由最近几十步轨迹形状决定而非瞬时状态（R28 用瞬时闭合速度豁免、R33④ 暴露动量）→ 每臂最近 H 步关节速度的截断路径签名作 α/p 头的意图特征（R35）",
     "滞回死锁 = 记忆丢失：锁上后离合器忘了为何锁；R30 retreat_release 是手工记忆，轨迹键记忆可给出有原则的释放条件",
-    "两篇同组 CoRL 2026 工作应一并引用"]},
-  {"key": "4-arm-bench", "title": "四臂协作装配 MuJoCo Benchmark（小红书，搭建中；4×Franka 铝型材结构搭建 + 精细分拣 + 协作包装，面向工业场景）", "url": "https://www.xiaohongshu.com/explore/6a9c82f1000000002902dd0c", "gist": "工业装配而非家居；四臂协同；全套数采系统；目标服务 multi-robot coordination / world model / VLA", "for_safeduo": [
+    "两篇同组 CoRL 2026 工作应一并引用"
+   ]
+  },
+  {
+   "key": "4-arm-bench",
+   "title": "四臂协作装配 MuJoCo Benchmark（小红书，搭建中；4×Franka 铝型材结构搭建 + 精细分拣 + 协作包装，面向工业场景）",
+   "url": "https://www.xiaohongshu.com/explore/6a9c82f1000000002902dd0c",
+   "gist": "工业装配而非家居；四臂协同；全套数采系统；目标服务 multi-robot coordination / world model / VLA",
+   "for_safeduo": [
     "owner：“这种任务就挺好的，好好搭建我们的场景，物体太粗糙” → R34 工业协作装配任务族 + 真实资产（tasks.json.r34 / docs/R34_SCENE_ASSETS.md）",
-    "差异化：他们是 benchmark + 数采系统；我们是采数时的安全离合器——可把 R34 任务族当作 SafeDuo 的演示/评测场景，未来亦可对接其 benchmark 做跨仿真器验证"]}
+    "差异化：他们是 benchmark + 数采系统；我们是采数时的安全离合器——可把 R34 任务族当作 SafeDuo 的演示/评测场景，未来亦可对接其 benchmark 做跨仿真器验证"
+   ]
+  }
  ],
  "changelog": [
-  {"time": "09-06 23:40", "text": "面板上线：服务器实时快照（bjxy_5090）、四门矩阵 75 cells 自动生成、路线图 R1–R35、任务族与资产、决策 D1–D6、工作队列、文献启发；docs/R34_SCENE_ASSETS.md 与 docs/LITERATURE_SAI_TRACE.md 入库"},
-  {"time": "09-06 22:35", "text": "原会话：a30@stack_fix_la06 四门启动（GPU0）；lookahead τ=0.06 结果入 MASTER v2.51"},
-  {"time": "09-06 19:45 / 22:30", "text": "owner 两条新指令（小红书四臂装配 benchmark → 场景与资产升级；SAI/TRACE 两篇 CoRL 2026 → 思考启发）；原会话轮询中未消费，由设计线接手"},
-  {"time": "09-06 17:33", "text": "a30b（a30 +1600 iter）启动，链式 stack_fix 四门"}
+  {
+   "time": "09-06 23:50",
+   "text": "SafeDuo 代码入私有仓库 asimfish/safeduo（首个快照 6c43487）；面板 launchd 定时任务上线；MASTER 镜像因 macOS TCC 只能在交互式运行时同步"
+  },
+  {
+   "time": "09-06 23:40",
+   "text": "面板上线：服务器实时快照（bjxy_5090）、四门矩阵 75 cells 自动生成、路线图 R1–R35、任务族与资产、决策 D1–D6、工作队列、文献启发；docs/R34_SCENE_ASSETS.md 与 docs/LITERATURE_SAI_TRACE.md 入库"
+  },
+  {
+   "time": "09-06 22:35",
+   "text": "原会话：a30@stack_fix_la06 四门启动（GPU0）；lookahead τ=0.06 结果入 MASTER v2.51"
+  },
+  {
+   "time": "09-06 19:45 / 22:30",
+   "text": "owner 两条新指令（小红书四臂装配 benchmark → 场景与资产升级；SAI/TRACE 两篇 CoRL 2026 → 思考启发）；原会话轮询中未消费，由设计线接手"
+  },
+  {
+   "time": "09-06 17:33",
+   "text": "a30b（a30 +1600 iter）启动，链式 stack_fix 四门"
+  }
  ]
 }
