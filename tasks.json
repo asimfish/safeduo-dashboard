@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T02:06:17",
+ "updated": "2026-09-07T02:42:43",
  "note": "任务族与物体资产现状（来源 MASTER §9 R17/R24/R26/R27）+ R34 工业协作装配提案。视频在 ~/Code/safeduo_media（本地）与 bjxy_5090:~/Code/safeduo_media；缩略图在面板仓库 gallery/。",
  "families": [
   {
@@ -8,10 +8,10 @@
    "objects": "真实 4080 T 槽铝型材 300 mm（程序化 USD，convexHull 碰撞，0.20 kg 平价 → 下一步 0.39/0.78）",
    "arms": "F 双臂各捏一根 + U 双臂方块",
    "grasp": "rod_pick 物理原语零改动：F2 跨 4 cm 宽面中段捏",
-   "phys": "✓ 09-07 00:59 raw success 零违规（探针 1）",
+   "phys": "✓ 0.20 kg raw success 零违规；0.39/0.78 kg 滑脱（增益、摩擦均非瓶颈 → 闭合深度，探针 5）",
    "gate": "门控版待跑（WITH_S0=1）",
-   "video": "r34_beam1_raw_camX.mp4（视频库置顶）",
-   "thumb": "gallery/r34/r34_beam1_raw_camX_frame.jpg",
+   "video": "r34_beam1_raw_camW.mp4（全景）/ r34_beam1_raw_camX.mp4（近景）",
+   "thumb": "gallery/r34/r34_beam1_raw_camW_frame.jpg",
    "status": "run"
   },
   {
@@ -181,6 +181,14 @@
    "首个 GPU 探针：beam_l/beam_r（4080）沿 rod_pick 物理轨迹重放 → 验证型材真随手；需 GPU 空档（a30b 链之后）"
   ],
   "progress": [
+   {
+    "time": "09-07 02:30–02:41",
+    "line": "设计线",
+    "text": "全景机位 camW（相机 (0.20,−2.40,1.95) → (0.10,0,0.90)）重录 0.20 kg 成功配置：两排机械臂、两张桌、整条车道全部入画，视频 r34_beam1_raw_camW 已入库并置顶（总览默认优先全景）。后续设计线录像默认 camW + 一路近景",
+    "thumbs": [
+     "gallery/r34/r34_beam1_raw_camW_frame.jpg"
+    ]
+   },
    {
     "time": "09-07 01:54–02:05",
     "line": "设计线",
