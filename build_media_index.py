@@ -82,6 +82,9 @@ for src_dir in srcs:
         if name in index and index[name].get("src_size") == stamp and (repo / index[name]["file"]).exists():
             continue
         dur, w, h = probe(src)
+        if dur is None:            # still being written / truncated copy: retry on a later run
+            print("skip (unreadable, probably partial):", src, file=sys.stderr)
+            continue
         dst = repo / "videos" / f"{name}.mp4"
         if not transcode(src, dst):
             print("transcode failed:", src, file=sys.stderr)
