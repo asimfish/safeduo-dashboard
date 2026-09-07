@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T20:59:24",
+ "updated": "2026-09-07T23:08:03",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -363,25 +363,32 @@
    "key": "TRACE",
    "title": "TRACE: Trajectory-Routed Causal Evidence / Memory for Delayed-Evidence Visuomotor Imitation（CoRL 2026，同组）",
    "url": "https://arxiv.org/abs/2606.14551",
-   "gist": "早期线索消失后的决策：用机器人状态轨迹的路径签名（有序、定长）作键，写入/读取固定预算的潜在记忆；轻量适配器接入任意 visuomotor policy",
+   "gist": "已读全文：17 维状态、深度 3 路径签名（5,219 维→512）+ 签名增量 δ_t 作轨迹键；K=4–6 个 512 维槽的路由写读；适配器不改动作头/损失。五个真机延迟证据任务 ACT 25.5→69.2、Diffusion 25.0→59.5；消融：只把签名当输入 45.5、无路由槽 52.2、完整 69.2，顺序反转负对照 37.8",
    "for_safeduo": [
-    "误刹-安全张力的一部分是记忆问题：一次接近是受控交接还是迎头冲撞，由最近几十步轨迹形状决定而非瞬时状态（R28 用瞬时闭合速度豁免、R33④ 暴露动量）→ 每臂最近 H 步关节速度的截断路径签名作 α/p 头的意图特征（R35）",
-    "滞回死锁 = 记忆丢失：锁上后离合器忘了为何锁；R30 retreat_release 是手工记忆，轨迹键记忆可给出有原则的释放条件",
-    "两篇同组 CoRL 2026 工作应一并引用"
+    "R35-② 校准：我提的“路径签名意图特征”= 他们的 Signature-only 消融（+20 分量级），先做这一步；维度上逐臂 7 维取深度 2–3（56/399 维/臂）+ 跨机臂对 14 维取深度 2（210 维），别对 28 维整体取深度 3（2.2 万维）",
+    "用签名增量 δ_t 表达“刚刚在减速/后撤”，正是 R28 coop 豁免与 R33④ 动量问题缺的那一维",
+    "完整 K 槽路由记忆留给滞回死锁释放（替代 R30 手工规则）",
+    "两篇同组 CoRL 2026 一并引用"
    ]
   },
   {
    "key": "4-arm-bench",
    "title": "四臂协作装配 MuJoCo Benchmark（小红书，搭建中；4×Franka 铝型材结构搭建 + 精细分拣 + 协作包装，面向工业场景）",
    "url": "https://www.xiaohongshu.com/explore/6a9c82f1000000002902dd0c",
-   "gist": "工业装配而非家居；四臂协同；全套数采系统；目标服务 multi-robot coordination / world model / VLA",
+   "gist": "逐帧看过演示视频（88 s）：方桌四角 4×Franka 朝桌心；桌心夹具上已装好矩形铝型材外框；两臂物理夹持一根横梁共持运送并装入外框，第三臂装紧固件并敲击；四角 KLT 小料箱立放紧固件、布上放工具；分步字幕 Positioning / Establishing physical grasps / Transporting and installing the cross member / Installing and striking the fastener；3/4 俯视全景机位",
    "for_safeduo": [
-    "owner：“这种任务就挺好的，好好搭建我们的场景，物体太粗糙” → R34 工业协作装配任务族 + 真实资产（tasks.json.r34 / docs/R34_SCENE_ASSETS.md）",
-    "差异化：他们是 benchmark + 数采系统；我们是采数时的安全离合器——可把 R34 任务族当作 SafeDuo 的演示/评测场景，未来亦可对接其 benchmark 做跨仿真器验证"
+    "R34-A 旗舰任务改为“装横梁”：外框夹具 + 4080 横梁双臂共持落座 + U 臂装角件敲击——把“0.78 kg 单手抓不住”变成任务设计，把“多臂在同一小区域近距离作业”变成离合器的展示场景",
+    "两排面对面 + 异构（FR3/UR5e 五指手）是我们与他们的差异化：跨机型、跨操作员的共享工作区安全",
+    "录制器 phase 名改成人可读工序名进字幕；全景机位 camW 与他们的演示视角一致",
+    "笔记与落地清单：docs/BENCHMARK_4ARM_ASSEMBLY.md"
    ]
   }
  ],
  "changelog": [
+  {
+   "time": "09-07 23:08",
+   "text": "补课两篇参考：TRACE 全文 + 四臂装配 benchmark 逐帧读字幕；R34-A 旗舰任务改为“装横梁”（双臂共持 + 装紧固件敲击）；docs/BENCHMARK_4ARM_ASSEMBLY.md 新增"
+  },
   {
    "time": "09-07 20:59",
    "text": "按 owner 要求把 A100 部署从 30110 迁到 30109：环境从 NFS tar 恢复到 /home/dataset-local/lyf_safeduo_a100（2 分钟），Vulkan/PhysX GPU/二级冒烟通过，aF 重训在 30109 GPU2 重新发车；30110 上的训练与内存盘已清理"

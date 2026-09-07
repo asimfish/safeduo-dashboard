@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T02:57:15",
+ "updated": "2026-09-07T23:08:03",
  "note": "任务族与物体资产现状（来源 MASTER §9 R17/R24/R26/R27）+ R34 工业协作装配提案。视频在 ~/Code/safeduo_media（本地）与 bjxy_5090:~/Code/safeduo_media；缩略图在面板仓库 gallery/。",
  "families": [
   {
@@ -114,11 +114,11 @@
   "subfamilies": [
    {
     "id": "R34-A",
-    "name": "4040 铝型材框架搭建",
-    "objects": "4×4 cm T 槽铝型材 30/45/60 cm（程序化精确截面或 Misumi/OpenBuilds STEP）、角码/连接件（放大到 ≥3.5 cm 可捏）、U 桌底框夹具",
-    "tasks": "① 型材递送：F 中段捏 → 横向搬到车道 → U DFX 顶抓另一端（两手相距 ≥20 cm）；② 共持插接：U 扶框、F 把型材端部插入角码（间隙 3–5 mm，复用 peg/socket 判据）；③ 框架共抬：装好的框四臂共抬平移（替代长板）",
+    "name": "4040/4080 铝型材框架搭建 —— 旗舰任务改为“装横梁”（对齐四臂装配 benchmark）",
+    "objects": "外框夹具（4040 长边×2 + 短边×2 立于 U 桌，长边上两个搁座）、4080 横梁 300/450 mm、角件（40 mm 三通角件）、KLT 料箱、工具 obj_tool；程序化 T 槽截面 + 金属材质",
+    "tasks": "① 四臂就位 → ② F_L/F_R 两端物理夹持 4080 横梁（0.78 kg，单手抓不住 → 双臂共持是任务本身）→ ③ 共持运送、对位、落入外框搁座 → ④ U 臂从 KLT 料箱取角件装入并下压/敲击（近距离接触密集）→ ⑤ 撤离。辅：型材递送（长件两手 ≥20 cm 天然满足 R32(b)）、单臂落座、套管插接、框架共抬",
     "grasp_reuse": "瓶族中段捏 / DFX 顶抓 / PalmFrame 对夹 / peg-in-socket 判据 —— 全部已验证",
-    "accept": "raw + a27 门控 success、零违规、≥2 机位成片、VLM 逐帧 PASS；型材真实随手（obj−flange 恒定）",
+    "accept": "横梁两端落座 <5 mm、yaw <5°、settled；角件对中 <10 mm；全程零违规；两只 F 手最近距离 ≥30 mm；raw + a27/aF 门控成片（camW 全景 + 近景）",
     "priority": "首选"
    },
    {
@@ -181,6 +181,16 @@
    "首个 GPU 探针：beam_l/beam_r（4080）沿 rod_pick 物理轨迹重放 → 验证型材真随手；需 GPU 空档（a30b 链之后）"
   ],
   "progress": [
+   {
+    "time": "09-07 22:50",
+    "line": "设计线",
+    "text": "补课：下载四臂装配 benchmark 演示视频逐帧读字幕（Positioning → Establishing physical grasps → Transporting and installing the cross member → Installing and striking the fastener）；他们的形态 = 方桌四角四台 Franka、桌心已装好的矩形外框、两臂共持横梁装入、第三臂装紧固件并敲击、四角料箱放紧固件。据此把 R34-A 旗舰任务改为“装横梁”，探针 5 里“0.78 kg 单手抓不住”变成任务设计（双臂共持）。TRACE 全文也读完，R35 意图特征按其 Signature-only 消融校准",
+    "thumbs": [
+     "gallery/refs/fourarm_bench_crossmember.jpg",
+     "gallery/refs/fourarm_bench_fastener.jpg",
+     "gallery/refs/fourarm_bench_grasps.jpg"
+    ]
+   },
    {
     "time": "09-07 02:45–02:57",
     "line": "设计线",
