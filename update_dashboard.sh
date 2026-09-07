@@ -7,6 +7,7 @@ DATA=~/Code/safeduo-dashboard-data
 TOOLS=~/Code/safeduo-dashboard
 SRC=/Users/liyufeng/Desktop/research/safeduo
 REMOTE=bjxy_5090
+A100=tianyiyun-30110-pub2
 LOG=$TOOLS/update.log
 ts() { date "+%m-%d %H:%M:%S"; }
 cd "$DATA" || exit 1
@@ -17,11 +18,30 @@ fi
 trap 'rmdir "$LOCK" 2>/dev/null' EXIT
 git pull -q --rebase origin data >/dev/null 2>&1 || git rebase --abort >/dev/null 2>&1
 if [ "${1:-}" != "--no-server" ]; then
-  if timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=20 $REMOTE 'python3 -' < "$TOOLS/collect_remote.py" > runs.json.tmp 2>/dev/null && [ -s runs.json.tmp ] && python3 -c "import json;json.load(open('runs.json.tmp'))" 2>/dev/null; then
-    mv runs.json.tmp runs.json; echo "$(ts) server snapshot ok" >> "$LOG"
+  if timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=20 $REMOTE 'python3 -' < "$TOOLS/collect_remote.py" > runs_5090.json.tmp 2>/dev/null && [ -s runs_5090.json.tmp ] && python3 -c "import json;json.load(open('runs_5090.json.tmp'))" 2>/dev/null; then
+    mv runs_5090.json.tmp runs_5090.json; echo "$(ts) 5090 snapshot ok" >> "$LOG"
   else
-    rm -f runs.json.tmp; echo "$(ts) server unreachable, keeping old runs.json" >> "$LOG"
+    rm -f runs_5090.json.tmp; echo "$(ts) 5090 unreachable, keeping old snapshot" >> "$LOG"
   fi
+  # A100 box (tianyiyun-30110-pub2): SafeDuo lives on the NFS under safeduo_a100/safeduo
+  if timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=25 $A100 'SAFEDUO_NODE=tianyiyun-30110 SAFEDUO_ARTIFACTS=/home/dataset-assist-0/liyufeng/safeduo_a100/safeduo/artifacts python3 -' < "$TOOLS/collect_remote.py" > runs_a100.json.tmp 2>/dev/null && [ -s runs_a100.json.tmp ] && python3 -c "import json;json.load(open('runs_a100.json.tmp'))" 2>/dev/null; then
+    mv runs_a100.json.tmp runs_a100.json; echo "$(ts) a100 snapshot ok" >> "$LOG"
+  else
+    rm -f runs_a100.json.tmp; echo "$(ts) a100 unreachable, keeping old snapshot" >> "$LOG"
+  fi
+  python3 - <<'PY'
+import json, os, time
+servers = []
+for f in ("runs_5090.json", "runs_a100.json"):
+    if os.path.exists(f):
+        try:
+            d = json.load(open(f)); d["snap_file"] = f; servers.append(d)
+        except Exception:
+            pass
+primary = servers[0] if servers else {}
+out = dict(primary); out["servers"] = servers; out["updated"] = max([s.get("updated", "") for s in servers] + [""]) or time.strftime("%Y-%m-%dT%H:%M:%S")
+json.dump(out, open("runs.json", "w"), ensure_ascii=False, indent=1)
+PY
   mkdir -p clutch_cells
   timeout 120 rsync -az --include='*/' --include='cell_*.json' --include='grid_summary.md' --exclude='*' $REMOTE:~/safeduo/artifacts/clutch/ clutch_cells/ 2>/dev/null && echo "$(ts) cells synced" >> "$LOG"
   python3 "$TOOLS/build_gates.py" clutch_cells gates.json >/dev/null 2>&1 || echo "$(ts) build_gates failed" >> "$LOG"

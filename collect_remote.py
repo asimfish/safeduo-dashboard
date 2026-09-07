@@ -13,7 +13,9 @@ import subprocess
 import time
 
 HOME = os.path.expanduser("~")
-ROOT = os.path.join(HOME, "safeduo", "artifacts")
+ROOT = os.environ.get("SAFEDUO_ARTIFACTS", os.path.join(HOME, "safeduo", "artifacts"))
+NODE = os.environ.get("SAFEDUO_NODE", "bjxy_5090")
+GATE_SUBDIR = "clutch"
 ACTIVE_S = 30 * 60  # a run/gate touched within 30 min counts as active
 
 
@@ -143,6 +145,7 @@ def main():
     m = re.search(r"load average[s]?:\s*([\d.]+)", up)
     snap = {
         "updated": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "node": NODE,
         "host": sh("hostname").strip(),
         "load": m.group(1) if m else None,
         "ncpu": os.cpu_count(),

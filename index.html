@@ -74,7 +74,7 @@
 <!-- ============================ 总览 ============================ -->
 <section class="tab" id="tab-overview">
   <div class="grid g4" style="margin-top:6px">
-    <div class="card"><div class="t">服务器 bjxy_5090</div><div id="ov-gpu" class="small">-</div></div>
+    <div class="card"><div class="t">服务器（5090 + A100）</div><div id="ov-gpu" class="small">-</div></div>
     <div class="card"><div class="t">在跑作业</div><div id="ov-jobs" class="small">-</div></div>
     <div class="card"><div class="t">最新四门结果</div><div id="ov-gates" class="small">-</div></div>
     <div class="card"><div class="t">待 owner 决策 <span id="ov-ndec" class="pill open">0</span></div><div id="ov-dec" class="small">-</div></div>
@@ -100,7 +100,7 @@
 
 <!-- ============================ 实验 ============================ -->
 <section class="tab" id="tab-experiments">
-  <h2>服务器与算力（bjxy_5090 · 2×RTX 5090）</h2>
+  <h2>服务器与算力（bjxy_5090 · 2×RTX 5090 ｜ tianyiyun-30110 · 8×A100-80G，环境在 NFS+内存盘）</h2>
   <div id="servers"></div>
   <div class="small">tmux：<span id="tmux"></span></div>
   <h3>训练运行（stats.jsonl 末行）</h3>
@@ -207,25 +207,32 @@ showTab(location.hash.slice(1));
 
 // ---- servers / runs
 let RUNS = null;
-function renderServers(r) {
-  RUNS = r;
-  $("#upd-runs").textContent = fmtAge(r.updated);
-  const ageMin = (Date.now() - new Date(r.updated)) / 60000;
-  $("#stale").textContent = ageMin > 40 ? `· 服务器快照已过期 ${(ageMin/60).toFixed(1)} 小时` : "";
+function serverBlock(r) {
   const busy = (r.gpus||[]).filter(c => c.used_mb > 2000).length, mine = (r.gpus||[]).filter(c => c.mine).length;
   const rows = (r.gpus||[]).map(c => {
     const mem = Math.round(100 * c.used_mb / Math.max(1, c.total_mb));
     const tags = (c.procs || []).map(p => `<span class="tag ${p.tag}">${esc(p.label)} ${(p.mem_mb/1024).toFixed(1)}G</span>`).join("") || `<span class="small">空闲</span>`;
     return `<tr><td class="num">g${c.idx}</td><td><span class="mbar ${c.mine ? "hot" : ""}"><i style="width:${mem}%"></i></span><span class="small">${(c.used_mb/1024).toFixed(1)} / ${Math.round(c.total_mb/1024)} G</span></td><td><span class="mbar util"><i style="width:${Math.max(0,c.util)}%"></i></span><span class="small">${c.util}%</span></td><td>${tags}</td></tr>`;
   }).join("");
-  $("#servers").innerHTML = `<div class="small" style="margin:6px 0">${esc(r.host||"bjxy_5090")} · load ${esc(r.load||"-")} / ${r.ncpu||"-"} 核 · ${busy}/${(r.gpus||[]).length} 卡在用 · SafeDuo 占 ${mine} 卡 · 快照 ${(r.updated||"").slice(11,16)}</div>
+  return `<div class="small" style="margin:6px 0"><b>${esc(r.node||r.host||"?")}</b> · ${esc(r.host||"")} · load ${esc(r.load||"-")} / ${r.ncpu||"-"} 核 · ${busy}/${(r.gpus||[]).length} 卡在用 · SafeDuo 占 ${mine} 卡 · 快照 ${(r.updated||"").slice(11,16)}</div>
     <div class="table-wrap"><table><thead><tr><th style="width:40px">卡</th><th style="width:190px">显存</th><th style="width:160px">利用率</th><th>正在跑（蓝 = SafeDuo；紫 = 其它项目）</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-  $("#runs tbody").innerHTML = (r.runs||[]).map(x => `<tr><td><code>${esc(x.name)}</code></td><td class="num">${x.iter ?? "-"}</td><td class="num">${f(x.alpha_exec)}</td><td class="num">${f(x.alpha)}</td><td class="num">${(x.costs||[]).map(c=>f(c)).join(" / ")}</td><td class="num">${(x.lambdas||[]).map(c=>f(c,2)).join(" / ")}</td><td class="num">${f(x.hazard_rate,4)}</td><td class="num">${f(x.entropy,2)}</td><td class="num">${x.n_ckpt}${x.has_last ? " ✓" : ""}</td><td class="small">${fmtEpoch(x.mtime)}</td><td>${x.active ? pill("training") : "<span class='small'>停</span>"}</td></tr>`).join("") || "<tr><td colspan=11 class='small'>无</td></tr>";
+}
+function renderServers(r) {
+  RUNS = r;
+  $("#upd-runs").textContent = fmtAge(r.updated);
+  const ageMin = (Date.now() - new Date(r.updated)) / 60000;
+  $("#stale").textContent = ageMin > 40 ? `· 服务器快照已过期 ${(ageMin/60).toFixed(1)} 小时` : "";
+  const servers = r.servers && r.servers.length ? r.servers : [r];
+  $("#servers").innerHTML = servers.map(serverBlock).join("");
+  const allRuns = [].concat(...servers.map(s => (s.runs||[]).map(x => ({...x, node: s.node||s.host}))));
+  const allGates = [].concat(...servers.map(s => (s.gates||[]).map(x => ({...x, node: s.node||s.host})))).sort((a,b) => b.mtime - a.mtime);
+  r = {...r, runs: allRuns, gates: allGates, tmux: [].concat(...servers.map(s => (s.tmux||[]).map(t => (s.node||s.host||"") + ":" + t)))};
+  $("#runs tbody").innerHTML = (r.runs||[]).map(x => `<tr><td><code>${esc(x.name)}</code> <span class="small">${esc(x.node||"")}</span></td><td class="num">${x.iter ?? "-"}</td><td class="num">${f(x.alpha_exec)}</td><td class="num">${f(x.alpha)}</td><td class="num">${(x.costs||[]).map(c=>f(c)).join(" / ")}</td><td class="num">${(x.lambdas||[]).map(c=>f(c,2)).join(" / ")}</td><td class="num">${f(x.hazard_rate,4)}</td><td class="num">${f(x.entropy,2)}</td><td class="num">${x.n_ckpt}${x.has_last ? " ✓" : ""}</td><td class="small">${fmtEpoch(x.mtime)}</td><td>${x.active ? pill("training") : "<span class='small'>停</span>"}</td></tr>`).join("") || "<tr><td colspan=11 class='small'>无</td></tr>";
   $("#gatedirs").innerHTML = (r.gates||[]).slice(0,8).map(g => `<li><code>${esc(g.dir)}</code> · ${g.n_cells} cell${g.cells.length ? "（" + g.cells.join(", ") + "）" : ""} · ${fmtEpoch(g.mtime)} ${g.active ? pill("run") : ""}</li>`).join("");
   $("#tmux").textContent = (r.tmux||[]).join(" · ");
   // overview cards
-  $("#ov-gpu").innerHTML = (r.gpus||[]).map(c => `<div>g${c.idx} <span class="mbar ${c.mine ? "hot" : ""}"><i style="width:${Math.round(100*c.used_mb/Math.max(1,c.total_mb))}%"></i></span>${(c.used_mb/1024).toFixed(1)}/${Math.round(c.total_mb/1024)} G · ${c.util}%</div>`).join("") + `<div style="margin-top:4px">快照 ${(r.updated||"").slice(5,16).replace("T"," ")}</div>`;
-  const jobs = [].concat(...(r.gpus||[]).map(c => (c.procs||[]).filter(p => p.tag === "safeduo").map(p => `g${c.idx} · ${p.label} (${(p.mem_mb/1024).toFixed(1)}G)`)));
+  $("#ov-gpu").innerHTML = servers.map(s => `<div><b>${esc(s.node||s.host||"")}</b></div>` + (s.gpus||[]).filter(c => servers.length === 1 || c.mine || c.used_mb > 2000 || (s.gpus||[]).length <= 2).map(c => `<div>g${c.idx} <span class="mbar ${c.mine ? "hot" : ""}"><i style="width:${Math.round(100*c.used_mb/Math.max(1,c.total_mb))}%"></i></span>${(c.used_mb/1024).toFixed(1)}/${Math.round(c.total_mb/1024)} G · ${c.util}%${c.mine ? " ·（SafeDuo）" : ""}</div>`).join("") + `<div class="small">${(s.gpus||[]).filter(c => c.used_mb <= 2000 && c.util < 5).length} 张空闲</div>`).join("") + `<div style="margin-top:4px" class="small">快照 ${(r.updated||"").slice(5,16).replace("T"," ")}</div>`;
+  const jobs = [].concat(...servers.map(s => [].concat(...(s.gpus||[]).map(c => (c.procs||[]).filter(p => p.tag === "safeduo").map(p => `${s.node||s.host} g${c.idx} · ${p.label} (${(p.mem_mb/1024).toFixed(1)}G)`)))));
   const act = (r.runs||[]).filter(x => x.active).map(x => `训练 ${x.name} @ iter ${x.iter}`);
   $("#ov-jobs").innerHTML = (jobs.length ? jobs : ["无 SafeDuo GPU 作业"]).map(j => `<div>${esc(j)}</div>`).join("") + (act.length ? `<div class="small" style="margin-top:4px">${esc(act.join(" · "))}</div>` : "");
 }
