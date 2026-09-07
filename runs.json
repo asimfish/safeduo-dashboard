@@ -1,27 +1,21 @@
 {
- "updated": "2026-09-07T20:47:51",
+ "updated": "2026-09-07T20:54:35",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "17.11",
+ "load": "55.76",
  "ncpu": 48,
- "uptime": "20:47:51 up 5 days,  3:52, 15 users,  load average: 17.11, 16.97, 18.81",
+ "uptime": "20:54:33 up 5 days,  3:58, 15 users,  load average: 55.76, 28.09, 22.01",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 30675,
+   "used_mb": 24764,
    "total_mb": 32607,
-   "util": 90,
+   "util": 16,
    "procs": [
     {
      "pid": 906883,
-     "mem_mb": 9916,
-     "tag": "chembench",
-     "label": "chembench"
-    },
-    {
-     "pid": 718242,
-     "mem_mb": 9814,
+     "mem_mb": 10064,
      "tag": "chembench",
      "label": "chembench"
     },
@@ -30,6 +24,12 @@
      "mem_mb": 4119,
      "tag": "chembench",
      "label": "chembench"
+    },
+    {
+     "pid": 940293,
+     "mem_mb": 4034,
+     "tag": "safeduo",
+     "label": "cf_roam_video.py"
     },
     {
      "pid": 910067,
@@ -42,12 +42,6 @@
      "mem_mb": 3005,
      "tag": "safeduo",
      "label": "record pipe_sorting"
-    },
-    {
-     "pid": 910284,
-     "mem_mb": 274,
-     "tag": "safeduo",
-     "label": "cf_v7_task_runner.py"
     }
    ],
    "mine": true
@@ -55,10 +49,16 @@
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 21293,
+   "used_mb": 29232,
    "total_mb": 32607,
-   "util": 89,
+   "util": 81,
    "procs": [
+    {
+     "pid": 930131,
+     "mem_mb": 11111,
+     "tag": "chembench",
+     "label": "chembench"
+    },
     {
      "pid": 813941,
      "mem_mb": 9515,
@@ -72,10 +72,10 @@
      "label": "chembench"
     },
     {
-     "pid": 910284,
-     "mem_mb": 3419,
+     "pid": 940293,
+     "mem_mb": 248,
      "tag": "safeduo",
-     "label": "cf_v7_task_runner.py"
+     "label": "cf_roam_video.py"
     }
    ],
    "mine": true
@@ -522,29 +522,23 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-07T20:47:51",
+   "updated": "2026-09-07T20:54:33",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "17.11",
+   "load": "55.76",
    "ncpu": 48,
-   "uptime": "20:47:51 up 5 days,  3:52, 15 users,  load average: 17.11, 16.97, 18.81",
+   "uptime": "20:54:33 up 5 days,  3:58, 15 users,  load average: 55.76, 28.09, 22.01",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 30675,
+     "used_mb": 24764,
      "total_mb": 32607,
-     "util": 90,
+     "util": 16,
      "procs": [
       {
        "pid": 906883,
-       "mem_mb": 9916,
-       "tag": "chembench",
-       "label": "chembench"
-      },
-      {
-       "pid": 718242,
-       "mem_mb": 9814,
+       "mem_mb": 10064,
        "tag": "chembench",
        "label": "chembench"
       },
@@ -553,6 +547,12 @@
        "mem_mb": 4119,
        "tag": "chembench",
        "label": "chembench"
+      },
+      {
+       "pid": 940293,
+       "mem_mb": 4034,
+       "tag": "safeduo",
+       "label": "cf_roam_video.py"
       },
       {
        "pid": 910067,
@@ -565,12 +565,6 @@
        "mem_mb": 3005,
        "tag": "safeduo",
        "label": "record pipe_sorting"
-      },
-      {
-       "pid": 910284,
-       "mem_mb": 274,
-       "tag": "safeduo",
-       "label": "cf_v7_task_runner.py"
       }
      ],
      "mine": true
@@ -578,10 +572,16 @@
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 21293,
+     "used_mb": 29232,
      "total_mb": 32607,
-     "util": 89,
+     "util": 81,
      "procs": [
+      {
+       "pid": 930131,
+       "mem_mb": 11111,
+       "tag": "chembench",
+       "label": "chembench"
+      },
       {
        "pid": 813941,
        "mem_mb": 9515,
@@ -595,10 +595,10 @@
        "label": "chembench"
       },
       {
-       "pid": 910284,
-       "mem_mb": 3419,
+       "pid": 940293,
+       "mem_mb": 248,
        "tag": "safeduo",
-       "label": "cf_v7_task_runner.py"
+       "label": "cf_roam_video.py"
       }
      ],
      "mine": true
@@ -1045,25 +1045,61 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-07T20:47:51",
-   "node": "tianyiyun-30110",
-   "host": "ide-7e33a68268b54c4b9512a8ca868790c2-e64a97",
-   "load": "34.93",
+   "updated": "2026-09-07T20:54:35",
+   "node": "tianyiyun-30109",
+   "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
+   "load": "187.68",
    "ncpu": 128,
-   "uptime": "20:47:51 up 57 days,  2:56,  0 users,  load average: 34.93, 37.38, 45.35",
+   "uptime": "20:54:35 up 51 days,  3:27,  0 users,  load average: 187.68, 157.58, 146.49",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 42970,
+     "used_mb": 25617,
      "total_mb": 81920,
-     "util": 0,
+     "util": 38,
      "procs": [
       {
-       "pid": 2417959,
-       "mem_mb": 42960,
+       "pid": 3567616,
+       "mem_mb": 4496,
        "tag": "other",
-       "label": "python"
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567668,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567667,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567625,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3476392,
+       "mem_mb": 2588,
+       "tag": "other",
+       "label": "run.py"
+      },
+      {
+       "pid": 3649060,
+       "mem_mb": 2500,
+       "tag": "chembench",
+       "label": "chembench"
+      },
+      {
+       "pid": 3651626,
+       "mem_mb": 2500,
+       "tag": "chembench",
+       "label": "chembench"
       }
      ],
      "mine": false
@@ -1071,68 +1107,245 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 37022,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 88,
+     "procs": [
+      {
+       "pid": 3572433,
+       "mem_mb": 19594,
+       "tag": "other",
+       "label": "e0_paired_fork_runtime.py"
+      },
+      {
+       "pid": 3011327,
+       "mem_mb": 8828,
+       "tag": "other",
+       "label": "curveseq_m2.py"
+      },
+      {
+       "pid": 3011175,
+       "mem_mb": 8580,
+       "tag": "other",
+       "label": "curveseq_m2.py"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 2,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 24432,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
-     "mine": false
+     "util": 16,
+     "procs": [
+      {
+       "pid": 3572434,
+       "mem_mb": 19594,
+       "tag": "other",
+       "label": "e0_paired_fork_runtime.py"
+      },
+      {
+       "pid": 3649484,
+       "mem_mb": 2500,
+       "tag": "chembench",
+       "label": "chembench"
+      },
+      {
+       "pid": 3935116,
+       "mem_mb": 1862,
+       "tag": "safeduo",
+       "label": "train a100_smoke64"
+      },
+      {
+       "pid": 3964753,
+       "mem_mb": 448,
+       "tag": "safeduo",
+       "label": "train aF_v8_fix2_la06_s46"
+      }
+     ],
+     "mine": true
     },
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 24714,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 16,
+     "procs": [
+      {
+       "pid": 3610208,
+       "mem_mb": 19594,
+       "tag": "other",
+       "label": "e0_paired_fork_runtime.py"
+      },
+      {
+       "pid": 3476393,
+       "mem_mb": 2590,
+       "tag": "other",
+       "label": "run.py"
+      },
+      {
+       "pid": 3650140,
+       "mem_mb": 2500,
+       "tag": "chembench",
+       "label": "chembench"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 4,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 60988,
      "total_mb": 81920,
      "util": 0,
-     "procs": [],
+     "procs": [
+      {
+       "pid": 3895321,
+       "mem_mb": 60916,
+       "tag": "other",
+       "label": "VLLM::Worker_TP1"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 5,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 40117,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 8,
+     "procs": [
+      {
+       "pid": 3610209,
+       "mem_mb": 19594,
+       "tag": "other",
+       "label": "e0_paired_fork_runtime.py"
+      },
+      {
+       "pid": 3567640,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567660,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567653,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567655,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3650750,
+       "mem_mb": 2500,
+       "tag": "chembench",
+       "label": "chembench"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 6,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 63585,
      "total_mb": 81920,
      "util": 0,
-     "procs": [],
+     "procs": [
+      {
+       "pid": 3895320,
+       "mem_mb": 60916,
+       "tag": "other",
+       "label": "VLLM::Worker_TP0"
+      },
+      {
+       "pid": 1654847,
+       "mem_mb": 2588,
+       "tag": "other",
+       "label": "run.py"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 7,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 40695,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 15,
+     "procs": [
+      {
+       "pid": 3107679,
+       "mem_mb": 19594,
+       "tag": "other",
+       "label": "e0_paired_fork_runtime.py"
+      },
+      {
+       "pid": 3567631,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567659,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567662,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3567678,
+       "mem_mb": 4496,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      },
+      {
+       "pid": 3651153,
+       "mem_mb": 2500,
+       "tag": "chembench",
+       "label": "chembench"
+      },
+      {
+       "pid": 2773563,
+       "mem_mb": 564,
+       "tag": "other",
+       "label": "fdpi_safeot_dual.py"
+      }
+     ],
      "mine": false
     }
    ],
-   "tmux": [],
+   "tmux": [
+    "cadi_seeds",
+    "ds_F7",
+    "ev_F7",
+    "memory",
+    "rescue",
+    "rescue2",
+    "rescue3",
+    "rescue4",
+    "rescue4parallel",
+    "safeot-main-30109-monitor-only",
+    "safeot1305_runtime_successor_v2_20260823",
+    "sd109_smoke2",
+    "sd109_train_aF"
+   ],
    "runs": [],
    "gates": [],
    "snap_file": "runs_a100.json"
