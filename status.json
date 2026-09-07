@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T20:12:49",
+ "updated": "2026-09-07T20:59:24",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -59,7 +59,7 @@
   }
  ],
  "focus": [
-  "A100 打通并投入使用：30110-pub2 三级冒烟全过（4096 env ~17 s/iter）；完整课程重训 aF（v8 + 活腕 + 双臂重力补偿 + 0.06 s 带，3600 iter ≈ 17 h）已在 GPU2 跑",
+  "A100 训练已在 owner 指定的 30109 上跑（GPU2 共卡）：aF 完整课程重训 3600 iter；环境在本地 NVMe，脚本与修法入库",
   "a30b 与 a27@v8 四门定案：warm-start 路线关闭；布局 v8 必须伴随重训——两者都指向 aF",
   "5090 两卡留给渲染/录像（实验线 R34 料箱与型材任务）；A100 承担训练与四门",
   "待 owner：D5 资产路线、D8 桌子是否随 Franka 前移、aF 中期门（~1800 iter 时看熵/λ/α）"
@@ -77,7 +77,7 @@
    "id": "D2",
    "topic": "修复环境完整课程重训（≈24 h GPU）——a30b 已判：warm-start 路线关闭",
    "options": "(a) 立即排队；(b) 等 a30b 四门；(c) 先试 R35 分臂顺序微调（成本 ~1/4）",
-   "rec": "已发车（09-07 20:09，30110 GPU2）：aF_v8_fix2_la06_s46 = a27 血统配方从零训 3600 iter，env duo_env_v7_r18_fix2_v8_la06（活腕 + 双臂重力补偿 + v8 布局 + lookahead 0.06 s），预计 ~17 h；四门评测 env duo_env_v7_r18_stack_fix2_v8_la06 已备。owner 可随时叫停/改配方",
+   "rec": "已发车（09-07 20:54，30109 GPU2，与他人作业共卡）：aF_v8_fix2_la06_s46 = a27 血统配方从零训 3600 iter，env duo_env_v7_r18_fix2_v8_la06；30110 上 20:09 起的同名 run 已按 owner 要求停止并删除",
    "since": "09-06 10:00",
    "status": "done"
   },
@@ -115,9 +115,9 @@
   },
   {
    "id": "D7",
-   "topic": "训练/四门迁到 A100——09-07 15:30 复核：tianyiyun-30110-pub2 出现 7 张全空 A100",
+   "topic": "训练/四门迁到 A100 —— 已落地在 owner 指定的 tianyiyun-30109",
    "options": "30110-pub2：Ubuntu 22.04 / glibc 2.35 / 驱动 580.65.06 合格，7 卡 0 GB/0%，外网直连；本地盘满（dataset-local 9 GB），环境落到共享 NFS dataset-assist-0（249 GB 可用，实测写 722 MB/s、读 258 MB/s，30109/30110/lotus 共享挂载 → 一处安装到处可跑）；容器无 NVIDIA 图形库 → 从同版本驱动包提取用户态 Vulkan 库（nvidia.com 在容器内 403，已从 Mac 中转 394 MB）。lotus-1/2 glibc 2.31 不可用；volc 驱动 535 且满载",
-   "rec": "已打通（09-07 20:10）：tianyiyun-30110-pub2 上 Isaac Sim 5.1 + IsaacLab@37ddf626 + SafeDuo 三级冒烟全过——Cartpole ✓、train_lagrangian 64 env ✓、4096 env 训练 ~17 s/iter（5090 上 a30b 为 29.6 s/iter，且当时被分卡）。四个容器特有的坑及修法：① NFS 是 sync 挂载，小文件极慢 → 环境/IsaacLab/Kit 缓存放 /dev/shm（471 GB），tar 到 NFS 持久化，a100_restore_env.sh 一分钟恢复；② pypi.org 超时 → 清华镜像 + NVIDIA 索引；③ 容器无 NVIDIA 图形库/无 /dev/dri → 从同版本驱动 .run 提取用户态库 + 手写 ICD + 用 __EGL_VENDOR_LIBRARY_FILENAMES 注册 libEGL_nvidia（否则 ICD 初始化失败）；④ PhysX GPU 退回 CPU 的真因 = omni.physx dlopen(\"libcuda.so\") 而容器只注入 libcuda.so.1 → 加一个 libcuda.so 软链；另 omni.iray.libs 缺 libGLU → conda 装 libglu；合成机器人 USD 里手部引用是 5090 绝对路径 → 改相对路径（已推回仓库）。红线：A100 run 不与 5090 run 同批配对比较。",
+   "rec": "已打通（09-07 20:10 在 30110 验证，20:50 按 owner 要求迁到 30109）： Isaac Sim 5.1 + IsaacLab@37ddf626 + SafeDuo 三级冒烟全过——Cartpole ✓、train_lagrangian 64 env ✓、4096 env 训练 ~17 s/iter（5090 上 a30b 为 29.6 s/iter，且当时被分卡）。四个容器特有的坑及修法：① NFS 是 sync 挂载，小文件极慢 → 环境/IsaacLab/Kit 缓存放 /dev/shm（471 GB），tar 到 NFS 持久化，a100_restore_env.sh 一分钟恢复；② pypi.org 超时 → 清华镜像 + NVIDIA 索引；③ 容器无 NVIDIA 图形库/无 /dev/dri → 从同版本驱动 .run 提取用户态库 + 手写 ICD + 用 __EGL_VENDOR_LIBRARY_FILENAMES 注册 libEGL_nvidia（否则 ICD 初始化失败）；④ PhysX GPU 退回 CPU 的真因 = omni.physx dlopen(\"libcuda.so\") 而容器只注入 libcuda.so.1 → 加一个 libcuda.so 软链；另 omni.iray.libs 缺 libGLU → conda 装 libglu；合成机器人 USD 里手部引用是 5090 绝对路径 → 改相对路径（已推回仓库）。红线：A100 run 不与 5090 run 同批配对比较。 30109 特殊处理：/dev/shm 只剩 3.9 GB（被 475 GB 其它数据占满），环境改放本地 NVMe /home/dataset-local/lyf_safeduo_a100（20 GB，从 NFS tar 2 分钟恢复），用 /dev/shm/liyufeng/safeduo_a100 软链保持环境内烙死的路径不变；不触碰 /opt/conda、dataset-local/liyufeng（owner 789 GB 工作区）与 lyf_safeduo（8-24 旧尝试）。30110 上我的训练与内存盘目录已全部清理",
    "since": "09-07 01:10 → 15:50 更新",
    "status": "done"
   },
@@ -243,11 +243,11 @@
  "queue": [
   {
    "goal": "G1/R33/R36",
-   "task": "aF_v8_fix2_la06_s46 完整课程重训（A100 30110 GPU2，3600 iter）→ 四门 stack_fix2_v8_la06 → 与 a27@stack_fix / a27@stack_fix_v8 对照",
+   "task": "aF_v8_fix2_la06_s46 完整课程重训（A100 30109 GPU2，3600 iter）→ 四门 stack_fix2_v8_la06 → 与 a27@stack_fix / a27@stack_fix_v8 对照",
    "status": "run",
    "owner": "设计线（监控）",
-   "eta": "09-08 13:00 训完",
-   "note": "logs: safeduo_a100/logs/aF_v8_fix2_la06_s46_train.log；wall ~17 s/iter"
+   "eta": "共卡，按首轮 wall_s 估算",
+   "note": "logs: safeduo_a100/logs/aF_v8_fix2_la06_s46_train.log"
   },
   {
    "goal": "基建/R21",
@@ -383,6 +383,10 @@
  ],
  "changelog": [
   {
+   "time": "09-07 20:59",
+   "text": "按 owner 要求把 A100 部署从 30110 迁到 30109：环境从 NFS tar 恢复到 /home/dataset-local/lyf_safeduo_a100（2 分钟），Vulkan/PhysX GPU/二级冒烟通过，aF 重训在 30109 GPU2 重新发车；30110 上的训练与内存盘已清理"
+  },
+  {
    "time": "09-07 20:12",
    "text": "A100（30110-pub2）部署完成并三级冒烟通过；aF 完整课程重训发车（GPU2）；面板服务器快照扩为 5090 + A100 两台"
   },
@@ -454,9 +458,9 @@
   {
    "name": "设计线（面板维护者）",
    "status": "run",
-   "now": "A100 部署完成（四个容器坑逐一定位修复），三级冒烟全过；aF 重训已在 30110 GPU2 跑（~17 s/iter，3600 iter）；面板两台服务器快照上线",
+   "now": "A100 部署迁到 30109（owner 指定）：环境恢复 + 冒烟通过，aF 重训 20:54 在 GPU2 发车（与他人作业共卡，速度待测）；30110 已清理",
    "next": "监控 aF（中期门 ~1800 iter）；aF 四门（stack_fix2_v8_la06）脚本；把 A100 部署脚本与修法入库 docs；R34 型材任务在 v8 上设计",
-   "updated": "09-07 20:12"
+   "updated": "09-07 20:59"
   }
  ]
 }
