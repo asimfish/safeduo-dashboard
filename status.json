@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T03:46:09",
+ "updated": "2026-09-07T16:13:49",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -59,11 +59,10 @@
   }
  ],
  "focus": [
-  "owner 09-07 两条反馈：① 录像机位太近看不清 → 新增全景机位 camW（2.4 m / 1.95 m 高，两排 + 车道全入画），视频库加“全景/近景”筛选，总览默认全景；② 实机布局 Franka 排前移 20 cm（两排 130 cm）→ v8 布局文件与评测 env 已就位，切换时机待 D8",
-  "R33：a30@stack_fix_la06 四门已出——硬门 viol-free 1.0 / min cross 25.2 mm 守住，no-deadlock 0.56→0.80 仍未满，误刹 0.466、保真 0.052 劣于 a27 同带 → 等 a30b（~06:30）",
-  "R34：两条资产路线都已跑通首个 sim 探针（实验线 reagent_pick 录像；设计线 4080 型材 rod_pick 探针 success）；下一步 owner 定路线取舍（D5）与 GPU 排期",
-  "算力：训练/四门可迁到 A100（R21 调研 CONDITIONAL GO：state-based headless 可跑，唯一硬点是容器缺 NVIDIA Vulkan ICD，有免 root 预案）；30109 当前 8 卡均有驻留进程但 g0/g4/g6 利用率 0–2%、每卡剩 ≥58 GB；volc 两卡 ~95% 忙 → D7",
-  "面板 v2：分页（总览/视频/实验/计划/任务与资产/记录）+ 视频库自动同步转码"
+  "a30b 与 a27@v8 四门双双定案：warm-start 路线关闭；布局 v8 必须伴随重训 → 唯一出路是在 v8 + 修复环境上完整课程重训（D2），算力放 A100",
+  "A100 部署进行中（30110-pub2，7 张空卡，环境落 NFS）：conda/torch/isaacsim 安装 + Vulkan 用户态库提取，随后三级冒烟",
+  "5090 两卡再次满载（实验线料箱任务录像 + 他人作业）；R34 型材族：闭合深度 0.15 定案，实心 4080 归双臂共搬",
+  "待 owner：D5 资产路线、D8 桌子是否随 Franka 前移、重训配方确认（τ、课程）"
  ],
  "decisions": [
   {
@@ -76,9 +75,9 @@
   },
   {
    "id": "D2",
-   "topic": "修复环境完整课程重训（≈24 h GPU）",
+   "topic": "修复环境完整课程重训（≈24 h GPU）——a30b 已判：warm-start 路线关闭",
    "options": "(a) 立即排队；(b) 等 a30b 四门；(c) 先试 R35 分臂顺序微调（成本 ~1/4）",
-   "rec": "(b)→(c)→(a) 顺序",
+   "rec": "立即排队一次完整课程重训：环境 = 活腕 + 双臂重力补偿 + v8 布局（130 cm）+ lookahead τ 待定（建议训练时开 0.06 s 带）；这是 R33/D8 共同的唯一出路。算力：5090 两卡长期满载，建议放到 A100（30110-pub2 正在部署，见 D7）",
    "since": "09-06 10:00",
    "status": "open"
   },
@@ -116,22 +115,34 @@
   },
   {
    "id": "D7",
-   "topic": "训练/四门迁到 A100——09-07 02:00 只读复核后各机现状",
-   "options": "tianyiyun-30109：OS 22.04/glibc 2.35/驱动 580.65.06 均合格，但 dataset-local 只剩 29 GB（环境预算 ~30 GB，共享盘随时被填满）、8 卡全部重负载（g0 100%、g5 90%、g6 74%…），容器无 NVIDIA Vulkan ICD（有免 root 预案）；lotus-1：4 张卡 0% 利用率、dataset-local 剩 115 GB，但容器是 Ubuntu 20.04 / glibc 2.31，Isaac Sim 5.1 的 manylinux_2_35 wheel 装不上（硬伤）；volc-a100：22.04/glibc 2.35、图形库齐，但驱动 535.129.03 < 5.1 要求的 580，且两卡 100% 被 SafeOT 占用，升驱动会中断他人任务；mainskill 当前不可达；aliyun PPU 非 CUDA 不适用",
-   "rec": "30109 是唯一 glibc/驱动都合格的机器；建议 owner 与 30109 上占卡/占盘的同学协调出 ≥40 GB dataset-local 空间与 1 张卡，届时按 R21 清单半天部署。今晚不宜动手（磁盘会写爆）。中期方案：让平台给容器加 NVIDIA_DRIVER_CAPABILITIES=all 并清盘",
-   "since": "09-07 01:10 → 02:05 复核更新",
+   "topic": "训练/四门迁到 A100——09-07 15:30 复核：tianyiyun-30110-pub2 出现 7 张全空 A100",
+   "options": "30110-pub2：Ubuntu 22.04 / glibc 2.35 / 驱动 580.65.06 合格，7 卡 0 GB/0%，外网直连；本地盘满（dataset-local 9 GB），环境落到共享 NFS dataset-assist-0（249 GB 可用，实测写 722 MB/s、读 258 MB/s，30109/30110/lotus 共享挂载 → 一处安装到处可跑）；容器无 NVIDIA 图形库 → 从同版本驱动包提取用户态 Vulkan 库（nvidia.com 在容器内 403，已从 Mac 中转 394 MB）。lotus-1/2 glibc 2.31 不可用；volc 驱动 535 且满载",
+   "rec": "已开工（设计线 15:48 起）：conda env + torch 2.7.0+cu128 + isaacsim 5.1.0 + IsaacLab@37ddf626（含本地 app_launcher 补丁）安装中；代码 / 录制器 / a27 权重 / 轨迹已同步；Vulkan 库提取中。接下来三级冒烟：Cartpole → train_lagrangian 64 env → 4096 env 100 iter 对照 wall_s。注意跨架构红线：A100 run 只作独立 seed/扫参，不与 5090 run 同批配对比较",
+   "since": "09-07 01:10 → 15:50 更新",
    "status": "open"
   },
   {
    "id": "D8",
    "topic": "实机布局变更：Franka 排整体前移 20 cm，两排间距 150 → 130 cm（owner 09-07 草图：FR3 间距 100、UR5 间距 90、基座离地 80）",
    "options": "(a) 立即切换默认布局到 v8 → 所有在跑/排队实验口径断裂（a30b 四门不可比）；(b) v8 先作候选：新任务族（R34）与下一次重训一并切到 v8，四门主表在 v8 重跑；同时用 a27@stack_fix_v8 量化“布局变化本身”的代价；(c) 忽略，沿用 v7",
-   "rec": "(b)。v8 文件已就位（assets_src/real/scene_layout_v8.yaml、baselines/scene_layout_v8.py、评测 env duo_env_v7_r18_stack_fix_v8.yaml，测试钉住“只有排距变了”）；静息跨机裕度 0.763 → 0.572 m，每臂过中线约 0.20 m（v7 约 0.10），共享带加倍——a27 在 v8 大概率更常刹车，重训时应直接用 v8。还需 owner 确认：桌子是否随 Franka 一起前移（决定桌沿位置）",
+   "rec": "(b) 确认：a27@stack_fix_v8 显示布局变化本身让 viol-free 0.96→0.84、no-deadlock 0.92→0.84，所以 v8 必须与重训绑定；重训（D2）直接用 v8。v8 文件/评测 env/迁移配方（站位平移 0.10 m）已就位。仍需 owner 确认桌子是否随 Franka 前移",
    "since": "09-07 02:20",
    "status": "open"
   }
  ],
  "verdicts": [
+  {
+   "date": "09-07 05:56",
+   "topic": "a30b@stack_fix（a30 再 +1600 iter，总 warm-start +2400）",
+   "verdict": "brake 1.0 / viol-free 0.96（min cross −0.1 mm）/ no-deadlock 0.96 / done 0.60/0.76 / 误刹(arm) 0.415 / fidelity 0.111——与 a27@stack_fix（0.96 / −2.3 mm / 0.92 / 0.36/0.80 / 0.417 / 0.116）几乎逐项相同，只把 a30 的死锁（0.56）救回到 a27 水平。结论：warm-start 无论 +800 还是 +2400 都不能让离合器适应活腕；R33 的出路只剩完整课程重训（D2），且应直接在 v8 布局 + 修复环境上做，τ 一并定",
+   "evidence": "artifacts/clutch/a30b_grid_stack_fix/cell_hi0.5_lo0.2.json"
+  },
+  {
+   "date": "09-07 05:55",
+   "topic": "a27@stack_fix_v8：布局 v8（两排 130 cm）本身的代价（只换布局，其余同 stack_fix）",
+   "verdict": "viol-free 0.96 → 0.84（4/25 局越线，min cross −5.3 mm）、no-deadlock 0.92 → 0.84、done 0.36/0.80 → 0.40/0.56、误刹 0.417 → 0.425、fidelity 持平 0.117。两排靠近 20 cm 让跨机共享带加倍，未重训的 a27 显著更常越线/死锁——v8 必须伴随重训，不能只换 env",
+   "evidence": "artifacts/clutch/a27_grid_stack_fix_v8/cell_hi0.5_lo0.2.json；scripts/forensics/a27_gate_stack_fix_v8.sh"
+  },
   {
    "date": "09-07 03:50",
    "topic": "R36 迁移配方核验：R26 四族在 v8 布局上的设计期重建（CPU，v8 提供器）",
@@ -364,6 +375,10 @@
  ],
  "changelog": [
   {
+   "time": "09-07 16:13",
+   "text": "a30b@stack_fix 与 a27@stack_fix_v8 四门入矩阵并判决（warm-start 关闭；v8 需伴随重训）；A100 部署开工（30110-pub2，NFS 环境，Vulkan 库中转）"
+  },
+  {
    "time": "09-07 03:46",
    "text": "a27@stack_fix_v8 四门在 GPU0 跑（~05:30 出）；R26 四族 v8 重建核验 → 迁移配方定案（站位/航点向车道平移 0.10 m）"
   },
@@ -420,16 +435,16 @@
   {
    "name": "实验线（原 safeduo_实验 会话）",
    "status": "run",
-   "now": "R33：a30b（+1600 iter）在 GPU1 训练，链式 stack_fix 四门约 06:30 出分；R34 实验室路线：chembench 58 件 sim-ready 器皿接入（object_catalog_lab.yaml、task_objects usd/catalog、duo_env UsdFileCfg），task_library_r34.reagent_pick 设计期构建通过（20.4 s，cross 0.32），录制器加入 R34 族名后 raw 探针 + camF 录像已出（r34_reagent1_raw_camF.mp4）",
+   "now": "R34 实验室路线：料箱（bin）装瓶 + 掌抱共搬门控录像迭代（掌压 1.5→2.5 cm）；GPU0 显存争抢导致录像多次失败，正写“等显存空档再跑”的包装脚本；a30b 链已完成",
    "next": "a30b 四门 → 五列对照表；reagent_pick 门控版与审片",
-   "updated": "09-07 01:27"
+   "updated": "09-07 16:13"
   },
   {
    "name": "设计线（面板维护者）",
    "status": "run",
-   "now": "a27@stack_fix_v8 四门在 GPU0 跑（量化布局代价，~05:30）；R26 四族 v8 设计期重建核验 → 迁移配方定案；探针 1–5 定案闭合深度 0.15；面板/视频库/全景机位落地",
-   "next": "v8 四门出分后写入 D8；型材递送任务在 v8 上设计；等 owner 定 D5/D7/D8 与桌子位置",
-   "updated": "09-07 03:46"
+   "now": "A100 部署中（30110-pub2）：env/torch/isaacsim 安装 + IsaacLab 克隆 + Vulkan 库提取，代码与权重已同步；a27@v8 四门与 a30b 四门已读并判决",
+   "next": "Cartpole → train_lagrangian 64 env → 4096 env 冒烟；成功后把完整课程重训（v8 + fix）配方交 owner 确认发车",
+   "updated": "09-07 16:13"
   }
  ]
 }
