@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T23:08:03",
+ "updated": "2026-09-08T02:19:09",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -258,6 +258,22 @@
    "note": "30110-pub2；环境在 /dev/shm（NFS tar 备份）；scripts/forensics/a100_*.sh"
   },
   {
+   "goal": "G1/G2/R35",
+   "task": "四门扩展：相位同步率（每协作任务族 2–5 检查点 + 时序容差）与伙伴延迟探针（一方操作员随机停 0.5–2 s）——SAI 口径",
+   "status": "planned",
+   "owner": "设计线→实验线",
+   "eta": "aF 出分后",
+   "note": "docs/REFERENCE_STUDY_20260907.md §1"
+  },
+  {
+   "goal": "G4/R34",
+   "task": "夹具 v2：矩形外框 + 锥口搁座（入口 +10 mm / 底 +3 mm）+ cross_member_install 设计期构建（v8）",
+   "status": "planned",
+   "owner": "设计线",
+   "eta": "09-08",
+   "note": "benchmark 逐帧 + 被动纠错装配思路"
+  },
+  {
    "goal": "G1/R33",
    "task": "等 a30b 四门（stack_fix）；出分后五列对照表更新，判定是否需要完整重训",
    "status": "run",
@@ -351,12 +367,12 @@
    "key": "SAI",
    "title": "Robots that Collaborate: Sequential Asymmetric Imitation for Learning Coupled Robot Policies（CoRL 2026，Zihao Li / Weiming Zhi 组）",
    "url": "https://arxiv.org/abs/2606.16490",
-   "gist": "单遥操作员三阶段课程：A 对柔顺人类伙伴学 → 冻结 A、遥操 B 对着 A 学 → 双机闭环稀疏干预微调 A；无通信、去中心化；指标 Success / Phase Sync / Yield-Wait",
+   "gist": "已读全文+附录：两台双臂移动机械臂（17 维状态/动作），单操作员三阶段数据（A 对柔顺人类 → 冻结 A 部署、遥操 B 且给 A 加速度缩放/动作噪声/时序偏移/初始扰动 → 双机闭环稀疏干预，动作维度掩码，干预集≈30%）；ACT+30 步历史 GRU+级联动作头，观测含力矩反馈；Phase Sync = 预定义 2–5 检查点在时序容差内双机同步完成（分母 N×K，未达检查点计失败），Yield/Wait = 伙伴延迟机会上的正确响应；四任务 Success 23–50%→53–70%",
    "for_safeduo": [
-    "动机对位：SAI 声称不需要同步双操作员示范——论文须正面回应；但其 Stage-2/3 都是人与自主机器人共享工作区，恰需离合器保护 → SafeDuo 是 SAI 式与同步式采数的共同安全前提（相关工作 + 动机段）",
-    "R31/R33 对症：a28/a29/a30 warm-start 失败本质是伙伴分布漂移（死腕→活腕）；SAI 的非对称分阶段适应 → 冻结 F 侧门控只微调 U 侧头，再交换，最后只在失败态（headon trace 可复现）稀疏干预 → R35 候选实验",
-    "过程指标：Phase Sync / Yield-Wait 迁移为四门新增“相位保持率”，直接度量离合器是否保住两位操作员示范的协作结构（G4 数据质量）；“暂停一方操作员”的伙伴延迟探针入 L2 场景库",
-    "动作维度掩码干预 ≈ 我们的逐臂 α 进展预算，可作框架对照"
+    "相位同步率进四门（每任务族 2–5 检查点 + 时序容差，门控 ≥ raw 的 90%）；伙伴延迟探针进 L2 场景库",
+    "分臂顺序微调（冻结 F 侧→微调 U 侧→交换→迎头窗口稀疏干预，只监督出问题臂的 α/p）作为 R33 低成本路线",
+    "Stage-2 式伙伴扰动（速度缩放/噪声/时序偏移）搬进随机操作员流——R31 缺的“伙伴分布”变量",
+    "动机与相关工作：SAI（数据课程）/ TriPilot-FF（触觉塑形）/ SafeDuo（指令门控+硬兜底）同表对照"
    ]
   },
   {
@@ -382,9 +398,24 @@
     "录制器 phase 名改成人可读工序名进字幕；全景机位 camW 与他们的演示视角一致",
     "笔记与落地清单：docs/BENCHMARK_4ARM_ASSEMBLY.md"
    ]
+  },
+  {
+   "key": "TriPilot-FF / Zeno-1",
+   "title": "TriPilot-FF: Coordinated Whole-Body Teleoperation with Force Feedback（RSS 2026，arXiv 2602.09888）+ Zeno-1 协作物理智能架构（ZENO AI 报告）",
+   "url": "https://arxiv.org/abs/2602.09888",
+   "gist": "TriPilot-FF：脚踏板 + 激光雷达接近信号渲染阻力，“在没有显式避碰控制器的情况下把操作员指令塑形为避碰行为”，臂端力反射，遥操反馈信号喂进 ACT 提升策略。Zeno-1：每台机器人同一 3B 模型 30 Hz、无中央调度，运动/物体响应/接触即接口；交互记忆跨 8 子任务 10 分钟；接触前预测性内省（87% vs 61%）",
+   "for_safeduo": [
+    "与 SafeDuo 是同一问题的两条路：他们在操作员端做触觉塑形（不保证零碰撞），我们在机器人端做门控 + 可证硬兜底；可叠加——离合器 α 可回传为踏板/手柄阻力（G3 阶段的对接点）",
+    "Zeno-1 的“一台的路径是另一台的约束、实时读取”“共载以张力为协调信号”是我们 R32/R34 协作任务判据的好语言",
+    "同组 “Robot-Friendly Scaffolding with Passive Error Correction”：锥形连接件吸收对位误差 → R34 搁座/套管做锥口（入口 +10 mm、底 +3 mm）"
+   ]
   }
  ],
  "changelog": [
+  {
+   "time": "09-08 02:19",
+   "text": "参考工作深度学习完成：SAI 附录（指标精确定义、三阶段协议、扰动与掩码）、TRACE 全文、benchmark 视频逐帧、作者主页（Zeno-1、TriPilot-FF、被动纠错装配）→ docs/REFERENCE_STUDY_20260907.md；新增 R35-③ 相位同步率/伙伴延迟探针、R34 锥口夹具 v2、相关工作三方对照"
+  },
   {
    "time": "09-07 23:08",
    "text": "补课两篇参考：TRACE 全文 + 四臂装配 benchmark 逐帧读字幕；R34-A 旗舰任务改为“装横梁”（双臂共持 + 装紧固件敲击）；docs/BENCHMARK_4ARM_ASSEMBLY.md 新增"

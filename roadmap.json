@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-07T03:46:09",
+ "updated": "2026-09-08T02:19:09",
  "source": "safeduo/paper/MASTER_REPORT.html §9（R1–R33 自动提取 + R26–R33 精简；R34/R35 为面板提案）",
  "rows": [
   {
@@ -311,9 +311,9 @@
   {
    "id": "R35",
    "prio": "P2",
-   "name": "【提案】文献启发实验：SAI 式分臂顺序微调（解 R31/R33 的 U 臂误刹翻倍）+ TRACE 式路径签名意图特征（解误刹-安全张力）+ Phase-Sync / 伙伴延迟探针指标",
+   "name": "【提案】文献启发实验：① SAI 式分臂顺序微调（含 Stage-2 伙伴扰动、动作掩码）② TRACE 式路径签名意图特征（逐臂深度 2–3 + 臂对深度 2，δ 签名）③ 四门加相位同步率 + 伙伴延迟探针（SAI 口径）",
    "accept": "① 分臂顺序微调后 stack_fix 四门：硬门全回且误刹(arm) ≤ a27@死腕栈 0.143×1.5；② 路径签名特征消融：同硬门下误刹或 fidelity 显著改善；③ 四门新增 phase-sync 保持率与伙伴延迟探针",
-   "status_text": "分析见 docs/LITERATURE_SAI_TRACE.md；作为\"完整课程重训（≈24 h GPU）\"之前的低成本候选，待 owner 拍板",
+   "status_text": "09-07 深夜完成参考深读并校准：TRACE Signature-only 消融 +20 分 → ②先做签名特征；SAI Phase Sync 精确算法（预定义检查点、时序容差、N×K 分母）→ ③可直接照搬到四门；TriPilot-FF 触觉塑形作为相关工作对照。等 aF 出分后排期",
    "status": "planned",
    "goal": "G1/论文"
   },
