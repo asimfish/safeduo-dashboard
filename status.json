@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-08T02:19:09",
+ "updated": "2026-09-08T02:43:08",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -268,10 +268,10 @@
   {
    "goal": "G4/R34",
    "task": "夹具 v2：矩形外框 + 锥口搁座（入口 +10 mm / 底 +3 mm）+ cross_member_install 设计期构建（v8）",
-   "status": "planned",
+   "status": "doing",
    "owner": "设计线",
    "eta": "09-08",
-   "note": "benchmark 逐帧 + 被动纠错装配思路"
+   "note": "资产 + yaml + 测试已完成（6b26a98）；剩设计期轨迹构建"
   },
   {
    "goal": "G1/R33",
@@ -413,6 +413,10 @@
  ],
  "changelog": [
   {
+   "time": "09-08 02:43",
+   "text": "R34-A 夹具 v2（矩形外框 + 锥口搁座/端挡/角件槽）+ KLT 料箱 + cross_member_install 场景 yaml（跨接缝，两排臂展校核）落地，代码仓 6b26a98；测试 4/4"
+  },
+  {
    "time": "09-08 02:19",
    "text": "参考工作深度学习完成：SAI 附录（指标精确定义、三阶段协议、扰动与掩码）、TRACE 全文、benchmark 视频逐帧、作者主页（Zeno-1、TriPilot-FF、被动纠错装配）→ docs/REFERENCE_STUDY_20260907.md；新增 R35-③ 相位同步率/伙伴延迟探针、R34 锥口夹具 v2、相关工作三方对照"
   },
@@ -496,8 +500,8 @@
   {
    "name": "设计线（面板维护者）",
    "status": "run",
-   "now": "A100 部署迁到 30109（owner 指定）：环境恢复 + 冒烟通过，aF 重训 20:54 在 GPU2 发车（与他人作业共卡，速度待测）；30110 已清理",
-   "next": "监控 aF（中期门 ~1800 iter）；aF 四门（stack_fix2_v8_la06）脚本；把 A100 部署脚本与修法入库 docs；R34 型材任务在 v8 上设计",
+   "now": "参考深读完成（REFERENCE_STUDY_20260907.md）；R34-A 夹具 v2 + 旗舰场景 yaml 落地；aF 重训监控（30109 GPU2）",
+   "next": "v8 上构建 cross_member_install 设计期轨迹；aF 中段体检 + 四门脚本；R35-③ 相位同步率/伙伴延迟探针实现草案",
    "updated": "09-07 20:59"
   }
  ]
