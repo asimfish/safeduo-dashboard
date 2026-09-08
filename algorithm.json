@@ -1,9 +1,9 @@
 {
- "version": "算法设计 v1（配方 aF：a27 课程 @ v8 布局 + 最终执行栈 fix2_la06）",
- "updated": "2026-09-08T17:03:39",
- "diagram": "diagrams/algorithm_v1.svg",
+ "version": "算法设计 v2（配方 aF + SafeTransport 容量流增量 E0–E4）",
+ "updated": "2026-09-08T21:18:53",
+ "diagram": "diagrams/algorithm_v2.svg",
  "diagram_note": "框图与本页内容由设计线在算法变更时同步更新（改配方 → 改 algorithm.json + 重新生成 SVG + 版本号 +1）；实验线改训练参数须在此登记。",
- "one_liner": "把“遥操安全”建模为约束强化学习：策略只学一个逐臂离合器（危险概率 α + 刹停量 p），安全时指令逐位直通、涉险时只冻结涉险臂；三条碰撞代价通道用 PID 拉格朗日乘子自动满足上限；解析 backstop 作为可证的最后一道。训练与真机执行同一套语义。",
+ "one_liner": "把“遥操安全”建模为约束强化学习：策略只学一个逐臂离合器（危险概率 α + 刹停量 p），安全时指令逐位直通、涉险时只冻结涉险臂；三条碰撞代价通道用 PID 拉格朗日乘子自动满足上限；解析 backstop 作为可证的最后一道。训练与真机执行同一套语义。 增量线：用 owner 的 SafeTransport（ICLR'27 投稿）把三条预算编译成一个容量矩阵、γ-流 Sinkhorn 投影后按 F*/F̂ 重加权 PPO，替代/触发式补充 PID 乘子——正在 30109 GPU2 上做 E0–E4 增量对照。",
  "problem": {
   "state": "四臂关节位置/速度 + 当前遥操指令 Δq_cmd（28 维）+ 成对接近特征 [距离, 接近速度, 类别 onehot]（跨机 / 自碰 / 桌面最差对）+ arm-aware 配对观测 + 上一步 α/p（p2-obs），共 275 维；状态式、无视觉",
   "action": "α₁..α₄ ∈ (0,1) 逐臂危险概率（执行时 0.5 二值化 = 离合器）+ p 刹停/保持量；联合 Beta 分布策略头",
@@ -72,6 +72,13 @@
    "file": "algo/lagrangian.py",
    "since": "v4/R13",
    "status": "在用"
+  },
+  {
+   "block": "SafeTransport 容量流投影（增量）",
+   "what": "rollout → 安全格子 (s,a) 流图（跨机距离 8 档 × 接近速度 5 档 × 自碰 4 × 桌面 4 × 离合模式 16，固定物理分箱，格子 id 跨迭代稳定）→ 每通道容量 S^(k)=b_k·ω/c̄_k 硬最小/软最小合成 → 对数域 γ-流 Sinkhorn（≤100 迭代）得 F*≤S → w_t=clip(F*/F̂, 1/5, 5) 乘 PPO 代理目标；模式 base / hybrid(β) / safe（证书触发 PID）/ off（与父类逐位一致，已测）",
+   "file": "algo/safetransport_ppo.py, algo/train_safetransport.py, scripts/forensics/a100_st_*.sh",
+   "since": "09-08（5937144）",
+   "status": "增量实验 E1–E4 排队中（GPU2）"
   },
   {
    "block": "PPO 更新",
@@ -178,7 +185,35 @@
     "on"
    ]
   ],
-  "lineage_note": "= a27 命令行去掉 --resume；a27 是 v7 死腕栈上唯一过硬门的策略（brake 1.0 / viol-free 1.0 / no-deadlock 1.0），aF 在 v8 + 活腕 + 重力补偿 + la06 上从头重训"
+  "lineage_note": "= a27 命令行去掉 --resume；a27 是 v7 死腕栈上唯一过硬门的策略（brake 1.0 / viol-free 1.0 / no-deadlock 1.0），aF 在 v8 + 活腕 + 重力补偿 + la06 上从头重训",
+  "increments": {
+   "where": "tianyiyun-30109 GPU2（与 aF 同卡，队列 sd109_st_queue 按显存空档顺序跑）",
+   "common": "a27 model_last.pt 热启动，env duo_env_v7_r18_fix2_v8_la06.yaml，2048 环境（4 小时等不到显存则 1024）× 400 迭代，seed 46，其余参数 = aF",
+   "arms": [
+    [
+     "E1 st_E1_base_paper",
+     "SafeTransport 论文默认：三通道硬最小、c̄=max、ε 0.1、无乘子"
+    ],
+    [
+     "E0 st_E0_pid",
+     "PID 拉格朗日基线（当前机制）"
+    ],
+    [
+     "E3 st_E3_safe_cal",
+     "校准版 + 证书触发 Safe：cross+self 通道、c̄=mean，连续 5 迭代超限才武装 PID"
+    ],
+    [
+     "E2 st_E2_base_cal",
+     "校准版无乘子：cross+self、c̄=mean、权重归一（保持有效步长）"
+    ],
+    [
+     "E4 st_E4_hybrid_cal",
+     "校准版 Hybrid β 0.5"
+    ]
+   ],
+   "smoke": "09-08 21:03 Isaac 冒烟通过（256 环境 × 2–3 迭代）：格子 31→170 个、Sinkhorn 72–100 迭代；论文默认下 IS-clip 率 78%、权重均值 0.30、容量激活 99.5%（= 论文报告的紧 K=3 任务“转移失败”区间，44–74%）；α̂_cross 3.8 > 3 → 已用 (s,a) 格子仍偏粗，故加校准臂（mean c̄、去掉结构性贴限的 table 通道、权重归一）",
+   "metrics": "训练侧：cross/self/table 代价轨迹 vs 上限、危险率、α_exec、IS-clip、转移间隙与认证上界；训练后：四门（A100 上评，和 a27@v8 同架构配对）"
+  }
  },
  "lineage": [
   {
@@ -225,9 +260,21 @@
    "ver": "aF（当前）",
    "when": "09-07 20:54 起",
    "change": "a27 完整课程在 v8 布局 + fix2_la06 上从头重训（A100 30109）"
+  },
+  {
+   "ver": "ST 增量（并行）",
+   "when": "09-08 21:12 起",
+   "change": "SafeTransport 容量流投影接入 PPO 循环（子类，父类文件不动），E0–E4 增量对照排队跑"
   }
  ],
  "reference_designs": [
+  {
+   "src": "SafeTransport（owner，ICLR'27）",
+   "design": "把 K 个 CMDP 预算编译成边容量，γ-流 Sinkhorn 投影得认证目标流 F*≤S，按 F*/F̂ 重加权 PPO；ε 选操作点；在线转移证书 J_c ≤ b + ‖c̄‖∞·‖F*−F̂_θ‖₁；转移失败时证书触发 Lagrangian（Safe）",
+   "ours": "三条代价通道（cross 0.04 / self 0.05 / table 0.05）正是论文的“多个异质预算耦合对偶塌缩”场景（aF 中 λ_cross 长期钉在上限 0.35、cross 代价 0.07–0.08 > 0.04 不闭合）。实现为 SafeTransportPPO 子类：安全格子 (s,a) 流图 + 硬/软最小合成 + 对数域 Sinkhorn + 权重乘代理目标；E0–E4 增量对照",
+   "status": "进行中（E1–E4 排队，E0 基线同预算）",
+   "why": "owner 自己的方法在真实多约束机器人任务上的验证，对两篇论文都有价值；若 Safe/校准版把 cross 代价压进上限且不增误刹，则替换 PID 进 aF 后继配方"
+  },
   {
    "src": "SAI",
    "design": "三阶段非对称训练：先训 A（对柔顺伙伴），冻结 A 部署再训 B，最后只在协作失败边界稀疏干预 A",
@@ -314,6 +361,10 @@
   }
  ],
  "changelog": [
+  {
+   "time": "09-08 21:18",
+   "text": "框图重绘 v2（三泳道卡片式，SafeTransport 二选一子框、增量实验卡）；接入 SafeTransport 增量：safetransport_ppo.py（子类，父类逐位一致性测试通过）、Isaac 冒烟通过、E0–E4 队列在 GPU2 排队（等显存 ≥11 GB）"
+  },
   {
    "time": "09-08 17:03",
    "text": "算法设计页 v1 上线：框图 SVG（三段：运行时回路 / 训练信号 / 评测）、组件表、当前配方参数、谱系、参考设计对照（SAI 9 项 + TriPilot-FF + TRACE）"

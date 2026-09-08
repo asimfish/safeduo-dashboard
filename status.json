@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-08T19:21:03",
+ "updated": "2026-09-08T21:18:53",
  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
  "goals": [
@@ -244,6 +244,14 @@
  ],
  "queue": [
   {
+   "goal": "G1/算法",
+   "task": "SafeTransport 增量实验 E0–E4（PID 基线 vs 论文默认 vs 校准版 vs 证书触发 Safe vs Hybrid），同预算 a27 热启动 400 迭代 @ v8+fix2_la06；出分后四门 + 对照表",
+   "status": "run",
+   "owner": "设计线",
+   "eta": "09-10（按显存空档，串行 5 臂）",
+   "note": "队列 sd109_st_queue；诊断键 stats.jsonl st.*"
+  },
+  {
    "goal": "G1/R33/R36",
    "task": "aF_v8_fix2_la06_s46 完整课程重训（A100 30109 GPU2，3600 iter）→ 四门 stack_fix2_v8_la06 → 与 a27@stack_fix / a27@stack_fix_v8 对照",
    "status": "run",
@@ -415,6 +423,10 @@
  ],
  "changelog": [
   {
+   "time": "09-08 21:18",
+   "text": "owner 指示：参考 SafeTransport 论文改进算法并做增量实验 → 接入容量流投影（子类）、Isaac 冒烟通过、E0–E4 五臂队列在 30109 GPU2 排队；算法框图重绘 v2；面板采集器改为多根扫描（/home/batchcom 下的 A100 运行也能看到）"
+  },
+  {
    "time": "09-08 19:21",
    "text": "面板新增“算法”页：框图 SVG（运行时回路 / 训练信号 / 评测三段）、问题建模、组件表、aF 配方参数、谱系、参考设计对照（SAI 9 项 + TriPilot-FF + TRACE）；维护契约加“算法变更三处同步”"
   },
@@ -510,8 +522,8 @@
   {
    "name": "设计线（面板维护者）",
    "status": "run",
-   "now": "参考深读完成（REFERENCE_STUDY_20260907.md）；R34-A 夹具 v2 + 旗舰场景 yaml 落地；aF 重训监控（30109 GPU2）",
-   "next": "v8 上构建 cross_member_install 设计期轨迹；aF 中段体检 + 四门脚本；R35-③ 相位同步率/伙伴延迟探针实现草案",
+   "now": "SafeTransport 增量：容量流投影接入 PPO（子类 + 父类一致性测试 + Isaac 冒烟通过），E0–E4 队列在 GPU2 等显存；框图 v2；aF 监控",
+   "next": "E1/E0 出分后先看代价轨迹与 IS-clip；四门配对评测；决定是否把 Safe/校准版写进 aF 后继配方；cross_member_install 设计期轨迹",
    "updated": "09-07 20:59"
   }
  ]

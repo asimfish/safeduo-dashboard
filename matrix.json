@@ -1,11 +1,11 @@
 {
- "updated": "2026-09-08T21:11:52",
+ "updated": "2026-09-08T21:18:59",
  "protocol": "四门口径（R28）：25 env × 60 s × 4 窗口（regular / directed 迎头 / recovery hysteresis / recovery manual），θ=hi:lo；硬门 brake 1.0 / viol-free(cross) 1.0 / no-deadlock(hys) 1.0；软指标 误刹(arm/any)、fidelity、done(hys/man)、刹停 p50/p95。新增实验先写进本文件再发车。",
  "summary": {
-  "total": 15,
+  "total": 20,
   "done": 9,
   "run": 0,
-  "planned": 6
+  "planned": 11
  },
  "rows": [
   {
@@ -241,6 +241,56 @@
    "owner": "待 D5",
    "goal": "R34",
    "status": "planned"
+  },
+  {
+   "policy": "st_E1_base_paper",
+   "env": "stack_fix2_v8_la06",
+   "theta": "0.5:0.2",
+   "purpose": "SafeTransport 论文默认（三通道硬最小，c̄=max，ε 0.1）",
+   "goal": "G1 · 约束机制增量对照（owner SafeTransport）",
+   "status": "wait",
+   "node": "tianyiyun-30109",
+   "note": "a27 热启动 400 迭代；四门在 A100 上评，与 a27@v8 配对"
+  },
+  {
+   "policy": "st_E0_pid",
+   "env": "stack_fix2_v8_la06",
+   "theta": "0.5:0.2",
+   "purpose": "PID 拉格朗日基线（同预算热启动）",
+   "goal": "G1 · 约束机制增量对照（owner SafeTransport）",
+   "status": "wait",
+   "node": "tianyiyun-30109",
+   "note": "a27 热启动 400 迭代；四门在 A100 上评，与 a27@v8 配对"
+  },
+  {
+   "policy": "st_E3_safe_cal",
+   "env": "stack_fix2_v8_la06",
+   "theta": "0.5:0.2",
+   "purpose": "SafeTransport 校准版 + 证书触发 Safe",
+   "goal": "G1 · 约束机制增量对照（owner SafeTransport）",
+   "status": "wait",
+   "node": "tianyiyun-30109",
+   "note": "a27 热启动 400 迭代；四门在 A100 上评，与 a27@v8 配对"
+  },
+  {
+   "policy": "st_E2_base_cal",
+   "env": "stack_fix2_v8_la06",
+   "theta": "0.5:0.2",
+   "purpose": "SafeTransport 校准版无乘子（权重归一）",
+   "goal": "G1 · 约束机制增量对照（owner SafeTransport）",
+   "status": "wait",
+   "node": "tianyiyun-30109",
+   "note": "a27 热启动 400 迭代；四门在 A100 上评，与 a27@v8 配对"
+  },
+  {
+   "policy": "st_E4_hybrid_cal",
+   "env": "stack_fix2_v8_la06",
+   "theta": "0.5:0.2",
+   "purpose": "SafeTransport 校准版 Hybrid β 0.5",
+   "goal": "G1 · 约束机制增量对照（owner SafeTransport）",
+   "status": "wait",
+   "node": "tianyiyun-30109",
+   "note": "a27 热启动 400 迭代；四门在 A100 上评，与 a27@v8 配对"
   }
  ]
 }
