@@ -14,6 +14,8 @@ import time
 
 HOME = os.path.expanduser("~")
 ROOT = os.environ.get("SAFEDUO_ARTIFACTS", os.path.join(HOME, "safeduo", "artifacts"))
+# colon-separated list: runs/ and clutch/ are scanned under every root (A100: code checkout + $HOME)
+ROOTS = [r for r in ROOT.split(":") if r]
 NODE = os.environ.get("SAFEDUO_NODE", "bjxy_5090")
 GATE_SUBDIR = "clutch"
 ACTIVE_S = 30 * 60  # a run/gate touched within 30 min counts as active
@@ -107,7 +109,7 @@ def read_last_json_line(path, max_bytes=20000):
 def runs(max_runs=12):
     now = time.time()
     rows = []
-    for d in glob.glob(os.path.join(ROOT, "runs", "*")):
+    for d in [x for r in ROOTS for x in glob.glob(os.path.join(r, "runs", "*"))]:
         st = os.path.join(d, "stats.jsonl")
         if not os.path.isfile(st):
             continue
@@ -128,7 +130,7 @@ def runs(max_runs=12):
 def gates(max_dirs=16):
     now = time.time()
     rows = []
-    for d in glob.glob(os.path.join(ROOT, "clutch", "*")):
+    for d in [x for r in ROOTS for x in glob.glob(os.path.join(r, "clutch", "*"))]:
         if not os.path.isdir(d):
             continue
         cells = sorted(glob.glob(os.path.join(d, "cell_*.json")))

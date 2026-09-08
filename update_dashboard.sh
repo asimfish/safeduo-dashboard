@@ -24,7 +24,7 @@ if [ "${1:-}" != "--no-server" ]; then
     rm -f runs_5090.json.tmp; echo "$(ts) 5090 unreachable, keeping old snapshot" >> "$LOG"
   fi
   # A100 box (tianyiyun-30109, owner-designated; env on local NVMe behind a /dev/shm symlink): SafeDuo lives on the NFS under safeduo_a100/safeduo
-  if timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=25 $A100 'SAFEDUO_NODE=tianyiyun-30109 SAFEDUO_ARTIFACTS=/home/dataset-assist-0/liyufeng/safeduo_a100/safeduo/artifacts python3 -' < "$TOOLS/collect_remote.py" > runs_a100.json.tmp 2>/dev/null && [ -s runs_a100.json.tmp ] && python3 -c "import json;json.load(open('runs_a100.json.tmp'))" 2>/dev/null; then
+  if timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=25 $A100 'SAFEDUO_NODE=tianyiyun-30109 SAFEDUO_ARTIFACTS=/home/dataset-assist-0/liyufeng/safeduo_a100/safeduo/artifacts:/home/batchcom/safeduo/artifacts python3 -' < "$TOOLS/collect_remote.py" > runs_a100.json.tmp 2>/dev/null && [ -s runs_a100.json.tmp ] && python3 -c "import json;json.load(open('runs_a100.json.tmp'))" 2>/dev/null; then
     mv runs_a100.json.tmp runs_a100.json; echo "$(ts) a100 snapshot ok" >> "$LOG"
   else
     rm -f runs_a100.json.tmp; echo "$(ts) a100 unreachable, keeping old snapshot" >> "$LOG"
