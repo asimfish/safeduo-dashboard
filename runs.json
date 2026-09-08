@@ -1,31 +1,54 @@
 {
- "updated": "2026-09-08T20:18:22",
+ "updated": "2026-09-08T20:28:43",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "2.98",
+ "load": "7.60",
  "ncpu": 48,
- "uptime": "20:18:20 up 7 min, 16 users,  load average: 2.98, 3.37, 1.92",
+ "uptime": "20:28:40 up 17 min, 19 users,  load average: 7.60, 8.84, 5.71",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 582,
+   "used_mb": 6973,
    "total_mb": 32607,
-   "util": 0,
-   "procs": [],
+   "util": 20,
+   "procs": [
+    {
+     "pid": 71795,
+     "mem_mb": 5879,
+     "tag": "chembench",
+     "label": "chembench"
+    },
+    {
+     "pid": 67902,
+     "mem_mb": 537,
+     "tag": "other",
+     "label": "rustdesk"
+    }
+   ],
    "mine": false
   },
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 18,
+   "used_mb": 15540,
    "total_mb": 32607,
-   "util": 0,
-   "procs": [],
+   "util": 56,
+   "procs": [
+    {
+     "pid": 51852,
+     "mem_mb": 15459,
+     "tag": "chembench",
+     "label": "chembench"
+    }
+   ],
    "mine": false
   }
  ],
  "tmux": [
+  "astra_fr3_fresh_phase1_2024",
+  "astra_psibot_e2_post_full",
+  "astra_psibot_e2_post_monitor",
   "codex_e2_fr3",
   "codex_e2_psibot",
   "frpc_web",
@@ -467,33 +490,56 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-08T20:18:20",
+   "updated": "2026-09-08T20:28:40",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "2.98",
+   "load": "7.60",
    "ncpu": 48,
-   "uptime": "20:18:20 up 7 min, 16 users,  load average: 2.98, 3.37, 1.92",
+   "uptime": "20:28:40 up 17 min, 19 users,  load average: 7.60, 8.84, 5.71",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 582,
+     "used_mb": 6973,
      "total_mb": 32607,
-     "util": 0,
-     "procs": [],
+     "util": 20,
+     "procs": [
+      {
+       "pid": 71795,
+       "mem_mb": 5879,
+       "tag": "chembench",
+       "label": "chembench"
+      },
+      {
+       "pid": 67902,
+       "mem_mb": 537,
+       "tag": "other",
+       "label": "rustdesk"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 18,
+     "used_mb": 15540,
      "total_mb": 32607,
-     "util": 0,
-     "procs": [],
+     "util": 56,
+     "procs": [
+      {
+       "pid": 51852,
+       "mem_mb": 15459,
+       "tag": "chembench",
+       "label": "chembench"
+      }
+     ],
      "mine": false
     }
    ],
    "tmux": [
+    "astra_fr3_fresh_phase1_2024",
+    "astra_psibot_e2_post_full",
+    "astra_psibot_e2_post_monitor",
     "codex_e2_fr3",
     "codex_e2_psibot",
     "frpc_web",
@@ -935,17 +981,17 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-08T20:18:22",
+   "updated": "2026-09-08T20:28:43",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "109.45",
+   "load": "99.06",
    "ncpu": 128,
-   "uptime": "20:18:22 up 52 days,  2:51,  0 users,  load average: 109.45, 107.87, 110.68",
+   "uptime": "20:28:43 up 52 days,  3:01,  0 users,  load average: 99.06, 106.81, 108.83",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 43241,
+     "used_mb": 62840,
      "total_mb": 81920,
      "util": 100,
      "procs": [
@@ -954,6 +1000,12 @@
        "mem_mb": 37746,
        "tag": "chembench",
        "label": "chembench"
+      },
+      {
+       "pid": 978269,
+       "mem_mb": 19594,
+       "tag": "other",
+       "label": "e0_paired_fork_runtime.py"
       },
       {
        "pid": 526514,
@@ -975,7 +1027,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 60929,
      "total_mb": 81920,
-     "util": 100,
+     "util": 99,
      "procs": [
       {
        "pid": 471730,
@@ -1059,9 +1111,9 @@
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 56835,
+     "used_mb": 52334,
      "total_mb": 81920,
-     "util": 99,
+     "util": 100,
      "procs": [
       {
        "pid": 493586,
@@ -1071,12 +1123,6 @@
       },
       {
        "pid": 2291118,
-       "mem_mb": 4496,
-       "tag": "other",
-       "label": "fdpi_safeot_dual.py"
-      },
-      {
-       "pid": 2291144,
        "mem_mb": 4496,
        "tag": "other",
        "label": "fdpi_safeot_dual.py"
@@ -1107,7 +1153,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 61960,
      "total_mb": 81920,
-     "util": 98,
+     "util": 100,
      "procs": [
       {
        "pid": 3895321,
@@ -1129,7 +1175,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 67372,
      "total_mb": 81920,
-     "util": 46,
+     "util": 100,
      "procs": [
       {
        "pid": 504324,
@@ -1169,7 +1215,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 61963,
      "total_mb": 81920,
-     "util": 100,
+     "util": 99,
      "procs": [
       {
        "pid": 3895320,
