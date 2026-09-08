@@ -65,7 +65,7 @@
 <header class="top"><div class="topin">
   <div class="brand"><h1>SafeDuo 计划面板</h1><span class="meta">内容 <span id="upd-status">-</span> · 服务器 <span id="upd-runs">-</span> · 视频 <span id="upd-media">-</span> · 60 秒自动刷新 <span id="stale" class="stale"></span></span></div>
   <nav class="tabs">
-    <a href="#overview" data-tab="overview">总览</a><a href="#videos" data-tab="videos">视频</a><a href="#experiments" data-tab="experiments">实验</a><a href="#plan" data-tab="plan">计划</a><a href="#assets" data-tab="assets">任务与资产</a><a href="#records" data-tab="records">记录</a>
+    <a href="#overview" data-tab="overview">总览</a><a href="#algorithm" data-tab="algorithm">算法</a><a href="#videos" data-tab="videos">视频</a><a href="#experiments" data-tab="experiments">实验</a><a href="#plan" data-tab="plan">计划</a><a href="#assets" data-tab="assets">任务与资产</a><a href="#records" data-tab="records">记录</a>
     <a href="MASTER_REPORT.html" target="_blank" style="margin-left:auto">MASTER 活文档 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/REFERENCE_STUDY_20260907.md" target="_blank">参考深读 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/BENCHMARK_4ARM_ASSEMBLY.md" target="_blank">四臂 benchmark 笔记 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/LITERATURE_SAI_TRACE.md" target="_blank">SAI/TRACE ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/R34_SCENE_ASSETS.md" target="_blank">R34 方案 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard" target="_blank">仓库 ↗</a>
   </nav>
 </div></header>
@@ -81,12 +81,39 @@
   </div>
   <h2>两条线现在在做什么</h2>
   <div class="grid g2" id="ov-lines"></div>
+  <div class="small" id="ov-alg" style="margin:6px 0"></div>
   <h2>今日焦点</h2>
   <ul class="q" id="focus"></ul>
   <h2>最新视频（全景机位优先） <span class="small">（<a href="#videos">全部 →</a>）</span></h2>
   <div class="vgrid" id="ov-videos"></div>
   <h2>最近判决</h2>
   <div class="table-wrap"><table id="ov-verdicts"><thead><tr><th>日期</th><th>主题</th><th>判词</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- ============================ 算法 ============================ -->
+<section class="tab" id="tab-algorithm">
+  <div class="northstar" id="alg-oneliner" style="border-left-color:var(--blue)"></div>
+  <div class="meta" id="alg-version"></div>
+  <h2>算法框图</h2>
+  <div class="card" style="padding:8px"><a id="alg-diagram-link" href="#" target="_blank"><img id="alg-diagram" src="" alt="算法框图" style="width:100%;display:block"></a></div>
+  <div class="small" id="alg-diagram-note"></div>
+  <h2>问题建模（约束强化学习）</h2>
+  <div class="grid g2">
+    <div class="card"><div class="t">状态 / 观测</div><div class="small" id="alg-state"></div><div class="t" style="margin-top:8px">动作</div><div class="small" id="alg-action"></div><div class="t" style="margin-top:8px">奖励</div><div class="small" id="alg-reward"></div></div>
+    <div class="card"><div class="t">约束通道（代价上限由 PID 拉格朗日乘子自动满足）</div><div class="table-wrap" style="margin-top:6px"><table id="alg-cons"><thead><tr><th>通道</th><th>cost-scale</th><th>上限</th><th>λ 上限</th></tr></thead><tbody></tbody></table></div><div class="small" id="alg-why"></div></div>
+  </div>
+  <h2>组件与当前状态</h2>
+  <div class="table-wrap"><table id="alg-comp"><thead><tr><th>模块</th><th>做什么 / 关键数字</th><th>代码位置</th><th>自</th><th>状态</th></tr></thead><tbody></tbody></table></div>
+  <h2>当前训练配方 <span class="small" id="alg-run"></span></h2>
+  <div class="grid g2">
+    <div class="table-wrap"><table id="alg-args"><thead><tr><th>参数</th><th>值</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="t">谱系（为什么是这个配方）</div><div class="small" id="alg-lineage-note"></div><div class="table-wrap" style="margin-top:6px"><table id="alg-lineage"><thead><tr><th>版本</th><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div></div>
+  </div>
+  <h2>参考设计对照（SAI / TRACE / TriPilot-FF → SafeDuo）</h2>
+  <div class="filters" id="rdfilters"><span>筛选：</span><label><input type="checkbox" data-st="planned" checked> 规划中</label><label><input type="checkbox" data-st="proposal" checked> 提案/建议</label><label><input type="checkbox" data-st="other" checked> 其它（定位/不采用）</label><span class="small" id="rdsum"></span></div>
+  <div class="table-wrap"><table id="alg-refs"><thead><tr><th>来源</th><th>他们的设计</th><th>我们的对应改动</th><th>状态</th><th>为什么值得</th></tr></thead><tbody></tbody></table></div>
+  <h2>算法设计变更日志</h2>
+  <div class="table-wrap"><table id="alg-changelog"><thead><tr><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div>
 </section>
 
 <!-- ============================ 视频 ============================ -->
@@ -176,6 +203,7 @@
     <li><b>服务器快照</b>（<code>runs.json</code>）与<b>视频库</b>（<code>safeduo-media/index.json</code>）由 Mac 端 <code>update_dashboard.sh</code>（launchd，每 10 分钟）采集、转码、推送；Mac 休眠或服务器不可达时停更并标红。</li>
     <li><b>四门矩阵</b>：<code>gates.json</code> 由 <code>build_gates.py</code> 从远端 <code>artifacts/clutch/*/cell_*.json</code> 自动生成，禁止手改数字；<b>新增实验先写进 <code>plan.json</code> 再发车</b>；<code>build_matrix.py</code> 合成计划 vs 完成。</li>
     <li><b>内容快照</b>（<code>status.json</code>：两条线动态、目标、焦点、决策、判决、队列、文献、日志；<code>roadmap.json</code>；<code>tasks.json</code>）由 agent 在里程碑手工更新；每条判决必须带证据路径，与 <code>safeduo/paper/MASTER_REPORT.html</code>（活文档，实验线维护）一致。面板不替代 MASTER，只做索引与看板。</li>
+    <li><b>算法设计</b>（<code>algorithm.json</code> + <code>diagrams/algorithm_vN.svg</code> + <code>docs/ALGORITHM_DESIGN.md</code>）：训练配方、网络、执行语义、代价/乘子任何改动都必须同步这三处并写入算法变更日志（版本号 +1）；参考设计对照表记录采纳/不采纳及理由。</li>
     <li><b>分工</b>：实验线（原 <code>safeduo_实验</code> 会话）= 训练 / 四门 / 录制 / MASTER；设计线（本面板维护者）= 方案、总结、文献、面板、仓库、工业资产。两线不同时改同一文件；设计线只加新文件。</li>
     <li><b>编码红线</b>：含中文文件一律 shell heredoc 写入并 <code>file --mime-encoding</code> 验证。<b>安全红线</b>：远程服务器不 kill 他人进程；GPU 探针看空档；训练/评测 yaml 默认值改动须经 owner。</li>
   </ul>
@@ -197,7 +225,7 @@ const clsMm = (v) => v === null || v === undefined ? "" : (v < 0 ? "bad" : (v < 
 
 // ---- tabs
 function showTab(name) {
-  const known = ["overview","videos","experiments","plan","assets","records"];
+  const known = ["overview","algorithm","videos","experiments","plan","assets","records"];
   if (!known.includes(name)) name = "overview";
   document.querySelectorAll("section.tab").forEach(s => s.classList.toggle("active", s.id === "tab-" + name));
   document.querySelectorAll("nav.tabs a[data-tab]").forEach(a => a.classList.toggle("active", a.dataset.tab === name));
@@ -301,6 +329,32 @@ function renderTasks(t) {
   $("#r34pipe").innerHTML = (r.pipeline||[]).map((p,i) => `<li>${i+1}. ${esc(p)}</li>`).join("");
   $("#r34open").innerHTML = (r.open_questions||[]).map(p => `<li><b>待定：</b>${esc(p)}</li>`).join("");
 }
+// ---- algorithm
+let ALG = null;
+function refStatusClass(st) { st = String(st||""); if (st.startsWith("planned") || st.startsWith("G3")) return "planned"; if (st.startsWith("提案") || st.startsWith("建议") || st.startsWith("可选")) return "proposal"; return "other"; }
+function renderAlgorithm() {
+  if (!ALG) return; const a = ALG;
+  $("#alg-oneliner").innerHTML = `<b>一句话</b> · ${esc(a.one_liner)}`;
+  $("#ov-alg").innerHTML = `算法：<b>${esc(a.version)}</b> · 最近变更 ${esc((a.changelog||[{}])[0].time||"")} ${esc(((a.changelog||[{}])[0].text||"").slice(0,60))}… <a href="#algorithm">框图与配方 →</a>`;
+  $("#alg-version").textContent = `${a.version} · 更新 ${fmtAge(a.updated)}`;
+  $("#alg-diagram").src = a.diagram + "?v=" + encodeURIComponent(a.updated); $("#alg-diagram-link").href = a.diagram;
+  $("#alg-diagram-note").textContent = a.diagram_note || "";
+  const pr = a.problem || {};
+  $("#alg-state").textContent = pr.state || ""; $("#alg-action").textContent = pr.action || ""; $("#alg-reward").textContent = pr.reward || ""; $("#alg-why").textContent = pr.why_constrained_rl || "";
+  $("#alg-cons tbody").innerHTML = (pr.constraints||[]).map(c => `<tr><td>${esc(c.channel)}</td><td class="num">${c.scale}</td><td class="num">${c.limit}</td><td class="num">${c.lambda_max}</td></tr>`).join("");
+  $("#alg-comp tbody").innerHTML = (a.components||[]).map(c => `<tr><td><b>${esc(c.block)}</b></td><td>${esc(c.what)}</td><td class="small"><code>${esc(c.file)}</code></td><td class="small">${esc(c.since)}</td><td>${esc(c.status)}</td></tr>`).join("");
+  const r = a.current_recipe || {};
+  $("#alg-run").textContent = `${r.run || ""} · ${r.server || ""} · 起 ${r.started || ""} · env ${r.env || ""} · 课程 ${r.curriculum || ""}`;
+  $("#alg-args tbody").innerHTML = (r.args||[]).map(([k,v]) => `<tr><td><code>${esc(k)}</code></td><td>${esc(v)}</td></tr>`).join("");
+  $("#alg-lineage-note").textContent = r.lineage_note || "";
+  $("#alg-lineage tbody").innerHTML = (a.lineage||[]).map(l => `<tr><td><b>${esc(l.ver)}</b></td><td class="small" style="white-space:nowrap">${esc(l.when)}</td><td>${esc(l.change)}</td></tr>`).join("");
+  const on = new Set([...document.querySelectorAll("#rdfilters input:checked")].map(i => i.dataset.st));
+  const refs = (a.reference_designs||[]).filter(x => on.has(refStatusClass(x.status)));
+  $("#rdsum").textContent = `显示 ${refs.length} / ${(a.reference_designs||[]).length} 项`;
+  $("#alg-refs tbody").innerHTML = refs.map(x => `<tr><td><b>${esc(x.src)}</b></td><td>${esc(x.design)}</td><td>${esc(x.ours)}</td><td>${pill(refStatusClass(x.status) === "planned" ? "planned" : (refStatusClass(x.status) === "proposal" ? "open" : "idle"))}<div class="small">${esc(x.status)}</div></td><td class="small">${esc(x.why)}</td></tr>`).join("");
+  $("#alg-changelog tbody").innerHTML = (a.changelog||[]).map(c => `<tr><td style="white-space:nowrap">${esc(c.time)}</td><td>${esc(c.text)}</td></tr>`).join("");
+}
+document.querySelectorAll("#rdfilters input").forEach(i => i.addEventListener("change", renderAlgorithm));
 // ---- videos
 let VIDEOS = null, VF = {round:"all", mode:"all", view:"all"}, VLIMIT = 16;
 function vcard(v) {
@@ -329,6 +383,7 @@ async function refresh() {
   try { renderMatrix(await getJSON(RAW + "matrix.json")); } catch (e) { console.warn(e); }
   try { GATES = await getJSON(RAW + "gates.json"); renderGates(); } catch (e) { console.warn(e); }
   try { renderTasks(await getJSON(RAW + "tasks.json")); } catch (e) { console.warn(e); }
+  try { ALG = await getJSON(RAW + "algorithm.json"); renderAlgorithm(); } catch (e) { console.warn(e); }
   try { VIDEOS = await getJSON(MEDIA + "index.json"); renderVideos(); } catch (e) { $("#upd-media").textContent = "加载失败"; }
 }
 document.querySelectorAll("#rmfilters input").forEach(i => i.addEventListener("change", renderRoadmap));
