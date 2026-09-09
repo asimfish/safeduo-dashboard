@@ -1,17 +1,17 @@
 {
- "updated": "2026-09-10T05:28:50",
+ "updated": "2026-09-10T05:39:01",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "11.96",
+ "load": "11.20",
  "ncpu": 48,
- "uptime": "05:28:49 up 1 day,  9:18, 23 users,  load average: 11.96, 11.73, 11.23",
+ "uptime": "05:39:00 up 1 day,  9:28, 23 users,  load average: 11.20, 11.78, 11.60",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
    "used_mb": 465,
    "total_mb": 32607,
-   "util": 0,
+   "util": 1,
    "procs": [],
    "mine": false
   },
@@ -471,19 +471,19 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-10T05:28:49",
+   "updated": "2026-09-10T05:39:00",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "11.96",
+   "load": "11.20",
    "ncpu": 48,
-   "uptime": "05:28:49 up 1 day,  9:18, 23 users,  load average: 11.96, 11.73, 11.23",
+   "uptime": "05:39:00 up 1 day,  9:28, 23 users,  load average: 11.20, 11.78, 11.60",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
      "used_mb": 465,
      "total_mb": 32607,
-     "util": 0,
+     "util": 1,
      "procs": [],
      "mine": false
     },
@@ -943,20 +943,26 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-10T05:28:50",
+   "updated": "2026-09-10T05:39:01",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "78.08",
+   "load": "81.80",
    "ncpu": 128,
-   "uptime": "05:28:50 up 53 days, 12:01,  0 users,  load average: 78.08, 79.37, 75.52",
+   "uptime": "05:39:01 up 53 days, 12:12,  0 users,  load average: 81.80, 80.84, 77.98",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 1143,
+     "used_mb": 48921,
      "total_mb": 81920,
-     "util": 38,
+     "util": 97,
      "procs": [
+      {
+       "pid": 1277791,
+       "mem_mb": 47770,
+       "tag": "other",
+       "label": "train.py"
+      },
       {
        "pid": 1203953,
        "mem_mb": 564,
@@ -977,7 +983,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 14268,
      "total_mb": 81920,
-     "util": 79,
+     "util": 80,
      "procs": [
       {
        "pid": 572337,
@@ -993,7 +999,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 23669,
      "total_mb": 81920,
-     "util": 99,
+     "util": 96,
      "procs": [
       {
        "pid": 3964753,
@@ -1013,10 +1019,16 @@
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 1143,
+     "used_mb": 48921,
      "total_mb": 81920,
-     "util": 29,
+     "util": 98,
      "procs": [
+      {
+       "pid": 1277792,
+       "mem_mb": 47770,
+       "tag": "other",
+       "label": "train.py"
+      },
       {
        "pid": 1203954,
        "mem_mb": 564,
@@ -1051,10 +1063,17 @@
     {
      "idx": 5,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 48280,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 98,
+     "procs": [
+      {
+       "pid": 1277793,
+       "mem_mb": 48270,
+       "tag": "other",
+       "label": "train.py"
+      }
+     ],
      "mine": false
     },
     {
@@ -1076,10 +1095,16 @@
     {
      "idx": 7,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 574,
+     "used_mb": 48452,
      "total_mb": 81920,
-     "util": 14,
+     "util": 100,
      "procs": [
+      {
+       "pid": 1277795,
+       "mem_mb": 47872,
+       "tag": "other",
+       "label": "train.py"
+      },
       {
        "pid": 961957,
        "mem_mb": 564,
@@ -1105,47 +1130,47 @@
    "runs": [
     {
      "name": "aF_v8_fix2_la06_s46",
-     "mtime": 1788989322,
+     "mtime": 1788989940,
      "active": true,
-     "iter": 2177,
-     "alpha_exec": 0.8447,
-     "alpha": 0.7262,
+     "iter": 2188,
+     "alpha_exec": 0.8455,
+     "alpha": 0.7249,
      "costs": [
-      0.06787,
-      0.04293,
-      0.05169
+      0.06812,
+      0.04289,
+      0.05168
      ],
      "lambdas": [
       0.35,
       0.0,
       0.05
      ],
-     "hazard_rate": 0.02516,
-     "entropy": -3.52055,
-     "wall_s": 56.78,
+     "hazard_rate": 0.02482,
+     "entropy": -3.50723,
+     "wall_s": 58.01,
      "n_ckpt": 43,
      "has_last": false
     },
     {
      "name": "st_E4_hybrid_cal",
-     "mtime": 1788989298,
+     "mtime": 1788989922,
      "active": true,
-     "iter": 3978,
-     "alpha_exec": 0.8565,
-     "alpha": 0.7353,
+     "iter": 3990,
+     "alpha_exec": 0.8671,
+     "alpha": 0.747,
      "costs": [
-      0.0692,
-      0.04289,
-      0.05176
+      0.06844,
+      0.04302,
+      0.05183
      ],
      "lambdas": [
       0.0,
       0.0,
       0.0
      ],
-     "hazard_rate": 0.0271,
-     "entropy": -3.22877,
-     "wall_s": 53.13,
+     "hazard_rate": 0.03475,
+     "entropy": -3.34314,
+     "wall_s": 52.87,
      "n_ckpt": 7,
      "has_last": false
     },
