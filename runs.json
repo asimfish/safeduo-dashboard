@@ -1,10 +1,10 @@
 {
- "updated": "2026-09-10T03:06:03",
+ "updated": "2026-09-10T03:16:14",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "4.64",
+ "load": "8.18",
  "ncpu": 48,
- "uptime": "03:06:02 up 1 day,  6:55, 25 users,  load average: 4.64, 6.65, 7.45",
+ "uptime": "03:16:13 up 1 day,  7:05, 24 users,  load average: 8.18, 8.63, 8.17",
  "gpus": [
   {
    "idx": 0,
@@ -27,7 +27,6 @@
  ],
  "tmux": [
   "codex_e3_fr3",
-  "codex_e3_psibot",
   "frpc_web",
   "memory",
   "q89",
@@ -473,12 +472,12 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-10T03:06:02",
+   "updated": "2026-09-10T03:16:13",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "4.64",
+   "load": "8.18",
    "ncpu": 48,
-   "uptime": "03:06:02 up 1 day,  6:55, 25 users,  load average: 4.64, 6.65, 7.45",
+   "uptime": "03:16:13 up 1 day,  7:05, 24 users,  load average: 8.18, 8.63, 8.17",
    "gpus": [
     {
      "idx": 0,
@@ -501,7 +500,6 @@
    ],
    "tmux": [
     "codex_e3_fr3",
-    "codex_e3_psibot",
     "frpc_web",
     "memory",
     "q89",
@@ -947,12 +945,12 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-10T03:06:03",
+   "updated": "2026-09-10T03:16:14",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "84.74",
+   "load": "78.51",
    "ncpu": 128,
-   "uptime": "03:06:03 up 53 days,  9:39,  0 users,  load average: 84.74, 80.94, 78.17",
+   "uptime": "03:16:14 up 53 days,  9:49,  0 users,  load average: 78.51, 76.32, 76.50",
    "gpus": [
     {
      "idx": 0,
@@ -973,7 +971,7 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 15239,
+     "used_mb": 16387,
      "total_mb": 81920,
      "util": 100,
      "procs": [
@@ -988,6 +986,18 @@
        "mem_mb": 966,
        "tag": "other",
        "label": "gpu_keeper.py"
+      },
+      {
+       "pid": 753565,
+       "mem_mb": 568,
+       "tag": "other",
+       "label": "fdpi_eval_vec.py"
+      },
+      {
+       "pid": 753657,
+       "mem_mb": 568,
+       "tag": "other",
+       "label": "fdpi_eval_vec.py"
       }
      ],
      "mine": false
@@ -1063,7 +1073,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 20579,
      "total_mb": 81920,
-     "util": 99,
+     "util": 98,
      "procs": [
       {
        "pid": 360853,
@@ -1085,7 +1095,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 61963,
      "total_mb": 81920,
-     "util": 100,
+     "util": 99,
      "procs": [
       {
        "pid": 3895320,
@@ -1107,7 +1117,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 1557,
      "total_mb": 81920,
-     "util": 56,
+     "util": 99,
      "procs": [
       {
        "pid": 3108131,
@@ -1139,49 +1149,49 @@
    ],
    "runs": [
     {
-     "name": "aF_v8_fix2_la06_s46",
-     "mtime": 1788980762,
-     "active": true,
-     "iter": 2011,
-     "alpha_exec": 0.8406,
-     "alpha": 0.7231,
-     "costs": [
-      0.06497,
-      0.04297,
-      0.05167
-     ],
-     "lambdas": [
-      0.35,
-      0.0,
-      0.05
-     ],
-     "hazard_rate": 0.0242,
-     "entropy": -3.50204,
-     "wall_s": 65.64,
-     "n_ckpt": 40,
-     "has_last": false
-    },
-    {
      "name": "st_E4_hybrid_cal",
-     "mtime": 1788980761,
+     "mtime": 1788981333,
      "active": true,
-     "iter": 3803,
-     "alpha_exec": 0.8414,
-     "alpha": 0.7208,
+     "iter": 3813,
+     "alpha_exec": 0.9204,
+     "alpha": 0.7675,
      "costs": [
-      0.07161,
-      0.04296,
-      0.05186
+      0.02301,
+      0.04265,
+      0.05169
      ],
      "lambdas": [
       0.0,
       0.0,
       0.0
      ],
-     "hazard_rate": 0.0302,
-     "entropy": -3.22194,
-     "wall_s": 59.98,
+     "hazard_rate": 0.01189,
+     "entropy": -3.21785,
+     "wall_s": 55.59,
      "n_ckpt": 4,
+     "has_last": false
+    },
+    {
+     "name": "aF_v8_fix2_la06_s46",
+     "mtime": 1788981317,
+     "active": true,
+     "iter": 2020,
+     "alpha_exec": 0.8441,
+     "alpha": 0.7264,
+     "costs": [
+      0.06864,
+      0.04296,
+      0.0517
+     ],
+     "lambdas": [
+      0.35,
+      0.0,
+      0.05
+     ],
+     "hazard_rate": 0.02651,
+     "entropy": -3.5118,
+     "wall_s": 61.67,
+     "n_ckpt": 40,
      "has_last": false
     },
     {
