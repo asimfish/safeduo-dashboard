@@ -1,10 +1,10 @@
 {
- "updated": "2026-09-10T04:17:31",
+ "updated": "2026-09-10T04:27:45",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "17.06",
+ "load": "8.19",
  "ncpu": 48,
- "uptime": "04:17:30 up 1 day,  8:06, 24 users,  load average: 17.06, 12.64, 10.63",
+ "uptime": "04:27:44 up 1 day,  8:17, 24 users,  load average: 8.19, 10.15, 10.50",
  "gpus": [
   {
    "idx": 0,
@@ -472,12 +472,12 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-10T04:17:30",
+   "updated": "2026-09-10T04:27:44",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "17.06",
+   "load": "8.19",
    "ncpu": 48,
-   "uptime": "04:17:30 up 1 day,  8:06, 24 users,  load average: 17.06, 12.64, 10.63",
+   "uptime": "04:27:44 up 1 day,  8:17, 24 users,  load average: 8.19, 10.15, 10.50",
    "gpus": [
     {
      "idx": 0,
@@ -945,12 +945,12 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-10T04:17:31",
+   "updated": "2026-09-10T04:27:45",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "70.06",
+   "load": "65.74",
    "ncpu": 128,
-   "uptime": "04:17:31 up 53 days, 10:50,  0 users,  load average: 70.06, 66.69, 67.30",
+   "uptime": "04:27:45 up 53 days, 11:00,  0 users,  load average: 65.74, 66.76, 67.06",
    "gpus": [
     {
      "idx": 0,
@@ -964,21 +964,15 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 14841,
+     "used_mb": 14268,
      "total_mb": 81920,
-     "util": 85,
+     "util": 83,
      "procs": [
       {
        "pid": 572337,
        "mem_mb": 14254,
        "tag": "other",
        "label": "curveseq_m1.py"
-      },
-      {
-       "pid": 952788,
-       "mem_mb": 568,
-       "tag": "other",
-       "label": "fdpi_eval_vec.py"
       }
      ],
      "mine": false
@@ -988,7 +982,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 23669,
      "total_mb": 81920,
-     "util": 99,
+     "util": 95,
      "procs": [
       {
        "pid": 3964753,
@@ -1058,15 +1052,15 @@
     {
      "idx": 7,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 586,
+     "used_mb": 574,
      "total_mb": 81920,
-     "util": 0,
+     "util": 16,
      "procs": [
       {
-       "pid": 941829,
-       "mem_mb": 576,
+       "pid": 961957,
+       "mem_mb": 564,
        "tag": "other",
-       "label": "fdpi_eval_vec.py"
+       "label": "fdpi_safeot_dual.py"
       }
      ],
      "mine": false
@@ -1086,15 +1080,38 @@
    ],
    "runs": [
     {
-     "name": "aF_v8_fix2_la06_s46",
-     "mtime": 1788985048,
+     "name": "st_E4_hybrid_cal",
+     "mtime": 1788985631,
      "active": true,
-     "iter": 2091,
-     "alpha_exec": 0.8419,
-     "alpha": 0.7254,
+     "iter": 3901,
+     "alpha_exec": 0.8788,
+     "alpha": 0.7497,
      "costs": [
-      0.067,
-      0.04303,
+      0.04518,
+      0.04279,
+      0.05171
+     ],
+     "lambdas": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "hazard_rate": 0.01756,
+     "entropy": -3.35313,
+     "wall_s": 45.05,
+     "n_ckpt": 6,
+     "has_last": false
+    },
+    {
+     "name": "aF_v8_fix2_la06_s46",
+     "mtime": 1788985630,
+     "active": true,
+     "iter": 2103,
+     "alpha_exec": 0.853,
+     "alpha": 0.7339,
+     "costs": [
+      0.06933,
+      0.0429,
       0.0517
      ],
      "lambdas": [
@@ -1102,33 +1119,10 @@
       0.0,
       0.05
      ],
-     "hazard_rate": 0.02511,
-     "entropy": -3.4933,
-     "wall_s": 49.54,
-     "n_ckpt": 41,
-     "has_last": false
-    },
-    {
-     "name": "st_E4_hybrid_cal",
-     "mtime": 1788985029,
-     "active": true,
-     "iter": 3888,
-     "alpha_exec": 0.9064,
-     "alpha": 0.767,
-     "costs": [
-      0.03147,
-      0.0427,
-      0.0517
-     ],
-     "lambdas": [
-      0.0,
-      0.0,
-      0.0
-     ],
-     "hazard_rate": 0.01184,
-     "entropy": -3.43098,
-     "wall_s": 45.87,
-     "n_ckpt": 5,
+     "hazard_rate": 0.02559,
+     "entropy": -3.50402,
+     "wall_s": 48.79,
+     "n_ckpt": 42,
      "has_last": false
     },
     {
