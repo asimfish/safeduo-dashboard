@@ -1,23 +1,29 @@
 {
- "updated": "2026-09-10T18:00:45",
+ "updated": "2026-09-10T18:11:00",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "19.79",
+ "load": "25.51",
  "ncpu": 48,
- "uptime": "18:00:44 up 1 day, 21:50, 22 users,  load average: 19.79, 19.39, 16.61",
+ "uptime": "18:10:59 up 1 day, 22:00, 22 users,  load average: 25.51, 24.44, 20.40",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 7063,
+   "used_mb": 8862,
    "total_mb": 32607,
-   "util": 52,
+   "util": 50,
    "procs": [
     {
      "pid": 1808466,
      "mem_mb": 6568,
      "tag": "safeduo",
      "label": "train a31_f_20260910"
+    },
+    {
+     "pid": 2088999,
+     "mem_mb": 1760,
+     "tag": "safeduo",
+     "label": "record converge_depth078"
     }
    ],
    "mine": true
@@ -25,11 +31,18 @@
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 37,
+   "used_mb": 1270,
    "total_mb": 32607,
    "util": 0,
-   "procs": [],
-   "mine": false
+   "procs": [
+    {
+     "pid": 2088998,
+     "mem_mb": 1722,
+     "tag": "safeduo",
+     "label": "record converge_depth078"
+    }
+   ],
+   "mine": true
   }
  ],
  "tmux": [
@@ -52,25 +65,25 @@
  "runs": [
   {
    "name": "a31_f_20260910",
-   "mtime": 1789034435,
+   "mtime": 1789035051,
    "active": true,
-   "iter": 236,
-   "alpha_exec": 0.9215,
-   "alpha": 0.626,
+   "iter": 276,
+   "alpha_exec": 0.9302,
+   "alpha": 0.628,
    "costs": [
-    0.05262,
-    0.04355,
-    0.0519
+    0.04468,
+    0.04321,
+    0.05187
    ],
    "lambdas": [
-    0.08189,
+    0.09036,
     0.0,
-    0.02291
+    0.02657
    ],
-   "hazard_rate": 0.02923,
-   "entropy": -1.84048,
-   "wall_s": 14.85,
-   "n_ckpt": 4,
+   "hazard_rate": 0.02563,
+   "entropy": -1.87247,
+   "wall_s": 15.44,
+   "n_ckpt": 5,
    "has_last": false
   },
   {
@@ -477,25 +490,31 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-10T18:00:44",
+   "updated": "2026-09-10T18:10:59",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "19.79",
+   "load": "25.51",
    "ncpu": 48,
-   "uptime": "18:00:44 up 1 day, 21:50, 22 users,  load average: 19.79, 19.39, 16.61",
+   "uptime": "18:10:59 up 1 day, 22:00, 22 users,  load average: 25.51, 24.44, 20.40",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 7063,
+     "used_mb": 8862,
      "total_mb": 32607,
-     "util": 52,
+     "util": 50,
      "procs": [
       {
        "pid": 1808466,
        "mem_mb": 6568,
        "tag": "safeduo",
        "label": "train a31_f_20260910"
+      },
+      {
+       "pid": 2088999,
+       "mem_mb": 1760,
+       "tag": "safeduo",
+       "label": "record converge_depth078"
       }
      ],
      "mine": true
@@ -503,11 +522,18 @@
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 37,
+     "used_mb": 1270,
      "total_mb": 32607,
      "util": 0,
-     "procs": [],
-     "mine": false
+     "procs": [
+      {
+       "pid": 2088998,
+       "mem_mb": 1722,
+       "tag": "safeduo",
+       "label": "record converge_depth078"
+      }
+     ],
+     "mine": true
     }
    ],
    "tmux": [
@@ -530,25 +556,25 @@
    "runs": [
     {
      "name": "a31_f_20260910",
-     "mtime": 1789034435,
+     "mtime": 1789035051,
      "active": true,
-     "iter": 236,
-     "alpha_exec": 0.9215,
-     "alpha": 0.626,
+     "iter": 276,
+     "alpha_exec": 0.9302,
+     "alpha": 0.628,
      "costs": [
-      0.05262,
-      0.04355,
-      0.0519
+      0.04468,
+      0.04321,
+      0.05187
      ],
      "lambdas": [
-      0.08189,
+      0.09036,
       0.0,
-      0.02291
+      0.02657
      ],
-     "hazard_rate": 0.02923,
-     "entropy": -1.84048,
-     "wall_s": 14.85,
-     "n_ckpt": 4,
+     "hazard_rate": 0.02563,
+     "entropy": -1.87247,
+     "wall_s": 15.44,
+     "n_ckpt": 5,
      "has_last": false
     },
     {
@@ -955,19 +981,19 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-10T18:00:45",
+   "updated": "2026-09-10T18:11:00",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "54.96",
+   "load": "57.36",
    "ncpu": 128,
-   "uptime": "18:00:45 up 54 days, 33 min,  0 users,  load average: 54.96, 54.58, 49.77",
+   "uptime": "18:11:00 up 54 days, 43 min,  0 users,  load average: 57.36, 55.12, 52.18",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 1143,
      "total_mb": 81920,
-     "util": 21,
+     "util": 14,
      "procs": [
       {
        "pid": 2727248,
@@ -989,7 +1015,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 3423,
      "total_mb": 81920,
-     "util": 75,
+     "util": 69,
      "procs": [
       {
        "pid": 3223940,
@@ -1033,9 +1059,9 @@
     {
      "idx": 2,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 23521,
+     "used_mb": 26795,
      "total_mb": 81920,
-     "util": 99,
+     "util": 100,
      "procs": [
       {
        "pid": 3964753,
@@ -1048,6 +1074,12 @@
        "mem_mb": 8954,
        "tag": "safeduo",
        "label": "train st_E0_pid_retry_20260910"
+      },
+      {
+       "pid": 3798981,
+       "mem_mb": 3264,
+       "tag": "safeduo",
+       "label": "gate E2"
       }
      ],
      "mine": true
@@ -1057,7 +1089,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 1143,
      "total_mb": 81920,
-     "util": 29,
+     "util": 14,
      "procs": [
       {
        "pid": 2730889,
@@ -1095,7 +1127,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 3423,
      "total_mb": 81920,
-     "util": 68,
+     "util": 67,
      "procs": [
       {
        "pid": 3224238,
@@ -1171,54 +1203,55 @@
     "rescue4parallel",
     "safeot-main-30109-monitor-only",
     "safeot1305_runtime_successor_v2_20260823",
+    "sd109_st_gates_20260910",
     "sd109_st_recovery_20260910",
     "sd109_train_aF"
    ],
    "runs": [
     {
-     "name": "st_E0_pid_retry_20260910",
-     "mtime": 1789034426,
-     "active": true,
-     "iter": 3728,
-     "alpha_exec": 0.828,
-     "alpha": 0.7098,
-     "costs": [
-      0.07128,
-      0.04292,
-      0.0518
-     ],
-     "lambdas": [
-      0.19736,
-      0.0,
-      0.05
-     ],
-     "hazard_rate": 0.02577,
-     "entropy": -3.48451,
-     "wall_s": 51.13,
-     "n_ckpt": 2,
-     "has_last": false
-    },
-    {
      "name": "aF_v8_fix2_la06_s46",
-     "mtime": 1789034405,
+     "mtime": 1789035042,
      "active": true,
-     "iter": 3372,
-     "alpha_exec": 0.8593,
-     "alpha": 0.736,
+     "iter": 3386,
+     "alpha_exec": 0.8513,
+     "alpha": 0.73,
      "costs": [
-      0.06764,
-      0.04288,
-      0.05167
+      0.07096,
+      0.0429,
+      0.05168
      ],
      "lambdas": [
       0.35,
       0.0,
       0.05
      ],
-     "hazard_rate": 0.02255,
-     "entropy": -3.52113,
-     "wall_s": 42.09,
+     "hazard_rate": 0.02349,
+     "entropy": -3.53002,
+     "wall_s": 60.68,
      "n_ckpt": 67,
+     "has_last": false
+    },
+    {
+     "name": "st_E0_pid_retry_20260910",
+     "mtime": 1789035037,
+     "active": true,
+     "iter": 3741,
+     "alpha_exec": 0.8349,
+     "alpha": 0.7124,
+     "costs": [
+      0.072,
+      0.04294,
+      0.05176
+     ],
+     "lambdas": [
+      0.21482,
+      0.0,
+      0.05
+     ],
+     "hazard_rate": 0.02177,
+     "entropy": -3.48936,
+     "wall_s": 56.85,
+     "n_ckpt": 2,
      "has_last": false
     },
     {
