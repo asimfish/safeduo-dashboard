@@ -1,10 +1,10 @@
 {
- "updated": "2026-09-10T12:28:58",
+ "updated": "2026-09-10T12:39:16",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "11.56",
+ "load": "20.40",
  "ncpu": 48,
- "uptime": "12:28:57 up 1 day, 16:18, 23 users,  load average: 11.56, 7.78, 7.25",
+ "uptime": "12:39:15 up 1 day, 16:28, 23 users,  load average: 20.40, 21.97, 15.27",
  "gpus": [
   {
    "idx": 0,
@@ -471,12 +471,12 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-10T12:28:57",
+   "updated": "2026-09-10T12:39:15",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "11.56",
+   "load": "20.40",
    "ncpu": 48,
-   "uptime": "12:28:57 up 1 day, 16:18, 23 users,  load average: 11.56, 7.78, 7.25",
+   "uptime": "12:39:15 up 1 day, 16:28, 23 users,  load average: 20.40, 21.97, 15.27",
    "gpus": [
     {
      "idx": 0,
@@ -943,19 +943,19 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-10T12:28:58",
+   "updated": "2026-09-10T12:39:16",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "47.16",
+   "load": "41.22",
    "ncpu": 128,
-   "uptime": "12:28:58 up 53 days, 19:01,  0 users,  load average: 47.16, 48.32, 49.99",
+   "uptime": "12:39:16 up 53 days, 19:12,  0 users,  load average: 41.22, 41.63, 45.53",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 891,
      "total_mb": 81920,
-     "util": 1,
+     "util": 11,
      "procs": [
       {
        "pid": 2651058,
@@ -975,10 +975,23 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 1151,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 17,
+     "procs": [
+      {
+       "pid": 2690339,
+       "mem_mb": 576,
+       "tag": "other",
+       "label": "fdpi_eval_vec.py"
+      },
+      {
+       "pid": 2690393,
+       "mem_mb": 560,
+       "tag": "other",
+       "label": "fdpi_eval_vec.py"
+      }
+     ],
      "mine": false
     },
     {
@@ -986,7 +999,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 14560,
      "total_mb": 81920,
-     "util": 42,
+     "util": 43,
      "procs": [
       {
        "pid": 3964753,
@@ -1000,18 +1013,18 @@
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 1017,
+     "used_mb": 891,
      "total_mb": 81920,
-     "util": 28,
+     "util": 1,
      "procs": [
       {
-       "pid": 1203957,
-       "mem_mb": 564,
+       "pid": 2658731,
+       "mem_mb": 438,
        "tag": "other",
-       "label": "fdpi_safeot_dual.py"
+       "label": "fdpi_strict_eval.py"
       },
       {
-       "pid": 2658731,
+       "pid": 2674451,
        "mem_mb": 438,
        "tag": "other",
        "label": "fdpi_strict_eval.py"
@@ -1084,14 +1097,14 @@
    "runs": [
     {
      "name": "aF_v8_fix2_la06_s46",
-     "mtime": 1789014517,
+     "mtime": 1789015124,
      "active": true,
-     "iter": 2824,
-     "alpha_exec": 0.8534,
-     "alpha": 0.7236,
+     "iter": 2842,
+     "alpha_exec": 0.8548,
+     "alpha": 0.7259,
      "costs": [
-      0.06722,
-      0.04297,
+      0.0658,
+      0.04292,
       0.05168
      ],
      "lambdas": [
@@ -1099,9 +1112,9 @@
       0.0,
       0.05
      ],
-     "hazard_rate": 0.02425,
-     "entropy": -3.56756,
-     "wall_s": 34.04,
+     "hazard_rate": 0.02212,
+     "entropy": -3.57157,
+     "wall_s": 33.18,
      "n_ckpt": 56,
      "has_last": false
     },
