@@ -1,17 +1,17 @@
 {
- "updated": "2026-09-10T16:28:36",
+ "updated": "2026-09-10T16:38:52",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "14.62",
+ "load": "15.06",
  "ncpu": 48,
- "uptime": "16:28:34 up 1 day, 20:17, 23 users,  load average: 14.62, 13.20, 9.98",
+ "uptime": "16:38:51 up 1 day, 20:28, 23 users,  load average: 15.06, 14.63, 12.21",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
    "used_mb": 6898,
    "total_mb": 32607,
-   "util": 84,
+   "util": 99,
    "procs": [
     {
      "pid": 1588910,
@@ -485,19 +485,19 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-10T16:28:34",
+   "updated": "2026-09-10T16:38:51",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "14.62",
+   "load": "15.06",
    "ncpu": 48,
-   "uptime": "16:28:34 up 1 day, 20:17, 23 users,  load average: 14.62, 13.20, 9.98",
+   "uptime": "16:38:51 up 1 day, 20:28, 23 users,  load average: 15.06, 14.63, 12.21",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
      "used_mb": 6898,
      "total_mb": 32607,
-     "util": 84,
+     "util": 99,
      "procs": [
       {
        "pid": 1588910,
@@ -971,19 +971,19 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-10T16:28:36",
+   "updated": "2026-09-10T16:38:52",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "45.74",
+   "load": "39.74",
    "ncpu": 128,
-   "uptime": "16:28:36 up 53 days, 23:01,  0 users,  load average: 45.74, 40.24, 39.09",
+   "uptime": "16:38:52 up 53 days, 23:11,  0 users,  load average: 39.74, 39.15, 38.85",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 1143,
      "total_mb": 81920,
-     "util": 37,
+     "util": 15,
      "procs": [
       {
        "pid": 2727248,
@@ -1005,7 +1005,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 3423,
      "total_mb": 81920,
-     "util": 83,
+     "util": 74,
      "procs": [
       {
        "pid": 3223940,
@@ -1049,15 +1049,21 @@
     {
      "idx": 2,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 14559,
+     "used_mb": 23307,
      "total_mb": 81920,
-     "util": 51,
+     "util": 100,
      "procs": [
       {
        "pid": 3964753,
        "mem_mb": 14546,
        "tag": "safeduo",
        "label": "train aF_v8_fix2_la06_s46"
+      },
+      {
+       "pid": 3432244,
+       "mem_mb": 8740,
+       "tag": "safeduo",
+       "label": "train st_E0_pid_retry_20260910"
       }
      ],
      "mine": true
@@ -1067,7 +1073,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 1143,
      "total_mb": 81920,
-     "util": 33,
+     "util": 32,
      "procs": [
       {
        "pid": 2730889,
@@ -1181,30 +1187,54 @@
     "rescue4parallel",
     "safeot-main-30109-monitor-only",
     "safeot1305_runtime_successor_v2_20260823",
+    "sd109_st_recovery_20260910",
     "sd109_train_aF"
    ],
    "runs": [
     {
      "name": "aF_v8_fix2_la06_s46",
-     "mtime": 1789028902,
+     "mtime": 1789029532,
      "active": true,
-     "iter": 3247,
-     "alpha_exec": 0.86,
-     "alpha": 0.7342,
+     "iter": 3264,
+     "alpha_exec": 0.8618,
+     "alpha": 0.7383,
      "costs": [
-      0.06743,
-      0.04288,
-      0.05169
+      0.06742,
+      0.04283,
+      0.0517
      ],
      "lambdas": [
       0.35,
       0.0,
       0.05
      ],
-     "hazard_rate": 0.02441,
-     "entropy": -3.53573,
-     "wall_s": 37.37,
-     "n_ckpt": 64,
+     "hazard_rate": 0.02383,
+     "entropy": -3.53389,
+     "wall_s": 46.68,
+     "n_ckpt": 65,
+     "has_last": false
+    },
+    {
+     "name": "st_E0_pid_retry_20260910",
+     "mtime": 1789029523,
+     "active": true,
+     "iter": 3606,
+     "alpha_exec": 0.7937,
+     "alpha": 0.6891,
+     "costs": [
+      0.07876,
+      0.04304,
+      0.05177
+     ],
+     "lambdas": [
+      0.02652,
+      0.0,
+      0.05
+     ],
+     "hazard_rate": 0.02297,
+     "entropy": -3.48563,
+     "wall_s": 39.14,
+     "n_ckpt": 0,
      "has_last": false
     },
     {
