@@ -1,10 +1,10 @@
 {
- "updated": "2026-09-12T06:15:37",
+ "updated": "2026-09-12T06:25:50",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "30.28",
+ "load": "29.22",
  "ncpu": 48,
- "uptime": "06:15:35 up 3 days, 10:04, 21 users,  load average: 30.28, 31.59, 32.88",
+ "uptime": "06:25:49 up 3 days, 10:15, 21 users,  load average: 29.22, 29.99, 31.66",
  "gpus": [
   {
    "idx": 0,
@@ -18,13 +18,13 @@
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 7226,
+   "used_mb": 7230,
    "total_mb": 32607,
-   "util": 90,
+   "util": 51,
    "procs": [
     {
      "pid": 2337898,
-     "mem_mb": 7196,
+     "mem_mb": 7200,
      "tag": "other",
      "label": "python"
     }
@@ -478,12 +478,12 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-12T06:15:35",
+   "updated": "2026-09-12T06:25:49",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "30.28",
+   "load": "29.22",
    "ncpu": 48,
-   "uptime": "06:15:35 up 3 days, 10:04, 21 users,  load average: 30.28, 31.59, 32.88",
+   "uptime": "06:25:49 up 3 days, 10:15, 21 users,  load average: 29.22, 29.99, 31.66",
    "gpus": [
     {
      "idx": 0,
@@ -497,13 +497,13 @@
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 7226,
+     "used_mb": 7230,
      "total_mb": 32607,
-     "util": 90,
+     "util": 51,
      "procs": [
       {
        "pid": 2337898,
-       "mem_mb": 7196,
+       "mem_mb": 7200,
        "tag": "other",
        "label": "python"
       }
@@ -957,20 +957,26 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-12T06:15:37",
+   "updated": "2026-09-12T06:25:50",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "181.00",
+   "load": "99.85",
    "ncpu": 128,
-   "uptime": "06:15:37 up 55 days, 12:48,  0 users,  load average: 181.00, 150.07, 117.99",
+   "uptime": "06:25:50 up 55 days, 12:58,  0 users,  load average: 99.85, 117.05, 114.23",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 6083,
+     "used_mb": 43914,
      "total_mb": 81920,
-     "util": 38,
+     "util": 100,
      "procs": [
+      {
+       "pid": 733687,
+       "mem_mb": 37818,
+       "tag": "chembench",
+       "label": "chembench"
+      },
       {
        "pid": 2111289,
        "mem_mb": 1533,
@@ -1001,9 +1007,9 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 19708,
+     "used_mb": 20292,
      "total_mb": 81920,
-     "util": 43,
+     "util": 25,
      "procs": [
       {
        "pid": 2291734,
@@ -1034,6 +1040,12 @@
        "mem_mb": 1533,
        "tag": "other",
        "label": "full_pixel_runtime.py"
+      },
+      {
+       "pid": 766772,
+       "mem_mb": 576,
+       "tag": "other",
+       "label": "fdpi_eval_vec.py"
       }
      ],
      "mine": false
@@ -1041,19 +1053,32 @@
     {
      "idx": 2,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 4,
+     "used_mb": 37766,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
+     "util": 92,
+     "procs": [
+      {
+       "pid": 745231,
+       "mem_mb": 37750,
+       "tag": "chembench",
+       "label": "chembench"
+      }
+     ],
      "mine": false
     },
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 6567,
+     "used_mb": 44340,
      "total_mb": 81920,
-     "util": 17,
+     "util": 98,
      "procs": [
+      {
+       "pid": 752550,
+       "mem_mb": 37760,
+       "tag": "chembench",
+       "label": "chembench"
+      },
       {
        "pid": 3634784,
        "mem_mb": 2105,
@@ -1102,7 +1127,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 6599,
      "total_mb": 81920,
-     "util": 64,
+     "util": 18,
      "procs": [
       {
        "pid": 2005782,
@@ -1150,21 +1175,21 @@
     {
      "idx": 7,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 21431,
+     "used_mb": 57371,
      "total_mb": 81920,
-     "util": 0,
+     "util": 86,
      "procs": [
+      {
+       "pid": 730195,
+       "mem_mb": 37754,
+       "tag": "chembench",
+       "label": "chembench"
+      },
       {
        "pid": 3560395,
        "mem_mb": 19594,
        "tag": "other",
        "label": "e0_paired_fork_runtime.py"
-      },
-      {
-       "pid": 730195,
-       "mem_mb": 1822,
-       "tag": "chembench",
-       "label": "chembench"
       }
      ],
      "mine": false
