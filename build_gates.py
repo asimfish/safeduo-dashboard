@@ -8,6 +8,7 @@ Columns follow MASTER_REPORT sec.9 R28-R33: brake / viol-free(cross,any) / min c
 no-deadlock(hys) / done(hys,man) / false-brake(arm,any) / fidelity / cmd-stop p50,p95.
 """
 import glob
+import re
 import json
 import os
 import sys
@@ -52,7 +53,10 @@ def row_from_cell(grid_dir, path):
         c = json.load(fh)
     ckpt = c.get("ckpt") or ""
     policy = os.path.basename(os.path.dirname(ckpt)) if ckpt else "?"
-    short = policy.split("_")[0] if policy != "?" else "?"
+    if policy.startswith("st_E"):        # SafeTransport increment arms: keep the arm name, drop retry suffixes
+        short = re.sub(r"_retry_\d+$", "", policy)
+    else:
+        short = policy.split("_")[0] if policy != "?" else "?"
     env_name, tags = env_tags(c.get("env_yaml"), c)
     br = g(c, "brake", "aggregate", default={}) or {}
     hys = g(c, "recovery_hysteresis", "aggregate", default={}) or {}
@@ -108,12 +112,14 @@ def hard_gates_pass(r):
 def main():
     root, out = sys.argv[1], sys.argv[2]
     rows = []
-    for d in sorted(glob.glob(os.path.join(root, "*"))):
+    # <root>/<grid>/cell_*.json (5090 clutch grids) and <root>/<mirror>/<grid>/<arm>/cell_*.json (A100 evals)
+    dirs = sorted(glob.glob(os.path.join(root, "*"))) + sorted(glob.glob(os.path.join(root, "*", "*", "*")))
+    for d in dirs:
         if not os.path.isdir(d):
             continue
         for p in sorted(glob.glob(os.path.join(d, "cell_*.json"))):
             try:
-                r = row_from_cell(os.path.basename(d), p)
+                r = row_from_cell(os.path.relpath(d, root), p)
                 r["hard_pass"] = hard_gates_pass(r)
                 rows.append(r)
             except Exception as e:  # keep the matrix alive even if one cell is malformed

@@ -44,6 +44,9 @@ json.dump(out, open("runs.json", "w"), ensure_ascii=False, indent=1)
 PY
   mkdir -p clutch_cells
   timeout 120 rsync -az --include='*/' --include='cell_*.json' --include='grid_summary.md' --exclude='*' $REMOTE:~/safeduo/artifacts/clutch/ clutch_cells/ 2>/dev/null && echo "$(ts) cells synced" >> "$LOG"
+  # A100 matched four-gate evals (SafeTransport increment arms etc.): evals/<grid>/<arm>/cell_*.json
+  mkdir -p clutch_cells/a100_evals
+  timeout 120 rsync -az --include='*/' --include='cell_*.json' --include='manifest.json' --include='verified.json' --exclude='*' $A100:/home/dataset-assist-0/liyufeng/safeduo_a100/evals/ clutch_cells/a100_evals/ 2>/dev/null && echo "$(ts) a100 eval cells synced" >> "$LOG"
   python3 "$TOOLS/build_gates.py" clutch_cells gates.json >/dev/null 2>&1 || echo "$(ts) build_gates failed" >> "$LOG"
 fi
 python3 "$TOOLS/build_matrix.py" "$DATA" >/dev/null 2>&1 || echo "$(ts) build_matrix failed" >> "$LOG"

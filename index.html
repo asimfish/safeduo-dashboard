@@ -109,6 +109,13 @@
     <div class="table-wrap"><table id="alg-args"><thead><tr><th>参数</th><th>值</th></tr></thead><tbody></tbody></table></div>
     <div class="card"><div class="t">谱系（为什么是这个配方）</div><div class="small" id="alg-lineage-note"></div><div class="table-wrap" style="margin-top:6px"><table id="alg-lineage"><thead><tr><th>版本</th><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div></div>
   </div>
+  <h2>增量实验（SafeTransport 容量流 → SafeDuo）<span class="small" id="alg-inc-where"></span></h2>
+  <div class="grid g2">
+    <div class="card"><div class="t">五臂 + v2.2 臂（共同配置：<span id="alg-inc-common"></span>）</div><div class="table-wrap" style="margin-top:6px"><table id="alg-inc-arms"><thead><tr><th>臂</th><th>机制</th></tr></thead><tbody></tbody></table></div><div class="small" id="alg-inc-e56"></div></div>
+    <div class="card"><div class="t">诊断（为什么论文机制在这里不生效）</div><ol class="small" id="alg-inc-diag" style="padding-left:18px;margin:6px 0"></ol></div>
+  </div>
+  <div class="card" style="margin-top:10px"><div class="t" id="alg-inc-res-title">E0–E4 结果（配对四门）</div><div class="table-wrap" style="margin-top:6px"><table id="alg-inc-res"><thead></thead><tbody></tbody></table></div><div class="small" id="alg-inc-verdict" style="margin-top:6px"></div><div class="small" id="alg-inc-evidence"></div></div>
+  <div class="card" style="margin-top:10px"><div class="t">v2.2 修复 <span class="small" id="alg-inc-v22-commit"></span></div><ul class="small" id="alg-inc-v22" style="padding-left:18px;margin:6px 0"></ul><div class="small" id="alg-inc-v22-ab"></div><div class="small" id="alg-inc-v22-impl" style="margin-top:4px"></div></div>
   <h2>参考设计对照（SAI / TRACE / TriPilot-FF → SafeDuo）</h2>
   <div class="filters" id="rdfilters"><span>筛选：</span><label><input type="checkbox" data-st="planned" checked> 规划中</label><label><input type="checkbox" data-st="proposal" checked> 提案/建议</label><label><input type="checkbox" data-st="other" checked> 其它（定位/不采用）</label><span class="small" id="rdsum"></span></div>
   <div class="table-wrap"><table id="alg-refs"><thead><tr><th>来源</th><th>他们的设计</th><th>我们的对应改动</th><th>状态</th><th>为什么值得</th></tr></thead><tbody></tbody></table></div>
@@ -348,6 +355,24 @@ function renderAlgorithm() {
   $("#alg-args tbody").innerHTML = (r.args||[]).map(([k,v]) => `<tr><td><code>${esc(k)}</code></td><td>${esc(v)}</td></tr>`).join("");
   $("#alg-lineage-note").textContent = r.lineage_note || "";
   $("#alg-lineage tbody").innerHTML = (a.lineage||[]).map(l => `<tr><td><b>${esc(l.ver)}</b></td><td class="small" style="white-space:nowrap">${esc(l.when)}</td><td>${esc(l.change)}</td></tr>`).join("");
+  const inc = r.increments || {};
+  $("#alg-inc-where").textContent = inc.where ? ` · ${inc.where}` : "";
+  $("#alg-inc-common").textContent = inc.common || "";
+  $("#alg-inc-arms tbody").innerHTML = (inc.arms||[]).map(([k,v]) => `<tr><td style="white-space:nowrap"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`).join("");
+  const e56 = inc.e5_e6 || {};
+  $("#alg-inc-e56").innerHTML = Object.keys(e56).length ? `<div style="margin-top:6px"><b>E5/E6</b> · ${esc(e56.launched||"")}<br>首迭代诊断：${esc(e56.e5_first_iter||"")}<br>判读：${esc(e56.acceptance||"")}</div>` : "";
+  $("#alg-inc-diag").innerHTML = (inc.diagnosis||[]).map(x => `<li>${esc(x)}</li>`).join("");
+  const res = inc.results_e0_e4 || {};
+  $("#alg-inc-res-title").textContent = `E0–E4 结果（配对四门）${res.when ? " · " + res.when : ""}`;
+  $("#alg-inc-res thead").innerHTML = res.columns ? `<tr>${res.columns.map(c => `<th>${esc(c)}</th>`).join("")}</tr>` : "";
+  $("#alg-inc-res tbody").innerHTML = (res.rows||[]).map(row => `<tr>${row.map((c,i) => `<td class="${i >= 2 ? "num" : ""}">${i === 0 ? "<b>" + esc(c) + "</b>" : esc(c)}</td>`).join("")}</tr>`).join("");
+  $("#alg-inc-verdict").textContent = res.verdict ? `判读：${res.verdict}` : "";
+  $("#alg-inc-evidence").textContent = res.evidence ? `证据：${res.evidence}${res.protocol ? " · 协议：" + res.protocol : ""}` : "";
+  const v22 = inc.v22 || {};
+  $("#alg-inc-v22-commit").textContent = v22.commit || "";
+  $("#alg-inc-v22").innerHTML = (v22.design||[]).map(x => `<li>${esc(x)}</li>`).join("");
+  $("#alg-inc-v22-ab").textContent = v22.real_rollout_ab ? `同一真实 rollout A/B：${v22.real_rollout_ab}` : "";
+  $("#alg-inc-v22-impl").textContent = v22.implication ? `含义：${v22.implication}` : "";
   const on = new Set([...document.querySelectorAll("#rdfilters input:checked")].map(i => i.dataset.st));
   const refs = (a.reference_designs||[]).filter(x => on.has(refStatusClass(x.status)));
   $("#rdsum").textContent = `显示 ${refs.length} / ${(a.reference_designs||[]).length} 项`;
