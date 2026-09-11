@@ -1,6 +1,6 @@
 {
   "version": "算法设计 v2.2（配方 aF + SafeTransport 增量：E0–E4 出分与诊断、v2.2 修复、E5/E6 在跑）",
-  "updated": "2026-09-12 03:00",
+  "updated": "2026-09-12 03:15",
   "diagram": "diagrams/algorithm_v2.svg",
   "diagram_note": "框图与本页内容由设计线在算法变更时同步更新（改配方 → 改 algorithm.json + 重新生成 SVG + 版本号 +1）；实验线改训练参数须在此登记。",
   "one_liner": "把“遥操安全”建模为约束强化学习：策略只学一个逐臂离合器（危险概率 α + 刹停量 p），安全时指令逐位直通、涉险时只冻结涉险臂；三条碰撞代价通道用 PID 拉格朗日乘子自动满足上限；解析 backstop 作为可证的最后一道。训练与真机执行同一套语义。 增量线：用 owner 的 SafeTransport（ICLR'27 投稿）把三条预算编译成一个容量矩阵、γ-流 Sinkhorn 投影后按 F*/F̂ 重加权 PPO，替代/触发式补充 PID 乘子——正在 30109 GPU2 上做 E0–E4 增量对照。",
@@ -212,7 +212,7 @@
         ],
         [
           "E5 st_E5_v22_base",
-          "v2.2 修正投影：自环 + 支撑限定容量 + 可行性恢复 + 经验平衡 + 经验参照核（ε KL(F‖F̂)，ε 1.0）+ 收缩 5；无乘子"
+          "v2.2 修正投影：自环 + 支撑限定容量 + 可行性恢复 + 经验平衡 + 经验参照核（ε KL(F‖F̂)，ε 1.0）+ 收缩 5；无乘子；求解器 400 迭代、回退阈 0.3"
         ],
         [
           "E6 st_E6_persist02",
@@ -327,8 +327,8 @@
         "implication": "若 E5 ≈ E0 而 E6 ≈ E1，则 E1 的增益归因于「转移强调」式重加权而非容量流证书；这是一个便宜、可解释的技巧（可再扫 w_stay 0.5），而论文机制在本任务上需要放松预算 m 倍才会起作用，其安全语义（弱化危险格样本）存疑。"
       },
       "e5_e6": {
-        "launched": "09-12 02:48，tmux sd109_st_e5e6_20260912（GPU2，与另一用户 9.6 GB 任务共卡），顺序 E5 → E6；四门队列 sd109_st_gate_v22_20260912（evals/st_v22_20260912，等 model_4000.pt + 显存 ≥10 GB）",
-        "e5_first_iter": "iter 3600：fallback false、sink_err 0.0187、cap_total 0.965、cap_scale 4.99、diag 0.878/0.884、w_p05 0.990、w_p95 1.012、w_off 0.58%、sink_mass 0.0027；wall 38.5 s/iter → E5 ≈ 07:10 出模，E6 ≈ 11:00",
+        "launched": "09-12 02:58 重启（首版 8 迭代在 ~300 格图上 Sinkhorn 100 迭代 err 0.07–0.12、2/8 回退，改 --st-sinkhorn-iters 400 --st-fallback-resid 0.3），tmux sd109_st_e5e6_20260912（GPU2，与另一用户 9.6 GB 任务共卡），顺序 E5 → E6；四门队列 sd109_st_gate_v22_20260912（evals/st_v22_20260912，等 model_4000.pt + 显存 ≥10 GB）",
+        "e5_first_iter": "首版 iter 3600–3607（同 dump rollout）：fallback 2/8、sink_err 0.019–0.12、cap_total 0.27–0.97（典型 rollout 预算差 m ≈ 17–22 倍）、样本加权 w 5–95 分位 [0.95, 1.07]、|w−1|>0.2 仅 1.5%、对角 0.66–0.88 与 F̂ 一致；50 s/iter → E5 ≈ 08:40 出模，E6 ≈ 12:30",
         "acceptance": "与 E0/E1 同口径配对四门；判读：E5 vs E0（修正投影是否有效）、E6 vs E1（增益是否即为留格重加权）"
       }
     }
