@@ -75,6 +75,6 @@
 
 ## 7. E5 / E6（09-12 02:48 起，GPU2，tmux `sd109_st_e5e6_20260912`；四门队列 `sd109_st_gate_v22_20260912` → `evals/st_v22_20260912`）
 
-- E5 `st_E5_v22_base`：v2.2 默认 + `--st-epsilon 1.0`，其余同 E1（论文三通道硬最小、c̄=max、无乘子）。首迭代（3600，与 dump 同一 rollout）：fallback false、sink_err 0.0187、cap_total 0.965、cap_scale 4.99、对角 0.878/0.884、w_p05 0.990、w_p95 1.012、w_off 0.58%、sink_mass 0.0027；38.5 s/iter。
+- E5 `st_E5_v22_base`：v2.2 默认 + `--st-epsilon 1.0 --st-sinkhorn-iters 400 --st-fallback-resid 0.3`（02:58 重启：首版在 ~300 格图上 100 迭代 err 0.07–0.12、2/8 回退），其余同 E1（论文三通道硬最小、c̄=max、无乘子）。典型 rollout cap_total 0.27（预算差 m ≈ 20 倍），样本加权 w 5–95 分位 [0.95, 1.07]。首迭代（3600，与 dump 同一 rollout）：fallback false、sink_err 0.0187、cap_total 0.965、cap_scale 4.99、对角 0.878/0.884、w_p05 0.990、w_p95 1.012、w_off 0.58%、sink_mass 0.0027；38.5 s/iter。
 - E6 `st_E6_persist02`：不解流，w = 0.2 于「留在同一格」样本（E1 实际施加的重加权的最简复现）。
 - 判读：E5 vs E0 —— 修正后的投影是否仍有效（预期 ≈ E0，因为 w ≈ 1）；E6 vs E1 —— E1 的 −10.6 pp 误刹是否即为留格重加权。若 E6 复现，则该技巧便宜、可解释（下一步扫 w_stay 0.5），而论文机制在本任务上需要放松预算 m 倍才会起作用，其安全语义（弱化危险格样本）存疑。
