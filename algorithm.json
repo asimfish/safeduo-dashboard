@@ -1,373 +1,504 @@
 {
- "version": "算法设计 v2（配方 aF + SafeTransport 容量流增量 E0–E4）",
- "updated": "2026-09-08T21:18:53",
- "diagram": "diagrams/algorithm_v2.svg",
- "diagram_note": "框图与本页内容由设计线在算法变更时同步更新（改配方 → 改 algorithm.json + 重新生成 SVG + 版本号 +1）；实验线改训练参数须在此登记。",
- "one_liner": "把“遥操安全”建模为约束强化学习：策略只学一个逐臂离合器（危险概率 α + 刹停量 p），安全时指令逐位直通、涉险时只冻结涉险臂；三条碰撞代价通道用 PID 拉格朗日乘子自动满足上限；解析 backstop 作为可证的最后一道。训练与真机执行同一套语义。 增量线：用 owner 的 SafeTransport（ICLR'27 投稿）把三条预算编译成一个容量矩阵、γ-流 Sinkhorn 投影后按 F*/F̂ 重加权 PPO，替代/触发式补充 PID 乘子——正在 30109 GPU2 上做 E0–E4 增量对照。",
- "problem": {
-  "state": "四臂关节位置/速度 + 当前遥操指令 Δq_cmd（28 维）+ 成对接近特征 [距离, 接近速度, 类别 onehot]（跨机 / 自碰 / 桌面最差对）+ arm-aware 配对观测 + 上一步 α/p（p2-obs），共 275 维；状态式、无视觉",
-  "action": "α₁..α₄ ∈ (0,1) 逐臂危险概率（执行时 0.5 二值化 = 离合器）+ p 刹停/保持量；联合 Beta 分布策略头",
-  "reward": "指令保真（执行 = 遥操输入的程度）− 不必要干预；逐臂 α 均衡正则 w 0.01；PBRS 余量项",
-  "constraints": [
-   {
-    "channel": "cross（跨机接近）",
-    "scale": 4,
-    "limit": 0.04,
-    "lambda_max": 0.35
-   },
-   {
-    "channel": "self（自碰）",
-    "scale": 17,
-    "limit": 0.05,
-    "lambda_max": 0.0
-   },
-   {
-    "channel": "table（桌面）",
-    "scale": 19,
-    "limit": 0.05,
-    "lambda_max": 0.05
-   }
+  "version": "算法设计 v2.2（配方 aF + SafeTransport 增量：E0–E4 出分与诊断、v2.2 修复、E5/E6 在跑）",
+  "updated": "2026-09-12 03:00",
+  "diagram": "diagrams/algorithm_v2.svg",
+  "diagram_note": "框图与本页内容由设计线在算法变更时同步更新（改配方 → 改 algorithm.json + 重新生成 SVG + 版本号 +1）；实验线改训练参数须在此登记。",
+  "one_liner": "把“遥操安全”建模为约束强化学习：策略只学一个逐臂离合器（危险概率 α + 刹停量 p），安全时指令逐位直通、涉险时只冻结涉险臂；三条碰撞代价通道用 PID 拉格朗日乘子自动满足上限；解析 backstop 作为可证的最后一道。训练与真机执行同一套语义。 增量线：用 owner 的 SafeTransport（ICLR'27 投稿）把三条预算编译成一个容量矩阵、γ-流 Sinkhorn 投影后按 F*/F̂ 重加权 PPO，替代/触发式补充 PID 乘子——正在 30109 GPU2 上做 E0–E4 增量对照。",
+  "problem": {
+    "state": "四臂关节位置/速度 + 当前遥操指令 Δq_cmd（28 维）+ 成对接近特征 [距离, 接近速度, 类别 onehot]（跨机 / 自碰 / 桌面最差对）+ arm-aware 配对观测 + 上一步 α/p（p2-obs），共 275 维；状态式、无视觉",
+    "action": "α₁..α₄ ∈ (0,1) 逐臂危险概率（执行时 0.5 二值化 = 离合器）+ p 刹停/保持量；联合 Beta 分布策略头",
+    "reward": "指令保真（执行 = 遥操输入的程度）− 不必要干预；逐臂 α 均衡正则 w 0.01；PBRS 余量项",
+    "constraints": [
+      {
+        "channel": "cross（跨机接近）",
+        "scale": 4,
+        "limit": 0.04,
+        "lambda_max": 0.35
+      },
+      {
+        "channel": "self（自碰）",
+        "scale": 17,
+        "limit": 0.05,
+        "lambda_max": 0.0
+      },
+      {
+        "channel": "table（桌面）",
+        "scale": 19,
+        "limit": 0.05,
+        "lambda_max": 0.05
+      }
+    ],
+    "why_constrained_rl": "v3 时代把安全项放进奖励出现“冻结比活动更划算”的地形病（两 seed 在 277–450 迭代塌缩）；改为约束通道 + 自适应乘子后，安全不再是手调系数而是被满足的约束（v4 PID-Lagrangian 裁决）。"
+  },
+  "components": [
+    {
+      "block": "虚拟操作员流",
+      "what": "技能库回放（13 族 + R24 四臂/共持族）+ 全域随机漫游流（R25）；幅度课程 0.03→0.10 rad，混流 0.2；受控会合豁免 v_rel ≤ 0.15 m/s（R28）",
+      "file": "safeduo/delta/*, delta_curriculum_v7.yaml",
+      "since": "v6/R25/R28",
+      "status": "在用"
+    },
+    {
+      "block": "观测构造",
+      "what": "275 维状态观测；成对特征直接重建三条代价（无 env 钩子）；arm-aware 配对（R15）；p2-obs（R18）；F2 手三球/指壳 v7fix、UR 连杆球壳（R16）",
+      "file": "safeduo/envs/duo_env.py, algo/reward_shaping.py",
+      "since": "v7",
+      "status": "在用"
+    },
+    {
+      "block": "策略网络",
+      "what": "Beta actor（有界支撑，避免高斯策略卡边界）：α×4 + p 联合；危险头共享干路；训练期 α 在 0.5 直通估计器二值化（消除训练-执行失配）",
+      "file": "algo/beta_actor.py, algo/lagrangian_ppo.py",
+      "since": "v4 / R18",
+      "status": "在用"
+    },
+    {
+      "block": "离合器执行语义",
+      "what": "α<0.5 逐位直通零衰减；α≥0.5 仅冻结涉险臂；后撤方向直通 retreat_release（R30）；恢复 = 操作员逐臂解锁（R17）；R19 执行层旁通：safe 区解析栈不再触碰指令",
+      "file": "safeduo/exec/*, R17/R18/R19/R30",
+      "since": "S8",
+      "status": "在用"
+    },
+    {
+      "block": "解析 backstop",
+      "what": "几何距离 + 前瞻 0.06 s 速度感知阻尼带（la06）；结构行豁免 UR upper_arm×桌（R29）；UR wrist armature 0.05 + FR3/UR 重力补偿（R33 = 栈 fix2）",
+      "file": "duo_env_v7_r18_fix2_v8_la06.yaml",
+      "since": "R29–R33",
+      "status": "在用（aF 训练/评测栈）"
+    },
+    {
+      "block": "PID-Lagrangian 乘子",
+      "what": "每迭代按 rollout 均值更新；kp 0.5 / ki 0.05 / kd 0.1，积分限幅；λ_max 0.35/0/0.05 防绕组；变化率 ≤ 0.01 防震荡（R13/R15）",
+      "file": "algo/lagrangian.py",
+      "since": "v4/R13",
+      "status": "在用"
+    },
+    {
+      "block": "SafeTransport 容量流投影（增量）",
+      "what": "rollout → 安全格子 (s,a) 流图（跨机距离 8 档 × 接近速度 5 档 × 自碰 4 × 桌面 4 × 离合模式 16，固定物理分箱，格子 id 跨迭代稳定）→ 每通道容量 S^(k)=b_k·ω/c̄_k 硬最小/软最小合成 → 对数域 γ-流 Sinkhorn（≤100 迭代）得 F*≤S → w_t=clip(F*/F̂, 1/5, 5) 乘 PPO 代理目标；模式 base / hybrid(β) / safe（证书触发 PID）/ off（与父类逐位一致，已测）",
+      "file": "algo/safetransport_ppo.py, algo/train_safetransport.py, scripts/forensics/a100_st_*.sh",
+      "since": "09-08（5937144）",
+      "status": "增量实验 E1–E4 排队中（GPU2）"
+    },
+    {
+      "block": "PPO 更新",
+      "what": "裁剪 0.2、GAE 0.95、四价值头（reward + 3 代价）、有效性感知 GAE（真终止不自举 / 超时自举）；熵系数 0.006↔0.012 由熵 EMA 触发（−3.5 / 释放 −3.2，代价门 0.9）；48 步/环境/迭代",
+      "file": "algo/lagrangian_ppo.py",
+      "since": "v4/R15",
+      "status": "在用"
+    },
+    {
+      "block": "危险 BCE 辅助监督",
+      "what": "事后标签：未来 30 步内该臂真越线？尾部掩码、正负平衡，w 0.5；α 死区惩罚 w 2.0；会合豁免不计危险 → α 成为校准过的危险分类器",
+      "file": "algo/lagrangian_ppo.py (R18/R28)",
+      "since": "R18/R28",
+      "status": "在用"
+    },
+    {
+      "block": "训练规模",
+      "what": "Isaac Lab 4096 并行环境 headless，3600 迭代 ≈ 7×10⁸ 环境步；A100（30109 GPU2）约 50–100 s/迭代（共卡）",
+      "file": "scripts/forensics/a100_train_aF.sh",
+      "since": "aF",
+      "status": "在跑"
+    },
+    {
+      "block": "评测",
+      "what": "四门 R28 口径：硬门 brake / viol-free(cross) / no-deadlock(hys)；软指标误刹 arm/any、fidelity、done、cmd-stop p50/p95；25 环境 × 60 s，θ = 0.5:0.2",
+      "file": "clutch_eval → cell_*.json → gates.json",
+      "since": "R28",
+      "status": "在用"
+    }
   ],
-  "why_constrained_rl": "v3 时代把安全项放进奖励出现“冻结比活动更划算”的地形病（两 seed 在 277–450 迭代塌缩）；改为约束通道 + 自适应乘子后，安全不再是手调系数而是被满足的约束（v4 PID-Lagrangian 裁决）。"
- },
- "components": [
-  {
-   "block": "虚拟操作员流",
-   "what": "技能库回放（13 族 + R24 四臂/共持族）+ 全域随机漫游流（R25）；幅度课程 0.03→0.10 rad，混流 0.2；受控会合豁免 v_rel ≤ 0.15 m/s（R28）",
-   "file": "safeduo/delta/*, delta_curriculum_v7.yaml",
-   "since": "v6/R25/R28",
-   "status": "在用"
+  "current_recipe": {
+    "run": "aF_v8_fix2_la06_s46",
+    "server": "tianyiyun-30109 GPU2（owner 09-08 允许专用一卡）",
+    "started": "09-07 20:54",
+    "env": "duo_env_v7_r18_fix2_v8_la06.yaml",
+    "curriculum": "delta_curriculum_v7.yaml",
+    "args": [
+      [
+        "--num_envs",
+        "4096"
+      ],
+      [
+        "--max_iterations",
+        "3600"
+      ],
+      [
+        "--seed",
+        "46"
+      ],
+      [
+        "--cost-scale",
+        "4,17,19"
+      ],
+      [
+        "--cost-limits",
+        "0.04,0.05,0.05"
+      ],
+      [
+        "--lambda-max",
+        "0.35,0,0.05"
+      ],
+      [
+        "--lambda-rate-max",
+        "0.01"
+      ],
+      [
+        "--entropy-coef / -hi",
+        "0.006 / 0.012"
+      ],
+      [
+        "--ent-trigger / -release / -cost-gate",
+        "-3.5 / -3.2 / 0.9"
+      ],
+      [
+        "--arm-aware-obs --w-armbal",
+        "0.01"
+      ],
+      [
+        "--clutch-train --clutch-tau",
+        "0.05（不退火）"
+      ],
+      [
+        "--hazard-head --hazard-bce-balance --hazard-tail-mask",
+        "on"
+      ],
+      [
+        "--w-hazard-bce / --w-alpha-deadzone",
+        "0.5 / 2.0"
+      ],
+      [
+        "--hazard-horizon",
+        "30 步"
+      ],
+      [
+        "--hazard-coop-vmax",
+        "0.15 m/s"
+      ],
+      [
+        "--num-steps-per-env",
+        "48"
+      ],
+      [
+        "--p2-obs",
+        "on"
+      ]
+    ],
+    "lineage_note": "= a27 命令行去掉 --resume；a27 是 v7 死腕栈上唯一过硬门的策略（brake 1.0 / viol-free 1.0 / no-deadlock 1.0），aF 在 v8 + 活腕 + 重力补偿 + la06 上从头重训",
+    "increments": {
+      "where": "tianyiyun-30109 GPU2（与 aF 同卡，队列 sd109_st_queue 按显存空档顺序跑）",
+      "common": "a27 model_last.pt 热启动，env duo_env_v7_r18_fix2_v8_la06.yaml，2048 环境（4 小时等不到显存则 1024）× 400 迭代，seed 46，其余参数 = aF",
+      "arms": [
+        [
+          "E1 st_E1_base_paper",
+          "SafeTransport 论文默认：三通道硬最小、c̄=max、ε 0.1、无乘子"
+        ],
+        [
+          "E0 st_E0_pid",
+          "PID 拉格朗日基线（当前机制）"
+        ],
+        [
+          "E3 st_E3_safe_cal",
+          "校准版 + 证书触发 Safe：cross+self 通道、c̄=mean，连续 5 迭代超限才武装 PID"
+        ],
+        [
+          "E2 st_E2_base_cal",
+          "校准版无乘子：cross+self、c̄=mean、权重归一（保持有效步长）"
+        ],
+        [
+          "E4 st_E4_hybrid_cal",
+          "校准版 Hybrid β 0.5"
+        ],
+        [
+          "E5 st_E5_v22_base",
+          "v2.2 修正投影：自环 + 支撑限定容量 + 可行性恢复 + 经验平衡 + 经验参照核（ε KL(F‖F̂)，ε 1.0）+ 收缩 5；无乘子"
+        ],
+        [
+          "E6 st_E6_persist02",
+          "消融：不解流，只把「留在同一安全格」的样本权重置 0.2（复现 E1 实际施加的重加权）"
+        ]
+      ],
+      "smoke": "09-08 21:03 Isaac 冒烟通过（256 环境 × 2–3 迭代）：格子 31→170 个、Sinkhorn 72–100 迭代；论文默认下 IS-clip 率 78%、权重均值 0.30、容量激活 99.5%（= 论文报告的紧 K=3 任务“转移失败”区间，44–74%）；α̂_cross 3.8 > 3 → 已用 (s,a) 格子仍偏粗，故加校准臂（mean c̄、去掉结构性贴限的 table 通道、权重归一）",
+      "metrics": "训练侧：cross/self/table 代价轨迹 vs 上限、危险率、α_exec、IS-clip、转移间隙与认证上界；训练后：四门（A100 上评，和 a27@v8 同架构配对）",
+      "results_e0_e4": {
+        "when": "09-10 → 09-11（Codex，safeduo_方案 线程）",
+        "protocol": "a27 model_last 热启动 · duo_env_v7_r18_fix2_v8_la06 · 2048 env × 400 迭代 · seed 46；四门 stack_fix2_v8_la06 · 25 env × 60 s · seed 20260820 · θ 0.5:0.2 · 固定 model_4000.pt（sha256 入 manifest）",
+        "columns": [
+          "臂",
+          "机制",
+          "cross(末 100)",
+          "self",
+          "table",
+          "fidelity↑",
+          "false-brake arm↓",
+          "迎头刹停",
+          "无违规",
+          "done_hys",
+          "死锁 hys"
+        ],
+        "rows": [
+          [
+            "E0",
+            "PID 拉格朗日基线",
+            "0.0694",
+            "0.0429",
+            "0.0517",
+            "6.40%",
+            "40.34%",
+            "50/50",
+            "100%",
+            "12%",
+            "5"
+          ],
+          [
+            "E1",
+            "论文默认容量流",
+            "0.0688",
+            "0.0429",
+            "0.0517",
+            "9.86%",
+            "29.73%",
+            "50/50",
+            "100%",
+            "24%",
+            "2"
+          ],
+          [
+            "E2",
+            "校准版无乘子",
+            "0.0699",
+            "0.0429",
+            "0.0517",
+            "7.84%",
+            "37.88%",
+            "50/50",
+            "100%",
+            "28%",
+            "4"
+          ],
+          [
+            "E3",
+            "校准版 + 证书触发 Safe",
+            "0.0672",
+            "0.0429",
+            "0.0517",
+            "10.13%",
+            "28.82%",
+            "45/50 ✗",
+            "100%",
+            "26%",
+            "0"
+          ],
+          [
+            "E4",
+            "校准版 Hybrid β 0.5",
+            "0.0687",
+            "0.0429",
+            "0.0517",
+            "10.35%",
+            "29.40%",
+            "50/50",
+            "100%",
+            "24%",
+            "7"
+          ]
+        ],
+        "verdict": "五臂均未达验收（误刹 ≤5%、直通 ≥99%）；没有一臂把 cross 压进 0.04。E1 相对 E0：误刹 −10.6 pp、直通 +3.5 pp、死锁 5→2、硬门保持；E3 丢 5/50 迎头刹停。单种子。a27 参照（stack_fix_la06）false-brake 41.8% / fidelity 6.7%，与 E0 一致。",
+        "evidence": "evals/st_five_arm_20260910/<E*>/{cell_hi0.5_lo0.2.json,manifest.json,verified.json}；面板 gates.json 已入（grid a100_evals/st_five_arm_20260910/E*）；docs/ST_INCREMENT_20260911.md"
+      },
+      "diagnosis": [
+        "真实 rollout dump（a27 热启动首个 rollout，58 格、266 条观测边，st_graph_dump_20260912.pt）复核：旧建图（论文代码：禁自环 + 未观测边名义容量 1/n）把 88.8% 目标流放到从未观测的边上，88.4% 样本（全部「原地保持」转移）权重被截到 0.2 —— E1 实际施加的不是容量投影，而是「留格样本 ×0.2 / 迁移样本 ×1–5」的退化重加权。",
+        "证书集合为空：稠密代价下 Σ S = 0.35–0.97 < 1（论文基准为稀疏 0/1 代价，零代价格容量 +∞）；只修自环不处理这一点，F* 总质量 0.065（运动学）/ 0.965（真实）仍全截 0.2。",
+        "48 步窗口的平衡：数据满足的是 F̂1 − γF̂ᵀ1（含窗口末尾汇 ~1/T），不是论文的 (1−γ)μ₀（γ^T = 0.79 远未衰减）；在经验支撑上强解 (1−γ)μ₀ 会把进入「稀有格」的真实转移（正是安全相关的那些）压到 0，或直接停滞（v2.1 在真实 rollout 上每步回退 w=1，err 0.98–2.6）。",
+        "论文均匀参照核在粗格上失效：D_stay ≈ 0.83 ≫ D_move ≈ −0.19，exp(−D/ε) 想把全部质量搬离对角线，98% 边饱和后停滞；改为经验参照（核 = F̂·exp(−D/ε)，即 ε·KL(F‖F̂)）后收敛（err 0.019）。"
+      ],
+      "v22": {
+        "commit": "safeduo 76a410f（v2.1 d2f2088）；tests/test_safetransport_ppo.py 20 项通过；scripts/forensics/st_solver_compare.py 同一 rollout 上八种变体 A/B（logs/st_solver_compare_20260912*.json）",
+        "design": [
+          "自环为合法边；未观测边容量 0（F* 限于经验支撑）",
+          "可行性恢复：Σ S < 1+η 时按 m = (1+η)·max_e F̂_e/S_e 放大容量（最贵格恰在容量上，w ≤ 1），m 作 cap_scale 上报，证书上界改为 m·b + ‖c̄‖∞·gap",
+          "经验平衡：源项 = F̂1 − γF̂ᵀ1（带符号，窗口末尾汇为负），F̂ 由构造可行；求解器 Eq.17 定点对任意符号源仍为正",
+          "经验参照核：−εH(F) → ε·KL(F‖F̂)（流空间的在策略信赖域），D = 0 时 F* ≡ F̂；ε 取 1.0 使倾斜幅度与权重截断范围同量级",
+          "比值收缩 w = (F*+κ)/(F̂+κ)，κ = 5 次观测/TN，抑制单次观测边上的爆炸权重；新诊断 w_p05/w_p95/w_off_frac/sink_mass/cap_total/cap_scale/unsupported_mass",
+          "旧行为可复现：--st-no-self-loops --st-unobs-cap nominal --st-cap-rescale 0 --st-balance mu0 --st-reference uniform --st-w-shrink 0"
+        ],
+        "real_rollout_ab": "同一真实 rollout：legacy w̄ 0.29 / 88% 截 0.2 / 88.8% 质量在未观测边；v2.1 停滞回退；v2.2 err 0.019、mass 0.998、对角 0.878/0.884、样本加权 w 5–95 分位 [0.990, 1.012]、|w−1|>0.2 的样本 0.6%、加权代价/原代价 0.995 —— 修正后的投影在 SafeDuo 稠密代价 + 持续粗格上几乎是恒等映射（只把最贵格削到容量）。",
+        "implication": "若 E5 ≈ E0 而 E6 ≈ E1，则 E1 的增益归因于「转移强调」式重加权而非容量流证书；这是一个便宜、可解释的技巧（可再扫 w_stay 0.5），而论文机制在本任务上需要放松预算 m 倍才会起作用，其安全语义（弱化危险格样本）存疑。"
+      },
+      "e5_e6": {
+        "launched": "09-12 02:48，tmux sd109_st_e5e6_20260912（GPU2，与另一用户 9.6 GB 任务共卡），顺序 E5 → E6；四门队列 sd109_st_gate_v22_20260912（evals/st_v22_20260912，等 model_4000.pt + 显存 ≥10 GB）",
+        "e5_first_iter": "iter 3600：fallback false、sink_err 0.0187、cap_total 0.965、cap_scale 4.99、diag 0.878/0.884、w_p05 0.990、w_p95 1.012、w_off 0.58%、sink_mass 0.0027；wall 38.5 s/iter → E5 ≈ 07:10 出模，E6 ≈ 11:00",
+        "acceptance": "与 E0/E1 同口径配对四门；判读：E5 vs E0（修正投影是否有效）、E6 vs E1（增益是否即为留格重加权）"
+      }
+    }
   },
-  {
-   "block": "观测构造",
-   "what": "275 维状态观测；成对特征直接重建三条代价（无 env 钩子）；arm-aware 配对（R15）；p2-obs（R18）；F2 手三球/指壳 v7fix、UR 连杆球壳（R16）",
-   "file": "safeduo/envs/duo_env.py, algo/reward_shaping.py",
-   "since": "v7",
-   "status": "在用"
-  },
-  {
-   "block": "策略网络",
-   "what": "Beta actor（有界支撑，避免高斯策略卡边界）：α×4 + p 联合；危险头共享干路；训练期 α 在 0.5 直通估计器二值化（消除训练-执行失配）",
-   "file": "algo/beta_actor.py, algo/lagrangian_ppo.py",
-   "since": "v4 / R18",
-   "status": "在用"
-  },
-  {
-   "block": "离合器执行语义",
-   "what": "α<0.5 逐位直通零衰减；α≥0.5 仅冻结涉险臂；后撤方向直通 retreat_release（R30）；恢复 = 操作员逐臂解锁（R17）；R19 执行层旁通：safe 区解析栈不再触碰指令",
-   "file": "safeduo/exec/*, R17/R18/R19/R30",
-   "since": "S8",
-   "status": "在用"
-  },
-  {
-   "block": "解析 backstop",
-   "what": "几何距离 + 前瞻 0.06 s 速度感知阻尼带（la06）；结构行豁免 UR upper_arm×桌（R29）；UR wrist armature 0.05 + FR3/UR 重力补偿（R33 = 栈 fix2）",
-   "file": "duo_env_v7_r18_fix2_v8_la06.yaml",
-   "since": "R29–R33",
-   "status": "在用（aF 训练/评测栈）"
-  },
-  {
-   "block": "PID-Lagrangian 乘子",
-   "what": "每迭代按 rollout 均值更新；kp 0.5 / ki 0.05 / kd 0.1，积分限幅；λ_max 0.35/0/0.05 防绕组；变化率 ≤ 0.01 防震荡（R13/R15）",
-   "file": "algo/lagrangian.py",
-   "since": "v4/R13",
-   "status": "在用"
-  },
-  {
-   "block": "SafeTransport 容量流投影（增量）",
-   "what": "rollout → 安全格子 (s,a) 流图（跨机距离 8 档 × 接近速度 5 档 × 自碰 4 × 桌面 4 × 离合模式 16，固定物理分箱，格子 id 跨迭代稳定）→ 每通道容量 S^(k)=b_k·ω/c̄_k 硬最小/软最小合成 → 对数域 γ-流 Sinkhorn（≤100 迭代）得 F*≤S → w_t=clip(F*/F̂, 1/5, 5) 乘 PPO 代理目标；模式 base / hybrid(β) / safe（证书触发 PID）/ off（与父类逐位一致，已测）",
-   "file": "algo/safetransport_ppo.py, algo/train_safetransport.py, scripts/forensics/a100_st_*.sh",
-   "since": "09-08（5937144）",
-   "status": "增量实验 E1–E4 排队中（GPU2）"
-  },
-  {
-   "block": "PPO 更新",
-   "what": "裁剪 0.2、GAE 0.95、四价值头（reward + 3 代价）、有效性感知 GAE（真终止不自举 / 超时自举）；熵系数 0.006↔0.012 由熵 EMA 触发（−3.5 / 释放 −3.2，代价门 0.9）；48 步/环境/迭代",
-   "file": "algo/lagrangian_ppo.py",
-   "since": "v4/R15",
-   "status": "在用"
-  },
-  {
-   "block": "危险 BCE 辅助监督",
-   "what": "事后标签：未来 30 步内该臂真越线？尾部掩码、正负平衡，w 0.5；α 死区惩罚 w 2.0；会合豁免不计危险 → α 成为校准过的危险分类器",
-   "file": "algo/lagrangian_ppo.py (R18/R28)",
-   "since": "R18/R28",
-   "status": "在用"
-  },
-  {
-   "block": "训练规模",
-   "what": "Isaac Lab 4096 并行环境 headless，3600 迭代 ≈ 7×10⁸ 环境步；A100（30109 GPU2）约 50–100 s/迭代（共卡）",
-   "file": "scripts/forensics/a100_train_aF.sh",
-   "since": "aF",
-   "status": "在跑"
-  },
-  {
-   "block": "评测",
-   "what": "四门 R28 口径：硬门 brake / viol-free(cross) / no-deadlock(hys)；软指标误刹 arm/any、fidelity、done、cmd-stop p50/p95；25 环境 × 60 s，θ = 0.5:0.2",
-   "file": "clutch_eval → cell_*.json → gates.json",
-   "since": "R28",
-   "status": "在用"
-  }
- ],
- "current_recipe": {
-  "run": "aF_v8_fix2_la06_s46",
-  "server": "tianyiyun-30109 GPU2（owner 09-08 允许专用一卡）",
-  "started": "09-07 20:54",
-  "env": "duo_env_v7_r18_fix2_v8_la06.yaml",
-  "curriculum": "delta_curriculum_v7.yaml",
-  "args": [
-   [
-    "--num_envs",
-    "4096"
-   ],
-   [
-    "--max_iterations",
-    "3600"
-   ],
-   [
-    "--seed",
-    "46"
-   ],
-   [
-    "--cost-scale",
-    "4,17,19"
-   ],
-   [
-    "--cost-limits",
-    "0.04,0.05,0.05"
-   ],
-   [
-    "--lambda-max",
-    "0.35,0,0.05"
-   ],
-   [
-    "--lambda-rate-max",
-    "0.01"
-   ],
-   [
-    "--entropy-coef / -hi",
-    "0.006 / 0.012"
-   ],
-   [
-    "--ent-trigger / -release / -cost-gate",
-    "-3.5 / -3.2 / 0.9"
-   ],
-   [
-    "--arm-aware-obs --w-armbal",
-    "0.01"
-   ],
-   [
-    "--clutch-train --clutch-tau",
-    "0.05（不退火）"
-   ],
-   [
-    "--hazard-head --hazard-bce-balance --hazard-tail-mask",
-    "on"
-   ],
-   [
-    "--w-hazard-bce / --w-alpha-deadzone",
-    "0.5 / 2.0"
-   ],
-   [
-    "--hazard-horizon",
-    "30 步"
-   ],
-   [
-    "--hazard-coop-vmax",
-    "0.15 m/s"
-   ],
-   [
-    "--num-steps-per-env",
-    "48"
-   ],
-   [
-    "--p2-obs",
-    "on"
-   ]
+  "lineage": [
+    {
+      "ver": "v3",
+      "when": "2026-07",
+      "change": "安全项进奖励 → 冻结吸引子，两 seed 塌缩（p_head_v3）"
+    },
+    {
+      "ver": "v4",
+      "when": "2026-07",
+      "change": "PID-Lagrangian：margin/tube 代价移出奖励进约束通道；Beta actor；有效性感知 GAE；峰值收割"
+    },
+    {
+      "ver": "v6 / v6.1 / v6.2",
+      "when": "2026-08 上旬",
+      "change": "T3 课程 + 安全补丁；λ 重定标（R10）；inversion 塌缩 RCA 与抗塌缩配方（R13）"
+    },
+    {
+      "ver": "v7",
+      "when": "2026-08-18",
+      "change": "真机资产 UR5e + DFX；arm-aware 观测 + 逐臂 α 均衡 + 熵调度（R15）；几何壳修正（R16）"
+    },
+    {
+      "ver": "S8（R17/R18）",
+      "when": "2026-08-21",
+      "change": "产品语义对齐：离合器 = 安全滤波器；α 改逐臂危险概率 + 直通二值化 + 危险 BCE"
+    },
+    {
+      "ver": "R19 / R28",
+      "when": "2026-08 下旬",
+      "change": "执行层旁通（safe 区解析栈不碰指令）；受控会合豁免 coop_vmax 0.15 → a27"
+    },
+    {
+      "ver": "R29 / R30 / R33",
+      "when": "2026-09 上旬",
+      "change": "结构行豁免；后撤直通；活腕 armature + 重力补偿 + la06 速度感知带 = 最终执行栈 fix2_la06"
+    },
+    {
+      "ver": "R31（负结果）",
+      "when": "09-05 → 09-07",
+      "change": "在最终栈内 warm-start a28/a29/a30/a30b：viol-free 最高 0.96，不闭合 → 关闭 warm-start 路线"
+    },
+    {
+      "ver": "aF（当前）",
+      "when": "09-07 20:54 起",
+      "change": "a27 完整课程在 v8 布局 + fix2_la06 上从头重训（A100 30109）"
+    },
+    {
+      "ver": "ST 增量（并行）",
+      "when": "09-08 21:12 起",
+      "change": "SafeTransport 容量流投影接入 PPO 循环（子类，父类文件不动），E0–E4 增量对照排队跑"
+    },
+    {
+      "ver": "ST v2.2",
+      "when": "09-12 02:48 起",
+      "change": "E0–E4 五臂出分全未达验收；真实 rollout 诊断出建图四处失配（自环/空证书集/窗口平衡/均匀参照核）→ v2.2 修复（76a410f），E5（修正投影）+ E6（留格重加权消融）在 GPU2 顺序跑"
+    }
   ],
-  "lineage_note": "= a27 命令行去掉 --resume；a27 是 v7 死腕栈上唯一过硬门的策略（brake 1.0 / viol-free 1.0 / no-deadlock 1.0），aF 在 v8 + 活腕 + 重力补偿 + la06 上从头重训",
-  "increments": {
-   "where": "tianyiyun-30109 GPU2（与 aF 同卡，队列 sd109_st_queue 按显存空档顺序跑）",
-   "common": "a27 model_last.pt 热启动，env duo_env_v7_r18_fix2_v8_la06.yaml，2048 环境（4 小时等不到显存则 1024）× 400 迭代，seed 46，其余参数 = aF",
-   "arms": [
-    [
-     "E1 st_E1_base_paper",
-     "SafeTransport 论文默认：三通道硬最小、c̄=max、ε 0.1、无乘子"
-    ],
-    [
-     "E0 st_E0_pid",
-     "PID 拉格朗日基线（当前机制）"
-    ],
-    [
-     "E3 st_E3_safe_cal",
-     "校准版 + 证书触发 Safe：cross+self 通道、c̄=mean，连续 5 迭代超限才武装 PID"
-    ],
-    [
-     "E2 st_E2_base_cal",
-     "校准版无乘子：cross+self、c̄=mean、权重归一（保持有效步长）"
-    ],
-    [
-     "E4 st_E4_hybrid_cal",
-     "校准版 Hybrid β 0.5"
-    ]
-   ],
-   "smoke": "09-08 21:03 Isaac 冒烟通过（256 环境 × 2–3 迭代）：格子 31→170 个、Sinkhorn 72–100 迭代；论文默认下 IS-clip 率 78%、权重均值 0.30、容量激活 99.5%（= 论文报告的紧 K=3 任务“转移失败”区间，44–74%）；α̂_cross 3.8 > 3 → 已用 (s,a) 格子仍偏粗，故加校准臂（mean c̄、去掉结构性贴限的 table 通道、权重归一）",
-   "metrics": "训练侧：cross/self/table 代价轨迹 vs 上限、危险率、α_exec、IS-clip、转移间隙与认证上界；训练后：四门（A100 上评，和 a27@v8 同架构配对）"
-  }
- },
- "lineage": [
-  {
-   "ver": "v3",
-   "when": "2026-07",
-   "change": "安全项进奖励 → 冻结吸引子，两 seed 塌缩（p_head_v3）"
-  },
-  {
-   "ver": "v4",
-   "when": "2026-07",
-   "change": "PID-Lagrangian：margin/tube 代价移出奖励进约束通道；Beta actor；有效性感知 GAE；峰值收割"
-  },
-  {
-   "ver": "v6 / v6.1 / v6.2",
-   "when": "2026-08 上旬",
-   "change": "T3 课程 + 安全补丁；λ 重定标（R10）；inversion 塌缩 RCA 与抗塌缩配方（R13）"
-  },
-  {
-   "ver": "v7",
-   "when": "2026-08-18",
-   "change": "真机资产 UR5e + DFX；arm-aware 观测 + 逐臂 α 均衡 + 熵调度（R15）；几何壳修正（R16）"
-  },
-  {
-   "ver": "S8（R17/R18）",
-   "when": "2026-08-21",
-   "change": "产品语义对齐：离合器 = 安全滤波器；α 改逐臂危险概率 + 直通二值化 + 危险 BCE"
-  },
-  {
-   "ver": "R19 / R28",
-   "when": "2026-08 下旬",
-   "change": "执行层旁通（safe 区解析栈不碰指令）；受控会合豁免 coop_vmax 0.15 → a27"
-  },
-  {
-   "ver": "R29 / R30 / R33",
-   "when": "2026-09 上旬",
-   "change": "结构行豁免；后撤直通；活腕 armature + 重力补偿 + la06 速度感知带 = 最终执行栈 fix2_la06"
-  },
-  {
-   "ver": "R31（负结果）",
-   "when": "09-05 → 09-07",
-   "change": "在最终栈内 warm-start a28/a29/a30/a30b：viol-free 最高 0.96，不闭合 → 关闭 warm-start 路线"
-  },
-  {
-   "ver": "aF（当前）",
-   "when": "09-07 20:54 起",
-   "change": "a27 完整课程在 v8 布局 + fix2_la06 上从头重训（A100 30109）"
-  },
-  {
-   "ver": "ST 增量（并行）",
-   "when": "09-08 21:12 起",
-   "change": "SafeTransport 容量流投影接入 PPO 循环（子类，父类文件不动），E0–E4 增量对照排队跑"
-  }
- ],
- "reference_designs": [
-  {
-   "src": "SafeTransport（owner，ICLR'27）",
-   "design": "把 K 个 CMDP 预算编译成边容量，γ-流 Sinkhorn 投影得认证目标流 F*≤S，按 F*/F̂ 重加权 PPO；ε 选操作点；在线转移证书 J_c ≤ b + ‖c̄‖∞·‖F*−F̂_θ‖₁；转移失败时证书触发 Lagrangian（Safe）",
-   "ours": "三条代价通道（cross 0.04 / self 0.05 / table 0.05）正是论文的“多个异质预算耦合对偶塌缩”场景（aF 中 λ_cross 长期钉在上限 0.35、cross 代价 0.07–0.08 > 0.04 不闭合）。实现为 SafeTransportPPO 子类：安全格子 (s,a) 流图 + 硬/软最小合成 + 对数域 Sinkhorn + 权重乘代理目标；E0–E4 增量对照",
-   "status": "进行中（E1–E4 排队，E0 基线同预算）",
-   "why": "owner 自己的方法在真实多约束机器人任务上的验证，对两篇论文都有价值；若 Safe/校准版把 cross 代价压进上限且不增误刹，则替换 PID 进 aF 后继配方"
-  },
-  {
-   "src": "SAI",
-   "design": "三阶段非对称训练：先训 A（对柔顺伙伴），冻结 A 部署再训 B，最后只在协作失败边界稀疏干预 A",
-   "ours": "分排顺序微调：冻结 F 排门控头只训 U 排（对着已部署的 F 策略）→ 交换 → 只在迎头窗口做稀疏微调；对应 R33 死腕→活腕迁移的低成本路线",
-   "status": "planned（R35-①，aF 出分后）",
-   "why": "四臂联合训练里 F_L 成为“约束汇”（R15），非对称分阶段可把责任分开；成本远低于再来一次 3600 迭代重训"
-  },
-  {
-   "src": "SAI Stage-2",
-   "design": "给已部署伙伴加有界扰动：速度缩放、动作噪声、时序偏移、初始物体扰动，让 B 见到真实的伙伴偏差",
-   "ours": "随机操作员流里对一排加速度缩放 0.5–1.5、时序偏移 0–0.5 s、指令噪声、起始位姿扰动 → 门控学会对伙伴延迟不误刹、恢复不死锁",
-   "status": "建议纳入 aF 后继配方（需实验线改训练 env，设计线出 yaml）",
-   "why": "R31 结论缺“伙伴分布”变量；也是伙伴延迟探针（R35-③）的训练侧对应物"
-  },
-  {
-   "src": "SAI Stage-3",
-   "design": "干预样本只监督被纠正的动作维度（二值动作掩码），防稀疏纠正覆盖正常行为",
-   "ours": "门控微调时逐臂损失掩码：只有带危险标签的臂参与 PPO 策略损失 / BCE / 死区项，其它臂梯度置零",
-   "status": "planned（随 R35-①）",
-   "why": "我们的危险标签天然逐臂，掩码零成本；防止一臂的纠正把另一臂学好的直通推坏"
-  },
-  {
-   "src": "SAI 策略",
-   "design": "30 步历史窗对数采样 12 帧 → GRU 历史 token；ACT 主干",
-   "ours": "门控观测加意图历史：对照 GRU 历史 token vs TRACE 路径签名（逐臂深度 2–3 + 臂对深度 2，δ 签名）；主干不换（状态式 MLP/Beta）",
-   "status": "planned（R35-②，签名先做）",
-   "why": "现在只有瞬时接近速度；迎头 vs 擦肩 vs 减速让行要看轨迹形状，才能降误刹"
-  },
-  {
-   "src": "SAI 策略",
-   "design": "级联全身动作头：先预测底盘 3 维，再以其为条件预测臂 14 维",
-   "ours": "级联门控头：先预测排级跨机危险（F↔U 最差对），再以其为条件输出逐臂 α；或先 p 再 α",
-   "status": "提案（网络改动小，aF 后继配方可试）",
-   "why": "把“是否涉险”与“谁涉险”解耦，减少同排两臂被一起冻结（误刹 arm）"
-  },
-  {
-   "src": "SAI 观测",
-   "design": "臂端力矩反馈进观测，提供接触期隐式交互线索",
-   "ours": "关节力矩 / PhysX 接触力进门控观测：共持时内力与张力 = 协作信号（Zeno-1“张力即协调信号”）；真机 FR3 有关节力矩、UR5e 有 F/T 估计",
-   "status": "planned（需 env 观测扩展；先仿真验证）",
-   "why": "横梁共持、装角件下压都是接触任务，只看几何距离分不清“已接触且受控”与“将要撞”"
-  },
-  {
-   "src": "SAI 视觉",
-   "design": "伙伴区域分割 + 膨胀 + 随机化（RGB 噪声 / 模糊 / SD 修补），防学到人形捷径",
-   "ours": "无视觉；类比为对伙伴排状态特征做 dropout / 噪声，防门控过拟合训练期虚拟操作员的统计特性",
-   "status": "可选（便宜，R35 一起试）",
-   "why": "真机操作员分布 ≠ 训练流，门控对伙伴特征的过拟合会变成真机误刹"
-  },
-  {
-   "src": "SAI 指标",
-   "design": "Phase Sync（预定义检查点 + 时序容差，N×K 分母，未达计失败）与 Yield/Wait（伙伴延迟机会上的正确响应）",
-   "ours": "四门扩展：每协作任务族 2–5 检查点的相位同步率（门控 ≥ raw 的 90%）+ 伙伴延迟探针（一方随机停 0.5–2 s，度量误刹与恢复死锁）",
-   "status": "planned（R35-③）",
-   "why": "现有四门只说“没撞、没死锁、少误刹”，说不出“协作结构没被门控破坏”"
-  },
-  {
-   "src": "SAI 数据协议",
-   "design": "单操作员课程采集协作数据：先 A 独采（伙伴柔顺），再 B 对着 A 策略采，再干预",
-   "ours": "G3 真机采数协议：先单排遥操（另一排静止/柔顺）验证门控，再双排同时遥操 + 门控开，最后只在近失败窗口补采",
-   "status": "G3 规划",
-   "why": "真机时间昂贵；分阶段采能在早期就发现门控与操作员的冲突"
-  },
-  {
-   "src": "TriPilot-FF",
-   "design": "激光雷达接近信号 → 踏板阻力，操作员端触觉塑形避碰（无显式避碰控制器）",
-   "ours": "相关工作对照 + 可叠加：离合器 α 回传为手柄/踏板阻力（G3 阶段接口）",
-   "status": "论文定位（相关工作）",
-   "why": "同一问题两条路：触觉塑形不保证零碰撞，门控给硬保证"
-  },
-  {
-   "src": "TRACE",
-   "design": "深度 3 路径签名做路由键 + K 槽因果记忆 + 适配器；Signature-only 消融 +20 分",
-   "ours": "第一步只做签名特征进 α/p 头；第二步 K 槽路由记忆替代 R30 手工释放规则",
-   "status": "planned（R35-②）",
-   "why": "消融显示签名本身贡献最大，先拿最便宜的增益"
-  },
-  {
-   "src": "ACT / DINOv3 / Diffusion 主干",
-   "design": "视觉模仿学习主干",
-   "ours": "不采用：SafeDuo 是状态式约束 RL 的安全滤波器，不是任务策略",
-   "status": "不采用",
-   "why": "目标不同；真机阶段的视觉只用于人看"
-  }
- ],
- "changelog": [
-  {
-   "time": "09-08 21:18",
-   "text": "框图重绘 v2（三泳道卡片式，SafeTransport 二选一子框、增量实验卡）；接入 SafeTransport 增量：safetransport_ppo.py（子类，父类逐位一致性测试通过）、Isaac 冒烟通过、E0–E4 队列在 GPU2 排队（等显存 ≥11 GB）"
-  },
-  {
-   "time": "09-08 17:03",
-   "text": "算法设计页 v1 上线：框图 SVG（三段：运行时回路 / 训练信号 / 评测）、组件表、当前配方参数、谱系、参考设计对照（SAI 9 项 + TriPilot-FF + TRACE）"
-  }
- ]
+  "reference_designs": [
+    {
+      "src": "SafeTransport（owner，ICLR'27）",
+      "design": "把 K 个 CMDP 预算编译成边容量，γ-流 Sinkhorn 投影得认证目标流 F*≤S，按 F*/F̂ 重加权 PPO；ε 选操作点；在线转移证书 J_c ≤ b + ‖c̄‖∞·‖F*−F̂_θ‖₁；转移失败时证书触发 Lagrangian（Safe）",
+      "ours": "三条代价通道（cross 0.04 / self 0.05 / table 0.05）正是论文的“多个异质预算耦合对偶塌缩”场景（aF 中 λ_cross 长期钉在上限 0.35、cross 代价 0.07–0.08 > 0.04 不闭合）。实现为 SafeTransportPPO 子类：安全格子 (s,a) 流图 + 硬/软最小合成 + 对数域 Sinkhorn + 权重乘代理目标；E0–E4 增量对照",
+      "status": "五臂出分（09-11）：全部未达验收；E1 −10.6 pp 误刹来自退化重加权（真实 rollout 复核）→ v2.2 修复后 E5/E6 在跑（09-12）",
+      "why": "owner 自己的方法在真实多约束机器人任务上的验证，对两篇论文都有价值；若 Safe/校准版把 cross 代价压进上限且不增误刹，则替换 PID 进 aF 后继配方"
+    },
+    {
+      "src": "SAI",
+      "design": "三阶段非对称训练：先训 A（对柔顺伙伴），冻结 A 部署再训 B，最后只在协作失败边界稀疏干预 A",
+      "ours": "分排顺序微调：冻结 F 排门控头只训 U 排（对着已部署的 F 策略）→ 交换 → 只在迎头窗口做稀疏微调；对应 R33 死腕→活腕迁移的低成本路线",
+      "status": "planned（R35-①，aF 出分后）",
+      "why": "四臂联合训练里 F_L 成为“约束汇”（R15），非对称分阶段可把责任分开；成本远低于再来一次 3600 迭代重训"
+    },
+    {
+      "src": "SAI Stage-2",
+      "design": "给已部署伙伴加有界扰动：速度缩放、动作噪声、时序偏移、初始物体扰动，让 B 见到真实的伙伴偏差",
+      "ours": "随机操作员流里对一排加速度缩放 0.5–1.5、时序偏移 0–0.5 s、指令噪声、起始位姿扰动 → 门控学会对伙伴延迟不误刹、恢复不死锁",
+      "status": "建议纳入 aF 后继配方（需实验线改训练 env，设计线出 yaml）",
+      "why": "R31 结论缺“伙伴分布”变量；也是伙伴延迟探针（R35-③）的训练侧对应物"
+    },
+    {
+      "src": "SAI Stage-3",
+      "design": "干预样本只监督被纠正的动作维度（二值动作掩码），防稀疏纠正覆盖正常行为",
+      "ours": "门控微调时逐臂损失掩码：只有带危险标签的臂参与 PPO 策略损失 / BCE / 死区项，其它臂梯度置零",
+      "status": "planned（随 R35-①）",
+      "why": "我们的危险标签天然逐臂，掩码零成本；防止一臂的纠正把另一臂学好的直通推坏"
+    },
+    {
+      "src": "SAI 策略",
+      "design": "30 步历史窗对数采样 12 帧 → GRU 历史 token；ACT 主干",
+      "ours": "门控观测加意图历史：对照 GRU 历史 token vs TRACE 路径签名（逐臂深度 2–3 + 臂对深度 2，δ 签名）；主干不换（状态式 MLP/Beta）",
+      "status": "planned（R35-②，签名先做）",
+      "why": "现在只有瞬时接近速度；迎头 vs 擦肩 vs 减速让行要看轨迹形状，才能降误刹"
+    },
+    {
+      "src": "SAI 策略",
+      "design": "级联全身动作头：先预测底盘 3 维，再以其为条件预测臂 14 维",
+      "ours": "级联门控头：先预测排级跨机危险（F↔U 最差对），再以其为条件输出逐臂 α；或先 p 再 α",
+      "status": "提案（网络改动小，aF 后继配方可试）",
+      "why": "把“是否涉险”与“谁涉险”解耦，减少同排两臂被一起冻结（误刹 arm）"
+    },
+    {
+      "src": "SAI 观测",
+      "design": "臂端力矩反馈进观测，提供接触期隐式交互线索",
+      "ours": "关节力矩 / PhysX 接触力进门控观测：共持时内力与张力 = 协作信号（Zeno-1“张力即协调信号”）；真机 FR3 有关节力矩、UR5e 有 F/T 估计",
+      "status": "planned（需 env 观测扩展；先仿真验证）",
+      "why": "横梁共持、装角件下压都是接触任务，只看几何距离分不清“已接触且受控”与“将要撞”"
+    },
+    {
+      "src": "SAI 视觉",
+      "design": "伙伴区域分割 + 膨胀 + 随机化（RGB 噪声 / 模糊 / SD 修补），防学到人形捷径",
+      "ours": "无视觉；类比为对伙伴排状态特征做 dropout / 噪声，防门控过拟合训练期虚拟操作员的统计特性",
+      "status": "可选（便宜，R35 一起试）",
+      "why": "真机操作员分布 ≠ 训练流，门控对伙伴特征的过拟合会变成真机误刹"
+    },
+    {
+      "src": "SAI 指标",
+      "design": "Phase Sync（预定义检查点 + 时序容差，N×K 分母，未达计失败）与 Yield/Wait（伙伴延迟机会上的正确响应）",
+      "ours": "四门扩展：每协作任务族 2–5 检查点的相位同步率（门控 ≥ raw 的 90%）+ 伙伴延迟探针（一方随机停 0.5–2 s，度量误刹与恢复死锁）",
+      "status": "planned（R35-③）",
+      "why": "现有四门只说“没撞、没死锁、少误刹”，说不出“协作结构没被门控破坏”"
+    },
+    {
+      "src": "SAI 数据协议",
+      "design": "单操作员课程采集协作数据：先 A 独采（伙伴柔顺），再 B 对着 A 策略采，再干预",
+      "ours": "G3 真机采数协议：先单排遥操（另一排静止/柔顺）验证门控，再双排同时遥操 + 门控开，最后只在近失败窗口补采",
+      "status": "G3 规划",
+      "why": "真机时间昂贵；分阶段采能在早期就发现门控与操作员的冲突"
+    },
+    {
+      "src": "TriPilot-FF",
+      "design": "激光雷达接近信号 → 踏板阻力，操作员端触觉塑形避碰（无显式避碰控制器）",
+      "ours": "相关工作对照 + 可叠加：离合器 α 回传为手柄/踏板阻力（G3 阶段接口）",
+      "status": "论文定位（相关工作）",
+      "why": "同一问题两条路：触觉塑形不保证零碰撞，门控给硬保证"
+    },
+    {
+      "src": "TRACE",
+      "design": "深度 3 路径签名做路由键 + K 槽因果记忆 + 适配器；Signature-only 消融 +20 分",
+      "ours": "第一步只做签名特征进 α/p 头；第二步 K 槽路由记忆替代 R30 手工释放规则",
+      "status": "planned（R35-②）",
+      "why": "消融显示签名本身贡献最大，先拿最便宜的增益"
+    },
+    {
+      "src": "ACT / DINOv3 / Diffusion 主干",
+      "design": "视觉模仿学习主干",
+      "ours": "不采用：SafeDuo 是状态式约束 RL 的安全滤波器，不是任务策略",
+      "status": "不采用",
+      "why": "目标不同；真机阶段的视觉只用于人看"
+    }
+  ],
+  "changelog": [
+    {
+      "time": "09-12 02:50",
+      "text": "SafeTransport v2.2（76a410f）：自环 + 支撑容量 + 可行性恢复 + 经验平衡 + 经验参照核 + 收缩权重；真实 rollout dump 八变体 A/B；E5/E6 + 配对四门队列开跑；五臂结果与诊断入面板与 docs/ST_INCREMENT_20260911.md"
+    },
+    {
+      "time": "09-11 ST 五臂",
+      "text": "（Codex，safeduo_方案）E0–E4 训练完成并配对四门：全部未达验收；E1 误刹 29.7% vs E0 40.3%，E3 丢 5/50 迎头刹停；诊断出论文代码禁自环 + 名义容量导致留格样本全截 0.2"
+    },
+    {
+      "time": "09-08 21:18",
+      "text": "框图重绘 v2（三泳道卡片式，SafeTransport 二选一子框、增量实验卡）；接入 SafeTransport 增量：safetransport_ppo.py（子类，父类逐位一致性测试通过）、Isaac 冒烟通过、E0–E4 队列在 GPU2 排队（等显存 ≥11 GB）"
+    },
+    {
+      "time": "09-08 17:03",
+      "text": "算法设计页 v1 上线：框图 SVG（三段：运行时回路 / 训练信号 / 评测）、组件表、当前配方参数、谱系、参考设计对照（SAI 9 项 + TriPilot-FF + TRACE）"
+    }
+  ]
 }

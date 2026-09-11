@@ -1,530 +1,542 @@
 {
- "updated": "2026-09-08T21:18:53",
- "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
- "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
- "goals": [
-  {
-   "id": "G0",
-   "name": "基建：吞吐 / 距离正确性 / 稳定性 / 一致性",
-   "pct": 100,
-   "status": "done",
-   "summary": "35,769 步/s @4096 env；可追责口径零漏检；2 h 烤机零崩溃；投影 vs QP P99 1.47%",
-   "evidence": "VISION §3 四项 [x]；R1/R11/R16/R20",
-   "next": "r16 壳与活腕 yaml 是否转正为训练/评测默认（待 owner）"
-  },
-  {
-   "id": "G1",
-   "name": "安全 + 协调增益（离合器 a27 四门）",
-   "pct": 70,
-   "status": "verifying",
-   "summary": "a27@0.5:0.2 四门全过且优于 a25 与 CBF-QP 基线；但 R33 证明这些数字来自“U 手死腕（有效 5 DOF）”环境，修复环境下 a27 失效、a30 未适应",
-   "evidence": "R28 验收；R33 ③④；gates.json 矩阵",
-   "next": "a30b（~06:00 出四门）→ 若仍不收敛：完整课程重训（≈24 h GPU，待 owner）或 R35 分臂顺序微调"
-  },
-  {
-   "id": "G2",
-   "name": "对抗鲁棒：L2 场景库 / L3 对抗课程",
-   "pct": 40,
-   "status": "wait",
-   "summary": "L2 定向场景（迎头/边缘逼近）与 directed 窗口已是四门组成部分；L3 adversary 代码在（algo/adversary.py），留出攻击集评测未做",
-   "evidence": "R28 directed 取证；eval/clutch_eval 四窗口",
-   "next": "伙伴延迟探针（SAI 式）入 L2 场景库；L3 留出集评测排期"
-  },
-  {
-   "id": "G3",
-   "name": "真机：conformance + shadow → 双人会话",
-   "pct": 5,
-   "status": "planned",
-   "summary": "v7 真机资产（UR5 + RH56DFX / FR3 + RH56F2）已入库；ROS 桥 / adapter 未开工",
-   "evidence": "R14",
-   "next": "M3 计划 11-24 前；先 hardware-in-the-loop"
-  },
-  {
-   "id": "G4",
-   "name": "数据与演示：协作任务资产 + ≥200 条演示 + 视频",
-   "pct": 40,
-   "status": "verifying",
-   "summary": "R26 四族 + S9 三棒全部纯物理抓取、多机位成片 46 部；但物体全是参数化几何体（owner：太粗糙）→ R34 工业装配任务族与真实资产",
-   "evidence": "R26/R27；tasks.json；gallery/",
-   "next": "R34-A 4040 型材框架搭建（递送 / 共持插接 / 框架共抬）"
-  },
-  {
-   "id": "P",
-   "name": "论文（RSS 2027）",
-   "pct": 25,
-   "status": "wait",
-   "summary": "TECH_REPORT / PAPER_NOTES / MASTER 活文档齐；主表四门数字需按死腕环境重标或用修复环境重跑；相关工作需补 SAI/TRACE（CoRL 2026）",
-   "evidence": "paper/PAPER_NOTES.md；R33 推论",
-   "next": "决策：四门数字处理口径（标注 vs 重跑）"
-  }
- ],
- "focus": [
-  "A100 训练已在 owner 指定的 30109 上跑（GPU2 共卡）：aF 完整课程重训 3600 iter；环境在本地 NVMe，脚本与修法入库",
-  "a30b 与 a27@v8 四门定案：warm-start 路线关闭；布局 v8 必须伴随重训——两者都指向 aF",
-  "5090 两卡留给渲染/录像（实验线 R34 料箱与型材任务）；A100 承担训练与四门",
-  "09-08 16:36 owner 裁定：任务族只保留工业装配（D5 关闭）；30109 上允许专用一卡（当前 aF 在 GPU2，与一个 48 GB 的 libero 训练共卡）",
-  "待 owner：D8 桌子是否随 Franka 前移；aF 中期门（~1800 iter 时看熵/λ/α）"
- ],
- "decisions": [
-  {
-   "id": "D1",
-   "topic": "论文四门数字：全部 v7 四门（a25–a27）为“U 手死腕”环境结果",
-   "options": "(a) 正文如实标注“5 DOF 有效自由度”并附修复环境复测；(b) 主表改用修复环境重跑数字（依赖 a30b/重训）",
-   "rec": "先 (a) 保底，a30b 出结果后决定是否 (b)",
-   "since": "09-06 01:10",
-   "status": "open"
-  },
-  {
-   "id": "D2",
-   "topic": "修复环境完整课程重训（≈24 h GPU）——a30b 已判：warm-start 路线关闭",
-   "options": "(a) 立即排队；(b) 等 a30b 四门；(c) 先试 R35 分臂顺序微调（成本 ~1/4）",
-   "rec": "已发车（09-07 20:54，30109 GPU2，与他人作业共卡）：aF_v8_fix2_la06_s46 = a27 血统配方从零训 3600 iter，env duo_env_v7_r18_fix2_v8_la06；30110 上 20:09 起的同名 run 已按 owner 要求停止并删除",
-   "since": "09-06 10:00",
-   "status": "done"
-  },
-  {
-   "id": "D3",
-   "topic": "R32 交接安全语义",
-   "options": "(a) coop_handover 条件豁免（改安全契约）；(b) 长物体 ≥60 cm；(d) 接受放-取式间接接力为交接的物理口径",
-   "rec": "(d) 现在可用；R34-A 型材（30–60 cm 横握）可能让 (b) 自然成立，再评估是否需要 (a)",
-   "since": "09-05",
-   "status": "open"
-  },
-  {
-   "id": "D4",
-   "topic": "R29 + R30b 默认开、r16 壳与活腕/重力补偿 yaml 转正",
-   "options": "(a) 转正为训练/评测默认；(b) 仍作录制专用",
-   "rec": "(a)，随 a30b 结果一并",
-   "since": "09-03 / 09-05",
-   "status": "open"
-  },
-  {
-   "id": "D5",
-   "topic": "R34 资产路线与探针排期（启动时机已由 owner 重复指令确认为“现在”）",
-   "options": "(a) 并行保留两条路线：工业型材族（装配/递送/共抬叙事）+ 实验室器皿族（精细分拣/交接叙事）；(b) 只做工业装配；(c) 只做实验室器皿",
-   "rec": "(a)。两族共用同一 table_objects schema，成本主要在任务设计而非资产；先跑 4080 梁的 rod_pick 物理探针（GPU 空档）",
-   "since": "09-06 23:00 → 09-07 00:40 更新",
-   "status": "done",
-   "ruling": "09-08 16:36 owner：“两条保留一种就行”。设计线裁定：只做 (b) 工业装配路线（旗舰 cross_member_install + profile_handover / beam_seat / sleeve_insert / fastener_sort / frame_colift）。理由：owner 明确偏好装配类任务并批评现有器皿“太粗糙”；重物双臂共持 = 物理耦合 + 跨操作员近距离，正是安全论文要的场景；锥口夹具吸收对位误差，落座更稳；资产、目录、场景 yaml、测试均已就位。实验室器皿族（bin 装瓶、reagent_pick）停止扩展，不再进入演示任务集；掌抱共搬（box_colift）作为通用原语保留并复用于横梁共持。"
-  },
-  {
-   "id": "D6",
-   "topic": "SafeDuo 代码入 GitHub（私有 asimfish/safeduo，忽略 artifacts/媒体）",
-   "options": "(a) 现在建；(b) 等原会话空闲后建",
-   "rec": "已执行：私有仓库 asimfish/safeduo，首个快照 6c43487（870 文件，artifacts/third_party/媒体排除）；后续由设计线定期 commit",
-   "since": "09-06 23:00",
-   "status": "done"
-  },
-  {
-   "id": "D7",
-   "topic": "训练/四门迁到 A100 —— 已落地在 owner 指定的 tianyiyun-30109",
-   "options": "30110-pub2：Ubuntu 22.04 / glibc 2.35 / 驱动 580.65.06 合格，7 卡 0 GB/0%，外网直连；本地盘满（dataset-local 9 GB），环境落到共享 NFS dataset-assist-0（249 GB 可用，实测写 722 MB/s、读 258 MB/s，30109/30110/lotus 共享挂载 → 一处安装到处可跑）；容器无 NVIDIA 图形库 → 从同版本驱动包提取用户态 Vulkan 库（nvidia.com 在容器内 403，已从 Mac 中转 394 MB）。lotus-1/2 glibc 2.31 不可用；volc 驱动 535 且满载",
-   "rec": "已打通（09-07 20:10 在 30110 验证，20:50 按 owner 要求迁到 30109）： Isaac Sim 5.1 + IsaacLab@37ddf626 + SafeDuo 三级冒烟全过——Cartpole ✓、train_lagrangian 64 env ✓、4096 env 训练 ~17 s/iter（5090 上 a30b 为 29.6 s/iter，且当时被分卡）。四个容器特有的坑及修法：① NFS 是 sync 挂载，小文件极慢 → 环境/IsaacLab/Kit 缓存放 /dev/shm（471 GB），tar 到 NFS 持久化，a100_restore_env.sh 一分钟恢复；② pypi.org 超时 → 清华镜像 + NVIDIA 索引；③ 容器无 NVIDIA 图形库/无 /dev/dri → 从同版本驱动 .run 提取用户态库 + 手写 ICD + 用 __EGL_VENDOR_LIBRARY_FILENAMES 注册 libEGL_nvidia（否则 ICD 初始化失败）；④ PhysX GPU 退回 CPU 的真因 = omni.physx dlopen(\"libcuda.so\") 而容器只注入 libcuda.so.1 → 加一个 libcuda.so 软链；另 omni.iray.libs 缺 libGLU → conda 装 libglu；合成机器人 USD 里手部引用是 5090 绝对路径 → 改相对路径（已推回仓库）。红线：A100 run 不与 5090 run 同批配对比较。 30109 特殊处理：/dev/shm 只剩 3.9 GB（被 475 GB 其它数据占满），环境改放本地 NVMe /home/dataset-local/lyf_safeduo_a100（20 GB，从 NFS tar 2 分钟恢复），用 /dev/shm/liyufeng/safeduo_a100 软链保持环境内烙死的路径不变；不触碰 /opt/conda、dataset-local/liyufeng（owner 789 GB 工作区）与 lyf_safeduo（8-24 旧尝试）。30110 上我的训练与内存盘目录已全部清理",
-   "since": "09-07 01:10 → 15:50 更新",
-   "status": "done"
-  },
-  {
-   "id": "D8",
-   "topic": "实机布局变更：Franka 排整体前移 20 cm，两排间距 150 → 130 cm（owner 09-07 草图：FR3 间距 100、UR5 间距 90、基座离地 80）",
-   "options": "(a) 立即切换默认布局到 v8 → 所有在跑/排队实验口径断裂（a30b 四门不可比）；(b) v8 先作候选：新任务族（R34）与下一次重训一并切到 v8，四门主表在 v8 重跑；同时用 a27@stack_fix_v8 量化“布局变化本身”的代价；(c) 忽略，沿用 v7",
-   "rec": "v8 已进入重训（aF 直接在 v8 上训）。仍需 owner 确认桌子是否随 Franka 前移（决定夹具与站位的桌沿）",
-   "since": "09-07 02:20",
-   "status": "open"
-  }
- ],
- "verdicts": [
-  {
-   "date": "09-07 05:56",
-   "topic": "a30b@stack_fix（a30 再 +1600 iter，总 warm-start +2400）",
-   "verdict": "brake 1.0 / viol-free 0.96（min cross −0.1 mm）/ no-deadlock 0.96 / done 0.60/0.76 / 误刹(arm) 0.415 / fidelity 0.111——与 a27@stack_fix（0.96 / −2.3 mm / 0.92 / 0.36/0.80 / 0.417 / 0.116）几乎逐项相同，只把 a30 的死锁（0.56）救回到 a27 水平。结论：warm-start 无论 +800 还是 +2400 都不能让离合器适应活腕；R33 的出路只剩完整课程重训（D2），且应直接在 v8 布局 + 修复环境上做，τ 一并定",
-   "evidence": "artifacts/clutch/a30b_grid_stack_fix/cell_hi0.5_lo0.2.json"
-  },
-  {
-   "date": "09-07 05:55",
-   "topic": "a27@stack_fix_v8：布局 v8（两排 130 cm）本身的代价（只换布局，其余同 stack_fix）",
-   "verdict": "viol-free 0.96 → 0.84（4/25 局越线，min cross −5.3 mm）、no-deadlock 0.92 → 0.84、done 0.36/0.80 → 0.40/0.56、误刹 0.417 → 0.425、fidelity 持平 0.117。两排靠近 20 cm 让跨机共享带加倍，未重训的 a27 显著更常越线/死锁——v8 必须伴随重训，不能只换 env",
-   "evidence": "artifacts/clutch/a27_grid_stack_fix_v8/cell_hi0.5_lo0.2.json；scripts/forensics/a27_gate_stack_fix_v8.sh"
-  },
-  {
-   "date": "09-07 03:50",
-   "topic": "R36 迁移配方核验：R26 四族在 v8 布局上的设计期重建（CPU，v8 提供器）",
-   "verdict": "不动站位：bottle/tray/box/rod 四族全部失败，签名一致 self ≈ 1–2 mm——基座向中线挪了 10 cm 后，世界坐标常量站位（棒 x=0.53 等）离基座只剩 0.12 m，臂折叠触自碰地板；站位随基座同向挪 0.10 m（棒 0.53→0.43、U 方块 −0.44→−0.34）后四臂全部筛出候选、抓取/搬运相位通过，只剩内联的 retreat 航点（U_L (−0.38,0.42,1.16) 仍是 v7 数）在 self 1.3 mm 被挡。结论：v8 迁移 = 任务库里所有世界坐标站位/航点向车道方向平移 0.10 m（车道附近 x≈0 的不动），机械性工作；建议顺手改为“基座相对坐标”写法，以后布局再变只改一个常量",
-   "evidence": "artifacts/forensics/20260907/r36_build_r26_on_v8.log、r36_build_rod_v8_shiftm10.log；scripts/forensics/r36_build_r26_on_v8.py"
-  },
-  {
-   "date": "09-07 02:57",
-   "topic": "探针 5：rod_pick 轨迹以 squeeze_extra 0.15 重建（原 0.06），手指 100/5/5、摩擦 0.35",
-   "verdict": "0.39 kg：两根型材全程随手（rod_l z 0.84→0.98、rod_r →0.95，搬运 15 cm 后放置），真成功——证实瓶颈是闭合深度；0.78 kg：两根都被提起（z 0.93/0.92）但 t≈8.6 s 搬运加速时掉落（moved 0.066 < 0.12 m）。结论：目录里型材的 squeeze_extra 定为 0.15（已改）；实心 4080（0.78 kg）留给双臂共搬，或再试 squeeze 0.20 + 增益 200/10/20",
-   "evidence": "artifacts/forensics/20260907/r34_beam5_sq15_m039_raw.log / _m078_raw.log；artifacts/task_trajs_r34_sq15/rod_pick；scripts/forensics/r34_build_rod_squeeze.py"
-  },
-  {
-   "date": "09-07 02:20",
-   "topic": "探针 4：0.78 kg 型材 + 物体摩擦 0.9/0.8（铝对橡胶指垫口径），手指 100/5/5 与 200/10/20 各一次",
-   "verdict": "两次仍 “object never picked up”。至此质量 0.78 kg 下：增益 ×2 无效、摩擦 ×2.6 无效 → 瓶颈不在力矩或摩擦，而在闭合深度：rod_pick 轨迹里的手指闭合量（squeeze_extra 0.06，R27 为防方块翘起从 0.15 降下来）被固化在录制事件里，指垫只是“碰到”而非“夹紧”。下一步探针 5：用 --squeeze-extra 0.15 重建 rod_pick 轨迹再测 0.39/0.78 kg（“用力操作”的正确旋钮）",
-   "evidence": "artifacts/forensics/20260907/r34_beam4_m078_mu09_h100_raw.log / _h200_raw.log；r34_beam3_m078_h200_raw.log；r34_beam2_m039_raw_b.log（0.39 kg F_L 搬运中途掉落但落在放置区被判 success——判据需补“全程随手”）"
-  },
-  {
-   "date": "09-07 02:25",
-   "topic": "布局 v8（两排 1.2964 m）设计期几何",
-   "verdict": "静息位跨机最小裕度 0.763 → 0.572 m（−0.19），self_F/self_U/table 逐位不变；FR3/UR5e 实用臂展 ~0.85 m → 每臂过中线 ~0.20 m（v7 ~0.10），共享工作带加倍。所有 R26/R27 任务站位与已录轨迹在 v8 需重建；a27/a30 未见过 v8",
-   "evidence": "tests/test_scene_layout_v8.py；assets_src/real/scene_layout_v8.yaml"
-  },
-  {
-   "date": "09-07 01:59",
-   "topic": "R34-A 探针 2：真 4080 型材质量扫描（手指执行器 100/5/5）",
-   "verdict": "0.20 kg：两根都搬起放下（探针 1）；0.39 kg：F_L 提起随手（z +9.5 cm、dz 恒 −14.2 cm），F_R 滑脱未提起（该轮 t≈8 s 因 GPU0 接近满载 Kit 崩溃，正在重跑）；0.78 kg（实心 4080 真实质量）：两手均 “object never picked up”。结论：当前五指握力对真实铝型材不足，需提高手指增益/力矩（探针 3：200/10/20）或双臂共搬或用薄壁轻型材",
-   "evidence": "artifacts/forensics/20260907/r34_beam2_m039_raw.log / r34_beam2_m078_raw.log"
-  },
-  {
-   "date": "09-07 02:00",
-   "topic": "A100 迁移复核（30109 / lotus-1 / volc）",
-   "verdict": "30109：系统合格但 dataset-local 仅 29 GB、8 卡全忙；lotus-1：卡闲但 glibc 2.31 装不了 Isaac Sim 5.1；volc：驱动 535 且两卡 100%。结论：目前没有一台可以立刻部署，30109 需先协调磁盘与卡（D7）",
-   "evidence": "面板会话 02:00 只读 ssh 复核；artifacts/a100_recon_20260827.md"
-  },
-  {
-   "date": "09-07 00:59",
-   "topic": "R34-A 探针 1：真 4080 T 槽型材替换 R27 盒梁（rod_pick 轨迹、质量 0.20 平价）",
-   "verdict": "raw success（placed in zone at rest）、viol_steps 0；rod_l z 0.840→0.969、obj−flange 恒 −13.3 cm——型材刚性随手；USD 目录生成路径（UsdFileCfg + convexHull）在 Isaac 内一次通过，3 分钟跑完",
-   "evidence": "artifacts/forensics/20260907/r34_beam1_raw.log；artifacts/viz/a8_v4demo/r34_beam1_raw.json"
-  },
-  {
-   "date": "09-07 00:45",
-   "topic": "a30@stack_fix_la06（活腕 warm-start 策略 + 0.06 s 速度感知带）",
-   "verdict": "viol-free 1.0 / min cross 25.2 mm / no-deadlock 0.80（无带 0.56）/ done 0.64/0.84 / 误刹 0.466 / fidelity 0.052——带把 a30 的死锁救回一半，但误刹与保真仍劣于 a27 同带（0.418 / 0.067）；warm-start +800 不足以适应活腕，等 a30b",
-   "evidence": "artifacts/clutch/a30_grid_stack_fix_la06/cell_hi0.5_lo0.2.json"
-  },
-  {
-   "date": "09-06 22:30",
-   "topic": "R33④ lookahead 速度感知阻尼带",
-   "verdict": "a27@stack_fix：无带 viol-free 0.96 / min cross −2.3 mm / fid 0.116；τ=0.06 s → 1.0 / 25.5 mm / 0.067；τ=0.15 s → 1.0 / 31.6 mm / 0.045。硬门靠带能兜住，保真要靠在带下训练的策略",
-   "evidence": "artifacts/clutch/a27_grid_stack_fix_la{,06}/；headon_trace_r16a_w1.npz"
-  },
-  {
-   "date": "09-06 18:10",
-   "topic": "跨机越线机制",
-   "verdict": "迎头两臂 1.1/0.8 rad/s 相向、裕度 0.7 m/s 下降；离合在 36 mm（已在 40 mm 带内）才锁；锁后关节 150 ms 才停，惯性 7–10 cm 冲过带宽。结构原因 = R18 40 mm 参与门换保真的代价",
-   "evidence": "forensics/20260906/headon_violation_trace.py"
-  },
-  {
-   "date": "09-06 09:36",
-   "topic": "a30（a27 warm-start +800 @fix）",
-   "verdict": "viol-free 1.0、刹停 0/2 步，但 fidelity 0.094、误刹 0.476、no-deadlock 0.56——未适应活腕；启动 a30b +1600",
-   "evidence": "a30_grid_stack_fix"
-  },
-  {
-   "date": "09-06 06:45",
-   "topic": "R26 四族全部物理化",
-   "verdict": "bottle / rod / box / relay 均 raw + a27 门控 success 零违规；直接双手同握 8 轮失败量化（F2 抓取拖动 +4.5/+4.7 cm、DFX 侧捏窗口 1–2 cm、同握需 ≥25 cm 间距）",
-   "evidence": "r27_*_s0_phys_cam*.mp4；forensics/20260906/r27_baton1-11"
-  },
-  {
-   "date": "09-06 01:10",
-   "topic": "R33③ a27 在活腕环境失效",
-   "verdict": "fidelity 0.302→0.156、误刹 ×2.8、viol-free(cross) 1.0→0.92；全部 v7 四门数字为死腕环境结果",
-   "evidence": "a27_r18_grid_stack_r16a"
-  },
-  {
-   "date": "09-05 22:30",
-   "topic": "R33① UR5 wrist_3 驱动数值失稳",
-   "verdict": "3e-4 kg·m² 惯量 × kp 1200 @120 Hz 隐式驱动不稳定，自 R14 v7 起 U 手绕腕轴朝向不受控；armature 0.05 修复",
-   "evidence": "forensics/20260905/wrist3_*_probe.py"
-  },
-  {
-   "date": "09-05 03:15",
-   "topic": "R31 三臂（a28/a28b/a29）",
-   "verdict": "全部判负；共同签名 U 臂误刹翻倍，杠杆在 hazard 标签语义而非 cost 通道；a27 + stack 执行栈更优",
-   "evidence": "a28*_r18_grid_stack / a29_r18_grid_stack"
-  },
-  {
-   "date": "09-02",
-   "topic": "R28 a27 验收 / R29 handover 真根因",
-   "verdict": "a27@0.5:0.2 四门全过且优于 a25 冠军；handover 门控失败真根因 = UR5 upper_arm×table 结构行永远在 damper 门内（非策略问题）",
-   "evidence": "a27_r18_grid；tests/test_r28_r29_pins.py"
-  }
- ],
- "queue": [
-  {
-   "goal": "G1/算法",
-   "task": "SafeTransport 增量实验 E0–E4（PID 基线 vs 论文默认 vs 校准版 vs 证书触发 Safe vs Hybrid），同预算 a27 热启动 400 迭代 @ v8+fix2_la06；出分后四门 + 对照表",
-   "status": "run",
-   "owner": "设计线",
-   "eta": "09-10（按显存空档，串行 5 臂）",
-   "note": "队列 sd109_st_queue；诊断键 stats.jsonl st.*"
-  },
-  {
-   "goal": "G1/R33/R36",
-   "task": "aF_v8_fix2_la06_s46 完整课程重训（A100 30109 GPU2，3600 iter）→ 四门 stack_fix2_v8_la06 → 与 a27@stack_fix / a27@stack_fix_v8 对照",
-   "status": "run",
-   "owner": "设计线（监控）",
-   "eta": "共卡，按首轮 wall_s 估算",
-   "note": "logs: safeduo_a100/logs/aF_v8_fix2_la06_s46_train.log"
-  },
-  {
-   "goal": "基建/R21",
-   "task": "A100 扩容部署（30109）：conda env 落 dataset-local → isaacsim 5.1 + IsaacLab → Vulkan ICD 预案 → 三级冒烟 → 首个 4096 env 训练对照 wall_s",
-   "status": "done",
-   "owner": "设计线（待 D7）",
-   "eta": "09-07 20:10",
-   "note": "30110-pub2；环境在 /dev/shm（NFS tar 备份）；scripts/forensics/a100_*.sh"
-  },
-  {
-   "goal": "G1/G2/R35",
-   "task": "四门扩展：相位同步率（每协作任务族 2–5 检查点 + 时序容差）与伙伴延迟探针（一方操作员随机停 0.5–2 s）——SAI 口径",
-   "status": "planned",
-   "owner": "设计线→实验线",
-   "eta": "aF 出分后",
-   "note": "docs/REFERENCE_STUDY_20260907.md §1"
-  },
-  {
-   "goal": "G4/R34",
-   "task": "夹具 v2：矩形外框 + 锥口搁座（入口 +10 mm / 底 +3 mm）+ cross_member_install 设计期构建（v8）",
-   "status": "doing",
-   "owner": "设计线",
-   "eta": "09-08",
-   "note": "资产 + yaml + 测试已完成（6b26a98）；剩设计期轨迹构建"
-  },
-  {
-   "goal": "G1/R33",
-   "task": "等 a30b 四门（stack_fix）；出分后五列对照表更新，判定是否需要完整重训",
-   "status": "run",
-   "owner": "原会话（实验线）",
-   "eta": "09-07 06:00",
-   "note": "GPU1 训练 + 链式四门"
-  },
-  {
-   "goal": "G1/R33",
-   "task": "a30@stack_fix_la06 四门（活腕训练策略 + 0.06 s 带）",
-   "status": "run",
-   "owner": "原会话",
-   "eta": "09-07 01:00",
-   "note": "GPU0"
-  },
-  {
-   "goal": "G4/R34",
-   "task": "实验线：chembench 实验室资产接入（object_catalog_lab.yaml + task_objects usd/catalog + duo_env UsdFileCfg）→ 首个器皿抓取探针",
-   "status": "run",
-   "owner": "实验线（原会话）",
-   "eta": "09-07 凌晨",
-   "note": "与设计线资产共用 schema；未 commit（由设计线在下一次快照提交）"
-  },
-  {
-   "goal": "G4/R34",
-   "task": "R34-A 资产：程序化 4040 T 槽型材 + 角码 USD、KLT_Bin/YCB 下载、凸分解与白名单登记（不占 GPU）",
-   "status": "done",
-   "owner": "设计线（本面板维护者）",
-   "eta": "09-07 00:35",
-   "note": "10 件 USDA + 预览图 + 目录 + yaml + 测试；commit 0b5a02e"
-  },
-  {
-   "goal": "G4/R34",
-   "task": "R34-A 任务设计：型材递送 / 共持插接 / 框架共抬 的相位与判据；设计期 IK 审计（CPU）",
-   "status": "run",
-   "owner": "设计线",
-   "eta": "待 D5",
-   "note": "判据草案在 r34_assets.yaml tasks:（profile_handover / beam_seat / sleeve_insert / frame_colift）；实装 task_library_r34.py 待 GPU 探针先验证型材随手"
-  },
-  {
-   "goal": "G4/R34",
-   "task": "R34-A GPU 探针 + 多机位成片 + VLM 质检",
-   "status": "done",
-   "owner": "设计线",
-   "eta": "09-07 02:57",
-   "note": "探针 1–5：几何 ✓（USD 生成路径通）、质量扫描 → 闭合深度 0.15 定案；0.78 kg 待双臂方案"
-  },
-  {
-   "goal": "G1/R35",
-   "task": "SAI 式分臂顺序微调：冻结 F 侧门控只微调 U 侧头（stack_fix），再交换，最后在迎头窗口做稀疏干预微调",
-   "status": "planned",
-   "owner": "实验线",
-   "eta": "待 D2",
-   "note": "作为完整重训前的低成本候选"
-  },
-  {
-   "goal": "G1/R35",
-   "task": "TRACE 式路径签名意图特征：每臂最近 H 步关节速度截断签名（2–3 阶）入 α/p 头，消融",
-   "status": "planned",
-   "owner": "实验线",
-   "eta": "待 D2",
-   "note": "纯 torch，4096 env 流水线可直接验证"
-  },
-  {
-   "goal": "G2/R35",
-   "task": "四门新增过程指标：phase-sync 保持率、伙伴延迟探针（暂停一方操作员）",
-   "status": "planned",
-   "owner": "设计线→实验线",
-   "eta": "",
-   "note": "对应 SAI 的 Phase Sync / Yield-Wait"
-  },
-  {
-   "goal": "P",
-   "task": "PAPER_NOTES 相关工作补 SAI / TRACE；死腕标注段落草稿",
-   "status": "wait",
-   "owner": "设计线",
-   "eta": "09-07",
-   "note": "待 D1"
-  },
-  {
-   "goal": "基建",
-   "task": "SafeDuo 代码建私有 GitHub 仓库（asimfish/safeduo），MASTER_REPORT 同步进面板",
-   "status": "done",
-   "owner": "设计线",
-   "eta": "09-06 23:50",
-   "note": "MASTER_REPORT 镜像随手工更新同步（launchd 读不到 ~/Desktop，见契约）"
-  }
- ],
- "literature": [
-  {
-   "key": "SAI",
-   "title": "Robots that Collaborate: Sequential Asymmetric Imitation for Learning Coupled Robot Policies（CoRL 2026，Zihao Li / Weiming Zhi 组）",
-   "url": "https://arxiv.org/abs/2606.16490",
-   "gist": "已读全文+附录：两台双臂移动机械臂（17 维状态/动作），单操作员三阶段数据（A 对柔顺人类 → 冻结 A 部署、遥操 B 且给 A 加速度缩放/动作噪声/时序偏移/初始扰动 → 双机闭环稀疏干预，动作维度掩码，干预集≈30%）；ACT+30 步历史 GRU+级联动作头，观测含力矩反馈；Phase Sync = 预定义 2–5 检查点在时序容差内双机同步完成（分母 N×K，未达检查点计失败），Yield/Wait = 伙伴延迟机会上的正确响应；四任务 Success 23–50%→53–70%",
-   "for_safeduo": [
-    "相位同步率进四门（每任务族 2–5 检查点 + 时序容差，门控 ≥ raw 的 90%）；伙伴延迟探针进 L2 场景库",
-    "分臂顺序微调（冻结 F 侧→微调 U 侧→交换→迎头窗口稀疏干预，只监督出问题臂的 α/p）作为 R33 低成本路线",
-    "Stage-2 式伙伴扰动（速度缩放/噪声/时序偏移）搬进随机操作员流——R31 缺的“伙伴分布”变量",
-    "动机与相关工作：SAI（数据课程）/ TriPilot-FF（触觉塑形）/ SafeDuo（指令门控+硬兜底）同表对照"
-   ]
-  },
-  {
-   "key": "TRACE",
-   "title": "TRACE: Trajectory-Routed Causal Evidence / Memory for Delayed-Evidence Visuomotor Imitation（CoRL 2026，同组）",
-   "url": "https://arxiv.org/abs/2606.14551",
-   "gist": "已读全文：17 维状态、深度 3 路径签名（5,219 维→512）+ 签名增量 δ_t 作轨迹键；K=4–6 个 512 维槽的路由写读；适配器不改动作头/损失。五个真机延迟证据任务 ACT 25.5→69.2、Diffusion 25.0→59.5；消融：只把签名当输入 45.5、无路由槽 52.2、完整 69.2，顺序反转负对照 37.8",
-   "for_safeduo": [
-    "R35-② 校准：我提的“路径签名意图特征”= 他们的 Signature-only 消融（+20 分量级），先做这一步；维度上逐臂 7 维取深度 2–3（56/399 维/臂）+ 跨机臂对 14 维取深度 2（210 维），别对 28 维整体取深度 3（2.2 万维）",
-    "用签名增量 δ_t 表达“刚刚在减速/后撤”，正是 R28 coop 豁免与 R33④ 动量问题缺的那一维",
-    "完整 K 槽路由记忆留给滞回死锁释放（替代 R30 手工规则）",
-    "两篇同组 CoRL 2026 一并引用"
-   ]
-  },
-  {
-   "key": "4-arm-bench",
-   "title": "四臂协作装配 MuJoCo Benchmark（小红书，搭建中；4×Franka 铝型材结构搭建 + 精细分拣 + 协作包装，面向工业场景）",
-   "url": "https://www.xiaohongshu.com/explore/6a9c82f1000000002902dd0c",
-   "gist": "逐帧看过演示视频（88 s）：方桌四角 4×Franka 朝桌心；桌心夹具上已装好矩形铝型材外框；两臂物理夹持一根横梁共持运送并装入外框，第三臂装紧固件并敲击；四角 KLT 小料箱立放紧固件、布上放工具；分步字幕 Positioning / Establishing physical grasps / Transporting and installing the cross member / Installing and striking the fastener；3/4 俯视全景机位",
-   "for_safeduo": [
-    "R34-A 旗舰任务改为“装横梁”：外框夹具 + 4080 横梁双臂共持落座 + U 臂装角件敲击——把“0.78 kg 单手抓不住”变成任务设计，把“多臂在同一小区域近距离作业”变成离合器的展示场景",
-    "两排面对面 + 异构（FR3/UR5e 五指手）是我们与他们的差异化：跨机型、跨操作员的共享工作区安全",
-    "录制器 phase 名改成人可读工序名进字幕；全景机位 camW 与他们的演示视角一致",
-    "笔记与落地清单：docs/BENCHMARK_4ARM_ASSEMBLY.md"
-   ]
-  },
-  {
-   "key": "TriPilot-FF / Zeno-1",
-   "title": "TriPilot-FF: Coordinated Whole-Body Teleoperation with Force Feedback（RSS 2026，arXiv 2602.09888）+ Zeno-1 协作物理智能架构（ZENO AI 报告）",
-   "url": "https://arxiv.org/abs/2602.09888",
-   "gist": "TriPilot-FF：脚踏板 + 激光雷达接近信号渲染阻力，“在没有显式避碰控制器的情况下把操作员指令塑形为避碰行为”，臂端力反射，遥操反馈信号喂进 ACT 提升策略。Zeno-1：每台机器人同一 3B 模型 30 Hz、无中央调度，运动/物体响应/接触即接口；交互记忆跨 8 子任务 10 分钟；接触前预测性内省（87% vs 61%）",
-   "for_safeduo": [
-    "与 SafeDuo 是同一问题的两条路：他们在操作员端做触觉塑形（不保证零碰撞），我们在机器人端做门控 + 可证硬兜底；可叠加——离合器 α 可回传为踏板/手柄阻力（G3 阶段的对接点）",
-    "Zeno-1 的“一台的路径是另一台的约束、实时读取”“共载以张力为协调信号”是我们 R32/R34 协作任务判据的好语言",
-    "同组 “Robot-Friendly Scaffolding with Passive Error Correction”：锥形连接件吸收对位误差 → R34 搁座/套管做锥口（入口 +10 mm、底 +3 mm）"
-   ]
-  }
- ],
- "changelog": [
-  {
-   "time": "09-08 21:18",
-   "text": "owner 指示：参考 SafeTransport 论文改进算法并做增量实验 → 接入容量流投影（子类）、Isaac 冒烟通过、E0–E4 五臂队列在 30109 GPU2 排队；算法框图重绘 v2；面板采集器改为多根扫描（/home/batchcom 下的 A100 运行也能看到）"
-  },
-  {
-   "time": "09-08 19:21",
-   "text": "面板新增“算法”页：框图 SVG（运行时回路 / 训练信号 / 评测三段）、问题建模、组件表、aF 配方参数、谱系、参考设计对照（SAI 9 项 + TriPilot-FF + TRACE）；维护契约加“算法变更三处同步”"
-  },
-  {
-   "time": "09-08 16:36",
-   "text": "owner 裁定：任务族两条只保留一种 → 设计线选工业装配路线（D5 关闭，实验室器皿族停止扩展）；30109 允许专用一卡（aF 留在 GPU2，不再扩到其它卡）"
-  },
-  {
-   "time": "09-08 02:43",
-   "text": "R34-A 夹具 v2（矩形外框 + 锥口搁座/端挡/角件槽）+ KLT 料箱 + cross_member_install 场景 yaml（跨接缝，两排臂展校核）落地，代码仓 6b26a98；测试 4/4"
-  },
-  {
-   "time": "09-08 02:19",
-   "text": "参考工作深度学习完成：SAI 附录（指标精确定义、三阶段协议、扰动与掩码）、TRACE 全文、benchmark 视频逐帧、作者主页（Zeno-1、TriPilot-FF、被动纠错装配）→ docs/REFERENCE_STUDY_20260907.md；新增 R35-③ 相位同步率/伙伴延迟探针、R34 锥口夹具 v2、相关工作三方对照"
-  },
-  {
-   "time": "09-07 23:08",
-   "text": "补课两篇参考：TRACE 全文 + 四臂装配 benchmark 逐帧读字幕；R34-A 旗舰任务改为“装横梁”（双臂共持 + 装紧固件敲击）；docs/BENCHMARK_4ARM_ASSEMBLY.md 新增"
-  },
-  {
-   "time": "09-07 20:59",
-   "text": "按 owner 要求把 A100 部署从 30110 迁到 30109：环境从 NFS tar 恢复到 /home/dataset-local/lyf_safeduo_a100（2 分钟），Vulkan/PhysX GPU/二级冒烟通过，aF 重训在 30109 GPU2 重新发车；30110 上的训练与内存盘已清理"
-  },
-  {
-   "time": "09-07 20:12",
-   "text": "A100（30110-pub2）部署完成并三级冒烟通过；aF 完整课程重训发车（GPU2）；面板服务器快照扩为 5090 + A100 两台"
-  },
-  {
-   "time": "09-07 16:13",
-   "text": "a30b@stack_fix 与 a27@stack_fix_v8 四门入矩阵并判决（warm-start 关闭；v8 需伴随重训）；A100 部署开工（30110-pub2，NFS 环境，Vulkan 库中转）"
-  },
-  {
-   "time": "09-07 03:46",
-   "text": "a27@stack_fix_v8 四门在 GPU0 跑（~05:30 出）；R26 四族 v8 重建核验 → 迁移配方定案（站位/航点向车道平移 0.10 m）"
-  },
-  {
-   "time": "09-07 02:57",
-   "text": "探针 5 定案：闭合深度 0.15 让 0.39 kg 型材全程随手；0.78 kg 中途掉落 → 目录 squeeze_extra 0.06→0.15；实心 4080 归双臂共搬"
-  },
-  {
-   "time": "09-07 02:42",
-   "text": "全景机位 camW 录像入库（r34_beam1_raw_camW）；视频同步管线修复半截文件 bug（去掉 --ignore-existing，加 2 分钟落盘窗口与 ffprobe 完整性校验）"
-  },
-  {
-   "time": "09-07 02:32",
-   "text": "布局 v8（130 cm）文件 + 设计期 SceneLayoutV8 + 评测 env + 测试入库（commit 推送）；探针 3/4 判负（增益、摩擦都不是瓶颈 → 闭合深度）；全景机位 camW 录像在跑；视频库加全景/近景标签"
-  },
-  {
-   "time": "09-07 02:06",
-   "text": "探针 2 质量扫描出结论（0.78 kg 抓不起，0.39 kg 单手滑脱）→ 探针 3 提高手指增益 200/10/20 在跑；A100 三机复核：今晚不部署（30109 磁盘 29 GB、全卡忙；lotus glibc 2.31；volc 驱动 535）；代码仓库快照 9cd310e 含实验线 WIP"
-  },
-  {
-   "time": "09-07 01:52",
-   "text": "R34-A 首条真实工业件录像 r34_beam1_raw_camX 入视频库；视频库 131 部（转码后共 ~60 MB）；面板 v2 分页版上线"
-  },
-  {
-   "time": "09-07 01:27",
-   "text": "面板 v2 上线：分页布局 + 视频库（asimfish/safeduo-media，自动从远端同步转码）；R34-A 探针 1 success；a30@la06 四门入矩阵；新增决策 D7（A100 迁移）与两条线动态卡"
-  },
-  {
-   "time": "09-07 00:40",
-   "text": "R34 开工：设计线生成 10 件工业装配资产（4040/4080 T 槽型材、三通角件、套管、料架、底框夹具）+ 目录/yaml/测试（commit 0b5a02e）；实验线并行接入 chembench 实验室资产并扩展 table_objects USD schema；设计线撤回重复的 task_objects_r34.py 以统一 schema"
-  },
-  {
-   "time": "09-06 23:50",
-   "text": "SafeDuo 代码入私有仓库 asimfish/safeduo（首个快照 6c43487）；面板 launchd 定时任务上线；MASTER 镜像因 macOS TCC 只能在交互式运行时同步"
-  },
-  {
-   "time": "09-06 23:40",
-   "text": "面板上线：服务器实时快照（bjxy_5090）、四门矩阵 75 cells 自动生成、路线图 R1–R35、任务族与资产、决策 D1–D6、工作队列、文献启发；docs/R34_SCENE_ASSETS.md 与 docs/LITERATURE_SAI_TRACE.md 入库"
-  },
-  {
-   "time": "09-06 22:35",
-   "text": "原会话：a30@stack_fix_la06 四门启动（GPU0）；lookahead τ=0.06 结果入 MASTER v2.51"
-  },
-  {
-   "time": "09-06 19:45 / 22:30",
-   "text": "owner 两条新指令（小红书四臂装配 benchmark → 场景与资产升级；SAI/TRACE 两篇 CoRL 2026 → 思考启发）；原会话轮询中未消费，由设计线接手"
-  },
-  {
-   "time": "09-06 17:33",
-   "text": "a30b（a30 +1600 iter）启动，链式 stack_fix 四门"
-  }
- ],
- "lines": [
-  {
-   "name": "实验线（原 safeduo_实验 会话）",
-   "status": "run",
-   "now": "R34 实验室路线：料箱（bin）装瓶 + 掌抱共搬门控录像迭代（掌压 1.5→2.5 cm）；GPU0 显存争抢导致录像多次失败，正写“等显存空档再跑”的包装脚本；a30b 链已完成",
-   "next": "（设计线请求，依据 owner D5 裁定）录像/门控迭代切到工业装配族：bin 装瓶 → KLT 料箱取角件（duo_env_v7_r34_cross_r27r16.yaml）、掌抱共搬 → 4080 横梁双臂共持落座；a30b 四门五列对照表照常",
-   "updated": "09-07 16:13"
-  },
-  {
-   "name": "设计线（面板维护者）",
-   "status": "run",
-   "now": "SafeTransport 增量：容量流投影接入 PPO（子类 + 父类一致性测试 + Isaac 冒烟通过），E0–E4 队列在 GPU2 等显存；框图 v2；aF 监控",
-   "next": "E1/E0 出分后先看代价轨迹与 IS-clip；四门配对评测；决定是否把 Safe/校准版写进 aF 后继配方；cross_member_install 设计期轨迹",
-   "updated": "09-07 20:59"
-  }
- ]
+  "updated": "2026-09-12T03:00:00",
+  "north_star": "RSS 2027：双人遥操双双臂机器人（FR3×2 + UR5e×2 面对面，Inspire RH56F2/DFX 五指手）在学习型让行协调器（离合器 α+p）+ 解析硬兜底（backstop）保护下，工作包络内任意遥操指令零损坏碰撞、最小干预；以此在真机安全采集大规模协作演示数据。摘要 2027-01-23 / 正文 01-30。",
+  "pct_note": "百分比为面板维护者估算（以 MASTER §9 各行验收为准）",
+  "goals": [
+    {
+      "id": "G0",
+      "name": "基建：吞吐 / 距离正确性 / 稳定性 / 一致性",
+      "pct": 100,
+      "status": "done",
+      "summary": "35,769 步/s @4096 env；可追责口径零漏检；2 h 烤机零崩溃；投影 vs QP P99 1.47%",
+      "evidence": "VISION §3 四项 [x]；R1/R11/R16/R20",
+      "next": "r16 壳与活腕 yaml 是否转正为训练/评测默认（待 owner）"
+    },
+    {
+      "id": "G1",
+      "name": "安全 + 协调增益（离合器 a27 四门）",
+      "pct": 70,
+      "status": "verifying",
+      "summary": "a27@0.5:0.2 四门全过且优于 a25 与 CBF-QP 基线；但 R33 证明这些数字来自“U 手死腕（有效 5 DOF）”环境，修复环境下 a27 失效、a30 未适应",
+      "evidence": "R28 验收；R33 ③④；gates.json 矩阵",
+      "next": "a30b（~06:00 出四门）→ 若仍不收敛：完整课程重训（≈24 h GPU，待 owner）或 R35 分臂顺序微调"
+    },
+    {
+      "id": "G2",
+      "name": "对抗鲁棒：L2 场景库 / L3 对抗课程",
+      "pct": 40,
+      "status": "wait",
+      "summary": "L2 定向场景（迎头/边缘逼近）与 directed 窗口已是四门组成部分；L3 adversary 代码在（algo/adversary.py），留出攻击集评测未做",
+      "evidence": "R28 directed 取证；eval/clutch_eval 四窗口",
+      "next": "伙伴延迟探针（SAI 式）入 L2 场景库；L3 留出集评测排期"
+    },
+    {
+      "id": "G3",
+      "name": "真机：conformance + shadow → 双人会话",
+      "pct": 5,
+      "status": "planned",
+      "summary": "v7 真机资产（UR5 + RH56DFX / FR3 + RH56F2）已入库；ROS 桥 / adapter 未开工",
+      "evidence": "R14",
+      "next": "M3 计划 11-24 前；先 hardware-in-the-loop"
+    },
+    {
+      "id": "G4",
+      "name": "数据与演示：协作任务资产 + ≥200 条演示 + 视频",
+      "pct": 40,
+      "status": "verifying",
+      "summary": "R26 四族 + S9 三棒全部纯物理抓取、多机位成片 46 部；但物体全是参数化几何体（owner：太粗糙）→ R34 工业装配任务族与真实资产",
+      "evidence": "R26/R27；tasks.json；gallery/",
+      "next": "R34-A 4040 型材框架搭建（递送 / 共持插接 / 框架共抬）"
+    },
+    {
+      "id": "P",
+      "name": "论文（RSS 2027）",
+      "pct": 25,
+      "status": "wait",
+      "summary": "TECH_REPORT / PAPER_NOTES / MASTER 活文档齐；主表四门数字需按死腕环境重标或用修复环境重跑；相关工作需补 SAI/TRACE（CoRL 2026）",
+      "evidence": "paper/PAPER_NOTES.md；R33 推论",
+      "next": "决策：四门数字处理口径（标注 vs 重跑）"
+    }
+  ],
+  "focus": [
+    "SafeTransport 五臂（E0–E4）09-11 出分：全部未达验收；E1 误刹 −10.6 pp 但真实 rollout 复核为退化重加权（留格样本全截 0.2），非容量投影",
+    "v2.2 修复（76a410f，20 测试）：自环/支撑容量/可行性恢复/经验平衡/经验参照核/收缩权重；同一真实 rollout 上修正后投影 ≈ 恒等（w 5–95 分位 [0.99, 1.01]）",
+    "E5（修正投影）→ E6（留格重加权消融）在 30109 GPU2 顺序跑 + 配对四门队列；判读 E5 vs E0、E6 vs E1（预计 09-12 中午前出分）",
+    "aF 完整课程 3600 迭代已跑完（model_last.pt）；四门 stack_fix2_v8_la06 待排（GPU2 排在 E5/E6 四门之后）",
+    "待 owner：D8 桌子是否随 Franka 前移；GPU2 与另一用户 9.6 GB 任务共卡是否可接受"
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "topic": "论文四门数字：全部 v7 四门（a25–a27）为“U 手死腕”环境结果",
+      "options": "(a) 正文如实标注“5 DOF 有效自由度”并附修复环境复测；(b) 主表改用修复环境重跑数字（依赖 a30b/重训）",
+      "rec": "先 (a) 保底，a30b 出结果后决定是否 (b)",
+      "since": "09-06 01:10",
+      "status": "open"
+    },
+    {
+      "id": "D2",
+      "topic": "修复环境完整课程重训（≈24 h GPU）——a30b 已判：warm-start 路线关闭",
+      "options": "(a) 立即排队；(b) 等 a30b 四门；(c) 先试 R35 分臂顺序微调（成本 ~1/4）",
+      "rec": "已发车（09-07 20:54，30109 GPU2，与他人作业共卡）：aF_v8_fix2_la06_s46 = a27 血统配方从零训 3600 iter，env duo_env_v7_r18_fix2_v8_la06；30110 上 20:09 起的同名 run 已按 owner 要求停止并删除",
+      "since": "09-06 10:00",
+      "status": "done"
+    },
+    {
+      "id": "D3",
+      "topic": "R32 交接安全语义",
+      "options": "(a) coop_handover 条件豁免（改安全契约）；(b) 长物体 ≥60 cm；(d) 接受放-取式间接接力为交接的物理口径",
+      "rec": "(d) 现在可用；R34-A 型材（30–60 cm 横握）可能让 (b) 自然成立，再评估是否需要 (a)",
+      "since": "09-05",
+      "status": "open"
+    },
+    {
+      "id": "D4",
+      "topic": "R29 + R30b 默认开、r16 壳与活腕/重力补偿 yaml 转正",
+      "options": "(a) 转正为训练/评测默认；(b) 仍作录制专用",
+      "rec": "(a)，随 a30b 结果一并",
+      "since": "09-03 / 09-05",
+      "status": "open"
+    },
+    {
+      "id": "D5",
+      "topic": "R34 资产路线与探针排期（启动时机已由 owner 重复指令确认为“现在”）",
+      "options": "(a) 并行保留两条路线：工业型材族（装配/递送/共抬叙事）+ 实验室器皿族（精细分拣/交接叙事）；(b) 只做工业装配；(c) 只做实验室器皿",
+      "rec": "(a)。两族共用同一 table_objects schema，成本主要在任务设计而非资产；先跑 4080 梁的 rod_pick 物理探针（GPU 空档）",
+      "since": "09-06 23:00 → 09-07 00:40 更新",
+      "status": "done",
+      "ruling": "09-08 16:36 owner：“两条保留一种就行”。设计线裁定：只做 (b) 工业装配路线（旗舰 cross_member_install + profile_handover / beam_seat / sleeve_insert / fastener_sort / frame_colift）。理由：owner 明确偏好装配类任务并批评现有器皿“太粗糙”；重物双臂共持 = 物理耦合 + 跨操作员近距离，正是安全论文要的场景；锥口夹具吸收对位误差，落座更稳；资产、目录、场景 yaml、测试均已就位。实验室器皿族（bin 装瓶、reagent_pick）停止扩展，不再进入演示任务集；掌抱共搬（box_colift）作为通用原语保留并复用于横梁共持。"
+    },
+    {
+      "id": "D6",
+      "topic": "SafeDuo 代码入 GitHub（私有 asimfish/safeduo，忽略 artifacts/媒体）",
+      "options": "(a) 现在建；(b) 等原会话空闲后建",
+      "rec": "已执行：私有仓库 asimfish/safeduo，首个快照 6c43487（870 文件，artifacts/third_party/媒体排除）；后续由设计线定期 commit",
+      "since": "09-06 23:00",
+      "status": "done"
+    },
+    {
+      "id": "D7",
+      "topic": "训练/四门迁到 A100 —— 已落地在 owner 指定的 tianyiyun-30109",
+      "options": "30110-pub2：Ubuntu 22.04 / glibc 2.35 / 驱动 580.65.06 合格，7 卡 0 GB/0%，外网直连；本地盘满（dataset-local 9 GB），环境落到共享 NFS dataset-assist-0（249 GB 可用，实测写 722 MB/s、读 258 MB/s，30109/30110/lotus 共享挂载 → 一处安装到处可跑）；容器无 NVIDIA 图形库 → 从同版本驱动包提取用户态 Vulkan 库（nvidia.com 在容器内 403，已从 Mac 中转 394 MB）。lotus-1/2 glibc 2.31 不可用；volc 驱动 535 且满载",
+      "rec": "已打通（09-07 20:10 在 30110 验证，20:50 按 owner 要求迁到 30109）： Isaac Sim 5.1 + IsaacLab@37ddf626 + SafeDuo 三级冒烟全过——Cartpole ✓、train_lagrangian 64 env ✓、4096 env 训练 ~17 s/iter（5090 上 a30b 为 29.6 s/iter，且当时被分卡）。四个容器特有的坑及修法：① NFS 是 sync 挂载，小文件极慢 → 环境/IsaacLab/Kit 缓存放 /dev/shm（471 GB），tar 到 NFS 持久化，a100_restore_env.sh 一分钟恢复；② pypi.org 超时 → 清华镜像 + NVIDIA 索引；③ 容器无 NVIDIA 图形库/无 /dev/dri → 从同版本驱动 .run 提取用户态库 + 手写 ICD + 用 __EGL_VENDOR_LIBRARY_FILENAMES 注册 libEGL_nvidia（否则 ICD 初始化失败）；④ PhysX GPU 退回 CPU 的真因 = omni.physx dlopen(\"libcuda.so\") 而容器只注入 libcuda.so.1 → 加一个 libcuda.so 软链；另 omni.iray.libs 缺 libGLU → conda 装 libglu；合成机器人 USD 里手部引用是 5090 绝对路径 → 改相对路径（已推回仓库）。红线：A100 run 不与 5090 run 同批配对比较。 30109 特殊处理：/dev/shm 只剩 3.9 GB（被 475 GB 其它数据占满），环境改放本地 NVMe /home/dataset-local/lyf_safeduo_a100（20 GB，从 NFS tar 2 分钟恢复），用 /dev/shm/liyufeng/safeduo_a100 软链保持环境内烙死的路径不变；不触碰 /opt/conda、dataset-local/liyufeng（owner 789 GB 工作区）与 lyf_safeduo（8-24 旧尝试）。30110 上我的训练与内存盘目录已全部清理",
+      "since": "09-07 01:10 → 15:50 更新",
+      "status": "done"
+    },
+    {
+      "id": "D8",
+      "topic": "实机布局变更：Franka 排整体前移 20 cm，两排间距 150 → 130 cm（owner 09-07 草图：FR3 间距 100、UR5 间距 90、基座离地 80）",
+      "options": "(a) 立即切换默认布局到 v8 → 所有在跑/排队实验口径断裂（a30b 四门不可比）；(b) v8 先作候选：新任务族（R34）与下一次重训一并切到 v8，四门主表在 v8 重跑；同时用 a27@stack_fix_v8 量化“布局变化本身”的代价；(c) 忽略，沿用 v7",
+      "rec": "v8 已进入重训（aF 直接在 v8 上训）。仍需 owner 确认桌子是否随 Franka 前移（决定夹具与站位的桌沿）",
+      "since": "09-07 02:20",
+      "status": "open"
+    }
+  ],
+  "verdicts": [
+    {
+      "date": "09-07 05:56",
+      "topic": "a30b@stack_fix（a30 再 +1600 iter，总 warm-start +2400）",
+      "verdict": "brake 1.0 / viol-free 0.96（min cross −0.1 mm）/ no-deadlock 0.96 / done 0.60/0.76 / 误刹(arm) 0.415 / fidelity 0.111——与 a27@stack_fix（0.96 / −2.3 mm / 0.92 / 0.36/0.80 / 0.417 / 0.116）几乎逐项相同，只把 a30 的死锁（0.56）救回到 a27 水平。结论：warm-start 无论 +800 还是 +2400 都不能让离合器适应活腕；R33 的出路只剩完整课程重训（D2），且应直接在 v8 布局 + 修复环境上做，τ 一并定",
+      "evidence": "artifacts/clutch/a30b_grid_stack_fix/cell_hi0.5_lo0.2.json"
+    },
+    {
+      "date": "09-07 05:55",
+      "topic": "a27@stack_fix_v8：布局 v8（两排 130 cm）本身的代价（只换布局，其余同 stack_fix）",
+      "verdict": "viol-free 0.96 → 0.84（4/25 局越线，min cross −5.3 mm）、no-deadlock 0.92 → 0.84、done 0.36/0.80 → 0.40/0.56、误刹 0.417 → 0.425、fidelity 持平 0.117。两排靠近 20 cm 让跨机共享带加倍，未重训的 a27 显著更常越线/死锁——v8 必须伴随重训，不能只换 env",
+      "evidence": "artifacts/clutch/a27_grid_stack_fix_v8/cell_hi0.5_lo0.2.json；scripts/forensics/a27_gate_stack_fix_v8.sh"
+    },
+    {
+      "date": "09-07 03:50",
+      "topic": "R36 迁移配方核验：R26 四族在 v8 布局上的设计期重建（CPU，v8 提供器）",
+      "verdict": "不动站位：bottle/tray/box/rod 四族全部失败，签名一致 self ≈ 1–2 mm——基座向中线挪了 10 cm 后，世界坐标常量站位（棒 x=0.53 等）离基座只剩 0.12 m，臂折叠触自碰地板；站位随基座同向挪 0.10 m（棒 0.53→0.43、U 方块 −0.44→−0.34）后四臂全部筛出候选、抓取/搬运相位通过，只剩内联的 retreat 航点（U_L (−0.38,0.42,1.16) 仍是 v7 数）在 self 1.3 mm 被挡。结论：v8 迁移 = 任务库里所有世界坐标站位/航点向车道方向平移 0.10 m（车道附近 x≈0 的不动），机械性工作；建议顺手改为“基座相对坐标”写法，以后布局再变只改一个常量",
+      "evidence": "artifacts/forensics/20260907/r36_build_r26_on_v8.log、r36_build_rod_v8_shiftm10.log；scripts/forensics/r36_build_r26_on_v8.py"
+    },
+    {
+      "date": "09-07 02:57",
+      "topic": "探针 5：rod_pick 轨迹以 squeeze_extra 0.15 重建（原 0.06），手指 100/5/5、摩擦 0.35",
+      "verdict": "0.39 kg：两根型材全程随手（rod_l z 0.84→0.98、rod_r →0.95，搬运 15 cm 后放置），真成功——证实瓶颈是闭合深度；0.78 kg：两根都被提起（z 0.93/0.92）但 t≈8.6 s 搬运加速时掉落（moved 0.066 < 0.12 m）。结论：目录里型材的 squeeze_extra 定为 0.15（已改）；实心 4080（0.78 kg）留给双臂共搬，或再试 squeeze 0.20 + 增益 200/10/20",
+      "evidence": "artifacts/forensics/20260907/r34_beam5_sq15_m039_raw.log / _m078_raw.log；artifacts/task_trajs_r34_sq15/rod_pick；scripts/forensics/r34_build_rod_squeeze.py"
+    },
+    {
+      "date": "09-07 02:20",
+      "topic": "探针 4：0.78 kg 型材 + 物体摩擦 0.9/0.8（铝对橡胶指垫口径），手指 100/5/5 与 200/10/20 各一次",
+      "verdict": "两次仍 “object never picked up”。至此质量 0.78 kg 下：增益 ×2 无效、摩擦 ×2.6 无效 → 瓶颈不在力矩或摩擦，而在闭合深度：rod_pick 轨迹里的手指闭合量（squeeze_extra 0.06，R27 为防方块翘起从 0.15 降下来）被固化在录制事件里，指垫只是“碰到”而非“夹紧”。下一步探针 5：用 --squeeze-extra 0.15 重建 rod_pick 轨迹再测 0.39/0.78 kg（“用力操作”的正确旋钮）",
+      "evidence": "artifacts/forensics/20260907/r34_beam4_m078_mu09_h100_raw.log / _h200_raw.log；r34_beam3_m078_h200_raw.log；r34_beam2_m039_raw_b.log（0.39 kg F_L 搬运中途掉落但落在放置区被判 success——判据需补“全程随手”）"
+    },
+    {
+      "date": "09-07 02:25",
+      "topic": "布局 v8（两排 1.2964 m）设计期几何",
+      "verdict": "静息位跨机最小裕度 0.763 → 0.572 m（−0.19），self_F/self_U/table 逐位不变；FR3/UR5e 实用臂展 ~0.85 m → 每臂过中线 ~0.20 m（v7 ~0.10），共享工作带加倍。所有 R26/R27 任务站位与已录轨迹在 v8 需重建；a27/a30 未见过 v8",
+      "evidence": "tests/test_scene_layout_v8.py；assets_src/real/scene_layout_v8.yaml"
+    },
+    {
+      "date": "09-07 01:59",
+      "topic": "R34-A 探针 2：真 4080 型材质量扫描（手指执行器 100/5/5）",
+      "verdict": "0.20 kg：两根都搬起放下（探针 1）；0.39 kg：F_L 提起随手（z +9.5 cm、dz 恒 −14.2 cm），F_R 滑脱未提起（该轮 t≈8 s 因 GPU0 接近满载 Kit 崩溃，正在重跑）；0.78 kg（实心 4080 真实质量）：两手均 “object never picked up”。结论：当前五指握力对真实铝型材不足，需提高手指增益/力矩（探针 3：200/10/20）或双臂共搬或用薄壁轻型材",
+      "evidence": "artifacts/forensics/20260907/r34_beam2_m039_raw.log / r34_beam2_m078_raw.log"
+    },
+    {
+      "date": "09-07 02:00",
+      "topic": "A100 迁移复核（30109 / lotus-1 / volc）",
+      "verdict": "30109：系统合格但 dataset-local 仅 29 GB、8 卡全忙；lotus-1：卡闲但 glibc 2.31 装不了 Isaac Sim 5.1；volc：驱动 535 且两卡 100%。结论：目前没有一台可以立刻部署，30109 需先协调磁盘与卡（D7）",
+      "evidence": "面板会话 02:00 只读 ssh 复核；artifacts/a100_recon_20260827.md"
+    },
+    {
+      "date": "09-07 00:59",
+      "topic": "R34-A 探针 1：真 4080 T 槽型材替换 R27 盒梁（rod_pick 轨迹、质量 0.20 平价）",
+      "verdict": "raw success（placed in zone at rest）、viol_steps 0；rod_l z 0.840→0.969、obj−flange 恒 −13.3 cm——型材刚性随手；USD 目录生成路径（UsdFileCfg + convexHull）在 Isaac 内一次通过，3 分钟跑完",
+      "evidence": "artifacts/forensics/20260907/r34_beam1_raw.log；artifacts/viz/a8_v4demo/r34_beam1_raw.json"
+    },
+    {
+      "date": "09-07 00:45",
+      "topic": "a30@stack_fix_la06（活腕 warm-start 策略 + 0.06 s 速度感知带）",
+      "verdict": "viol-free 1.0 / min cross 25.2 mm / no-deadlock 0.80（无带 0.56）/ done 0.64/0.84 / 误刹 0.466 / fidelity 0.052——带把 a30 的死锁救回一半，但误刹与保真仍劣于 a27 同带（0.418 / 0.067）；warm-start +800 不足以适应活腕，等 a30b",
+      "evidence": "artifacts/clutch/a30_grid_stack_fix_la06/cell_hi0.5_lo0.2.json"
+    },
+    {
+      "date": "09-06 22:30",
+      "topic": "R33④ lookahead 速度感知阻尼带",
+      "verdict": "a27@stack_fix：无带 viol-free 0.96 / min cross −2.3 mm / fid 0.116；τ=0.06 s → 1.0 / 25.5 mm / 0.067；τ=0.15 s → 1.0 / 31.6 mm / 0.045。硬门靠带能兜住，保真要靠在带下训练的策略",
+      "evidence": "artifacts/clutch/a27_grid_stack_fix_la{,06}/；headon_trace_r16a_w1.npz"
+    },
+    {
+      "date": "09-06 18:10",
+      "topic": "跨机越线机制",
+      "verdict": "迎头两臂 1.1/0.8 rad/s 相向、裕度 0.7 m/s 下降；离合在 36 mm（已在 40 mm 带内）才锁；锁后关节 150 ms 才停，惯性 7–10 cm 冲过带宽。结构原因 = R18 40 mm 参与门换保真的代价",
+      "evidence": "forensics/20260906/headon_violation_trace.py"
+    },
+    {
+      "date": "09-06 09:36",
+      "topic": "a30（a27 warm-start +800 @fix）",
+      "verdict": "viol-free 1.0、刹停 0/2 步，但 fidelity 0.094、误刹 0.476、no-deadlock 0.56——未适应活腕；启动 a30b +1600",
+      "evidence": "a30_grid_stack_fix"
+    },
+    {
+      "date": "09-06 06:45",
+      "topic": "R26 四族全部物理化",
+      "verdict": "bottle / rod / box / relay 均 raw + a27 门控 success 零违规；直接双手同握 8 轮失败量化（F2 抓取拖动 +4.5/+4.7 cm、DFX 侧捏窗口 1–2 cm、同握需 ≥25 cm 间距）",
+      "evidence": "r27_*_s0_phys_cam*.mp4；forensics/20260906/r27_baton1-11"
+    },
+    {
+      "date": "09-06 01:10",
+      "topic": "R33③ a27 在活腕环境失效",
+      "verdict": "fidelity 0.302→0.156、误刹 ×2.8、viol-free(cross) 1.0→0.92；全部 v7 四门数字为死腕环境结果",
+      "evidence": "a27_r18_grid_stack_r16a"
+    },
+    {
+      "date": "09-05 22:30",
+      "topic": "R33① UR5 wrist_3 驱动数值失稳",
+      "verdict": "3e-4 kg·m² 惯量 × kp 1200 @120 Hz 隐式驱动不稳定，自 R14 v7 起 U 手绕腕轴朝向不受控；armature 0.05 修复",
+      "evidence": "forensics/20260905/wrist3_*_probe.py"
+    },
+    {
+      "date": "09-05 03:15",
+      "topic": "R31 三臂（a28/a28b/a29）",
+      "verdict": "全部判负；共同签名 U 臂误刹翻倍，杠杆在 hazard 标签语义而非 cost 通道；a27 + stack 执行栈更优",
+      "evidence": "a28*_r18_grid_stack / a29_r18_grid_stack"
+    },
+    {
+      "date": "09-02",
+      "topic": "R28 a27 验收 / R29 handover 真根因",
+      "verdict": "a27@0.5:0.2 四门全过且优于 a25 冠军；handover 门控失败真根因 = UR5 upper_arm×table 结构行永远在 damper 门内（非策略问题）",
+      "evidence": "a27_r18_grid；tests/test_r28_r29_pins.py"
+    }
+  ],
+  "queue": [
+    {
+      "goal": "G1/算法",
+      "task": "SafeTransport 增量实验 E0–E4（PID 基线 vs 论文默认 vs 校准版 vs 证书触发 Safe vs Hybrid），同预算 a27 热启动 400 迭代 @ v8+fix2_la06；出分后四门 + 对照表",
+      "status": "done",
+      "owner": "设计线",
+      "eta": "09-11 出分",
+      "note": "五臂全未达验收；诊断与 v2.2 见 algorithm.json increments.* / docs/ST_INCREMENT_20260911.md"
+    },
+    {
+      "goal": "G1/算法",
+      "task": "SafeTransport v2.2 增量：E5 修正投影 + E6 留格重加权消融（同 E0/E1 配置）→ 配对四门 → 与 E0/E1 对照，判定 E1 增益归因",
+      "status": "run",
+      "owner": "设计线",
+      "eta": "09-12 中午",
+      "note": "tmux sd109_st_e5e6_20260912 / sd109_st_gate_v22_20260912；evals/st_v22_20260912"
+    },
+    {
+      "goal": "G1/R33/R36",
+      "task": "aF_v8_fix2_la06_s46 完整课程重训（A100 30109 GPU2，3600 iter）→ 四门 stack_fix2_v8_la06 → 与 a27@stack_fix / a27@stack_fix_v8 对照",
+      "status": "wait",
+      "owner": "设计线（监控）",
+      "eta": "四门待排（E5/E6 之后）",
+      "note": "训练 3600 迭代已完成（model_last.pt）；四门可复用 st_gate_queue 模式"
+    },
+    {
+      "goal": "基建/R21",
+      "task": "A100 扩容部署（30109）：conda env 落 dataset-local → isaacsim 5.1 + IsaacLab → Vulkan ICD 预案 → 三级冒烟 → 首个 4096 env 训练对照 wall_s",
+      "status": "done",
+      "owner": "设计线（待 D7）",
+      "eta": "09-07 20:10",
+      "note": "30110-pub2；环境在 /dev/shm（NFS tar 备份）；scripts/forensics/a100_*.sh"
+    },
+    {
+      "goal": "G1/G2/R35",
+      "task": "四门扩展：相位同步率（每协作任务族 2–5 检查点 + 时序容差）与伙伴延迟探针（一方操作员随机停 0.5–2 s）——SAI 口径",
+      "status": "planned",
+      "owner": "设计线→实验线",
+      "eta": "aF 出分后",
+      "note": "docs/REFERENCE_STUDY_20260907.md §1"
+    },
+    {
+      "goal": "G4/R34",
+      "task": "夹具 v2：矩形外框 + 锥口搁座（入口 +10 mm / 底 +3 mm）+ cross_member_install 设计期构建（v8）",
+      "status": "doing",
+      "owner": "设计线",
+      "eta": "09-08",
+      "note": "资产 + yaml + 测试已完成（6b26a98）；剩设计期轨迹构建"
+    },
+    {
+      "goal": "G1/R33",
+      "task": "等 a30b 四门（stack_fix）；出分后五列对照表更新，判定是否需要完整重训",
+      "status": "run",
+      "owner": "原会话（实验线）",
+      "eta": "09-07 06:00",
+      "note": "GPU1 训练 + 链式四门"
+    },
+    {
+      "goal": "G1/R33",
+      "task": "a30@stack_fix_la06 四门（活腕训练策略 + 0.06 s 带）",
+      "status": "run",
+      "owner": "原会话",
+      "eta": "09-07 01:00",
+      "note": "GPU0"
+    },
+    {
+      "goal": "G4/R34",
+      "task": "实验线：chembench 实验室资产接入（object_catalog_lab.yaml + task_objects usd/catalog + duo_env UsdFileCfg）→ 首个器皿抓取探针",
+      "status": "run",
+      "owner": "实验线（原会话）",
+      "eta": "09-07 凌晨",
+      "note": "与设计线资产共用 schema；未 commit（由设计线在下一次快照提交）"
+    },
+    {
+      "goal": "G4/R34",
+      "task": "R34-A 资产：程序化 4040 T 槽型材 + 角码 USD、KLT_Bin/YCB 下载、凸分解与白名单登记（不占 GPU）",
+      "status": "done",
+      "owner": "设计线（本面板维护者）",
+      "eta": "09-07 00:35",
+      "note": "10 件 USDA + 预览图 + 目录 + yaml + 测试；commit 0b5a02e"
+    },
+    {
+      "goal": "G4/R34",
+      "task": "R34-A 任务设计：型材递送 / 共持插接 / 框架共抬 的相位与判据；设计期 IK 审计（CPU）",
+      "status": "run",
+      "owner": "设计线",
+      "eta": "待 D5",
+      "note": "判据草案在 r34_assets.yaml tasks:（profile_handover / beam_seat / sleeve_insert / frame_colift）；实装 task_library_r34.py 待 GPU 探针先验证型材随手"
+    },
+    {
+      "goal": "G4/R34",
+      "task": "R34-A GPU 探针 + 多机位成片 + VLM 质检",
+      "status": "done",
+      "owner": "设计线",
+      "eta": "09-07 02:57",
+      "note": "探针 1–5：几何 ✓（USD 生成路径通）、质量扫描 → 闭合深度 0.15 定案；0.78 kg 待双臂方案"
+    },
+    {
+      "goal": "G1/R35",
+      "task": "SAI 式分臂顺序微调：冻结 F 侧门控只微调 U 侧头（stack_fix），再交换，最后在迎头窗口做稀疏干预微调",
+      "status": "planned",
+      "owner": "实验线",
+      "eta": "待 D2",
+      "note": "作为完整重训前的低成本候选"
+    },
+    {
+      "goal": "G1/R35",
+      "task": "TRACE 式路径签名意图特征：每臂最近 H 步关节速度截断签名（2–3 阶）入 α/p 头，消融",
+      "status": "planned",
+      "owner": "实验线",
+      "eta": "待 D2",
+      "note": "纯 torch，4096 env 流水线可直接验证"
+    },
+    {
+      "goal": "G2/R35",
+      "task": "四门新增过程指标：phase-sync 保持率、伙伴延迟探针（暂停一方操作员）",
+      "status": "planned",
+      "owner": "设计线→实验线",
+      "eta": "",
+      "note": "对应 SAI 的 Phase Sync / Yield-Wait"
+    },
+    {
+      "goal": "P",
+      "task": "PAPER_NOTES 相关工作补 SAI / TRACE；死腕标注段落草稿",
+      "status": "wait",
+      "owner": "设计线",
+      "eta": "09-07",
+      "note": "待 D1"
+    },
+    {
+      "goal": "基建",
+      "task": "SafeDuo 代码建私有 GitHub 仓库（asimfish/safeduo），MASTER_REPORT 同步进面板",
+      "status": "done",
+      "owner": "设计线",
+      "eta": "09-06 23:50",
+      "note": "MASTER_REPORT 镜像随手工更新同步（launchd 读不到 ~/Desktop，见契约）"
+    }
+  ],
+  "literature": [
+    {
+      "key": "SAI",
+      "title": "Robots that Collaborate: Sequential Asymmetric Imitation for Learning Coupled Robot Policies（CoRL 2026，Zihao Li / Weiming Zhi 组）",
+      "url": "https://arxiv.org/abs/2606.16490",
+      "gist": "已读全文+附录：两台双臂移动机械臂（17 维状态/动作），单操作员三阶段数据（A 对柔顺人类 → 冻结 A 部署、遥操 B 且给 A 加速度缩放/动作噪声/时序偏移/初始扰动 → 双机闭环稀疏干预，动作维度掩码，干预集≈30%）；ACT+30 步历史 GRU+级联动作头，观测含力矩反馈；Phase Sync = 预定义 2–5 检查点在时序容差内双机同步完成（分母 N×K，未达检查点计失败），Yield/Wait = 伙伴延迟机会上的正确响应；四任务 Success 23–50%→53–70%",
+      "for_safeduo": [
+        "相位同步率进四门（每任务族 2–5 检查点 + 时序容差，门控 ≥ raw 的 90%）；伙伴延迟探针进 L2 场景库",
+        "分臂顺序微调（冻结 F 侧→微调 U 侧→交换→迎头窗口稀疏干预，只监督出问题臂的 α/p）作为 R33 低成本路线",
+        "Stage-2 式伙伴扰动（速度缩放/噪声/时序偏移）搬进随机操作员流——R31 缺的“伙伴分布”变量",
+        "动机与相关工作：SAI（数据课程）/ TriPilot-FF（触觉塑形）/ SafeDuo（指令门控+硬兜底）同表对照"
+      ]
+    },
+    {
+      "key": "TRACE",
+      "title": "TRACE: Trajectory-Routed Causal Evidence / Memory for Delayed-Evidence Visuomotor Imitation（CoRL 2026，同组）",
+      "url": "https://arxiv.org/abs/2606.14551",
+      "gist": "已读全文：17 维状态、深度 3 路径签名（5,219 维→512）+ 签名增量 δ_t 作轨迹键；K=4–6 个 512 维槽的路由写读；适配器不改动作头/损失。五个真机延迟证据任务 ACT 25.5→69.2、Diffusion 25.0→59.5；消融：只把签名当输入 45.5、无路由槽 52.2、完整 69.2，顺序反转负对照 37.8",
+      "for_safeduo": [
+        "R35-② 校准：我提的“路径签名意图特征”= 他们的 Signature-only 消融（+20 分量级），先做这一步；维度上逐臂 7 维取深度 2–3（56/399 维/臂）+ 跨机臂对 14 维取深度 2（210 维），别对 28 维整体取深度 3（2.2 万维）",
+        "用签名增量 δ_t 表达“刚刚在减速/后撤”，正是 R28 coop 豁免与 R33④ 动量问题缺的那一维",
+        "完整 K 槽路由记忆留给滞回死锁释放（替代 R30 手工规则）",
+        "两篇同组 CoRL 2026 一并引用"
+      ]
+    },
+    {
+      "key": "4-arm-bench",
+      "title": "四臂协作装配 MuJoCo Benchmark（小红书，搭建中；4×Franka 铝型材结构搭建 + 精细分拣 + 协作包装，面向工业场景）",
+      "url": "https://www.xiaohongshu.com/explore/6a9c82f1000000002902dd0c",
+      "gist": "逐帧看过演示视频（88 s）：方桌四角 4×Franka 朝桌心；桌心夹具上已装好矩形铝型材外框；两臂物理夹持一根横梁共持运送并装入外框，第三臂装紧固件并敲击；四角 KLT 小料箱立放紧固件、布上放工具；分步字幕 Positioning / Establishing physical grasps / Transporting and installing the cross member / Installing and striking the fastener；3/4 俯视全景机位",
+      "for_safeduo": [
+        "R34-A 旗舰任务改为“装横梁”：外框夹具 + 4080 横梁双臂共持落座 + U 臂装角件敲击——把“0.78 kg 单手抓不住”变成任务设计，把“多臂在同一小区域近距离作业”变成离合器的展示场景",
+        "两排面对面 + 异构（FR3/UR5e 五指手）是我们与他们的差异化：跨机型、跨操作员的共享工作区安全",
+        "录制器 phase 名改成人可读工序名进字幕；全景机位 camW 与他们的演示视角一致",
+        "笔记与落地清单：docs/BENCHMARK_4ARM_ASSEMBLY.md"
+      ]
+    },
+    {
+      "key": "TriPilot-FF / Zeno-1",
+      "title": "TriPilot-FF: Coordinated Whole-Body Teleoperation with Force Feedback（RSS 2026，arXiv 2602.09888）+ Zeno-1 协作物理智能架构（ZENO AI 报告）",
+      "url": "https://arxiv.org/abs/2602.09888",
+      "gist": "TriPilot-FF：脚踏板 + 激光雷达接近信号渲染阻力，“在没有显式避碰控制器的情况下把操作员指令塑形为避碰行为”，臂端力反射，遥操反馈信号喂进 ACT 提升策略。Zeno-1：每台机器人同一 3B 模型 30 Hz、无中央调度，运动/物体响应/接触即接口；交互记忆跨 8 子任务 10 分钟；接触前预测性内省（87% vs 61%）",
+      "for_safeduo": [
+        "与 SafeDuo 是同一问题的两条路：他们在操作员端做触觉塑形（不保证零碰撞），我们在机器人端做门控 + 可证硬兜底；可叠加——离合器 α 可回传为踏板/手柄阻力（G3 阶段的对接点）",
+        "Zeno-1 的“一台的路径是另一台的约束、实时读取”“共载以张力为协调信号”是我们 R32/R34 协作任务判据的好语言",
+        "同组 “Robot-Friendly Scaffolding with Passive Error Correction”：锥形连接件吸收对位误差 → R34 搁座/套管做锥口（入口 +10 mm、底 +3 mm）"
+      ]
+    }
+  ],
+  "changelog": [
+    {
+      "time": "09-12 02:50",
+      "text": "恢复 safeduo_方案 线程（Anygent 只读接口，117 条）：五臂结果入面板（gates.json 自动入 A100 评测格）；真实 rollout dump 诊断 → v2.2（76a410f）；E5/E6 + 四门队列开跑；aF 训练收尾释放 GPU2；docs/ST_INCREMENT_20260911.md"
+    },
+    {
+      "time": "09-08 21:18",
+      "text": "owner 指示：参考 SafeTransport 论文改进算法并做增量实验 → 接入容量流投影（子类）、Isaac 冒烟通过、E0–E4 五臂队列在 30109 GPU2 排队；算法框图重绘 v2；面板采集器改为多根扫描（/home/batchcom 下的 A100 运行也能看到）"
+    },
+    {
+      "time": "09-08 19:21",
+      "text": "面板新增“算法”页：框图 SVG（运行时回路 / 训练信号 / 评测三段）、问题建模、组件表、aF 配方参数、谱系、参考设计对照（SAI 9 项 + TriPilot-FF + TRACE）；维护契约加“算法变更三处同步”"
+    },
+    {
+      "time": "09-08 16:36",
+      "text": "owner 裁定：任务族两条只保留一种 → 设计线选工业装配路线（D5 关闭，实验室器皿族停止扩展）；30109 允许专用一卡（aF 留在 GPU2，不再扩到其它卡）"
+    },
+    {
+      "time": "09-08 02:43",
+      "text": "R34-A 夹具 v2（矩形外框 + 锥口搁座/端挡/角件槽）+ KLT 料箱 + cross_member_install 场景 yaml（跨接缝，两排臂展校核）落地，代码仓 6b26a98；测试 4/4"
+    },
+    {
+      "time": "09-08 02:19",
+      "text": "参考工作深度学习完成：SAI 附录（指标精确定义、三阶段协议、扰动与掩码）、TRACE 全文、benchmark 视频逐帧、作者主页（Zeno-1、TriPilot-FF、被动纠错装配）→ docs/REFERENCE_STUDY_20260907.md；新增 R35-③ 相位同步率/伙伴延迟探针、R34 锥口夹具 v2、相关工作三方对照"
+    },
+    {
+      "time": "09-07 23:08",
+      "text": "补课两篇参考：TRACE 全文 + 四臂装配 benchmark 逐帧读字幕；R34-A 旗舰任务改为“装横梁”（双臂共持 + 装紧固件敲击）；docs/BENCHMARK_4ARM_ASSEMBLY.md 新增"
+    },
+    {
+      "time": "09-07 20:59",
+      "text": "按 owner 要求把 A100 部署从 30110 迁到 30109：环境从 NFS tar 恢复到 /home/dataset-local/lyf_safeduo_a100（2 分钟），Vulkan/PhysX GPU/二级冒烟通过，aF 重训在 30109 GPU2 重新发车；30110 上的训练与内存盘已清理"
+    },
+    {
+      "time": "09-07 20:12",
+      "text": "A100（30110-pub2）部署完成并三级冒烟通过；aF 完整课程重训发车（GPU2）；面板服务器快照扩为 5090 + A100 两台"
+    },
+    {
+      "time": "09-07 16:13",
+      "text": "a30b@stack_fix 与 a27@stack_fix_v8 四门入矩阵并判决（warm-start 关闭；v8 需伴随重训）；A100 部署开工（30110-pub2，NFS 环境，Vulkan 库中转）"
+    },
+    {
+      "time": "09-07 03:46",
+      "text": "a27@stack_fix_v8 四门在 GPU0 跑（~05:30 出）；R26 四族 v8 重建核验 → 迁移配方定案（站位/航点向车道平移 0.10 m）"
+    },
+    {
+      "time": "09-07 02:57",
+      "text": "探针 5 定案：闭合深度 0.15 让 0.39 kg 型材全程随手；0.78 kg 中途掉落 → 目录 squeeze_extra 0.06→0.15；实心 4080 归双臂共搬"
+    },
+    {
+      "time": "09-07 02:42",
+      "text": "全景机位 camW 录像入库（r34_beam1_raw_camW）；视频同步管线修复半截文件 bug（去掉 --ignore-existing，加 2 分钟落盘窗口与 ffprobe 完整性校验）"
+    },
+    {
+      "time": "09-07 02:32",
+      "text": "布局 v8（130 cm）文件 + 设计期 SceneLayoutV8 + 评测 env + 测试入库（commit 推送）；探针 3/4 判负（增益、摩擦都不是瓶颈 → 闭合深度）；全景机位 camW 录像在跑；视频库加全景/近景标签"
+    },
+    {
+      "time": "09-07 02:06",
+      "text": "探针 2 质量扫描出结论（0.78 kg 抓不起，0.39 kg 单手滑脱）→ 探针 3 提高手指增益 200/10/20 在跑；A100 三机复核：今晚不部署（30109 磁盘 29 GB、全卡忙；lotus glibc 2.31；volc 驱动 535）；代码仓库快照 9cd310e 含实验线 WIP"
+    },
+    {
+      "time": "09-07 01:52",
+      "text": "R34-A 首条真实工业件录像 r34_beam1_raw_camX 入视频库；视频库 131 部（转码后共 ~60 MB）；面板 v2 分页版上线"
+    },
+    {
+      "time": "09-07 01:27",
+      "text": "面板 v2 上线：分页布局 + 视频库（asimfish/safeduo-media，自动从远端同步转码）；R34-A 探针 1 success；a30@la06 四门入矩阵；新增决策 D7（A100 迁移）与两条线动态卡"
+    },
+    {
+      "time": "09-07 00:40",
+      "text": "R34 开工：设计线生成 10 件工业装配资产（4040/4080 T 槽型材、三通角件、套管、料架、底框夹具）+ 目录/yaml/测试（commit 0b5a02e）；实验线并行接入 chembench 实验室资产并扩展 table_objects USD schema；设计线撤回重复的 task_objects_r34.py 以统一 schema"
+    },
+    {
+      "time": "09-06 23:50",
+      "text": "SafeDuo 代码入私有仓库 asimfish/safeduo（首个快照 6c43487）；面板 launchd 定时任务上线；MASTER 镜像因 macOS TCC 只能在交互式运行时同步"
+    },
+    {
+      "time": "09-06 23:40",
+      "text": "面板上线：服务器实时快照（bjxy_5090）、四门矩阵 75 cells 自动生成、路线图 R1–R35、任务族与资产、决策 D1–D6、工作队列、文献启发；docs/R34_SCENE_ASSETS.md 与 docs/LITERATURE_SAI_TRACE.md 入库"
+    },
+    {
+      "time": "09-06 22:35",
+      "text": "原会话：a30@stack_fix_la06 四门启动（GPU0）；lookahead τ=0.06 结果入 MASTER v2.51"
+    },
+    {
+      "time": "09-06 19:45 / 22:30",
+      "text": "owner 两条新指令（小红书四臂装配 benchmark → 场景与资产升级；SAI/TRACE 两篇 CoRL 2026 → 思考启发）；原会话轮询中未消费，由设计线接手"
+    },
+    {
+      "time": "09-06 17:33",
+      "text": "a30b（a30 +1600 iter）启动，链式 stack_fix 四门"
+    }
+  ],
+  "lines": [
+    {
+      "name": "实验线（原 safeduo_实验 会话）",
+      "status": "run",
+      "now": "R34 实验室路线：料箱（bin）装瓶 + 掌抱共搬门控录像迭代（掌压 1.5→2.5 cm）；GPU0 显存争抢导致录像多次失败，正写“等显存空档再跑”的包装脚本；a30b 链已完成",
+      "next": "（设计线请求，依据 owner D5 裁定）录像/门控迭代切到工业装配族：bin 装瓶 → KLT 料箱取角件（duo_env_v7_r34_cross_r27r16.yaml）、掌抱共搬 → 4080 横梁双臂共持落座；a30b 四门五列对照表照常",
+      "updated": "09-07 16:13"
+    },
+    {
+      "name": "设计线（面板维护者）",
+      "status": "run",
+      "now": "SafeTransport：五臂出分（全未达验收）→ 真实 rollout 诊断 → v2.2 修复（自环/支撑/可行性/经验平衡/经验参照核/收缩）→ E5/E6 + 配对四门在 GPU2 跑",
+      "next": "E5 vs E0、E6 vs E1 判读并写入面板；aF 四门排队；若 E6 复现 E1 增益则扫 w_stay 0.5 并写进 aF 后继配方候选；cross_member_install 设计期轨迹",
+      "updated": "09-12 02:50"
+    }
+  ]
 }
