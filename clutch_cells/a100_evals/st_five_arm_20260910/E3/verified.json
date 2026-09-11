@@ -1,0 +1,166 @@
+{
+  "arm": "E3",
+  "run": "st_E3_safe_cal",
+  "fidelity": {
+    "fidelity_at_tol": {
+      "1e-06": 0.10131708532571793,
+      "1e-04": 0.10254711657762527,
+      "1e-03": 0.11291095614433289
+    },
+    "imperfect_dev_linf_quantiles": {
+      "p50": 0.008812,
+      "p90": 0.014863,
+      "p99": 0.019202,
+      "max": 0.028891
+    },
+    "clutch_engaged_frac_safe": 0.30669519305229187,
+    "n_steps": 180000,
+    "n_safe_steps": 158532,
+    "safe_step_frac": 0.8807333111763,
+    "safe_frac_by_class": {
+      "cross": 0.9699000120162964,
+      "self_F": 0.9963389039039612,
+      "self_U": 0.9131610989570618,
+      "table": 0.9881888628005981
+    },
+    "safe_frac_blanket_30mm": 0.0,
+    "fidelity_bitwise": 0.10131708532571793,
+    "fidelity_per_arm": {
+      "F_L": 0.394740492105484,
+      "F_R": 0.45209169387817383,
+      "U_L": 0.5180783867835999,
+      "U_R": 0.5587199926376343
+    },
+    "mean_attenuation_safe": 0.3723248820624543,
+    "imperfect_arm_steps": 329171,
+    "imperfect_alpha_source": 180897,
+    "imperfect_stack_source": 219254,
+    "imperfect_both_sources": 70980,
+    "tol": 1e-06,
+    "safe_lines": {
+      "cross": 0.03,
+      "self_F": 0.01,
+      "self_U": 0.03
+    }
+  },
+  "false_brake": {
+    "n_safe_steps": 158532,
+    "false_brake_arm_rate": 0.28824305534362793,
+    "false_brake_any_rate": 0.6967930793762207,
+    "false_brake_per_arm": {
+      "F_L": 0.43709155917167664,
+      "F_R": 0.3870764374732971,
+      "U_L": 0.21086594462394714,
+      "U_R": 0.117938332259655
+    },
+    "safe_lines": {
+      "cross": 0.03,
+      "self_F": 0.01,
+      "self_U": 0.03
+    }
+  },
+  "brake": {
+    "n_runs": 50,
+    "n_triggered": 50,
+    "n_braked": 45,
+    "brake_rate": 0.9,
+    "n_brake_success": 45,
+    "n_locked_untriggered": 0,
+    "violation_free_rate": 1.0,
+    "violation_free_any_class_rate": 1.0,
+    "n_cmd_stop_all": 15,
+    "lock_delay_steps": {
+      "mean": 16.36,
+      "p50": 7.0,
+      "p95": 61.0,
+      "max": 147
+    },
+    "cmd_stop_delay_steps": {
+      "mean": 91.24,
+      "p50": 0.0,
+      "p95": 226.0,
+      "max": 1646
+    },
+    "cmd_stop_all_delay_steps": {
+      "mean": 845.73,
+      "p50": 80.0,
+      "p95": 2365.0,
+      "max": 2365
+    },
+    "phys_stop_delay_steps": {
+      "mean": 21.11,
+      "p50": 0.0,
+      "p95": 40.0,
+      "max": 233
+    },
+    "phys_stop_all_delay_steps": {
+      "mean": 280.68,
+      "p50": 129.0,
+      "p95": 722.0,
+      "max": 827
+    },
+    "min_cross_margin": 0.02029
+  },
+  "recovery_hysteresis": {
+    "n_runs": 25,
+    "n_froze": 23,
+    "n_retreat": 23,
+    "n_deadlock": 0,
+    "froze_frac": 0.92,
+    "no_deadlock_rate": 1.0,
+    "retreat_moved_rate": 0.9565217391304348,
+    "re_engage_rate": 0.6956521739130435,
+    "margin_recovered_rate": 0.2608695652173913,
+    "other_resumed_rate": 0.2608695652173913,
+    "done_rate": 0.2608695652173913,
+    "re_engage_delay_steps": {
+      "mean": 277.25,
+      "p50": 13.0,
+      "p95": 1114.5,
+      "max": 1884
+    },
+    "margin_recover_delay_steps": {
+      "mean": 159.67,
+      "p50": 10.0,
+      "p95": 661.8,
+      "max": 866
+    },
+    "other_resume_delay_steps": {
+      "mean": 159.67,
+      "p50": 10.0,
+      "p95": 661.8,
+      "max": 866
+    }
+  },
+  "recovery_manual": {
+    "n_runs": 25,
+    "n_froze": 24,
+    "n_retreat": 24,
+    "n_deadlock": 0,
+    "froze_frac": 0.96,
+    "no_deadlock_rate": 1.0,
+    "retreat_moved_rate": 1.0,
+    "re_engage_rate": 1.0,
+    "margin_recovered_rate": 0.3333333333333333,
+    "other_resumed_rate": 0.3333333333333333,
+    "done_rate": 0.3333333333333333,
+    "re_engage_delay_steps": {
+      "mean": 1.0,
+      "p50": 1.0,
+      "p95": 1.0,
+      "max": 1
+    },
+    "margin_recover_delay_steps": {
+      "mean": 21.38,
+      "p50": 9.0,
+      "p95": 68.0,
+      "max": 96
+    },
+    "other_resume_delay_steps": {
+      "mean": 21.38,
+      "p50": 9.0,
+      "p95": 68.0,
+      "max": 96
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "arm": "E2",
+  "run": "st_E2_base_cal",
+  "fidelity": {
+    "fidelity_at_tol": {
+      "1e-06": 0.07842275500297546,
+      "1e-04": 0.07931419461965561,
+      "1e-03": 0.08618321269750595
+    },
+    "imperfect_dev_linf_quantiles": {
+      "p50": 0.009407,
+      "p90": 0.015,
+      "p99": 0.019644,
+      "max": 0.0299
+    },
+    "clutch_engaged_frac_safe": 0.21953363716602325,
+    "n_steps": 180000,
+    "n_safe_steps": 163779,
+    "safe_step_frac": 0.9098833203315735,
+    "safe_frac_by_class": {
+      "cross": 0.9722611308097839,
+      "self_F": 0.9962278008460999,
+      "self_U": 0.9400222301483154,
+      "table": 0.9895722270011902
+    },
+    "safe_frac_blanket_30mm": 0.0,
+    "fidelity_bitwise": 0.07842275500297546,
+    "fidelity_per_arm": {
+      "F_L": 0.3430171012878418,
+      "F_R": 0.37452298402786255,
+      "U_L": 0.48431727290153503,
+      "U_R": 0.52892005443573
+    },
+    "mean_attenuation_safe": 0.4476948786550779,
+    "imperfect_arm_steps": 371651,
+    "imperfect_alpha_source": 246017,
+    "imperfect_stack_source": 202731,
+    "imperfect_both_sources": 77097,
+    "tol": 1e-06,
+    "safe_lines": {
+      "cross": 0.03,
+      "self_F": 0.01,
+      "self_U": 0.03
+    }
+  },
+  "false_brake": {
+    "n_safe_steps": 163779,
+    "false_brake_arm_rate": 0.3788107633590698,
+    "false_brake_any_rate": 0.7823591828346252,
+    "false_brake_per_arm": {
+      "F_L": 0.5268502235412598,
+      "F_R": 0.5321500301361084,
+      "U_L": 0.2784850299358368,
+      "U_R": 0.17775782942771912
+    },
+    "safe_lines": {
+      "cross": 0.03,
+      "self_F": 0.01,
+      "self_U": 0.03
+    }
+  },
+  "brake": {
+    "n_runs": 50,
+    "n_triggered": 50,
+    "n_braked": 50,
+    "brake_rate": 1.0,
+    "n_brake_success": 50,
+    "n_locked_untriggered": 0,
+    "violation_free_rate": 1.0,
+    "violation_free_any_class_rate": 1.0,
+    "n_cmd_stop_all": 34,
+    "lock_delay_steps": {
+      "mean": 9.56,
+      "p50": 9.0,
+      "p95": 17.0,
+      "max": 20
+    },
+    "cmd_stop_delay_steps": {
+      "mean": 22.52,
+      "p50": 16.0,
+      "p95": 52.0,
+      "max": 84
+    },
+    "cmd_stop_all_delay_steps": {
+      "mean": 254.03,
+      "p50": 69.0,
+      "p95": 1346.0,
+      "max": 2514
+    },
+    "phys_stop_delay_steps": {
+      "mean": 15.08,
+      "p50": 17.0,
+      "p95": 40.0,
+      "max": 40
+    },
+    "phys_stop_all_delay_steps": {
+      "mean": 169.5,
+      "p50": 104.0,
+      "p95": 459.7,
+      "max": 664
+    },
+    "min_cross_margin": 0.02328
+  },
+  "recovery_hysteresis": {
+    "n_runs": 25,
+    "n_froze": 25,
+    "n_retreat": 25,
+    "n_deadlock": 4,
+    "froze_frac": 1.0,
+    "no_deadlock_rate": 0.84,
+    "retreat_moved_rate": 0.96,
+    "re_engage_rate": 0.72,
+    "margin_recovered_rate": 0.28,
+    "other_resumed_rate": 0.28,
+    "done_rate": 0.28,
+    "re_engage_delay_steps": {
+      "mean": 20.17,
+      "p50": 4.0,
+      "p95": 98.3,
+      "max": 174
+    },
+    "margin_recover_delay_steps": {
+      "mean": 29.14,
+      "p50": 15.0,
+      "p95": 72.8,
+      "max": 86
+    },
+    "other_resume_delay_steps": {
+      "mean": 29.14,
+      "p50": 15.0,
+      "p95": 72.8,
+      "max": 86
+    }
+  },
+  "recovery_manual": {
+    "n_runs": 25,
+    "n_froze": 25,
+    "n_retreat": 25,
+    "n_deadlock": 0,
+    "froze_frac": 1.0,
+    "no_deadlock_rate": 1.0,
+    "retreat_moved_rate": 1.0,
+    "re_engage_rate": 1.0,
+    "margin_recovered_rate": 0.32,
+    "other_resumed_rate": 0.32,
+    "done_rate": 0.32,
+    "re_engage_delay_steps": {
+      "mean": 1.0,
+      "p50": 1.0,
+      "p95": 1.0,
+      "max": 1
+    },
+    "margin_recover_delay_steps": {
+      "mean": 25.62,
+      "p50": 16.0,
+      "p95": 65.7,
+      "max": 86
+    },
+    "other_resume_delay_steps": {
+      "mean": 25.62,
+      "p50": 16.0,
+      "p95": 65.7,
+      "max": 86
+    }
+  }
+}
