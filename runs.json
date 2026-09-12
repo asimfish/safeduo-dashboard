@@ -1,39 +1,57 @@
 {
- "updated": "2026-09-12T15:30:08",
+ "updated": "2026-09-12T15:40:25",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "42.30",
+ "load": "61.37",
  "ncpu": 48,
- "uptime": "15:30:07 up 3 days, 19:19, 22 users,  load average: 42.30, 45.53, 49.27",
+ "uptime": "15:40:24 up 3 days, 19:29, 22 users,  load average: 61.37, 59.29, 56.00",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 13394,
+   "used_mb": 23901,
    "total_mb": 32607,
-   "util": 96,
+   "util": 92,
    "procs": [
     {
      "pid": 1535115,
-     "mem_mb": 9828,
+     "mem_mb": 9834,
      "tag": "chembench",
      "label": "chembench"
     },
     {
+     "pid": 1635118,
+     "mem_mb": 6340,
+     "tag": "safeduo",
+     "label": "train a31b_refine_cross_20260912"
+    },
+    {
+     "pid": 1651143,
+     "mem_mb": 3412,
+     "tag": "safeduo",
+     "label": "record two_pair_pdz_uax07"
+    },
+    {
      "pid": 645097,
-     "mem_mb": 3060,
+     "mem_mb": 3062,
      "tag": "other",
      "label": "run_v199_glint_seeded.py"
+    },
+    {
+     "pid": 1686280,
+     "mem_mb": 654,
+     "tag": "chembench",
+     "label": "chembench"
     }
    ],
-   "mine": false
+   "mine": true
   },
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 29854,
+   "used_mb": 29914,
    "total_mb": 32607,
-   "util": 92,
+   "util": 94,
    "procs": [
     {
      "pid": 1421859,
@@ -42,14 +60,14 @@
      "label": "chembench"
     },
     {
-     "pid": 1422762,
-     "mem_mb": 9853,
+     "pid": 1447703,
+     "mem_mb": 9863,
      "tag": "chembench",
      "label": "chembench"
     },
     {
-     "pid": 1447703,
-     "mem_mb": 9851,
+     "pid": 1422762,
+     "mem_mb": 9853,
      "tag": "chembench",
      "label": "chembench"
     }
@@ -76,6 +94,29 @@
   "yfwatch"
  ],
  "runs": [
+  {
+   "name": "a31b_refine_cross_20260912",
+   "mtime": 1789198787,
+   "active": true,
+   "iter": 3049,
+   "alpha_exec": 0.7288,
+   "alpha": 0.658,
+   "costs": [
+    0.07216,
+    0.04336,
+    0.05199
+   ],
+   "lambdas": [
+    0.35,
+    0.0,
+    0.05
+   ],
+   "hazard_rate": 0.16149,
+   "entropy": -2.2006,
+   "wall_s": 40.06,
+   "n_ckpt": 1,
+   "has_last": false
+  },
   {
    "name": "a31b_smoke_refine_cross_20260912",
    "mtime": 1789162244,
@@ -328,29 +369,6 @@
    "wall_s": 24.04,
    "n_ckpt": 6,
    "has_last": true
-  },
-  {
-   "name": "a29_v7_r18_s46_stack_cl08",
-   "mtime": 1788528936,
-   "active": false,
-   "iter": 4177,
-   "alpha_exec": 0.7848,
-   "alpha": 0.6796,
-   "costs": [
-    0.0764,
-    0.04306,
-    0.0522
-   ],
-   "lambdas": [
-    0.0,
-    0.0,
-    0.05
-   ],
-   "hazard_rate": 0.05837,
-   "entropy": -3.27792,
-   "wall_s": 21.87,
-   "n_ckpt": 11,
-   "has_last": false
   }
  ],
  "gates": [
@@ -503,41 +521,59 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-09-12T15:30:07",
+   "updated": "2026-09-12T15:40:24",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "42.30",
+   "load": "61.37",
    "ncpu": 48,
-   "uptime": "15:30:07 up 3 days, 19:19, 22 users,  load average: 42.30, 45.53, 49.27",
+   "uptime": "15:40:24 up 3 days, 19:29, 22 users,  load average: 61.37, 59.29, 56.00",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 13394,
+     "used_mb": 23901,
      "total_mb": 32607,
-     "util": 96,
+     "util": 92,
      "procs": [
       {
        "pid": 1535115,
-       "mem_mb": 9828,
+       "mem_mb": 9834,
        "tag": "chembench",
        "label": "chembench"
       },
       {
+       "pid": 1635118,
+       "mem_mb": 6340,
+       "tag": "safeduo",
+       "label": "train a31b_refine_cross_20260912"
+      },
+      {
+       "pid": 1651143,
+       "mem_mb": 3412,
+       "tag": "safeduo",
+       "label": "record two_pair_pdz_uax07"
+      },
+      {
        "pid": 645097,
-       "mem_mb": 3060,
+       "mem_mb": 3062,
        "tag": "other",
        "label": "run_v199_glint_seeded.py"
+      },
+      {
+       "pid": 1686280,
+       "mem_mb": 654,
+       "tag": "chembench",
+       "label": "chembench"
       }
      ],
-     "mine": false
+     "mine": true
     },
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 29854,
+     "used_mb": 29914,
      "total_mb": 32607,
-     "util": 92,
+     "util": 94,
      "procs": [
       {
        "pid": 1421859,
@@ -546,14 +582,14 @@
        "label": "chembench"
       },
       {
-       "pid": 1422762,
-       "mem_mb": 9853,
+       "pid": 1447703,
+       "mem_mb": 9863,
        "tag": "chembench",
        "label": "chembench"
       },
       {
-       "pid": 1447703,
-       "mem_mb": 9851,
+       "pid": 1422762,
+       "mem_mb": 9853,
        "tag": "chembench",
        "label": "chembench"
       }
@@ -580,6 +616,29 @@
     "yfwatch"
    ],
    "runs": [
+    {
+     "name": "a31b_refine_cross_20260912",
+     "mtime": 1789198787,
+     "active": true,
+     "iter": 3049,
+     "alpha_exec": 0.7288,
+     "alpha": 0.658,
+     "costs": [
+      0.07216,
+      0.04336,
+      0.05199
+     ],
+     "lambdas": [
+      0.35,
+      0.0,
+      0.05
+     ],
+     "hazard_rate": 0.16149,
+     "entropy": -2.2006,
+     "wall_s": 40.06,
+     "n_ckpt": 1,
+     "has_last": false
+    },
     {
      "name": "a31b_smoke_refine_cross_20260912",
      "mtime": 1789162244,
@@ -832,29 +891,6 @@
      "wall_s": 24.04,
      "n_ckpt": 6,
      "has_last": true
-    },
-    {
-     "name": "a29_v7_r18_s46_stack_cl08",
-     "mtime": 1788528936,
-     "active": false,
-     "iter": 4177,
-     "alpha_exec": 0.7848,
-     "alpha": 0.6796,
-     "costs": [
-      0.0764,
-      0.04306,
-      0.0522
-     ],
-     "lambdas": [
-      0.0,
-      0.0,
-      0.05
-     ],
-     "hazard_rate": 0.05837,
-     "entropy": -3.27792,
-     "wall_s": 21.87,
-     "n_ckpt": 11,
-     "has_last": false
     }
    ],
    "gates": [
@@ -1007,19 +1043,19 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-09-12T15:30:08",
+   "updated": "2026-09-12T15:40:25",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "73.24",
+   "load": "74.60",
    "ncpu": 128,
-   "uptime": "15:30:08 up 55 days, 22:03,  0 users,  load average: 73.24, 78.49, 84.45",
+   "uptime": "15:40:25 up 55 days, 22:13,  0 users,  load average: 74.60, 75.90, 80.19",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 6201,
      "total_mb": 81920,
-     "util": 54,
+     "util": 52,
      "procs": [
       {
        "pid": 3389807,
@@ -1097,18 +1133,25 @@
     {
      "idx": 2,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 1,
+     "used_mb": 8780,
      "total_mb": 81920,
-     "util": 0,
-     "procs": [],
-     "mine": false
+     "util": 42,
+     "procs": [
+      {
+       "pid": 3544417,
+       "mem_mb": 8768,
+       "tag": "safeduo",
+       "label": "safeduo.algo.train_safetransport"
+      }
+     ],
+     "mine": true
     },
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 6581,
      "total_mb": 81920,
-     "util": 18,
+     "util": 24,
      "procs": [
       {
        "pid": 2148239,
@@ -1158,7 +1201,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 6251,
      "total_mb": 81920,
-     "util": 78,
+     "util": 75,
      "procs": [
       {
        "pid": 3427173,
@@ -1223,9 +1266,34 @@
     "rescue4parallel",
     "safeot-main-30109-monitor-only",
     "safeot1305_runtime_successor_v2_20260823",
-    "sd109_st_gate_v22_20260912"
+    "sd109_st_gate_v22_20260912",
+    "sd109_st_v22_recovery_20260912",
+    "sd109_st_v22_regates_20260912"
    ],
    "runs": [
+    {
+     "name": "st_E5_v22_retry_20260912",
+     "mtime": 1789198793,
+     "active": true,
+     "iter": 3609,
+     "alpha_exec": 0.7817,
+     "alpha": 0.6807,
+     "costs": [
+      0.0865,
+      0.04322,
+      0.05175
+     ],
+     "lambdas": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "hazard_rate": 0.0204,
+     "entropy": -3.46766,
+     "wall_s": 34.49,
+     "n_ckpt": 0,
+     "has_last": false
+    },
     {
      "name": "st_E5_v22_base",
      "mtime": 1789161284,
