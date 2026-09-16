@@ -1,0 +1,172 @@
+{
+  "purpose": "Four arms sharing workspace with injected reversible command fault; not four hands holding one object",
+  "seed": 42,
+  "input_sha256": "190b6c717e8537a972e763b611e17a5660f7a1c7c1ecbd131b7627fb9bf4d686",
+  "input_manifest": {
+    "purpose": "synthetic reversible command-error diagnostic in simulation only",
+    "source": "/home/liyufeng/safeduo/artifacts/task_trajs_r37_20260910/converge_depth078/task_converge_depth078.npz",
+    "source_sha256": "2e440b035aaf1b5ba97a6eaac412fa9e113a83cb3a807bade3fa8562b4992868",
+    "arm": "U_L",
+    "joint_zero_based": 0,
+    "offset_rad": 0.15,
+    "center_s": 12.3,
+    "half_width_s": 2.5,
+    "baseline_min": {
+      "cross": 0.04454502463340759,
+      "self_F": 0.013902291655540466,
+      "self_U": 0.032899245619773865,
+      "table": 0.0014688298106193542
+    },
+    "candidate_min": {
+      "cross": -0.018803633749485016,
+      "self_F": 0.013902291655540466,
+      "self_U": 0.032899245619773865,
+      "table": 0.0014688298106193542
+    },
+    "qualification": "Four-arm shared-space pick/place, NOT four hands holding one object; no simulated outcome yet.",
+    "runtime_notes": [
+      "Static non-colliding decorations omitted after remote material initialization failed",
+      "Both modes use a31 config overlay with v7 robot layout and same physical scene",
+      "Runtime source snapshot shared with first diagnostic attempt",
+      "First attempt used converge_center; v2 uses converge_depth078 but F_R bottle still fails in raw; cause unresolved"
+    ]
+  },
+  "results": {
+    "raw": {
+      "class_viol_steps": {
+        "cross": 72,
+        "self_F": 0,
+        "self_U": 0,
+        "table": 0
+      },
+      "class_worst_margin_m": {
+        "cross": -0.0186,
+        "self_F": 0.01423,
+        "self_U": 0.03301,
+        "table": 0.00147
+      },
+      "primary_task_verdict": {
+        "success": true,
+        "reason": "placed in zone at rest",
+        "max_lift_m": 0.1641,
+        "displacement_m": 0.342,
+        "place_err_m": 0.0122,
+        "final_z": 0.8505,
+        "settle_move_m": 0.0,
+        "place_xy": [
+          0.2,
+          -0.2
+        ],
+        "radius_m": 0.08,
+        "min_disp_m": 0.1
+      },
+      "per_object": {
+        "can_fl": {
+          "max_lift_m": 0.16499999999999992,
+          "place_error_m": 0.011704699910719625,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 9.992070119073271e-05,
+          "original_height_proxy_qa_pass": true
+        },
+        "bottle_fr": {
+          "max_lift_m": 0.0030000000000000027,
+          "place_error_m": 0.3387107910887989,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 0.0012668453207538306,
+          "original_height_proxy_qa_pass": false
+        },
+        "can_ul": {
+          "max_lift_m": 0.10299999999999998,
+          "place_error_m": 0.025079872407968926,
+          "final_height_delta_m": 0.0020000000000000018,
+          "tilt_from_initial_upright_deg": 3.684699237957955,
+          "original_height_proxy_qa_pass": true
+        },
+        "can_ur": {
+          "max_lift_m": 0.09399999999999997,
+          "place_error_m": 0.012041594578792286,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 0.6033758469969089,
+          "original_height_proxy_qa_pass": true
+        }
+      },
+      "lock_events": [],
+      "physics_grasp": true,
+      "checkpoint": null
+    },
+    "s0": {
+      "class_viol_steps": {
+        "cross": 0,
+        "self_F": 0,
+        "self_U": 0,
+        "table": 0
+      },
+      "class_worst_margin_m": {
+        "cross": 0.03565,
+        "self_F": 0.01423,
+        "self_U": 0.0387,
+        "table": 0.00164
+      },
+      "primary_task_verdict": {
+        "success": true,
+        "reason": "placed in zone at rest",
+        "max_lift_m": 0.1676,
+        "displacement_m": 0.3485,
+        "place_err_m": 0.0173,
+        "final_z": 0.8505,
+        "settle_move_m": 0.0,
+        "place_xy": [
+          0.2,
+          -0.2
+        ],
+        "radius_m": 0.08,
+        "min_disp_m": 0.1
+      },
+      "per_object": {
+        "can_fl": {
+          "max_lift_m": 0.16800000000000004,
+          "place_error_m": 0.017000000000000015,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 0.00041851632317637825,
+          "original_height_proxy_qa_pass": true
+        },
+        "bottle_fr": {
+          "max_lift_m": 0.0030000000000000027,
+          "place_error_m": 0.3387107910887989,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 0.0012668453207538306,
+          "original_height_proxy_qa_pass": false
+        },
+        "can_ul": {
+          "max_lift_m": 0.09599999999999997,
+          "place_error_m": 0.28954619665953135,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 0.02601763139120097,
+          "original_height_proxy_qa_pass": false
+        },
+        "can_ur": {
+          "max_lift_m": 0.13,
+          "place_error_m": 0.017088007490635052,
+          "final_height_delta_m": 0.0,
+          "tilt_from_initial_upright_deg": 0.0021282234389709614,
+          "original_height_proxy_qa_pass": true
+        }
+      },
+      "lock_events": [
+        "LOCK_EVENT t=11.53 arm=U_L LOCK alpha_raw=0.162 phase=carry",
+        "LOCK_EVENT t=18.27 arm=F_R LOCK alpha_raw=0.119 phase=release",
+        "LOCK_EVENT t=22.28 arm=F_R UNLOCK alpha_raw=0.780 phase=retreat",
+        "LOCK_EVENT t=22.28 arm=U_L UNLOCK alpha_raw=0.777 phase=retreat"
+      ],
+      "physics_grasp": true,
+      "checkpoint": "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt"
+    }
+  },
+  "limitations": [
+    "Single seed; not a reliability estimate",
+    "Safety sphere distances are not mesh contact or force measurements",
+    "Tilt references each asset initial upright orientation, since soup can asset is Y-up",
+    "Raw bypasses backstop; difference includes policy plus execution safety stack",
+    "Videos encode 60 Hz control frames at 30 fps, so playback is half-speed; caption time is simulation time"
+  ]
+}

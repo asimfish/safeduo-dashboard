@@ -85,7 +85,7 @@
   <h2>今日焦点</h2>
   <ul class="q" id="focus"></ul>
   <h2>最新视频（全景机位优先） <span class="small">（<a href="#videos">全部 →</a>）</span></h2>
-  <p><a href="#videos">查看 a31b 八场景回顾与旧版参考视频 →</a></p>
+  <p><a href="#videos">查看新增四臂风险对照：制动有效、恢复失败 →</a></p>
   <div class="vgrid" id="ov-videos"></div>
   <h2>最近判决</h2>
   <div class="table-wrap"><table id="ov-verdicts"><thead><tr><th>日期</th><th>主题</th><th>判词</th></tr></thead><tbody></tbody></table></div>
@@ -126,13 +126,19 @@
 
 <!-- ============================ 视频 ============================ -->
 <section class="tab" id="tab-videos">
+<div id="four-arm-conflict-actual"><h2>新实录：四臂共享空间遇险，制动有效但恢复失败 · 09-17</h2>
+<p>固定同一输入与 seed 42，在搬运途中给 U_L 第一关节加入可撤回的 +0.15 rad 指令扰动（仿真 9.8–14.8 秒），对比无门控与 a31b θ=0.5:0.2。两组均为真实物理夹持，无吸附；这是四臂共享空间取放，不是四手共持同一物体。</p>
+<p><b>结论：不能宣布完整协作成功。</b>门控消除了本次安全球跨臂越界，但 U_L 放置偏差约 29 cm；F_R 瓶子两组均未抓起。录像内的 TASK SUCCESS 仅判主物体，不能代表四物体任务成功。</p>
+<p><button type="button" onclick="playConflictPair(0)">从头同步播放</button> <button type="button" onclick="playConflictPair(19)">跳到风险前（仿真 9.5 秒）</button> <button type="button" onclick="document.querySelectorAll('#four-arm-conflict-actual video').forEach(v=>v.pause())">同时暂停</button></p>
+<div class="grid g2"><article class="vcard"><video id="conflict-raw" controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/four_arm_conflict_v2_20260916_raw.mp4"></video><div class="b"><b>无门控 · 真实物理抓取</b><p>跨臂违规 72 步；最低余量 −18.6 mm；逐物体检查 3/4。</p></div></article><article class="vcard"><video id="conflict-s0" controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/four_arm_conflict_v2_20260916_s0.mp4"></video><div class="b"><b>a31b 门控 · 相同输入</b><p>各类违规均为 0；cross 最低 +35.7 mm；逐物体检查 2/4。</p></div></article></div><p>看点：U_L 在仿真 11.53 秒锁定，到 22.28 秒才解锁，未能完成放置。视频以半速播放，字幕是仿真时间。−18.6 mm 是安全球余量，不等同于物理网格穿透深度。单种子诊断，不代表可靠性统计。</p><p><a href="docs/four_arm_conflict_20260917.json">原始指标、逐物体结果与锁定时序</a></p></div>
+
 <div id="four-arm-safety-review">
-<h2>四手协同与安全冲突：当前证据缺口</h2>
-<p><b>尚无已验证的“四手真实物理协同 → 遇到跨臂安全冲突 → 门控介入 → 恢复完成”录像。</b>下面是现有最相关素材，不能作为该能力已实现的证明。</p>
+<h2>旧版协同素材与证据边界</h2>
+<p><b>新增实录见上方；“四手真实物理协同 → 遇险 → 门控 → 恢复完成”的完整成功证据仍缺失。</b>下面是现有最相关素材，不能作为该能力已实现的证明。</p>
 <div class="vgrid"><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_relay_camC_v32.mp4" aria-label="四臂接力 · 无门控"></video><div class="b"><b>四臂接力 · 无门控</b><p>记录无跨臂违规，不能作为遇险演示。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_relay_s0_a27t50_r29_camC.mp4" aria-label="四臂接力 · a27 门控"></video><div class="b"><b>四臂接力 · a27 门控</b><p>记录无跨臂违规，不能作为遇险演示。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_fourlift_camC.mp4" aria-label="双臂共搬＋双臂取放 · 无门控"></video><div class="b"><b>双臂共搬＋双臂取放 · 无门控</b><p>存在桌面安全距离违规；跨臂违规为 0。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_fourlift_s0_a27t50_r29_camC.mp4" aria-label="双臂共搬＋双臂取放 · a27 门控"></video><div class="b"><b>双臂共搬＋双臂取放 · a27 门控</b><p>存在桌面安全距离违规；跨臂违规为 0。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article></div>
 <p>接力是四臂依次交接；搬运是两臂共搬、另外两臂并行取放，都不是四手同时共持同一物体。搬运中的桌面距离违规也不等于四臂互撞。</p>
 <p><a href="docs/four_arm_video_evidence_20260914.json">对应录像的原始结果</a>。这些版本未确认为同配置配对，不据此计算安全改善率。</p>
-<p><b>待补的演示：</b>四臂共享交接区的真实物理任务，固定相同输入对比无门控与门控；标出冲突时刻、受影响臂、最小间距、门控动作和恢复结果。该实验尚未运行。</p>
+<p><b>待补的演示：</b>四臂共享交接区的真实物理任务，固定相同输入对比无门控与门控；标出冲突时刻、受影响臂、最小间距、门控动作和恢复结果。共享空间扰动对照已运行，结果见上方：制动有效，恢复失败。</p>
 </div>
 
   <!-- a31b-curated-videos -->
@@ -237,6 +243,17 @@
 </section>
 </main>
 <script>
+function playConflictPair(time) {
+  const videos = [...document.querySelectorAll('#four-arm-conflict-actual video')];
+  for (const video of videos) video.pause();
+  Promise.all(videos.map(video => new Promise(resolve => {
+    if (video.readyState >= 1) resolve();
+    else { video.addEventListener('loadedmetadata', resolve, {once: true}); video.load(); }
+  }))).then(() => {
+    for (const video of videos) { video.currentTime = time; video.play().catch(console.warn); }
+  });
+}
+
 const RAW = "https://raw.githubusercontent.com/asimfish/safeduo-dashboard/data/";
 const MEDIA = "https://asimfish.github.io/safeduo-media/";
 const $ = (s) => document.querySelector(s);
