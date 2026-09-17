@@ -126,6 +126,12 @@
 
 <!-- ============================ 视频 ============================ -->
 <section class="tab" id="tab-videos">
+<div id="camera-review-0918"><h2>相机与物体检查 · 09-18</h2>
+<p><b>同步四视角：全景、俯视、正视、侧视。</b>每路原始 1280×720，状态文字位于画面外。下方为闭合与抬升阶段的诊断片段（仿真 0–11 秒，半速播放），不代表完整任务通过。建议全屏观看。</p>
+<video style="width:100%;max-height:none" controls playsinline preload="metadata" poster="https://asimfish.github.io/safeduo-media/thumbs/camera_review_crossrow_grasp_20260918.jpg" src="https://asimfish.github.io/safeduo-media/videos/camera_review_crossrow_grasp_20260918.mp4"></video>
+<p><b>模型输入缺口已确认：</b>a31b System 0 不接收物体位姿、尺寸、速度或相机图像；任务物体不在机器人安全球模型中。四路相机仅用于观察，不能因此宣称模型具备物体感知。</p>
+<p>此片使用独立的简洁诊断场景：移除任务板、备用料箱、秤等附加道具，显示真实桌面；机器人、两根梁和输入轨迹保留。它不与下方旧场景指标混算。两根梁初始间隙约 55 cm，无初始物体重叠；新片逐物体轨迹显示最大抬升分别为 0 mm 和 0.35 mm：移除道具后仍未抓起，不能只归因于拥挤；抓取姿态、闭合和接触需继续修复。</p>
+<p><a href="docs/camera_object_audit_20260918.md">输入与场景检查记录</a> · <a href="https://asimfish.github.io/safeduo-media/videos/camera_review_crossrow_grasp_20260918.mp4">直接打开高清四视角视频</a></p></div>
 <div id="four-arm-random-new"><h2>新增四臂任务与随机测试 · 09-18</h2>
 <p><b>结果包含失败：当前不能宣称四臂协作完整成功，也不能宣称随机测试已安全通过。</b>下面四段为新增物理抓取录像。已有遇险制动对照在本节下方。</p>
 <h3>四臂共享空间汇聚取放</h3><p>两组均 0 违规，跨机器人臂最低余量均 +45.97 mm。主物体通过，但未作四物体完整验收；这组没有展示安全增益。</p><div class="grid g2"><article class="vcard"><video controls playsinline preload="none" aria-label="四臂共享空间汇聚取放 无安全过滤" src="https://asimfish.github.io/safeduo-media/videos/four_arm_converge_depth078_20260917_raw.mp4"></video><div class="b"><b>无安全过滤</b></div></article><article class="vcard"><video controls playsinline preload="none" aria-label="四臂共享空间汇聚取放 System 0 · a31b 离合门控" src="https://asimfish.github.io/safeduo-media/videos/four_arm_converge_depth078_20260917_s0.mp4"></video><div class="b"><b>System 0 · a31b 离合门控</b></div></article></div><h3>跨排配对共抬尝试</h3><p>两组均 0 违规，但主梁最大抬升为 0，物体未抓起。它是协同任务失败录像，不是成功共抬证明。</p><div class="grid g2"><article class="vcard"><video controls playsinline preload="none" aria-label="跨排配对共抬尝试 无安全过滤" src="https://asimfish.github.io/safeduo-media/videos/four_arm_crossrow_colift_pair_20260917_raw.mp4"></video><div class="b"><b>无安全过滤</b></div></article><article class="vcard"><video controls playsinline preload="none" aria-label="跨排配对共抬尝试 System 0 · a31b 离合门控" src="https://asimfish.github.io/safeduo-media/videos/four_arm_crossrow_colift_pair_20260917_s0.mp4"></video><div class="b"><b>System 0 · a31b 离合门控</b></div></article></div><h3>随机统计：离合门控 vs 连续模型输出</h3><p>seed 17；每流 128 环境 × 20 秒；幅度参数 0.03。l1_full 为随机目标、姿态和速度的全域漫游，含覆盖与风险带采样规则；不是独立均匀关节噪声。mixed 含 50% 脚本冲突，不能叫纯随机。</p>
