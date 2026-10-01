@@ -81,6 +81,7 @@
     <div class="card"><div class="t">服务器（5090 + A100）</div><div id="ov-gpu" class="small">-</div></div>
     <div class="card"><div class="t">在跑作业</div><div id="ov-jobs" class="small">-</div></div>
     <div class="card"><div class="t">最新四门结果</div><div id="ov-gates" class="small">-</div></div>
+    <div class="card"><div class="t">最新科研评测</div><div id="ov-scientific" class="small">-</div></div>
     <div class="card"><div class="t">待 owner 决策 <span id="ov-ndec" class="pill open">0</span></div><div id="ov-dec" class="small">-</div></div>
   </div>
   <h2>两条线现在在做什么</h2>
@@ -397,9 +398,13 @@ function sciStatus(kind) { return kind === "safe" ? "safe" : (kind === "bad" ? "
 function renderScientific(d) {
   SCIENTIFIC = d;
   const p = d.protocol || {};
+  const headline = d.headline || [];
   $("#scientific-summary").innerHTML = `<b>${esc(d.title || "科研型安全评测")}</b> · ${esc(d.summary || "")}`;
   $("#scientific-updated").textContent = `更新 ${fmtAge(d.updated)} · checkpoint ${esc(p.checkpoint || "-")}`;
-  $("#scientific-headline").innerHTML = (d.headline || []).map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="sub">违规率 ${sciPct(x.rate)} · CP95 上界 ${sciPct(x.cp95_upper)}</div><div class="small" style="margin-top:6px">${esc(x.note || "")}</div></div>`).join("");
+  $("#scientific-headline").innerHTML = headline.map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="sub">违规率 ${sciPct(x.rate)} · CP95 上界 ${sciPct(x.cp95_upper)}</div><div class="small" style="margin-top:6px">${esc(x.note || "")}</div></div>`).join("");
+  const low = headline.find(x => String(x.label).startsWith("低速"));
+  const standard = headline.find(x => String(x.label).startsWith("标准"));
+  $("#ov-scientific").innerHTML = `${low ? `低速 <b>${low.violations}/${low.episodes}</b>（${sciPct(low.rate)}）` : "低速 -"}<br>${standard ? `标准 <b>${standard.violations}/${standard.episodes}</b>（${sciPct(standard.rate)}）` : "标准 -"}<div style="margin-top:4px"><a href="#scientific">查看分层结果 →</a></div>`;
   $("#scientific-protocol").innerHTML = `主种子 <b>${(p.seeds || []).join(" / ")}</b> · ${p.num_envs || "-"} 环境 × ${p.steps || "-"} 步（${p.duration_s || "-"} 秒） · 轨迹 <code>${(p.flows || []).join("</code> / <code>")}</code> · 违规口径：${esc(p.violation_definition || "球层非豁免 margin < 0")}`;
   $("#scientific-main tbody").innerHTML = (d.protocol_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td><code>${esc(x.flow)}</code></td><td class="num">${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num ${x.violations ? "bad" : "ok"}">${sciPct(x.rate)}</td><td class="num">${sciPct(x.cp95_upper)}</td><td class="num">${x.pair_union_exposed}/6</td></tr>`).join("");
   $("#scientific-ablation tbody").innerHTML = (d.ablation || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td class="num ${x.low.violations ? "bad" : "ok"}">${x.low.violations}/${x.low.episodes}</td><td class="num ${x.standard.violations ? "bad" : "ok"}">${x.standard.violations}/${x.standard.episodes}</td><td class="num">${x.total.episodes}</td><td class="num ${x.total.violations ? "bad" : "ok"}">${x.total.violations}</td><td class="num">${sciPct(x.total.cp95_upper)}</td><td>${esc(x.note || "")}</td></tr>`).join("");
