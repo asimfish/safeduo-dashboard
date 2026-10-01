@@ -9,6 +9,7 @@ SafeDuo 项目计划面板（GitHub Pages）：<https://asimfish.github.io/safed
 - `docs/`：设计文档（R34 工业协作装配场景与资产方案、SAI/TRACE 文献启发）。
 - `MASTER_REPORT.html`：SafeDuo 活文档镜像（源在 `safeduo/paper/`，由实验线维护，脚本自动同步）。
 - `gallery/`：任务视频关键帧缩略图。
+- `docs/scientific_eval_20261001.md`：最新科研型安全评测报告；面板“科研评测”页展示低速/标准协议、纯均匀随机消融、六组机械臂配对暴露与可复核证据入口。
 - 视频库：独立仓库 [asimfish/safeduo-media](https://github.com/asimfish/safeduo-media)（GitHub Pages 托管 mp4 + `index.json`）；`sync_media.sh` 从 `bjxy_5090:~/Code/safeduo_media` 与 `~/safeduo/artifacts/viz/a8_v4demo`（近 3 天）拉取新片，`build_media_index.py` 转码到 ≤960 px / CRF 29（每部 ~0.5–1 MB）并生成索引，随 `update_dashboard.sh` 每 10 分钟自动运行。
 
 ## 更新

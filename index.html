@@ -59,13 +59,17 @@
   .filters { font-size:12px; color:#334155; margin:6px 0; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .filters label { cursor:pointer; }
   .line { background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13px; } .line b { color:#1e293b; }
   .btn { display:inline-block; padding:4px 12px; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-size:12px; color:#334155; }
+  .sci-card { border-top:4px solid var(--muted); } .sci-card.safe { border-top-color:var(--green); } .sci-card.warn { border-top-color:var(--amber); } .sci-card.bad { border-top-color:var(--red); }
+  .sci-card .rate { font-size:24px; font-weight:750; margin:2px 0; } .sci-card .sub { color:var(--muted); font-size:12px; }
+  .sci-note { background:#fff7ed; border:1px solid #fed7aa; color:#7c2d12; border-radius:8px; padding:9px 12px; font-size:13px; }
+  .sci-links a { margin-right:12px; }
 </style>
 </head>
 <body>
 <header class="top"><div class="topin">
   <div class="brand"><h1>SafeDuo 计划面板</h1><span class="meta">内容 <span id="upd-status">-</span> · 服务器 <span id="upd-runs">-</span> · 视频 <span id="upd-media">-</span> · 60 秒自动刷新 <span id="stale" class="stale"></span></span></div>
   <nav class="tabs">
-    <a href="#overview" data-tab="overview">总览</a><a href="#algorithm" data-tab="algorithm">算法</a><a href="#videos" data-tab="videos">视频</a><a href="#experiments" data-tab="experiments">实验</a><a href="#plan" data-tab="plan">计划</a><a href="#assets" data-tab="assets">任务与资产</a><a href="#records" data-tab="records">记录</a>
+    <a href="#overview" data-tab="overview">总览</a><a href="#algorithm" data-tab="algorithm">算法</a><a href="#videos" data-tab="videos">视频</a><a href="#experiments" data-tab="experiments">实验</a><a href="#scientific" data-tab="scientific">科研评测</a><a href="#plan" data-tab="plan">计划</a><a href="#assets" data-tab="assets">任务与资产</a><a href="#records" data-tab="records">记录</a>
     <a href="MASTER_REPORT.html" target="_blank" style="margin-left:auto">MASTER 活文档 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/REFERENCE_STUDY_20260907.md" target="_blank">参考深读 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/BENCHMARK_4ARM_ASSEMBLY.md" target="_blank">四臂 benchmark 笔记 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/LITERATURE_SAI_TRACE.md" target="_blank">SAI/TRACE ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/R34_SCENE_ASSETS.md" target="_blank">R34 方案 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard" target="_blank">仓库 ↗</a>
   </nav>
 </div></header>
@@ -189,6 +193,25 @@
   <div class="small">硬门 = brake 1.0 ∧ viol-free(cross) 1.0 ∧ no-deadlock(hys) 1.0（R28 口径）；fidelity 越高越好；误刹越低越好。执行栈：r18 = 死腕（有效 5 DOF）旧栈；stack = R29+R30b；fix = 活腕 armature + F 重力补偿；fix2 = 双臂重力补偿；bl = backlog-aware；la/la06 = lookahead 0.15/0.06 s。</div>
 </section>
 
+<!-- ============================ 科研评测 ============================ -->
+<section class="tab" id="tab-scientific">
+  <div class="northstar" id="scientific-summary" style="border-left-color:var(--red)"></div>
+  <div class="small" id="scientific-updated"></div>
+  <h2>最新安全 / 不安全效果</h2>
+  <div class="grid g4" id="scientific-headline"></div>
+  <h2>统一协议结果</h2>
+  <div class="sci-note" id="scientific-protocol"></div>
+  <div class="table-wrap" style="margin-top:8px"><table id="scientific-main"><thead><tr><th>配置</th><th>轨迹</th><th>episode</th><th>违规</th><th>违规率</th><th>CP95 上界</th><th>六配对跨窗口暴露</th></tr></thead><tbody></tbody></table></div>
+  <h2>纯均匀随机消融</h2>
+  <p class="small">同一 seed / 幅度使用同一条可哈希命令 tape；raw 没有安全投影，backstop-only 与 System 0 逐条对照。</p>
+  <div class="table-wrap"><table id="scientific-ablation"><thead><tr><th>方法</th><th>amp=0.005</th><th>amp=0.015</th><th>总 episode</th><th>总违规</th><th>CP95 上界</th><th>解释</th></tr></thead><tbody></tbody></table></div>
+  <h2>四臂配对暴露</h2>
+  <div class="table-wrap"><table id="scientific-pairs"><thead><tr><th>配对</th><th>低速暴露 episode</th><th>标准暴露 episode</th><th>覆盖说明</th></tr></thead><tbody></tbody></table></div>
+  <h2>证据与限制</h2>
+  <div class="sci-links" id="scientific-links"></div>
+  <ul class="q" id="scientific-limitations"></ul>
+</section>
+
 <!-- ============================ 计划 ============================ -->
 <section class="tab" id="tab-plan">
   <div class="northstar" id="northstar"></div>
@@ -280,7 +303,7 @@ const clsMm = (v) => v === null || v === undefined ? "" : (v < 0 ? "bad" : (v < 
 
 // ---- tabs
 function showTab(name) {
-  const known = ["overview","algorithm","videos","experiments","plan","assets","records"];
+  const known = ["overview","algorithm","videos","experiments","scientific","plan","assets","records"];
   if (!known.includes(name)) name = "overview";
   document.querySelectorAll("section.tab").forEach(s => s.classList.toggle("active", s.id === "tab-" + name));
   document.querySelectorAll("nav.tabs a[data-tab]").forEach(a => a.classList.toggle("active", a.dataset.tab === name));
@@ -366,6 +389,23 @@ function renderGates() {
   // overview: latest 3 complete cells
   const latest = GATES.rows.filter(r => !r.error && r.brake_rate !== null && r.brake_rate !== undefined).slice(0,3);
   $("#ov-gates").innerHTML = latest.map(r => `<div><b>${esc(r.policy)}</b>@<code>${esc(r.env)}</code> ${r.hard_pass ? "<span class='ok'>硬门✓</span>" : "<span class='bad'>硬门✗</span>"}<br><span class="small">viol-free ${f(r.viol_free_cross,2)} · min ${r.min_cross_mm} mm · no-dl ${f(r.no_deadlock_hys,2)} · 误刹 ${f(r.false_brake_arm,2)} · fid ${f(r.fidelity,3)} · ${esc((r.date||"").slice(5,16))}</span></div>`).join("") + `<div style="margin-top:4px"><a href="#experiments">矩阵 →</a></div>`;
+}
+// ---- scientific evaluation
+let SCIENTIFIC = null;
+function sciPct(x) { return x === null || x === undefined ? "-" : `${(Number(x) * 100).toFixed(2)}%`; }
+function sciStatus(kind) { return kind === "safe" ? "safe" : (kind === "bad" ? "bad" : "warn"); }
+function renderScientific(d) {
+  SCIENTIFIC = d;
+  const p = d.protocol || {};
+  $("#scientific-summary").innerHTML = `<b>${esc(d.title || "科研型安全评测")}</b> · ${esc(d.summary || "")}`;
+  $("#scientific-updated").textContent = `更新 ${fmtAge(d.updated)} · checkpoint ${esc(p.checkpoint || "-")}`;
+  $("#scientific-headline").innerHTML = (d.headline || []).map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="sub">违规率 ${sciPct(x.rate)} · CP95 上界 ${sciPct(x.cp95_upper)}</div><div class="small" style="margin-top:6px">${esc(x.note || "")}</div></div>`).join("");
+  $("#scientific-protocol").innerHTML = `主种子 <b>${(p.seeds || []).join(" / ")}</b> · ${p.num_envs || "-"} 环境 × ${p.steps || "-"} 步（${p.duration_s || "-"} 秒） · 轨迹 <code>${(p.flows || []).join("</code> / <code>")}</code> · 违规口径：${esc(p.violation_definition || "球层非豁免 margin < 0")}`;
+  $("#scientific-main tbody").innerHTML = (d.protocol_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td><code>${esc(x.flow)}</code></td><td class="num">${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num ${x.violations ? "bad" : "ok"}">${sciPct(x.rate)}</td><td class="num">${sciPct(x.cp95_upper)}</td><td class="num">${x.pair_union_exposed}/6</td></tr>`).join("");
+  $("#scientific-ablation tbody").innerHTML = (d.ablation || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td class="num ${x.low.violations ? "bad" : "ok"}">${x.low.violations}/${x.low.episodes}</td><td class="num ${x.standard.violations ? "bad" : "ok"}">${x.standard.violations}/${x.standard.episodes}</td><td class="num">${x.total.episodes}</td><td class="num ${x.total.violations ? "bad" : "ok"}">${x.total.violations}</td><td class="num">${sciPct(x.total.cp95_upper)}</td><td>${esc(x.note || "")}</td></tr>`).join("");
+  $("#scientific-pairs tbody").innerHTML = (d.pair_exposure || []).map(x => `<tr><td><b>${esc(x.pair)}</b></td><td class="num">${x.low_speed}</td><td class="num">${x.standard}</td><td>${esc(x.note || "跨窗口并集计数")}</td></tr>`).join("");
+  $("#scientific-links").innerHTML = (d.links || []).map(x => `<a href="${esc(x.url)}" target="_blank">${esc(x.label)} ↗</a>`).join("");
+  $("#scientific-limitations").innerHTML = (d.limitations || []).map(x => `<li>${esc(x)}</li>`).join("");
 }
 // ---- tasks / R34
 function renderTasks(t) {
@@ -455,6 +495,7 @@ async function refresh() {
   try { ROADMAP = await getJSON(RAW + "roadmap.json"); renderRoadmap(); } catch (e) { console.warn(e); }
   try { renderMatrix(await getJSON(RAW + "matrix.json")); } catch (e) { console.warn(e); }
   try { GATES = await getJSON(RAW + "gates.json"); renderGates(); } catch (e) { console.warn(e); }
+  try { renderScientific(await getJSON(RAW + "scientific_eval.json")); } catch (e) { console.warn(e); }
   try { renderTasks(await getJSON(RAW + "tasks.json")); } catch (e) { console.warn(e); }
   try { ALG = await getJSON(RAW + "algorithm.json"); renderAlgorithm(); } catch (e) { console.warn(e); }
   try { VIDEOS = await getJSON(MEDIA + "index.json"); renderVideos(); } catch (e) { $("#upd-media").textContent = "加载失败"; }
