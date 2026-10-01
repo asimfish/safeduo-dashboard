@@ -202,6 +202,7 @@
   <div class="grid g4" id="scientific-headline"></div>
   <h2>统一协议结果</h2>
   <div class="sci-note" id="scientific-protocol"></div>
+  <div class="sci-note" id="scientific-coverage" style="margin-top:8px"></div>
   <div class="table-wrap" style="margin-top:8px"><table id="scientific-main"><thead><tr><th>配置</th><th>轨迹</th><th>episode</th><th>违规</th><th>违规率</th><th>CP95 上界</th><th>六配对跨窗口暴露</th></tr></thead><tbody></tbody></table></div>
   <h2>纯均匀随机消融</h2>
   <p class="small">同一 seed / 幅度使用同一条可哈希命令 tape；raw 没有安全投影，backstop-only 与 System 0 逐条对照。</p>
@@ -406,6 +407,8 @@ function renderScientific(d) {
   const standard = headline.find(x => String(x.label).startsWith("标准"));
   $("#ov-scientific").innerHTML = `${low ? `低速 <b>${low.violations}/${low.episodes}</b>（${sciPct(low.rate)}）` : "低速 -"}<br>${standard ? `标准 <b>${standard.violations}/${standard.episodes}</b>（${sciPct(standard.rate)}）` : "标准 -"}<div style="margin-top:4px"><a href="#scientific">查看分层结果 →</a></div>`;
   $("#scientific-protocol").innerHTML = `主种子 <b>${(p.seeds || []).join(" / ")}</b> · ${p.num_envs || "-"} 环境 × ${p.steps || "-"} 步（${p.duration_s || "-"} 秒） · 轨迹 <code>${(p.flows || []).join("</code> / <code>")}</code> · 违规口径：${esc(p.violation_definition || "球层非豁免 margin < 0")}`;
+  const coverage = d.coverage_assessment || {};
+  $("#scientific-coverage").innerHTML = `<b>${esc(coverage.title || "随机范围覆盖判定")}</b> · ${esc(coverage.summary || "")}${coverage.items ? `<ul class="q" style="margin-bottom:0">${coverage.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
   $("#scientific-main tbody").innerHTML = (d.protocol_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td><code>${esc(x.flow)}</code></td><td class="num">${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num ${x.violations ? "bad" : "ok"}">${sciPct(x.rate)}</td><td class="num">${sciPct(x.cp95_upper)}</td><td class="num">${x.pair_union_exposed}/6</td></tr>`).join("");
   $("#scientific-ablation tbody").innerHTML = (d.ablation || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td class="num ${x.low.violations ? "bad" : "ok"}">${x.low.violations}/${x.low.episodes}</td><td class="num ${x.standard.violations ? "bad" : "ok"}">${x.standard.violations}/${x.standard.episodes}</td><td class="num">${x.total.episodes}</td><td class="num ${x.total.violations ? "bad" : "ok"}">${x.total.violations}</td><td class="num">${sciPct(x.total.cp95_upper)}</td><td>${esc(x.note || "")}</td></tr>`).join("");
   $("#scientific-pairs tbody").innerHTML = (d.pair_exposure || []).map(x => `<tr><td><b>${esc(x.pair)}</b></td><td class="num">${x.low_speed}</td><td class="num">${x.standard}</td><td>${esc(x.note || "跨窗口并集计数")}</td></tr>`).join("");
