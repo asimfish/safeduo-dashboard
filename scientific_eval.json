@@ -1,0 +1,102 @@
+{
+  "schema": "safeduo.scientific_dashboard.v1",
+  "updated": "2026-10-01T02:24:00+08:00",
+  "title": "SafeDuo 科研型安全评测 · System 0",
+  "summary": "低速配置降低了风险，但仍有违规；纯均匀随机中 backstop-only 与 System 0 均阻断了当前命令分布下的球层违规。",
+  "protocol": {
+    "checkpoint": "a31b_refine_cross_20260912/model_last.pt",
+    "seeds": [0, 1, 2],
+    "num_envs": 32,
+    "steps": 600,
+    "duration_s": 10,
+    "flows": ["l1_full", "directed_all"],
+    "violation_definition": "球层非豁免 margin < 0；桌面使用已有 near-table 豁免"
+  },
+  "headline": [
+    {
+      "label": "低速协议组 · amp 0.005",
+      "episodes": 192,
+      "violations": 8,
+      "rate": 0.0416666667,
+      "cp95_upper": 0.0739228681,
+      "status": "warn",
+      "note": "风险下降，但不能称为绝对安全"
+    },
+    {
+      "label": "标准协议组 · amp 0.015",
+      "episodes": 192,
+      "violations": 43,
+      "rate": 0.2239583333,
+      "cp95_upper": 0.2790960992,
+      "status": "bad",
+      "note": "l1_full 36/96；directed_all 7/96"
+    },
+    {
+      "label": "纯均匀随机 · raw · amp 0.015",
+      "episodes": 192,
+      "violations": 12,
+      "rate": 0.0625,
+      "cp95_upper": 0.0992977175,
+      "status": "bad",
+      "note": "无安全投影的风险基线"
+    },
+    {
+      "label": "纯均匀随机 · System 0 · amp 0.015",
+      "episodes": 192,
+      "violations": 0,
+      "rate": 0.0,
+      "cp95_upper": 0.0154816796,
+      "status": "safe",
+      "note": "仅对当前固定命令分布成立"
+    }
+  ],
+  "protocol_rows": [
+    {"label": "低速协议组", "flow": "l1_full", "episodes": 96, "violations": 8, "rate": 0.0833333333, "cp95_upper": 0.1453383230, "pair_union_exposed": 6},
+    {"label": "低速协议组", "flow": "directed_all", "episodes": 96, "violations": 0, "rate": 0.0, "cp95_upper": 0.0307236768, "pair_union_exposed": 6},
+    {"label": "标准协议组", "flow": "l1_full", "episodes": 96, "violations": 36, "rate": 0.375, "cp95_upper": 0.4635824231, "pair_union_exposed": 6},
+    {"label": "标准协议组", "flow": "directed_all", "episodes": 96, "violations": 7, "rate": 0.0729166667, "cp95_upper": 0.1325949432, "pair_union_exposed": 6}
+  ],
+  "ablation": [
+    {
+      "method": "raw（无 backstop）",
+      "low": {"episodes": 96, "violations": 0},
+      "standard": {"episodes": 96, "violations": 12},
+      "total": {"episodes": 192, "violations": 12, "cp95_upper": 0.0992977175},
+      "note": "风险基线"
+    },
+    {
+      "method": "backstop-only",
+      "low": {"episodes": 96, "violations": 0},
+      "standard": {"episodes": 96, "violations": 0},
+      "total": {"episodes": 192, "violations": 0, "cp95_upper": 0.0154816796},
+      "note": "安全投影层单独对照"
+    },
+    {
+      "method": "System 0（checkpoint + clutch）",
+      "low": {"episodes": 96, "violations": 0},
+      "standard": {"episodes": 96, "violations": 0},
+      "total": {"episodes": 192, "violations": 0, "cp95_upper": 0.0154816796},
+      "note": "与 backstop-only 违规结果相同，尚不能证明策略网络额外收益"
+    }
+  ],
+  "pair_exposure": [
+    {"pair": "F_L-F_R", "low_speed": 62, "standard": 76, "note": "低速/标准跨窗口并集"},
+    {"pair": "F_L-U_L", "low_speed": 9, "standard": 14, "note": "低速/标准跨窗口并集"},
+    {"pair": "F_L-U_R", "low_speed": 35, "standard": 53, "note": "低速/标准跨窗口并集"},
+    {"pair": "F_R-U_L", "low_speed": 40, "standard": 48, "note": "低速/标准跨窗口并集"},
+    {"pair": "F_R-U_R", "low_speed": 9, "standard": 14, "note": "低速/标准跨窗口并集"},
+    {"pair": "U_L-U_R", "low_speed": 39, "standard": 52, "note": "低速/标准跨窗口并集"}
+  ],
+  "links": [
+    {"label": "科研总报告", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_eval_20261001.md"},
+    {"label": "完整纯随机数据", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_eval_20261001.json"},
+    {"label": "评测器源码", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/research_battery.py"},
+    {"label": "矩阵汇总器源码", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_matrix.py"}
+  ],
+  "limitations": [
+    "纯均匀随机没有进入六组机械臂配对的 80 mm 告警带；它是消融测试，不是四臂危险空间覆盖证明。",
+    "物体抓取、放置、三视角相机感知和任务完成率尚未纳入这组球层安全主指标。",
+    "低速与标准协议组同时改变了幅度和配置，不能把差异归因于单一变量。",
+    "Isaac Sim 本轮持续报告 RTX 5090 CUDA bad state；结果完成，但应重启 GPU 后复跑固定 cell。"
+  ]
+}
