@@ -209,6 +209,9 @@
   <div class="table-wrap"><table id="scientific-ablation"><thead><tr><th>方法</th><th>amp=0.005</th><th>amp=0.015</th><th>总 episode</th><th>总违规</th><th>CP95 上界</th><th>解释</th></tr></thead><tbody></tbody></table></div>
   <h2>四臂配对暴露</h2>
   <div class="table-wrap"><table id="scientific-pairs"><thead><tr><th>配对</th><th>低速暴露 episode</th><th>标准暴露 episode</th><th>覆盖说明</th></tr></thead><tbody></tbody></table></div>
+  <h2>六臂对分层压力测试</h2>
+  <div class="sci-note" id="scientific-stratified-note"></div>
+  <div class="table-wrap"><table id="scientific-stratified"><thead><tr><th>方法</th><th>配对</th><th>尝试</th><th>进入 80 mm</th><th>进入 5 mm</th><th>违规</th><th>违规率</th><th>CP95 上界</th></tr></thead><tbody></tbody></table></div>
   <h2>证据与限制</h2>
   <div class="sci-links" id="scientific-links"></div>
   <ul class="q" id="scientific-limitations"></ul>
@@ -412,6 +415,11 @@ function renderScientific(d) {
   $("#scientific-main tbody").innerHTML = (d.protocol_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td><code>${esc(x.flow)}</code></td><td class="num">${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num ${x.violations ? "bad" : "ok"}">${sciPct(x.rate)}</td><td class="num">${sciPct(x.cp95_upper)}</td><td class="num">${x.pair_union_exposed}/6</td></tr>`).join("");
   $("#scientific-ablation tbody").innerHTML = (d.ablation || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td class="num ${x.low.violations ? "bad" : "ok"}">${x.low.violations}/${x.low.episodes}</td><td class="num ${x.standard.violations ? "bad" : "ok"}">${x.standard.violations}/${x.standard.episodes}</td><td class="num">${x.total.episodes}</td><td class="num ${x.total.violations ? "bad" : "ok"}">${x.total.violations}</td><td class="num">${sciPct(x.total.cp95_upper)}</td><td>${esc(x.note || "")}</td></tr>`).join("");
   $("#scientific-pairs tbody").innerHTML = (d.pair_exposure || []).map(x => `<tr><td><b>${esc(x.pair)}</b></td><td class="num">${x.low_speed}</td><td class="num">${x.standard}</td><td>${esc(x.note || "跨窗口并集计数")}</td></tr>`).join("");
+  const strat = d.pair_stratified || {};
+  $("#scientific-stratified-note").innerHTML = strat.complete === true
+    ? `<b>分层设计完整</b> · 六组臂对 × 四个距离带 × 三种相对方向 × ${(strat.amps || []).join(" / ")} · 统计把尝试、80 mm 暴露、5 mm 近接触和违规分开。`
+    : `<b>分层设计仍有缺口</b> · ${strat.missing_cells || 0} 个单元未覆盖；不要把未暴露样本当作安全证据。`;
+  $("#scientific-stratified tbody").innerHTML = (strat.pair_rows || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td><code>${esc(x.pair)}</code></td><td class="num">${x.attempts}</td><td class="num">${x.exposed}</td><td class="num">${x.near}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num">${sciPct(x.violation_rate)}</td><td class="num">${sciPct(x.violation_cp95_upper)}</td></tr>`).join("");
   $("#scientific-links").innerHTML = (d.links || []).map(x => `<a href="${esc(x.url)}" target="_blank">${esc(x.label)} ↗</a>`).join("");
   $("#scientific-limitations").innerHTML = (d.limitations || []).map(x => `<li>${esc(x)}</li>`).join("");
 }

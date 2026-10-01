@@ -1,0 +1,29 @@
+{
+  "schema": "safeduo.pair_stratified_campaign.v1",
+  "inputs": [
+    {
+      "dir": "artifacts/pair_stratified_matrix_v3_20261002",
+      "num_envs": 32,
+      "seeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "duration_s": 5
+    },
+    {
+      "dir": "artifacts/pair_stratified_extension_20261002",
+      "num_envs": 64,
+      "seeds": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "duration_s": 5
+    }
+  ],
+  "episodes": 2304,
+  "note": "same checkpoint, geometry, dt and 5 s window; batch size differs between strata and is retained in source protocol"
+}

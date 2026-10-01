@@ -21,11 +21,13 @@ import torch
 from safeduo.eval.random_battery import (
     ARM_KEYS, CLASS_KEYS, aggregate, make_flow, run_window, summarize_window,
 )
+from safeduo.eval.coverage_design import build_schedule
+from safeduo.eval.coverage_source import PairStratifiedDelta
 from safeduo.safety.types import DOF_OF, DeltaCmd
 
 
 METHODS = ('raw', 'backstop_only', 'system0')
-FLOWS = ('uniform_random', 'l1_full', 'directed_all')
+FLOWS = ('uniform_random', 'l1_full', 'directed_all', 'pair_stratified')
 
 
 def digest(path):
@@ -91,7 +93,7 @@ class EpisodeTrace:
         for key, value in frame.items():
             self.frames[key].append(value.detach().clone())
 
-    def write(self, path, acc, meta):
+    def write(self, path, acc, meta, episode_meta=None):
         data = {key: torch.stack(frames).cpu().numpy() for key, frames in self.frames.items()}
         data['q_initial'] = self.q0.cpu().numpy()
         data['joint_soft_limits'] = self.limits.cpu().numpy()
@@ -109,9 +111,13 @@ class EpisodeTrace:
         rows = []
         limits = data['joint_soft_limits']
         spans = limits[..., 1] - limits[..., 0]
+        episode_meta = episode_meta or [{} for _ in range(q.shape[1])]
+        if len(episode_meta) != q.shape[1]:
+            raise ValueError('episode metadata must have one row per environment')
         for e in range(q.shape[1]):
             rows.append({
                 **meta, 'env_id': e,
+                **episode_meta[e],
                 'violation': bool(acc['viol_any'][e] > 0),
                 'violation_steps': int(acc['viol_any'][e]),
                 'violation_by_class': {k: bool(acc['viol_cls'][k][e] > 0) for k in CLASS_KEYS},
@@ -205,7 +211,12 @@ def main():
             env._gen.manual_seed(cell['source_seed'])
             env._pending_cmd = None
             env._delta_src = (UniformRandomTape(env.num_envs, steps, cell['amp'], cell['source_seed'], env.device)
-                              if cell['flow'] == 'uniform_random' else make_flow(cell['flow'], env, cell['amp'], args.env_yaml))
+                              if cell['flow'] == 'uniform_random' else (
+                                  PairStratifiedDelta(env.num_envs, cell['amp'], cell['seed'],
+                                                      env_yaml=args.env_yaml, device=env.device,
+                                                      cells=build_schedule(env.num_envs, cell['amp'], cell['seed']))
+                                  if cell['flow'] == 'pair_stratified' else
+                                  make_flow(cell['flow'], env, cell['amp'], args.env_yaml)))
             driver = (wrap_clutch(base, True, .5, .2, env.num_envs, env.device)
                       if method == 'system0' else PassthroughDriver())
             trace = EpisodeTrace()
@@ -215,7 +226,9 @@ def main():
             meta = {**cell, 'dt': dt, 'cell_id': index + 1, 'env_yaml': args.env_yaml,
                     'checkpoint_sha256': protocol['checkpoint_sha256']}
             row = summarize_window(acc, meta, 3)
-            ep = trace.write(out / f'cell_{index + 1:03d}.npz', acc, meta)
+            episode_meta = (env._delta_src.coverage_metadata()
+                            if hasattr(env._delta_src, 'coverage_metadata') else None)
+            ep = trace.write(out / f'cell_{index + 1:03d}.npz', acc, meta, episode_meta)
             if method == 'raw' and any(x['intervention_step_rate'] > 0 for x in ep):
                 raise ValueError('raw command/execute mismatch: ablation is not a true bypass')
             atomic_json(out / f'cell_{index + 1:03d}.json', {'window': row, 'episodes': ep})
