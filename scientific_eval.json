@@ -1,28 +1,70 @@
 {
   "schema": "safeduo.scientific_dashboard.v1",
-  "updated": "2026-10-01T02:24:00+08:00",
+  "updated": "2026-10-02T02:40:00+08:00",
   "title": "SafeDuo 科研型安全评测 · System 0",
-  "summary": "低速配置降低了风险，但仍有违规；纯均匀随机中 backstop-only 与 System 0 均阻断了当前命令分布下的球层违规。",
+  "summary": "均匀随机命令仍不足以覆盖四臂危险空间；新增六臂对分层压力测试后，System 0 在 768 次尝试中 22 次球层违规，不能把纯随机的 0 违规外推为全面安全。",
   "protocol": {
     "checkpoint": "a31b_refine_cross_20260912/model_last.pt",
-    "seeds": [0, 1, 2],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
     "num_envs": 32,
-    "steps": 600,
-    "duration_s": 10,
-    "flows": ["l1_full", "directed_all"],
-    "violation_definition": "球层非豁免 margin < 0；桌面使用已有 near-table 豁免"
+    "steps": 300,
+    "duration_s": 5,
+    "flows": [
+      "uniform_random",
+      "l1_full",
+      "directed_all",
+      "pair_stratified"
+    ],
+    "violation_definition": "球层非豁免 margin < 0；桌面使用已有 near-table 豁免",
+    "pair_stratified": "32 env seeds 0-3 + 64 env seeds 4-7; six arm pairs, four distance bands, three relative directions"
   },
   "coverage_assessment": {
-    "title": "覆盖判定：当前随机范围仍不足",
-    "summary": "纯均匀随机不是四臂危险空间覆盖测试；当前 0 违规只能解释为该命令分布下的结果。",
+    "title": "覆盖判定：均匀随机不足，分层设计已补齐",
+    "summary": "六臂对压力源把危险空间拆成可审计的配对、距离带和相对运动方向；设计单元缺失为 0，但实际暴露率仍受几何可达性影响。",
     "items": [
-      "纯随机 amp=0.005/0.015 的平均关节范围只达到约 1.3%–5.9%，六组机械臂配对均没有进入 80 mm 告警带。",
-      "L1/定向协议跨窗口看到了六个配对，但最弱的 F_L-U_L 与 F_R-U_R 只有 9/192（4.69%）episode 暴露；没有单个 episode 完整暴露六对。",
-      "四臂工作空间审计显示单臂进入共享 AABB 仅约 2.0%–3.4%，两两交集低于共享区 0.05%；继续增加同分布随机样本不能解决覆盖偏差。",
-      "下一轮必须加入按六个臂对、距离带、方向、速度和高度分层的目标条件采样，并分别报告 attempt / exposure / near / violation。"
+      "纯均匀随机 amp=0.005/0.015 的平均关节范围只有约 1.3%–5.9%，六组配对均没有进入 80 mm 告警带，不能作为四臂危险空间覆盖证明。",
+      "分层矩阵覆盖六组臂对 × warn/near/contact/penetration × approach/recede/tangent × amp 0.005/0.015，768 episode/方法，缺失单元 0。",
+      "System 0 的 80 mm 暴露为 619/768；5 mm 近接触 47/768；违规 22/768，CP95 上界 4.07%。安全层降低了风险，但压力分布下仍有尾部违规。",
+      "按配对看，F_L-F_R 114、F_L-U_L 86、F_L-U_R 122、F_R-U_L 122、F_R-U_R 75、U_L-U_R 100 个 episode 进入 80 mm；F_R-U_R 和 F_L-U_L 暴露不足百级，下一轮应对这两对做定向可达性补样。"
     ]
   },
   "headline": [
+    {
+      "label": "六臂对分层 · raw",
+      "episodes": 768,
+      "violations": 508,
+      "rate": 0.6614583333333334,
+      "cp95_upper": 0.6897011454748875,
+      "status": "bad",
+      "note": "压力基线；80 mm 暴露 630/768，5 mm 近接触 508/768"
+    },
+    {
+      "label": "六臂对分层 · backstop-only",
+      "episodes": 768,
+      "violations": 42,
+      "rate": 0.0546875,
+      "cp95_upper": 0.0701623302102543,
+      "status": "bad",
+      "note": "80 mm 暴露 619/768；仍有 42 个压力违规"
+    },
+    {
+      "label": "六臂对分层 · System 0",
+      "episodes": 768,
+      "violations": 22,
+      "rate": 0.028645833333333332,
+      "cp95_upper": 0.04065332008694569,
+      "status": "bad",
+      "note": "80 mm 暴露 619/768；不能称为绝对安全"
+    },
     {
       "label": "低速协议组 · amp 0.005",
       "episodes": 192,
@@ -61,52 +103,429 @@
     }
   ],
   "protocol_rows": [
-    {"label": "低速协议组", "flow": "l1_full", "episodes": 96, "violations": 8, "rate": 0.0833333333, "cp95_upper": 0.1453383230, "pair_union_exposed": 6},
-    {"label": "低速协议组", "flow": "directed_all", "episodes": 96, "violations": 0, "rate": 0.0, "cp95_upper": 0.0307236768, "pair_union_exposed": 6},
-    {"label": "标准协议组", "flow": "l1_full", "episodes": 96, "violations": 36, "rate": 0.375, "cp95_upper": 0.4635824231, "pair_union_exposed": 6},
-    {"label": "标准协议组", "flow": "directed_all", "episodes": 96, "violations": 7, "rate": 0.0729166667, "cp95_upper": 0.1325949432, "pair_union_exposed": 6}
+    {
+      "label": "低速协议组",
+      "flow": "l1_full",
+      "episodes": 96,
+      "violations": 8,
+      "rate": 0.0833333333,
+      "cp95_upper": 0.145338323,
+      "pair_union_exposed": 6
+    },
+    {
+      "label": "低速协议组",
+      "flow": "directed_all",
+      "episodes": 96,
+      "violations": 0,
+      "rate": 0.0,
+      "cp95_upper": 0.0307236768,
+      "pair_union_exposed": 6
+    },
+    {
+      "label": "标准协议组",
+      "flow": "l1_full",
+      "episodes": 96,
+      "violations": 36,
+      "rate": 0.375,
+      "cp95_upper": 0.4635824231,
+      "pair_union_exposed": 6
+    },
+    {
+      "label": "标准协议组",
+      "flow": "directed_all",
+      "episodes": 96,
+      "violations": 7,
+      "rate": 0.0729166667,
+      "cp95_upper": 0.1325949432,
+      "pair_union_exposed": 6
+    }
   ],
   "ablation": [
     {
       "method": "raw（无 backstop）",
-      "low": {"episodes": 96, "violations": 0},
-      "standard": {"episodes": 96, "violations": 12},
-      "total": {"episodes": 192, "violations": 12, "cp95_upper": 0.0992977175},
+      "low": {
+        "episodes": 96,
+        "violations": 0
+      },
+      "standard": {
+        "episodes": 96,
+        "violations": 12
+      },
+      "total": {
+        "episodes": 192,
+        "violations": 12,
+        "cp95_upper": 0.0992977175
+      },
       "note": "风险基线"
     },
     {
       "method": "backstop-only",
-      "low": {"episodes": 96, "violations": 0},
-      "standard": {"episodes": 96, "violations": 0},
-      "total": {"episodes": 192, "violations": 0, "cp95_upper": 0.0154816796},
+      "low": {
+        "episodes": 96,
+        "violations": 0
+      },
+      "standard": {
+        "episodes": 96,
+        "violations": 0
+      },
+      "total": {
+        "episodes": 192,
+        "violations": 0,
+        "cp95_upper": 0.0154816796
+      },
       "note": "安全投影层单独对照"
     },
     {
       "method": "System 0（checkpoint + clutch）",
-      "low": {"episodes": 96, "violations": 0},
-      "standard": {"episodes": 96, "violations": 0},
-      "total": {"episodes": 192, "violations": 0, "cp95_upper": 0.0154816796},
+      "low": {
+        "episodes": 96,
+        "violations": 0
+      },
+      "standard": {
+        "episodes": 96,
+        "violations": 0
+      },
+      "total": {
+        "episodes": 192,
+        "violations": 0,
+        "cp95_upper": 0.0154816796
+      },
       "note": "与 backstop-only 违规结果相同，尚不能证明策略网络额外收益"
     }
   ],
   "pair_exposure": [
-    {"pair": "F_L-F_R", "low_speed": 62, "standard": 76, "note": "低速/标准跨窗口并集"},
-    {"pair": "F_L-U_L", "low_speed": 9, "standard": 14, "note": "低速/标准跨窗口并集"},
-    {"pair": "F_L-U_R", "low_speed": 35, "standard": 53, "note": "低速/标准跨窗口并集"},
-    {"pair": "F_R-U_L", "low_speed": 40, "standard": 48, "note": "低速/标准跨窗口并集"},
-    {"pair": "F_R-U_R", "low_speed": 9, "standard": 14, "note": "低速/标准跨窗口并集"},
-    {"pair": "U_L-U_R", "low_speed": 39, "standard": 52, "note": "低速/标准跨窗口并集"}
+    {
+      "pair": "F_L-F_R",
+      "low_speed": 62,
+      "standard": 76,
+      "note": "低速/标准跨窗口并集"
+    },
+    {
+      "pair": "F_L-U_L",
+      "low_speed": 9,
+      "standard": 14,
+      "note": "低速/标准跨窗口并集"
+    },
+    {
+      "pair": "F_L-U_R",
+      "low_speed": 35,
+      "standard": 53,
+      "note": "低速/标准跨窗口并集"
+    },
+    {
+      "pair": "F_R-U_L",
+      "low_speed": 40,
+      "standard": 48,
+      "note": "低速/标准跨窗口并集"
+    },
+    {
+      "pair": "F_R-U_R",
+      "low_speed": 9,
+      "standard": 14,
+      "note": "低速/标准跨窗口并集"
+    },
+    {
+      "pair": "U_L-U_R",
+      "low_speed": 39,
+      "standard": 52,
+      "note": "低速/标准跨窗口并集"
+    }
   ],
   "links": [
-    {"label": "科研总报告", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_eval_20261001.md"},
-    {"label": "完整纯随机数据", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_eval_20261001.json"},
-    {"label": "评测器源码", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/research_battery.py"},
-    {"label": "矩阵汇总器源码", "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_matrix.py"}
+    {
+      "label": "六臂对分层报告",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/pair_stratified_campaign_20261002/REPORT.md"
+    },
+    {
+      "label": "六臂对覆盖矩阵 JSON",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/pair_stratified_campaign_20261002/coverage_matrix.json"
+    },
+    {
+      "label": "六臂对逐 episode 数据",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/pair_stratified_campaign_20261002/episodes.json"
+    },
+    {
+      "label": "科研总报告",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_eval_20261001.md"
+    },
+    {
+      "label": "完整纯随机数据",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_eval_20261001.json"
+    },
+    {
+      "label": "评测器源码",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/research_battery.py"
+    },
+    {
+      "label": "矩阵汇总器源码",
+      "url": "https://github.com/asimfish/safeduo-dashboard/blob/main/docs/scientific_matrix.py"
+    }
   ],
   "limitations": [
-    "纯均匀随机没有进入六组机械臂配对的 80 mm 告警带；它是消融测试，不是四臂危险空间覆盖证明。",
-    "物体抓取、放置、三视角相机感知和任务完成率尚未纳入这组球层安全主指标。",
-    "低速与标准协议组同时改变了幅度和配置，不能把差异归因于单一变量。",
-    "Isaac Sim 本轮持续报告 RTX 5090 CUDA bad state；结果完成，但应重启 GPU 后复跑固定 cell。"
-  ]
+    "六臂对分层压力测试完成了设计覆盖，但 F_L-U_L 与 F_R-U_R 实际进入 80 mm 的 episode 数仍低于 100，下一轮需做针对性可达区域补样。",
+    "System 0 在条件压力分布下仍有 22/768 球层违规；纯随机的 0/192 不能外推到条件分布。",
+    "两批分层数据均为 5 秒窗口，第一批 32 环境、第二批 64 环境；物理步长、checkpoint 和几何相同，原始协议目录保留用于复核。",
+    "物体抓取、放置、相机三视角感知和任务完成率仍是独立 task layer，不能从球层 margin 推断。",
+    "Isaac Sim 仍报告 RTX 5090 CUDA bad state；结果完成，但重启 GPU 后应复跑固定 cell。"
+  ],
+  "pair_stratified": {
+    "complete": true,
+    "missing_cells": 0,
+    "amps": [
+      0.005,
+      0.015
+    ],
+    "attempts_per_method": 768,
+    "distance_bands": [
+      "warn",
+      "near",
+      "contact",
+      "penetration"
+    ],
+    "directions": [
+      "approach",
+      "recede",
+      "tangent"
+    ],
+    "by_method": {
+      "backstop_only": {
+        "attempts": 768,
+        "exposed": 619,
+        "near": 42,
+        "violations": 42,
+        "exposure_rate": 0.8059895833333334,
+        "violation_rate": 0.0546875,
+        "violation_cp95_upper": 0.0701623302102543,
+        "violation_cp95_upper_exposed": 0.08687862553520892,
+        "pair_exposed": {
+          "F_L-F_R": 114,
+          "F_L-U_L": 86,
+          "F_L-U_R": 122,
+          "F_R-U_L": 122,
+          "F_R-U_R": 75,
+          "U_L-U_R": 100
+        }
+      },
+      "raw": {
+        "attempts": 768,
+        "exposed": 630,
+        "near": 508,
+        "violations": 508,
+        "exposure_rate": 0.8203125,
+        "violation_rate": 0.6614583333333334,
+        "violation_cp95_upper": 0.6897011454748875,
+        "violation_cp95_upper_exposed": 0.8319335217173062,
+        "pair_exposed": {
+          "F_L-F_R": 114,
+          "F_L-U_L": 86,
+          "F_L-U_R": 122,
+          "F_R-U_L": 122,
+          "F_R-U_R": 86,
+          "U_L-U_R": 100
+        }
+      },
+      "system0": {
+        "attempts": 768,
+        "exposed": 619,
+        "near": 47,
+        "violations": 22,
+        "exposure_rate": 0.8059895833333334,
+        "violation_rate": 0.028645833333333332,
+        "violation_cp95_upper": 0.04065332008694569,
+        "violation_cp95_upper_exposed": 0.050363688275881835,
+        "pair_exposed": {
+          "F_L-F_R": 114,
+          "F_L-U_L": 86,
+          "F_L-U_R": 122,
+          "F_R-U_L": 122,
+          "F_R-U_R": 75,
+          "U_L-U_R": 100
+        }
+      }
+    },
+    "pair_rows": [
+      {
+        "method": "backstop_only",
+        "pair": "F_L-F_R",
+        "attempts": 128,
+        "exposed": 114,
+        "near": 42,
+        "violations": 42,
+        "exposure_rate": 0.890625,
+        "violation_rate": 0.328125
+      },
+      {
+        "method": "backstop_only",
+        "pair": "F_L-U_L",
+        "attempts": 128,
+        "exposed": 86,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.671875,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "backstop_only",
+        "pair": "F_L-U_R",
+        "attempts": 128,
+        "exposed": 122,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.953125,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "backstop_only",
+        "pair": "F_R-U_L",
+        "attempts": 128,
+        "exposed": 122,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.953125,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "backstop_only",
+        "pair": "F_R-U_R",
+        "attempts": 128,
+        "exposed": 75,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.5859375,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "backstop_only",
+        "pair": "U_L-U_R",
+        "attempts": 128,
+        "exposed": 100,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.78125,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "raw",
+        "pair": "F_L-F_R",
+        "attempts": 128,
+        "exposed": 114,
+        "near": 84,
+        "violations": 84,
+        "exposure_rate": 0.890625,
+        "violation_rate": 0.65625
+      },
+      {
+        "method": "raw",
+        "pair": "F_L-U_L",
+        "attempts": 128,
+        "exposed": 86,
+        "near": 86,
+        "violations": 86,
+        "exposure_rate": 0.671875,
+        "violation_rate": 0.671875
+      },
+      {
+        "method": "raw",
+        "pair": "F_L-U_R",
+        "attempts": 128,
+        "exposed": 122,
+        "near": 84,
+        "violations": 84,
+        "exposure_rate": 0.953125,
+        "violation_rate": 0.65625
+      },
+      {
+        "method": "raw",
+        "pair": "F_R-U_L",
+        "attempts": 128,
+        "exposed": 122,
+        "near": 84,
+        "violations": 84,
+        "exposure_rate": 0.953125,
+        "violation_rate": 0.65625
+      },
+      {
+        "method": "raw",
+        "pair": "F_R-U_R",
+        "attempts": 128,
+        "exposed": 86,
+        "near": 86,
+        "violations": 86,
+        "exposure_rate": 0.671875,
+        "violation_rate": 0.671875
+      },
+      {
+        "method": "raw",
+        "pair": "U_L-U_R",
+        "attempts": 128,
+        "exposed": 100,
+        "near": 84,
+        "violations": 84,
+        "exposure_rate": 0.78125,
+        "violation_rate": 0.65625
+      },
+      {
+        "method": "system0",
+        "pair": "F_L-F_R",
+        "attempts": 128,
+        "exposed": 114,
+        "near": 47,
+        "violations": 22,
+        "exposure_rate": 0.890625,
+        "violation_rate": 0.171875
+      },
+      {
+        "method": "system0",
+        "pair": "F_L-U_L",
+        "attempts": 128,
+        "exposed": 86,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.671875,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "system0",
+        "pair": "F_L-U_R",
+        "attempts": 128,
+        "exposed": 122,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.953125,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "system0",
+        "pair": "F_R-U_L",
+        "attempts": 128,
+        "exposed": 122,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.953125,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "system0",
+        "pair": "F_R-U_R",
+        "attempts": 128,
+        "exposed": 75,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.5859375,
+        "violation_rate": 0.0
+      },
+      {
+        "method": "system0",
+        "pair": "U_L-U_R",
+        "attempts": 128,
+        "exposed": 100,
+        "near": 0,
+        "violations": 0,
+        "exposure_rate": 0.78125,
+        "violation_rate": 0.0
+      }
+    ],
+    "exposure_target_100_met": false,
+    "note": "attempts 是已安排的 episode；进入 80 mm 和 5 mm 是从安全球距测量得到的实际暴露，不以目标名义替代。"
+  }
 }
