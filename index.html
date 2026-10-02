@@ -209,7 +209,7 @@
     <div id="scientific-trace" style="margin-top:8px"></div>
     <p class="small">红线：原 System 0；绿线：改进 System 0；灰虚线：13 mm 同机器人制动边界。曲线为测量后的最小 self_F 球间距，低于 0 表示球层重叠。状态反馈源在两种策略下会产生不同后续命令。</p>
   </div>
-  <h2>统一协议结果</h2>
+  <h2>协议与历史结果</h2>
   <div class="sci-note" id="scientific-protocol"></div>
   <div class="sci-note" id="scientific-coverage" style="margin-top:8px"></div>
   <div class="table-wrap" style="margin-top:8px"><table id="scientific-main"><thead><tr><th>配置</th><th>轨迹</th><th>episode</th><th>违规</th><th>违规率</th><th>CP95 上界</th><th>六配对跨窗口暴露</th></tr></thead><tbody></tbody></table></div>
@@ -442,6 +442,13 @@ function renderScientific(d) {
     renderRefinementTrace(0);
   }
   $("#scientific-protocol").innerHTML = `主种子 <b>${(p.seeds || []).join(" / ")}</b> · ${p.num_envs || "-"} 环境 × ${p.steps || "-"} 步（${p.duration_s || "-"} 秒） · 轨迹 <code>${(p.flows || []).join("</code> / <code>")}</code> · 违规口径：${esc(p.violation_definition || "球层非豁免 margin < 0")}`;
+  if (refinement.rows?.length) {
+    const runs = (refinement.manifests || []).map(x => x.args || {});
+    const seeds = [...new Set(runs.flatMap(x => x.seeds || []))].sort((a,b) => a-b);
+    const sizes = [...new Set(runs.map(x => x.num_envs))].join(" / ");
+    const durations = [...new Set(runs.map(x => x.duration_s))].sort((a,b) => a-b).join(" / ");
+    $("#scientific-protocol").textContent = `本轮组合防护：${sizes} 环境；种子 ${seeds.join(" / ")}；分组窗口 ${durations} 秒；配置 ${refinement.candidate}；非豁免球层 margin < 0 算违规。下方历史组使用各自冻结协议，详情见报告链接。`;
+  }
   const coverage = d.coverage_assessment || {};
   $("#scientific-coverage").innerHTML = `<b>${esc(coverage.title || "随机范围覆盖判定")}</b> · ${esc(coverage.summary || "")}${coverage.items ? `<ul class="q" style="margin-bottom:0">${coverage.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
   $("#scientific-main tbody").innerHTML = (d.protocol_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td><code>${esc(x.flow)}</code></td><td class="num">${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num ${x.violations ? "bad" : "ok"}">${sciPct(x.rate)}</td><td class="num">${sciPct(x.cp95_upper)}</td><td class="num">${x.pair_union_exposed}/6</td></tr>`).join("");
