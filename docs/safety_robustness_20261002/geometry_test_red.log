@@ -1,0 +1,24 @@
+F..                                                                      [100%]
+=================================== FAILURES ===================================
+_______ test_com_referenced_row_matches_rotating_point_finite_difference _______
+
+    def test_com_referenced_row_matches_rotating_point_finite_difference():
+        provider, out, body_pos = rotating_fixture()
+        provider.jacobian_reference = 'com'
+        actual = provider.rows_from(out, body_pos).J['F'][0, 0, 0]
+        eps = 1e-5
+        def rotated_y(theta):
+            theta = torch.tensor(theta, dtype=torch.float64)
+            return .4 * theta.sin() + .3 * theta.cos()
+        expected = (rotated_y(eps) - rotated_y(-eps)) / (2 * eps)
+>       torch.testing.assert_close(actual.double(), expected, atol=1e-7, rtol=1e-7)
+E       AssertionError: Scalars are not close!
+E
+E       Expected 0.39999999999484886 but got 0.6000000238418579.
+E       Absolute difference: 0.20000002384700905 (up to 1e-07 allowed)
+E       Relative difference: 0.5000000596239615 (up to 1e-07 allowed)
+
+tests/test_isaac_geometry_reference.py:46: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_isaac_geometry_reference.py::test_com_referenced_row_matches_rotating_point_finite_difference
+1 failed, 2 passed in 0.91s

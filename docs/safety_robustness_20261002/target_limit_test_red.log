@@ -1,0 +1,28 @@
+F.F                                                                      [100%]
+=================================== FAILURES ===================================
+________ test_projection_is_safe_in_the_box_actually_applied_to_targets ________
+
+    def test_projection_is_safe_in_the_box_actually_applied_to_targets():
+        rows,cmd,bounds=saturated_opening_joint()
+>       out,_,info=VelocityDamperBackstop(BackstopConfig(max_passes=60)).project(
+            cmd,rows,torch.ones(1,4),torch.zeros(1),1/60,delta_bounds=bounds)
+E       TypeError: VelocityDamperBackstop.project() got an unexpected keyword argument 'delta_bounds'
+
+tests/test_target_limit_projection.py:22: TypeError
+____________ test_unrestricted_target_box_matches_legacy_projection ____________
+
+    def test_unrestricted_target_box_matches_legacy_projection():
+        rows,cmd,_=saturated_opening_joint()
+        args=(cmd,rows,torch.ones(1,4),torch.zeros(1),1/60)
+        bs=VelocityDamperBackstop()
+        old,_,_=bs.project(*args)
+        bounds={a:(torch.full((1,DOF_OF[a]),-10.),torch.full((1,DOF_OF[a]),10.)) for a in ARM_KEYS}
+>       new,_,_=bs.project(*args,delta_bounds=bounds)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: VelocityDamperBackstop.project() got an unexpected keyword argument 'delta_bounds'
+
+tests/test_target_limit_projection.py:47: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_target_limit_projection.py::test_projection_is_safe_in_the_box_actually_applied_to_targets
+FAILED tests/test_target_limit_projection.py::test_unrestricted_target_box_matches_legacy_projection
+2 failed, 1 passed in 0.84s

@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_conditional_contact_keeps_positive_cap_damping_before_velocity_exemption_ends _
+
+    def test_conditional_contact_keeps_positive_cap_damping_before_velocity_exemption_ends():
+        rows = one_cross_row(.012)
+        rows.cls.fill_(2)
+        rows.d_min = torch.tensor([[.005]])
+        cfg = BackstopConfig(max_passes=3, exempt_structural_rows=True, lookahead_s=.06)
+        cfg.retain_conditional_rows = True
+        out, active, _ = VelocityDamperBackstop(cfg).project(
+            cmd_const(), rows, torch.ones(1,4), torch.zeros(1), DT,
+            qd=qd_closing(0), struct_exempt=torch.ones(1,1,dtype=torch.bool),
+            contact_exempt=torch.ones(1,1,dtype=torch.bool))
+        # An allowed slow contact does not authorize a new 1.2 m/s closing command.
+>       assert active[0,0]
+E       assert tensor(False)
+
+tests/test_r33_lookahead_band.py:198: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_r33_lookahead_band.py::test_conditional_contact_keeps_positive_cap_damping_before_velocity_exemption_ends
+1 failed, 14 deselected in 0.97s

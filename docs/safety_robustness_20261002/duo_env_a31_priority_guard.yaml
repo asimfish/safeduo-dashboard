@@ -1,0 +1,7 @@
+# Candidate: correct kinematics, braking-lag priority, conditional damping.
+# Learned actor retains its original 32-row distance-ranked observations.
+extends: duo_env_a31_com_guard.yaml
+safety:
+  row_priority_lookahead_s: 0.15
+  backstop:
+    retain_conditional_rows: true
