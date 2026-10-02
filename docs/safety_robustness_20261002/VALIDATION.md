@@ -6,7 +6,7 @@
 - 六个最终实验清单的 geometry/backstop/sphere_distance/duo_env 源码hash一致，并与交付源码快照逐文件核对。构建报告同时核对冻结checkpoint、初态、配对命令SHA和无保护控制复用的配置前提。
 - 所有公开Python文件通过语法解析；页面内JavaScript通过 `node --check`；HTML没有重复ID；`git diff --check`通过。有限凭据模式扫描未命中，这不等于全面安全审计。
 - Chromium 141真实浏览器验证桌面1280×900和手机390×844：8行随机结果、4行回归结果、3个最新结果卡片、4种曲线切换、SVG有限数值、手机无页面横向溢出、无JavaScript页面错误。见 `browser_check.log` 和 `check_browser.py`。
-- 浏览器本地核验使用冻结预览数据，线上加载另行验证，不把本地核验当作部署成功。
+- 本地核验使用冻结预览数据；发布后独立浏览器从真实网页及其默认远程数据接口加载，重复检查通过。在线记录见 `live_browser_check.log`，实现提交及数据提交见 `DELIVERY.json`。
 
 公开SVG和日志副本仅清除行尾空白以通过仓库格式检查，数值与图形内容保持不变；原始本地日志保留。
 

@@ -97,6 +97,9 @@ for src in ['src/safeduo/safety/geometry.py','src/safeduo/safety/backstop.py','s
             'src/safeduo/envs/duo_env.py','tests/test_target_limit_projection.py','tests/test_safety_row_priority.py',
             'tests/test_isaac_geometry_reference.py','tests/test_research_battery.py','tests/test_r33_lookahead_band.py']:
     shutil.copy2(ROOT/src,dest/Path(src).name)
+for name in ['live_browser_check.log','DELIVERY.json']:
+    if (OUT/name).exists():
+        shutil.copy2(OUT/name,dest/name)
 for exported in dest.iterdir():
     if exported.suffix in {'.svg','.log'}:
         # Normalize generated whitespace without changing plots or log values.
