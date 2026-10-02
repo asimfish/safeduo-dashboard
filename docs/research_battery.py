@@ -69,11 +69,43 @@ class UniformRandomTape:
 
 class EpisodeTrace:
     """Log executed commands and measured state on GPU; transfer once after each cell."""
+    def __init__(self, causal=False):
+        self.causal = causal
+
     def start(self, env):
         state = env.scene_state()
         self.q0 = torch.cat([state.q[a] for a in ARM_KEYS], -1).clone()
         self.limits = torch.cat([env._q_soft_limits[a] for a in ARM_KEYS], -2).clone()
         self.frames = {key: [] for key in ('q', 'ee', 'cmd', 'exec', 'margins', 'official_deep', 'alpha', 'bs_active')}
+        if self.causal:
+            for key in ('pre_q', 'pre_qd', 'pre_target', 'pre_row_d', 'pre_row_dmin',
+                        'pre_row_rate', 'pre_row_backlog', 'pre_row_cls', 'pre_row_valid',
+                        'pre_row_id', 'pre_row_exempt', 'solver_residual', 'official_margins'):
+                self.frames[key] = []
+
+    def before_step(self, env, t):
+        if not self.causal:
+            return
+        from safeduo.baselines.base import stack_robot
+        state = env.scene_state()
+        rows = env._provider.rows_from(env._last_out, env._body_pos_cache)
+        backlog = {a: env._targets[a] - state.q[a] for a in ARM_KEYS}
+        rate = sum(torch.einsum('nmd,nd->nm', rows.J[r], stack_robot(state.qd, r))
+                   for r in ('F', 'U'))
+        stored = sum(torch.einsum('nmd,nd->nm', rows.J[r], stack_robot(backlog, r))
+                     for r in ('F', 'U'))
+        snapshot = {
+            'pre_q': torch.cat([state.q[a] for a in ARM_KEYS], -1),
+            'pre_qd': torch.cat([state.qd[a] for a in ARM_KEYS], -1),
+            'pre_target': torch.cat([env._targets[a] for a in ARM_KEYS], -1),
+            'pre_row_d': rows.d, 'pre_row_dmin': rows.d_min,
+            'pre_row_rate': rate, 'pre_row_backlog': stored,
+            'pre_row_cls': rows.cls, 'pre_row_valid': rows.valid,
+            'pre_row_id': env._last_out.active_idx,
+            'pre_row_exempt': env._last_out.viol_exempt,
+        }
+        for key, value in snapshot.items():
+            self.frames[key].append(value.detach().clone())
 
     def step(self, env, t):
         state, cache = env.scene_state(), env._step_cache
@@ -92,6 +124,10 @@ class EpisodeTrace:
         }
         for key, value in frame.items():
             self.frames[key].append(value.detach().clone())
+        if self.causal:
+            self.frames['official_margins'].append(official.detach().clone())
+            self.frames['solver_residual'].append(torch.stack(
+                [cache['backstop_residual_F'], cache['backstop_residual_U']], -1).detach().clone())
 
     def write(self, path, acc, meta, episode_meta=None):
         data = {key: torch.stack(frames).cpu().numpy() for key, frames in self.frames.items()}
@@ -158,6 +194,8 @@ def main():
     parser.add_argument('--methods', nargs='+', choices=METHODS, default=list(METHODS))
     parser.add_argument('--out', required=True)
     parser.add_argument('--log-every', type=int, default=600)
+    parser.add_argument('--causal-trace', action='store_true',
+                        help='record pre-step target/velocity/rows and post-projection residuals')
     from isaaclab.app import AppLauncher
     AppLauncher.add_app_launcher_args(parser)
     args = parser.parse_args()
@@ -219,7 +257,7 @@ def main():
                                   make_flow(cell['flow'], env, cell['amp'], args.env_yaml)))
             driver = (wrap_clutch(base, True, .5, .2, env.num_envs, env.device)
                       if method == 'system0' else PassthroughDriver())
-            trace = EpisodeTrace()
+            trace = EpisodeTrace(causal=args.causal_trace)
             print(f"[research] cell {index + 1}/{len(protocol['design'])} {cell}", flush=True)
             acc = run_window(env, driver, steps, dict(SAFE_LINES), .08, .005,
                              log_every=args.log_every, observer=trace)

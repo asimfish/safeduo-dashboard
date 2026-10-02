@@ -1,0 +1,8 @@
+--- a/src/safeduo/envs/duo_env.py
++++ b/src/safeduo/envs/duo_env.py
+@@ -1188 +1188,4 @@
+-            qd=(state.qd if self._backstop.cfg.lookahead_s is not None else None))
++            qd=(state.qd if (self._backstop.cfg.lookahead_s is not None
++                             or self._backstop.cfg.self_lookahead_s is not None
++                             or self._backstop.cfg.table_lookahead_s is not None) else None),
++            contact_exempt=out.viol_exempt)

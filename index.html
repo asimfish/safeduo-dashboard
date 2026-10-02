@@ -200,6 +200,15 @@
   <div class="small" id="scientific-updated"></div>
   <h2>最新安全 / 不安全效果</h2>
   <div class="grid g4" id="scientific-headline"></div>
+  <div id="scientific-refinement" style="display:none">
+    <h2>本轮安全策略改进：提前制动</h2>
+    <div class="sci-note" id="scientific-refinement-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-refinement-table"><thead><tr><th>复测条件</th><th>原策略违规</th><th>改进策略违规</th><th>原 / 新最小臂间距</th><th>原 / 新实际运动量</th><th>原 / 新执行量比例</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">间距来自保守球层；运动量为每 episode 平均关节路径，执行量比例为 Σ‖exec‖ / Σ‖cmd‖。它们用于检查是否靠停住避险，不代表任务成功率。</p>
+    <label class="small">查看冻结失败场景：<select id="scientific-trace-select"></select></label>
+    <div id="scientific-trace" style="margin-top:8px"></div>
+    <p class="small">红线：原 System 0；绿线：改进 System 0；灰虚线：13 mm 同机器人制动边界。曲线为测量后的最小 self_F 球间距，低于 0 表示球层重叠。状态反馈源在两种策略下会产生不同后续命令。</p>
+  </div>
   <h2>统一协议结果</h2>
   <div class="sci-note" id="scientific-protocol"></div>
   <div class="sci-note" id="scientific-coverage" style="margin-top:8px"></div>
@@ -211,7 +220,7 @@
   <div class="table-wrap"><table id="scientific-pairs"><thead><tr><th>配对</th><th>低速暴露 episode</th><th>标准暴露 episode</th><th>覆盖说明</th></tr></thead><tbody></tbody></table></div>
   <h2>六臂对分层压力测试</h2>
   <div class="sci-note" id="scientific-stratified-note"></div>
-  <div class="table-wrap"><table id="scientific-stratified"><thead><tr><th>方法</th><th>配对</th><th>尝试</th><th>进入 80 mm</th><th>进入 5 mm</th><th>违规</th><th>违规率</th><th>CP95 上界</th></tr></thead><tbody></tbody></table></div>
+  <div class="table-wrap"><table id="scientific-stratified"><thead><tr><th>方法</th><th>配对</th><th>尝试</th><th>进入 80 mm</th><th>进入 5 mm</th><th>违规</th><th>违规率</th></tr></thead><tbody></tbody></table></div>
   <h2>证据与限制</h2>
   <div class="sci-links" id="scientific-links"></div>
   <ul class="q" id="scientific-limitations"></ul>
@@ -399,16 +408,39 @@ function renderGates() {
 let SCIENTIFIC = null;
 function sciPct(x) { return x === null || x === undefined ? "-" : `${(Number(x) * 100).toFixed(2)}%`; }
 function sciStatus(kind) { return kind === "safe" ? "safe" : (kind === "bad" ? "bad" : "warn"); }
+function renderRefinementTrace(index) {
+  const x = SCIENTIFIC?.safety_refinement?.traces?.[Number(index)];
+  if (!x) { $("#scientific-trace").textContent = "暂无逐帧数据"; return; }
+  const width = 760, height = 230, left = 55, right = 18, top = 15, bottom = 35;
+  const ymax = 30, ymin = -10, duration = x.duration_s || 5;
+  const sx = t => left + t / duration * (width - left - right);
+  const sy = m => top + (ymax - m) / (ymax - ymin) * (height - top - bottom);
+  const points = values => values.map((m, i) => `${sx(x.time_s[i]).toFixed(2)},${sy(m).toFixed(2)}`).join(" ");
+  const ygrid = [-10, 0, 10, 20, 30].map(m => `<line x1="${left}" x2="${width-right}" y1="${sy(m)}" y2="${sy(m)}" stroke="#d1d5db"/><text x="${left-8}" y="${sy(m)+4}" text-anchor="end" font-size="11">${m}</text>`).join("");
+  const xgrid = [0, duration/2, duration].map(t => `<text x="${sx(t)}" y="${height-10}" text-anchor="middle" font-size="11">${t.toFixed(1)} s</text>`).join("");
+  $("#scientific-trace").innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)} 原策略与改进策略的测量球间距"><title>${esc(x.label)}</title><rect x="${left}" y="${sy(0)}" width="${width-left-right}" height="${sy(ymin)-sy(0)}" fill="#fef2f2"/>${ygrid}${xgrid}<text x="10" y="14" font-size="11">mm</text><line x1="${left}" x2="${width-right}" y1="${sy(13)}" y2="${sy(13)}" stroke="#6b7280" stroke-dasharray="5 4"/><polyline points="${points(x.before_margin_mm)}" fill="none" stroke="#dc2626" stroke-width="2"/><polyline points="${points(x.after_margin_mm)}" fill="none" stroke="#15803d" stroke-width="2"/></svg>`;
+}
 function renderScientific(d) {
   SCIENTIFIC = d;
   const p = d.protocol || {};
   const headline = d.headline || [];
   $("#scientific-summary").innerHTML = `<b>${esc(d.title || "科研型安全评测")}</b> · ${esc(d.summary || "")}`;
   $("#scientific-updated").textContent = `更新 ${fmtAge(d.updated)} · checkpoint ${esc(p.checkpoint || "-")}`;
-  $("#scientific-headline").innerHTML = headline.map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="sub">违规率 ${sciPct(x.rate)} · CP95 上界 ${sciPct(x.cp95_upper)}</div><div class="small" style="margin-top:6px">${esc(x.note || "")}</div></div>`).join("");
+  $("#scientific-headline").innerHTML = headline.map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="sub">违规率 ${sciPct(x.rate)} · ${x.cp95_upper == null ? "不报独立样本置信界" : `CP95 上界 ${sciPct(x.cp95_upper)}`}</div><div class="small" style="margin-top:6px">${esc(x.note || "")}</div></div>`).join("");
   const low = headline.find(x => String(x.label).startsWith("低速"));
   const standard = headline.find(x => String(x.label).startsWith("标准"));
   $("#ov-scientific").innerHTML = `${low ? `低速 <b>${low.violations}/${low.episodes}</b>（${sciPct(low.rate)}）` : "低速 -"}<br>${standard ? `标准 <b>${standard.violations}/${standard.episodes}</b>（${sciPct(standard.rate)}）` : "标准 -"}<div style="margin-top:4px"><a href="#scientific">查看分层结果 →</a></div>`;
+  const refinement = d.safety_refinement || {};
+  $("#scientific-refinement").style.display = refinement.rows?.length ? "block" : "none";
+  $("#scientific-refinement-note").textContent = refinement.summary || "";
+  $("#scientific-refinement-table tbody").innerHTML = (refinement.rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td class="num ${x.before.violations ? "bad" : "ok"}">${x.before.violations}/${x.before.episodes}</td><td class="num ${x.after.violations ? "bad" : "ok"}">${x.after.violations}/${x.after.episodes}</td><td class="num">${f(x.before.arm_arm_min_mm,2)} / ${f(x.after.arm_arm_min_mm,2)} mm</td><td class="num">${f(x.before.mean_joint_path_rad,2)} / ${f(x.after.mean_joint_path_rad,2)} rad</td><td class="num">${f(x.before.exec_command_l2_ratio,3)} / ${f(x.after.exec_command_l2_ratio,3)}</td></tr>`).join("");
+  $("#scientific-trace-select").innerHTML = (refinement.traces || []).map((x,i) => `<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-trace-select").onchange = e => renderRefinementTrace(e.target.value);
+  if (refinement.rows?.length) {
+    const x = refinement.rows[0];
+    $("#ov-scientific").innerHTML = `最新配对复测 <b>${x.before.violations}/${x.before.episodes} → ${x.after.violations}/${x.after.episodes}</b><br><span class="small">${esc(refinement.overview_note || "候选改进，仍需更广泛验证")}</span><div style="margin-top:4px"><a href="#scientific">查看制动曲线与限制 →</a></div>`;
+    renderRefinementTrace(0);
+  }
   $("#scientific-protocol").innerHTML = `主种子 <b>${(p.seeds || []).join(" / ")}</b> · ${p.num_envs || "-"} 环境 × ${p.steps || "-"} 步（${p.duration_s || "-"} 秒） · 轨迹 <code>${(p.flows || []).join("</code> / <code>")}</code> · 违规口径：${esc(p.violation_definition || "球层非豁免 margin < 0")}`;
   const coverage = d.coverage_assessment || {};
   $("#scientific-coverage").innerHTML = `<b>${esc(coverage.title || "随机范围覆盖判定")}</b> · ${esc(coverage.summary || "")}${coverage.items ? `<ul class="q" style="margin-bottom:0">${coverage.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
@@ -417,9 +449,9 @@ function renderScientific(d) {
   $("#scientific-pairs tbody").innerHTML = (d.pair_exposure || []).map(x => `<tr><td><b>${esc(x.pair)}</b></td><td class="num">${x.low_speed}</td><td class="num">${x.standard}</td><td>${esc(x.note || "跨窗口并集计数")}</td></tr>`).join("");
   const strat = d.pair_stratified || {};
   $("#scientific-stratified-note").innerHTML = strat.complete === true
-    ? `<b>分层设计完整</b> · 六组臂对 × 四个距离带 × 三种相对方向 × ${(strat.amps || []).join(" / ")} · 统计把尝试、80 mm 暴露、5 mm 近接触和违规分开。`
+    ? `<b>目标指令设计单元已补齐</b> · 六组臂对 × 四个 EE 目标间距 × 三种目标方向 × ${(strat.amps || []).join(" / ")} · 实际球间距及运动方向需按 trace 判断。重复几何轨迹相关，不报告独立采样安全置信界。`
     : `<b>分层设计仍有缺口</b> · ${strat.missing_cells || 0} 个单元未覆盖；不要把未暴露样本当作安全证据。`;
-  $("#scientific-stratified tbody").innerHTML = (strat.pair_rows || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td><code>${esc(x.pair)}</code></td><td class="num">${x.attempts}</td><td class="num">${x.exposed}</td><td class="num">${x.near}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num">${sciPct(x.violation_rate)}</td><td class="num">${sciPct(x.violation_cp95_upper)}</td></tr>`).join("");
+  $("#scientific-stratified tbody").innerHTML = (strat.pair_rows || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td><code>${esc(x.pair)}</code></td><td class="num">${x.attempts}</td><td class="num">${x.exposed}</td><td class="num">${x.near}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num">${sciPct(x.violation_rate)}</td></tr>`).join("");
   $("#scientific-links").innerHTML = (d.links || []).map(x => `<a href="${esc(x.url)}" target="_blank">${esc(x.label)} ↗</a>`).join("");
   $("#scientific-limitations").innerHTML = (d.limitations || []).map(x => `<li>${esc(x)}</li>`).join("");
 }

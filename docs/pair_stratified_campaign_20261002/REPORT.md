@@ -1,5 +1,7 @@
 # Pair-stratified coverage matrix
 
+口径更正（2026-10-02）：band 是 EE 目标中心间距，direction 是目标运动意图；recede 也包含从 home 接近近目标的阶段。这些字段不等于实际球间距/速度分层。schedule seed 主要轮换同一几何设计，重复轨迹相关，attempts 不能视为独立随机样本。下方完整性指目标设计单元无缺失，不证明操作空间充分覆盖。最新策略复测见 [提前制动报告](../safety_refine_20261002/REPORT.md)。
+
 - Episodes: 2304
 - Complete pair × band × direction × amplitude design: **True**
 
