@@ -1,0 +1,7 @@
+# Experimental factor only: activate the historical closing-budget debit.
+# Published pending_guard had predict_backlog=true but backlog_aware=false.
+# Actor, delay, geometry, row priority and actuator settings remain frozen.
+extends: duo_env_a31_pending_guard.yaml
+safety:
+  backstop:
+    backlog_aware: true

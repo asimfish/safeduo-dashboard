@@ -1,0 +1,26 @@
+F...                                                                     [100%]
+=================================== FAILURES ===================================
+_________ test_actual_debit_profile_enforces_historical_closing_budget _________
+
+    def test_actual_debit_profile_enforces_historical_closing_budget():
+>       cfg=load_config('duo_env_a31_pending_debit_guard.yaml')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+artifacts/safety_latency_forensics_20261003/test_candidate_contracts.py:13:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+name = 'duo_env_a31_pending_debit_guard.yaml'
+
+    def load_config(name: str = "duo_env.yaml") -> dict:
+        """Load a config yaml; a top-level ``extends: <parent.yaml>`` key deep-
+        merges the child over the parent (R17 S9: duo_env_v7_objects.yaml =
+        duo_env_v7.yaml + assets.table_objects, no copy drift). Yamls without
+        the key load exactly as before."""
+>       with open(CONFIG_DIR / name) as f:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pending_debit_guard.yaml'
+
+src/safeduo/configs/__init__.py:25: FileNotFoundError
+=========================== short test summary info ============================
+FAILED artifacts/safety_latency_forensics_20261003/test_candidate_contracts.py::test_actual_debit_profile_enforces_historical_closing_budget
+1 failed, 3 passed in 0.93s

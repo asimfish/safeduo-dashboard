@@ -200,6 +200,19 @@
   <div class="small" id="scientific-updated"></div>
   <h2>最新安全 / 不安全效果</h2>
   <div class="grid g4" id="scientific-headline"></div>
+  <div id="scientific-forensics" style="display:none">
+    <h2>最新：临界约束保留与单因素复测</h2>
+    <div class="sci-note" id="scientific-forensics-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-forensics-table"><thead><tr><th>配置因素</th><th>原初态漫游 · 5s</th><th>±0.3rad / 100ms · 10s</th><th>临界行规则</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">均为固定学习权重的 System 0；actor 仍看原32行，新增约束只进入解析层。纯随机保持组核对初态与完整命令；漫游组是相同种子的状态反馈源，策略改变后命令可不同。</p>
+    <h3>未参与诊断的新种子检验</h3>
+    <div class="table-wrap"><table id="scientific-forensics-holdout"><thead><tr><th>seed / 初态 / 延迟</th><th>初态违规</th><th>无违规初态后的违规</th><th>实测关节范围 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-forensics-coverage"></p>
+    <label class="small">查看逐帧证据：<select id="scientific-forensics-select" style="max-width:100%"></select></label>
+    <div id="scientific-forensics-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-forensics-caption"></p>
+    <div class="sci-note" id="scientific-forensics-verdict"></div>
+  </div>
   <div id="scientific-perturbation" style="display:none">
     <h2>新增：随机初态与执行端延迟</h2>
     <div class="sci-note" id="scientific-perturbation-note"></div>
@@ -476,6 +489,25 @@ function renderPerturbation(d) {
   $("#scientific-robustness h2").textContent="原初态、零额外延迟：上一轮 512 窗口";
   $("#ov-scientific").innerHTML=`<b>${esc(r.overview)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">初态与执行延迟评测 →</a></div>`;
 }
+function renderForensics(d) {
+  const r=d.safety_forensics;
+  $("#scientific-forensics").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-forensics-note").textContent=r.summary;
+  $("#scientific-forensics-verdict").textContent=r.verdict;
+  const count=x => `<span class="${x.violations ? "bad" : "ok"}">${x.violations}/${x.initially_safe}</span><br><span class="small">初态违规 ${x.initial_violations}/${x.episodes}</span>`;
+  $("#scientific-forensics-table tbody").innerHTML=r.rows.map(x => `<tr><td><b>${esc(x.label)}</b></td><td class="num">${count(x.nominal)}</td><td class="num">${count(x.delayed)}</td><td>${esc(x.rule)}</td></tr>`).join("");
+  $("#scientific-forensics-holdout tbody").innerHTML=r.holdout_rows.map(x => `<tr><td>seed ${x.seed} · ±${x.jitter_rad}rad · ${f(x.delay_ms,0)}ms</td><td class="num">${x.initial_violations}/${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.initially_safe}</td><td class="num">${sciPct(x.mean_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  $("#scientific-forensics-coverage").textContent=r.coverage_note;
+  $("#scientific-forensics-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-forensics-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_forensics","scientific-forensics");
+  $("#scientific-forensics-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_forensics","scientific-forensics");
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#scientific-perturbation h2").textContent="上一阶段：随机初态与执行端延迟";
+  $("#scientific-robustness h2").textContent="原初态、零额外延迟：冻结参考512窗口";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">最新单因素复测 →</a></div>`;
+}
 function renderRobustness(d) {
   const r = d.safety_robustness || {};
   $("#scientific-robustness").style.display = r.rows?.length ? "block" : "none";
@@ -540,6 +572,7 @@ function renderScientific(d) {
   $("#scientific-limitations").innerHTML = (d.limitations || []).map(x => `<li>${esc(x)}</li>`).join("");
   renderRobustness(d);
   renderPerturbation(d);
+  renderForensics(d);
 }
 // ---- tasks / R34
 function renderTasks(t) {
