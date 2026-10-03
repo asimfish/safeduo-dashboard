@@ -1,0 +1,114 @@
+{
+  "checked_at": "2026-10-04T01:12:48+08:00",
+  "main_release": "734213bcdc8c852847acccc7f465cc28cb45cfd2",
+  "data_release": "60487a638e012456d22683ec835fc4e3b280a52c",
+  "dashboard_url": "https://asimfish.github.io/safeduo-dashboard/#scientific",
+  "candidate_status": "experimental_not_promoted",
+  "production_safety_core_unchanged": true,
+  "learning_weights_unchanged": true,
+  "current_source_matches_campaign": true,
+  "source_changes_from_previous": [
+    {
+      "path": "src/safeduo/viz/replica_visuals.py",
+      "previous": "1885400a0eb15c23351808d367ada3b36c778b1035667035333d8296cc794750",
+      "current": "2992e2403d091c6396089c5aca1147267e2df372d2a1301d792ddb3fdc02aeca"
+    }
+  ],
+  "sim_cells_finished": 4,
+  "control_windows": 32,
+  "posthoc_diagnostic_windows": 96,
+  "independent_safety_windows_added": 0,
+  "one_cell_per_fresh_process": true,
+  "conditions": [
+    {
+      "condition": "control",
+      "violations": 7,
+      "windows": 32,
+      "failed_envs": [
+        12,
+        13,
+        15,
+        22,
+        28,
+        30,
+        31
+      ],
+      "fifo_exact": true,
+      "actual_increment_box_pass": true,
+      "soft_limit_pass": true
+    },
+    {
+      "condition": "bounded_12",
+      "violations": 1,
+      "windows": 32,
+      "failed_envs": [
+        31
+      ],
+      "fifo_exact": true,
+      "actual_increment_box_pass": true,
+      "soft_limit_pass": true
+    },
+    {
+      "condition": "bounded_30",
+      "violations": 1,
+      "windows": 32,
+      "failed_envs": [
+        31
+      ],
+      "fifo_exact": true,
+      "actual_increment_box_pass": true,
+      "soft_limit_pass": true
+    },
+    {
+      "condition": "bounded_60",
+      "violations": 1,
+      "windows": 32,
+      "failed_envs": [
+        31
+      ],
+      "fifo_exact": true,
+      "actual_increment_box_pass": true,
+      "soft_limit_pass": true
+    }
+  ],
+  "observed_prefix_exact": 17,
+  "observed_prefix_total": 18,
+  "prefix_mismatch": {
+    "condition": "bounded_12",
+    "env": 30,
+    "max_q_difference_rad": 0.00011026859283447266
+  },
+  "cpu_contract_tests_passed": 17,
+  "live_browser": {
+    "status": "pass",
+    "browser": "141.0.7390.37",
+    "live_url": "https://asimfish.github.io/safeduo-dashboard/?release=734213bc#scientific",
+    "rows": 4,
+    "stops": 18,
+    "traces": 8,
+    "historic_data_preserved": true,
+    "mobile_no_page_overflow": true,
+    "page_errors": []
+  },
+  "http_checks": {
+    "page": 200,
+    "report": 200,
+    "scientific_data": 200,
+    "raw_counts": [
+      7,
+      1,
+      1,
+      1
+    ],
+    "pages_build_api": "404; no CI/build claim"
+  },
+  "historical_numeric_evidence_preserved": true,
+  "prevention_claim": false,
+  "remaining": [
+    "prospective early detector not implemented or validated",
+    "bounded probe targets not checked through original distance projection",
+    "env31 remains a non-intervened failure; no hindsight trigger added",
+    "hidden sequential reset cause not localized",
+    "new seeds, broader four-arm space, object/contact/continuous-collision/hardware unverified"
+  ]
+}

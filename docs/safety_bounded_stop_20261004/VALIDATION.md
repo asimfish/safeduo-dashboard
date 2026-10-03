@@ -31,3 +31,5 @@ PLAYWRIGHT_BROWSERS_PATH=/tmp/safeduo_dashboard_browser PYTHONPATH=/tmp/safeduo_
 浏览器工具原先用Python3.10构建，首次误用仿真Python3.11导致greenlet扩展导入失败，保留browser_runtime_mismatch.log；改用现有/usr/bin/python3后通过，没有安装或更换依赖。该环境错误与仿真结果无关。
 
 原始NPZ在本地保留；网页发布协议、完整episode JSON、聚合结果、128行环境CSV和逐帧曲线。CPU工具契约不是机器人安全测试；未重跑未改动安全核心的98项旧检查来重复计数。没有新增视频、接触力、物体任务、连续碰撞、实机或全部四臂操作空间证明。当前完整距离投影与停止目标兼容性、自动提前触发和新种子泛化尚未验证。
+
+线上核验通过：页面/报告/数据均HTTP200，Chromium在真实线上数据下验证4行主表、18条响应、8张新曲线、全部旧图表和390px布局，无页面异常。发布版本、时间、源码核验和剩余限制见DELIVERY.json。Pages构建API返回404，未声称通过远程CI；使用真实页面、报告、数据和浏览器核验作为发布证据。
