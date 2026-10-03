@@ -199,6 +199,18 @@
   <div class="northstar" id="scientific-summary" style="border-left-color:var(--red)"></div>
   <div class="small" id="scientific-updated"></div>
   <h2>最新安全 / 不安全效果</h2>
+  <div id="scientific-bounded" style="display:none">
+    <h3>限幅停止：独立进程配对诊断</h3>
+    <div class="sci-note" id="scientific-bounded-note"></div>
+    <p class="small" id="scientific-bounded-protocol"></p>
+    <div class="table-wrap"><table id="scientific-bounded-table"><thead><tr><th>条件 / 事后提前量</th><th>全环境重叠</th><th>干预环境重叠</th><th>未干预失败 / 新增失败</th><th>最小非豁免球距</th><th>实际输出增量 / 箱上限</th></tr></thead><tbody></tbody></table></div>
+    <h3>每条停止轨迹的响应</h3>
+    <div class="table-wrap"><table id="scientific-bounded-stops"><thead><tr><th>提前量 / 环境</th><th>干预前观测前缀</th><th>触发 / 首消息到达 / 固定目标全部到达</th><th>首消息到达前 / 后重叠</th><th>原目标偏差</th></tr></thead><tbody></tbody></table></div>
+    <label class="small">查看全部干预环境及未干预失败：<select id="scientific-bounded-select" style="max-width:100%"></select></label>
+    <div id="scientific-bounded-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-bounded-caption"></p>
+    <div class="sci-note" id="scientific-bounded-verdict"></div>
+  </div>
   <div id="scientific-queue" style="display:none">
     <h3>严格 FIFO：延迟对照与固定目标制动</h3>
     <div class="sci-note" id="scientific-queue-note"></div>
@@ -543,6 +555,24 @@ function renderQueue(d) {
   $("#scientific-protocol").textContent=r.protocol_note;
   $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">队列与制动证据 →</a></div>`;
 }
+function renderBounded(d) {
+  const r=d.safety_bounded_stop;
+  $("#scientific-bounded").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-bounded-note").textContent=r.summary;
+  $("#scientific-bounded-protocol").textContent=r.protocol_note;
+  $("#scientific-bounded-verdict").textContent=r.verdict;
+  $("#scientific-bounded-table tbody").innerHTML=r.rows.map(x=>`<tr><td>${x.lead_steps == null ? "未干预控制" : x.lead_steps+"步 / "+f(x.lead_steps*r.dt*1000,0)+"ms"}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.episodes}</td><td class="num">${x.lead_steps == null ? "—" : x.intervened_violations+"/"+x.triggered_envs.length}</td><td>${esc(x.non_intervened_failed_envs.join(", ")) || "无"} / ${esc(x.new_failed_envs.join(", ")) || "无"}</td><td class="num">${f(x.min_nonexempt_mm,2)}mm</td><td class="num">${f(x.max_actual_increment_rad,6)} / ${f(x.increment_box_rad,6)}rad<br><span class="small">${x.fifo_exact && x.increment_box_pass && x.soft_limit_pass ? "FIFO / 限幅 / 软限位通过" : "核验失败"}</span></td></tr>`).join("");
+  const when=step=>step == null ? "未收敛" : f(step*r.dt,3)+"s";
+  $("#scientific-bounded-stops tbody").innerHTML=r.rows.flatMap(row=>row.trajectories.map(x=>`<tr><td>${row.lead_steps}步 · env${x.env}</td><td>${x.observed_prefix_exact ? "逐位一致" : "不同，q差≤"+f(x.prefix_max_q_difference_rad*1000,3)+"mrad"}</td><td class="num">${when(x.trigger_step)} / ${when(x.first_stop_message_delivery_step)} / ${when(x.goal_reached_delivery_step)}</td><td class="num">${x.violation_before_first_delivery ? "有" : "无"} / ${x.violation_after_first_delivery ? "有" : "无"}</td><td class="num">${f(x.old_target_offset_rad,4)}rad</td></tr>`)).join("");
+  $("#scientific-bounded-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-bounded-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_bounded_stop","scientific-bounded");
+  $("#scientific-bounded-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_bounded_stop","scientific-bounded");
+  $("#scientific-queue h3").textContent="上一轮：延迟、旧目标与超限实测q诊断";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">限幅停止证据 →</a></div>`;
+}
 function renderRobustness(d) {
   const r = d.safety_robustness || {};
   $("#scientific-robustness").style.display = r.rows?.length ? "block" : "none";
@@ -609,6 +639,7 @@ function renderScientific(d) {
   renderPerturbation(d);
   renderForensics(d);
   renderQueue(d);
+  renderBounded(d);
 }
 // ---- tasks / R34
 function renderTasks(t) {
