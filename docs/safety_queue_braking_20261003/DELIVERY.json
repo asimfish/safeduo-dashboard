@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-10-03T22:41:00+08:00",
+  "main_release": "6f464def8da595f1d17c283a807de74a9fce960f",
+  "data_release": "866056510e082ab59bcdd5faf5502f8c643fdcca",
+  "dashboard_url": "https://asimfish.github.io/safeduo-dashboard/#scientific",
+  "candidate_status": "experimental_not_promoted",
+  "experiment_source_snapshots_equal": true,
+  "current_safety_core_unchanged": true,
+  "learning_weights_unchanged": true,
+  "campaign_finished_utc": "2026-10-03T14:01:35.341724+00:00",
+  "post_campaign_workspace_changes": [
+    {
+      "path": "src/safeduo/viz/replica_visuals.py",
+      "experiment_sha256": "1885400a0eb15c23351808d367ada3b36c778b1035667035333d8296cc794750",
+      "current_sha256": "2992e2403d091c6396089c5aca1147267e2df372d2a1301d792ddb3fdc02aeca",
+      "modified_utc": "2026-10-03T14:36:39.787544+00:00",
+      "after_campaign": true
+    }
+  ],
+  "sim_cells_finished": 9,
+  "control_windows": 224,
+  "posthoc_diagnostic_windows": 64,
+  "cold_start": [
+    {
+      "delay_ms": 0,
+      "violations": 0,
+      "windows": 32
+    },
+    {
+      "delay_ms": 50,
+      "violations": 1,
+      "windows": 32
+    },
+    {
+      "delay_ms": 100,
+      "violations": 7,
+      "windows": 32
+    }
+  ],
+  "cold_100_replay_exact_fields": {
+    "q": true,
+    "pre_qd": true,
+    "exec": true,
+    "official_margins": true,
+    "controller_target": true,
+    "sphere_centers": true
+  },
+  "diagnostic_all_environment_counts": [
+    {
+      "mode": "stored",
+      "violations": 3,
+      "windows": 32,
+      "non_intervened_failed_envs": [
+        31
+      ]
+    },
+    {
+      "mode": "measured",
+      "violations": 1,
+      "windows": 32,
+      "non_intervened_failed_envs": [
+        31
+      ]
+    }
+  ],
+  "diagnostic_ordinary_increment_limit": "measured-pose hold exceeds ordinary 0.024999rad/step; no deployment claim",
+  "cpu_contract_tests_passed": 13,
+  "live_browser": {
+    "status": "pass",
+    "browser": "141.0.7390.37",
+    "live_url": "https://asimfish.github.io/safeduo-dashboard/?release=6f464def#scientific",
+    "delay_rows": 9,
+    "diagnostic_rows": 12,
+    "historic_tables_preserved": true,
+    "all_charts_finite": true,
+    "mobile_no_page_overflow": true,
+    "page_errors": []
+  },
+  "http_checks": {
+    "page": 200,
+    "report": 200,
+    "scientific_data": 200
+  },
+  "historical_numeric_evidence_preserved": true,
+  "remaining": [
+    "100ms still violates",
+    "sequential reset history not isolated at hidden-state level",
+    "prospective bounded queue/braking strategy unverified",
+    "object/contact force/full-space/real hardware unverified"
+  ]
+}
