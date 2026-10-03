@@ -1,0 +1,3908 @@
+{
+  "window": {
+    "method": "system0",
+    "flow": "held_random",
+    "amp": 0.015,
+    "seed": 12,
+    "initial_jitter_rad": 0.3,
+    "actuator_delay_steps": 3,
+    "initial_seed": 836359975,
+    "source_seed": 34419144,
+    "dt": 0.016666,
+    "cell_id": 2,
+    "env_yaml": "duo_env_a31_pending_guard.yaml",
+    "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+    "hold_steps": 90,
+    "hold_duration_s": 1.49994,
+    "num_envs": 32,
+    "steps": 600,
+    "wall_s": 132.9,
+    "env_steps_per_s": 144.4,
+    "episodes": 32,
+    "violation_episodes": 1,
+    "violation_episode_rate": 0.03125,
+    "violation_cp95_upper": 0.13984946027422587,
+    "cross_violation_episodes": 0,
+    "violation_episodes_by_class": {
+      "cross": 0,
+      "self_F": 0,
+      "self_U": 0,
+      "table": 1
+    },
+    "violation_steps_by_class": {
+      "cross": 0,
+      "self_F": 0,
+      "self_U": 0,
+      "table": 4
+    },
+    "violation_step_rate": 0.00020833333333333335,
+    "near_contact_step_rate": 0.0,
+    "safe_step_frac": 0.4125520833333333,
+    "false_brake_arm_rate": 0.033171316752935234,
+    "locked_frac_per_arm": {
+      "F_L": 0.06765625,
+      "F_R": 0.0934375,
+      "U_L": 0.24973958333333332,
+      "U_R": 0.20244791666666667
+    },
+    "min_margin_cls_m": {
+      "cross": 0.0643,
+      "self_F": 0.013,
+      "self_U": 0.0098,
+      "table": -0.0033
+    },
+    "exposure": {
+      "k_warn_steps": 3,
+      "episodes_all_pairs_exposed": 0,
+      "frac_all_pairs_exposed": 0.0,
+      "pair_exposed_frac": {
+        "F_L-F_R": 0.1875,
+        "F_L-U_L": 0.0,
+        "F_L-U_R": 0.03125,
+        "F_R-U_L": 0.0,
+        "F_R-U_R": 0.0,
+        "U_L-U_R": 0.28125
+      },
+      "pair_exposed_episodes": {
+        "F_L-F_R": 6,
+        "F_L-U_L": 0,
+        "F_L-U_R": 1,
+        "F_R-U_L": 0,
+        "F_R-U_R": 0,
+        "U_L-U_R": 9
+      },
+      "pair_min_margin_m": {
+        "F_L-F_R": 0.0251,
+        "F_L-U_L": 0.2412,
+        "F_L-U_R": 0.0643,
+        "F_R-U_L": 0.2731,
+        "F_R-U_R": 0.2605,
+        "U_L-U_R": 0.0236
+      },
+      "violation_episodes_among_exposed": 0,
+      "violation_cp95_upper_exposed": null
+    },
+    "non_structural": {
+      "definition": "rows whose d_min == class lock line only (R29 structural per-link rows excluded, cross/self AND table); near_table VIOLATION exemption still applied",
+      "structural_rows": 0,
+      "rows_total": 8745,
+      "structural_table_rows": 24,
+      "table_rows_total": 276,
+      "violation_episodes": 1,
+      "violation_episode_rate": 0.03125,
+      "violation_cp95_upper": 0.13984946027422587,
+      "violation_episodes_by_class": {
+        "cross": 0,
+        "self_F": 0,
+        "self_U": 0,
+        "table": 1
+      },
+      "violation_steps_by_class": {
+        "cross": 0,
+        "self_F": 0,
+        "self_U": 0,
+        "table": 4
+      },
+      "violation_step_rate": 0.00020833333333333335,
+      "min_margin_cls_m": {
+        "cross": 0.0643,
+        "self_F": 0.013,
+        "self_U": 0.0098,
+        "table": -0.0033
+      },
+      "official_recompute_mismatch_steps": 0,
+      "top_rows": {
+        "cross": [],
+        "self_F": [],
+        "self_U": [],
+        "table": [
+          {
+            "pair": "U_L/wrist_2_link|table_U",
+            "steps": 4,
+            "rows": 1,
+            "structural": false,
+            "d_min_m": 0.02
+          }
+        ]
+      }
+    }
+  },
+  "episodes": [
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 0,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.28734374046325684,
+      "initial_requested_max_abs_rad": 0.2873437702655792,
+      "initial_effective_rms_rad": 0.17099326848983765,
+      "initial_violation": false,
+      "initial_q_sha256": "8cd67aca8edeebd9b32864e3b9f050b6ac96407604520819fce64aa0d6d12348",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5335865616798401,
+        "self_F": 0.017277225852012634,
+        "self_U": 0.013239160180091858,
+        "table": 0.001223534345626831
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5335865616798401,
+        "self_F": 0.017277225852012634,
+        "self_U": 0.013239160180091858,
+        "table": 0.001223534345626831
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.10789386928081512,
+        0.6870278716087341,
+        0.5335865616798401,
+        0.5606838464736938,
+        0.8921266794204712,
+        0.2201000601053238
+      ],
+      "intervention_step_rate": 0.9216666666666666,
+      "backstop_step_rate": 0.7116666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.36397361755371,
+      "executed_l2_sum": 23.002300262451172,
+      "measured_joint_path_rad": 85.7405014038086,
+      "joint_range_fraction_mean": 0.30531930923461914,
+      "ee_aabb_min_m": [
+        [
+          0.03627490997314453,
+          -0.8122625350952148,
+          1.004312515258789
+        ],
+        [
+          0.27454376220703125,
+          -0.1327962875366211,
+          0.8955579400062561
+        ],
+        [
+          -1.0012388229370117,
+          0.4081392288208008,
+          0.9203537106513977
+        ],
+        [
+          -0.8539495468139648,
+          -0.35503673553466797,
+          1.0811070203781128
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.8807640075683594,
+          0.0016126632690429688,
+          1.9162359237670898
+        ],
+        [
+          0.8386850357055664,
+          0.8405847549438477,
+          1.5532103776931763
+        ],
+        [
+          -0.4222698211669922,
+          0.7845463752746582,
+          1.504267930984497
+        ],
+        [
+          -0.5903348922729492,
+          -0.2725706100463867,
+          1.3151425123214722
+        ]
+      ],
+      "command_sha256": "a9c6b32ff0a3ac1f20800f1cb6e73d0b66f3c1c570c8631ce7657cd55da7af97"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 1,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2975415587425232,
+      "initial_requested_max_abs_rad": 0.2975415587425232,
+      "initial_effective_rms_rad": 0.17653527855873108,
+      "initial_violation": false,
+      "initial_q_sha256": "5dc63fd3f9be5340b419ad4ab408d3c781642707231df54a42f25bca13d8b4a5",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5480746030807495,
+        "self_F": 0.023081839084625244,
+        "self_U": 0.009795449674129486,
+        "table": 0.0013183653354644775
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5480746030807495,
+        "self_F": 0.023081839084625244,
+        "self_U": 0.009795449674129486,
+        "table": 0.0013183653354644775
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.1810903549194336,
+        0.8835132122039795,
+        0.5480746030807495,
+        0.5586618185043335,
+        0.9065188765525818,
+        0.09535975754261017
+      ],
+      "intervention_step_rate": 0.8666666666666667,
+      "backstop_step_rate": 0.33666666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.620267868041992,
+      "executed_l2_sum": 24.862627029418945,
+      "measured_joint_path_rad": 96.27078247070312,
+      "joint_range_fraction_mean": 0.3506476581096649,
+      "ee_aabb_min_m": [
+        [
+          0.32389163970947266,
+          -1.0159687995910645,
+          1.0466324090957642
+        ],
+        [
+          0.2665243148803711,
+          -0.12873029708862305,
+          0.9524640440940857
+        ],
+        [
+          -0.6028203964233398,
+          -0.19212102890014648,
+          1.0553494691848755
+        ],
+        [
+          -1.200601577758789,
+          -0.9824213981628418,
+          1.1224075555801392
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.2083797454833984,
+          -0.03129005432128906,
+          1.8934991359710693
+        ],
+        [
+          1.4815759658813477,
+          0.9189560413360596,
+          1.7582749128341675
+        ],
+        [
+          -0.3705406188964844,
+          0.4530181884765625,
+          1.2269618511199951
+        ],
+        [
+          -0.11254215240478516,
+          -0.029531478881835938,
+          1.7349523305892944
+        ]
+      ],
+      "command_sha256": "668afa5f3ada2f498c04e7bbf62fdc008f7ebd404798b869e73d5c313a338271"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 2,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29896998405456543,
+      "initial_requested_max_abs_rad": 0.29896998405456543,
+      "initial_effective_rms_rad": 0.16727608442306519,
+      "initial_violation": false,
+      "initial_q_sha256": "d75ab313afc3289d03bc00e8c06db7f1640653e9efca40d86e7c925f21df4f33",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.06432457268238068,
+        "self_F": 0.023081764578819275,
+        "self_U": 0.01909598708152771,
+        "table": 0.0012021958827972412
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.06432457268238068,
+        "self_F": 0.023081764578819275,
+        "self_U": 0.01909598708152771,
+        "table": 0.0012021958827972412
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        10,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.18992890417575836,
+        0.6984262466430664,
+        0.06432457268238068,
+        0.5865726470947266,
+        0.639947235584259,
+        0.12057739496231079
+      ],
+      "intervention_step_rate": 0.9316666666666666,
+      "backstop_step_rate": 0.525,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.90806007385254,
+      "executed_l2_sum": 25.031612396240234,
+      "measured_joint_path_rad": 99.87519836425781,
+      "joint_range_fraction_mean": 0.35185039043426514,
+      "ee_aabb_min_m": [
+        [
+          0.3219327926635742,
+          -0.8980516791343689,
+          1.1618880033493042
+        ],
+        [
+          0.27169227600097656,
+          0.1863783746957779,
+          1.0555509328842163
+        ],
+        [
+          -1.1015758514404297,
+          0.2014363706111908,
+          0.9444184303283691
+        ],
+        [
+          -0.63031005859375,
+          -0.8391599059104919,
+          0.9230602979660034
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.3842620849609375,
+          -0.04645432531833649,
+          1.7644749879837036
+        ],
+        [
+          1.4539356231689453,
+          1.2915061712265015,
+          1.7033277750015259
+        ],
+        [
+          -0.45775413513183594,
+          0.7296116948127747,
+          1.6884596347808838
+        ],
+        [
+          0.06462287902832031,
+          -0.08103226125240326,
+          1.8196359872817993
+        ]
+      ],
+      "command_sha256": "c222d274b106569e6ce5a31175403656330499aacea124f38b6ee420d174a818"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 3,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2943594455718994,
+      "initial_requested_max_abs_rad": 0.2943594753742218,
+      "initial_effective_rms_rad": 0.19570636749267578,
+      "initial_violation": false,
+      "initial_q_sha256": "b034b2f2c120c07d979408bf22a56da974e76c99e39296ddd74a2e13b7075e8b",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5012848973274231,
+        "self_F": 0.01942819356918335,
+        "self_U": 0.01323382556438446,
+        "table": 0.0009607970714569092
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5012848973274231,
+        "self_F": 0.01942819356918335,
+        "self_U": 0.01323382556438446,
+        "table": 0.0009607970714569092
+      },
+      "pair_warn_steps": [
+        4,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.07890453934669495,
+        0.9199077486991882,
+        0.5012848973274231,
+        0.6553330421447754,
+        1.0577203035354614,
+        0.10375329852104187
+      ],
+      "intervention_step_rate": 0.96,
+      "backstop_step_rate": 0.5766666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 23.77358627319336,
+      "executed_l2_sum": 22.277849197387695,
+      "measured_joint_path_rad": 89.09249877929688,
+      "joint_range_fraction_mean": 0.3131391704082489,
+      "ee_aabb_min_m": [
+        [
+          0.24458599090576172,
+          -0.9667770862579346,
+          0.98306804895401
+        ],
+        [
+          0.45413780212402344,
+          0.11823415756225586,
+          0.7981054186820984
+        ],
+        [
+          -1.4956035614013672,
+          -0.04061174392700195,
+          0.6275044083595276
+        ],
+        [
+          -0.7621469497680664,
+          -0.43253040313720703,
+          1.0514724254608154
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.164137840270996,
+          0.012197494506835938,
+          1.9401777982711792
+        ],
+        [
+          1.5746078491210938,
+          1.211916446685791,
+          1.9083192348480225
+        ],
+        [
+          -0.46482181549072266,
+          0.6889872550964355,
+          1.795584797859192
+        ],
+        [
+          -0.4943246841430664,
+          -0.13678789138793945,
+          1.4834742546081543
+        ]
+      ],
+      "command_sha256": "89074ccdad30f6452e726e220ca534dfad1995555b73d06f968afe64d92346d5"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 4,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2989048957824707,
+      "initial_requested_max_abs_rad": 0.2989048361778259,
+      "initial_effective_rms_rad": 0.1796591728925705,
+      "initial_violation": false,
+      "initial_q_sha256": "a3eb5f27c3d07cba1a887c78444fbd4ca762245b4bca31bba9604dc6d9f8e7cb",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.2730531394481659,
+        "self_F": 0.021067097783088684,
+        "self_U": 0.013605549931526184,
+        "table": 0.0009802281856536865
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.2730531394481659,
+        "self_F": 0.021067097783088684,
+        "self_U": 0.013605549931526184,
+        "table": 0.0009802281856536865
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.3929717540740967,
+        0.852156400680542,
+        0.5831620693206787,
+        0.2730531394481659,
+        0.8089691400527954,
+        0.2963353991508484
+      ],
+      "intervention_step_rate": 0.7266666666666667,
+      "backstop_step_rate": 0.3016666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.968460083007812,
+      "executed_l2_sum": 24.801685333251953,
+      "measured_joint_path_rad": 99.13569641113281,
+      "joint_range_fraction_mean": 0.3502486050128937,
+      "ee_aabb_min_m": [
+        [
+          0.05148124694824219,
+          -1.2638835906982422,
+          0.7254543304443359
+        ],
+        [
+          0.08363533020019531,
+          -0.08874177932739258,
+          1.3515474796295166
+        ],
+        [
+          -0.7284231185913086,
+          0.33777713775634766,
+          1.0778640508651733
+        ],
+        [
+          -1.2455272674560547,
+          -0.8597259521484375,
+          1.0686686038970947
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.5291414260864258,
+          -0.1941990852355957,
+          1.4336649179458618
+        ],
+        [
+          1.2080926895141602,
+          0.6596908569335938,
+          1.9690076112747192
+        ],
+        [
+          -0.4546384811401367,
+          0.9214105606079102,
+          1.596043348312378
+        ],
+        [
+          -0.4539947509765625,
+          0.031914710998535156,
+          1.70420241355896
+        ]
+      ],
+      "command_sha256": "1c8d93d44727c366af751aa3d93aff880e1573bf0973a5e690a7094bcfc22110"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 5,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2977452278137207,
+      "initial_requested_max_abs_rad": 0.2977452278137207,
+      "initial_effective_rms_rad": 0.17977431416511536,
+      "initial_violation": false,
+      "initial_q_sha256": "d5a3f7503c4c38a6b5c316648238542c4441956048304d92fdf83369060ec42b",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5586662292480469,
+        "self_F": 0.014646679162979126,
+        "self_U": 0.014649525284767151,
+        "table": 0.0009681284427642822
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5586662292480469,
+        "self_F": 0.014646679162979126,
+        "self_U": 0.014649525284767151,
+        "table": 0.0009681284427642822
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20
+      ],
+      "min_pair_margin_m": [
+        0.09059716761112213,
+        0.6520363092422485,
+        0.5586662292480469,
+        0.6252099871635437,
+        0.6589433550834656,
+        0.026082858443260193
+      ],
+      "intervention_step_rate": 0.805,
+      "backstop_step_rate": 0.5616666666666666,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.642292022705078,
+      "executed_l2_sum": 24.918941497802734,
+      "measured_joint_path_rad": 95.70339965820312,
+      "joint_range_fraction_mean": 0.31893840432167053,
+      "ee_aabb_min_m": [
+        [
+          0.32994937896728516,
+          -0.986567497253418,
+          1.0466506481170654
+        ],
+        [
+          0.4767179489135742,
+          -0.10866069793701172,
+          1.2757775783538818
+        ],
+        [
+          -0.6802282333374023,
+          0.09125804901123047,
+          1.1167354583740234
+        ],
+        [
+          -0.9525909423828125,
+          -0.4646883010864258,
+          0.9345625042915344
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.143198013305664,
+          0.09473943710327148,
+          1.7088875770568848
+        ],
+        [
+          1.4690818786621094,
+          0.920222282409668,
+          1.9549223184585571
+        ],
+        [
+          -0.16962003707885742,
+          0.6070551872253418,
+          1.562237024307251
+        ],
+        [
+          -0.15619182586669922,
+          0.21662378311157227,
+          1.7188293933868408
+        ]
+      ],
+      "command_sha256": "c48f6899830c4a084dd620867ace109369ed961ef59b3c0f77fb239ee945d843"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 6,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2855546474456787,
+      "initial_requested_max_abs_rad": 0.2855546772480011,
+      "initial_effective_rms_rad": 0.1367182433605194,
+      "initial_violation": false,
+      "initial_q_sha256": "1ecbb71cadbab1d5011bc9b50ae0cb7ed4d4b71d66f895125be6c8ff9e77beb1",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5078279376029968,
+        "self_F": 0.014551892876625061,
+        "self_U": 0.012696623802185059,
+        "table": 0.0009751021862030029
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5078279376029968,
+        "self_F": 0.014551892876625061,
+        "self_U": 0.012696623802185059,
+        "table": 0.0009751021862030029
+      },
+      "pair_warn_steps": [
+        42,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.04301320016384125,
+        0.8114081621170044,
+        0.5078279376029968,
+        0.5311281085014343,
+        0.9655001163482666,
+        0.4271875321865082
+      ],
+      "intervention_step_rate": 0.885,
+      "backstop_step_rate": 0.8716666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.95907211303711,
+      "executed_l2_sum": 24.599292755126953,
+      "measured_joint_path_rad": 92.74695587158203,
+      "joint_range_fraction_mean": 0.2678305208683014,
+      "ee_aabb_min_m": [
+        [
+          0.46685791015625,
+          -0.5522794723510742,
+          0.9589834213256836
+        ],
+        [
+          0.37975215911865234,
+          -0.12415075302124023,
+          1.0278065204620361
+        ],
+        [
+          -0.8115510940551758,
+          0.1428844928741455,
+          1.2463173866271973
+        ],
+        [
+          -0.8688044548034668,
+          -0.8606867790222168,
+          1.0813407897949219
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.101689338684082,
+          -0.0975189208984375,
+          1.4917166233062744
+        ],
+        [
+          1.3557319641113281,
+          0.8961765766143799,
+          1.5674880743026733
+        ],
+        [
+          -0.033649444580078125,
+          0.9472169876098633,
+          1.7731379270553589
+        ],
+        [
+          -0.15595769882202148,
+          -0.11792850494384766,
+          1.6219452619552612
+        ]
+      ],
+      "command_sha256": "6a8c6412f5d06592f5bf3a6659205e4ed641720cee049d6949259097b82d4870"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 7,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.27948111295700073,
+      "initial_requested_max_abs_rad": 0.27948108315467834,
+      "initial_effective_rms_rad": 0.18282350897789001,
+      "initial_violation": false,
+      "initial_q_sha256": "5c958d77756a154f8f338a380b5baab09ee77bf3cb6e6fdd59b29a4266e6b044",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5015524625778198,
+        "self_F": 0.023082032799720764,
+        "self_U": 0.016015484929084778,
+        "table": 0.0009808838367462158
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5015524625778198,
+        "self_F": 0.023082032799720764,
+        "self_U": 0.016015484929084778,
+        "table": 0.0009808838367462158
+      },
+      "pair_warn_steps": [
+        77,
+        0,
+        0,
+        0,
+        0,
+        70
+      ],
+      "min_pair_margin_m": [
+        0.04673004150390625,
+        0.8998485207557678,
+        0.589471697807312,
+        0.5015524625778198,
+        0.5551721453666687,
+        0.03488519787788391
+      ],
+      "intervention_step_rate": 0.735,
+      "backstop_step_rate": 0.63,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.7183895111084,
+      "executed_l2_sum": 24.78590202331543,
+      "measured_joint_path_rad": 96.77410125732422,
+      "joint_range_fraction_mean": 0.326769083738327,
+      "ee_aabb_min_m": [
+        [
+          0.3327674865722656,
+          -0.9408950805664062,
+          1.1324131488800049
+        ],
+        [
+          0.07023048400878906,
+          -0.25313079357147217,
+          0.9759083390235901
+        ],
+        [
+          -1.145616054534912,
+          0.06740710139274597,
+          0.8042659163475037
+        ],
+        [
+          -0.6308021545410156,
+          -0.6267285346984863,
+          1.0518771409988403
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.0338964462280273,
+          0.027910489588975906,
+          1.7511780261993408
+        ],
+        [
+          1.4206600189208984,
+          0.48166725039482117,
+          1.9593355655670166
+        ],
+        [
+          -0.26316261291503906,
+          0.9779286980628967,
+          1.5754314661026
+        ],
+        [
+          -0.4186263084411621,
+          -0.30869078636169434,
+          1.3751298189163208
+        ]
+      ],
+      "command_sha256": "83069b323aa246d38b98d2112e986c54e81c6f4a480044268099c4da81bb2792"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 8,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29483258724212646,
+      "initial_requested_max_abs_rad": 0.29483258724212646,
+      "initial_effective_rms_rad": 0.16143569350242615,
+      "initial_violation": false,
+      "initial_q_sha256": "a5979279de9d1c0562c528243c0ea7b422dd362b869f100e6d90ce7e48e6eaaf",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.3903360962867737,
+        "self_F": 0.01495400071144104,
+        "self_U": 0.015422791242599487,
+        "table": 0.0009692609310150146
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.3903360962867737,
+        "self_F": 0.01495400071144104,
+        "self_U": 0.015422791242599487,
+        "table": 0.0009692609310150146
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.476284921169281,
+        1.0817476511001587,
+        0.6524277925491333,
+        0.3903360962867737,
+        0.8945995569229126,
+        0.4368590712547302
+      ],
+      "intervention_step_rate": 0.955,
+      "backstop_step_rate": 0.585,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 25.682802200317383,
+      "executed_l2_sum": 22.18258285522461,
+      "measured_joint_path_rad": 82.27613830566406,
+      "joint_range_fraction_mean": 0.3328043520450592,
+      "ee_aabb_min_m": [
+        [
+          0.4407367706298828,
+          -0.8855640888214111,
+          0.9712845087051392
+        ],
+        [
+          -0.009444713592529297,
+          0.08764076232910156,
+          1.163076639175415
+        ],
+        [
+          -0.7320022583007812,
+          0.44081878662109375,
+          1.1609752178192139
+        ],
+        [
+          -1.3512887954711914,
+          -0.7987527847290039,
+          1.1573859453201294
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.038386344909668,
+          -0.3287360668182373,
+          1.791656732559204
+        ],
+        [
+          1.343480110168457,
+          0.9396309852600098,
+          1.954764723777771
+        ],
+        [
+          -0.551234245300293,
+          0.9200520515441895,
+          1.4739632606506348
+        ],
+        [
+          -0.49463653564453125,
+          -0.24843192100524902,
+          1.4141874313354492
+        ]
+      ],
+      "command_sha256": "1b8d31d10430f07b2b9b42b3dce0f5b76d4b4150757d3b319f2a945cae5f3331"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 9,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.25959253311157227,
+      "initial_requested_max_abs_rad": 0.2595925033092499,
+      "initial_effective_rms_rad": 0.18580657243728638,
+      "initial_violation": false,
+      "initial_q_sha256": "49c9092f12e1023fc46d85afe1efc7c8973858edbff7f37947be04e5192caa8e",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.6365760564804077,
+        "self_F": 0.016540318727493286,
+        "self_U": 0.013598054647445679,
+        "table": 0.000979691743850708
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.6365760564804077,
+        "self_F": 0.016540318727493286,
+        "self_U": 0.013598054647445679,
+        "table": 0.000979691743850708
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.08004572987556458,
+        0.6366416215896606,
+        0.774567186832428,
+        0.6365760564804077,
+        1.1047226190567017,
+        0.10400649905204773
+      ],
+      "intervention_step_rate": 0.9883333333333333,
+      "backstop_step_rate": 0.84,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.350099563598633,
+      "executed_l2_sum": 18.70847511291504,
+      "measured_joint_path_rad": 62.153236389160156,
+      "joint_range_fraction_mean": 0.20685192942619324,
+      "ee_aabb_min_m": [
+        [
+          0.4150199890136719,
+          -0.4335145950317383,
+          1.0641186237335205
+        ],
+        [
+          0.5547447204589844,
+          0.0017032623291015625,
+          1.3402258157730103
+        ],
+        [
+          -0.8244776725769043,
+          -0.0687704086303711,
+          0.9029428362846375
+        ],
+        [
+          -0.6293907165527344,
+          -1.2417774200439453,
+          1.1374142169952393
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.553715705871582,
+          -0.011242389678955078,
+          1.4663987159729004
+        ],
+        [
+          1.0548553466796875,
+          0.6989355087280273,
+          1.71636164188385
+        ],
+        [
+          -0.4369697570800781,
+          0.5672664642333984,
+          1.4152122735977173
+        ],
+        [
+          -0.30557966232299805,
+          -0.3783893585205078,
+          1.3843650817871094
+        ]
+      ],
+      "command_sha256": "6b49ca4cd1a5a4122713106954a44e1ecef4e207334ff8c4edf572bea310424c"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 10,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2783399820327759,
+      "initial_requested_max_abs_rad": 0.2783399522304535,
+      "initial_effective_rms_rad": 0.15884599089622498,
+      "initial_violation": false,
+      "initial_q_sha256": "256e90f2f274d7820b34c7cfe0ace0b680e9bb4b238ecfa56cc56d80d8ad6bd8",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.3814736008644104,
+        "self_F": 0.023082107305526733,
+        "self_U": 0.01343381404876709,
+        "table": 0.0011108815670013428
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.3814736008644104,
+        "self_F": 0.023082107305526733,
+        "self_U": 0.01343381404876709,
+        "table": 0.0011108815670013428
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        121
+      ],
+      "min_pair_margin_m": [
+        0.5551998019218445,
+        0.9674452543258667,
+        0.5863021016120911,
+        0.3814736008644104,
+        1.0044543743133545,
+        0.023599877953529358
+      ],
+      "intervention_step_rate": 0.8783333333333333,
+      "backstop_step_rate": 0.49833333333333335,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.878265380859375,
+      "executed_l2_sum": 24.336315155029297,
+      "measured_joint_path_rad": 95.34070587158203,
+      "joint_range_fraction_mean": 0.33632245659828186,
+      "ee_aabb_min_m": [
+        [
+          0.3563113212585449,
+          -0.9575061798095703,
+          0.9898312091827393
+        ],
+        [
+          0.2015538215637207,
+          0.21251678466796875,
+          0.9625668525695801
+        ],
+        [
+          -0.990532636642456,
+          0.2857394218444824,
+          0.5710017085075378
+        ],
+        [
+          -0.8767766952514648,
+          -0.5040254592895508,
+          0.8999520540237427
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.55006742477417,
+          -0.2863349914550781,
+          1.9224504232406616
+        ],
+        [
+          1.1331839561462402,
+          1.1510658264160156,
+          1.650968313217163
+        ],
+        [
+          -0.43554115295410156,
+          1.1149554252624512,
+          1.6098016500473022
+        ],
+        [
+          -0.4275319576263428,
+          -0.02228832244873047,
+          1.2503440380096436
+        ]
+      ],
+      "command_sha256": "c0e0ae0a82347b69e5a425de536a11d8bbbcaa036d85b049680f71894cdbca37"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 11,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2749040126800537,
+      "initial_requested_max_abs_rad": 0.2749040126800537,
+      "initial_effective_rms_rad": 0.1628980189561844,
+      "initial_violation": false,
+      "initial_q_sha256": "6c49521941e419385512638b5a7e5945b0b90eaa0fb7000d23b59412e7d6dd4c",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.47202450037002563,
+        "self_F": 0.014632463455200195,
+        "self_U": 0.013266757130622864,
+        "table": 0.001069873571395874
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.47202450037002563,
+        "self_F": 0.014632463455200195,
+        "self_U": 0.013266757130622864,
+        "table": 0.001069873571395874
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.5503683090209961,
+        0.92774897813797,
+        0.47202450037002563,
+        0.7055534720420837,
+        1.1246589422225952,
+        0.16661643981933594
+      ],
+      "intervention_step_rate": 0.9733333333333334,
+      "backstop_step_rate": 0.43833333333333335,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.25687599182129,
+      "executed_l2_sum": 22.687101364135742,
+      "measured_joint_path_rad": 81.52780151367188,
+      "joint_range_fraction_mean": 0.32277023792266846,
+      "ee_aabb_min_m": [
+        [
+          0.0896463394165039,
+          -0.9871749877929688,
+          1.2735174894332886
+        ],
+        [
+          0.4425215721130371,
+          0.6148524284362793,
+          0.7632651329040527
+        ],
+        [
+          -0.8254227638244629,
+          0.470630407333374,
+          1.1787283420562744
+        ],
+        [
+          -1.027709722518921,
+          -0.8035588264465332,
+          0.8851743340492249
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.652045726776123,
+          -0.3392009735107422,
+          1.8895641565322876
+        ],
+        [
+          1.2719159126281738,
+          1.1669538021087646,
+          1.4552152156829834
+        ],
+        [
+          -0.5072834491729736,
+          0.5689594745635986,
+          1.2399427890777588
+        ],
+        [
+          -0.42328739166259766,
+          -0.07191896438598633,
+          1.7478779554367065
+        ]
+      ],
+      "command_sha256": "60467d2d723360bedddb82ce8546ffd03ebe551eaf04a4fc309b01df4ead7974"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 12,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2909248173236847,
+      "initial_requested_max_abs_rad": 0.2909247875213623,
+      "initial_effective_rms_rad": 0.16676954925060272,
+      "initial_violation": false,
+      "initial_q_sha256": "9d308195e77fbd57d38c45f6804a4128c66e80d6c7cf92fdd7b84b5890c913d7",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.2604976296424866,
+        "self_F": 0.02308259904384613,
+        "self_U": 0.01870308816432953,
+        "table": 0.0009733140468597412
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.2604976296424866,
+        "self_F": 0.02308259904384613,
+        "self_U": 0.01870308816432953,
+        "table": 0.0009733140468597412
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.08706711232662201,
+        0.7838066816329956,
+        0.48675915598869324,
+        0.585939347743988,
+        0.2604976296424866,
+        0.13296842575073242
+      ],
+      "intervention_step_rate": 0.7433333333333333,
+      "backstop_step_rate": 0.47333333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.078937530517578,
+      "executed_l2_sum": 25.490449905395508,
+      "measured_joint_path_rad": 101.95755004882812,
+      "joint_range_fraction_mean": 0.339586466550827,
+      "ee_aabb_min_m": [
+        [
+          0.30400800704956055,
+          -1.0239852666854858,
+          1.159590721130371
+        ],
+        [
+          0.36554670333862305,
+          -0.20551377534866333,
+          1.0264482498168945
+        ],
+        [
+          -1.098231315612793,
+          0.0909130722284317,
+          1.1240121126174927
+        ],
+        [
+          -0.6414353847503662,
+          -0.8933661580085754,
+          0.9118565320968628
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.0925207138061523,
+          -0.25626474618911743,
+          1.749088168144226
+        ],
+        [
+          0.9011092185974121,
+          1.022589921951294,
+          1.766837477684021
+        ],
+        [
+          -0.436784029006958,
+          0.5863218307495117,
+          1.6539931297302246
+        ],
+        [
+          -0.06673717498779297,
+          0.23454749584197998,
+          1.7973397970199585
+        ]
+      ],
+      "command_sha256": "c39738460d2b55f8f04c30e7f5f5bfee45e50e10348b7b05bacba2eaf513a65b"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 13,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2802903652191162,
+      "initial_requested_max_abs_rad": 0.28029024600982666,
+      "initial_effective_rms_rad": 0.17070326209068298,
+      "initial_violation": false,
+      "initial_q_sha256": "f79a0b4b49a51d330d07eda0a9090252eeadc84495726c20571be35460686cf8",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5378332138061523,
+        "self_F": 0.014344215393066406,
+        "self_U": 0.013994261622428894,
+        "table": 0.0009658634662628174
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5378332138061523,
+        "self_F": 0.014344215393066406,
+        "self_U": 0.013994261622428894,
+        "table": 0.0009658634662628174
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        15
+      ],
+      "min_pair_margin_m": [
+        0.1773117184638977,
+        0.8170844316482544,
+        0.8082864880561829,
+        0.5378332138061523,
+        0.8616737127304077,
+        0.06292431056499481
+      ],
+      "intervention_step_rate": 0.995,
+      "backstop_step_rate": 0.93,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.37175750732422,
+      "executed_l2_sum": 22.96331214904785,
+      "measured_joint_path_rad": 74.13594818115234,
+      "joint_range_fraction_mean": 0.24983638525009155,
+      "ee_aabb_min_m": [
+        [
+          0.46517181396484375,
+          -0.6298437118530273,
+          0.9708171486854553
+        ],
+        [
+          0.32088756561279297,
+          0.2310018539428711,
+          1.0862679481506348
+        ],
+        [
+          -1.5608694553375244,
+          -0.13241267204284668,
+          0.857871413230896
+        ],
+        [
+          -0.700871467590332,
+          -0.7956583499908447,
+          0.9273834824562073
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.2780752182006836,
+          -0.06579756736755371,
+          1.6722608804702759
+        ],
+        [
+          0.537147045135498,
+          0.6630024909973145,
+          1.3432435989379883
+        ],
+        [
+          -0.3598332405090332,
+          1.0471343994140625,
+          1.7238123416900635
+        ],
+        [
+          -0.46715712547302246,
+          -0.2646021842956543,
+          1.367019534111023
+        ]
+      ],
+      "command_sha256": "87831a5258bb5d2e7c3e2cd925bda7268ada532fc597ab000f4eec3e7ba25930"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 14,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.28150367736816406,
+      "initial_requested_max_abs_rad": 0.2815036177635193,
+      "initial_effective_rms_rad": 0.19401441514492035,
+      "initial_violation": false,
+      "initial_q_sha256": "b7f24721225cc2fe5f2c0e67ec442d1a1dc376e472da3866524206dbbedc2751",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.43926721811294556,
+        "self_F": 0.013125583529472351,
+        "self_U": 0.01385362446308136,
+        "table": 0.0012278258800506592
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.43926721811294556,
+        "self_F": 0.013125583529472351,
+        "self_U": 0.01385362446308136,
+        "table": 0.0012278258800506592
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.0813976526260376,
+        0.9799685478210449,
+        0.6783643960952759,
+        0.43926721811294556,
+        0.739713191986084,
+        0.4096280038356781
+      ],
+      "intervention_step_rate": 0.9283333333333333,
+      "backstop_step_rate": 0.7783333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 23.75914192199707,
+      "executed_l2_sum": 19.955713272094727,
+      "measured_joint_path_rad": 70.38394927978516,
+      "joint_range_fraction_mean": 0.25991734862327576,
+      "ee_aabb_min_m": [
+        [
+          0.5258598327636719,
+          -0.4140305519104004,
+          0.9943290948867798
+        ],
+        [
+          0.31269264221191406,
+          0.1588459014892578,
+          1.0064585208892822
+        ],
+        [
+          -0.5992043018341064,
+          0.4334297180175781,
+          0.9055989980697632
+        ],
+        [
+          -1.5514171123504639,
+          -0.6988396644592285,
+          0.9607707262039185
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.02081298828125,
+          -0.017820358276367188,
+          1.6054881811141968
+        ],
+        [
+          0.8313660621643066,
+          0.6028833389282227,
+          1.7706739902496338
+        ],
+        [
+          -0.33504748344421387,
+          0.7874984741210938,
+          1.3768510818481445
+        ],
+        [
+          -0.3065509796142578,
+          -0.28534984588623047,
+          1.7750015258789062
+        ]
+      ],
+      "command_sha256": "70151ccc2751067938603a4d65ce0eaf07cccf22d01394ae08636f59d55aad29"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 15,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2931666374206543,
+      "initial_requested_max_abs_rad": 0.2931666076183319,
+      "initial_effective_rms_rad": 0.16551023721694946,
+      "initial_violation": false,
+      "initial_q_sha256": "86c314a45ec82ee12c7e518d8223e70f8bb84cbaa231f66b0956ff7d72897c2d",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.47933268547058105,
+        "self_F": 0.023082271218299866,
+        "self_U": 0.012871414422988892,
+        "table": 0.0009725391864776611
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.47933268547058105,
+        "self_F": 0.023082271218299866,
+        "self_U": 0.012871414422988892,
+        "table": 0.0009725391864776611
+      },
+      "pair_warn_steps": [
+        83,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.0250723734498024,
+        0.637760579586029,
+        0.47933268547058105,
+        0.6616372466087341,
+        0.802738606929779,
+        0.2754216194152832
+      ],
+      "intervention_step_rate": 0.955,
+      "backstop_step_rate": 0.5166666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.711849212646484,
+      "executed_l2_sum": 21.507369995117188,
+      "measured_joint_path_rad": 73.59368896484375,
+      "joint_range_fraction_mean": 0.29720833897590637,
+      "ee_aabb_min_m": [
+        [
+          0.16304658353328705,
+          -0.8254289627075195,
+          0.9530562162399292
+        ],
+        [
+          0.3184277415275574,
+          -0.2078876495361328,
+          0.9930680990219116
+        ],
+        [
+          -0.6629618406295776,
+          0.24724817276000977,
+          1.2105175256729126
+        ],
+        [
+          -1.0936412811279297,
+          -0.6116752624511719,
+          1.1844929456710815
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.8448954224586487,
+          -0.2978649139404297,
+          1.7085206508636475
+        ],
+        [
+          0.9331662058830261,
+          1.1344995498657227,
+          1.823293685913086
+        ],
+        [
+          -0.5038112998008728,
+          0.5251860618591309,
+          1.5115822553634644
+        ],
+        [
+          -0.5009941458702087,
+          -0.16871261596679688,
+          1.5305802822113037
+        ]
+      ],
+      "command_sha256": "b09ecaca8ef3d932257b171865bc9d05cc4b09ebafb43b363f0dcfc34ac27add"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 16,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.296847939491272,
+      "initial_requested_max_abs_rad": 0.2968479096889496,
+      "initial_effective_rms_rad": 0.14872054755687714,
+      "initial_violation": false,
+      "initial_q_sha256": "63be56312c2c8fdebef9a2e5364f9244be8924ec2028f73cf3a8cb7968cd365e",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.39594897627830505,
+        "self_F": 0.016758516430854797,
+        "self_U": 0.01781351864337921,
+        "table": 0.0009553134441375732
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.39594897627830505,
+        "self_F": 0.016758516430854797,
+        "self_U": 0.01781351864337921,
+        "table": 0.0009553134441375732
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.44353318214416504,
+        1.1098029613494873,
+        0.39594897627830505,
+        0.6636806726455688,
+        0.9340109825134277,
+        0.4873351454734802
+      ],
+      "intervention_step_rate": 0.9416666666666667,
+      "backstop_step_rate": 0.79,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.40420150756836,
+      "executed_l2_sum": 20.81789779663086,
+      "measured_joint_path_rad": 73.03868865966797,
+      "joint_range_fraction_mean": 0.22779852151870728,
+      "ee_aabb_min_m": [
+        [
+          0.3411030173301697,
+          -0.5606427192687988,
+          1.0263396501541138
+        ],
+        [
+          0.4447174072265625,
+          0.2296757698059082,
+          1.2125972509384155
+        ],
+        [
+          -1.6723098754882812,
+          0.3641073703765869,
+          0.885513424873352
+        ],
+        [
+          -0.460162490606308,
+          -0.854832649230957,
+          0.9527775049209595
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.6129207611083984,
+          -0.3660449981689453,
+          1.6039835214614868
+        ],
+        [
+          1.112204909324646,
+          0.6826376914978027,
+          1.4388943910598755
+        ],
+        [
+          -0.5265949964523315,
+          1.2903811931610107,
+          1.5518646240234375
+        ],
+        [
+          -0.2152988314628601,
+          -0.2955951690673828,
+          1.2931361198425293
+        ]
+      ],
+      "command_sha256": "05177c1a32af8e1e3aa4d847d2abe1914c656b25b4f66da28f6d9f2c515a5dc7"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 17,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29350101947784424,
+      "initial_requested_max_abs_rad": 0.29350095987319946,
+      "initial_effective_rms_rad": 0.14004619419574738,
+      "initial_violation": false,
+      "initial_q_sha256": "8d2cad72cdd5ae4923f9bc57628c1881f31c8a4e2414ce46b0a6875ce324d41c",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.43983739614486694,
+        "self_F": 0.023083031177520752,
+        "self_U": 0.01763451099395752,
+        "table": 0.0013777315616607666
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.43983739614486694,
+        "self_F": 0.023083031177520752,
+        "self_U": 0.01763451099395752,
+        "table": 0.0013777315616607666
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.35317331552505493,
+        0.8127529621124268,
+        0.43983739614486694,
+        0.48548412322998047,
+        1.0594648122787476,
+        0.415886789560318
+      ],
+      "intervention_step_rate": 0.985,
+      "backstop_step_rate": 0.2683333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.668869018554688,
+      "executed_l2_sum": 21.09943389892578,
+      "measured_joint_path_rad": 68.77647399902344,
+      "joint_range_fraction_mean": 0.2853235900402069,
+      "ee_aabb_min_m": [
+        [
+          0.09882748126983643,
+          -1.1463052034378052,
+          0.9200001955032349
+        ],
+        [
+          0.3096174895763397,
+          -0.0498802475631237,
+          1.1061104536056519
+        ],
+        [
+          -0.4454966187477112,
+          0.3660224378108978,
+          1.0043389797210693
+        ],
+        [
+          -0.6048793792724609,
+          -0.6492896676063538,
+          0.9399322271347046
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.0529885292053223,
+          -0.46664389967918396,
+          1.7297712564468384
+        ],
+        [
+          1.2406880855560303,
+          1.2715791463851929,
+          1.8679591417312622
+        ],
+        [
+          -0.04973728954792023,
+          0.4493729770183563,
+          1.1583713293075562
+        ],
+        [
+          -0.4867601692676544,
+          -0.3978811800479889,
+          1.2170510292053223
+        ]
+      ],
+      "command_sha256": "16d0c5562dfb228e73c1d3482f2656b917f172109ffebe80c84b57572d6abe6d"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 18,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2966691255569458,
+      "initial_requested_max_abs_rad": 0.29666903614997864,
+      "initial_effective_rms_rad": 0.1643032729625702,
+      "initial_violation": false,
+      "initial_q_sha256": "9e1f4ba9f52fc53192b0c78d5dbfde705af8fc2dd34f0be1ac016586e607c5bf",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5333929657936096,
+        "self_F": 0.019225656986236572,
+        "self_U": 0.012523442506790161,
+        "table": 0.0009618699550628662
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5333929657936096,
+        "self_F": 0.019225656986236572,
+        "self_U": 0.012523442506790161,
+        "table": 0.0009618699550628662
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.4617743492126465,
+        0.9800124168395996,
+        0.5333929657936096,
+        0.534245491027832,
+        0.9186667799949646,
+        0.23701928555965424
+      ],
+      "intervention_step_rate": 0.935,
+      "backstop_step_rate": 0.7433333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.100772857666016,
+      "executed_l2_sum": 22.793968200683594,
+      "measured_joint_path_rad": 85.03103637695312,
+      "joint_range_fraction_mean": 0.2722586989402771,
+      "ee_aabb_min_m": [
+        [
+          0.4022536873817444,
+          -0.715003490447998,
+          1.056445837020874
+        ],
+        [
+          0.3583263158798218,
+          0.5183095932006836,
+          0.9805883765220642
+        ],
+        [
+          -0.9412968754768372,
+          -0.014485359191894531,
+          0.4423280358314514
+        ],
+        [
+          -0.8470407128334045,
+          -0.8765606880187988,
+          0.8938527703285217
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.1100046634674072,
+          -0.3630340099334717,
+          1.6168426275253296
+        ],
+        [
+          1.1401408910751343,
+          1.081838607788086,
+          1.7051457166671753
+        ],
+        [
+          -0.06324230134487152,
+          1.350794792175293,
+          1.7646578550338745
+        ],
+        [
+          -0.22102263569831848,
+          -0.37851381301879883,
+          1.2306997776031494
+        ]
+      ],
+      "command_sha256": "243ddf32b47f8b499879aed122f78619c1f64e0f363d0e4fdcf9685309d8e125"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 19,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2966229319572449,
+      "initial_requested_max_abs_rad": 0.2966229021549225,
+      "initial_effective_rms_rad": 0.1735811084508896,
+      "initial_violation": false,
+      "initial_q_sha256": "7631950aece22aa1595a323ae8cae0da2135efabe867efbeb8a3aaac557046ed",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.7087311744689941,
+        "self_F": 0.014303788542747498,
+        "self_U": 0.013161033391952515,
+        "table": 0.0009596049785614014
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.7087311744689941,
+        "self_F": 0.014303788542747498,
+        "self_U": 0.013161033391952515,
+        "table": 0.0009596049785614014
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.2135837823152542,
+        0.9137914180755615,
+        0.7908596992492676,
+        0.7087311744689941,
+        0.9013595581054688,
+        0.11706525832414627
+      ],
+      "intervention_step_rate": 0.965,
+      "backstop_step_rate": 0.95,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.21558380126953,
+      "executed_l2_sum": 23.625818252563477,
+      "measured_joint_path_rad": 88.38707733154297,
+      "joint_range_fraction_mean": 0.3325796127319336,
+      "ee_aabb_min_m": [
+        [
+          0.18227121233940125,
+          -0.4353299140930176,
+          1.0771913528442383
+        ],
+        [
+          0.43689262866973877,
+          0.148529052734375,
+          1.1283080577850342
+        ],
+        [
+          -1.477516531944275,
+          -0.012600898742675781,
+          1.1352204084396362
+        ],
+        [
+          -1.5715032815933228,
+          -1.1593618392944336,
+          0.6456483006477356
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.1981583833694458,
+          -0.052288055419921875,
+          1.5688185691833496
+        ],
+        [
+          0.9975444078445435,
+          0.7104377746582031,
+          1.7364217042922974
+        ],
+        [
+          -0.5132133960723877,
+          0.6636972427368164,
+          1.487776756286621
+        ],
+        [
+          -0.38713935017585754,
+          -0.19256210327148438,
+          1.5330426692962646
+        ]
+      ],
+      "command_sha256": "e1390c1f239106dda70da00858c48e760deb2c388803b96fc7f6813adfead455"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 20,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2879345417022705,
+      "initial_requested_max_abs_rad": 0.2879345417022705,
+      "initial_effective_rms_rad": 0.15167535841464996,
+      "initial_violation": false,
+      "initial_q_sha256": "5a3a4436d1e25c75de769b1f24c5801d9da962525afbbc7d397d35d5872217b8",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.43893977999687195,
+        "self_F": 0.023082241415977478,
+        "self_U": 0.01708303391933441,
+        "table": -0.0019553937017917633
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.43893977999687195,
+        "self_F": 0.023082241415977478,
+        "self_U": 0.01708303391933441,
+        "table": 0.0009729564189910889
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.32576364278793335,
+        0.8724614977836609,
+        0.43893977999687195,
+        0.5545715093612671,
+        1.0098050832748413,
+        0.21417878568172455
+      ],
+      "intervention_step_rate": 0.97,
+      "backstop_step_rate": 0.495,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.73077392578125,
+      "executed_l2_sum": 20.720455169677734,
+      "measured_joint_path_rad": 68.97232055664062,
+      "joint_range_fraction_mean": 0.26361143589019775,
+      "ee_aabb_min_m": [
+        [
+          0.09560561180114746,
+          -0.693359375,
+          1.1930831670761108
+        ],
+        [
+          0.22674870491027832,
+          0.17049360275268555,
+          0.9637015461921692
+        ],
+        [
+          -0.6145367622375488,
+          0.41643476486206055,
+          1.049747109413147
+        ],
+        [
+          -1.0295300483703613,
+          -0.5064172744750977,
+          1.2607696056365967
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.2879972457885742,
+          -0.05193042755126953,
+          1.9193788766860962
+        ],
+        [
+          1.2203340530395508,
+          0.8638758659362793,
+          1.765959620475769
+        ],
+        [
+          -0.499478816986084,
+          0.4438939094543457,
+          1.1860238313674927
+        ],
+        [
+          -0.4318532943725586,
+          0.018282413482666016,
+          1.6683086156845093
+        ]
+      ],
+      "command_sha256": "59ba95a66dc530a3f9f24f2879d8fe32e1ea52001271cda6a6983419cdd0e5ac"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 21,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2758018970489502,
+      "initial_requested_max_abs_rad": 0.27580195665359497,
+      "initial_effective_rms_rad": 0.14750412106513977,
+      "initial_violation": false,
+      "initial_q_sha256": "87662abf84aae3f76759c47d405add7cf5965b7d97017ff85070ed4f9d2de88f",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.6583534479141235,
+        "self_F": 0.017127111554145813,
+        "self_U": 0.013170450925827026,
+        "table": 0.0009694993495941162
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.6583534479141235,
+        "self_F": 0.017127111554145813,
+        "self_U": 0.013170450925827026,
+        "table": 0.0009694993495941162
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8
+      ],
+      "min_pair_margin_m": [
+        0.30216872692108154,
+        1.0284397602081299,
+        0.6583534479141235,
+        0.6819242238998413,
+        0.8569276928901672,
+        0.0650494247674942
+      ],
+      "intervention_step_rate": 0.8966666666666666,
+      "backstop_step_rate": 0.6633333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 25.361812591552734,
+      "executed_l2_sum": 20.9034366607666,
+      "measured_joint_path_rad": 73.08891296386719,
+      "joint_range_fraction_mean": 0.2654567062854767,
+      "ee_aabb_min_m": [
+        [
+          0.2246556282043457,
+          -0.826749324798584,
+          1.0676332712173462
+        ],
+        [
+          0.32511425018310547,
+          0.22774386405944824,
+          1.2820318937301636
+        ],
+        [
+          -1.0858416557312012,
+          0.343752384185791,
+          1.3079612255096436
+        ],
+        [
+          -1.0361342430114746,
+          -0.45336103439331055,
+          1.0591462850570679
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.0398178100585938,
+          0.05595278739929199,
+          1.9571328163146973
+        ],
+        [
+          1.0176615715026855,
+          0.6514542102813721,
+          1.6944007873535156
+        ],
+        [
+          -0.5397605895996094,
+          0.6930720806121826,
+          1.4513710737228394
+        ],
+        [
+          -0.2349538803100586,
+          0.2507617473602295,
+          1.4903223514556885
+        ]
+      ],
+      "command_sha256": "930e9f535480e8a65ef2dd5d37195358b77a023fca9ac1b1023cdfc870ef4b17"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 22,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.294225811958313,
+      "initial_requested_max_abs_rad": 0.29422587156295776,
+      "initial_effective_rms_rad": 0.1700017899274826,
+      "initial_violation": false,
+      "initial_q_sha256": "150578895c07515eab0ceb06598f936e5525e36acd873a46537045bb4a5a4f4f",
+      "violation": true,
+      "violation_steps": 4,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": true
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5428469181060791,
+        "self_F": 0.016424372792243958,
+        "self_U": 0.01353570818901062,
+        "table": -0.0032623261213302612
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5428469181060791,
+        "self_F": 0.016424372792243958,
+        "self_U": 0.01353570818901062,
+        "table": -0.0032623261213302612
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.09229699522256851,
+        0.7997723817825317,
+        0.5428469181060791,
+        0.5954037308692932,
+        0.9617600440979004,
+        0.12188272923231125
+      ],
+      "intervention_step_rate": 0.9683333333333334,
+      "backstop_step_rate": 0.9083333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.58090591430664,
+      "executed_l2_sum": 23.80028533935547,
+      "measured_joint_path_rad": 91.38182830810547,
+      "joint_range_fraction_mean": 0.3027415871620178,
+      "ee_aabb_min_m": [
+        [
+          0.239943265914917,
+          -0.7844170331954956,
+          1.2666033506393433
+        ],
+        [
+          0.3603706359863281,
+          0.318608820438385,
+          1.1943516731262207
+        ],
+        [
+          -0.6052436828613281,
+          0.11182765662670135,
+          0.8275734186172485
+        ],
+        [
+          -1.0050058364868164,
+          -0.6419112086296082,
+          1.0968670845031738
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.2179851531982422,
+          0.11551399528980255,
+          1.860237717628479
+        ],
+        [
+          1.1230032444000244,
+          0.5559350848197937,
+          1.543489694595337
+        ],
+        [
+          -0.042040348052978516,
+          1.1791152954101562,
+          1.3458850383758545
+        ],
+        [
+          -0.44700002670288086,
+          -0.1671561896800995,
+          1.4018452167510986
+        ]
+      ],
+      "command_sha256": "f62e4cf92073f4f2ceb6ef765e431f7f499b30c5c8cc166ace1e68f27e11eaa5"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 23,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.28456640243530273,
+      "initial_requested_max_abs_rad": 0.28456637263298035,
+      "initial_effective_rms_rad": 0.17981944978237152,
+      "initial_violation": false,
+      "initial_q_sha256": "13404c8f8d901995bb8b951712e6084c80d13bd7befb5482c2438aa350a62901",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5446186065673828,
+        "self_F": 0.016700074076652527,
+        "self_U": 0.016905874013900757,
+        "table": 0.0009700953960418701
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5446186065673828,
+        "self_F": 0.016700074076652527,
+        "self_U": 0.016905874013900757,
+        "table": 0.0009700953960418701
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        171
+      ],
+      "min_pair_margin_m": [
+        0.5069442391395569,
+        0.7526018619537354,
+        0.6212673187255859,
+        0.5446186065673828,
+        0.7499690651893616,
+        0.029997721314430237
+      ],
+      "intervention_step_rate": 0.9266666666666666,
+      "backstop_step_rate": 0.66,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 24.34128761291504,
+      "executed_l2_sum": 20.96695327758789,
+      "measured_joint_path_rad": 77.27729034423828,
+      "joint_range_fraction_mean": 0.22832709550857544,
+      "ee_aabb_min_m": [
+        [
+          0.3646829128265381,
+          -1.0031583309173584,
+          1.1698426008224487
+        ],
+        [
+          0.207442045211792,
+          0.36858510971069336,
+          1.071731686592102
+        ],
+        [
+          -1.5830049514770508,
+          -0.008183002471923828,
+          1.0484724044799805
+        ],
+        [
+          -1.4161062240600586,
+          -0.4914681911468506,
+          1.0419895648956299
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.8997147083282471,
+          -0.2675929069519043,
+          1.603888988494873
+        ],
+        [
+          0.525479793548584,
+          0.7544136047363281,
+          1.4542902708053589
+        ],
+        [
+          -0.4301791191101074,
+          1.2165875434875488,
+          1.6931754350662231
+        ],
+        [
+          -0.45273637771606445,
+          0.22590112686157227,
+          1.5629621744155884
+        ]
+      ],
+      "command_sha256": "fc0cee9724de6e732ed90949a6d88d6a814bbb72318d73761a26845b62746835"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 24,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29777830839157104,
+      "initial_requested_max_abs_rad": 0.29777830839157104,
+      "initial_effective_rms_rad": 0.18684813380241394,
+      "initial_violation": false,
+      "initial_q_sha256": "02b25a339c2f62778a758fa619e330808e920f12a7f40f6fef8878c7164b56c0",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.47391319274902344,
+        "self_F": 0.014103934168815613,
+        "self_U": 0.016658484935760498,
+        "table": 0.0009732544422149658
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.47391319274902344,
+        "self_F": 0.014103934168815613,
+        "self_U": 0.016658484935760498,
+        "table": 0.0009732544422149658
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.19792380928993225,
+        0.9271091818809509,
+        0.5816826820373535,
+        0.47391319274902344,
+        1.0624836683273315,
+        0.2193765938282013
+      ],
+      "intervention_step_rate": 0.9783333333333334,
+      "backstop_step_rate": 0.5633333333333334,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.678050994873047,
+      "executed_l2_sum": 22.96848487854004,
+      "measured_joint_path_rad": 83.49270629882812,
+      "joint_range_fraction_mean": 0.2813575267791748,
+      "ee_aabb_min_m": [
+        [
+          0.3709893226623535,
+          -0.5366640090942383,
+          1.0464621782302856
+        ],
+        [
+          0.4063131809234619,
+          0.006138801574707031,
+          0.8601544499397278
+        ],
+        [
+          -1.2633113861083984,
+          0.46456336975097656,
+          0.9636614918708801
+        ],
+        [
+          -0.5536174774169922,
+          -0.5213737487792969,
+          0.9002037644386292
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.0706934928894043,
+          -0.05753326416015625,
+          1.4385079145431519
+        ],
+        [
+          1.3602066040039062,
+          0.9350471496582031,
+          1.7276580333709717
+        ],
+        [
+          -0.10358953475952148,
+          1.328547477722168,
+          1.7182166576385498
+        ],
+        [
+          -0.29141712188720703,
+          -0.08779287338256836,
+          1.1484876871109009
+        ]
+      ],
+      "command_sha256": "f5067e9521ceded650115bfbd8f45ffb304a5697a102f3da97623d1a592b93a2"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 25,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29596400260925293,
+      "initial_requested_max_abs_rad": 0.29596400260925293,
+      "initial_effective_rms_rad": 0.19235722720623016,
+      "initial_violation": false,
+      "initial_q_sha256": "7d65f851d234cdb5554bfb8553248475e0aea446483d53b23328aa421659caa2",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5960092544555664,
+        "self_F": 0.015186131000518799,
+        "self_U": 0.015129968523979187,
+        "table": 0.0009839832782745361
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5960092544555664,
+        "self_F": 0.015186131000518799,
+        "self_U": 0.015129968523979187,
+        "table": 0.0009839832782745361
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        70
+      ],
+      "min_pair_margin_m": [
+        0.23730924725532532,
+        1.0024869441986084,
+        0.6361321806907654,
+        0.5960092544555664,
+        0.8327676653862,
+        0.060502514243125916
+      ],
+      "intervention_step_rate": 0.9583333333333334,
+      "backstop_step_rate": 0.8416666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.227012634277344,
+      "executed_l2_sum": 23.212913513183594,
+      "measured_joint_path_rad": 85.15991973876953,
+      "joint_range_fraction_mean": 0.27653807401657104,
+      "ee_aabb_min_m": [
+        [
+          0.4257073402404785,
+          -0.49766063690185547,
+          1.021580457687378
+        ],
+        [
+          0.4275503158569336,
+          0.07800102233886719,
+          0.976607620716095
+        ],
+        [
+          -1.4785270690917969,
+          -0.17816543579101562,
+          0.7223904132843018
+        ],
+        [
+          -0.9831752777099609,
+          -0.6303033828735352,
+          1.0649194717407227
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.8960127830505371,
+          -0.20836925506591797,
+          1.2748134136199951
+        ],
+        [
+          1.0169868469238281,
+          0.7338957786560059,
+          1.7856459617614746
+        ],
+        [
+          -0.4702329635620117,
+          0.49202966690063477,
+          1.3766562938690186
+        ],
+        [
+          -0.3625297546386719,
+          -0.16992568969726562,
+          1.5135880708694458
+        ]
+      ],
+      "command_sha256": "2780590c3fc8a649ee16c9178e015b30e0ea238fc702739454773279f6d8ca74"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 26,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29748284816741943,
+      "initial_requested_max_abs_rad": 0.29748281836509705,
+      "initial_effective_rms_rad": 0.15240898728370667,
+      "initial_violation": false,
+      "initial_q_sha256": "a5319886a1212ef0b78a0bd46f9d56c7c1ba8d79a50be1ba99408dbab3f00fce",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.28833043575286865,
+        "self_F": 0.02308233082294464,
+        "self_U": 0.018724866211414337,
+        "table": 0.0009549558162689209
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.28833043575286865,
+        "self_F": 0.02308233082294464,
+        "self_U": 0.018724866211414337,
+        "table": 0.0009549558162689209
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.3359150290489197,
+        0.9411550164222717,
+        0.4805695414543152,
+        0.28833043575286865,
+        0.6715973615646362,
+        0.1490515172481537
+      ],
+      "intervention_step_rate": 0.8366666666666667,
+      "backstop_step_rate": 0.4533333333333333,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 25.923627853393555,
+      "executed_l2_sum": 23.645984649658203,
+      "measured_joint_path_rad": 92.45957946777344,
+      "joint_range_fraction_mean": 0.31970247626304626,
+      "ee_aabb_min_m": [
+        [
+          0.42136240005493164,
+          -0.8625583648681641,
+          1.2537232637405396
+        ],
+        [
+          0.3326239585876465,
+          0.5693750381469727,
+          1.0531526803970337
+        ],
+        [
+          -0.8364782333374023,
+          0.43811750411987305,
+          1.05936598777771
+        ],
+        [
+          -1.3206701278686523,
+          -0.9483942985534668,
+          1.0381667613983154
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.5345878601074219,
+          0.19112348556518555,
+          1.9136980772018433
+        ],
+        [
+          1.2102937698364258,
+          1.0486392974853516,
+          1.8278096914291382
+        ],
+        [
+          -0.09142780303955078,
+          0.7735252380371094,
+          1.5741734504699707
+        ],
+        [
+          0.10143756866455078,
+          0.12638187408447266,
+          1.8068671226501465
+        ]
+      ],
+      "command_sha256": "acc55bccf3d9a684bea21f2969a6dfab7caf7d503f6c2dee1da727bed0096c5e"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 27,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2893676161766052,
+      "initial_requested_max_abs_rad": 0.2893676161766052,
+      "initial_effective_rms_rad": 0.17851822078227997,
+      "initial_violation": false,
+      "initial_q_sha256": "79eb3a536ff8fd6f89d46416cd82fefe3978327b61aa0dc5d92d65c06c538594",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.43049728870391846,
+        "self_F": 0.016721606254577637,
+        "self_U": 0.013290315866470337,
+        "table": 0.00097617506980896
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.43049728870391846,
+        "self_F": 0.016721606254577637,
+        "self_U": 0.013290315866470337,
+        "table": 0.00097617506980896
+      },
+      "pair_warn_steps": [
+        36,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.060127273201942444,
+        0.690448522567749,
+        0.43049728870391846,
+        0.47940191626548767,
+        0.5250406861305237,
+        0.1735440194606781
+      ],
+      "intervention_step_rate": 0.875,
+      "backstop_step_rate": 0.865,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 25.912519454956055,
+      "executed_l2_sum": 22.52920150756836,
+      "measured_joint_path_rad": 85.41804504394531,
+      "joint_range_fraction_mean": 0.3056592643260956,
+      "ee_aabb_min_m": [
+        [
+          0.1747727394104004,
+          -0.7147060632705688,
+          0.9736925959587097
+        ],
+        [
+          0.08290672302246094,
+          0.0013596024364233017,
+          0.9982479214668274
+        ],
+        [
+          -1.0771064758300781,
+          0.12683828175067902,
+          1.3446565866470337
+        ],
+        [
+          -1.1407356262207031,
+          -0.6707830429077148,
+          1.0611809492111206
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.7024855613708496,
+          -0.17123228311538696,
+          1.426292061805725
+        ],
+        [
+          0.46505069732666016,
+          0.6144570112228394,
+          1.3864644765853882
+        ],
+        [
+          -0.4272584915161133,
+          1.026788592338562,
+          1.746025800704956
+        ],
+        [
+          -0.5318603515625,
+          -0.2149013727903366,
+          1.5275789499282837
+        ]
+      ],
+      "command_sha256": "96163426b6e15f18a2d5239fec7a33df931150c40bcf34c02a8bed2270f83d40"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 28,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2787691354751587,
+      "initial_requested_max_abs_rad": 0.2787691354751587,
+      "initial_effective_rms_rad": 0.16297510266304016,
+      "initial_violation": false,
+      "initial_q_sha256": "5754c59261a2a4d35086a70e61206c6966f197ad10f27831dc4b6e4ff73be3d4",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.35619643330574036,
+        "self_F": 0.023082271218299866,
+        "self_U": 0.01857753098011017,
+        "table": 0.000978916883468628
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.35619643330574036,
+        "self_F": 0.023082271218299866,
+        "self_U": 0.01857753098011017,
+        "table": 0.000978916883468628
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        23
+      ],
+      "min_pair_margin_m": [
+        0.20750941336154938,
+        0.588266134262085,
+        0.35619643330574036,
+        0.3657224178314209,
+        0.6419706344604492,
+        0.05987388640642166
+      ],
+      "intervention_step_rate": 0.8633333333333333,
+      "backstop_step_rate": 0.6616666666666666,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.211994171142578,
+      "executed_l2_sum": 25.114660263061523,
+      "measured_joint_path_rad": 97.00508117675781,
+      "joint_range_fraction_mean": 0.30266761779785156,
+      "ee_aabb_min_m": [
+        [
+          0.16521835327148438,
+          -0.863652229309082,
+          1.0349657535552979
+        ],
+        [
+          0.2313394546508789,
+          0.08248233795166016,
+          1.2081013917922974
+        ],
+        [
+          -0.923579216003418,
+          0.22288036346435547,
+          0.9087920188903809
+        ],
+        [
+          -1.494166374206543,
+          -0.8215630054473877,
+          1.1306716203689575
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.667414665222168,
+          0.0536341667175293,
+          1.6214531660079956
+        ],
+        [
+          1.010399341583252,
+          1.139958381652832,
+          1.7820509672164917
+        ],
+        [
+          -0.3566703796386719,
+          1.120345115661621,
+          1.2170777320861816
+        ],
+        [
+          0.029677867889404297,
+          0.26127004623413086,
+          1.671399474143982
+        ]
+      ],
+      "command_sha256": "bc0045f61748a6bd232d829ba059c22ebfc03749a1082bb1d935f37bf1a7e3fa"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 29,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.2720358371734619,
+      "initial_requested_max_abs_rad": 0.2720358073711395,
+      "initial_effective_rms_rad": 0.16982755064964294,
+      "initial_violation": false,
+      "initial_q_sha256": "619c1f766eb8b2f7c916e8a7381820257541a3ffacdb85774c3221da660c0b19",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5416255593299866,
+        "self_F": 0.012958571314811707,
+        "self_U": 0.01319056749343872,
+        "table": 0.0009824931621551514
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5416255593299866,
+        "self_F": 0.012958571314811707,
+        "self_U": 0.01319056749343872,
+        "table": 0.0009824931621551514
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        90
+      ],
+      "min_pair_margin_m": [
+        0.4286178946495056,
+        0.9648139476776123,
+        0.5416255593299866,
+        0.5720065236091614,
+        0.9778144955635071,
+        0.05682888627052307
+      ],
+      "intervention_step_rate": 0.9433333333333334,
+      "backstop_step_rate": 0.9383333333333334,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.740310668945312,
+      "executed_l2_sum": 23.447206497192383,
+      "measured_joint_path_rad": 90.1664810180664,
+      "joint_range_fraction_mean": 0.28694918751716614,
+      "ee_aabb_min_m": [
+        [
+          0.3043050765991211,
+          -0.9096574783325195,
+          1.2474374771118164
+        ],
+        [
+          0.21527957916259766,
+          0.47795581817626953,
+          0.9232364892959595
+        ],
+        [
+          -0.9628715515136719,
+          0.0121917724609375,
+          1.0172384977340698
+        ],
+        [
+          -1.1921205520629883,
+          -0.46168994903564453,
+          0.9920753836631775
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          1.034499168395996,
+          -0.3899259567260742,
+          1.5851119756698608
+        ],
+        [
+          0.8191938400268555,
+          0.9140548706054688,
+          1.5220184326171875
+        ],
+        [
+          -0.40183544158935547,
+          0.692901611328125,
+          1.3358266353607178
+        ],
+        [
+          -0.47896862030029297,
+          -0.03990602493286133,
+          1.4943153858184814
+        ]
+      ],
+      "command_sha256": "4fc7c78f59d3b9ddb6344ecd472f4e2b341a116f6fe24af443bec0481889d0c9"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 30,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.283552885055542,
+      "initial_requested_max_abs_rad": 0.283552885055542,
+      "initial_effective_rms_rad": 0.17101334035396576,
+      "initial_violation": false,
+      "initial_q_sha256": "fc8fd051677b3d3996b9d429631918a5399ab0a3ae50065e67349304b7678fe4",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.24118684232234955,
+        "self_F": 0.014252156019210815,
+        "self_U": 0.014652535319328308,
+        "table": 0.0009719431400299072
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.24118684232234955,
+        "self_F": 0.014252156019210815,
+        "self_U": 0.014652535319328308,
+        "table": 0.0009719431400299072
+      },
+      "pair_warn_steps": [
+        39,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.050018325448036194,
+        0.24118684232234955,
+        0.47780412435531616,
+        0.48772215843200684,
+        0.7062431573867798,
+        0.2914443910121918
+      ],
+      "intervention_step_rate": 0.985,
+      "backstop_step_rate": 0.97,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 26.859779357910156,
+      "executed_l2_sum": 23.455169677734375,
+      "measured_joint_path_rad": 87.76483917236328,
+      "joint_range_fraction_mean": 0.31627967953681946,
+      "ee_aabb_min_m": [
+        [
+          0.18883991241455078,
+          -0.5964641571044922,
+          1.280295729637146
+        ],
+        [
+          0.2754230499267578,
+          -0.22423648834228516,
+          1.2875014543533325
+        ],
+        [
+          -0.970667839050293,
+          -0.037293434143066406,
+          1.0257856845855713
+        ],
+        [
+          -0.7061071395874023,
+          -0.5962533950805664,
+          1.0380399227142334
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.8555154800415039,
+          -0.2575855255126953,
+          1.7224664688110352
+        ],
+        [
+          1.0412769317626953,
+          1.086064338684082,
+          1.8448232412338257
+        ],
+        [
+          -0.07002830505371094,
+          0.6699180603027344,
+          1.558969259262085
+        ],
+        [
+          -0.2675809860229492,
+          -0.3246326446533203,
+          1.435749888420105
+        ]
+      ],
+      "command_sha256": "a255e8db404d072cce867d1a3cae4bedb7a40173d13d17571b04d1a79685dc9f"
+    },
+    {
+      "method": "system0",
+      "flow": "held_random",
+      "amp": 0.015,
+      "seed": 12,
+      "initial_jitter_rad": 0.3,
+      "actuator_delay_steps": 3,
+      "initial_seed": 836359975,
+      "source_seed": 34419144,
+      "dt": 0.016666,
+      "cell_id": 2,
+      "env_yaml": "duo_env_a31_pending_guard.yaml",
+      "checkpoint_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+      "hold_steps": 90,
+      "hold_duration_s": 1.49994,
+      "env_id": 31,
+      "initial_clipped_joints": 0,
+      "initial_effective_max_abs_rad": 0.29813647270202637,
+      "initial_requested_max_abs_rad": 0.29813647270202637,
+      "initial_effective_rms_rad": 0.17764565348625183,
+      "initial_violation": false,
+      "initial_q_sha256": "7970cb9bc98d30be6ea941d7fcd2b646cefdc0664d6205e7f349347786c5b946",
+      "violation": false,
+      "violation_steps": 0,
+      "violation_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging_by_class": {
+        "cross": false,
+        "self_F": false,
+        "self_U": false,
+        "table": false
+      },
+      "damaging": false,
+      "min_margin_m": {
+        "cross": 0.5488283634185791,
+        "self_F": 0.016384705901145935,
+        "self_U": 0.01396024227142334,
+        "table": 0.0009675920009613037
+      },
+      "min_nonexempt_margin_m": {
+        "cross": 0.5488283634185791,
+        "self_F": 0.016384705901145935,
+        "self_U": 0.01396024227142334,
+        "table": 0.0009675920009613037
+      },
+      "pair_warn_steps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "min_pair_margin_m": [
+        0.16128964722156525,
+        0.7511983513832092,
+        0.8559534549713135,
+        0.5488283634185791,
+        0.879269003868103,
+        0.12154275178909302
+      ],
+      "intervention_step_rate": 0.95,
+      "backstop_step_rate": 0.8816666666666667,
+      "zero_exec_with_intent_rate": 0.0,
+      "command_l2_sum": 27.839723587036133,
+      "executed_l2_sum": 21.76313018798828,
+      "measured_joint_path_rad": 74.80358123779297,
+      "joint_range_fraction_mean": 0.2750431299209595,
+      "ee_aabb_min_m": [
+        [
+          0.3029155731201172,
+          -0.6357970237731934,
+          0.9479408860206604
+        ],
+        [
+          0.3473091125488281,
+          -0.1034860610961914,
+          1.1893104314804077
+        ],
+        [
+          -1.0563135147094727,
+          -0.1803731918334961,
+          1.1678766012191772
+        ],
+        [
+          -1.1759843826293945,
+          -0.48969364166259766,
+          1.1345254182815552
+        ]
+      ],
+      "ee_aabb_max_m": [
+        [
+          0.5235309600830078,
+          -0.31424522399902344,
+          1.2406286001205444
+        ],
+        [
+          0.8956193923950195,
+          0.548525333404541,
+          1.4809978008270264
+        ],
+        [
+          -0.4376535415649414,
+          0.8223183155059814,
+          1.6331522464752197
+        ],
+        [
+          -0.6308965682983398,
+          -0.2507510185241699,
+          1.4449310302734375
+        ]
+      ],
+      "command_sha256": "5955f1ab6d59a344cc246b9880a1381e5a5bd35f81c74a6d7f3bb6b3c3370be5"
+    }
+  ]
+}

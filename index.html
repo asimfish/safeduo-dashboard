@@ -199,6 +199,19 @@
   <div class="northstar" id="scientific-summary" style="border-left-color:var(--red)"></div>
   <div class="small" id="scientific-updated"></div>
   <h2>最新安全 / 不安全效果</h2>
+  <div id="scientific-queue" style="display:none">
+    <h3>严格 FIFO：延迟对照与固定目标制动</h3>
+    <div class="sci-note" id="scientific-queue-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-queue-controls"><thead><tr><th>运行顺序 / 目标延迟</th><th>初态无违规窗口</th><th>发生违规</th><th>最小非豁免球距</th><th>实测关节范围 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <h3>停止响应诊断（事后触发，单独统计）</h3>
+    <p class="small" id="scientific-queue-diagnostic-note"></p>
+    <div class="table-wrap"><table id="scientific-queue-stops"><thead><tr><th>固定目标方式 / 环境</th><th>干预前可比性</th><th>触发 / 首条停止消息到达</th><th>到达前 / 到达后重叠</th><th>到达后200ms最大移动 / 逆目标超调</th></tr></thead><tbody></tbody></table></div>
+    <label class="small">查看延迟和制动曲线：<select id="scientific-queue-select" style="max-width:100%"></select></label>
+    <div id="scientific-queue-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-queue-caption"></p>
+    <div class="sci-note" id="scientific-queue-verdict"></div>
+  </div>
+  <h3>上一轮：冻结方案对照</h3>
   <div class="grid g4" id="scientific-headline"></div>
   <div id="scientific-forensics" style="display:none">
     <h2>最新：临界约束保留与单因素复测</h2>
@@ -470,8 +483,10 @@ function renderRobustnessTrace(index, sourceKey="safety_robustness", container="
   const xticks = [x.x_min,(x.x_min+x.x_max)/2,x.x_max].map(t => `<text x="${sx(t)}" y="${height-10}" text-anchor="middle" font-size="11">${t.toFixed(2)} s</text>`).join("");
   const zero = x.y_min <= 0 && x.y_max >= 0 ? `<line x1="${left}" x2="${width-right}" y1="${sy(0)}" y2="${sy(0)}" stroke="#111827" stroke-dasharray="5 4"/>` : "";
   const lines = x.series.map(s => `<polyline points="${s.values.map((v,i) => `${sx(x.time_s[i]).toFixed(2)},${sy(v).toFixed(2)}`).join(" ")}" fill="none" stroke="${esc(s.color)}" stroke-width="2"/>`).join("");
-  const legend = x.series.map(s => `<span style="color:${esc(s.color)}">● ${esc(s.label)}</span>`).join(" · ");
-  $(`#${container}-trace`).innerHTML = `<div class="small" style="margin-bottom:5px">${legend}</div><svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)}"><title>${esc(x.label)}</title>${grid}${xticks}${zero}${lines}<text x="10" y="15" font-size="11">${esc(x.unit)}</text></svg>`;
+  const events = (x.events || []).filter(e => e.time_s >= x.x_min && e.time_s <= x.x_max);
+  const marks = events.map(e => `<line x1="${sx(e.time_s)}" x2="${sx(e.time_s)}" y1="${top}" y2="${height-bottom}" stroke="${esc(e.color)}" stroke-dasharray="3 4"/>`).join("");
+  const legend = [...x.series.map(s => `<span style="color:${esc(s.color)}">● ${esc(s.label)}</span>`), ...events.map(e => `<span style="color:${esc(e.color)}">┆ ${esc(e.label)} ${f(e.time_s,3)}s</span>`)].join(" · ");
+  $(`#${container}-trace`).innerHTML = `<div class="small" style="margin-bottom:5px">${legend}</div><svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)}"><title>${esc(x.label)}</title><defs><clipPath id="${container}-plot"><rect x="${left}" y="${top}" width="${width-left-right}" height="${height-top-bottom}"/></clipPath></defs>${grid}${xticks}${zero}<g clip-path="url(#${container}-plot)">${marks}${lines}</g><text x="10" y="15" font-size="11">${esc(x.unit)}</text></svg>`;
   $(`#${container}-caption`).textContent = x.caption;
 }
 function renderPerturbation(d) {
@@ -507,6 +522,26 @@ function renderForensics(d) {
   $("#scientific-perturbation h2").textContent="上一阶段：随机初态与执行端延迟";
   $("#scientific-robustness h2").textContent="原初态、零额外延迟：冻结参考512窗口";
   $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">最新单因素复测 →</a></div>`;
+}
+function renderQueue(d) {
+  const r=d.safety_queue_braking;
+  $("#scientific-queue").style.display=r?.controls?.length ? "block" : "none";
+  if (!r?.controls?.length) return;
+  $("#scientific-queue-note").textContent=r.summary;
+  $("#scientific-queue-verdict").textContent=r.verdict;
+  $("#scientific-queue-diagnostic-note").textContent=r.diagnostic_note;
+  const controls=[...r.cold_start_controls.map(x=>({...x,order:"独立进程首窗口"})),...r.controls.map(x=>({...x,order:"正向0→50→100"})),...r.reverse_controls.map(x=>({...x,order:"反向100→50→0"}))];
+  $("#scientific-queue-controls tbody").innerHTML=controls.map(x=>`<tr><td>${esc(x.order)} · ${f(x.delay_ms,0)}ms / ${x.delay_steps}步</td><td class="num">${x.initially_safe}/${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.initially_safe}</td><td class="num">${f(x.min_nonexempt_mm,2)}mm</td><td class="num">${sciPct(x.mean_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  const modeLabel={stored:"固定旧持久目标",measured:"固定触发时实测q"};
+  const pairPrefix=new Map(r.stop_pairwise_prefix.map(x=>[x.env,x.observed_prefix_exact]));
+  $("#scientific-queue-stops tbody").innerHTML=r.stop_diagnostics.flatMap(s=>s.trajectories.map(x=>`<tr><td>${esc(modeLabel[s.mode])} · env${x.env}</td><td>对冷启动控制：${x.cold_control_observed_prefix_exact ? "观测前缀逐位一致" : "同输入，q差≤"+f(x.cold_control_prefix_max_q_difference_rad*1000,3)+"mrad"}<br>两停止方式：${pairPrefix.get(x.env) ? "观测前缀逐位一致" : "前缀不同"}</td><td class="num">${f(x.trigger_step*r.dt,3)}s / ${f(x.first_stop_message_delivery_step*r.dt,3)}s</td><td class="num">${x.violation_before_stop_delivery ? "有" : "无"} / ${x.violation_after_stop_delivery ? "有" : "无"}</td><td class="num">${f(x.max_arm_joint_displacement_200ms_after_delivery_rad,4)} / ${f(x.max_further_travel_away_from_target_200ms_rad,4)}rad</td></tr>`)).join("");
+  $("#scientific-queue-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-queue-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_queue_braking","scientific-queue");
+  $("#scientific-queue-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_queue_braking","scientific-queue");
+  $("#scientific-forensics h2").textContent="上一轮：临界约束保留与单因素复测";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">队列与制动证据 →</a></div>`;
 }
 function renderRobustness(d) {
   const r = d.safety_robustness || {};
@@ -573,6 +608,7 @@ function renderScientific(d) {
   renderRobustness(d);
   renderPerturbation(d);
   renderForensics(d);
+  renderQueue(d);
 }
 // ---- tasks / R34
 function renderTasks(t) {
