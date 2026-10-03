@@ -1,0 +1,9 @@
+# Experimental bound: observed self stopping time ~0.29s + 0.10s delivery delay.
+# Keep actor, geometry, target-limit projection and dynamics unchanged.
+extends: duo_env_a31_bounded_guard.yaml
+safety:
+  row_priority_lookahead_s: 0.40
+  backstop:
+    lookahead_s: 0.16
+    self_lookahead_s: 0.40
+    table_lookahead_s: 0.30

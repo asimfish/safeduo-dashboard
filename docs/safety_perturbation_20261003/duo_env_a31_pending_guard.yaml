@@ -1,0 +1,6 @@
+# Experimental: account for the last six targets that may still be in flight.
+# This is a declared 100ms target-delivery window, not a sensor-delay model.
+extends: duo_env_a31_stored_guard.yaml
+safety:
+  backstop:
+    pending_target_steps: 6

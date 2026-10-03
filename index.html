@@ -200,6 +200,16 @@
   <div class="small" id="scientific-updated"></div>
   <h2>最新安全 / 不安全效果</h2>
   <div class="grid g4" id="scientific-headline"></div>
+  <div id="scientific-perturbation" style="display:none">
+    <h2>新增：随机初态与执行端延迟</h2>
+    <div class="sci-note" id="scientific-perturbation-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-perturbation-table"><thead><tr><th>配置 / 方法</th><th>初态 / 延迟 / 保持</th><th>初态违规 / 全部</th><th>无违规初态后的违规</th><th>最小臂/手球距</th><th>实测关节范围</th><th>实测关节路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">初态逐关节均匀扰动；限位裁剪记录在报告中，没有按碰撞筛选初态。避碰结果只统计初态无违规子集。延迟在安全层之后发送到执行器，测量使用当前状态；不等于传感延迟。</p>
+    <label class="small">查看原失败条件的匹配重播：<select id="scientific-perturbation-select" style="max-width:100%"></select></label>
+    <div id="scientific-perturbation-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-perturbation-caption"></p>
+    <div class="sci-note" id="scientific-perturbation-verdict"></div>
+  </div>
   <div id="scientific-robustness" style="display:none">
     <h2>速度一致性修正与扩大随机覆盖</h2>
     <div class="sci-note" id="scientific-robustness-note"></div>
@@ -436,9 +446,9 @@ function renderRefinementTrace(index) {
   const xgrid = [0, duration/2, duration].map(t => `<text x="${sx(t)}" y="${height-10}" text-anchor="middle" font-size="11">${t.toFixed(1)} s</text>`).join("");
   $("#scientific-trace").innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)} 原策略与改进策略的测量球间距"><title>${esc(x.label)}</title><rect x="${left}" y="${sy(0)}" width="${width-left-right}" height="${sy(ymin)-sy(0)}" fill="#fef2f2"/>${ygrid}${xgrid}<text x="10" y="14" font-size="11">mm</text><line x1="${left}" x2="${width-right}" y1="${sy(13)}" y2="${sy(13)}" stroke="#6b7280" stroke-dasharray="5 4"/><polyline points="${points(x.before_margin_mm)}" fill="none" stroke="#dc2626" stroke-width="2"/><polyline points="${points(x.after_margin_mm)}" fill="none" stroke="#15803d" stroke-width="2"/></svg>`;
 }
-function renderRobustnessTrace(index) {
-  const x = SCIENTIFIC?.safety_robustness?.traces?.[Number(index)];
-  if (!x) { $("#scientific-robustness-trace").textContent = "暂无逐帧数据"; return; }
+function renderRobustnessTrace(index, sourceKey="safety_robustness", container="scientific-robustness") {
+  const x = SCIENTIFIC?.[sourceKey]?.traces?.[Number(index)];
+  if (!x) { $(`#${container}-trace`).textContent = "暂无逐帧数据"; return; }
   const width=760, height=240, left=58, right=18, top=25, bottom=35;
   const sx = t => left + (t-x.x_min)/(x.x_max-x.x_min)*(width-left-right);
   const sy = v => top + (x.y_max-v)/(x.y_max-x.y_min)*(height-top-bottom);
@@ -448,8 +458,23 @@ function renderRobustnessTrace(index) {
   const zero = x.y_min <= 0 && x.y_max >= 0 ? `<line x1="${left}" x2="${width-right}" y1="${sy(0)}" y2="${sy(0)}" stroke="#111827" stroke-dasharray="5 4"/>` : "";
   const lines = x.series.map(s => `<polyline points="${s.values.map((v,i) => `${sx(x.time_s[i]).toFixed(2)},${sy(v).toFixed(2)}`).join(" ")}" fill="none" stroke="${esc(s.color)}" stroke-width="2"/>`).join("");
   const legend = x.series.map(s => `<span style="color:${esc(s.color)}">● ${esc(s.label)}</span>`).join(" · ");
-  $("#scientific-robustness-trace").innerHTML = `<div class="small" style="margin-bottom:5px">${legend}</div><svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)}"><title>${esc(x.label)}</title>${grid}${xticks}${zero}${lines}<text x="10" y="15" font-size="11">${esc(x.unit)}</text></svg>`;
-  $("#scientific-robustness-caption").textContent = x.caption;
+  $(`#${container}-trace`).innerHTML = `<div class="small" style="margin-bottom:5px">${legend}</div><svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)}"><title>${esc(x.label)}</title>${grid}${xticks}${zero}${lines}<text x="10" y="15" font-size="11">${esc(x.unit)}</text></svg>`;
+  $(`#${container}-caption`).textContent = x.caption;
+}
+function renderPerturbation(d) {
+  const r=d.safety_perturbation;
+  $("#scientific-perturbation").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-perturbation-note").textContent=r.summary;
+  $("#scientific-perturbation-verdict").textContent=r.verdict;
+  $("#scientific-perturbation-table tbody").innerHTML=r.rows.map(x => `<tr><td><b>${esc(x.display_candidate)} · ${esc(x.label)}</b><br><span class="small">seed ${esc(x.seeds.join(","))} · ${x.duration_s}s</span></td><td>±${x.jitter_rad} rad / ${f(x.delay_ms,0)} ms / ${x.hold_s == null ? "漫游" : f(x.hold_s,2)+"s"}</td><td class="num">${x.initial_violations}/${x.episodes}</td><td class="num ${x.safe_initial_violations ? "bad" : "ok"}">${x.safe_initial_violations}/${x.initially_safe}</td><td class="num">${x.min_arm_hand_mm == null ? "—" : f(x.min_arm_hand_mm,2)+" mm"}</td><td class="num">${x.mean_joint_range == null ? "—" : sciPct(x.mean_joint_range)}</td><td class="num">${x.mean_joint_path_rad == null ? "—" : f(x.mean_joint_path_rad,2)+" rad"}</td></tr>`).join("");
+  $("#scientific-perturbation-select").innerHTML=r.traces.map((x,i) => `<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-perturbation-select").onchange=e => renderRobustnessTrace(e.target.value,"safety_perturbation","scientific-perturbation");
+  $("#scientific-perturbation-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_perturbation","scientific-perturbation");
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#scientific-robustness h2").textContent="原初态、零额外延迟：上一轮 512 窗口";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.overview)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">初态与执行延迟评测 →</a></div>`;
 }
 function renderRobustness(d) {
   const r = d.safety_robustness || {};
@@ -514,6 +539,7 @@ function renderScientific(d) {
   $("#scientific-links").innerHTML = (d.links || []).map(x => `<a href="${esc(x.url)}" target="_blank">${esc(x.label)} ↗</a>`).join("");
   $("#scientific-limitations").innerHTML = (d.limitations || []).map(x => `<li>${esc(x)}</li>`).join("");
   renderRobustness(d);
+  renderPerturbation(d);
 }
 // ---- tasks / R34
 function renderTasks(t) {

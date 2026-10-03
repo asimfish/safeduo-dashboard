@@ -1,0 +1,82 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+__________ test_opening_velocity_does_not_hide_closing_stored_target ___________
+
+    def test_opening_velocity_does_not_hide_closing_stored_target():
+>       old,_,_=project(False,.10)
+                ^^^^^^^^^^^^^^^^^^
+
+tests/test_backlog_prediction.py:25:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predict = False, store = 0.1, velocity = -0.1
+
+    def project(predict,store,velocity=-.1):
+        rows=ConstraintRows(d=torch.tensor([[.06]]),
+            J={'F':torch.zeros(1,1,14),'U':torch.zeros(1,1,12)},
+            cls=torch.ones(1,1),arm_mask=torch.tensor([[[True,False,False,False]]]),
+            valid=torch.ones(1,1,dtype=torch.bool),d_min=torch.tensor([[.013]]))
+        rows.J['F'][0,0,0]=-1
+        cmd=zeros_delta(1);cmd.delta_q['F_L'][0,0]=.02
+        qd={a:torch.zeros(1,DOF_OF[a]) for a in ARM_KEYS};qd['F_L'][0,0]=velocity
+        backlog={a:torch.zeros(1,DOF_OF[a]) for a in ARM_KEYS};backlog['F_L'][0,0]=store
+>       bs=VelocityDamperBackstop(BackstopConfig(lookahead_s=.4,engage_dist=.04,
+                                                 backlog_aware=True,predict_backlog=predict))
+E       TypeError: BackstopConfig.__init__() got an unexpected keyword argument 'predict_backlog'
+
+tests/test_backlog_prediction.py:18: TypeError
+______________ test_opening_target_cannot_relax_velocity_braking _______________
+
+    def test_opening_target_cannot_relax_velocity_braking():
+>       old,_,_=project(False,-.10,velocity=.3)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_backlog_prediction.py:33:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predict = False, store = -0.1, velocity = 0.3
+
+    def project(predict,store,velocity=-.1):
+        rows=ConstraintRows(d=torch.tensor([[.06]]),
+            J={'F':torch.zeros(1,1,14),'U':torch.zeros(1,1,12)},
+            cls=torch.ones(1,1),arm_mask=torch.tensor([[[True,False,False,False]]]),
+            valid=torch.ones(1,1,dtype=torch.bool),d_min=torch.tensor([[.013]]))
+        rows.J['F'][0,0,0]=-1
+        cmd=zeros_delta(1);cmd.delta_q['F_L'][0,0]=.02
+        qd={a:torch.zeros(1,DOF_OF[a]) for a in ARM_KEYS};qd['F_L'][0,0]=velocity
+        backlog={a:torch.zeros(1,DOF_OF[a]) for a in ARM_KEYS};backlog['F_L'][0,0]=store
+>       bs=VelocityDamperBackstop(BackstopConfig(lookahead_s=.4,engage_dist=.04,
+                                                 backlog_aware=True,predict_backlog=predict))
+E       TypeError: BackstopConfig.__init__() got an unexpected keyword argument 'predict_backlog'
+
+tests/test_backlog_prediction.py:18: TypeError
+___________________ test_zero_backlog_retains_legacy_output ____________________
+
+    def test_zero_backlog_retains_legacy_output():
+>       old,_,_=project(False,0)
+                ^^^^^^^^^^^^^^^^
+
+tests/test_backlog_prediction.py:39:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predict = False, store = 0, velocity = -0.1
+
+    def project(predict,store,velocity=-.1):
+        rows=ConstraintRows(d=torch.tensor([[.06]]),
+            J={'F':torch.zeros(1,1,14),'U':torch.zeros(1,1,12)},
+            cls=torch.ones(1,1),arm_mask=torch.tensor([[[True,False,False,False]]]),
+            valid=torch.ones(1,1,dtype=torch.bool),d_min=torch.tensor([[.013]]))
+        rows.J['F'][0,0,0]=-1
+        cmd=zeros_delta(1);cmd.delta_q['F_L'][0,0]=.02
+        qd={a:torch.zeros(1,DOF_OF[a]) for a in ARM_KEYS};qd['F_L'][0,0]=velocity
+        backlog={a:torch.zeros(1,DOF_OF[a]) for a in ARM_KEYS};backlog['F_L'][0,0]=store
+>       bs=VelocityDamperBackstop(BackstopConfig(lookahead_s=.4,engage_dist=.04,
+                                                 backlog_aware=True,predict_backlog=predict))
+E       TypeError: BackstopConfig.__init__() got an unexpected keyword argument 'predict_backlog'
+
+tests/test_backlog_prediction.py:18: TypeError
+=========================== short test summary info ============================
+FAILED tests/test_backlog_prediction.py::test_opening_velocity_does_not_hide_closing_stored_target
+FAILED tests/test_backlog_prediction.py::test_opening_target_cannot_relax_velocity_braking
+FAILED tests/test_backlog_prediction.py::test_zero_backlog_retains_legacy_output
+3 failed in 0.87s
