@@ -46,6 +46,10 @@ post = {s['mode']: sum(x['violation_after_stop_delivery'] for x in s['trajectori
 n = len(r['stop_diagnostics'][0]['trajectories'])
 measured = next(s for s in r['stop_diagnostics'] if s['mode'] == 'measured')['trajectories']
 overshoot = [x['max_further_travel_away_from_target_200ms_rad'] for x in measured]
+jumps = [x['actual_target_jump_at_trigger_rad'] for x in measured]
+r['diagnostic_note'] += (f' 实测q固定目标探针一次跳变{min(jumps):.3f}–{max(jumps):.3f}rad，'
+                         f'超过普通输出{measured[0]["ordinary_increment_box_rad"]:.3f}rad/步的箱约束；'
+                         '这是显式绕过普通增量约束的机制诊断，不是兼容现有输出约束的修复。')
 r['verdict'] = (
     f"100ms首窗口与上一轮q/qd/exec/球距/目标/球心逐位一致={all(r['cold_100_replay_exact_fields'].values())}，仍7/32。"
     f"同参数第三cell为6/32，q与旧首窗口最大差{repeat['max_q_difference_rad']:.6f}rad。"
@@ -56,6 +60,7 @@ r['verdict'] = (
     'env15旧目标仍重叠约62mm，实测q固定目标未重叠，但触发时刻是事后选定。'
     f'实测q目标到达后仍有{min(overshoot):.4f}–{max(overshoot):.4f}rad可观测逆目标超调。'
     '全批次固定旧目标仍3/32违规，固定实测q仍1/32（未干预env31）；任何一组都不能报告全环境安全。'
+    '实测q探针一次目标跳变超出普通增量约束，只能判别原因，不能直接推广。'
     '即使固定目标到达，也必须核验后续运动，不能用零输出宣称已停。'
     '本轮未修改或推广生产策略；现有100ms延迟候选仍不安全。')
 r['protocol_note'] = (
@@ -139,6 +144,7 @@ report += [f'\n## 证据边界\n\n{r["protocol_note"]}\n',
            '- actor及全部生产源码/解析配置/协调器配置与上一轮逐项相同，四个关键核心源码SHA附于结果。全部仿真协议complete，初态无违规，命令/初态逐位匹配，延迟送达目标逐位符合FIFO。',
            '- 正反序6个对照192窗口加一个50ms冷启动cell32窗口，共224个相关对照窗口。主比较96窗口复用其中首cell，不能重复计数。两个停止探针64个诊断窗口，不计为新增独立安全证据。保留旧候选7/192原计数，不加总为独立安全置信界。',
            '- 未假设抢占队列、执行器侧运行或实机支持；无新视频、物体任务、接触力或连续碰撞证据。',
+           f'- 实测q探针一次目标跳变{min(jumps):.6f}–{max(jumps):.6f}rad，普通输出增量上限{measured[0]["ordinary_increment_box_rad"]:.6f}rad/步；全部六条均超过普通箱约束。该探针是机制干预，不是经过原解析投影的可部署动作，尚未验证接触力/物体安全。',
            '- 多cell的factor_manifest只保存最后一个cell的延迟；每cell真实延迟见cell_00x.json.window、协议design及本轮FIFO逐位审计，不能把最后cell的值套到整个矩阵。',
            '- 尚待解决：当前线性历史目标预测与实际延迟动力学的偏差，前缀可重复性，以及在可部署检测器触发时的安全停机可行性。']
 (OUT / 'REPORT.md').write_text('\n'.join(report) + '\n')

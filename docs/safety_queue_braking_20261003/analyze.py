@@ -186,6 +186,9 @@ def main():
                         max_arm_joint_speed_at_delivery_rad_s=float(np.abs(d['pre_qd'][arrival, e]).max()),
                         joints_moving_away_from_fixed_target_at_delivery=int(moving_away.sum()),
                         max_further_travel_away_from_target_200ms_rad=float(away_travel.max(initial=0)),
+                        actual_target_jump_at_trigger_rad=float(np.abs(d['controller_target'][c,e]-d['pre_target'][c,e]).max()),
+                        ordinary_increment_box_rad=float(sp['effective_backstop']['vmax']*sp['dt']),
+                        trigger_target_obeys_ordinary_increment_box=bool(np.abs(d['controller_target'][c,e]-d['pre_target'][c,e]).max()<=sp['effective_backstop']['vmax']*sp['dt']+1e-7),
                         fixed_target_max_abs_offset_at_trigger_rad=float(np.abs(expected - d['pre_q'][c, e]).max()))
             trajectories.append(traj)
         all_bad = np.flatnonzero((d['official_margins'] < 0).any((0, 2))).tolist()
