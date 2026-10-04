@@ -199,6 +199,24 @@
   <div class="northstar" id="scientific-summary" style="border-left-color:var(--red)"></div>
   <div class="small" id="scientific-updated"></div>
   <h2>最新安全 / 不安全效果</h2>
+  <div id="scientific-random" style="display:none">
+    <h3>强随机四臂运动：扩大初态、方向、幅度与保持时间</h3>
+    <div class="sci-note" id="scientific-random-note"></div>
+    <p class="small" id="scientific-random-protocol"></p>
+    <div class="table-wrap"><table id="scientific-random-table"><thead><tr><th>随机来源 / 方法</th><th>完成 / 计划窗口</th><th>初态违规</th><th>初态无违规后的违规</th><th>深度超过5mm</th><th>无效 / 待完成</th><th>全窗口关节跨度 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-random-bank"></p>
+    <h3>实际覆盖：初态无违规的窗口</h3>
+    <label class="small">选择条件：<select id="scientific-random-coverage-select" style="max-width:100%"></select></label>
+    <p class="small" id="scientific-random-coverage-note"></p>
+    <div id="scientific-random-heatmap"></div>
+    <div class="table-wrap"><table id="scientific-random-ee"><thead><tr><th>臂</th><th>初态 / 实测10cm格</th><th>实测x / y / z范围（米）</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-random-pairs"><thead><tr><th>六组臂对</th><th>3帧进入80mm / 总窗口</th><th>5mm内 / 重叠</th><th>末端接近 / 远离 / 切向帧</th></tr></thead><tbody></tbody></table></div>
+    <h3>同初态、同随机指令的实测距离</h3>
+    <label class="small">选择配对：<select id="scientific-random-select" style="max-width:100%"></select></label>
+    <div id="scientific-random-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-random-caption"></p>
+    <div class="sci-note" id="scientific-random-verdict"></div>
+  </div>
   <div id="scientific-bounded" style="display:none">
     <h3>限幅停止：独立进程配对诊断</h3>
     <div class="sci-note" id="scientific-bounded-note"></div>
@@ -573,6 +591,50 @@ function renderBounded(d) {
   $("#scientific-protocol").textContent=r.protocol_note;
   $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">限幅停止证据 →</a></div>`;
 }
+const renderRandomCoverage = index => {
+  const c=SCIENTIFIC.safety_random_space.coverage_cases[Number(index)];
+  if (!c) return;
+  $("#scientific-random-coverage-note").textContent=c.note;
+  const width=680, height=530, left=92, top=45, cellw=53, cellh=17;
+  const rows=c.visited.counts;
+  const labels=Array.from({length:26},(_,i)=>i<7 ? `F_L j${i+1}` : i<14 ? `F_R j${i-6}` : i<20 ? `U_L j${i-13}` : `U_R j${i-19}`);
+  const columns=Array.from({length:10},(_,i)=>`<text x="${left+i*cellw+cellw/2}" y="${top-10}" text-anchor="middle" font-size="11">${i*10}–${(i+1)*10}%</text>`).join("");
+  const cells=rows.map((counts,j)=>{
+    const peak=Math.max(1,...counts);
+    const label=`<text x="${left-8}" y="${top+j*cellh+12}" text-anchor="end" font-size="11">${labels[j]}</text>`;
+    return label+counts.map((v,i)=>{
+      const strength=Math.log1p(v)/Math.log1p(peak);
+      const color=v ? `rgb(${Math.round(230-200*strength)},${Math.round(240-150*strength)},${Math.round(250-105*strength)})` : "#f3f4f6";
+      const initial=c.initial.counts[j][i];
+      return `<rect x="${left+i*cellw}" y="${top+j*cellh}" width="${cellw-2}" height="${cellh-2}" fill="${color}" stroke="${initial ? '#d97706' : '#fff'}" stroke-width="${initial ? 1.5 : 0.5}"><title>${labels[j]} ${i*10}–${(i+1)*10}%：初态${initial}，实测${v}次</title></rect>`;
+    }).join("");
+  }).join("");
+  $("#scientific-random-heatmap").innerHTML=`<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:850px;background:white" role="img" aria-label="26关节归一化软限位覆盖"><title>26关节初态与实测覆盖</title>${columns}${cells}<text x="${left}" y="${height-24}" font-size="12">蓝色：实测访问频次（每关节对数着色）；橙框：初态已占据</text><text x="${left}" y="${height-7}" font-size="12">灰色：未访问。十个边际分箱不能证明26维联合空间覆盖。</text></svg>`;
+  const arms=["F_L","F_R","U_L","U_R"];
+  $("#scientific-random-ee tbody").innerHTML=arms.map((a,i)=>`<tr><td>${a}</td><td class="num">${c.ee_initial.visited_voxels_per_arm[i]} / ${c.ee_visited.visited_voxels_per_arm[i]}</td><td>${c.ee_visited.aabb_min_m[i].map((v,j)=>`${f(v,2)}～${f(c.ee_visited.aabb_max_m[i][j],2)}`).join(" / ")}</td></tr>`).join("");
+  $("#scientific-random-pairs tbody").innerHTML=c.pairs.map(p=>`<tr><td>${esc(p.pair)}</td><td class="num">${p.exposed_80mm}/${p.episodes}</td><td class="num">${p.near_5mm} / ${p.overlap}</td><td class="num">${p.approach_ee_steps} / ${p.recede_ee_steps} / ${p.tangent_ee_steps}</td></tr>`).join("");
+};
+const renderRandomSpace = d => {
+  const r=d.safety_random_space;
+  $("#scientific-random").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-random-note").textContent=r.summary;
+  $("#scientific-random-protocol").textContent=r.protocol_note;
+  $("#scientific-random-bank").textContent=r.bank_note;
+  $("#scientific-random-verdict").textContent=r.verdict;
+  $("#scientific-random-table tbody").innerHTML=r.aggregates.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.completed_windows}/${x.planned_windows}</td><td class="num">${x.initial_violations}/${x.attempted_windows}</td><td class="num ${x.initially_safe_evaluated && x.safe_initial_violations ? 'bad' : ''}">${x.initially_safe_evaluated ? x.safe_initial_violations+"/"+x.initially_safe_evaluated : "未得到完整窗口"}</td><td class="num">${x.initially_safe_evaluated ? x.safe_initial_damaging : '—'}</td><td class="num">${x.invalid_windows} / ${x.pending_windows}</td><td class="num">${x.mean_within_window_joint_range == null ? '—' : sciPct(x.mean_within_window_joint_range)+" / "+f(x.mean_joint_path_rad,2)+"rad"}</td></tr>`).join("");
+  $("#scientific-random-coverage-select").innerHTML=r.coverage_cases.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-random-coverage-select").onchange=e=>renderRandomCoverage(e.target.value);
+  $("#scientific-random-coverage-select").value=String(r.default_coverage);
+  renderRandomCoverage(r.default_coverage);
+  $("#scientific-random-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-random-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_random_space","scientific-random");
+  renderRobustnessTrace(r.default_trace,"safety_random_space","scientific-random");
+  $("#scientific-random-select").value=String(r.default_trace);
+  $("#scientific-bounded h3").textContent="上一轮：限幅停止的事后诊断";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.overview)}</span><div style="margin-top:4px"><a href="#scientific">强随机覆盖与全部失败 →</a></div>`;
+};
 function renderRobustness(d) {
   const r = d.safety_robustness || {};
   $("#scientific-robustness").style.display = r.rows?.length ? "block" : "none";
@@ -640,6 +702,7 @@ function renderScientific(d) {
   renderForensics(d);
   renderQueue(d);
   renderBounded(d);
+  renderRandomSpace(d);
 }
 // ---- tasks / R34
 function renderTasks(t) {

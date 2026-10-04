@@ -1,0 +1,44 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______ test_zero_exit_failed_protocol_is_retained_and_next_condition_runs ______
+
+tmp_path = PosixPath('/tmp/pytest-of-liyufeng/pytest-579/test_zero_exit_failed_protocol0')
+
+    def test_zero_exit_failed_protocol_is_retained_and_next_condition_runs(tmp_path):
+        child=tmp_path/'child.py'
+        child.write_text('''import json,pathlib,sys
+    out=pathlib.Path(sys.argv[sys.argv.index('--out')+1]);out.mkdir()
+    failed=sys.argv[1]=='failed'
+    p=dict(status='failed' if failed else 'complete',completed_cells=0 if failed else 1,design=[dict(seed=1)])
+    if failed:p['error']='critical-row union exceeds declared capacity: 131 > 128'
+    (out/'protocol.json').write_text(json.dumps(p))
+    if not failed:(out/'summary.json').write_text(json.dumps(dict(windows=[dict(seed=1)])))
+    ''')
+        p=dict(cwd=str(tmp_path),continue_after_child_failure=True,
+               jobs=[dict(id=name,argv=[sys.executable,str(child),mode],expected=dict(seed=1))
+                     for name,mode in [('bad','failed'),('next','complete')]])
+>       out=tmp_path/'out';m=run_campaign(p,out)
+                             ^^^^^^^^^^^^^^^^^^^
+
+artifacts/safety_random_space_20261004/test_zero_exit_protocol.py:20:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+artifacts/safety_random_space_20261004/isolated_campaign_v2.py:87: in run_campaign
+    record.update(verify_child(cell_out, job['expected']))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+out = PosixPath('/tmp/pytest-of-liyufeng/pytest-579/test_zero_exit_failed_protocol0/out/bad')
+expected = {'seed': 1}
+
+    def verify_child(out, expected):
+        p = json.loads((out / 'protocol.json').read_text())
+        if p['status'] != 'complete' or p['completed_cells'] != 1 or len(p['design']) != 1:
+>           raise ValueError('each fresh process must complete exactly one cell')
+E           ValueError: each fresh process must complete exactly one cell
+
+artifacts/safety_random_space_20261004/isolated_campaign_v2.py:20: ValueError
+----------------------------- Captured stdout call -----------------------------
+START bad
+=========================== short test summary info ============================
+FAILED artifacts/safety_random_space_20261004/test_zero_exit_protocol.py::test_zero_exit_failed_protocol_is_retained_and_next_condition_runs
+1 failed in 0.06s
