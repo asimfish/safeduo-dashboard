@@ -72,8 +72,15 @@ def main():
         response=requests.get('https://api.github.com/repos/asimfish/safeduo-dashboard/branches/main',timeout=30)
         response.raise_for_status();assert response.json()['protected'] is False
         git(DASH,'fetch','origin','main');assert git(DASH,'rev-parse','HEAD')==git(DASH,'rev-parse','origin/main')
-    else:sync_clean(DASH,'main')
+    else:
+        sync_clean(DASH,'main')
+        prior=json.loads((HERE/'DELIVERY.json').read_text())
+        remote_edits=git(DASH,'diff','--name-only',prior['main_commit']+'..HEAD').splitlines()
+        assert not any(name.startswith('docs/'+HERE.name+'/') for name in remote_edits),'parallel edits to this evidence report; publication withheld'
     sync_clean(DATA,'data')
+    previous_field=json.loads((DATA/'scientific_eval.json').read_text()).get('safety_random_space')
+    if not args.initial:
+        assert previous_field==json.loads((HERE/'panel_data.json').read_text()),'parallel edits to this scientific field; publication withheld'
     analyzer=[SIM_PY,str(HERE/'analyze.py')]+(['--partial'] if args.partial else [])
     command(analyzer,ROOT,SOURCE_ENV,'release_analysis.log')
     testfiles=['test_wide_random.py','test_isolation.py','test_zero_exit_protocol.py','test_coverage_metrics.py','test_dynamic_rows.py']
@@ -97,6 +104,7 @@ def main():
     main_sha=commit_and_push(DASH,'main',paths,'[dashboard/feat]: publish measured four-arm random coverage')
     # Preserve bot changes and every old scientific object immediately before the data write.
     sync_clean(DATA,'data')
+    assert json.loads((DATA/'scientific_eval.json').read_text()).get('safety_random_space')==previous_field,'scientific field changed during verification'
     command([SIM_PY,str(HERE/'prepare_panel.py')],ROOT,SOURCE_ENV,'release_data_prepare.log')
     # Second prepare produces identical report artifacts; detect accidental divergence after commit.
     assert not git(DASH,'status','--porcelain')

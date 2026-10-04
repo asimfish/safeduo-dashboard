@@ -125,8 +125,13 @@ def main():
         a,b=banks[raw['id']],banks[row['id']]
         assert np.array_equal(a['tape'],b['tape']) and np.array_equal(a['q_initial'],b['q_initial'])
         assert np.array_equal(a['initial_violation'],b['initial_violation'])
-        paired.append(dict(raw=raw['id'],protected=row['id'],initial_exact=True,command_exact=True,
-                           initial_flags_exact=True,protected_status=row['status']))
+        pair=dict(raw=raw['id'],protected=row['id'],initial_exact=True,command_exact=True,
+                  initial_flags_exact=True,protected_status=row['status'])
+        if row['status']=='complete':
+            da,db=datasets[raw['id']],datasets[row['id']]
+            pair.update(pre_delivery_q_exact=bool(np.array_equal(da['q'][:6],db['q'][:6])),
+                        pre_delivery_q_max_difference_rad=float(np.abs(da['q'][:6]-db['q'][:6]).max()))
+        paired.append(pair)
     for seed in [731923,2048171,9987031]:
         a=next(x for x in rows if x['flow']=='wide_iid' and x['seed']==seed and x['method']=='raw')
         b=next(x for x in rows if x['flow']=='wide_burst' and x['seed']==seed and x['method']=='raw')
