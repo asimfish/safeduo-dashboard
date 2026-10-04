@@ -1,0 +1,28 @@
+test_capacity_overflow_aborts_instead_of_silently_dropping (test_admission.AdmissionTests.test_capacity_overflow_aborts_instead_of_silently_dropping) ... ok
+test_forecast_does_not_overwrite_measured_geometry (test_admission.AdmissionTests.test_forecast_does_not_overwrite_measured_geometry) ... ok
+test_new_target_risk_is_admitted_before_geometry_is_close (test_admission.AdmissionTests.test_new_target_risk_is_admitted_before_geometry_is_close) ... FAIL
+test_no_forecast_risk_preserves_old_critical_union (test_admission.AdmissionTests.test_no_forecast_risk_preserves_old_critical_union) ... ok
+
+======================================================================
+FAIL: test_new_target_risk_is_admitted_before_geometry_is_close (test_admission.AdmissionTests.test_new_target_risk_is_admitted_before_geometry_is_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_mechanism_20261005_causal_obs/test_admission.py", line 30, in test_new_target_risk_is_admitted_before_geometry_is_close
+    self.assertEqual(mask.tolist(),[[True,True,True,False]])
+AssertionError: Lists differ: [[True, True, False, False]] != [[True, True, True, False]]
+
+First differing element 0:
+[True, True, False, False]
+[True, True, True, False]
+
+- [[True, True, False, False]]
+?               ^^^^
+
++ [[True, True, True, False]]
+?               ^^^
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+FAILED (failures=1)

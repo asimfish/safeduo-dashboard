@@ -1,0 +1,176 @@
+{
+  "verdict": "BLOCKED_PUBLICATION_PENDING",
+  "evidence_local": "PASS",
+  "safety_strategy": "BLOCKED",
+  "production_promoted": false,
+  "hardware_approved": false,
+  "matrix": {
+    "frozen384windows": "PASS",
+    "artifact_and_source_integrity": "PASS",
+    "original7mechanism_tests": "PASS",
+    "finite_guard120prefix": "PASS_BOUNDED",
+    "native_state84actual_camera_views": "PASS_BOUNDED",
+    "new_panel_768curves_40filters_84images": "PASS",
+    "legacy_panel44coverage159traces": "PASS",
+    "independent_astra_full384": "PASS_BOUNDED",
+    "independent_astra_v4": "PASS_BOUNDED",
+    "normal_authorized_publication": "PENDING",
+    "live_public_browser_and_nas_seal": "PENDING",
+    "closed_owned_raw_sha256_readback": "PASS"
+  },
+  "unevaluated": [
+    "v1 all-forecast finite validation",
+    "v2 full16s fresh holdout",
+    "hardware/realtime/continuous collision/object carry"
+  ],
+  "commands": [
+    "python analyze_results.py",
+    "python verify_observers.py",
+    "python verify_native_visual.py",
+    "python check_panel.py --url http://127.0.0.1:8767/docs/safety_mechanism_20261005_causal_obs/",
+    "python legacy_check_panel.py --local-url http://127.0.0.1:8767/index.html#scientific"
+  ],
+  "native": {
+    "status": "PASS_BOUNDED_NATIVE_CAMERA_EVIDENCE",
+    "completed_development_windows": 64,
+    "violations": 17,
+    "independent_new_holdout_tapes": 0,
+    "groups": 12,
+    "images": 84,
+    "actual_calibrated_views": 84,
+    "actual_camera_source": "USD camera prim",
+    "recorded_stale_sdk_views": 84,
+    "native_snapshots": 3,
+    "all_64_native_q_bound_to_dense_trace": true,
+    "all_64_native_qd_bound_steps": [
+      71,
+      75
+    ],
+    "final_qd_bound_to_capture_native_snapshot": true,
+    "render_invariance": "producer directly reads all64 native PhysX q/qd/root/root_vel before and after each seven-view slot; equality assertion; completed producer/source bound",
+    "details": [
+      {
+        "env": 0,
+        "step": 71,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 14,
+        "step": 71,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 35,
+        "step": 71,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 47,
+        "step": 71,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 0,
+        "step": 75,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 14,
+        "step": 75,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 35,
+        "step": 75,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 47,
+        "step": 75,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 0,
+        "step": 959,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 14,
+        "step": 959,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 35,
+        "step": 959,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      },
+      {
+        "env": 47,
+        "step": 959,
+        "native_state_bound": true,
+        "calibrated_views": 7
+      }
+    ],
+    "visual_fifo_exact": true,
+    "trajectory_exact_to_numerical": {
+      "q": false,
+      "ee": false,
+      "cmd": true,
+      "exec": false,
+      "official_margins": false,
+      "controller_target": false,
+      "actuator_target": false
+    },
+    "production_promoted": false,
+    "hardware_approved": false,
+    "limitation": "framing checks centers; no pixel-occlusion, full-link silhouette, continuous-collision, or object-carry safety proof"
+  },
+  "browser": {
+    "status": "pass",
+    "live": false,
+    "browser": "141.0.7390.37",
+    "paired_cases": 192,
+    "curves": 768,
+    "filter_combinations": 40,
+    "image_groups": 12,
+    "images": 84,
+    "mobile_no_overflow": true,
+    "page_errors": []
+  },
+  "legacy": {
+    "status": "pass",
+    "browser": "141.0.7390.37",
+    "live_url": null,
+    "coverage_cases_checked": 44,
+    "traces_checked": 159,
+    "legacy_preserved": true,
+    "mobile_no_page_overflow": true,
+    "page_errors": []
+  },
+  "raw_readback": {
+    "status": "PASS_NAS_SHA256_READBACK",
+    "manifest_sha256": "4f7dadc7aed0af244421b09639705525fd2e71252efaf36067a4dfb66e154c8c",
+    "files": 421,
+    "bytes": 1633212127,
+    "all_owned_raw_closed": true,
+    "foreign_whole_namespace_excluded": true
+  },
+  "review_sha256": {
+    "ASTRA_DESIGN_REVIEW.md": "aef3063b738fac52c9391f4bdf612df5695533e74e3c7b10d6b6fd1fa9d4910f",
+    "ASTRA_EVIDENCE_REVIEW.md": "32dfcb46c061379f8ddd0decc41cfd37abef5516866186012ed0a0f33ebd4421",
+    "ASTRA_FINAL_REVIEW.md": "04b47041e9a1441dde04d36ad0f838104b0439502e702ddda39e60351960b7ab",
+    "ASTRA_NATIVE_REVIEW.md": "1cdc51c7f45ad489a4de5bce591fbe6e7e1a7aa4c6515bca48acace22621293e"
+  },
+  "compiled_sources": 20
+}

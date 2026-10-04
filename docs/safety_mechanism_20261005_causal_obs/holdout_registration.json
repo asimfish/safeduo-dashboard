@@ -1,0 +1,46 @@
+{
+  "schema": "safeduo.command_holdout_registration.v1",
+  "development_seed": 60317411,
+  "seeds_source": "OS secrets before candidate decision and outcomes",
+  "rows": [
+    {
+      "command_seed": 1930442907,
+      "initial_bank_seed": 60317411,
+      "bank_path": "/mnt/nas/data/lyf/double_hand/safety_risk_strata_20261004/risk_banks/60317411/bank.npz",
+      "bank_sha256": "aa4703440daec42b08290ebd49d994e4ceaff26273a344de4748b9a38e4fe32c"
+    },
+    {
+      "command_seed": 1940677742,
+      "initial_bank_seed": 80692357,
+      "bank_path": "/mnt/nas/data/lyf/double_hand/safety_risk_strata_20261004/risk_banks/80692357/bank.npz",
+      "bank_sha256": "f900fa6558dd85b3e1169b462c819eb3d21a27cf23eea1b30f0aa0ba01740cbe"
+    },
+    {
+      "command_seed": 1931983758,
+      "initial_bank_seed": 109441003,
+      "bank_path": "/mnt/nas/data/lyf/double_hand/safety_risk_strata_20261004/risk_banks/109441003/bank.npz",
+      "bank_sha256": "1bda6c5c699241835024043bf851d9c84a07752ce748926269d5aec4c1838dff"
+    }
+  ],
+  "initials": "existing policy-blind stable risk banks; initial poses reused, fresh command tapes only",
+  "planned_unique_new_external_windows": 192,
+  "planned_paired_windows": 384,
+  "steps": 960,
+  "prefix_zero_steps": 60,
+  "delay_steps": 6,
+  "selection": "retain all outcomes; no replay/reselection",
+  "amplitudes": [
+    0.005,
+    0.015,
+    0.025,
+    0.05
+  ],
+  "hold_steps": [
+    1,
+    4,
+    15,
+    30,
+    90,
+    180
+  ]
+}

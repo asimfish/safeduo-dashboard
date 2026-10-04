@@ -1,0 +1,106 @@
+{
+  "status": "PASS_BOUNDED_NATIVE_CAMERA_EVIDENCE",
+  "completed_development_windows": 64,
+  "violations": 17,
+  "independent_new_holdout_tapes": 0,
+  "groups": 12,
+  "images": 84,
+  "actual_calibrated_views": 84,
+  "actual_camera_source": "USD camera prim",
+  "recorded_stale_sdk_views": 84,
+  "native_snapshots": 3,
+  "all_64_native_q_bound_to_dense_trace": true,
+  "all_64_native_qd_bound_steps": [
+    71,
+    75
+  ],
+  "final_qd_bound_to_capture_native_snapshot": true,
+  "render_invariance": "producer directly reads all64 native PhysX q/qd/root/root_vel before and after each seven-view slot; equality assertion; completed producer/source bound",
+  "details": [
+    {
+      "env": 0,
+      "step": 71,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 14,
+      "step": 71,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 35,
+      "step": 71,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 47,
+      "step": 71,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 0,
+      "step": 75,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 14,
+      "step": 75,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 35,
+      "step": 75,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 47,
+      "step": 75,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 0,
+      "step": 959,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 14,
+      "step": 959,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 35,
+      "step": 959,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    },
+    {
+      "env": 47,
+      "step": 959,
+      "native_state_bound": true,
+      "calibrated_views": 7
+    }
+  ],
+  "visual_fifo_exact": true,
+  "trajectory_exact_to_numerical": {
+    "q": false,
+    "ee": false,
+    "cmd": true,
+    "exec": false,
+    "official_margins": false,
+    "controller_target": false,
+    "actuator_target": false
+  },
+  "production_promoted": false,
+  "hardware_approved": false,
+  "limitation": "framing checks centers; no pixel-occlusion, full-link silhouette, continuous-collision, or object-carry safety proof"
+}
