@@ -1,0 +1,15 @@
+test_integrated_target_windup_is_bounded (test_reference_envelope.ReferenceContracts.test_integrated_target_windup_is_bounded) ... FAIL
+
+======================================================================
+FAIL: test_integrated_target_windup_is_bounded (test_reference_envelope.ReferenceContracts.test_integrated_target_windup_is_bounded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_mechanism_20261005/test_reference_envelope.py", line 14, in test_integrated_target_windup_is_bounded
+    self.assertAlmostEqual(target.item(), .050, places=6)
+AssertionError: 0.5000000596046448 != 0.05 within 6 places (0.4500000596046448 difference)
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (failures=1)
+EXPECTED RED: same bounded-debt oracle fails with the original unbounded integral reference
