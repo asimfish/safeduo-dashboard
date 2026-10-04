@@ -1,5 +1,5 @@
 {
-  "verdict": "BLOCKED_PUBLICATION_PENDING",
+  "verdict": "PASS_BOUNDED_EVIDENCE_DELIVERY",
   "evidence_local": "PASS",
   "safety_strategy": "BLOCKED",
   "production_promoted": false,
@@ -14,9 +14,11 @@
     "legacy_panel44coverage159traces": "PASS",
     "independent_astra_full384": "PASS_BOUNDED",
     "independent_astra_v4": "PASS_BOUNDED",
-    "normal_authorized_publication": "PENDING",
-    "live_public_browser_and_nas_seal": "PENDING",
-    "closed_owned_raw_sha256_readback": "PASS"
+    "normal_authorized_publication": "PASS",
+    "live_public_browser_and_nas_seal": "PASS",
+    "closed_owned_raw_sha256_readback": "PASS",
+    "public_document_exact_binding": "PASS",
+    "closed_metadata_sha256_readback": "PASS"
   },
   "unevaluated": [
     "v1 all-forecast finite validation",
@@ -172,5 +174,52 @@
     "ASTRA_FINAL_REVIEW.md": "04b47041e9a1441dde04d36ad0f838104b0439502e702ddda39e60351960b7ab",
     "ASTRA_NATIVE_REVIEW.md": "1cdc51c7f45ad489a4de5bce591fbe6e7e1a7aa4c6515bca48acace22621293e"
   },
-  "compiled_sources": 20
+  "compiled_sources": 20,
+  "live_browser": {
+    "status": "pass",
+    "live": true,
+    "browser": "141.0.7390.37",
+    "paired_cases": 192,
+    "curves": 768,
+    "filter_combinations": 40,
+    "image_groups": 12,
+    "images": 84,
+    "mobile_no_overflow": true,
+    "page_errors": []
+  },
+  "legacy_live_browser": {
+    "status": "pass",
+    "browser": "141.0.7390.37",
+    "live_url": "https://asimfish.github.io/safeduo-dashboard/#scientific",
+    "coverage_cases_checked": 44,
+    "traces_checked": 159,
+    "legacy_preserved": true,
+    "mobile_no_page_overflow": true,
+    "page_errors": []
+  },
+  "remote_ci": {
+    "sha": "18af6275d51f4dc1dd5044375d2f7228d06158c8",
+    "runs": [
+      {
+        "id": 37221989956,
+        "name": "pages build and deployment",
+        "head_sha": "18af6275d51f4dc1dd5044375d2f7228d06158c8",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/asimfish/safeduo-dashboard/actions/runs/37221989956"
+      }
+    ]
+  },
+  "publication_commit": "18af6275d51f4dc1dd5044375d2f7228d06158c8",
+  "static_notes": [
+    "Two frozen original reviewer Markdown files retain trailing blank lines at EOF for byte/hash identity; staged diff --check reported these two whitespace-only findings. All static asset modes corrected to0644 without changing bytes."
+  ],
+  "metadata_readback": {
+    "status": "PASS_NAS_METADATA_READBACK",
+    "files": 93,
+    "bytes": 27559348,
+    "manifest_sha256": "a32ec9e462d8ad87e3e72eab8e9d18dce8f0f68fd90df48815a64fddeb256934",
+    "all_original_h_files_bound": true,
+    "closure_envelopes_bound_separately": true
+  }
 }
