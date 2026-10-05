@@ -200,6 +200,48 @@
   <div class="small" id="scientific-updated"></div>
   <section class="sci-note" id="queueEnvelopeEvidence"><h2>新增：队列预测机制与随机留出</h2><p>三组新随机输入完整对照，384窗口 / 192对：违例120/192 → 40/192；救回82个窗口，新增2个桌面失败。候选仍有38个桌面、2个U自碰失败，安全准入未通过。</p><p><a href="docs/safety_mechanism_20261005_causal_obs/">打开完整机制面板：全部配对曲线、反例与84张七视角实图 →</a></p><p class="small">最新相机图像绑定PhysX原生状态、实际节点位姿与内参；来自独立开发重放，跨运行轨迹exact FAIL。候选采用积压目标的预测约束准入；原面板的固定积压幅值四方法对照独立统计。稳定初态库复用不计新空间覆盖；原搬运19/192及旧结果保持原分母。</p></section>
   <h2>最新安全 / 不安全效果</h2>
+  <div id="scientific-admission" style="display:none">
+    <h3>最新：完整速度提前入选与全新初态五方法对照</h3>
+    <div class="sci-note" id="scientific-admission-note"></div>
+    <p class="small" id="scientific-admission-protocol"></p>
+    <p class="small" id="scientific-admission-rule"></p>
+    <div class="table-wrap"><table id="scientific-admission-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>全16秒违规</th><th>超过5mm</th><th>cross / F / U / 桌面</th><th>压力期四臂同时动</th><th>输出 / 命令L2</th><th>目标积压P95</th><th>平均关节跨度 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-admission-bank"></p>
+    <details id="scientific-admission-speed"><summary>展开速度限制单独作用（补充配对对照）</summary>
+    <p class="small" id="scientific-admission-speed-note"></p>
+    <div class="table-wrap"><table id="scientific-admission-speed-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>违规</th><th>超过5mm</th><th>cross / F / U / 桌面</th><th>平均关节跨度</th><th>平均安全前缀 / 跨度</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-admission-speed-pairs"><thead><tr><th>种子 / 左→仅速度限制</th><th>左独有 / 仅限速独有失败</th><th>双方失败 / 双方通过</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">仅裁剪到原速度盒，关闭模型门控和全部安全投影；软目标限位、积分目标与六步FIFO保持。复用同一批初态和外部随机指令，0新增独立轨迹，不混入主960窗口分母。全程裁剪与目标积分由独立oracle核验；零残差占位不表示几何可行。</p>
+    </details>
+    <details id="scientific-admission-zero"><summary>展开16秒连续零指令对照（补充诊断）</summary>
+    <p class="small" id="scientific-admission-zero-note"></p>
+    <div class="table-wrap"><table id="scientific-admission-zero-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>违规</th><th>cross / F / U / 桌面</th><th>非零执行窗口</th><th>最大关节漂移</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">复用本轮初态、全960步零输入；0新增随机轨迹，不并入主压力分母，不据此重筛初态。保护器可主动退让，仍按原球距负值判失败。</p>
+    </details>
+    <h4>首次违规前的真实操作</h4>
+    <div class="table-wrap"><table id="scientific-admission-safe"><thead><tr><th>方法</th><th>平均安全前缀</th><th>前缀关节跨度</th><th>前缀关节路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">排除首次危险转移及碰撞后的运动；安全前缀长短不同，时间同时报告。完整16秒运动指标保留在上表。</p>
+    <details><summary>展开关节二维边际访问（50组统计）</summary>
+    <div class="table-wrap"><table id="scientific-admission-joint"><thead><tr><th>方法 / 臂组</th><th>关节对数</th><th>平均 / 最少 / 最多已访格（每对100格）</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">每方法325个关节对各10×10格，包含所有实际窗口和失败；超软限位样本不增加对应格。二维边际访问不能证明26维联合覆盖、可达体积或无碰撞空间。</p>
+    </details>
+    <h4>配对失败变化（同初态、同外部指令）</h4>
+    <div class="table-wrap"><table id="scientific-admission-inputs"><thead><tr><th>种子 / 左 / 右</th><th>左独有 / 右独有失败</th><th>双方失败 / 双方通过</th><th>66步实际q前缀一致</th><th>最大q差rad</th></tr></thead><tbody></tbody></table></div>
+    <h4>六组臂对配额与实际随机压力</h4>
+    <div class="table-wrap"><table id="scientific-admission-pair-results"><thead><tr><th>臂对 / 方法</th><th>完成 / 24</th><th>≥3帧80mm：全窗 / 随机目标到达后</th><th>违规</th><th>超过5mm</th></tr></thead><tbody></tbody></table></div>
+    <h4>全部帧的实测操作范围</h4>
+    <label class="small">选择分层与方法：<select id="scientific-admission-coverage-select" style="max-width:100%"></select></label>
+    <p class="small" id="scientific-admission-coverage-note"></p>
+    <div id="scientific-admission-heatmap"></div>
+    <div class="table-wrap"><table id="scientific-admission-ee"><thead><tr><th>臂</th><th>初态 / 实测10cm格</th><th>实测x / y / z范围（米）</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-admission-pairs"><thead><tr><th>六组臂对</th><th>≥3帧80mm / 总窗口</th><th>5mm内 / 重叠</th><th>末端接近 / 远离 / 切向帧</th></tr></thead><tbody></tbody></table></div>
+    <h4>五方法配对曲线与保护器放大视图：改善、仍失败与新增失败</h4>
+    <label class="small">选择轨迹（seed / env）：<select id="scientific-admission-select" style="max-width:100%"></select></label>
+    <div id="scientific-admission-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-admission-caption"></p>
+    <p class="small" id="scientific-admission-diagnostic"></p>
+    <div class="sci-note" id="scientific-admission-verdict"></div>
+  </div>
   <div id="scientific-mechanism" style="display:none">
     <h3>目标积压机制：独立留出安全 / 不安全效果</h3>
     <div class="sci-note" id="scientific-mechanism-note"></div>
@@ -685,6 +727,47 @@ const renderRandomSpace = d => {
   $("#scientific-protocol").textContent=r.protocol_note;
   $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.overview)}</span><div style="margin-top:4px"><a href="#scientific">强随机覆盖与全部失败 →</a></div>`;
 };
+const renderAdmission = d => {
+  const r=d.safety_predictive_admission;
+  $("#scientific-admission").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-admission-note").textContent=r.summary;
+  $("#scientific-admission-protocol").textContent=r.protocol_note;
+  $("#scientific-admission-rule").textContent=r.mechanism_note;
+  $("#scientific-admission-bank").textContent=r.bank_note;
+  const z=r.zero_command_diagnostic;
+  const speed=r.speed_box_control;
+  $("#scientific-admission-speed").style.display=speed && r.speed_comparison_rows?.length ? "block" : "none";
+  if (speed && r.speed_comparison_rows?.length) {
+    $("#scientific-admission-speed-note").textContent=`仅限速${speed.completed_windows}/192、配套raw/System0重复${speed.comparison_completed_windows}/384，共${speed.supplementary_total_windows}/576相关窗口；三方法同cuda:1。主压力部分结果可见后独立登记；配套对照在仅限速结束但结果分析前登记，全部三种子原样重复。主960条件保持。`;
+    $("#scientific-admission-speed-table tbody").innerHTML=r.speed_comparison_rows.map(x=>`<tr><td>${esc(x.method_label)}</td><td>${x.windows}/192</td><td>${x.violations}/${x.windows}</td><td>${x.deep}</td><td>${x.class_violations.join(" / ")}</td><td>${sciPct(x.mean_within_window_joint_range)}</td><td>${f(x.mean_safe_duration_s,3)}s / ${sciPct(x.mean_safe_prefix_joint_range)}</td></tr>`).join("");
+    const leftNames={raw:'无安全保护',baseline:'原System 0'};
+    $("#scientific-admission-speed-pairs tbody").innerHTML=speed.paired_inputs.filter(x=>x.both_failure != null).map(x=>`<tr><td>${x.seed}<br>${esc(leftNames[x.left_mode])}</td><td>${x.left_only_failure} / ${x.right_only_failure}</td><td>${x.both_failure} / ${x.neither_failure}</td></tr>`).join("");
+  }
+  $("#scientific-admission-zero").style.display=z ? "block" : "none";
+  if (z) {
+    $("#scientific-admission-zero-note").textContent=`${z.completed_windows}/${z.registered_windows}完整窗口，无效${z.invalid_windows}，待完成${z.pending_windows}；原三方法576在主压力部分结果后、自身结果前登记；新两个因子384在已有零/速度结果后、自身结果前补充登记。参数及初态不改。`;
+    $("#scientific-admission-zero-table tbody").innerHTML=z.aggregate_rows.map(x=>`<tr><td>${esc(x.method_label)}</td><td>${x.windows}/192</td><td>${x.violations}/${x.windows}</td><td>${x.class_violations.join(" / ")}</td><td>${x.nonzero_execution_windows}</td><td>${f(x.max_actual_joint_drift_rad,6)}rad</td></tr>`).join("");
+  }
+  $("#scientific-admission-safe tbody").innerHTML=r.aggregate_rows.map(x=>`<tr><td>${esc(x.method_label)}</td><td>${f(x.mean_safe_duration_s,3)}s</td><td>${sciPct(x.mean_safe_prefix_joint_range)}</td><td>${f(x.mean_safe_prefix_joint_path_rad,2)}rad</td></tr>`).join("");
+  $("#scientific-admission-joint tbody").innerHTML=r.operation_joint_rows.map(x=>`<tr><td>${esc(x.method_label)}<br>${esc(x.arm_i)} / ${esc(x.arm_j)}</td><td>${x.joint_pairs}</td><td>${f(x.mean_cells,2)} / ${x.minimum_cells} / ${x.maximum_cells}</td></tr>`).join("");
+  $("#scientific-admission-diagnostic").textContent=r.diagnostic_note;
+  $("#scientific-admission-verdict").textContent=r.verdict;
+  $("#scientific-admission-table tbody").innerHTML=r.aggregate_rows.map(x=>`<tr><td><b>${esc(x.method_label)}</b></td><td class="num">${x.windows}/192</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td><td class="num">${x.class_violations.join(" / ")}</td><td class="num">${sciPct(x.four_arms_moving_fraction)}</td><td class="num">${f(x.exec_command_l2_ratio,3)}</td><td class="num">${f(x.pre_target_debt_abs_p95_rad,4)}rad</td><td class="num">${sciPct(x.mean_within_window_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  const names={raw:'无安全保护',baseline:'原System 0动态512',envelope_050:'固定积压限制',predictive:'完整速度提前入选',predictive_envelope:'提前入选＋积压限制'};
+  $("#scientific-admission-inputs tbody").innerHTML=r.paired_inputs.filter(x=>x.both_failure != null).map(x=>`<tr><td>${x.seed}<br>${esc(names[x.left_mode])} / ${esc(names[x.right_mode])}</td><td class="num">${x.left_only_failure} / ${x.right_only_failure}</td><td class="num">${x.both_failure} / ${x.neither_failure}</td><td>${x.actual_q_prefix66_exact ? "是" : "否"}</td><td class="num">${f(x.actual_q_prefix66_max_diff_rad,6)}</td></tr>`).join("");
+  $("#scientific-admission-pair-results tbody").innerHTML=r.pair_rows.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.windows}/24</td><td class="num">${x.target_pair_exposure.exposed_80mm} / ${x.target_pair_pressure_exposure.exposed_80mm}</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td></tr>`).join("");
+  $("#scientific-admission-coverage-select").innerHTML=r.coverage_cases.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-admission-coverage-select").onchange=e=>renderRandomCoverage(e.target.value,"safety_predictive_admission","scientific-admission");
+  $("#scientific-admission-coverage-select").value=String(r.default_coverage);
+  renderRandomCoverage(r.default_coverage,"safety_predictive_admission","scientific-admission");
+  $("#scientific-admission-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-admission-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_predictive_admission","scientific-admission");
+  $("#scientific-admission-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_predictive_admission","scientific-admission");
+  $("#scientific-mechanism h3").textContent="上一轮：固定积压限制与独立留出";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">最新机制实验 →</a></div>`;
+};
 const renderMechanism = d => {
   const r=d.safety_mechanism;
   $("#scientific-mechanism").style.display=r?.rows?.length ? "block" : "none";
@@ -804,6 +887,7 @@ function renderScientific(d) {
   renderRandomSpace(d);
   renderRiskStrata(d);
   renderMechanism(d);
+  renderAdmission(d);
 }
 // ---- tasks / R34
 function renderTasks(t) {

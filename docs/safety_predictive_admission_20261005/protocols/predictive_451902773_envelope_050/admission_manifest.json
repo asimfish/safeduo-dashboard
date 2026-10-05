@@ -1,0 +1,24 @@
+{
+  "schema": "safeduo.predictive_admission.v1",
+  "mode": "envelope_050",
+  "predictive": false,
+  "envelope_gap_rad": 0.05,
+  "horizons_s": [
+    0.16,
+    0.4,
+    0.3
+  ],
+  "band_m": 0.01,
+  "capacity": 2048,
+  "allocation": "exact dynamic union; abort on overflow",
+  "admission_rate": "online full body velocity; full.closing; no future targets/commands",
+  "original_actor_observation_rows": 32,
+  "original_projection_and_exemptions": true,
+  "strict_fifo_steps": 6,
+  "queue_preemption": false,
+  "production_promoted": false,
+  "source_sha256": {
+    "predictive_runner.py": "1d55880a40619e9ceeae44cdbb4630fd6d9886fe520d24c620af0a429473ad74",
+    "predictive_rows.py": "c7f824c0c116d395ced80917c7555b7b116f8038c4c9f934a40af70c97981e7b"
+  }
+}
