@@ -1,0 +1,46 @@
+{
+  "campaign_status": "failed",
+  "jobs": [
+    {
+      "id": "baseline_guard_60317411",
+      "status": "failed",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_joint_guard_20261005_1005/guard_runner.py",
+        "--ckpt",
+        "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+        "--env-yaml",
+        "duo_env_a31_pending_guard.yaml",
+        "--num-envs",
+        "64",
+        "--duration-s",
+        "16",
+        "--seeds",
+        "60317411",
+        "--amps",
+        ".05",
+        "--flows",
+        "risk_burst",
+        "--methods",
+        "system0",
+        "--init-jitter-rad",
+        "0",
+        "--actuator-delay-steps",
+        "6",
+        "--device",
+        "cuda:1",
+        "--headless",
+        "--log-every",
+        "300",
+        "--out",
+        "/mnt/nas/data/lyf/double_hand/safety_joint_guard_20261005_1005/development/baseline_guard_60317411"
+      ],
+      "pid": 4137639
+    }
+  ],
+  "child_protocol_status": "running",
+  "completed_cells": 0,
+  "fresh_holdout_children_launched": 0,
+  "reason": "A1 inherited512gate violates1024 total-budget contract; v4 only changes selection seam, not thresholds/physics/seeds; preserve v3 partial development",
+  "source_sha256": "a7a6de100a64983c6690bcd1ffba96fa8e2c55e4519c204d9495eed3fcf52f78"
+}

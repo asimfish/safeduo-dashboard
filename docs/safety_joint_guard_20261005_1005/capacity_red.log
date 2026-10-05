@@ -1,0 +1,20 @@
+test_v4_A1_620_rows_reaches1024_without_512_front_gate (test_capacity_path.CapacityTests.test_v4_A1_620_rows_reaches1024_without_512_front_gate) ... ERROR
+
+======================================================================
+ERROR: test_v4_A1_620_rows_reaches1024_without_512_front_gate (test_capacity_path.CapacityTests.test_v4_A1_620_rows_reaches1024_without_512_front_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_joint_guard_20261005_1005/test_capacity_path.py", line 55, in test_v4_A1_620_rows_reaches1024_without_512_front_gate
+    base=trace.original_selected();forecast=full.dists.clone();forecast[:,600:620]=.02
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_joint_guard_20261005_1005/test_capacity_path.py", line 46, in inherited
+    calls.append('inherited512');return select(full,full,union(full,full,full.dists),sph,512)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_mechanism_20261005_causal_obs/mechanism_runner.py", line 30, in select
+    raise ValueError(f'queue-envelope union exceeds declared capacity: {width}>{capacity}; no dropping')
+ValueError: queue-envelope union exceeds declared capacity: 600>512; no dropping
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (errors=1)

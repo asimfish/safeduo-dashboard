@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_joint_guard_20261005_1005/register_campaigns_v2.py", line 59, in <module>
+    dev = build([job(mode, 60317411, dev_bank, 'cuda:1') for mode in ['baseline_guard', 'admission_guard']],
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_joint_guard_20261005_1005/register_campaigns_v2.py", line 59, in <listcomp>
+    dev = build([job(mode, 60317411, dev_bank, 'cuda:1') for mode in ['baseline_guard', 'admission_guard']],
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_joint_guard_20261005_1005/register_campaigns_v2.py", line 40, in job
+    old = json.loads((OLD / 'development_plan_v2.json').read_text())['jobs'][0]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/liyufeng/safeduo/artifacts/safety_mechanism_20261005_causal_obs/development_plan_v2.json'
