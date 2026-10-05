@@ -1,5 +1,5 @@
 {
-  "status": "PENDING_PUBLIC_DELIVERY",
+  "status": "PASS",
   "scientific_evidence_status": "PASS_BOUNDED_EVIDENCE",
   "physical_safety_status": "UNVALIDATED",
   "analyzer_clean_outer_exit_verified": false,
@@ -76,7 +76,14 @@
       "id": "public_delivery_and_archive",
       "required": true,
       "oracle": "exactGithead pagesworkflow success, allownedpublicbytes plusroot readback, rawclosedtwo-read manifest, metadataarchive readback",
-      "status": "PENDING"
+      "status": "PASS",
+      "evidence": [
+        "remote_verification_initial.json",
+        "live_browser_initial.json",
+        "legacy_live_browser_initial.json",
+        "raw_evidence_manifest.json",
+        "metadata_archive_receipt_initial.json"
+      ]
     }
   ],
   "receipts": {
@@ -94,16 +101,34 @@
     "ASTRA_CANDIDATE_REVIEW.md": "9cb8694719a8a81286cb7d9befb8cf097747e94ffec2e063132e379d74f298cf",
     "ASTRA_FINAL_REVIEW.md": "c849e109bda7fcdf860cdd5d41b356ba10fbe0fdc49ad5692abcf579622423a5",
     "ASTRA_FINAL_REVIEW.json": "56b0e74012b8936e68f4a491b60f167912ad1c4d9151b429b1294b8fa0ffce39",
-    "browser.json": "4b5ab459eeebbd00f5cf44b6830969403ef659f14fa915f6d9eef60478281ca5",
+    "browser.json": "94bea5254a45fe5c4cf3bc8cf548810357dfd39827ccbfb2ecd806d89e001c88",
     "legacy_browser.json": "7e541390f3a3c15fa543c3aa1f9fd1c623ee7f07baa58f9a56a1b151862d47e8",
     "main_preservation.json": "7330a903c4a69929fdbc3ff78fad08139d147e6033ae0d8ff4f92e0d111ab8c4",
-    "static_verification.json": "4baa5a0545b2349ab727fb1b4c7ea81d81c76229a4a79eacf77d18ca046cd140",
-    "raw_evidence_manifest.json": "a209da3728e4822d40a475ac04379ad78489a3ec0faaedf7777f69a059336874"
+    "static_verification.json": "1a187592b0eafce12f4454e102267a3e9dd9fa8e928ebe2758d237c25f97b077",
+    "raw_evidence_manifest.json": "a209da3728e4822d40a475ac04379ad78489a3ec0faaedf7777f69a059336874",
+    "remote_verification_initial.json": "2a0aa09fa6683321d08e6a3a310b084ef5e4c806cf1d47892d0161508dcb5225",
+    "live_browser_initial.json": "a10bc347f429cc8736cc314e93252b9f46deb6f518be6b882079ae4066d41420",
+    "legacy_live_browser_initial.json": "f46f289962df378fb080f1ada39764343bf59cff975d4dad4e64d64eb725aa67",
+    "metadata_archive_receipt_initial.json": "5b69faf8f4e2335b2881d8bd63fa3344efa79740d7f64ca3a87529f7d1a7e25b"
   },
   "minimum_actual_six_plane_margin_m": 0.2895304865989604,
   "hardware_approved": false,
   "production_promoted": false,
-  "utc": "2026-10-05T15:21:05.917486+00:00",
-  "scope": "bounded science/local UI/legacy/raw two-read gates pass; exact public readback/live UI/metadata archive still pending",
-  "final_scientific_claim_review_status": "PASS_BOUNDED_SCIENTIFIC_CLAIM_REVIEW"
+  "utc": "2026-10-05T15:48:08.822737+00:00",
+  "scope": "all required bounded scientific/local/live/initial-public evidence and actual initial metadata archive gates passed; physical safety remains UNVALIDATED; final certificate-only deployment and final archive receive separate closure receipts",
+  "final_scientific_claim_review_status": "PASS_BOUNDED_SCIENTIFIC_CLAIM_REVIEW",
+  "verified_public_evidence_commit": "4956c09318382d07bb529fe4d06e02035c84cef1",
+  "initial_metadata_archive_sha256": "7af4d3cc87d88f58c1e2c9404a2dbf31492e13090900bb76e94ad7486070459d",
+  "delivery_transport_recovery": {
+    "receipt": "delivery_transport_recovery.json",
+    "sha256": "639ffa0f4863d08e413f28a292f5e2b132fa2eb8ce0ec6582bd067c86e7a09aa",
+    "scope": "native browser full UI and exact body binding; bounded network retries; original SSL and API/inspector failures retained"
+  },
+  "whitespace_limitations": {
+    "frozen_warning_count": 194,
+    "frozen_files": 4,
+    "binding_receipt": "immutable_artifact_whitespace_binding.json",
+    "sha256": "b423249f03b56724ffd00614ad04a96e84c73c581d36a3bdbfc1f678c0b8ff98",
+    "scope": "original full staged failure retained; preserve frozen reviewed bytes; no physics/source threshold changes"
+  }
 }
