@@ -1,0 +1,43 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SafeDuo · 实际运动预测与随机对照</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#dfebf5;background:#0c1523;line-height:1.65}*{box-sizing:border-box}body{margin:0}main{max-width:1150px;margin:auto;padding:24px}a{color:#82cfff}h1{font-size:clamp(23px,4vw,36px);line-height:1.35}h2{font-size:22px;margin-top:30px}.note,.card{background:#152337;border:1px solid #314259;border-radius:12px;padding:18px;margin:16px 0}.note{border-left:4px solid #e7a33d}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{font-size:26px;color:#83d4cf}.small{color:#aebbd0;font-size:14px}.table{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid #314259;padding:10px;white-space:nowrap}select{max-width:100%;background:#20364c;color:white;border:1px solid #46657c;padding:8px;border-radius:6px}canvas{display:block;width:100%;height:300px}.bad{color:#ff9292}.good{color:#86d2bf}code{overflow-wrap:anywhere}details{margin:14px 0}summary{cursor:pointer}img{max-width:100%}@media(max-width:650px){main{padding:16px}.grid{grid-template-columns:1fr}.card,.note{padding:14px}canvas{height:280px}}
+</style><main>
+<a href="../../#scientific">← 返回科研评测面板</a><h1>实际运动预测与随机对照</h1>
+<p>四臂执行同一条物理轨迹时，四种预测器能否提前识别下一步负几何安全裕度？</p>
+<div class="note" id="verdict">正在读取冻结证据……</div>
+<div class="grid"><div class="card">完整方法窗口<div class="stat" id="complete">—</div></div><div class="card">新随机指令<div class="stat">192</div><div class="small">每个控制器复用相同指令</div></div><div class="card">新初始状态<div class="stat">0</div><div class="small">复用已公开的192个合格初态</div></div></div>
+<h2>实验范围</h2><p>每条轨迹：60步零指令 + 450步持续随机动作 + 450步 IID 指令。四臂分别采样 0.005 / 0.015 / 0.025 / 0.05 弧度幅度，26个关节的方向分量独立采样；持续动作保持 1 / 4 / 15 / 30 / 90 / 180 步。两种随机阶段的顺序在每组内均衡。它们共享连续状态，不能当作两批独立样本。</p>
+<p>执行的是原有全量准入和关节参考包络控制器；预测器只记录结果。保留原始六步执行器 FIFO、演员32条观测和几何豁免规则。违规指仿真球体安全裕度为负，并不等同于网格接触、真实损伤或硬件安全。</p>
+<h2>历史校准与已知外部数据</h2><p>使用上一批已知数据拟合每个关节的非负两系数模型：Δq = a·qd·dt + b·(送达目标−q)。下表仅为历史数据结果，不计入新实验。平均误差较小，也可能漏掉危险尾部。</p><div class="table"><table><thead><tr><th>历史集合</th><th>预测器</th><th>MAE / rad</th><th>RMSE / rad</th><th>最大误差 / rad</th></tr></thead><tbody id="calibration"></tbody></table></div>
+<h2>新实验：物理违规与预测漏报</h2><div id="pending" class="note">完整结果尚未生成；未完成窗口不计作通过。</div>
+<div id="newResults" hidden><p>四种预测共享各控制器的实际物理结果。“漏报”指至少一条下一步非豁免约束实际为负，预测却 ≥ 0。误差统计使用存档的原始 float32 预测和 float64 归约；符号判定不加容差。“近区”是当前几何裕度 ≤ 80 mm 的评测子集。</p>
+<div class="table"><table><thead><tr><th>控制器</th><th>窗口</th><th>违规</th><th>低于−5 mm</th></tr></thead><tbody id="physical"></tbody></table></div>
+<div class="table"><table><thead><tr><th>控制器 / 预测器</th><th>全量 MAE / mm</th><th>近区 RMSE / mm</th><th>近区最大 / mm</th><th>漏报窗口</th><th>漏报环境步</th><th>掩码未变漏报窗口</th></tr></thead><tbody id="models"></tbody></table></div>
+<details><summary>各随机种子、各阶段的完整统计与掩码变化</summary><p>零指令前缀、持续动作与 IID 的误差和漏报步分别存于下面文件的 <code>regimes</code> 字段；状态连续，阶段比较不构成独立因果实验。<a href="results.json">打开完整统计 JSON</a>。</p><div class="table"><table><thead><tr><th>控制器 / 指令种子</th><th>违规</th><th>零 / 持续 / IID 违规窗口</th><th>新变为非豁免的环境步</th></tr></thead><tbody id="seeds"></tbody></table></div></details>
+<h2>192个案例：两种控制器的实际曲线</h2><label>筛选 <select id="filter"><option value="all">全部案例</option><option value="bad">出现物理违规</option><option value="miss">经验预测器出现漏报</option></select></label> <label>案例 <select id="case"></select></label><p class="small" id="caseMeta"></p><div class="card"><canvas id="curve" aria-label="实际四类几何安全裕度曲线"></canvas><div class="small">红色：全量准入；青色：关节参考包络。实线为每帧四类约束的最小实际裕度。零线以下为严格几何违规。曲线可缩放辨识的能力不代替原始数值判定。</div></div><div class="table"><table><thead><tr><th>控制器</th><th>最小裕度 / mm</th><th>平均归一化关节跨度</th><th>关节 L1 路径 / rad</th><th>经验预测器漏报</th></tr></thead><tbody id="caseRows"></tbody></table></div>
+</div>
+<h2>证据与失败记录</h2><p>初次六个启动均在首步物理执行前因观察接口错误中止：0个完整窗口、384个无效的计划窗口。它们与修正后的完整运行分开记录；修正后沿用同一模型、输入和统计规则。另有一次重试驱动因父目录未建立而未能启动子进程。没有把这些情况计作安全通过。</p>
+<p><a href="PLAN.md">冻结协议</a> · <a href="ADR.md">预测接口决策</a> · <a href="CALIBRATION.json">校准来源与哈希</a> · <a href="model.json">冻结系数</a> · <a href="SEAM_FAILURE.md">接口故障与回归证据</a> · <a href="software_tests_v2.log">统计与随机输入测试</a> · <a href="seam_regression.log">接口回归测试</a> · <a href="PUBLIC_MANIFEST.json">公开文件哈希清单</a></p>
+<p>本轮没有新增相机回放。<a href="../safety_feasible_guard_20261005_2100/">上一批完整曲线、468张九视角图像和首次失败证据</a>保留在原页面；其中数值与相机重放未能逐位一致，图像绑定的是各自保存状态。</p><p class="small" id="updated"></p>
+</main><script>
+const labels={static:'静止关节',target_snap:'送达目标瞬移',velocity:'速度 Euler',empirical:'经验目标＋速度'};
+const modes={admission_full:'全量准入',joint_reference:'关节参考包络'};
+const fmt=(x,n=5)=>x===null||x===undefined?'—':Number(x).toFixed(n);
+const mm=x=>x===null||x===undefined?null:x*1000;
+const tr=(cells)=>'<tr>'+cells.map(c=>'<td>'+c+'</td>').join('')+'</tr>';
+let evidence,current;const q=id=>document.getElementById(id);
+fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
+evidence=d;q('complete').textContent=d.completed_windows+' / 384';q('updated').textContent='证据生成时间（UTC）：'+d.updated_utc;
+q('verdict').textContent=d.status==='complete'?'完整观察实验已复算。此处量化误差与危险漏报；预测器未参与控制，不能据此宣称已经安全。':'物理实验运行中，完整新结果尚未复算。历史平均误差改善，但最大误差仍较大；不能当作安全保证。';
+for(const [key,rows] of Object.entries(d.calibration.results))
+ for(const [name,r] of Object.entries(rows))q('calibration').innerHTML+=tr([key,labels[name]||name,fmt(r.mae_rad,7),fmt(r.rmse_rad,7),fmt(r.max_rad,6)]);
+if(d.status!=='complete')return;
+q('pending').hidden=true;q('newResults').hidden=false;
+for(const g of d.groups){q('physical').innerHTML+=tr([modes[g.mode],g.windows,g.violations,g.deep]);for(const p of g.predictions)q('models').innerHTML+=tr([modes[g.mode]+' / '+labels[p.model],fmt(mm(p.all_nonexempt.mae_m),4),fmt(mm(p.near_pre80mm.rmse_m),4),fmt(mm(p.near_pre80mm.max_m),3),p.missed_windows+' / 192',p.missed_env_steps,p.stable_mask_missed_windows]);}
+for(const r of d.rows)q('seeds').innerHTML+=tr([modes[r.mode]+' / '+r.id.split('_').at(-1),r.violations,r.regime_bad_windows.join(' / '),r.newly_nonexempt_env_steps]);
+q('filter').addEventListener('change',fillCases);q('case').addEventListener('change',drawCase);window.addEventListener('resize',()=>{if(current)draw(current)});fillCases();
+}).catch(e=>{q('verdict').textContent='证据读取失败：'+e.message;throw e});
+function fillCases(){const f=q('filter').value;const cases=evidence.cases.filter(c=>f==='all'||(f==='bad'?c.controllers.some(x=>x.bad):c.controllers.some(x=>x.model_misses.empirical)));q('case').innerHTML=cases.map(c=>'<option value="'+c.id+'">'+c.id+' · 指令种子 '+c.command_seed+'</option>').join('');q('caseMeta').textContent=cases.length+' / 192个案例';if(cases.length)drawCase();else{current=null;q('caseRows').innerHTML='';const c=q('curve');c.getContext('2d').clearRect(0,0,c.width,c.height);}}
+async function drawCase(){const id=q('case').value;const r=await fetch('cases/'+id+'.json');if(!r.ok)throw Error('case '+r.status);const c=await r.json();if(q('case').value!==id)return;current=c;draw(c);q('caseRows').innerHTML=c.controllers.map(x=>tr([modes[x.mode],fmt(x.min_margin_m*1000,5),fmt(x.normalized_joint_span_percent,3)+'%',fmt(x.joint_l1_path_rad,3),x.model_misses.empirical?'是':'否'])).join('');}
+function draw(c){const canvas=q('curve'),w=canvas.clientWidth,h=canvas.clientHeight,dpr=window.devicePixelRatio||1;canvas.width=w*dpr;canvas.height=h*dpr;const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);const values=c.controllers.map(x=>x.margins.map(a=>Math.min(...a)*1000));const low=Math.min(0,...values.flat()),high=Math.max(1,...values.flat());const pad=Math.max(1,(high-low)*.05),lo=low-pad,hi=high+pad;const X=i=>52+(i+1)/960*(w-70),Y=v=>20+(hi-v)/(hi-lo)*(h-55);ctx.fillStyle='#adbdd0';ctx.strokeStyle='#4f647c';ctx.font='11px system-ui';for(let i=0;i<5;i++){const v=lo+(hi-lo)*i/4;ctx.beginPath();ctx.moveTo(50,Y(v));ctx.lineTo(w-15,Y(v));ctx.stroke();ctx.fillText(v.toFixed(1),1,Y(v)+3)}ctx.fillText('mm',1,12);ctx.fillText('0 s',50,h-7);ctx.fillText('16 s',w-44,h-7);ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(50,Y(0));ctx.lineTo(w-15,Y(0));ctx.stroke();for(let k=0;k<values.length;k++){ctx.strokeStyle=k?'#73d6ce':'#ff9191';ctx.lineWidth=1.6;ctx.beginPath();values[k].forEach((v,i)=>i?ctx.lineTo(X(i),Y(v)):ctx.moveTo(X(i),Y(v)));ctx.stroke();}}
+</script></html>
