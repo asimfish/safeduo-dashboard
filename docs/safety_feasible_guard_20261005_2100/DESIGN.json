@@ -1,0 +1,40 @@
+{
+  "schema": "safeduo.feasible_guard_design.v1",
+  "registered_utc": "2026-10-05T13:02:43.923577+00:00",
+  "rows": [
+    {
+      "initial_seed": 1682684799,
+      "command_seed": 278060357
+    },
+    {
+      "initial_seed": 1359116781,
+      "command_seed": 973625877
+    },
+    {
+      "initial_seed": 371796494,
+      "command_seed": 517962307
+    }
+  ],
+  "modes": [
+    "admission_full",
+    "admission_scaled_036",
+    "joint_reference",
+    "joint_repair"
+  ],
+  "command_scale_control": 0.36,
+  "scale_source": "fixed before new outcomes from previous admission vs joint exec/input ratio .2039268/.5632923; approximate intensity control, actual movement equivalence must be measured",
+  "development": "all previous 192 cases known; development candidate run first previous bank and tape; no new-coverage claim",
+  "holdout": "3 independent OS-secrets seed pairs, policy-blind initial qualification; 192 fresh paired cases, 768 correlated method windows",
+  "raw": "/mnt/nas/data/lyf/double_hand/safety_feasible_guard_20261005_2100",
+  "initial_sampler": "unchanged risk_bank six strata8 each plus16 globalLHS; no outcome filtering",
+  "threshold": "original nonexempt strict geometric margin<0; deep<-.005m; no collision epsilon",
+  "delay_steps": 6,
+  "steps": 960,
+  "mechanism": "post-project residual triggered LP minimax repair under hard reachable bounds; alpha infeasibility explicitly measured; modeled positive safety slack is never claimed safe",
+  "primary_comparison": [
+    "joint_reference",
+    "joint_repair"
+  ],
+  "hardware_authorized": false,
+  "production_promoted": false
+}
