@@ -1,0 +1,1 @@
+SafeDuo tracking-reserve simulation evidence. Original images bind their own actual camera states. Full scoring, failures and reproduction are at https://asimfish.github.io/safeduo-dashboard/docs/safety_tracking_reserve_20261006_1535/ . No hardware safety approval.
