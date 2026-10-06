@@ -1,0 +1,30 @@
+{
+  "status": "REGISTERED_CONTROLLED_MEASUREMENT_DEVELOPMENT",
+  "created_utc": "2026-10-06T00:33:05.109364+00:00",
+  "source_sha256": "d6acb9d4c67d2c48e98208876db4f1883a833ff2a84b926b5d3d521272596fbd",
+  "dt_s": 0.008333333333333333,
+  "steps": 360,
+  "masses_kg": [
+    0.2,
+    0.4,
+    0.8
+  ],
+  "settle_start": 240,
+  "criteria": {
+    "separated_force_n": 1e-06,
+    "wrong_partner_force_n": 1e-06,
+    "weight_relative_error": 0.05,
+    "height_error_m": 0.003,
+    "perpoint_vs_matrix_n": 0.0001
+  },
+  "scope": "known-primitive calibration only, not four-arm final test",
+  "supersedes_runtime_only": "NATIVE_CALIBRATION_FIRST_RUNTIME.json",
+  "runtime": {
+    "cuda_visible_devices": "0,1",
+    "device": "cuda:1",
+    "native_force_tensor_device_required": "cuda:1"
+  },
+  "supersedes_teardown_only": "NATIVE_SHUTDOWN_DIAGNOSIS.json",
+  "installed_context_sha256": "d95f2eaa138b4fff845ac72439caa2eca5deab4f0d5609e06f163d20eef4df93",
+  "cleanup": "documented clear_instance before ordinary app.close"
+}

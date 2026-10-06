@@ -1,6 +1,6 @@
 """Separate terminal gate for evidence integrity, scientific scope and publication."""
 from pathlib import Path
-import argparse,hashlib,json,os,re,subprocess,threading,functools,http.server,csv
+import argparse,hashlib,json,os,re,subprocess,threading,functools,http.server,csv,gzip
 import numpy as np
 HERE=Path(__file__).resolve().parent
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
@@ -32,6 +32,17 @@ def main():
     assert sha(doc/'prior_evidence/analysis.json')==review['source_sha256']
     assert review['tasks']==192 and review['task_pass']==19 and review['task_fail']==173
     assert review['failed_gates']==old_source['totals']['failed_gates']
+    if data.get('native_calibration'):
+        receipt=data['native_calibration'];native=doc/'native_calibration';r=receipt['result']
+        assert receipt['process_exit_code']==0 and receipt['full_G0_pass'] is False
+        assert r['status']=='PASS' and r['force_tensor_devices']==['cuda:1'] and r['physics_steps']==360
+        assert sha(native/'native_trace.npz')==r['trace_sha256']
+        assert sha(native/'native_contact_calibration_v3.py')==receipt['source_sha256']
+        assert sha(native/'NATIVE_CALIBRATION_REGISTRATION_V3.json')==r['registration_sha256']
+        for name,meta in json.loads((native/'LOG_MANIFEST.json').read_text()).items():
+            blob=gzip.decompress((native/meta['public_gzip']).read_bytes())
+            assert hashlib.sha256(blob).hexdigest()==meta['raw_sha256']
+            if name=='native_calibration_3.log':assert b'[Error]' not in blob
     for name in ('all_joint_pairs.csv','all_window_motion.csv'):
         with (doc/name).open() as f:rows=list(csv.DictReader(f))
         assert len(rows)==(1300 if 'pairs' in name else 768)

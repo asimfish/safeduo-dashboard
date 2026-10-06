@@ -1,6 +1,15 @@
 # 下一执行点
 
 本目录关闭的是规范设计、封存数据回顾审计及网页交付，不是全面物理实验。
+另已完成3种质量、360步的原生几何体接触校准：
+NATIVE_CALIBRATION_CLOSURE.json，原始数据native_calibration/native_trace.npz
+在公开面板可下载，实际NAS根为同名目录。第三轮正常退出0；第二轮与第三轮
+NPZ逐位相同，软件关闭修复不改变物理数据。只是G0的一项基础证据，不是
+全场景危险oracle或真实夹持验证，最终矩阵方法窗口仍为0。
+第一轮CUDA_VISIBLE_DEVICES=1造成图形枚举异常；0,1显式devicecuda:1解决。
+第二轮app.close触发安装SimulationContext的STOP回调，该回调会在非playing
+状态持续render；最终脚本在普通app.close前调用公开clear_instance取消回调，
+模拟器源码与已有冻结控制器未改动。保留前两轮全部注册、日志与原始数据。
 PROTOCOL.md和原审计脚本已冻结在AUDIT_REGISTRATION.json；不要为下一阶段
 追改此版本。初态贡献是独立登记的补充，不改变原物理端点或旧分母。
 

@@ -107,5 +107,7 @@ def main():
     else:
         anchor='  <section class="sci-note" id="queueEnvelopeEvidence">';assert anchor in text;text=text.replace(anchor,card+'\n'+anchor,1)
     root.write_text(text)
+    if (HERE/'NATIVE_CALIBRATION_CLOSURE.json').exists():
+        import subprocess,sys;subprocess.run([sys.executable,str(HERE/'append_calibration.py'),'--repo',str(args.repo)],check=True)
     print('PRESENTED',len(pair_rows),'pair rows',len(case_rows),'window rows',len(matrix['rows']),'families',d)
 if __name__=='__main__':main()

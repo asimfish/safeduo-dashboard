@@ -29,9 +29,11 @@ def main():
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1')
             assert 'NOT_READY_TO_REGISTER' in page.locator('#readiness').inner_text()
             assert page.locator('#error').inner_text()==''
+            if page.locator('#nativeCalibration').count():
+                assert page.locator('#nativeRows tr').count()==3
             page.screenshot(path=str(a.out/f'panel_{width}.png'),full_page=True)
             page.locator('.heatmaps').screenshot(path=str(a.out/f'pairs_{width}.png'))
-            checks.append(dict(width=width,matrix_categories=[6,8,6,20],pair_journeys=1300,images_loaded=4,document_overflow=False))
+            checks.append(dict(width=width,matrix_categories=[6,8,6,20],pair_journeys=1300,images_loaded=page.locator('img').count(),document_overflow=False))
             # Main-page entry must be present in the actual scientific tab.
             main=browser.new_page(viewport=dict(width=width,height=950));main.goto(a.url.split('/docs/')[0]+'/#scientific',wait_until='domcontentloaded')
             main.locator('[data-tab="scientific"]').click();card=main.locator('#benchmarkProtocolEvidence')
@@ -45,6 +47,10 @@ def main():
     assert len(prior)==192 and sum(r['task_pass']=='True' for r in prior)==19
     for name in ('events_and_mobility','coverage_grid','motion_ranges','prior_task_failures'):
         assert get(a.url+'figures/'+name+'.pdf').startswith(b'%PDF')
+    data=json.loads(get(a.url+'data.json'))
+    if data.get('native_calibration'):
+        assert data['native_calibration']['process_exit_code']==0 and data['native_calibration']['full_G0_pass'] is False
+        assert get(a.url+'figures/native_contact_calibration.pdf').startswith(b'%PDF')
     assert not errors,errors
     result=dict(status='PASS',url=a.url,checks=checks,pair_csv_rows=1300,window_csv_rows=768,prior_task_rows=192,pdf_downloads=4,javascript_errors=errors)
     (a.out/'browser.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
