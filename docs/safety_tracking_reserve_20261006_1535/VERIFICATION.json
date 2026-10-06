@@ -1,0 +1,258 @@
+{
+  "status": "PASS_COMPLETE_SOFTWARE_SCIENTIFIC_EVIDENCE_DELIVERY",
+  "physical_safety_status": "UNVALIDATED",
+  "candidate_decision": "REJECTED_INCREASED_FAILURES",
+  "hardware_approved": false,
+  "production_promoted": false,
+  "cases": 192,
+  "numeric_method_windows": 576,
+  "invalid_windows": 0,
+  "totals": [
+    {
+      "mode": "joint_reference",
+      "completed_windows": 192,
+      "violations": 24,
+      "deep": 18,
+      "strict_env_steps": 226,
+      "deep_env_steps": 97,
+      "joint_path_l2_mean_rad": 12.363407135009766,
+      "min_nonexempt_mm": -28.146099090576172,
+      "class_violations": [
+        1,
+        0,
+        3,
+        23
+      ],
+      "four_arms_moving_fraction": 0.42898148148148146,
+      "exec_external_l2_ratio": 0.2042599320411682,
+      "max_admitted_rows": 145
+    },
+    {
+      "mode": "tight_reference",
+      "completed_windows": 192,
+      "violations": 179,
+      "deep": 179,
+      "strict_env_steps": 121528,
+      "deep_env_steps": 119434,
+      "joint_path_l2_mean_rad": 3.3756637573242188,
+      "min_nonexempt_mm": -71.83919525146484,
+      "class_violations": [
+        18,
+        0,
+        67,
+        170
+      ],
+      "four_arms_moving_fraction": 0.612199074074074,
+      "exec_external_l2_ratio": 0.0583617202937603,
+      "max_admitted_rows": 113
+    },
+    {
+      "mode": "delay_reserve",
+      "completed_windows": 192,
+      "violations": 179,
+      "deep": 179,
+      "strict_env_steps": 121528,
+      "deep_env_steps": 119434,
+      "joint_path_l2_mean_rad": 3.3756637573242188,
+      "min_nonexempt_mm": -71.83919525146484,
+      "class_violations": [
+        18,
+        0,
+        67,
+        170
+      ],
+      "four_arms_moving_fraction": 0.612199074074074,
+      "exec_external_l2_ratio": 0.0583617202937603,
+      "max_admitted_rows": 113
+    }
+  ],
+  "adaptive_recorded_trajectory_equal_to_fixed_tight": true,
+  "zero_prefix": [
+    {
+      "mode": "joint_reference",
+      "windows": 192,
+      "zero_prefix_strict_windows": 0,
+      "zero_prefix_strict_env_steps": 0,
+      "bounds_excluding_zero_env_steps": 252,
+      "nonzero_effective_target_env_steps": 1986,
+      "maximum_target_drift_rad": 0.18276619911193848
+    },
+    {
+      "mode": "tight_reference",
+      "windows": 192,
+      "zero_prefix_strict_windows": 30,
+      "zero_prefix_strict_env_steps": 699,
+      "bounds_excluding_zero_env_steps": 10852,
+      "nonzero_effective_target_env_steps": 11104,
+      "maximum_target_drift_rad": 0.21015238761901855
+    },
+    {
+      "mode": "delay_reserve",
+      "windows": 192,
+      "zero_prefix_strict_windows": 30,
+      "zero_prefix_strict_env_steps": 699,
+      "bounds_excluding_zero_env_steps": 10852,
+      "nonzero_effective_target_env_steps": 11104,
+      "maximum_target_drift_rad": 0.21015238761901855
+    }
+  ],
+  "camera_images": 486,
+  "camera_groups": 54,
+  "camera_exact_numerical_replay": [
+    {
+      "mode": "joint_reference",
+      "binding_status": "FAIL_EXACT_REPLAY",
+      "q_max_difference": 1.045699119567871
+    },
+    {
+      "mode": "delay_reserve",
+      "binding_status": "FAIL_EXACT_REPLAY",
+      "q_max_difference": 0.5448153018951416
+    }
+  ],
+  "software_review": "Parent9CPU; dedicatedGPT6Astraxhigh38CPU/9mutations, independent576native scoring and scoped realcamera review. PASS applies only to declared software/evidence scope.",
+  "initial_public_commit": "73aba7e3125787a1952308bbb94d01432338c8b9",
+  "fixed_asset_commit": "fd5acc5faeba1e72a20eff28999788100bc171ae",
+  "public_url": "https://asimfish.github.io/safeduo-dashboard/docs/safety_tracking_reserve_20261006_1535/",
+  "evidence_sha256": {
+    "NUMERIC_EXECUTION.json": "75e02dfb571695e08c4f52b464e5e8d52d1cfc60f9dd34baf45c3024a24c22c6",
+    "ALL_ANALYSIS_EXECUTION.json": "d2dc8580dbff1e013811d49f4103bd5e65a5b8b78ffb4b2ba5d53dc563dbc035",
+    "ASTRA_TRACKING_FINAL_REVIEW.json": "c84e2ca09444fbbc4817955b834832588c1762f23547f2de16eb003b82f7c5f6",
+    "ASTRA_TRACKING_FINAL_SCORE.json": "bc33c6e8f167a47192142d78b74d6b2bb08edb776681547ab2941fa282c83991",
+    "first_failure_audit.json": "5f62b9391a70be04fe82cbf58aadd0e8de2ff40f2d0ecb3b599673ae1e8508ac",
+    "FIXED_FEASIBILITY_AUDIT.json": "a2b97421a89f4d71968698c5c44bdaad5c8b883b31da0cea228144ec960daa49",
+    "CAMERA_STATE_AUDIT.json": "cee3446513f40c2e1f45f9bf33ebbcbca593909eb899abb697735a8172724d32",
+    "visual_verification.json": "e9d33a765a6c5f7c53a5de0b869236b910cc6a9e0f49c1ab15a5c475c7cfd549",
+    "ZERO_INTENT_AUDIT.json": "c8ee14f5c19b2eafbec6fad58ada4548b2dfca82faab48ad47d474490c51a4e7",
+    "ADAPTIVE_SATURATION_AUDIT.json": "3164e9b785da05ccafe9bfa37db0c8a7d1f3a01b68ce1076a9b88b7b1d96d7a2",
+    "raw_evidence_manifest.json": "892a62114aa4427e0209bdd03e0539187a921d489b6d09e44d6a16ba1bca443a",
+    "metadata_archive_receipt_initial.json": "a1cf89957136788fd3b2a6ddd58c9807b360f214b25f752b11e6097cf3294c1d",
+    "ASSET_PUBLICATION.json": "746d46ababf9b2e2b14c9532ceebdc67343a85e1ca2c765ca00c914f9d9b10c0",
+    "PUBLIC_initial.json": "4f36e21821fa3d9e50e8f558196068644bd30ff4c42506440b9ea6156192b3f9",
+    "local_browser.json": "5edeb8c83bf3ef4b87d0d0896f5fcd56b9467eacc979396775cc77bed4077378",
+    "live_initial_browser.json": "38ed864c737b5f931d6cf5e19bc74ad9bd19e3ee8f837ae043c3a29b2cf138cc",
+    "static_verification.json": "2e25d8b92199f5e4a030b3db29b8b22c51e8a599a6fac6785163fb4488fcc4f3",
+    "root_change_verification.json": "a06826615234b74296bc29b279dbe09334a2eb1f037f5902a3940049c3c61499",
+    "holdout_results.json": "02d1eb65928820efe1345292cc2b8bb85fe96c986ab4f5aec6fdb30587bf5d19",
+    "REPORT.md": "f4906f51ae79e16fa67fa4d42f1991b0a06ead64463b0d36f085f86827c031e4",
+    "REPRODUCE.md": "d0240db67299f8a026b16cf14c20c80cdcb1c815340196f0b38b2b9b429473c2",
+    "NEXT.md": "c415371b5ffdfc55d6a81b6eb22808c7eddc5f032ecaaf0af6270af42eb1cf1a",
+    "legacy_browser.json": "7e541390f3a3c15fa543c3aa1f9fd1c623ee7f07baa58f9a56a1b151862d47e8",
+    "legacy_live_browser.json": "8bf5ae9cc9b9dd8b28fe35246e97d696a78ccb1a40679bd0aec64fc5eb6a66d7"
+  },
+  "initial_archive": {
+    "status": "PASS_METADATA_TAR_FULL_MEMBER_READBACK",
+    "archive": "/mnt/nas/data/lyf/double_hand/safety_tracking_reserve_20261006_1535/final_evidence/metadata_initial.tar.gz",
+    "archive_sha256": "3674b2ab5134a21ee7a978e3ac3f695d022192faa6a54b268d05b3540a33efb8",
+    "archive_bytes": 18430108,
+    "metadata_count": 263,
+    "metadata_bytes": 95872559,
+    "raw_manifest_sha256": "892a62114aa4427e0209bdd03e0539187a921d489b6d09e44d6a16ba1bca443a",
+    "utc": "2026-10-06T09:40:44.324706+00:00"
+  },
+  "acceptance_matrix": [
+    {
+      "stage": "artifact integrity",
+      "verdict": "PASS",
+      "evidence": [
+        "NUMERIC_EXECUTION.json",
+        "ALL_ANALYSIS_EXECUTION.json",
+        "raw_evidence_manifest.json",
+        "metadata_archive_receipt_initial.json"
+      ]
+    },
+    {
+      "stage": "static quality",
+      "verdict": "PASS",
+      "evidence": [
+        "static_verification.json"
+      ]
+    },
+    {
+      "stage": "focused correctness",
+      "verdict": "PASS",
+      "evidence": [
+        "tracking_tests_shapes_v2.log",
+        "ASTRA_TRACKING_REVIEW.json",
+        "ASTRA_TRACKING_FINAL_SCORE.json",
+        "ASTRA_TRACKING_FINAL_REVIEW.json"
+      ]
+    },
+    {
+      "stage": "regression",
+      "verdict": "PASS",
+      "evidence": [
+        "legacy_browser.json",
+        "legacy_live_browser.json",
+        "root_change_verification.json"
+      ]
+    },
+    {
+      "stage": "security and data",
+      "verdict": "PASS",
+      "evidence": [
+        "static_verification.json",
+        "CAMERA_STATE_AUDIT.json",
+        "ASSET_PUBLICATION.json",
+        "PUBLIC_initial.json"
+      ]
+    },
+    {
+      "stage": "compatibility",
+      "verdict": "PASS",
+      "evidence": [
+        "LP_BACKEND_REGISTRATION.json",
+        "LP_BACKEND_PRECHECK.json",
+        "NUMERIC_EXECUTION.json"
+      ]
+    },
+    {
+      "stage": "native user journey",
+      "verdict": "PASS",
+      "evidence": [
+        "local_browser.json",
+        "live_initial_browser.json",
+        "PUBLIC_initial.json"
+      ]
+    },
+    {
+      "stage": "documentation",
+      "verdict": "PASS",
+      "evidence": [
+        "REPORT.md",
+        "REPRODUCE.md",
+        "NEXT.md"
+      ]
+    }
+  ],
+  "final_publication": "This certificate binds the initial completed deployment; exact final certificate deployment is separately byte-verified and recorded in the final NAS member-readback archive.",
+  "limitations": [
+    "conditioned correlated simulation; no IID reliability or complete26D volume claim",
+    "adaptive and fixed-tight saved trajectories identical; not independent additional random evidence",
+    "frozen-J endpoint risk is not a robust dynamics bound",
+    "continuousfull9021J not persisted; selectedJ only",
+    "actual9-view represented-sphere frustum excludes occlusion/wholemesh/hardware guarantee",
+    "camera binds ownstate and separately reports numerical replay failure",
+    "exploratory zero-intent/saturation diagnostics occurred after observing outcomes; no newrandom denominator or uniquephysicscause proof",
+    "two outer tool sessions returned143; disclosed separately from individually received canonical exit0 for all9numeric,2camera and6analysis children; outer143 cause unestablished"
+  ],
+  "utc": "2026-10-06T09:41:23.422360+00:00",
+  "archived_formatting": {
+    "status": "PASS_ALL_OTHER_OWNED_FORMATTING_AND_EXACT_ARCHIVED_BYTES",
+    "full_staged_diff_check_actual_exit_code": 2,
+    "full_output_log": "staged_diff_check_initial.log",
+    "original_warning_count": 1088,
+    "warning_paths": [
+      "docs/safety_tracking_reserve_20261006_1535/comparison.svg",
+      "docs/safety_tracking_reserve_20261006_1535/dense_audit.py"
+    ],
+    "classification": "standard Matplotlib SVG multiline path trailing spaces and frozen audit-source EOF blank line; archived original bytes retained",
+    "preservation_requirement": "frozen research_source_sha256 and original generated scientific export provenance; no change to primary math, metrics or images",
+    "all_other_owned_staged_diff_check_actual_exit_code": 0,
+    "retained_sha256": {
+      "comparison.svg": "01dcdc98bbb9025cff034d428e539820c2dda465f8bc36f4279ad8e7d52ebda0",
+      "dense_audit.py": "3b208199fcf7d0b23ed64e9a457f6b47def5ccc9583ea84cc0cdb622a678308f"
+    },
+    "utc": "2026-10-06T09:30:30.043011+00:00"
+  }
+}
