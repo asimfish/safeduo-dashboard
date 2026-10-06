@@ -1,0 +1,129 @@
+{
+  "status": "COMPLETE_BOUNDED_METADATA_INVENTORY",
+  "created_utc": "2026-10-06T00:06:32.933472+00:00",
+  "scope": "read existing receipts and source contracts; not reanalysis of all raw physical data, not preregistration of new final trials",
+  "source_bindings": [
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/terminal_quality_gate.json",
+      "sha256": "581656a177be8e625cf729e94808de926aba1a4bed47762293b95d8e90725218"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/delivery_seal.json",
+      "sha256": "4892e69bfe1142248e05be20d94867c1d36bb8a95df27bc1e9d498cfe1b7bb27"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/delivery_integrity.json",
+      "sha256": "ab9b4ee651b2b58a59e51a81a71b4717a008e034146ea316ebadeabc7e1b8058"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/analysis.json",
+      "sha256": "c1c5b662eb84e01d9c2db8ae316fb964ceb5668d2e310ec9e3c82ca5696b7364"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/protocol.json",
+      "sha256": "2f1d831b85a88b86a723532078d3995f91f7a9c67f2fece1e6beb37d99a0c92b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/pressure_analysis.json",
+      "sha256": "f8b7c2d6929bcae5fb7b195e12757a43784d0399aa7b9f3b033def4aa75b676b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/block_00/pair_contact_manifest.json",
+      "sha256": "c2bfff2bd5112ade33e196d8186e88f660999d13356a9d9179fb83c8bd0cda55"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/block_00/support_contact_manifest.json",
+      "sha256": "4680411e6318cbd58b3791806f368612e35711e2b930ecc3abac7242d8246f13"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/grasp_fix_20260918/full_raw_summary.json",
+      "sha256": "0983073e1f190307155ae39e296edfaafcb0243697d1efe62e39350b5bd61084"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/contact_gated_grasp.py",
+      "sha256": "deaee8cc125ab8e30f678b1225d082578cae11b64fbc8dcd281294d474e9646b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/partner_contact_view.py",
+      "sha256": "3508f5296d3462338a3afeabf8383d16cfeb22d82505589b85fd7f89f435f1e5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/contact_parity.py",
+      "sha256": "994608427693bbe2c013e2f71241e058d4af2ed4146f2ab1c87a279b0033b683"
+    }
+  ],
+  "historical_two_pair_physical": {
+    "tasks": 192,
+    "pass_count": 19,
+    "fail_count": 173,
+    "sphere_violation_env_steps": 92,
+    "measurement_status": "FAIL_UNCALIBRATED",
+    "measurement_four_gate_dual_pass": 12,
+    "native_contact_manifests_present": true,
+    "task": "two_pair_pdz_uax07",
+    "statistical_scope": "bounded designed sample, NOT IID Bernoulli trials; no pooled binomial confidence bound or full domain safety claim",
+    "approved": false,
+    "limitation": "one two-pair task family, task success failures and uncalibrated measurement; cannot fill eight task families or independent full-scene hazard oracle"
+  },
+  "earlier_grasp": {
+    "objects": {
+      "beam_neg": {
+        "max_lift_m": 0.07829070091247559,
+        "paired_contact_while_lifted_s": 7.533032,
+        "final_placement_error_m": 0.009005866474069738,
+        "last_second_drift_m": 3.1828894262453654e-08,
+        "rest_z_error_m": 5.960464477539063e-08,
+        "peak_hand_force_N": {
+          "F_L": 205.96095526218414,
+          "U_R": 304.6205816268921
+        },
+        "physical_grasp_pass": true,
+        "place_and_release_pass": true
+      },
+      "beam_pos": {
+        "max_lift_m": 0.08340680599212646,
+        "paired_contact_while_lifted_s": 7.683026,
+        "final_placement_error_m": 0.007968729330263038,
+        "last_second_drift_m": 1.4901161193847656e-08,
+        "rest_z_error_m": 5.960464477539063e-08,
+        "peak_hand_force_N": {
+          "F_R": 134.89429891109467,
+          "U_L": 175.54505729675293
+        },
+        "physical_grasp_pass": true,
+        "place_and_release_pass": true
+      }
+    },
+    "criteria": {
+      "lift_m": 0.05,
+      "two_hand_contact_s": 0.25,
+      "contact_force_N": 0.1,
+      "placement_error_m": 0.02,
+      "last_second_drift_m": 0.005,
+      "rest_z_error_m": 0.005,
+      "note": "Separate per-object verification; legacy >=8cm displacement contradicts 6cm planned translation and is retained above."
+    },
+    "original_task_verdict": {
+      "success": false,
+      "reason": "moved 0.061 < 0.08 m",
+      "max_lift_m": 0.0783,
+      "displacement_m": 0.0614,
+      "place_err_m": 0.009,
+      "final_z": 0.825,
+      "settle_move_m": 0.0,
+      "place_xy": [
+        -0.05,
+        -0.36
+      ],
+      "radius_m": 0.1,
+      "min_disp_m": 0.08
+    },
+    "limitation": "old explicitly bounded lift/contact/release criteria; not a PASS under newly chosen100mm/2s calibration task"
+  },
+  "implementation_inventory": {
+    "partner_contact": "exact hand/plank attribution implemented; not all robot/table/payload pairs",
+    "constraint_grasp": "explicit fixed-joint-assisted N=1 support; not friction-only grasp",
+    "legacy_contact_parity": "net-force script cannot attribute partner and is explicitly a skeleton"
+  },
+  "new_protocol_readiness": "no PASS receipts have been registered to the new final protocol; this does not assert that no mechanism or old physical evidence exists"
+}

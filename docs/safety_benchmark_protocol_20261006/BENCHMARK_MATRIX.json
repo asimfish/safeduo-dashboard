@@ -1,0 +1,315 @@
+{
+  "schema": "safeduo.standard_research_design.v1",
+  "rows": [
+    {
+      "id": "iid_joint",
+      "name": "每步独立关节随机",
+      "category": "random_motion",
+      "variants": "four arms,6 risk pairs,wide/global and boundary",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "id": "mixed_hold",
+      "name": "多保持长度随机",
+      "category": "random_motion",
+      "variants": "four arms,6 risk pairs,wide/global and boundary",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "id": "smooth_correlated",
+      "name": "平滑/相关随机",
+      "category": "random_motion",
+      "variants": "four arms,6 risk pairs,wide/global and boundary",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "id": "stratified_workspace",
+      "name": "广域分层初态",
+      "category": "random_motion",
+      "variants": "four arms,6 risk pairs,wide/global and boundary",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "id": "synchronized_crossing",
+      "name": "四臂相向/交叉/让行",
+      "category": "random_motion",
+      "variants": "four arms,6 risk pairs,wide/global and boundary",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "id": "boundary_adversarial",
+      "name": "开发冻结边界/对抗流",
+      "category": "random_motion",
+      "variants": "four arms,6 risk pairs,wide/global and boundary",
+      "status": "DESIGN_ONLY"
+    },
+    {
+      "id": "single_pick_place",
+      "name": "单臂抓放",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L"
+        ],
+        [
+          "F_R"
+        ],
+        [
+          "U_L"
+        ],
+        [
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "pair_handover",
+      "name": "六臂对交接",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L",
+          "F_R"
+        ],
+        [
+          "F_L",
+          "U_L"
+        ],
+        [
+          "F_L",
+          "U_R"
+        ],
+        [
+          "F_R",
+          "U_L"
+        ],
+        [
+          "F_R",
+          "U_R"
+        ],
+        [
+          "U_L",
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "pair_colift",
+      "name": "六臂对共抬",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L",
+          "F_R"
+        ],
+        [
+          "F_L",
+          "U_L"
+        ],
+        [
+          "F_L",
+          "U_R"
+        ],
+        [
+          "F_R",
+          "U_L"
+        ],
+        [
+          "F_R",
+          "U_R"
+        ],
+        [
+          "U_L",
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "two_pair_transport",
+      "name": "两对同步搬运",
+      "category": "real_task",
+      "variants": [
+        [
+          [
+            "F_L",
+            "F_R"
+          ],
+          [
+            "U_L",
+            "U_R"
+          ]
+        ],
+        [
+          [
+            "F_L",
+            "U_L"
+          ],
+          [
+            "F_R",
+            "U_R"
+          ]
+        ],
+        [
+          [
+            "F_L",
+            "U_R"
+          ],
+          [
+            "F_R",
+            "U_L"
+          ]
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "four_shared_payload",
+      "name": "四臂共享载荷",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L",
+          "F_R",
+          "U_L",
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "four_cross_transport",
+      "name": "四臂相交搬运",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L",
+          "F_R",
+          "U_L",
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "coordinated_assembly",
+      "name": "协作装配",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L",
+          "F_R",
+          "U_L",
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "dynamic_obstacle",
+      "name": "突发障碍与让行",
+      "category": "real_task",
+      "variants": [
+        [
+          "F_L",
+          "F_R",
+          "U_L",
+          "U_R"
+        ]
+      ],
+      "difficulties": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "status": "G0_REQUIRED"
+    },
+    {
+      "id": "latency",
+      "name": "固定延迟/抖动/丢帧",
+      "category": "robustness",
+      "status": "DOMAIN_AND_G0_REQUIRED"
+    },
+    {
+      "id": "perception",
+      "name": "噪声/遮挡/时间错位",
+      "category": "robustness",
+      "status": "DOMAIN_AND_G0_REQUIRED"
+    },
+    {
+      "id": "payload",
+      "name": "载荷/对象变化",
+      "category": "robustness",
+      "status": "DOMAIN_AND_G0_REQUIRED"
+    },
+    {
+      "id": "physical_parameters",
+      "name": "摩擦/阻尼/执行器变化",
+      "category": "robustness",
+      "status": "DOMAIN_AND_G0_REQUIRED"
+    },
+    {
+      "id": "long_horizon",
+      "name": "16/60/180s长时与漂移",
+      "category": "robustness",
+      "status": "DOMAIN_AND_G0_REQUIRED"
+    },
+    {
+      "id": "unseen_layout",
+      "name": "未见布局/物体",
+      "category": "robustness",
+      "status": "DOMAIN_AND_G0_REQUIRED"
+    }
+  ],
+  "baselines": [
+    "raw_task_policy",
+    "target_speed_only",
+    "original_backstop",
+    "system0_reference",
+    "frozen_candidate"
+  ],
+  "final_minimum_independent_seed_blocks": 20,
+  "cases_per_block": 64,
+  "sample_size_status": "power and dependence estimation required on development data before final input registration",
+  "final_inputs_registered": false,
+  "final_protocol_experiments_executed": 0,
+  "primary_comparison": "candidate vs system0_reference; full-window event risk plus safe task success/mobility",
+  "protocol_sha256": "1b21f75deed0d09e728c6be05441fbf181e2a244d94a5d344a9179027519d903"
+}

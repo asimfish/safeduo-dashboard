@@ -1,0 +1,123 @@
+{
+  "status": "PASS_PRIOR_OUTCOME_TABLE_CROSSCHECK",
+  "scope": "known historical outcome table, not new experiments or reanalysis of dense physics",
+  "source_sha256": "c1c5b662eb84e01d9c2db8ae316fb964ceb5668d2e310ec9e3c82ca5696b7364",
+  "tasks": 192,
+  "task_pass": 19,
+  "task_fail": 173,
+  "failures_overlap": true,
+  "failed_gates": {
+    "beam700": {
+      "xy": 64,
+      "tilt": 43,
+      "lift": 56,
+      "height": 43,
+      "official_violation": 19,
+      "resets": 0
+    },
+    "beam300": {
+      "xy": 142,
+      "tilt": 67,
+      "lift": 55,
+      "height": 66,
+      "official_violation": 19,
+      "resets": 0
+    }
+  },
+  "old_design_factors": [
+    {
+      "key": "beam700:dx",
+      "low": -0.02,
+      "high": 0.02,
+      "unit": "m"
+    },
+    {
+      "key": "beam700:dy",
+      "low": -0.02,
+      "high": 0.02,
+      "unit": "m"
+    },
+    {
+      "key": "beam700:yaw_delta",
+      "low": -8.0,
+      "high": 8.0,
+      "unit": "deg"
+    },
+    {
+      "key": "beam700:mass_scale",
+      "low": 0.8,
+      "high": 1.2,
+      "unit": "ratio"
+    },
+    {
+      "key": "beam700:friction_scale",
+      "low": 0.6,
+      "high": 1.4,
+      "unit": "ratio"
+    },
+    {
+      "key": "beam300:dx",
+      "low": -0.02,
+      "high": 0.02,
+      "unit": "m"
+    },
+    {
+      "key": "beam300:dy",
+      "low": -0.02,
+      "high": 0.02,
+      "unit": "m"
+    },
+    {
+      "key": "beam300:yaw_delta",
+      "low": -8.0,
+      "high": 8.0,
+      "unit": "deg"
+    },
+    {
+      "key": "beam300:mass_scale",
+      "low": 0.8,
+      "high": 1.2,
+      "unit": "ratio"
+    },
+    {
+      "key": "beam300:friction_scale",
+      "low": 0.6,
+      "high": 1.4,
+      "unit": "ratio"
+    }
+  ],
+  "old_pair_exposed_episodes": {
+    "F_L-F_R": 0,
+    "F_L-U_L": 0,
+    "F_L-U_R": 0,
+    "F_R-U_L": 0,
+    "F_R-U_R": 0,
+    "U_L-U_R": 192
+  },
+  "by_split": {
+    "development": {
+      "n": 128,
+      "pass": 12
+    },
+    "heldout": {
+      "n": 64,
+      "pass": 7
+    }
+  },
+  "by_kind": {
+    "nominal": {
+      "n": 3,
+      "pass": 0
+    },
+    "lhs": {
+      "n": 141,
+      "pass": 18
+    },
+    "corner": {
+      "n": 48,
+      "pass": 1
+    }
+  },
+  "statistical_scope": "bounded designed sample, NOT IID Bernoulli trials; no pooled binomial confidence bound or full domain safety claim",
+  "measurement_uncalibrated": true
+}

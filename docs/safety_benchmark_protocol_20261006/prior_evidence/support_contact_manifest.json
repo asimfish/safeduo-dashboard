@@ -1,0 +1,48 @@
+{
+  "schema": "safeduo.direct_table_normal.v1",
+  "objects": {
+    "beam700": "/World/envs/env_0/Obj_beam700",
+    "beam300": "/World/envs/env_0/Obj_beam300"
+  },
+  "tables": {
+    "TableF": "/World/envs/env_0/TableF",
+    "TableU": "/World/envs/env_0/TableU"
+  },
+  "table_collider_paths": {
+    "TableF": [
+      "/World/envs/env_0/TableF/geometry/mesh"
+    ],
+    "TableU": [
+      "/World/envs/env_0/TableU/geometry/mesh"
+    ]
+  },
+  "filter_shape_paths": [
+    "/World/envs/env_0/TableF/geometry/mesh",
+    "/World/envs/env_0/TableU/geometry/mesh"
+  ],
+  "sensors": [
+    {
+      "id": "table_support_beam700",
+      "object": "beam700",
+      "body_path": "/World/envs/env_0/Obj_beam700",
+      "report_api_preexisting": false,
+      "filters": [
+        "TableF",
+        "TableU"
+      ]
+    },
+    {
+      "id": "table_support_beam300",
+      "object": "beam300",
+      "body_path": "/World/envs/env_0/Obj_beam300",
+      "report_api_preexisting": false,
+      "filters": [
+        "TableF",
+        "TableU"
+      ]
+    }
+  ],
+  "quantity": "filtered normal force on each beam from each static table, N; not friction, wrench or impulse",
+  "sampling": "last physics substep read after control step; not substep maximum or full average",
+  "nonreport_USD_attributes_and_APIs_unchanged": true
+}

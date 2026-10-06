@@ -1,0 +1,62 @@
+{
+  "name": "grasp_fixed_full_raw_20260918",
+  "original_task_verdict": {
+    "success": false,
+    "reason": "moved 0.061 < 0.08 m",
+    "max_lift_m": 0.0783,
+    "displacement_m": 0.0614,
+    "place_err_m": 0.009,
+    "final_z": 0.825,
+    "settle_move_m": 0.0,
+    "place_xy": [
+      -0.05,
+      -0.36
+    ],
+    "radius_m": 0.1,
+    "min_disp_m": 0.08
+  },
+  "robot_violation_steps": 0,
+  "robot_margin_m": {
+    "cross": 0.28403,
+    "self_F": 0.02308,
+    "self_U": 0.05037,
+    "table": 0.00033
+  },
+  "objects": {
+    "beam_neg": {
+      "max_lift_m": 0.07829070091247559,
+      "paired_contact_while_lifted_s": 7.533032,
+      "final_placement_error_m": 0.009005866474069738,
+      "last_second_drift_m": 3.1828894262453654e-08,
+      "rest_z_error_m": 5.960464477539063e-08,
+      "peak_hand_force_N": {
+        "F_L": 205.96095526218414,
+        "U_R": 304.6205816268921
+      },
+      "physical_grasp_pass": true,
+      "place_and_release_pass": true
+    },
+    "beam_pos": {
+      "max_lift_m": 0.08340680599212646,
+      "paired_contact_while_lifted_s": 7.683026,
+      "final_placement_error_m": 0.007968729330263038,
+      "last_second_drift_m": 1.4901161193847656e-08,
+      "rest_z_error_m": 5.960464477539063e-08,
+      "peak_hand_force_N": {
+        "F_R": 134.89429891109467,
+        "U_L": 175.54505729675293
+      },
+      "physical_grasp_pass": true,
+      "place_and_release_pass": true
+    }
+  },
+  "criteria": {
+    "lift_m": 0.05,
+    "two_hand_contact_s": 0.25,
+    "contact_force_N": 0.1,
+    "placement_error_m": 0.02,
+    "last_second_drift_m": 0.005,
+    "rest_z_error_m": 0.005,
+    "note": "Separate per-object verification; legacy >=8cm displacement contradicts 6cm planned translation and is retained above."
+  }
+}

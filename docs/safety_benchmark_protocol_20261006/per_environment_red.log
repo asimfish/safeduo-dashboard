@@ -1,0 +1,23 @@
+.E....
+======================================================================
+ERROR: test_each_environment_uses_its_own_bounds (test_coverage.Tests.test_each_environment_uses_its_own_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_benchmark_protocol_20261006/test_coverage.py", line 23, in test_each_environment_uses_its_own_bounds
+    a,b,outs,states=histograms(q,limits)
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_benchmark_protocol_20261006/coverage.py", line 10, in histograms
+    else:lim=np.broadcast_to(lim,np.asarray(q).shape+(2,))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/numpy/lib/stride_tricks.py", line 413, in broadcast_to
+    return _broadcast_to(array, shape, subok=subok, readonly=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/numpy/lib/stride_tricks.py", line 349, in _broadcast_to
+    it = np.nditer(
+         ^^^^^^^^^^
+ValueError: operands could not be broadcast together with remapped shapes [original->remapped]: (2,26,2)  and requested shape (4,26,2)
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.040s
+
+FAILED (errors=1)
