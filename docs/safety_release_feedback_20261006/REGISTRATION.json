@@ -1,0 +1,824 @@
+{
+  "trajectory": "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/task_qualified_two_pair.npz",
+  "env_yaml": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/env_random_base.yaml",
+  "checkpoint": "/home/liyufeng/safeduo/artifacts/runs/a27_v7_r18_s46_coop/model_last.pt",
+  "nominal_centers": [
+    [
+      0.5,
+      0,
+      0.84
+    ],
+    [
+      -0.4,
+      0,
+      0.84
+    ]
+  ],
+  "nominal_yaws_rad": [
+    0.0,
+    1.5707963267948966
+  ],
+  "sizes_m": [
+    [
+      0.04,
+      0.7,
+      0.08
+    ],
+    [
+      0.04,
+      0.3,
+      0.08
+    ]
+  ],
+  "goals_local_m": [
+    [
+      0.37,
+      0,
+      0.84
+    ],
+    [
+      -0.5,
+      0,
+      0.84
+    ]
+  ],
+  "views": {
+    "top": {
+      "eye": [
+        0,
+        0.001,
+        3.2
+      ],
+      "target": [
+        0,
+        0,
+        0.86
+      ]
+    },
+    "front": {
+      "eye": [
+        0,
+        -2.4,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.92
+      ]
+    },
+    "side": {
+      "eye": [
+        2.4,
+        0,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.92
+      ]
+    }
+  },
+  "physical_task_gates": {
+    "xy_error_m_le": 0.08,
+    "final_tilt_deg_le": 10,
+    "max_lift_m_gt": 0.05,
+    "final_delta_z_open_interval_m": [
+      -0.006,
+      0.012
+    ],
+    "official_violations_eq": 0,
+    "resets_eq": 0
+  },
+  "supplementary_grasp_description": {
+    "lift_m_gt": 0.05,
+    "both_assigned_hand_normal_n_gt": 0.1,
+    "note": "descriptive last-substep normal; not total friction force or new final calibration"
+  },
+  "native_control_dt_s": 0.016666,
+  "trajectory_grid_dt_s": 0.016666666666666666,
+  "native_limits_readback": "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/NATIVE_LIMITS.json",
+  "schema": "safeduo.release_clearance.development.v1",
+  "registered_utc": "2026-10-06T14:42:17.289343+00:00",
+  "steps": 1800,
+  "methods": [
+    "scheduled_debt",
+    "stationary_release",
+    "clearance_feedback"
+  ],
+  "gate": {
+    "release_start_s": 15.2,
+    "clearance_start_s": 18.7,
+    "support_normal_min_n": 0.1,
+    "bottom_abs_max_m": 0.006,
+    "settled_speed_max_m_s": 0.03,
+    "settled_angular_max_rad_s": 0.3,
+    "tilt_max_deg": 10.0,
+    "hand_normal_max_n": 0.1,
+    "open_error_max_rad": 0.2,
+    "stable_steps": 6,
+    "max_wait_s": 2.0,
+    "reaction_speed_max_m_s": 0.1,
+    "reaction_angular_max_rad_s": 1.0,
+    "reaction_steps": 3
+  },
+  "capture_steps": [
+    899,
+    971,
+    1120,
+    1223,
+    1799
+  ],
+  "capture_envs": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "video_steps": [
+    887,
+    893,
+    899,
+    905,
+    911,
+    917,
+    923,
+    929,
+    935,
+    941,
+    947,
+    953,
+    959,
+    965,
+    971,
+    977,
+    983,
+    989,
+    995,
+    1001,
+    1007,
+    1013,
+    1019,
+    1025,
+    1031,
+    1037,
+    1043,
+    1049,
+    1055,
+    1061,
+    1067,
+    1073,
+    1079,
+    1085,
+    1091,
+    1097,
+    1103,
+    1109,
+    1115,
+    1121,
+    1127,
+    1133,
+    1139,
+    1145,
+    1151,
+    1157,
+    1163,
+    1169,
+    1175,
+    1181,
+    1187,
+    1193,
+    1199,
+    1205,
+    1211,
+    1217,
+    1223,
+    1229,
+    1235,
+    1241,
+    1247
+  ],
+  "scope": "24 intentional development windows; 4 previously qualified small layouts, 3 methods, 2 seeds with clone-slot crossover; not expanded workspace, not IID, no final holdout, no hardware acceptance",
+  "intervention": "stationary_release zeros all 4 arm nominal and R37 debt deltas during 15.2<=phase<18.7; preserves hand schedule and integrated targets. clearance_feedback adds a global 4-arm clearance gate at 18.7, max wait2s, then explicit ABORT; reactive post-contact stop after3 states. No predictive separation or grasp repair claimed.",
+  "common_harness_changes": "12 clones per block; 30s common horizon; clear _pending_cmd before each step for every method and recompute from authoritative per-clone phase; this is a new common baseline, not bitexact reproduction of v5. HandDriver unchanged, common wall-clock hand events complete before clearance wait.",
+  "zero_command_not_zero_physical_velocity": true,
+  "measurement": "84 named robot/table partners at last physics substep plus native net reported force. Static collider inventory retained; net-minus-filtered not full friction/wrench calibration. Native direct pose/velocity and all articulation DOF position/velocity reread around rendering.",
+  "video": "Block0 layout0 in all3 methods selected prospectively: native front-camera frames every6 controlsteps from14.8..20.8s (~10Hz). Gallery top/front/side all24cases at5 fixed times; no interpolation.",
+  "analysis": "Original physical_task_gates retained exactly; additionally report aborts/reference completion, >=80deg tilt, early dual-hand lift, recontact, command and physical path. Accepted task requires original gates AND full reference completion AND no abort. No statistical population reliability inference.",
+  "blocks": [
+    {
+      "physics_seed": 90610741,
+      "cases": [
+        {
+          "env": 0,
+          "layout": 0,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 1,
+          "layout": 1,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 2,
+          "layout": 2,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 3,
+          "layout": 3,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 8.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": -8.0
+            }
+          }
+        },
+        {
+          "env": 4,
+          "layout": 0,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 5,
+          "layout": 1,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 6,
+          "layout": 2,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 7,
+          "layout": 3,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 8.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": -8.0
+            }
+          }
+        },
+        {
+          "env": 8,
+          "layout": 0,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 9,
+          "layout": 1,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 10,
+          "layout": 2,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 11,
+          "layout": 3,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 8.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": -8.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "physics_seed": 90610742,
+      "cases": [
+        {
+          "env": 0,
+          "layout": 1,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 1,
+          "layout": 2,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 2,
+          "layout": 3,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 8.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": -8.0
+            }
+          }
+        },
+        {
+          "env": 3,
+          "layout": 0,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 4,
+          "layout": 1,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 5,
+          "layout": 2,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 6,
+          "layout": 3,
+          "method": "clearance_feedback",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 8.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": -8.0
+            }
+          }
+        },
+        {
+          "env": 7,
+          "layout": 0,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 8,
+          "layout": 1,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 9,
+          "layout": 2,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": -0.02,
+              "dy": -0.02,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.02,
+              "dy": 0.02,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        },
+        {
+          "env": 10,
+          "layout": 3,
+          "method": "scheduled_debt",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 8.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": -8.0
+            }
+          }
+        },
+        {
+          "env": 11,
+          "layout": 0,
+          "method": "stationary_release",
+          "binding": true,
+          "objects": {
+            "beam700": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            },
+            "beam300": {
+              "dx": 0.0,
+              "dy": 0.0,
+              "yaw_delta_deg": 0.0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/env_random_base.yaml": "1562c538fc0b3f5b18e88d3fa39f143f015104b64ba8bbd39cd946d892c6790a",
+    "/home/liyufeng/safeduo/artifacts/runs/a27_v7_r18_s46_coop/model_last.pt": "1b35640fbab1f44125d602b93ed5b81db422d036a85d7c779c070800b7ab3626",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/NATIVE_LIMITS.json": "c3bfdc419a41bd8aecdcbb72e667b28d3489587c3da199ff6f171ecd2ee9b619",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/clock_contract.py": "43bfb1f7759f8dacd787f6fa112085b4df5f34eef212757c90997befca67b607",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/hand_driver.py": "deae94905ccbdd4a4a2f132572c514ee40a6eea5e8902eeb281f04a3eebcdab7",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/object_binding_v3.py": "e6d535ac710caf8d08c2c276ebfbae9740bda9852c2c9bc6c3cc5df8b9b367f8",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/task_qualified_two_pair.npz": "821d4b71ff982865f0b55e8d863d144dde843d2c1eae13aea2c5dcf5c8251a8d",
+    "/home/liyufeng/safeduo/artifacts/safety_release_feedback_20261006/DIAGNOSIS.json": "5925954f3251e02659122b45be7ebbd5ccb1cc7aa9db197b547e3c740bed4550",
+    "/home/liyufeng/safeduo/artifacts/safety_release_feedback_20261006/analyze.py": "fc815310ed4e058a7f9a317d896fa1c68a8d5bb49ad74dcd7cd94929289e3cb8",
+    "/home/liyufeng/safeduo/artifacts/safety_release_feedback_20261006/clearance_gate.py": "f4e4dab0dd14ed8d4812e741fd82233e59b3e9e042a3c431bc2922dcea136787",
+    "/home/liyufeng/safeduo/artifacts/safety_release_feedback_20261006/native_runner.py": "49b3471bb60126f443ad4f81ccaa8a113510973a71d4faf8d84a6cbfac4f9ea5",
+    "/home/liyufeng/safeduo/artifacts/safety_release_feedback_20261006/test_gate.py": "5a3a3e06c5e065d023dea9d4a453bf7ae87822006cc176b1a27d44c211bc5b1f",
+    "/home/liyufeng/safeduo/src/conftest.py": "e798f12d7fc6e5d6d684971a6a70068c4c1757f7bd04f094258f42a6083fac53",
+    "/home/liyufeng/safeduo/src/safeduo/__init__.py": "157b2cdeb552be2d22ea39580fc18c15a559f15a9980ce0ab25d7e337800323b",
+    "/home/liyufeng/safeduo/src/safeduo/algo/__init__.py": "7e49c38b87e6a232226b10247a8674a30029ca79781b5ad1e355b4ba167901d7",
+    "/home/liyufeng/safeduo/src/safeduo/algo/adversary.py": "82eeed802ab14bab9f377451a2b4420c4d4a61103e00dde59ce59438a5049c68",
+    "/home/liyufeng/safeduo/src/safeduo/algo/bc_pretrain_v2.py": "5080e02e2ffc6bb060b5834f152e06a8f5739d5a92fc31e35a13894e798df38d",
+    "/home/liyufeng/safeduo/src/safeduo/algo/bc_smoke_check.py": "a74f7c4f67309891fcd545639dbd80572440f27570106c5b8920c59871c7dc96",
+    "/home/liyufeng/safeduo/src/safeduo/algo/bc_warmstart_run.py": "ee8fc06fd77f1828cd3bdc5d79f9c98eb9b519e45cf550009f37c1bf4e41902c",
+    "/home/liyufeng/safeduo/src/safeduo/algo/beta_actor.py": "f444039e01cb69108e05da06e207c4516e798f7e5f3e90f8403e23cd72226efd",
+    "/home/liyufeng/safeduo/src/safeduo/algo/freeze_sentinel.py": "60acfd95ef30bc99b23aed35819b48259c9bc28cea47ab28382eed88802de88e",
+    "/home/liyufeng/safeduo/src/safeduo/algo/kinematic_env.py": "38b7059deb98a7b31e273613c1a6db85f0cb7eda654790a06f0b3baba8ff6084",
+    "/home/liyufeng/safeduo/src/safeduo/algo/lagrangian.py": "ef80271e2275c4250e7313d49bdff7513dc4c3b4c90281a0a6a4b80fe9adcaf0",
+    "/home/liyufeng/safeduo/src/safeduo/algo/lagrangian_ppo.py": "8f7110b93086b770bbbf22b6e0b46fc78a48ee26e878be55838250bc265f7f46",
+    "/home/liyufeng/safeduo/src/safeduo/algo/reward_shaping.py": "d2bfc9b3c56692aa9cac766215d289a93459c41ddaaab9590ab9de4fc50ff538",
+    "/home/liyufeng/safeduo/src/safeduo/algo/sac_lagrangian.py": "fd6cd8df1a79cc14a77dcbf40892c523c5ae6dfe73a78de562a31c7986c792cd",
+    "/home/liyufeng/safeduo/src/safeduo/algo/train_lagrangian.py": "18db98dd76fb0b72b61636e12b66b108d2818e12c28398e61e335d610918d23d",
+    "/home/liyufeng/safeduo/src/safeduo/algo/train_sac_lagrangian.py": "e7f2865f554d21d01c8ae7f70d8398ffe487d59f6e1759fee67eff6adfab3888",
+    "/home/liyufeng/safeduo/src/safeduo/algo/warmstart_oracle.py": "b2bea8eb18d9d688aaa824cdda2863df9693c5dd43bebe1c94e5abc7f41d1990",
+    "/home/liyufeng/safeduo/src/safeduo/algo/warmstart_protection.py": "e9128e774b1e14a2daa607b971391aab77c0696fbe9814c1b9dbb26b7411f1e1",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/__init__.py": "a71abdfe4c7c7f1f9556f9a029ddd2197f5a3e5d61191eb36aecbb7728767638",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/base.py": "ff9852fa8363927dd591541b0b65640b65d2d1cbb2a787adab4e2a4a3e21cb47",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/estop.py": "eda10e0d2e2b715a1bd3333bed444379360d802857a77334ec716cf2100e049b",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/qp_solvers.py": "f4f4abda5cc18ed495ea6e445153c6d94884535e5dea4f1ef9d6a67a48522b69",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/real_geometry.py": "3665ace273486ea2451302760b32fbac91f6406270080f73cf7dfe1e60ba2505",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/real_geometry_v7.py": "e704a0abbd12902846c89f277002c349f7ed62ac3c806fb6439a53f798e55ff3",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/scene_layout_v8.py": "1f732462f3b2e6063dec5b7c4286943531fc637a98c14669e7343b5211fd8249",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/speed_scaling.py": "e8639ec0148aa4d71f4fc89817798c91d31a7857f848923f0331aed02afebeba",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/strong_cbf_qp.py": "218c5a1894080910f3f2de30bb0561941dab48ecbcf4af575c8707468a2ab8b1",
+    "/home/liyufeng/safeduo/src/safeduo/configs/__init__.py": "1238cf90e72490cbce48de04b8ee9b9491e0fbc1aec9e79efa4961708e6d2725",
+    "/home/liyufeng/safeduo/src/safeduo/delta/__init__.py": "3e47c23a94d5ffe432c4308dfad247407ab078f4826d20a968316bbac0d2396a",
+    "/home/liyufeng/safeduo/src/safeduo/delta/_contract_stub.py": "92572cbe14252faed0b5970c56203155c50bd382b7fc0ca7e80809c46ad9c93f",
+    "/home/liyufeng/safeduo/src/safeduo/delta/a31_replay_mix.py": "3d4bc01a0d51bfffffecaa8fb26bf80a9bfba801eec64a91a07582d625afca46",
+    "/home/liyufeng/safeduo/src/safeduo/delta/d032_plank_plan.py": "b8672b6c4d127d5a71d533066a3fa3b77bc50ba72021e1c0d254b33e3ba4ec39",
+    "/home/liyufeng/safeduo/src/safeduo/delta/grasp_gen.py": "c14708abcdc74822d3b2d3a5d85e9c52a046ba25f38d1ebd9c9389df0f3bd4f5",
+    "/home/liyufeng/safeduo/src/safeduo/delta/hand_grasp_frame.py": "74f7d3ccb4b16cac66542ad8bc92e4c48f9d7c3967d7bfcabd84497f08c622c1",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_coverage.py": "349ba44cc663d327e14b314c8f705a50fb0e7b71c454ae402c9af9777382d95c",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_random.py": "55d311cf3677031fab38b2ee8bf06b76f8c7f6492b4bf87ef0093eab1b33de0c",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_reach_calib_v7.py": "487a73095c9614368c6b7d1cead2fe8ff381b602c4453f85e32f6602e4a8e246",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_workspace.py": "e3d3e6390fc8f8691e6d22f5d364edb7ad6256e2f8772484a295db56e7ac4168",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_workspace_v7.py": "7feaccb149d49100354dcd9976fc5b3b21dcab96e1829619497094967f666b41",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l2_env_source.py": "a834c5643b6fb2b7153e8b3158e8ea3bd94c20d5d9b48a6df1148fa6ed1d35d4",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l2_scenarios.py": "a14e57915586050c66d62c3bd27dd293eedf2da564e27cd60858134d50287442",
+    "/home/liyufeng/safeduo/src/safeduo/delta/make_previews.py": "0b19a736d0757a2c4310f8f07dc04fc207299e064b4f45b8a54c3ca4a101e027",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_plan_server.py": "bc1562838e0aa962117e336e18e69fc062691489b9f54c9f36bf126a505384c6",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_plan_server_v7.py": "455c1a14ddc0e80e63ce9711d41141ac11a331f4b406b2aa3ee2029153295f81",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_record.py": "5abf0359b96c53b7a17c106e9862d160b9cc07490b9796ad9b2070713e2b2e78",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_record_v7.py": "a496abc5b7373338cae77053a0a3a05180695fe692a1c5eb63c0352d74495daa",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_replay.py": "ce4ce2100db2a255eb6e9d4b4f1e651acecd8f2c29caf8742af4ec9fc5652c5a",
+    "/home/liyufeng/safeduo/src/safeduo/delta/smoke_noise.py": "5729fd8b10d46d76423ebf24ef9cc4dcbb5d2a0a51a023992f9e0cd9df54a0b4",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r24.py": "de9c58c007e5e9d85266c61117baf3b3f1b88480edcb5558c38c613a0e411734",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r26.py": "c9d09317c89405d486e423cb7c9bf2d61b233119370ed0fb72281cc186d783be",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r34.py": "45321e527a9306612b148ff5dbe529838ae8320d10605de5d19898facdad3ded",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r35.py": "7aef3461e46ed2960192d14f38ae8c2f40e437e1426a52e07b3b5b90c17237c2",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_record_s9.py": "0d878dd30d699efccc001c0a13051938934146173308b1facf95831a72bdf890",
+    "/home/liyufeng/safeduo/src/safeduo/delta/traj_planner.py": "ae63d97da3e7ffe6714d196a51cd0c0c4fd0f34b567c7b7e2741361477e35531",
+    "/home/liyufeng/safeduo/src/safeduo/delta/trajectory_task_replay.py": "af9ab42be55da9bcfb7ac94376daba4c7988500880f5ddbf297f26e53f0edd62",
+    "/home/liyufeng/safeduo/src/safeduo/envs/__init__.py": "1cee72f5248200ccebd839813a461dc4d0fb8f43caedd7161e9d0fee717ef787",
+    "/home/liyufeng/safeduo/src/safeduo/envs/birth_pose_search.py": "395f4d16f0f81a505663ec313713189181bf01f8561edc6c438e6fc67d691a89",
+    "/home/liyufeng/safeduo/src/safeduo/envs/birth_pose_search_v7.py": "d6a6973cfde5f1f5e796f4fa317a0e0fffbb56a9181d53b11f2b394db8adad8c",
+    "/home/liyufeng/safeduo/src/safeduo/envs/compose_robot_usd.py": "47fd59c48a9413957ab802d7753db169263972331803d4a9469d90a908dcaf89",
+    "/home/liyufeng/safeduo/src/safeduo/envs/contact_gated_grasp.py": "deaee8cc125ab8e30f678b1225d082578cae11b64fbc8dcd281294d474e9646b",
+    "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py": "cd5d3b8b473a7d713da7a4dbc400dcbe231a2dd9563732671c4e3b7047e3fe0c",
+    "/home/liyufeng/safeduo/src/safeduo/envs/partner_contact_view.py": "3508f5296d3462338a3afeabf8383d16cfeb22d82505589b85fd7f89f435f1e5",
+    "/home/liyufeng/safeduo/src/safeduo/envs/task_objects.py": "7bdf386a8041517a7ef645e0280dc923892cdca77b617dda7e72c522c228d5e5",
+    "/home/liyufeng/safeduo/src/safeduo/envs/v4_scene_smoke.py": "8fd7bc1108a439df9beac9764d44e834ffd7ca09958f0962ea12a8635a57ca73",
+    "/home/liyufeng/safeduo/src/safeduo/envs/v7_l1_roam_smoke.py": "95babe3a7749908ad36cfff648bb44b4599c7f05cf009de06b2e4ae568811914",
+    "/home/liyufeng/safeduo/src/safeduo/envs/v7_offline_geometry.py": "2b60d2f9a91474ecb06b6ae42c8801f186d248888bf9f974a29538d4dd69ccf4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/__init__.py": "2e7440fd7b7d2009800eae38ce71fcc2ddecb93857f268d8dae00adf7daa736d",
+    "/home/liyufeng/safeduo/src/safeduo/eval/anticipation_material.py": "b9b71709ae22c81f065b330812ed2cf51f68ab2afbcede46697a50f7cf110f70",
+    "/home/liyufeng/safeduo/src/safeduo/eval/block1_harness.py": "2900dda6d5d0233c35d3f1cad1abe0ec4255cfaff681230f80c68ceacb1e8d7a",
+    "/home/liyufeng/safeduo/src/safeduo/eval/classwise_recut.py": "215d483bf4a678bb00ea8f90b957b812a602f60e23b8eb190bf554e57a430859",
+    "/home/liyufeng/safeduo/src/safeduo/eval/clutch.py": "ed5c2de7c8663af421d2f7339dbd218f0e8d17f7aae4e5f3d3d679fbe4c68ec3",
+    "/home/liyufeng/safeduo/src/safeduo/eval/clutch_eval.py": "09658d68b66434eec9bb7c25c342c7933b9964337176b9c73a86e432ff10a2be",
+    "/home/liyufeng/safeduo/src/safeduo/eval/collision_recut.py": "a101e87c9eb2cae54dd8fb971846afa7bba73ade88a1660aaaaf9947e978c8bd",
+    "/home/liyufeng/safeduo/src/safeduo/eval/coverage_design.py": "caeed8055f8a2112d528ae16768adb7d4d1ce59403e13a93a8059cb9e70c3980",
+    "/home/liyufeng/safeduo/src/safeduo/eval/coverage_matrix.py": "8965694f433ce94ddb6e49169906cb99f43206c2ede10262ec892f6705b307b1",
+    "/home/liyufeng/safeduo/src/safeduo/eval/coverage_source.py": "c1fbfee9d6ca442effdc3b0151f44562056536b040374f3498306b30cbbaa2f1",
+    "/home/liyufeng/safeduo/src/safeduo/eval/d032_plank_bundle.py": "18d16ec1e38e93ae9198d979ede8a9b12550e2cf2060bc06da6aa381605a06ef",
+    "/home/liyufeng/safeduo/src/safeduo/eval/endurance_eval.py": "0b43071f1b7b167c4468d0402346f2654a98d3c13babaeae25eb7ca2a7aef4b3",
+    "/home/liyufeng/safeduo/src/safeduo/eval/formal_capture_bundle.py": "8941ca1be2ef6f5253849faa2320d62640e1afb76fe945199d6b9a960427d865",
+    "/home/liyufeng/safeduo/src/safeduo/eval/four_arm_workspace.py": "25df040a3dad27820be1bb2a8980d7040a206396f72c7db07cd87274c5e22e4d",
+    "/home/liyufeng/safeduo/src/safeduo/eval/glove_episode_recorder.py": "0fba5edefde03fec2025fb6b96406b58c82a5dcc28f045a51aaaa31473f80bc4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/manus_glove_adapter.py": "239aa8f31d8318ead8ffb9909d245ebf1d1c35c979e7dc1364c29d18ed9e31ef",
+    "/home/liyufeng/safeduo/src/safeduo/eval/manus_shm_v1.py": "bf3d1ef125e231eecaa0d0b5bccfa94c18a8bfb0133ce0e704a554e1c7f483b4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/metrics.py": "3e962e68df8e1e6b17e0b44df906de7198955c37030770cc4a3e3f953d6f47b6",
+    "/home/liyufeng/safeduo/src/safeduo/eval/object_task_success.py": "dfcb19a8ba29fc3669a7bd0d084df5eccfe4b5c11a19cc3b4a19bc4fdd1d7888",
+    "/home/liyufeng/safeduo/src/safeduo/eval/p_head_diagnosis.py": "89dc6556dad4d34078146d7f47558a232700b929e5242b3275db83cfe014210e",
+    "/home/liyufeng/safeduo/src/safeduo/eval/paired_report.py": "1c3a41473e90247bd7853260727d89afed0215f9d29710765ec835a08b79d031",
+    "/home/liyufeng/safeduo/src/safeduo/eval/parity.py": "1922b807ac478b20f85911442f761cf175f2da7c1942895185a09b0cea0ea21a",
+    "/home/liyufeng/safeduo/src/safeduo/eval/parity_attribution.py": "1c911ea9467e8d11b4bf9e87ef065cae7449bfe66870072d4b477faac98f6942",
+    "/home/liyufeng/safeduo/src/safeduo/eval/perturbations.py": "5c7ade79753a557474a6e4778ecf90b4ca9f80df9b8b6d123247e1ad513bd59e",
+    "/home/liyufeng/safeduo/src/safeduo/eval/random_battery.py": "236226053a118c293b18598f4a519f43e4fc314cc768d5d1ea130e3fe0769bd2",
+    "/home/liyufeng/safeduo/src/safeduo/eval/report_html.py": "347110a0f99df5161835151c5865d8de918ce5f2aeca5fb22ed0f2f04e0836b0",
+    "/home/liyufeng/safeduo/src/safeduo/eval/research_battery.py": "4113b362da98b73a30cd6adc7bd260a8083f3c106910eab4a4319c9be0fb4963",
+    "/home/liyufeng/safeduo/src/safeduo/eval/run_baseline_grid.py": "f15ffb0e2874a7d85a10c3156c4e73eba00186c1446deb38f3de7300e2bf7854",
+    "/home/liyufeng/safeduo/src/safeduo/eval/runner.py": "0ca96ba287841b203cdc61569badc788edcf150e7a116ed2a095e5deec617597",
+    "/home/liyufeng/safeduo/src/safeduo/eval/scientific_matrix.py": "8f5902b0628276c20614a25b279f7251873bc2eac639ef36e31bd2377c0d1a6b",
+    "/home/liyufeng/safeduo/src/safeduo/eval/skill_success.py": "54dac32270e97b428f9cd005fd788e60b43079e661b40fed764b1e63ea31ca4d",
+    "/home/liyufeng/safeduo/src/safeduo/eval/skill_success_v7.py": "2cb911db2fa1003c699f4abe0e8f65b6a84483d6b8918f5cc9ffd2485d8c88ee",
+    "/home/liyufeng/safeduo/src/safeduo/eval/success_report.py": "6c1c20ae4243980a009a7ee5ca5fe278b6a4a4cae9548b9667519bc8026b6781",
+    "/home/liyufeng/safeduo/src/safeduo/eval/target_guard_trace.py": "47d80555c1f2894a4bc03da21751a7093adb5f9ee60a8eac81491748aee6bfd4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/train_events_analysis.py": "d3cfb2aedce06833efbb260ccd2d16806747124615eaf721557616d8c2af1962",
+    "/home/liyufeng/safeduo/src/safeduo/eval/trajectory_task_bundle.py": "856406ef2dc28504ec8370bbd7545974a4ee74e07ff4d9bcdc9b763297f37140",
+    "/home/liyufeng/safeduo/src/safeduo/safety/__init__.py": "a696d8df23f71a4df275eac54eb0fbbf1d987bc36fdbe33ef9596b7a5ed9ed5b",
+    "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py": "82a0f0e5ddbbe1b9eecbdbbd249a9354b50d78ab6e121473286e8dbb28f19afa",
+    "/home/liyufeng/safeduo/src/safeduo/safety/consistency_parity.py": "0fd1332a26c5ef10040049c11c242b9a05b490e396af6128880a0e6b8b9e46d2",
+    "/home/liyufeng/safeduo/src/safeduo/safety/contact_parity.py": "994608427693bbe2c013e2f71241e058d4af2ed4146f2ab1c87a279b0033b683",
+    "/home/liyufeng/safeduo/src/safeduo/safety/coupling.py": "9942fb7abcfc89cdd1da5477d55f8002b7db7db3d3a093c10cf12012eddd01f0",
+    "/home/liyufeng/safeduo/src/safeduo/safety/damper_audit.py": "5b891af463a450bbf1b7e7a1f651d52c97b0e89d0283e113a0e7ba68c7255fdb",
+    "/home/liyufeng/safeduo/src/safeduo/safety/geometry.py": "86ca63288973161dd3a7d2c41539c7f3d26a0e30dc26ef7568e7eebe3299375d",
+    "/home/liyufeng/safeduo/src/safeduo/safety/object_context.py": "6b69e3641a013e8220bf3c719971ae0a17ab01476bbb98ab39874b4a1a1ec9eb",
+    "/home/liyufeng/safeduo/src/safeduo/safety/parity_probe.py": "3b85a909ba92b9b1cbbee503f20b59844ce479040c12cd508de82d77bdcd3aa7",
+    "/home/liyufeng/safeduo/src/safeduo/safety/parity_runner.py": "ac23dd0ee79bab5f992c902cf599cb4f14ad3fda490bb1777e7b2f8b32fe8dac",
+    "/home/liyufeng/safeduo/src/safeduo/safety/release_evidence.py": "8c9ceea38bbda86285092b46db46da500d2c292f474b6948e03427c7c36416bf",
+    "/home/liyufeng/safeduo/src/safeduo/safety/release_schedule.py": "a0256fe3a7c67d83d66d5b155579398129452d27ca6673d584a4a7a199ee8697",
+    "/home/liyufeng/safeduo/src/safeduo/safety/retreat.py": "a2a95ccd7b3588fa200e9911ce202099b9a5a54e4156e4ad1e48fc9c4a7af0ef",
+    "/home/liyufeng/safeduo/src/safeduo/safety/semantics.py": "10ef2fba44d02d22d5d4b502a8b2657435dbe6dce189922084c619472194bfda",
+    "/home/liyufeng/safeduo/src/safeduo/safety/sphere_audit.py": "aaff3f1ebd907f8458572188fb14d446cc0b816c309497bb3aefb55cfdf55fb5",
+    "/home/liyufeng/safeduo/src/safeduo/safety/sphere_distance.py": "c4a57526f7f66bf57e224a70977a2534e21ca4e247348500846149444325296f",
+    "/home/liyufeng/safeduo/src/safeduo/safety/sphere_specs.py": "bc3f35d374117c39eef2d05230616a959ba3d76052b4806b352569b6148fcf7c",
+    "/home/liyufeng/safeduo/src/safeduo/safety/target_guard.py": "81349e7097c58779ffc43531fa6e25cb73dd68203245264b33f5819a91cdf971",
+    "/home/liyufeng/safeduo/src/safeduo/safety/target_history.py": "e58dcf8273dd684e04ec5388c1451247981633f291c0460c647ee5a2df60f41d",
+    "/home/liyufeng/safeduo/src/safeduo/safety/types.py": "7ed46347ff0264d4b15d016dfab3329a31be53a2c64a63027b250c93873774a2",
+    "/home/liyufeng/safeduo/src/safeduo/skills/__init__.py": "540bd2d6a7a6777413d47420c9c62458b6658e0a5338905b6369f8aaf67948e2",
+    "/home/liyufeng/safeduo/src/safeduo/skills/build.py": "4da296648747364c0e8e7cf388bb201c6103fcf909e58bdf0ca5884b0f1a1443",
+    "/home/liyufeng/safeduo/src/safeduo/skills/compile.py": "4d89cc5e6016ddf75c53dc3229381d10b25fdde2a22a6820dd198df0da8cfe43",
+    "/home/liyufeng/safeduo/src/safeduo/skills/spec.py": "c8139089929eef582db9a2749f7c02d73fa96e972200ff971efd695d444cc140",
+    "/home/liyufeng/safeduo/src/safeduo/skills/taxonomy.py": "014e5aefc30dbea98c2b73405bd2960b55b538022498b0bf30551e23cbd6360f",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_backstop.py": "6cc33cfd9db36122ebc1dbf68143e894127fb6b38bc03b8a50d9ff657430be5d",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_colift_axial_clear.py": "f83ae3e27de13b085b3097781ec8181c21b9d66738c798dfce2e118a59696c7c",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_multi_object_check.py": "b15f2de3da440de94619653f472320cf1b7c19f8aaba90063ab727dbc8c5abf4",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_p0_regression.py": "2c8920cc52ce5ff83925d73057a4fbaffdc84a6387fca2245a813a90cddf1189",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_random_battery.py": "038b75517b4f5d4dfe1b29a1163ea0f280ff9435413c3f05a87b076314ef13cd",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_skills_spec.py": "637848f811855f7ff8794378442ef8a892f2724ee91930e902d92e94fc7cfc58",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_sphere_distance.py": "68ca4b41cbcb847aea3a98dc68b73b39ab7b1c2291e5aba335245a16e183b3dc",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_types.py": "413c455094247a54c7c8b97873ecc2492c334a873838c2da39a76424cc2701b6",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_v3_obs_reward.py": "c183fcdec11daa1ea3dbf6eaad136cfa3237089d5909b1726af85dc35190d688",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_v4_swap.py": "ce7654592a60eb7b92200bdbd4d920903a21dbae6f03c13f71870f8bb6fdf347",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_v5_swap.py": "2fa6645dea1b05d9f254ee7ed518b8aafc140537c615ed24322edc8b09d72553",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_wandb_logger.py": "7b5d8a449e93f8dd2c766e5b7bba1d54e1b7a162085716c0b98161f13eda89cd",
+    "/home/liyufeng/safeduo/src/safeduo/train/__init__.py": "c104f298425555256228e5416d01bdd504df1c3e84c6bd417a4cf47ef0e9604d",
+    "/home/liyufeng/safeduo/src/safeduo/train/bc_init.py": "c2094bc1f7e0fd98c2460d5d0c728b80cc3cebed7c676f14f671b427697d5a45",
+    "/home/liyufeng/safeduo/src/safeduo/train/benchmark.py": "afee5579e59a50ad536ac9370099268b8505eb2f27accdbbaa05b4ba1e4734f8",
+    "/home/liyufeng/safeduo/src/safeduo/train/events.py": "e13ed8fd6e6873ad468259b0c9186667d399a4dbf6a6b3ad5363af75cf1ed171",
+    "/home/liyufeng/safeduo/src/safeduo/train/tb_summary.py": "ed186c7be665ee877e3db53d00b6c63cf6313eaed1ca0dedcf497c97568731b9",
+    "/home/liyufeng/safeduo/src/safeduo/train/train_ppo.py": "ad1fb520bdcfcca1cd91f4f12d4c299cbd88bfc2ac51567fc29190dfab5735ac",
+    "/home/liyufeng/safeduo/src/safeduo/train/wandb_logger.py": "b0ecfb487d318d5c004f1af2cc2dcaf279ff4695ea94c053d0374d678d4f742b",
+    "/home/liyufeng/safeduo/src/safeduo/viz/__init__.py": "bd73173125ffd72097ad97d826e49e76c1edb355e0b5c4871b2ab196a85be061",
+    "/home/liyufeng/safeduo/src/safeduo/viz/record_video.py": "5f50bc1e0714157e22e9674c68b09a4ec12846e01f443408fa2e6f3079e46955",
+    "/home/liyufeng/safeduo/src/safeduo/viz/replica_visuals.py": "2992e2403d091c6396089c5aca1147267e2df372d2a1301d792ddb3fdc02aeca"
+  }
+}
