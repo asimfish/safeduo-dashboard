@@ -1,0 +1,19 @@
+本轮原始数据目录：/mnt/nas/data/lyf/double_hand/safety_fifo_predictor_20261006_0630
+源代码/登记/复核目录：/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630
+
+保留封存目录只读。再次执行必须使用新输出目录；已有campaign和cell不会覆盖。以下给出本轮实际执行过的入口，已封存后不得原地重跑。
+
+1. identify_dynamics.py：上一轮block0拟合、block1校准、block2回顾验证。MODEL_FIT/模型校准冻结顺序及输入SHA可查。这不是新的盲测。
+2. execute_bank.py、fresh_bank.py：三个预登记OS初态seed，几何/原始零输入资格筛选，没有策略结果筛选。audit_banks.py核验选中引用、静置条件及与枚举旧bank的重复情况。
+3. register_numeric.py：冻结三个plans/holdout_*_plan.json；execute_numeric.py两个入口，以及execute_block2_parallel.py提前执行原第三块。逐条件真实argv/env/source/actor/bankSHA均在原计划和campaign中。
+4. register_visual.py先登记两组相机；CAMERA_FOLLOW_SUPERSESSION与visual_plan_v2.json在零相机结果时替换等待/设备调度；CAMERA_EARLY_SCHEDULING与visual_plan_v3.json再次在零相机结果时提前运行原两组相机作业，execute_visual_parallel_v3.py在充足显存下与数值实验并行。两次都保留原相机算法与全部既定控制参数。GPU1初始化停滞后，CAMERA_DEVICE_TRACE、visual_retry_plan和VISUAL_EFFECTIVE_PLAN登记仅将联合候选相机重试改为GPU0；execute_camera_retry.py等待原参考窗口关闭后执行，失败启动保持原目录/日志，未重跑数值768窗口。最终有效相机根目录按方法映射，读取verify_visual_v2.py和audit_camera_state_v2.py。相机算法visual_runner.py保持不变，9视角、42个最低定时组。
+5. analyze.py、dense_audit.py读取真实密集几何/准入/FIFO/驱动量；audit_prediction_h6.py比较同一次执行的未来6步状态。audit_commands.py核验真实输入去重。
+6. astra_final_score.py及astra_score_core.py在CPU独立复算原始float32严格/深度/类别/配对结果；verify_visual_v2.py与audit_camera_state_v2.py按有效根目录绑定实际相机/原生物理状态/图像并单列前向轨迹差异。
+
+只做读回复算时，可在artifacts下新建一个同级分析目录，复制analyze.py、dense_audit.py、RANDOM_EXPERIMENT_DESIGN.json和plans/至该新目录。plans中已存绝对原始路径和原源码SHA；该同级目录仍依赖现有safety_random_space_20261004/coverage_metrics.py，以及冻结计划中列出的原生产和研究源目录。保留这些依赖只读；使用PYTHONDONTWRITEBYTECODE=1 python3 analyze.py holdout，把新分析结果写进新目录。不要把新结果写回封存目录。
+
+复现某个实际仿真条件时，保留原bank/actor/source/checkpoint，照plans中的argv和env，在新的、尚不存在的--out目录运行。输出的新窗口明确标记复现，不计为新独立初态或新输入覆盖。固定输入不保证相机执行/不同GPU进程的物理轨迹逐位一致，须重做绑定检查。
+
+公共完整结果下载为holdout_results.json.gz，可用gzip -dc解压；JSON字节与本地原文件精确一致。各PNG、原生NPZ、状态JSON、实际输入recipe和firstfailureNPZ未经重绘、合成或有损转码，存于固定提交证据分支。原始密集960帧数据和所有9021行32帧chunk留在NAS，不能把公开下采样曲线视为全部原始数据。
+
+物理指标始终为原非豁免几何<0、深穿透<−5mm。不能将诊断容限、预测误差或线性求解可行性代替该指标。

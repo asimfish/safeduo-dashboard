@@ -1,0 +1,23 @@
+CLOSED_CAMERA joint_reference complete
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/execute_visual_parallel_v3.py", line 45, in <module>
+    if __name__=='__main__':main()
+  File "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/execute_visual_parallel_v3.py", line 41, in main
+    with ThreadPoolExecutor(max_workers=2) as pool:complete=all(list(pool.map(run,plan['jobs'])))
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 621, in result_iterator
+    yield _result_or_cancel(fs.pop())
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 319, in _result_or_cancel
+    return fut.result(timeout)
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/execute_visual_parallel_v3.py", line 33, in run
+    p=json.loads((out/'visual_protocol.json').read_text())
+  File "/usr/lib/python3.10/pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/usr/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/nas/data/lyf/double_hand/safety_fifo_predictor_20261006_0630/visual/motion_admission/visual_protocol.json'

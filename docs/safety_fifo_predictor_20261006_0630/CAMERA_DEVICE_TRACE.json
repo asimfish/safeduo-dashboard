@@ -1,0 +1,61 @@
+{
+  "status": "TRACE_LOCALIZED_CAMERA_GPU1_PRE_WINDOW_STALL",
+  "utc": "2026-10-05T23:48:46.291544+00:00",
+  "observed": "logical cuda1 camera SelectPrims unsupported, no scene completion/protocol/window/PNG after >180s; same-source cuda0 counterpart already63actualPNG",
+  "expected": "scene init -> visualprotocol ->960stepwindow ->21schedulednineviewgroups",
+  "pid": 1747981,
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/visual_runner.py",
+    "--out",
+    "/mnt/nas/data/lyf/double_hand/safety_fifo_predictor_20261006_0630/visual/motion_admission",
+    "--ckpt",
+    "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+    "--env-yaml",
+    "duo_env_a31_pending_guard.yaml",
+    "--seeds",
+    "1495424313",
+    "--methods",
+    "system0",
+    "--duration-s",
+    "16",
+    "--device",
+    "cuda:1",
+    "--headless",
+    "--enable_cameras"
+  ],
+  "mode": "motion_admission",
+  "cwd": "/home/liyufeng/safeduo",
+  "log_sha256_at_abort": "611872b5a7f5d2c0d4675e16e009cecb08c25758d14c4f247c1f27884f8d557e",
+  "log_inactive_seconds": 310.21832251548767,
+  "scored_camera_frames": 0,
+  "rendered_images": 0,
+  "window_started": false,
+  "numeric768_controls_changed": false,
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/visual_runner.py": "57c890a3c224f1cabe9433832aa74ca561b02d51f2e8d34a958765c18195b21b",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/guard_runner.py": "d8c5d623ceaea82ca6878c4278f7d38f5bb456b3e533cf44deb00e7c7c64cfa9",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/motion_forecast.py": "18a9c73f594ee832b97db31abb9b70148918d9ab5073e91ed5e49434ef824eb1"
+  },
+  "hypotheses": [
+    {
+      "cause": "logicalCUDA1usdrt/renderpathunsupported",
+      "evidence": "explicitSelectPrimserror beforeanyscenecompletion; CUDA0controlpathactive",
+      "counterfactual": "rerun SAME camera/controlsource andbank/tape oncuda0 innewoutput afteroriginalreferencecloses",
+      "status": "strongcapturedtrace; mitigationcounterfactualpending"
+    },
+    {
+      "cause": "memorypressure",
+      "evidence": "bothdevices retain~10GBfree,noOOMlog; referenceusingrenderworks",
+      "status": "notfavored"
+    },
+    {
+      "cause": "shadercachelock",
+      "evidence": "bothlogsdisablingkvdb butcuda0progresses",
+      "status": "notfavored"
+    }
+  ],
+  "related_primary_issue": "https://github.com/isaac-sim/IsaacLab/issues/5562",
+  "related_issue_scope": "differentIsaacLab/Simversions; supportingreport only, localcausaltraceistheevidence",
+  "termination_scope": "only exact owned stalledmotioncameraprocess, priornumeric/reference andforeignjobs unaffected"
+}

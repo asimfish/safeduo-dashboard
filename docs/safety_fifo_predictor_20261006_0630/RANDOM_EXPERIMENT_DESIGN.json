@@ -1,0 +1,68 @@
+{
+  "schema": "safeduo.nominal_motion_admission.design.v1",
+  "registered_utc": "2026-10-05T22:38:37.824120+00:00",
+  "rows": [
+    {
+      "block": 0,
+      "initial_seed": 1103117332,
+      "command_seed": 1495424313
+    },
+    {
+      "block": 1,
+      "initial_seed": 1860445365,
+      "command_seed": 1614066656
+    },
+    {
+      "block": 2,
+      "initial_seed": 673021966,
+      "command_seed": 397195787
+    }
+  ],
+  "modes": [
+    "joint_reference",
+    "velocity_admission",
+    "pd_admission",
+    "motion_admission"
+  ],
+  "primary_comparison": [
+    "joint_reference",
+    "motion_admission"
+  ],
+  "ablation_comparisons": [
+    [
+      "joint_reference",
+      "velocity_admission"
+    ],
+    [
+      "joint_reference",
+      "pd_admission"
+    ]
+  ],
+  "cases_per_bank": 64,
+  "qualified_banks": 3,
+  "paired_cases": 192,
+  "method_windows": 768,
+  "frames_per_window": 960,
+  "zero_prefix_steps": 60,
+  "actuator_FIFO_steps": 6,
+  "dt_s": 0.016666,
+  "prediction_horizons_steps": [
+    1,
+    6,
+    12,
+    18
+  ],
+  "proposal": "nextboxed/reference-governed currentcommand target, no futurepolicycommands; first6actualpendingtargets thenholdproposal",
+  "heuristics": "constantvelocity displacement atfourhorizons; empiricaldiagonalPD actualFIFO thenholdcurrentproposal; retainminimum oforiginaltargetforecast, currentfullgeometry andenablednominalmotionforecasts",
+  "capacity": 9021,
+  "no_dropped_rows": true,
+  "projection": "originalunmodified actor32/backstopfinite-pass/referenceenvelope.050; nojointrepair; onlyadditionaladmissionunion",
+  "physical_metric": "originalnonexemptfullgeometry<0;deep<-.005; nopredictorresidualepsilon inphysicalmetric",
+  "candidate_claim": "nominal exploratory heuristics only; retrospectivePDtailsfailedconservative-boundrequirement; fittedcoefficientsnotcausallyidentified; nohardware/productionapproval",
+  "randomness": "newOSentropy seeds; policyblindqualifiedbanks firstqualified order with6pairstrata8each/global16; all900per-armrandommixedholdinputs plus60zero",
+  "registered_before_new_gpu_outcomes": true,
+  "previous_published_denominators_unchanged": true,
+  "prior_model_fit_sha256": "924cd6a75e1a4db437b44b7c202a8a7a70bcc9bcae6696e6964ffc4ffd58bfb2",
+  "prior_predictor_results_sha256": "758a4814de42bf5b823d1f374520b23d934671866f6458658736bccb4d486c56",
+  "movement": "samebank+tape+actor+referencebounds forpairedmethods; actualpath/range andrescues/newfailuresreported; no posthocmotionmatching"
+}

@@ -1,0 +1,210 @@
+{
+  "schema": "astra.motion_runner.review.v1",
+  "status": "PASS_SCOPED_CPU_SOURCE_REVIEW",
+  "verdict": "Pass",
+  "utc": "2026-10-05T22:53:22.702600+00:00",
+  "scope": "Independent pre-outcome source/CPU review of nominal extra row-admission runner. No Isaac/GPU forward result, physical safety claim, or new policy outcome verification.",
+  "blocking_findings": [],
+  "minimum_required_repair": [],
+  "reviewed_source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/motion_forecast.py": "18a9c73f594ee832b97db31abb9b70148918d9ab5073e91ed5e49434ef824eb1",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/guard_runner.py": "d8c5d623ceaea82ca6878c4278f7d38f5bb456b3e533cf44deb00e7c7c64cfa9",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/target_forecast.py": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/reference_envelope.py": "7cf0ccccce2f1a81d0ea657797a71eb1c5cb8b852aa94e84767a2dfca1ab9c47",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/projection_diagnostics.py": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/MODEL_FIT.json": "924cd6a75e1a4db437b44b7c202a8a7a70bcc9bcae6696e6964ffc4ffd58bfb2",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/RANDOM_EXPERIMENT_DESIGN.json": "42ca71d5df3507aa218ce2e2fd85dff3845f8e385ad39cb017d87b948c323c26",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/DESIGN.json": "e64f15278af28add5a03a4b4e15ddc943e179f91860bd74cc8cae5f5c9a3f293",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_prediction_h6.py": "ced5e8b8567f15e752e083bce08a8ce7cfd55b2e509462ec74b85633b8330e0b",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_fifo_oracle.py": "2ab6ec4da878a7982f74152d30eca0922221d0ad4e39b428eb1c5c17c2b2c7c5",
+    "/home/liyufeng/safeduo/artifacts/safety_feasible_guard_20261005_2100/guard_runner_v2.py": "06cd67a6ccd0e97a408fdf4d82072e07f0d6a1e0f0bc7ca98be87fb3c897708f",
+    "/home/liyufeng/safeduo/artifacts/safety_mechanism_20261005_causal_obs/mechanism_runner.py": "174e297cdd9c8e48c00894e37426d7afbc48245f717de69fe2d3d4c6d173ce12",
+    "/home/liyufeng/safeduo/artifacts/safety_risk_strata_20261004/risk_runner.py": "1363631d6f331816a9d73f0e62606668a2f51230885139580b675cdc0ea47135",
+    "/home/liyufeng/safeduo/artifacts/safety_random_space_20261004/wide_runner_feasible.py": "1b039bf6df0e9b7a4abe3f0461628a42db8c6c60ef2d75fa58c8e00e30662ebb",
+    "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py": "cd5d3b8b473a7d713da7a4dbc400dcbe231a2dd9563732671c4e3b7047e3fe0c",
+    "/home/liyufeng/safeduo/src/safeduo/eval/perturbations.py": "5c7ade79753a557474a6e4778ecf90b4ca9f80df9b8b6d123247e1ad513bd59e",
+    "/home/liyufeng/safeduo/src/safeduo/safety/types.py": "7ed46347ff0264d4b15d016dfab3329a31be53a2c64a63027b250c93873774a2",
+    "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py": "82a0f0e5ddbbe1b9eecbdbbd249a9354b50d78ab6e121473286e8dbb28f19afa",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/base.py": "ff9852fa8363927dd591541b0b65640b65d2d1cbb2a787adab4e2a4a3e21cb47"
+  },
+  "exact_copy_checks": [
+    {
+      "new": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/target_forecast.py",
+      "prior": "/home/liyufeng/safeduo/artifacts/safety_feasible_guard_20261005_2100/full_finite_guard.py",
+      "sha256": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6",
+      "exact_copy": true
+    },
+    {
+      "new": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/reference_envelope.py",
+      "prior": "/home/liyufeng/safeduo/artifacts/safety_feasible_guard_20261005_2100/reference_envelope.py",
+      "sha256": "7cf0ccccce2f1a81d0ea657797a71eb1c5cb8b852aa94e84767a2dfca1ab9c47",
+      "exact_copy": true
+    },
+    {
+      "new": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/projection_diagnostics.py",
+      "prior": "/home/liyufeng/safeduo/artifacts/safety_feasible_guard_20261005_2100/projection_diagnostics.py",
+      "sha256": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869",
+      "exact_copy": true
+    }
+  ],
+  "changed_files": [
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_motion_runner_tests.py",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_motion_runner_tests.log",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ASTRA_MOTION_RUNNER_REVIEW.md",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ASTRA_MOTION_RUNNER_REVIEW.json"
+  ],
+  "artifact_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_motion_runner_tests.py": "ddd5923b7302191d405a673f13a74623bef138cb5d8b8c448b7dba96a3cc0939",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_motion_runner_tests.log": "87e978332e3e5177e6472efab8b41b3aaf199b4c357daf9d18af76385095dc31",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ASTRA_MOTION_RUNNER_REVIEW.md": "8596a1ff2ca2563867272b394c378a644e96234171f5756b8d02cbb063ce5605"
+  },
+  "dimensions": {
+    "functional_achievement": "Pass",
+    "correctness_reliability": "Pass within CPU/source seams",
+    "architecture_isolation": "Pass",
+    "function_api_units": "Pass",
+    "style_maintainability": "Pass with diagnostic interpretation cautions",
+    "GPU_performance": "Unable to determine"
+  },
+  "tests": {
+    "status": "PASS",
+    "passed": 14,
+    "failed": 0,
+    "errors": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python3 /home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_motion_runner_tests.py",
+    "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_motion_runner_tests.log",
+    "oracle": "Independent NumPy affine oracle with synthetic 26-joint coefficients including negative gains; no fit or outcome tuning",
+    "runner_execution": "Literal AST-extracted GuardTrace.start/safety closure/flush_forecast with CPU scene and in-memory outputs",
+    "projection_execution": "Real CPU VelocityDamperBackstop, copied passive wrappers, exact original result preservation",
+    "full_9021_test": true,
+    "all_row_nan_injections": [
+      "last-row J",
+      "last-row distance",
+      "last-row closing",
+      "last-row dmin"
+    ],
+    "capacity_9020_abort_test": true,
+    "chunk_roundtrip": "In-memory NPZ, T=2, q arrays (2,4,64,26)",
+    "new_GPU_or_policy_outcomes_used": false
+  },
+  "checks": {
+    "simultaneous_old_q_v": "PASS: both next states use old q/v/debt before assignment",
+    "pending6": "PASS: exact pending[0..5], proposal first at horizon7",
+    "governed_proposal": "PASS: reachable .050 envelope / existing speed and soft-limit bounds; held governed raw proposal, not safety-project return",
+    "modes": {
+      "joint_reference": "T",
+      "velocity_admission": "min(T,CV)",
+      "pd_admission": "min(T,PD)",
+      "motion_admission": "min(T,CV,PD)"
+    },
+    "baseline_retention": "PASS: pointwise forecast <= T and monotone OR mask at same state",
+    "capacity": "PASS: full9021 preserved; above declared capacity raises, no truncation",
+    "actor": "PASS source trace/CPU geometry preservation: original32 observation features not replaced by safety-only union",
+    "original_projection": "PASS: underlying original callable retained, same copied reference governor, diagnostics passive; project attribute is wrapped, not literally unchanged",
+    "FIFO_mutation": "none in forecast/admission; pre wrapper delegates captured original pre-step",
+    "finite_checks": "PASS for reviewed registered shapes: full geometry/J before selection, queue/state/model/intermediates/forecast, projection inputs/outputs",
+    "no_extra_dt_in_PD": true,
+    "no_model_inversion_or_command_optimization": true
+  },
+  "diagnostic_schema": {
+    "horizon_order": [
+      1,
+      6,
+      12,
+      18
+    ],
+    "q_per_call": [
+      4,
+      64,
+      26
+    ],
+    "q_chunk": [
+      "T",
+      4,
+      64,
+      26
+    ],
+    "q_fields": [
+      "pd_q_horizons",
+      "cv_q_horizons"
+    ],
+    "q_semantics": "absolute radians, not displacement",
+    "distance_chunk": [
+      "T",
+      64,
+      9021
+    ],
+    "h6_axis_index": 1,
+    "h6_future_post_index": "t+5",
+    "chunk_index": "[t-chunk_start, horizon_index, env, joint]",
+    "baseline_ids": "original selected rows union measured d<=dmin+.010; not full target-based joint_reference mask",
+    "forecast_added_count": "all forecast additions beyond measured union, including original target-based additions",
+    "receipt_shape": "primary distance-array shape only"
+  },
+  "nonblocking_observations": [
+    {
+      "id": "MR-001",
+      "severity": "Minor",
+      "relationship": "Pre-existing field semantics, new reporting risk",
+      "source": "guard_runner.py:101,121,139,276",
+      "claim": "Do not label forecast_added_count/baseline_ids as motion-only additions versus joint_reference.",
+      "action": "Reconstruct old target mask using saved target_forecast and measured-union baseline before attributing motion-only rows."
+    },
+    {
+      "id": "MR-002",
+      "severity": "Minor",
+      "relationship": "Inherited wording now ambiguous",
+      "source": "guard_runner.py:103,221; motion_forecast.py:71",
+      "claim": "Duplicate shadow endpoint calculation is passive; the same governed proposal value participates in PD admission.",
+      "action": "Narrow report wording to shadow statistic; do not claim all reference-governed proposals are passive."
+    },
+    {
+      "id": "MR-003",
+      "severity": "Minor",
+      "relationship": "New field schema caution",
+      "source": "guard_runner.py:260-262",
+      "claim": "Receipt shape T,64,9021 does not describe q-horizon tensors.",
+      "action": "Use explicit T,4,64,26 q schema and horizon index1 for h6."
+    }
+  ],
+  "h6_auditor_source_review": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_prediction_h6.py",
+    "status": "PASS_INDEXING_SOURCE_REVIEW_ONLY",
+    "executed": false,
+    "geometry": "pre[t+6] = post[t+5], next chunk first6 frames",
+    "q": "q_horizons[:,1] versus saved q[t+5]",
+    "origins": 954,
+    "reason": "pre geometry saved only at 0..959, so t=0..953 have t+6 available",
+    "same_run_directory": true,
+    "endpoint_exemptions_used": true,
+    "actual_audit_results_seen": false
+  },
+  "scientific_claims": {
+    "nominal_only": true,
+    "causally_identified_PD": false,
+    "conservative_safety_guarantee": false,
+    "physical_safety_certified": false,
+    "extra_rows_imply_monotone_safety": false,
+    "original_strict_geometry_lt0_preserved": true,
+    "original_deep_lt_minus005_preserved": true,
+    "original_exemptions_preserved": true,
+    "all_modes_compute_CV_PD_diagnostics": true,
+    "all_modes_share_predictor_abort_gate": true
+  },
+  "limitations": [
+    "No Isaac, GPU forward, actor checkpoint execution, physical dynamics, or campaign outcome verification.",
+    "Inherited battery/RiskTrace startup was statically traced; test stand-in avoids simulator imports and disk output.",
+    "Common predictor diagnostic gate may abort reference/CV modes even when PD is not used for selection; incomplete windows are not safe outcomes.",
+    "No model fitting/tuning, no block2 outcome use, no random-bank or parent-test execution.",
+    "No runtime GPU throughput/memory benchmark; full9021 capacity correctness is distinct from campaign performance.",
+    "Parent-provided nine-test success is acknowledged but is not counted as an independently executed result."
+  ],
+  "old_or_production_writes": false,
+  "RAW_writes": false,
+  "parent_runner_modified": false,
+  "GPU_launches": 0,
+  "Isaac_forward_runs": 0,
+  "bank_processes_touched": false,
+  "new_policy_outcomes_read": false,
+  "approval_for_hardware_or_production": false
+}

@@ -1,0 +1,50 @@
+{
+  "status": "FAIL_EFFECTIVE_BRIDGE_PROVENANCE_REQUIRES_CORRECTION",
+  "utc": "2026-10-06T01:06:28.518067+00:00",
+  "source_sha256": "f58eed53ff077e8204e6ca8c574942e691194518b6d812a45619e9b420975985",
+  "scope": "Source audit and in-memory execution of exact effective-row loop with synthetic rows; no bridge invocation or parent writes.",
+  "findings": [
+    {
+      "id": "BRIDGE-1",
+      "severity": "P2",
+      "line": 19,
+      "problem": "Effective compatible-success row retains original system-LP actual_argv and log copied from failed row.",
+      "evidence": {
+        "name": "failure_audit.py",
+        "actual_argv": [
+          "python3",
+          "failure_audit.py"
+        ],
+        "log": "failure_audit.py.system.log",
+        "status": "complete_source_bound_compatible_backend",
+        "original_failed_attempt": {
+          "name": "failure_audit.py",
+          "returncode": 1,
+          "actual_argv": [
+            "python3",
+            "failure_audit.py"
+          ],
+          "log": "failure_audit.py.system.log"
+        },
+        "actual_entry": "run_lp_compatible.py",
+        "completion_receipt": "LP_COMPATIBLE_EXECUTION.json",
+        "result_sha256": "synthetic-result-sha",
+        "original_returncode_retained": 1
+      },
+      "required_change": "Construct a compatible-success row with actual compatible argv/log/interpreter and source/receipt bindings. Preserve original row only as explicit original_failed_attempt (or rename old fields original_*)."
+    },
+    {
+      "id": "BRIDGE-2",
+      "severity": "P2",
+      "line": 13,
+      "problem": "Bridge claims registered compatible completion but never loads/validates registration content against wrapper/source/runtime completion. Recording registration SHA alone does not enforce the binding.",
+      "required_change": "Before copy/PASS, verify registered source bytes, completion wrapper/source hashes, interpreter and NumPy/SciPy versions, registered backend selection, compatible result status/case count and intended output path. Keep original system failure and no-overwrite guard."
+    }
+  ],
+  "nonissues": [
+    "Original FAIL and ImportError gate are explicit.",
+    "Canonical target must not exist, and copied result bytes are checked.",
+    "Only preselected compatible LP stage is substituted; other three return codes must be zero."
+  ],
+  "physical_safety_certified": false
+}

@@ -1,0 +1,47 @@
+{
+  "status": "PASS_SCOPED_LP_BACKEND_SOURCE_AND_EXECUTION_BINDING_REVIEW",
+  "utc": "2026-10-06T00:55:01.123987+00:00",
+  "bindings": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_lp_compatible.py": "64498b87dc48929154d285e26a1cd652165289edefd580e9d4ad7a24ae3099db",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/failure_audit.py": "bb8112f26ed9403bf8415b9574884adbf3f0a5c3c2bc4317cddbef58aa435e10",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_BACKEND_REGISTRATION.json": "2dbdac43406d3b38ee4413c9ccf68ef46736fc09867bb3c45bc6402f73ac23df",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_SYSTEM_COMPATIBILITY_CHECK.log": "72a4bf5f1fe110553c251d2a2bcd3f52f70e532122309354190482c8c973db0c",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_SIMENV_COMPATIBILITY_CHECK.log": "801a3cec81e24c435fabbd5cebdd73df8ebc0633648ab7b79c8112a95b6a4fc2",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_COMPATIBLE_EXECUTION.json": "1631deff9c3ae0f38713507c3811b4755f0a16d623b43283137a367a1e83331d",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_lp_runtime_probes.json": "2dccc4f14924e7a77d19a7ff65b773667e2c70a7621c820901ff7fabd40c5808",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/lp_backend_compatible/first_failure_audit.json": "181b3ddc110ff50d12541211146b06a929db20143ab2d3ec6cf723c2c612f3bd"
+  },
+  "source_math_modified": false,
+  "wrapper_redirect_scope": "Original failure_audit.__file__ preserved; only HERE / plans and HERE / first_failure_audit.json refer to redirected HERE. Three copied plans byte-equal; absolute raw paths unchanged.",
+  "compatible_execution": {
+    "interpreter": "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "python": "3.11.15",
+    "numpy": "1.26.0",
+    "scipy": "1.15.3",
+    "parent_result_cases": 79,
+    "distinct_condition_env_pairs": 79,
+    "represented_registered_conditions": 12,
+    "result_hash_verified": true,
+    "independent_full_79_lp_solve": false,
+    "independent_case_identity_vs_final_scorer": "PENDING_FINAL_SCORE"
+  },
+  "tests": {
+    "ast_parse": "PASS both wrapper and original source",
+    "registered_source_hashes": "PASS",
+    "all_three_plan_mirrors_exact": "PASS",
+    "tiny_compatible_LP": "PASS status0 x0 with original HiGHS tolerances",
+    "two_runtime_native_threshold_probe": "PASS matching strict/deep classifications around float32 .005"
+  },
+  "scientific_limitations": [
+    "Exact source across NumPy1.26 and2.2 does not assert bit-identical arithmetic. np.float32 scalar *1000 returns float64 in1.26 versus float32 in2.2; nearest_post_margin_mm display precision may differ. Native threshold classifications and primary scoring remain separately checked in the frozen primary runtime.",
+    "HiGHS checks saved selected linear constraints in binary64 with original primal/dual feasibility tolerance1e-9; no separate infeasibility dual certificate. This is not all9021 future physical geometry or a unique PD-cause proof.",
+    "Wrapper verifies registered source hashes and result receipt; original failure audit hashes snapshot/receipt inputs but is not a substitute for the independent scorer full raw input hash ledger.",
+    "The import-failed system backend has no LP outcome for numerical equivalence comparison. Its actual failed log and original analysis driver FAIL must remain separate from effective compatible completion."
+  ],
+  "original_backend_import_failure_retained": true,
+  "backend_preselected_before_lp_diagnostic_outcomes": true,
+  "no_posthoc_solver_selection_observed": true,
+  "no_global_package_mutation_by_astra": true,
+  "blocking_findings": [],
+  "physical_safety_certified": false
+}

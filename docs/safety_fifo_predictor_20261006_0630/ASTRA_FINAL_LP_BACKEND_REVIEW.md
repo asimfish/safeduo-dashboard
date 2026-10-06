@@ -1,0 +1,9 @@
+Independent LP backend review: PASS within source / execution-binding scope.
+
+The wrapper compiles the exact frozen failure_audit.py, preserves __file__, and redirects only its two HERE uses (plan lookup and result output) to the fresh mirror. All three plans are byte-identical; all12 original absolute raw condition paths are represented in79 distinct condition/env records. Registered hashes and the completed compatible result SHA match. Original formulas, options and native strict comparison were not edited.
+
+Independent CPU probes confirm the isolated Python3.11.15 / NumPy1.26.0 / SciPy1.15.3 can run the tiny HiGHS LP with original tolerances. The retained system import failure is actual evidence, not an LP result. No global package was changed by Astra, no simulation/GPU was launched, and the79 full LPs were not independently repeated. Their case identities will be reconciled against the independent final scorer when it closes.
+
+NumPy runtime scope matters: np.float32 scalar times1000 promotes to float64 in1.26 and remains float32 in2.2. Thus identical source does not promise bit-identical display values, especially nearest_post_margin_mm. Both runtime probes agree on native strict/deep boundary classification, but primary768 scoring remains in its original frozen runtime.
+
+The result checks saved selected linear sets with the unchanged binary64 HiGHS options. It provides no separate dual infeasibility certificate, unique PD-cause proof, all9021 future constraint proof or physical safety certification. Original snapshot/receipt bindings do not replace the independent full raw hash ledger. Preserve the system LP import failure and original parallel-driver FAIL; the preselected compatible backend supplies only the effective LP stage, never retroactive success for the failed original stage.

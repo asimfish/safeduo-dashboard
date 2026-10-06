@@ -1,0 +1,201 @@
+{
+  "status": "PASS_SCOPED_OWNSTATE_ALL_METADATA_AND_PRESELECTED_ACTUAL_PIXELS",
+  "utc": "2026-10-06T00:51:53.907150+00:00",
+  "scope": "Independent CPU own-state audit for both effective camera windows; actual semantic inspection of exactly eight preselected groups (72 original PNG files), not all450 pixels. Not exact numeric forward and not physical safety.",
+  "bindings": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/CAMERA_VISION_SELECTION.json": "45e4760efe902d30df5266857c2236233ea70b40694bb1ad93b9a7f2f04d34d3",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_camera_effective_plan.json": "a4b6f0e278f67bb97a34518b511ddeeb1959561550bf8e162ec88b925c23ec7e",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_camera_metadata_effective.json": "353377bc007927f28a49ecb60dbf73bb066b6a6a01172687f74dbed34df16744",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_camera_pixel_observations.json": "ec372365bca1678ee1ecc0f6bc25d2b80e7a994fa94736729cbbb9d61d4ead59",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/VISUAL_EFFECTIVE_PLAN.json": "563b40b204d0ffad1f9a6bd418026a52283f7c69ddb690d6408e199737c501c1",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/VISUAL_EFFECTIVE_EXECUTION.json": "8e8f9ce4b0c256b859ec7cf0fc059108cfe752e3a1ffbc83b5d97d27ec5b23dc",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/visual_plan_v3.json": "5376b8d5ac448e03e3916bc86fe62170ce12b6a989fe20fcfaf7f2adfeaefd63",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/visual_retry_plan.json": "cda6d934691e693791ba4bc04ed21b015ecbe234d50f0ac3b48afe257e6a5e58",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/CAMERA_FAILED_PROCESS_EXIT.json": "43031f371222130f4074b085e547632cb1993dd3b0333c7c31cd3b559bdc6a93",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_camera_original_exit_reconciliation.json": "bcf9d304fe8d262f797b0eba023b5d616afd8bb5aba7ef94ce8956e55f8c68ab"
+  },
+  "actual_images_viewed": 72,
+  "actual_view_image_calls": 72,
+  "actual_groups_viewed": 8,
+  "all_group_raw_metadata_verified": true,
+  "all_group_math_count": 50,
+  "all_png_hash_header_count": 450,
+  "all_metadata_math_input_hash_count": 902,
+  "raw_metadata_hash_before_after_pass": true,
+  "selected_png_state_hashes_rechecked_after_actual_viewing": true,
+  "remaining_preselected_pixel_groups": [],
+  "selection_unchanged": true,
+  "math_checks_counted_as_vision": false,
+  "tests": {
+    "cpu_synthetic_state_math_passed": 14,
+    "counts_as_vision": false,
+    "effective_root_contract_tests_passed": 4,
+    "effective_root_mutation_subcases_rejected": 15
+  },
+  "blocking_findings": [],
+  "pixel_observations": "astra_camera_pixel_observations.json",
+  "per_mode_scope": [
+    {
+      "mode": "joint_reference",
+      "closed_own_state_math": "PASS_ALL_GROUPS",
+      "all_groups": 25,
+      "all_png_hash_header": 225,
+      "actual_pixel_groups": 4,
+      "actual_pixel_images": 36,
+      "own_camera_counts": {
+        "expected_windows": 64,
+        "verified_windows": 64,
+        "unavailable_or_invalid_windows": 0,
+        "strict": {
+          "failed_windows": 9,
+          "env_steps": 44,
+          "class_failed_windows": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 2,
+            "table": 8
+          },
+          "class_env_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 12,
+            "table": 32
+          }
+        },
+        "deep": {
+          "failed_windows": 5,
+          "env_steps": 21,
+          "class_failed_windows": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 1,
+            "table": 5
+          },
+          "class_env_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 7,
+            "table": 14
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.0031970366835594177,
+          "self_F": 0.007059067487716675,
+          "self_U": -0.01939041167497635,
+          "table": -0.017012666910886765
+        }
+      },
+      "exact_numeric_forward": "FAIL_EXACT_NUMERIC_CAMERA_FORWARD",
+      "first_q_difference_step": 0,
+      "maximum_q_difference_rad": 0.8583747148513794,
+      "forward_field_equality": {
+        "q": false,
+        "q_initial": true,
+        "ee": false,
+        "cmd": true,
+        "exec": false,
+        "official_margins": false,
+        "controller_target": false,
+        "actuator_target": false,
+        "pre_qd_compact": false,
+        "pre_pending_actuator_targets": false,
+        "full_tape": true
+      }
+    },
+    {
+      "mode": "motion_admission",
+      "closed_own_state_math": "PASS_ALL_GROUPS",
+      "all_groups": 25,
+      "all_png_hash_header": 225,
+      "actual_pixel_groups": 4,
+      "actual_pixel_images": 36,
+      "own_camera_counts": {
+        "expected_windows": 64,
+        "verified_windows": 64,
+        "unavailable_or_invalid_windows": 0,
+        "strict": {
+          "failed_windows": 9,
+          "env_steps": 41,
+          "class_failed_windows": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 1,
+            "table": 9
+          },
+          "class_env_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 10,
+            "table": 33
+          }
+        },
+        "deep": {
+          "failed_windows": 5,
+          "env_steps": 23,
+          "class_failed_windows": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 1,
+            "table": 5
+          },
+          "class_env_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 7,
+            "table": 16
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.0031970366835594177,
+          "self_F": 0.007059067487716675,
+          "self_U": -0.01893969625234604,
+          "table": -0.017012666910886765
+        }
+      },
+      "exact_numeric_forward": "FAIL_EXACT_NUMERIC_CAMERA_FORWARD",
+      "first_q_difference_step": 0,
+      "maximum_q_difference_rad": 1.0578022003173828,
+      "forward_field_equality": {
+        "q": false,
+        "q_initial": true,
+        "ee": false,
+        "cmd": true,
+        "exec": false,
+        "official_margins": false,
+        "controller_target": false,
+        "actuator_target": false,
+        "pre_qd_compact": false,
+        "pre_pending_actuator_targets": false,
+        "full_tape": true
+      }
+    }
+  ],
+  "visual_findings": [
+    "Four arm assemblies and table visible across context views; opposite F/U low/high angles provide complementary coverage.",
+    "No blank/black frame or target-pair image-boundary clipping observed among72 original files. Non-target arms/hands/table are cropped in some pair views.",
+    "Tabletop and own-link occlusion remain; low gray forearm hidden in u_pair at env40/step959 is revealed by opposite U low/high views.",
+    "Bright white highlights and image resolution limit fine contact judgment. Negative native geometry at selected failure frames is not pixel-resolved metric penetration.",
+    "One cross-method overview file pair is byte-identical at env0/step75 with equal selected q/qd. Other selected images differ. This is not automatic stale-frame evidence; different selected environments do not prove same-environment temporal freshness."
+  ],
+  "minimum_six_plane_sphere_margin_m": 0.11292680562856405,
+  "frustum_scope": "All recorded required target spheres within six mathematical frustum planes; no occlusion/mesh-silhouette guarantee and no physical safety epsilon.",
+  "native_state_scope": "All groups bind native before/after q/qd/root fields for64 environments, own selected state, current/applied targets and postFIFO. Final-step qd binds native snapshot because no next pre-state saved.",
+  "original_failure": {
+    "status": "FAILED_ORIGINAL_CUDA1_ATTEMPT_RETAINED",
+    "scored_frames": 0,
+    "png_count": 0,
+    "exit_chain": "SIGTERM intent did not stop process; Astra observed alive. Parent later SIGKILL exact owned PID; Astra confirmed process/supervisor absent. Preserved FileNotFoundError; parent receipt reports supervisor exit1.",
+    "retry": "Separate CUDA0 namespace, same source/seed/bank/tape/actor/views; device/root changed. Mitigation only; no driver root-cause fix claimed."
+  },
+  "numeric_forward_equivalence_assumed": false,
+  "no_physical_safety_claim_from_images": true,
+  "no_images_edited_or_generated": true,
+  "foreign_passive_panel_preserved": true,
+  "final_numeric_and_parent_report_review": "PENDING_INDEPENDENT_768_SCORE_AND_PARENT_REPORT",
+  "worker_closure": {
+    "effective_math_pid_1808912_absent": true,
+    "superseded_v2_pid_1746272_exists": true,
+    "superseded_v3_pid_1773181_exists": true,
+    "final_metadata_seal_allowed": false
+  }
+}

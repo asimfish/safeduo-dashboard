@@ -1,0 +1,5 @@
+Independent numerical FIFO prefix review: PASS.
+
+Read all12 original cell files afresh and verified SHA256 before/after against the parent prefix ledger. All9 candidate/reference comparisons across3 blocks match q_initial, initial pre_qd, applied targets[0:6], post_q[0:6] and pre_qd[0:6] with native float32 exact equality and equal uint32 bit patterns, no tolerance. Independently checked first6 post_qd via saved pre_qd[1:7]; these also match exactly. Parent row flags and maximum differences agree with the independent calculation.
+
+This is evidence of matching saved controlled26-joint state through the six already-pending actuator steps, stronger than matching input recipes alone. Full uncontrolled rigid state was not archived at every frame; no all-state identity, later-trajectory equivalence, unique causal explanation or physical safety follows. Camera replay still fails exact numeric forward at step0 and remains own-state visual evidence. No policy/model tuning, raw write, simulation or GPU launch occurred.

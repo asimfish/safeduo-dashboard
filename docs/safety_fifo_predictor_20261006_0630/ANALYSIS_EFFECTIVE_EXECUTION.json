@@ -1,0 +1,90 @@
+{
+  "status": "PASS_ALL4_SOURCE_BOUND_EFFECTIVE_READBACKS",
+  "jobs": [
+    {
+      "name": "run_analysis.py",
+      "returncode": 0,
+      "source_sha256": "236f707b2310b2968401b799f36531ecc7daa367fe6e3356e2cde1df4f692c87",
+      "actual_argv": [
+        "python3",
+        "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/execute_readback_parallel.py",
+        "analyze"
+      ],
+      "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_analysis_parallel.log",
+      "status": "complete"
+    },
+    {
+      "name": "audit_prediction_h6.py",
+      "returncode": 0,
+      "source_sha256": "ced5e8b8567f15e752e083bce08a8ce7cfd55b2e509462ec74b85633b8330e0b",
+      "actual_argv": [
+        "python3",
+        "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/execute_readback_parallel.py",
+        "h6"
+      ],
+      "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_prediction_h6_parallel.log",
+      "status": "complete"
+    },
+    {
+      "name": "failure_audit.py",
+      "status": "complete_source_bound_compatible_backend",
+      "original_failed_attempt": {
+        "name": "failure_audit.py",
+        "returncode": 1,
+        "source_sha256": "bb8112f26ed9403bf8415b9574884adbf3f0a5c3c2bc4317cddbef58aa435e10",
+        "actual_argv": [
+          "python3",
+          "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/failure_audit.py"
+        ],
+        "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/failure_audit_parallel.log"
+      },
+      "original_returncode_retained": 1,
+      "actual_entry": "run_lp_compatible.py",
+      "interpreter": "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "python": "3.11.15",
+      "numpy": "1.26.0",
+      "scipy": "1.15.3",
+      "reproducible_argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_lp_compatible.py"
+      ],
+      "actual_argv_retention": "Exact argv was not recorded by the original compatible receipt; reproducible_argv is not a recovered process argv.",
+      "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/lp_compatible.log",
+      "log_sha256": "d0800cc603d8356637f4bdbe28e522f06fc9c09c30d5d4fdc0a604472a3b7d09",
+      "observed_tool_returncode": 0,
+      "completion_receipt": "LP_COMPATIBLE_EXECUTION.json",
+      "completion_receipt_sha256": "1631deff9c3ae0f38713507c3811b4755f0a16d623b43283137a367a1e83331d",
+      "process_exit_receipt_sha256": "ba6ef23e6fb0228f858445c450ba154618042392070aa00e0804ccbd945ed4de",
+      "source_sha256": "bb8112f26ed9403bf8415b9574884adbf3f0a5c3c2bc4317cddbef58aa435e10",
+      "wrapper_sha256": "64498b87dc48929154d285e26a1cd652165289edefd580e9d4ad7a24ae3099db",
+      "result_sha256": "181b3ddc110ff50d12541211146b06a929db20143ab2d3ec6cf723c2c612f3bd"
+    },
+    {
+      "name": "audit_commands.py",
+      "returncode": 0,
+      "source_sha256": "88d5fe2e658e53af538dc8e039d3cdfd9b04547be39703551d62a8f8c79692b8",
+      "actual_argv": [
+        "python3",
+        "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_commands.py"
+      ],
+      "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_commands_parallel.log",
+      "status": "complete"
+    }
+  ],
+  "original_system_attempt_status": "FAIL",
+  "original_system_lp_failure_retained": true,
+  "compatible_LP_backend_selected_before_diagnostic_results": true,
+  "source_math_or_geometry_threshold_changed": false,
+  "global_package_mutation": false,
+  "original_receipt_sha256": "1b43d5827f1e177a56c09e20dbbc25ba0d1fd20a5182e913484ea9abfe62db90",
+  "lp_registration_sha256": "2dbdac43406d3b38ee4413c9ccf68ef46736fc09867bb3c45bc6402f73ac23df",
+  "compatible_completion_sha256": "1631deff9c3ae0f38713507c3811b4755f0a16d623b43283137a367a1e83331d",
+  "required_result_sha256": {
+    "holdout_results.json": "30be91e3f7cdc4caa8904511732a03115def6ce3ff8f5206215b63d55040375e",
+    "offline_analysis_execution.json": "c854c72a8c8b148d5b239cb1a3305477e7e76576bdc57091eeb0b982efee2cdc",
+    "H6_PREDICTION_AUDIT.json": "f200881d8eed30b29e79aacbc38f1409c6b6191fb6c0bf8377167a7260ebbc03",
+    "first_failure_audit.json": "181b3ddc110ff50d12541211146b06a929db20143ab2d3ec6cf723c2c612f3bd",
+    "command_audit.json": "cfd329fa23ff89d1189974b164bcc743a8e4bce056a6d5fed014ed6c98bfd4ce"
+  },
+  "utc": "2026-10-06T01:18:00.651896+00:00"
+}

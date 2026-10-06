@@ -1,0 +1,78 @@
+{
+  "status": "PASS_CORRECTED_EFFECTIVE_BRIDGE_SOURCE_AND_BINDINGS",
+  "utc": "2026-10-06T01:19:06.901776+00:00",
+  "bindings": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/finalize_analysis_effective.py": "3b1948d289ee2b4ab360e006282d99cba48a9ac2e27b55ab54025b7d6bdbbe81",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ASTRA_FINAL_BRIDGE_REVIEW.json": "e78112cb0d1e0de2dcb43720d467b64b88b0642779c4860d64f7ed3f988c5758",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ASTRA_FINAL_BRIDGE_REVIEW.md": "86951c48a18cd49470d3590cf336332cd1a391dfab70810cc8c3e480c519bc8d",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/BRIDGE_PROVENANCE_CORRECTION.json": "072f7ec6c299ecb2a8c469d608025c4834ce20d8db4d5128a590a620d9d5a880",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_BACKEND_REGISTRATION.json": "2dbdac43406d3b38ee4413c9ccf68ef46736fc09867bb3c45bc6402f73ac23df",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_COMPATIBLE_EXECUTION.json": "1631deff9c3ae0f38713507c3811b4755f0a16d623b43283137a367a1e83331d",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/LP_COMPATIBLE_PROCESS_EXIT.json": "ba6ef23e6fb0228f858445c450ba154618042392070aa00e0804ccbd945ed4de",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ANALYSIS_FOLLOW_EXECUTION.json": "1b43d5827f1e177a56c09e20dbbc25ba0d1fd20a5182e913484ea9abfe62db90",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_bridge_rereview_tests.py": "13188d2b4818e9089df64895e5892b5004ee4cf798bf2e9d6390e29b5330a884",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_bridge_rereview_tests.log": "17a4ab457f6a749f253d794596381131dcaf787242fe95534c229bf189df8eb0"
+  },
+  "resolved_findings": [
+    "BRIDGE-1",
+    "BRIDGE-2"
+  ],
+  "original_fail_review_preserved": true,
+  "original_system_driver_status": "FAIL",
+  "original_system_lp_returncode": 1,
+  "original_failure_log_sha256": "2fa0fd28df3211c823b157f25b079a8bbbf4bca9299643377bf8cbf06593aed1",
+  "original_driver_receipt_unchanged": true,
+  "compatible_binding_read_only_executed": true,
+  "compatible_result_cases": 79,
+  "compatible_observed_tool_returncode": 0,
+  "compatible_success_row_in_memory": {
+    "name": "failure_audit.py",
+    "status": "complete_source_bound_compatible_backend",
+    "original_failed_attempt": {
+      "name": "failure_audit.py",
+      "returncode": 1,
+      "source_sha256": "bb8112f26ed9403bf8415b9574884adbf3f0a5c3c2bc4317cddbef58aa435e10",
+      "actual_argv": [
+        "python3",
+        "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/failure_audit.py"
+      ],
+      "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/failure_audit_parallel.log"
+    },
+    "original_returncode_retained": 1,
+    "actual_entry": "run_lp_compatible.py",
+    "interpreter": "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "python": "3.11.15",
+    "numpy": "1.26.0",
+    "scipy": "1.15.3",
+    "reproducible_argv": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_lp_compatible.py"
+    ],
+    "actual_argv_retention": "Exact argv was not recorded by the original compatible receipt; reproducible_argv is not a recovered process argv.",
+    "log": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/lp_compatible.log",
+    "log_sha256": "d0800cc603d8356637f4bdbe28e522f06fc9c09c30d5d4fdc0a604472a3b7d09",
+    "observed_tool_returncode": 0,
+    "completion_receipt": "LP_COMPATIBLE_EXECUTION.json",
+    "completion_receipt_sha256": "1631deff9c3ae0f38713507c3811b4755f0a16d623b43283137a367a1e83331d",
+    "process_exit_receipt_sha256": "ba6ef23e6fb0228f858445c450ba154618042392070aa00e0804ccbd945ed4de",
+    "source_sha256": "bb8112f26ed9403bf8415b9574884adbf3f0a5c3c2bc4317cddbef58aa435e10",
+    "wrapper_sha256": "64498b87dc48929154d285e26a1cd652165289edefd580e9d4ad7a24ae3099db",
+    "result_sha256": "181b3ddc110ff50d12541211146b06a929db20143ab2d3ec6cf723c2c612f3bd"
+  },
+  "tests": {
+    "test_methods": 3,
+    "receipt_mutation_subcases": 10,
+    "source_mutation_subcases": 1,
+    "status": "PASS",
+    "scope": "Actual compatible_binding plus injected wrong runtime/hash/path/count/timestamp/exit/log/epsilon rejects; exact row construction tested in memory."
+  },
+  "bridge_main_invoked_by_astra": false,
+  "canonical_result_written_by_astra": false,
+  "final_effective_receipt_validation": "PENDING_PARENT_BRIDGE_EXECUTION",
+  "scientific_limits": [
+    "Same frozen formulas/options and native threshold source; selected backend differs, no cross-version bitwise LP equivalence claimed.",
+    "Original precise compatible process argv was not recorded; reproducible_argv is explicit nonhistorical reconstruction.",
+    "Tool returncode0 is from the retained parent session observation receipt, not an Astra-reaped process.",
+    "No unique PD cause, conservativeness or physical safety inferred."
+  ]
+}

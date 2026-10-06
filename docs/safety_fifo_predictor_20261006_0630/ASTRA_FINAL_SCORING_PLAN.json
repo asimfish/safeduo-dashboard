@@ -1,0 +1,99 @@
+{
+  "schema": "astra.independent.scoring_plan.v1",
+  "status": "FROZEN_INDEPENDENT_SCORER_BEFORE_OUTCOME_READS",
+  "utc": "2026-10-05T23:11:35.043743+00:00",
+  "expected_cases": 192,
+  "expected_windows": 768,
+  "registration_sha256": "73c2ec7ba8cd5d26dbe33a19f555f10bad840b58c21798e4e7a1fd42271e0cbe",
+  "registered_plan_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/plans/holdout_0_plan.json": "fedecdc815c36159a3e4c9af92c37b70baa25a451182c7b28cc7405161e587d7",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/plans/holdout_1_plan.json": "b142b47fc7c314b2c18b20fb775a596b3a2fe66fce4316f036dd9f29e631b73f",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/plans/holdout_2_plan.json": "7041ab4396da0e48cd860e500c1b3b5e2addf102cf9faf9d1ef6207a7501e9d3"
+  },
+  "scorer_source_sha256": {
+    "astra_final_score.py": "a13470e6211e5b94030a687983d0600bfa3586a9d599c1dd901985b4fc5b2e98",
+    "astra_score_core.py": "229bc547ece7b61528cea87cf58e02ccded8c1ce5344456c93e35a41797ca996",
+    "astra_score_tests.py": "d47f9acfc24d03729654137bc85f3534db5c6037a24b6a26703bc72186155482"
+  },
+  "test_evidence": {
+    "cpu_tests_passed": 22,
+    "mutation_faults_detected": 8,
+    "mutation_faults_declared": 8,
+    "test_log_sha256": "37ffcfcce2aebd6c7c406d1f0077f9faf503e4b1f6455baaf02a941b7c1e6d15",
+    "mutation_result_sha256": "26efb3cf3d576c0e3a7a271639165d7f90dbcd824289d9a2f935260a1819eea2",
+    "mutation_script_sha256": "7bffce38ae6cbd0b64fc9209d4a7c830e7b389e917cb5e0dd905701682576a6b",
+    "uses_only_synthetic_inputs": true
+  },
+  "readiness_at_freeze": {
+    "status": "WAITING_FOR_ALL_CAMPAIGNS",
+    "utc": "2026-10-05T23:09:54.541591+00:00",
+    "all_terminal": false,
+    "blocks": [
+      {
+        "block": 0,
+        "status": "running",
+        "jobs": [
+          {
+            "id": "joint_reference_1495424313",
+            "status": "running",
+            "exit_code": null
+          }
+        ]
+      },
+      {
+        "block": 1,
+        "status": "running",
+        "jobs": [
+          {
+            "id": "joint_reference_1614066656",
+            "status": "running",
+            "exit_code": null
+          }
+        ]
+      },
+      {
+        "block": 2,
+        "status": "running",
+        "jobs": [
+          {
+            "id": "joint_reference_397195787",
+            "status": "running",
+            "exit_code": null
+          }
+        ]
+      }
+    ],
+    "outcome_arrays_opened": false
+  },
+  "completion_contract": "all3 canonical campaign.json terminal, then successful job and complete final protocol required per verified window; outer lane exit is not a window outcome",
+  "primary": [
+    "joint_reference",
+    "motion_admission"
+  ],
+  "ablations": [
+    "velocity_admission",
+    "pd_admission"
+  ],
+  "population": "all192 explicit block/bank/command/env case identities; all4 mode windows each; unavailable/invalid retain identities and never count safe",
+  "comparison": "native float32 official nonexempt margins <np.float32(0) and <np.float32(-.005), no epsilon; all960 post frames including60 zero-input prefix",
+  "minima": "native float32 per-window/class minimum before JSON conversion; +inf for no nonexempt class maps to null with explicit +inf frame counts",
+  "pairing": "exact shape/dtype/bytes hash for q0, qd0, initial target, executed960 tape, full962 recipe tape and registered bank; no posthoc movement matching",
+  "geometry_binding": "all30x32 full9021 pre frames per condition; pre[t] exactly equals prior native post[t-1] class minima for t1..959; no full all-row finalpost archive promised",
+  "first_failure_selection": "first2 failing env identities sorted by (first native strict step,env) per each12 condition; receipt inventory checked against all64 independently scored envs; max24 chosen snapshots",
+  "first_failure_scope": "bind pre/postq, preqd, finalqd if nextpre available, actual projected return, effective integrated delta, queue and measured rows; J*qmotion vs J*targetincrement vs J*appliedtargeterror are diagnostics with m/rad times rad -> m, no unique PD cause",
+  "raw_hash_scope": "hash every consumed raw input and frozen source binding before reading and rehash all after; receipt SHA used for all30 chunks and selected snapshots",
+  "partial_evidence": "per-condition invalidity retains64 placeholders; overall PASS only if768 verified windows, all192 pairs eachcomparison and unchanged consumed inputs",
+  "exclusions": [
+    "GPU/hardware or counterfactual forward replay",
+    "H6 raw error audit until later",
+    "camera ownstate audit until later",
+    "camera numeric forward identity not assumed",
+    "parent results and panel review until later",
+    "no empirical safety certification"
+  ],
+  "writes": "H/astra_* and H/ASTRA_FINAL_* only",
+  "outcome_arrays_opened_before_freeze": false,
+  "parent_counts_used": false,
+  "parent_analysis_imported": false,
+  "policy_tuning": false
+}

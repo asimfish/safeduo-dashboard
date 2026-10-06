@@ -1,0 +1,136 @@
+{
+  "status": "PASS_SCOPED_FROZEN_CPU_SCHEDULING_AND_SUPERSESSION_REVIEW",
+  "utc": "2026-10-06T00:47:22.742129+00:00",
+  "reviewed_wrapper_sha256": "031ec518350b71104dbbeee5ef315f6f15cd496daa6d932a6b77ae2b0435f3fc",
+  "blocking_source_findings": [],
+  "launch_readiness": "HANDOFF_RECEIPTS_BOUND_OLD_AND_ATTEMPT1_PIDS_ABSENT",
+  "old_pid_exists": {
+    "1592576": false,
+    "1987996": false,
+    "1987997": false
+  },
+  "scope": "Exact registered parent CPU scheduling wrapper source review and synthetic scheduling tests; no all12 parallel outcome execution or performance equivalence measured. Parent current parallel run is active; no full parallel-result PASS or serial-to-parallel numerical comparison claimed.",
+  "tests": {
+    "count": 8,
+    "status": "PASS",
+    "subcases": [
+      "exact argument and return-object identity",
+      "ordered original aggregation",
+      "wrong path/job/plan/dense rejected",
+      "worker exception propagation; no PASS receipt",
+      "post-source mutation rejected",
+      "H6 row order retained",
+      "compile source hash rejection",
+      "25GiB wait threshold"
+    ],
+    "synthetic_fixture_initial_error": "Missing job env in first synthetic fixture; corrected only Astra test fixture; original failing log retained."
+  },
+  "bindings": {
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/execute_readback_parallel.py": "031ec518350b71104dbbeee5ef315f6f15cd496daa6d932a6b77ae2b0435f3fc",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/analyze.py": "735dd79b7977516929089efd7260ab18066c3117b729990d6c3134e574c69d88",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/dense_audit.py": "01698e1e1222ab84fd76c3088e659749ddf921864039a69739ad9604921bc595",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_prediction_h6.py": "ced5e8b8567f15e752e083bce08a8ce7cfd55b2e509462ec74b85633b8330e0b",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_analysis.py": "236f707b2310b2968401b799f36531ecc7daa367fe6e3356e2cde1df4f692c87",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ANALYSIS_PARALLEL_REGISTRATION.json": "0ac7cf58fa5cab2c909fe14d4ac5e6de94ab449b33ce1607b419e67f9335f64a",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ANALYSIS_CPU_SUPERSESSION.json": "3cbc9ca4a1b13c04acb2d6462e30bd5447fd45c93b2083a984afdb49f4dc4bc2",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/READBACK_LOAD_PROFILE.json": "f9165adee654af26b1a489c09ff06e7159532255327c2620e642834ab0caacd8",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_readback_parallel_tests.py": "d2266e125b21281dd3314425ce03f0ed2f6da80ed9e6230c83a2f0888953d580",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/astra_readback_parallel_tests.log": "9ead783f3378f0c449b451ee5ca5a8f6cd699ebc040b92dee9b9d505fc592c54",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ANALYSIS_CPU_ORIGINAL_EXIT.json": "8e7c235177641b5725695cd6baa4363f47dc16095a5f5b067596fd6f14352038",
+    "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/ANALYSIS_PARALLEL_ATTEMPT1_CLOSURE.json": "27d6c072b5803805203778c8b067fa8516b1a97c900c422c9779dd30e554e063"
+  },
+  "canonical_campaigns": {
+    "count": 3,
+    "conditions": 12,
+    "all_complete_exit0": true,
+    "unique_registered_paths": 12
+  },
+  "calculation_equivalence": {
+    "analyze_inspect": "Exact original compiled function, per-cell local arrays; no shared numerical accumulators.",
+    "analyze_main": "Original function bytecode retained; only inspect call routed to its matching fresh future. Serial plan/job aggregation unchanged.",
+    "h6": "Exact original inspect; executor.map preserves original row order; adds same mode/id metadata.",
+    "raw_hashes": "Original inspect before/after input checks unchanged. No persistent result cache.",
+    "native_thresholds": "Original arithmetic unchanged; no epsilon, fit, policy, thresholds or raw writes added.",
+    "status": "No PASS written by wrapper after failed inspect, failed source recheck, or failed window contract. Driver reports nonzero child returns as FAIL. Abrupt interruption may leave partial outputs without completion receipt. Existing raw results alone are insufficient final proof."
+  },
+  "resources": {
+    "worker_bound": "4 analyze +4 H6 cells; driver2 stages",
+    "affinity_cpus": 48,
+    "mem_available_kib": 72612876,
+    "profile_seconds": 5.38526231306605,
+    "expanded_chunk_bytes": 745324544,
+    "gate_bytes": 26843545600,
+    "limitation": "Memory checks do not reserve memory atomically or bound peak RSS; no demonstrated parallel speedup yet. Eight expanded chunks alone are ~5.55GiB; current/next and transient arrays plus retained cell arrays add memory. Monitor actual RSS/available memory; no physical safety inference."
+  },
+  "required_handoff": [
+    "Resolved: independently observed original three and first-attempt three PIDs absent; parent exact-identity SIGTERM receipts bound. No signal sent by Astra.",
+    "Confirm canonical result/execution files remain absent (or preserve any prior output before an explicit supersession); original main writes holdout_results.json with overwrite semantics.",
+    "Launch with PYTHONDONTWRITEBYTECODE=1; no python -O because assertion guards must remain active.",
+    "Final review must bind actual argv/wrapper SHA, supersession, per-stage completion and final outputs, not infer original serial CLI completion from historical task name."
+  ],
+  "own_scoring_decision": "Retain original independent frozen sequential scorer for now: 4/12 conditions processed at inspection; no competing canonical writer, no extra heavy parallel reread added while parent starts eight cells.",
+  "physical_safety_certified": false,
+  "reviewed_original_and_attempt1_pid_exists": {
+    "1592576": false,
+    "1987996": false,
+    "1987997": false,
+    "2085447": false,
+    "2085696": false,
+    "2085697": false
+  },
+  "supersession_receipts": {
+    "ANALYSIS_CPU_ORIGINAL_EXIT.json": {
+      "status": "PASS_EXACT_OWNED_ORIGINAL_READBACK_STOPPED",
+      "targets": [
+        {
+          "pid": 1592576,
+          "entry": "follow_analysis.py",
+          "observed_argument": "follow_analysis.py",
+          "resolved_entry": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/follow_analysis.py",
+          "signal": "SIGTERM"
+        },
+        {
+          "pid": 1987996,
+          "entry": "run_analysis.py",
+          "observed_argument": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_analysis.py",
+          "resolved_entry": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/run_analysis.py",
+          "signal": "SIGTERM"
+        },
+        {
+          "pid": 1987997,
+          "entry": "audit_prediction_h6.py",
+          "observed_argument": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_prediction_h6.py",
+          "resolved_entry": "/home/liyufeng/safeduo/artifacts/safety_fifo_predictor_20261006_0630/audit_prediction_h6.py",
+          "signal": "SIGTERM"
+        }
+      ],
+      "unfinished_original_results_not_counted_complete": true,
+      "raw_files_unchanged": true,
+      "utc": "2026-10-06T00:44:36.880860+00:00"
+    },
+    "ANALYSIS_PARALLEL_ATTEMPT1_CLOSURE.json": {
+      "status": "RETAINED_STARTUP_ORDER_CHECK_FAILURE_NO_COMPLETE_RESULTS",
+      "observed": "originalstopcheck expectedabsoluteentry butfollowusedrelativeentry; newwrapper hadbeenlaunched, thenonly exactnewCPUreaders stoppedbeforecanonical outputs",
+      "new_owned_pids": [
+        {
+          "pid": 2085447,
+          "stage": "driver"
+        },
+        {
+          "pid": 2085696,
+          "stage": "analyze"
+        },
+        {
+          "pid": 2085697,
+          "stage": "h6"
+        }
+      ],
+      "original_pids_not_yet_stopped": true,
+      "complete_outputs_written": 0,
+      "raw_physics_mutation": false,
+      "utc": "2026-10-06T00:44:11.092103+00:00"
+    }
+  },
+  "parallel_execution_outcomes_verified": false,
+  "execution_history": "First parallel attempt began before original readers were stopped; parent stopped only its three new CPU readers and preserved first-attempt logs with no completed outputs reported. Parent then resolved relative follow argv, stopped original readers, and restarted same frozen wrapper. Astra verifies current absence and receipts, not an independently reaped OS exit code."
+}

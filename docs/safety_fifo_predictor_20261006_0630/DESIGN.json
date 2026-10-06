@@ -1,0 +1,73 @@
+{
+  "schema": "safeduo.fifo_predictor.design.v1",
+  "utc": "2026-10-05T22:27:41.876043+00:00",
+  "phase": "development_predictor_validation_before_new_outcomes",
+  "old_evidence_read_only": "/home/liyufeng/safeduo/artifacts/safety_feasible_guard_20261005_2100",
+  "raw_root": "/mnt/nas/data/lyf/double_hand/safety_fifo_predictor_20261006_0630",
+  "router_catalog_digest": "sha256:6c0149b5ee5d2dd241e2ea13623a1ef1c285d43f5a029ab9f796740ce6d1503a",
+  "selected_skills": [
+    "simulation"
+  ],
+  "routing_boundary": "robot dynamics and experiment implementation; excluded paper review/reporting and separate camera calibration at this phase",
+  "development_split": {
+    "train_old_holdout_block": 0,
+    "calibrate_old_holdout_block": 1,
+    "retrospective_validation_old_holdout_block": 2,
+    "group_by": "initial bank/command seed block; all four methods in same block",
+    "not_blind": "all are previously completed published outcomes; not new coverage or new safety experiment"
+  },
+  "predeclared_models": [
+    "constant_velocity",
+    "instant_target_catchup",
+    "diagonal_affine_damped_PD"
+  ],
+  "regression_features": [
+    "pre_qd",
+    "actual_applied_target_minus_pre_q",
+    "constant"
+  ],
+  "fit_targets": [
+    "post_q_minus_pre_q",
+    "post_qd"
+  ],
+  "horizons_control_steps": [
+    1,
+    6,
+    12,
+    18
+  ],
+  "metrics": [
+    "per_joint_RMSE_rad",
+    "max_abs_rad",
+    "q99_abs_rad",
+    "first_failure_errors",
+    "recursive_horizon_errors",
+    "actual_FIFO_causality_binding"
+  ],
+  "conservative_claim": "no empirical fit/calibration or retrospective accuracy alone certifies future/hardware safety",
+  "must_preserve": [
+    "actor32observations",
+    "original_strict_nonexempt_geometry_lt0",
+    "deep_lt_minus0.005m",
+    "original_geometry_exemptions",
+    "actual_FIFO6_order_and_contents",
+    "production_source_and_configs"
+  ],
+  "forbidden": [
+    "hardware_promotion",
+    "queue_preemption",
+    "target_snap",
+    "queue_rebase",
+    "post_outcome_scale_matching",
+    "old_sealed_namespace_writes"
+  ],
+  "next_gate": "choose candidate only after model/causality evidence; register new untouched reference, fresh policy-blind bank+tape and sources before GPU outcome collection",
+  "old_bindings": {
+    "SEALED.json": "e41e5f12af660b1a6de9ec608ece6c9e805ce66aa31cd7ddc529c1a471358912",
+    "holdout_results.json": "f2d9d05d1519ac104cf94dc2ae7afe7375d869904326bac09da0299563f4e0f5",
+    "raw_evidence_manifest.json": "a209da3728e4822d40a475ac04379ad78489a3ec0faaedf7777f69a059336874",
+    "guard_runner_v2.py": "06cd67a6ccd0e97a408fdf4d82072e07f0d6a1e0f0bc7ca98be87fb3c897708f",
+    "dense_audit.py": "930ffd3bbb37aa162333ca30301e1c31783107a1684b67499d09477a307fa0a0",
+    "NEXT.md": "c975b0c1779e2fab00fb639aabce7899ce9f4708eb98dd769109b91aa716ef91"
+  }
+}
