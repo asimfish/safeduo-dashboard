@@ -1,0 +1,63 @@
+{
+  "status": "BLOCKED_PRESENTATION_SOURCE_REVIEW_PENDING_CORRECTION",
+  "verdict": "Blocked",
+  "utc": "2026-10-06T09:01:25.613786+00:00",
+  "scope": "Read-only static source review, no generation, browser, publication or parent modification",
+  "source_sha256": {
+    "panel_template.html": "24d5da1b3e2a6285e808c29dc1b1cea51ee9b006a57a7ba0ff80c815061765e0",
+    "build_report.py": "2756d2bd104fa06eb7a058fc827086d56299ff31aa8aaf592375d656291f0dda",
+    "build_delivery.py": "e4881a0c3ce47390f39b6e6c7697254188fb457fdb8e7175e61ccc6e6a4899e6",
+    "update_root.py": "5afe5845cddf20fb69bbef2a3d835b066aeee6f9cdab7dec3c0f37e9b99f1c9d"
+  },
+  "dimensions": {
+    "functional_achievement": "Fail: report creation/review circular gate and incomplete delivered independent dependencies",
+    "correctness_and_reliability": "Risk: numeric/camera final source binding still pending actual generation",
+    "architecture": "Fail: report creation depends on approval that consumes that report",
+    "function_api_design": "Risk: missing registered auditor runtime dependencies in delivery list",
+    "style_maintainability": "Pass within bounded review; no style defect raised",
+    "performance": "Unable to determine: no browser/load performance measured; not assessed"
+  },
+  "blocking_findings": [
+    {
+      "id": "PRESENT-1",
+      "severity": "blocking review workflow",
+      "path": "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/build_report.py",
+      "line": 10,
+      "evidence": "Generation requires FINAL_REVIEW PASS while the requested final review must examine the generated REPORT; current REPORT does not yet exist.",
+      "impact": "A truthful final report review cannot be produced in this dependency order.",
+      "minimum_repair": "Generate a explicitly pending-review report once its result/camera inputs close, then review its actual bytes. Keep FINAL_REVIEW PASS required for delivery/publication, not for creating the reviewable report."
+    },
+    {
+      "id": "PRESENT-2",
+      "severity": "major reproducibility gap",
+      "path": "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/build_delivery.py",
+      "line": 77,
+      "evidence": "Required public bundle includes astra_tracking_raw_tests.py but omits its imported astra_tracking_raw_supervise.py. astra_tracking_raw_score.py also requires astra_tracking_raw_plan.json and all source files bound there, many absent from required.",
+      "impact": "The advertised independent raw tests/scorer are not self-contained reproducible from the delivered source bundle even when the separately required raw/repository dependencies are available.",
+      "minimum_repair": "Include independent supervisor, frozen raw plan and every source named by that plan; include test/actual execution/closure receipts. For complete camera and trajectory proof include their plan/source/actual pixel review receipts and final camera result once complete."
+    }
+  ],
+  "positive_source_findings": [
+    "576 windows /192 cases correctly retained; no586 typo found",
+    "Native strict/deep window and correlated environment-step totals displayed",
+    "Generated report and current delivery verdict include candidate rejection on observed worsening",
+    "Post-observation floor and zero-prefix findings labeled exploratory and no new independent random evidence",
+    "42fixed camera groups plus actual failures and128 separate camera windows do not increase numeric denominator",
+    "Fixed9time LP scope explicitly selected numerical sets, not continuous recovery or full nonlinear proof",
+    "Gallery preserves original image and own-state/native links; source does not claim all metadata images were semantically viewed"
+  ],
+  "nonblocking_notes": [
+    "Use separate camera executions wording rather than statistical independence for128 windows on the same bank/tape",
+    "Keep actual semantic pixel subset count explicit in final review, not inferred from full gallery PNG count",
+    "Zero-J initial hypothesis is not supported by0/192; the report records this number and NEXT should not imply it was observed"
+  ],
+  "earlier_note_resolution": {
+    "id": "ZERO-SCOPE-1",
+    "status": "RESOLVED_FOR_CURRENT576_RAW_WINDOWS_BY_INDEPENDENT_EVIDENCE",
+    "initial_controller_target_and_measured_q0_bitwise_equal_windows": 576,
+    "scope": "Current raw fingerprint equality justifies q_initial reference as actual initial target here; not a general API assumption"
+  },
+  "actual_render_or_deployment_reviewed": false,
+  "parent_files_modified": false,
+  "final_scientific_review_complete": false
+}

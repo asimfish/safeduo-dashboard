@@ -1,0 +1,74 @@
+{
+  "schema": "safeduo.tracking_reserve.design.v1",
+  "registered_utc": "2026-10-06T07:34:39.578655+00:00",
+  "rows": [
+    {
+      "block": 0,
+      "initial_seed": 901654451,
+      "command_seed": 1032170814
+    },
+    {
+      "block": 1,
+      "initial_seed": 1966909750,
+      "command_seed": 1524916601
+    },
+    {
+      "block": 2,
+      "initial_seed": 1854992723,
+      "command_seed": 2128673010
+    }
+  ],
+  "modes": [
+    "joint_reference",
+    "tight_reference",
+    "delay_reserve"
+  ],
+  "comparisons": [
+    [
+      "joint_reference",
+      "delay_reserve"
+    ],
+    [
+      "joint_reference",
+      "tight_reference"
+    ],
+    [
+      "tight_reference",
+      "delay_reserve"
+    ]
+  ],
+  "primary_comparison": [
+    "joint_reference",
+    "delay_reserve"
+  ],
+  "cases_per_bank": 64,
+  "paired_cases": 192,
+  "method_windows": 576,
+  "frames_per_window": 960,
+  "dt_s": 0.016666,
+  "zero_prefix_steps": 60,
+  "actuator_FIFO_steps": 6,
+  "raw_command_scale": 1.0,
+  "mechanism": "adaptive reachable tracking envelope; .010+.040*clip((riskmargin-.010)/.040,0,1); reference baseline .050; fixed .010 ablation",
+  "risk": "minimum nonexempt represented distance-dmin after minimum of current geometry, frozen-J six actual pending-target endpoints, frozen-J qd*18dt; no future/current new command in risk; heuristic not viability proof",
+  "all_modes_admission": "original actor32 + original measured/target forecast union; capacity9021 no dropping; no CV/PD extra admission",
+  "thresholds_and_exemptions_unchanged": true,
+  "solver": "unchanged finite original with original R19 bypass respecting reachable interval",
+  "randomness": "six fresh OS seeds; first-qualified raw-zero stable order; 6pair strata8each/global16; independent four-arm mixed random holds900frames",
+  "metrics": [
+    "strict full original nonexempt distance<0",
+    "deep<-0.005m",
+    "strict/deep durations",
+    "paired rescue/new failure",
+    "actual q path/range",
+    "four-arm movement",
+    "reference residual/debt",
+    "coverage/exposure",
+    "FIFO truth",
+    "all selected membership"
+  ],
+  "development_data": "previous closed studies explicitly retrospective; no outcomes from this namespace used for tuning",
+  "camera": "primary methods first new bank, independent own-state trajectories, nine original1280x720 views, all6pair strata+global at75/480/959, first-failure per stratum, native all64 q/qd/root snapshots unchanged by rendering; CUDA0 registered before run",
+  "hardware_approved": false,
+  "production_promoted": false
+}

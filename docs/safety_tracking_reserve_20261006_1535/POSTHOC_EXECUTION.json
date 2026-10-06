@@ -1,0 +1,25 @@
+{
+  "status": "PASS_TWO_CLOSED_EXPLORATORY_READBACKS",
+  "utc": "2026-10-06T08:53:23.115863+00:00",
+  "policy_changed": false,
+  "new_random_windows": 0,
+  "jobs": [
+    {
+      "script": "audit_zero_intent.py",
+      "actual_exit_code": 0,
+      "log": "zero_intent_execution.log"
+    },
+    {
+      "script": "audit_adaptive_saturation.py",
+      "initial_actual_exit_code": 1,
+      "initial_log": "saturation_execution_initial_failure.log",
+      "schema_amendment": "SATURATION_AUDIT_AMENDMENT.json",
+      "retry_actual_exit_code": 0,
+      "retry_log": "saturation_execution_retry.log"
+    }
+  ],
+  "receipts": {
+    "ZERO_INTENT_AUDIT.json": "c8ee14f5c19b2eafbec6fad58ada4548b2dfca82faab48ad47d474490c51a4e7",
+    "ADAPTIVE_SATURATION_AUDIT.json": "3164e9b785da05ccafe9bfa37db0c8a7d1f3a01b68ce1076a9b88b7b1d96d7a2"
+  }
+}

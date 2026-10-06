@@ -1,0 +1,45 @@
+{
+  "status": "READONLY_DIAGNOSTIC_CONTRACT",
+  "utc": "2026-10-06T08:18:12.449555+00:00",
+  "observed": "current tight_reference block0 log step300 violationcount41; baseline samebank/tape actualclosed8strict/64; first three saved tight failures atsteps16,28,29, inside registered zero-prefix with rawcmdexact0 and actualbounds excluding zero",
+  "expected_for_future_candidate": "zero-intent semantics and physicalrisk must be measured; nominaltighterreference alone should not beassumedsafer",
+  "namespace": "safety_tracking_reserve_20261006_1535",
+  "registered_current_policy_unchanged": true,
+  "first_bad_captured_state": {
+    "mode": "tight_reference",
+    "seed": 1032170814,
+    "step": 16,
+    "env": 35
+  },
+  "impact": "candidate can introduce motion and new physical violations despite zero external movement demand",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "hypothesis": "q-centered gap tighter than passive tracking debt forces target movement even at rawzero; reference follows passive drift",
+      "prediction": "snapshot rawcmd0 with zero outsideactualbounds; held baseline zero-prefix keeps targets and nofailure; helper .010 input becomesnonzero while.050 allowszero",
+      "scope": "command-bound mechanism can be proven; physicaluniquecause requires more than such correlation"
+    },
+    {
+      "id": "H2",
+      "hypothesis": "large future randomcommands or changedactuatorqueuecause first failures",
+      "prediction": "earlyfailsteps>=60 or wrong FIFO, so t16raw0+exactprefix/queue falsifies earliest futurecommand explanation"
+    },
+    {
+      "id": "H3",
+      "hypothesis": "geometry/exemption or statebinding inconsistency",
+      "prediction": "firstfailnegative reconstructedrawrows differs fromstored officialmargin or native/FIFO binding differs"
+    },
+    {
+      "id": "H4",
+      "hypothesis": "unmatchedGPU initialphysics or feasibility failures contribute",
+      "prediction": "pairedinitial/first6physicalprefix notexact, or savedlinear constraints infeasible before forced bounds; independentchecks pending"
+    }
+  ],
+  "probe": "new closed-state audit_zero_intent.py aftercanonicalconditionsfinish; minimal CPU savedinput puregovernor replay and original050 comparator; no additional policyoutcome selection",
+  "scope_limits": [
+    "no policychange/currentparamtuning",
+    "unfinished files descriptive only untilcanonicalreceiptsclosed",
+    "diagnosing commandmechanism not asserting unique physicalcause",
+    "nohardware/productionpromotion"
+  ]
+}

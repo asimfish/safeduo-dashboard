@@ -1,0 +1,68 @@
+{
+  "schema": "astra.tracking.independent_raw_plan.v1",
+  "status": "REGISTERED_INDEPENDENT_TWO_WORKER_SCORER_BEFORE_RAW_OUTCOME_READS",
+  "registered_utc": "2026-10-06T08:10:27.337573+00:00",
+  "workers": 2,
+  "minimum_mem_available_bytes": 26843545600,
+  "expected_cases": 192,
+  "expected_windows": 576,
+  "frames": 960,
+  "rows": 9021,
+  "source_sha256": {
+    "astra_tracking_raw_score.py": "66c0110549635481129abf3d2b004a20cc4e934e2796cfed6dab55b4bad70aa9",
+    "astra_tracking_score_core.py": "87c28d99cffe9ab1e57e95ef7cb9ea41093d301e39aed35c6da6e6761b3e887e",
+    "astra_tracking_raw_tests.py": "db3a4e431ea29795638019ca6f436205d97735e7710037d45ff7d6ac2f3df1c7",
+    "astra_tracking_raw_supervise.py": "722543cc77af7049ebe0df5f2e995578f5a849f4c48ca5bd5e014e8b5a6607f2",
+    "astra_tracking_torch_BinaryDivTrueKernel.cu": "ad86bdbc9000d2add2f369a7d32b21eba3ad0a44ddaf599bf3892556e30ac1b2",
+    "astra_tracking_backend_arithmetic.json": "3dd0af0ff61d799ab109237cb150629c74cef1b7cbbba7d1098d5732eed3fe04",
+    "astra_tracking_raw_contract.md": "f2f3fcaeeb6edaa25d2396cb671060d96d51dcdea41906a144b77bd66b5be635",
+    "astra_tracking_raw_derivation.json": "291629f21465af122a275f93e8cf352f85b6df370fd4d7a0ec9c72a121ad1af4"
+  },
+  "scorer_argv": [
+    "/usr/bin/python3",
+    "-u",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_score.py",
+    "--watch"
+  ],
+  "supervisor_argv": [
+    "/usr/bin/python3",
+    "-u",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_supervise.py"
+  ],
+  "interpreter": "/usr/bin/python3",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "numpy": "2.2.6",
+  "numeric_registration_sha256": "195f4cd9a9c08ede8a370ef31825d7431b4639dfe9383948d363ca570784afbf",
+  "plans": {
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/plans/holdout_0_plan.json": "c5e36b884de7aedefea48987f1afde0e67c639676d41547abd3e30f85cfa9912",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/plans/holdout_1_plan.json": "8aba56007cac3fad3ce945688643583fbc781f004cdf3e1917683b57fd0800c8",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/plans/holdout_2_plan.json": "366e333c114bcc77918790b83511fc42210bccdc696d1693780fd3ad9baedf83"
+  },
+  "source_review_sha256": "93d61a29dbfeb8637d6b5705d912770faed73b521509d9acd4195f89a5e8512e",
+  "tests_receipt_sha256": "d8c929a3672cea87a4da806954e9c32f16f0e6a9374cd6b6c083521fc146e5d9",
+  "native_thresholds": {
+    "strict": "float32 <0",
+    "deep": "float32 <-float32(.005)",
+    "epsilon": null
+  },
+  "first_failure_snapshot_selection": "first two distinct failing envs by(step,env) per condition",
+  "own_outcome_array_reads_before_registration": 0,
+  "source_review_policy_hashes_current": {
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/guard_runner.py": "ae198e7ef7d6c8c144eb34e456c452283dfed948f4e4c9c7bdbdc21729fa5d79",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/projection_diagnostics.py": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/reference_envelope.py": "2ae5b20dd4bb797a7e450f66652759f9e22c3c0bf69a188650d4cea179cf1d3a",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/target_forecast.py": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/tracking_reserve.py": "c7c0190c4c3455ce85a9429863826983c4a6acc6cf144e5bf79464f9ce191b7c"
+  },
+  "output": "ASTRA_TRACKING_FINAL_SCORE.json",
+  "canonical_gate": "Read arrays only after canonical whole campaign terminal; require each counted child exit0, complete protocol, exact actual argv.",
+  "no_gpu_or_simulation": true,
+  "no_policy_tuning": true,
+  "source_math_frozen": true,
+  "termination": "No automatic retry. Two threads join; child then single-use supervisor exit with actual rc receipt.",
+  "separate_pending": [
+    "camera own-state and actual selected pixels",
+    "parent LP/report reconciliation",
+    "final scientific review"
+  ]
+}

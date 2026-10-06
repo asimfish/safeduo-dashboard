@@ -1,0 +1,220 @@
+test_corrupt_exempt_inputs_and_bad_queue_do_not_turn_safe (__main__.IndependentOracleTests) ... ok
+test_exemption_and_dmin_have_distinct_meanings (__main__.IndependentOracleTests) ... ok
+test_gap_exact_decimal_boundary_and_monotonicity (__main__.IndependentOracleTests) ... ok
+test_intermediate_pending_rejects_last_only_mutant (__main__.IndependentOracleTests) ... ok
+test_joint_arms_reject_single_arm_mutant (__main__.IndependentOracleTests) ... ok
+test_new_target_delivered_only_on_transition_seven (__main__.IndependentOracleTests) ... ok
+test_opening_cannot_hide_measured_minimum (__main__.IndependentOracleTests) ... ok
+test_reference_reachable_intersection_and_tangent (__main__.IndependentOracleTests) ... ok
+test_reference_unreachable_tight_gap_never_snaps (__main__.IndependentOracleTests) ... ok
+test_velocity_without_target_debt_rejects_static_only_mutant (__main__.IndependentOracleTests) ... ok
+test_absolute_targets_not_summed_as_increments (__main__.ReserveContractTests) ... ok
+test_actual_six_slot_fifo_first_new_delivery_transition7 (__main__.ReserveContractTests) ... ok
+test_all_exempt_or_empty_rows_abort (__main__.ReserveContractTests) ... ERROR
+test_each_joint_all_four_arm_slices (__main__.ReserveContractTests) ... ok
+test_every_pending_slot_can_determine_minimum (__main__.ReserveContractTests) ... ok
+test_exact_original_exemption_and_per_row_dmin (__main__.ReserveContractTests) ... ok
+test_final_row_of9021_is_not_dropped (__main__.ReserveContractTests) ... ok
+test_finite_overflow_in_displacement_projection_and_margin_aborts (__main__.ReserveContractTests) ... ok
+test_gap_invalid_mode_or_nonfinite_never_returns_safe (__main__.ReserveContractTests) ... ok
+test_gap_modes_boundaries_and_ulp_neighbors (__main__.ReserveContractTests) ... ok
+test_joint_reinforcement_and_cancellation (__main__.ReserveContractTests) ... ok
+test_malformed_batch_or_row_broadcast_is_rejected (__main__.ReserveContractTests) ... FAIL
+test_missing_extra_components_and_queue_length_abort (__main__.ReserveContractTests) ... test_nonfinite_inputs_including_exempt_entries_abort (__main__.ReserveContractTests) ... ok
+test_row_permutation_duplication_and_batch_isolation (__main__.ReserveContractTests) ... ok
+test_seeded_multirow_multienv_oracle_float32_and64 (__main__.ReserveContractTests) ... ok
+test_velocity_at_zero_debt_and_direction (__main__.ReserveContractTests) ... ok
+test_baseline050_matches_sealed_original_on_valid_inputs (__main__.ReferenceContractTests) ... ok
+test_invalid_shapes_order_or_original_unreachable_abort (__main__.ReferenceContractTests) ... FAIL
+test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) ... test_perenv_gap_and_unreachable_does_not_snap (__main__.ReferenceContractTests) ... ok
+test_real_install_dynamic_provider_limits_r19_passthrough (__main__.ReferenceContractTests) ... ok
+test_scalar_geometric_interval_oracle_and_soft_limits (__main__.ReferenceContractTests) ... ok
+test_all9021_rows_retained_and_insufficient_budget_aborts (__main__.GuardWiringTests) ... ok
+test_current_proposal_changes_admission_but_not_prequeue_reserve (__main__.GuardWiringTests) ... ok
+test_exact_guard_modes_have_identical_old_target_admission (__main__.GuardWiringTests) ... FAIL
+test_hidden_nonfinite_last_row_aborts_before_projection (__main__.GuardWiringTests) ... ok
+test_producer_physics_order_and_no_queue_writes_in_guard (__main__.GuardWiringTests) ... ok
+
+======================================================================
+ERROR: test_all_exempt_or_empty_rows_abort (__main__.ReserveContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 233, in test_all_exempt_or_empty_rows_abort
+    with self.assertRaises((ValueError,RuntimeError)):CANDIDATE.tracking.reserve_forecast(**adapt(case))
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/tracking_reserve.py", line 43, in reserve_forecast
+    require_finite('reserve_qd', qd)
+IndexError: amin(): Expected reduction dim -1 to have non-zero size.
+
+======================================================================
+FAIL: test_malformed_batch_or_row_broadcast_is_rejected (__main__.ReserveContractTests) (field='q')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 269, in test_malformed_batch_or_row_broadcast_is_rejected
+    with self.subTest(field=field),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_malformed_batch_or_row_broadcast_is_rejected (__main__.ReserveContractTests) (field='qd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 269, in test_malformed_batch_or_row_broadcast_is_rejected
+    with self.subTest(field=field),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_malformed_batch_or_row_broadcast_is_rejected (__main__.ReserveContractTests) (field='jacobian')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 269, in test_malformed_batch_or_row_broadcast_is_rejected
+    with self.subTest(field=field),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_malformed_batch_or_row_broadcast_is_rejected (__main__.ReserveContractTests) (field='pending')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 269, in test_malformed_batch_or_row_broadcast_is_rejected
+    with self.subTest(field=field),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_malformed_batch_or_row_broadcast_is_rejected (__main__.ReserveContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 272, in test_malformed_batch_or_row_broadcast_is_rejected
+    with self.assertRaises((ValueError,RuntimeError)):CANDIDATE.tracking.reserve_forecast(**x)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_missing_extra_components_and_queue_length_abort (__main__.ReserveContractTests) (field='q', change='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 280, in test_missing_extra_components_and_queue_length_abort
+    with self.subTest(field=field,change=change),self.assertRaises((ValueError,RuntimeError,KeyError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'KeyError'>) not raised
+
+======================================================================
+FAIL: test_missing_extra_components_and_queue_length_abort (__main__.ReserveContractTests) (field='qd', change='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 280, in test_missing_extra_components_and_queue_length_abort
+    with self.subTest(field=field,change=change),self.assertRaises((ValueError,RuntimeError,KeyError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'KeyError'>) not raised
+
+======================================================================
+FAIL: test_missing_extra_components_and_queue_length_abort (__main__.ReserveContractTests) (field='jacobian', change='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 280, in test_missing_extra_components_and_queue_length_abort
+    with self.subTest(field=field,change=change),self.assertRaises((ValueError,RuntimeError,KeyError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'KeyError'>) not raised
+
+======================================================================
+FAIL: test_missing_extra_components_and_queue_length_abort (__main__.ReserveContractTests) (field='pending', change='extra')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 280, in test_missing_extra_components_and_queue_length_abort
+    with self.subTest(field=field,change=change),self.assertRaises((ValueError,RuntimeError,KeyError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>, <class 'KeyError'>) not raised
+
+======================================================================
+FAIL: test_invalid_shapes_order_or_original_unreachable_abort (__main__.ReferenceContractTests) (key='q')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 375, in test_invalid_shapes_order_or_original_unreachable_abort
+    with self.subTest(key=key),self.assertRaises((ValueError,RuntimeError)):CANDIDATE.reference.reference_bounds(**x)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_invalid_shapes_order_or_original_unreachable_abort (__main__.ReferenceContractTests) (key='target')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 375, in test_invalid_shapes_order_or_original_unreachable_abort
+    with self.subTest(key=key),self.assertRaises((ValueError,RuntimeError)):CANDIDATE.reference.reference_bounds(**x)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_invalid_shapes_order_or_original_unreachable_abort (__main__.ReferenceContractTests) (key='lower')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 375, in test_invalid_shapes_order_or_original_unreachable_abort
+    with self.subTest(key=key),self.assertRaises((ValueError,RuntimeError)):CANDIDATE.reference.reference_bounds(**x)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_invalid_shapes_order_or_original_unreachable_abort (__main__.ReferenceContractTests) (key='upper')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 375, in test_invalid_shapes_order_or_original_unreachable_abort
+    with self.subTest(key=key),self.assertRaises((ValueError,RuntimeError)):CANDIDATE.reference.reference_bounds(**x)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_invalid_shapes_order_or_original_unreachable_abort (__main__.ReferenceContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 378, in test_invalid_shapes_order_or_original_unreachable_abort
+    with self.assertRaises((ValueError,RuntimeError)):CANDIDATE.reference.reference_bounds(**x)
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) (key='lower', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 368, in test_nonfinite_state_limit_box_and_gap_abort
+    with self.subTest(key=key,value=value),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) (key='lower', value=-inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 368, in test_nonfinite_state_limit_box_and_gap_abort
+    with self.subTest(key=key,value=value),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) (key='upper', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 368, in test_nonfinite_state_limit_box_and_gap_abort
+    with self.subTest(key=key,value=value),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) (key='upper', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 368, in test_nonfinite_state_limit_box_and_gap_abort
+    with self.subTest(key=key,value=value),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) (key='box', value=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 368, in test_nonfinite_state_limit_box_and_gap_abort
+    with self.subTest(key=key,value=value),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_nonfinite_state_limit_box_and_gap_abort (__main__.ReferenceContractTests) (key='box', value=inf)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 368, in test_nonfinite_state_limit_box_and_gap_abort
+    with self.subTest(key=key,value=value),self.assertRaises((ValueError,RuntimeError)):
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_exact_guard_modes_have_identical_old_target_admission (__main__.GuardWiringTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_tests.py", line 480, in test_exact_guard_modes_have_identical_old_target_admission
+    self.assertTrue((trace.last_unreachable==(mode!='joint_reference')).all(),
+AssertionError: tensor(False) is not true : actual tight/adaptive gap must determine archived unreachability
+
+----------------------------------------------------------------------
+Ran 38 tests in 3.311s
+
+FAILED (failures=21, errors=1)
+TESTED_SOURCE_SHA256 {"guard_runner.py": "d99942f6ea712814f967a3f5b7ed62c03b69fd3c5f0dbccb49556d535bee0df0", "projection_diagnostics.py": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869", "reference_envelope.py": "06b1c89855ad6d1dd91d770d3f2b70fff436d5c0b766d34a1fa8783e544720b3", "target_forecast.py": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6", "tracking_reserve.py": "ca3d4aff7082d111ec9c8b74d9d3bd024d7988e4bd83764121c1c9019bd65456"}

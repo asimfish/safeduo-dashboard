@@ -1,0 +1,78 @@
+{
+  "schema": "astra.tracking.scientific_scope_update.v1",
+  "status": "POST_OBSERVATION_DIAGNOSTIC_SOURCE_NOTED_RESULTS_PENDING",
+  "utc": "2026-10-06T08:28:42.939992+00:00",
+  "evidence_sha256": {
+    "ZERO_INTENT_DIAGNOSTIC_CONTRACT.json": "4a9cdcc9b3d33cf469c70d8298bb316ad54cba6b28dceb9c09a1b567d923e7d8",
+    "audit_zero_intent.py": "e5409b8d6d96d9df150f9ad6fe202d3ed8884f8a31542846a1f8d07e13f79e14",
+    "ASTRA_TRACKING_REVIEW.json": "93d61a29dbfeb8637d6b5705d912770faed73b521509d9acd4195f89a5e8512e",
+    "astra_tracking_raw_plan.json": "fe25e23f0b5fd1963c3b391ce4de9378b0c58ca9d69a0f3fb9eb0b1fe8c2cd25"
+  },
+  "policy_source_current_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/guard_runner.py": "ae198e7ef7d6c8c144eb34e456c452283dfed948f4e4c9c7bdbdc21729fa5d79",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/projection_diagnostics.py": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/reference_envelope.py": "2ae5b20dd4bb797a7e450f66652759f9e22c3c0bf69a188650d4cea179cf1d3a",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/target_forecast.py": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/tracking_reserve.py": "c7c0190c4c3455ce85a9429863826983c4a6acc6cf144e5bf79464f9ce191b7c"
+  },
+  "policy_bytes_match_review": true,
+  "independent_raw_math_bytes_match_registration": true,
+  "diagnostic_executed_by_astra": false,
+  "partial_candidate_arrays_read_by_astra_for_this_update": false,
+  "new_windows_created": 0,
+  "duplicate_diagnostic_started": false,
+  "parent_reported_not_independently_scored": {
+    "reference_strict_windows": 24,
+    "reference_deep_windows": 18,
+    "reference_windows": 192,
+    "tight_block0_interim_log": {
+      "step": 300,
+      "violation_count": 41
+    },
+    "early_reported_failures": [
+      16,
+      28,
+      29
+    ]
+  },
+  "parent_counts_are_not_scorer_inputs": true,
+  "source_observations": [
+    "Diagnostic requires parent all-numeric closed status and canonical complete campaigns before loading cells.",
+    "Diagnostic checks the registered first60 raw command frames are exactly zero, counts own-trajectory failures/forced bounds/effective increments, and calls the unchanged reference helper at .050/.010 on saved pre-state.",
+    "Counterfactual helper replay compares pre-limited commands at the same saved state. It does not execute either alternate physical trajectory.",
+    "Source labels itself exploratory post-observation, policy_changed false, new_random_windows zero, physical_unique_cause_proven false."
+  ],
+  "final_scientific_review_requirements": [
+    "Disclose candidate degradation in full native strict/deep windows, environment-step durations, class counts/minima, rescues and new failures.",
+    "Bank qualification under raw-hold does not guarantee zero-hold stability under a changed q-centered envelope.",
+    "Software/source/math evidence PASS means the specified implementation or evidence check passed, not that the candidate is safe, safer or promoted.",
+    "Keep the first60 registered zero-prefix frames in all576 primary windows; never remove induced early failures from denominators.",
+    "Clearly label zero-intent analysis as post-observation diagnosis with0additional windows; no policy adjustment in this frozen batch.",
+    "Do not infer that a forced newly issued command at failure step caused that same-step measured failure: six queued targets remain fixed; the new target first arrives on transition7.",
+    "Distinguish paired baseline own-trajectory outcomes from .050/.010 helper outputs on the candidate saved state; do not call helper outputs alternate physical results.",
+    "Final report and payload must retain adverse duration/geometry results and separate camera own-state/pixels from numeric exact forward."
+  ],
+  "nonblocking_reporting_notes": [
+    {
+      "id": "ZERO-SCOPE-1",
+      "source": "audit_zero_intent.py",
+      "line": 35,
+      "summary": "The field zero_prefix_target_displacement_from_initial_max_rad computes controller_target - q_initial, and summary line62 relabels it maximum_target_drift_rad.",
+      "implication": "It is displacement from initial measured q. Without a recorded initial-controller-target equality check, it is not an independently established change from initial controller target; initial target debt may contribute.",
+      "resolution_for_final_report": "Use the explicit measured-q0 reference in labeling, or bind the initial controller target from pre_pending_actuator_targets[0] and demonstrate equality before calling this target drift.",
+      "severity": "reporting-scope clarification; not a policy change or numerical-score blocker"
+    }
+  ],
+  "independent_raw_progress": {
+    "utc": "2026-10-06T08:28:39.597486+00:00",
+    "status": "WAITING_CANONICAL_CLOSURE",
+    "canonical_closed_blocks": [],
+    "completed_conditions": 0,
+    "total_conditions": 9,
+    "running_conditions": [],
+    "workers_limit": 2,
+    "conditions": []
+  },
+  "final_review_complete": false,
+  "camera_pixels_actually_seen": 0
+}

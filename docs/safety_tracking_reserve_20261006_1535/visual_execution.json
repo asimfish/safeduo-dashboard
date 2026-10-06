@@ -1,0 +1,62 @@
+{
+  "status": "complete",
+  "started_utc": "2026-10-06T08:34:23.686173+00:00",
+  "plan_sha256": "9c93710ba9cbedfd18a048d3aad04e5879d56b21fb371017363b4cc284d3a397",
+  "jobs": [
+    {
+      "mode": "joint_reference",
+      "status": "complete",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/visual_runner.py",
+        "--out",
+        "/mnt/nas/data/lyf/double_hand/safety_tracking_reserve_20261006_1535/visual/joint_reference",
+        "--ckpt",
+        "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+        "--env-yaml",
+        "duo_env_a31_pending_guard.yaml",
+        "--seeds",
+        "1032170814",
+        "--methods",
+        "system0",
+        "--duration-s",
+        "16",
+        "--device",
+        "cuda:0",
+        "--headless",
+        "--enable_cameras"
+      ],
+      "out": "/mnt/nas/data/lyf/double_hand/safety_tracking_reserve_20261006_1535/visual/joint_reference",
+      "pid": 257567,
+      "exit_code": 0
+    },
+    {
+      "mode": "delay_reserve",
+      "status": "complete",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/visual_runner.py",
+        "--out",
+        "/mnt/nas/data/lyf/double_hand/safety_tracking_reserve_20261006_1535/visual/delay_reserve",
+        "--ckpt",
+        "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+        "--env-yaml",
+        "duo_env_a31_pending_guard.yaml",
+        "--seeds",
+        "1032170814",
+        "--methods",
+        "system0",
+        "--duration-s",
+        "16",
+        "--device",
+        "cuda:0",
+        "--headless",
+        "--enable_cameras"
+      ],
+      "out": "/mnt/nas/data/lyf/double_hand/safety_tracking_reserve_20261006_1535/visual/delay_reserve",
+      "pid": 334319,
+      "exit_code": 0
+    }
+  ],
+  "finished_utc": "2026-10-06T09:04:54.930719+00:00"
+}

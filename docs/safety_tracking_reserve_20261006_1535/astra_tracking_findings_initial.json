@@ -1,0 +1,41 @@
+{
+  "status": "FINDINGS_REPRODUCED_BEFORE_CANDIDATE_REGISTRATION",
+  "utc": "2026-10-06T07:40:56.726423+00:00",
+  "source_sha256": {
+    "tracking_reserve.py": "ca3d4aff7082d111ec9c8b74d9d3bd024d7988e4bd83764121c1c9019bd65456",
+    "reference_envelope.py": "06b1c89855ad6d1dd91d770d3f2b70fff436d5c0b766d34a1fa8783e544720b3",
+    "guard_runner.py": "d99942f6ea712814f967a3f5b7ed62c03b69fd3c5f0dbccb49556d535bee0df0",
+    "target_forecast.py": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6",
+    "projection_diagnostics.py": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869",
+    "RANDOM_EXPERIMENT_DESIGN.json": "04622250d9e8c0e7a7bb46e1640ee077c8e3c468bf70ff34b98b9664cbfa4c66",
+    "test_tracking.py": "7dec56c31150ab5383cf33a115635e71176143259c430bcb1ed9d5549d2b5bbe"
+  },
+  "findings": [
+    {
+      "id": "TRACK-1",
+      "severity": "Major",
+      "scope": "reserve_forecast input contract",
+      "evidence": "distance/dmin/exempt[2,2] with q/qd/pending batch1 and J[1,2,D] returned finite distance[2,2],risk_margin[2], instead of aborting malformed per-environment binding.",
+      "impact": "Torch broadcast can silently reuse one environment state/J for another. No such corruption observed in actual simulator; this is a missing validation boundary.",
+      "minimum_fix": "Require exact N/M/arm dimensions for allq/qd/J/pending and matching float tensor contracts before arithmetic."
+    },
+    {
+      "id": "TRACK-2",
+      "severity": "Minor",
+      "scope": "reference_bounds pure helper; full guard has additional upstream limits checks",
+      "evidence": "q=target=0, lower=NaN,upper=1,box=.01,gap=.05 returned(NaN,NaN) without exception.",
+      "impact": "Standalone function violates finite interval/abort contract. Existing full_forecast validates limits before project, so this probe does not prove a live guard bypass.",
+      "minimum_fix": "Validate finite limits/box and exact compatible shapes before interval construction; finite ordered output."
+    },
+    {
+      "id": "TRACK-3",
+      "severity": "Major reporting",
+      "scope": "guard_runner.before_step diagnostic only",
+      "evidence": "reference_envelope_unreachable is computed using fixed.050 for every mode. q=0,target=.030,box=.016: .050 reachable, .010 disjoint singleton-.016.",
+      "impact": "Saved field cannot truthfully represent actual tight/adaptive envelope unreachability; control gap itself is dynamically wired.",
+      "minimum_fix": "Keep fixed.050 metric explicitly baseline-labelled and add actual-gap diagnostic after reserve is computed, or rename/document the existing baseline-only field. No policy change required."
+    }
+  ],
+  "physical_failure_observed": false,
+  "scope": "CPU synthetic probes and source review only; no GPU/raw candidate outcomes"
+}

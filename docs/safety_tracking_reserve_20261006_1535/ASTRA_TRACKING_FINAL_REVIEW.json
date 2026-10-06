@@ -1,0 +1,429 @@
+{
+  "schema": "astra.tracking.final_scientific_review.v1",
+  "status": "PASS_SCOPED_INDEPENDENT_TRACKING_FINAL_REVIEW",
+  "utc": "2026-10-06T09:20:06.243723+00:00",
+  "verdict": "Pass for independent software, raw-evidence and scientific-report review; physical candidate REJECTED.",
+  "dimensions": {
+    "functional_achievement": {
+      "status": "Pass",
+      "evidence": "576 independently scored windows,192 paired case identities, all required camera/report checks closed."
+    },
+    "correctness_and_reliability": {
+      "status": "Pass within archived evidence",
+      "evidence": "Native float32 no-epsilon scoring;4658 reconciliations and7 negative controls; preserved historical failures."
+    },
+    "architecture": {
+      "status": "Pass within reviewed changes",
+      "evidence": "Same target admission, original actor/projector/rate box/FIFO; gap-only candidate;397 registered input/source bindings unchanged."
+    },
+    "api_design": {
+      "status": "Pass scoped CPU contract",
+      "evidence": "38 independent CPU tests, strict shape/component/finite checks, immutable six-target causality and unreachable bounds."
+    },
+    "maintainability": {
+      "status": "Pass scoped artifacts",
+      "evidence": "Separate frozen scoring, supplemental identity, human pixel notes, source-bound reports and failed-attempt history."
+    },
+    "performance": {
+      "status": "Unable to determine general performance",
+      "evidence": "Completed bounded two-worker CPU readback; no comparative runtime benchmark claimed."
+    }
+  },
+  "blocking_findings": [],
+  "nonblocking_improvements": [
+    "Later publication must use its own actual browser, public-byte and archive receipts; this review does not replace those gates."
+  ],
+  "minimum_required_repair": [],
+  "physical_candidate_decision": "REJECTED_INCREASED_FAILURES",
+  "physical_safety_certified": false,
+  "hardware_approved": false,
+  "production_promoted": false,
+  "policy_tuning_performed_by_astra": false,
+  "reviewed_report_sha256": "f4906f51ae79e16fa67fa4d42f1991b0a06ead64463b0d36f085f86827c031e4",
+  "reviewed_source_sha256": {
+    "panel_template.html": "b9e80d41701e86240227097717e8ce3ddc391015da21920bc1203735bf97ab97",
+    "build_report.py": "c82ec950dbffcb1b38f79ee18b964308364e1208eba234081261737c8a407848",
+    "build_delivery.py": "5c9577515d6ae94234d484e3f469808018a28b599f1e3252c6bd8fc353fdd79d",
+    "update_root.py": "cb2d4aaf8f7edeb97596c83a776b138ed8ad16b35c4f7a6be5db2e94d592623b",
+    "check_panel.py": "f7fc1e8365c2bacfa7cd0064c980c7c9adccac790f8b2d83b2c5c4a92f02a23e",
+    "REPRODUCE.md": "d0240db67299f8a026b16cf14c20c80cdcb1c815340196f0b38b2b9b429473c2",
+    "NEXT.md": "c415371b5ffdfc55d6a81b6eb22808c7eddc5f032ecaaf0af6270af42eb1cf1a"
+  },
+  "policy_source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/guard_runner.py": "ae198e7ef7d6c8c144eb34e456c452283dfed948f4e4c9c7bdbdc21729fa5d79",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/projection_diagnostics.py": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/reference_envelope.py": "2ae5b20dd4bb797a7e450f66652759f9e22c3c0bf69a188650d4cea179cf1d3a",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/target_forecast.py": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/tracking_reserve.py": "c7c0190c4c3455ce85a9429863826983c4a6acc6cf144e5bf79464f9ce191b7c"
+  },
+  "registered_input_source_bindings_verified": 397,
+  "source_review": {
+    "path": "ASTRA_TRACKING_REVIEW.json",
+    "sha256": "93d61a29dbfeb8637d6b5705d912770faed73b521509d9acd4195f89a5e8512e",
+    "tests_passed": 38,
+    "in_memory_bad_implementations_rejected": 9,
+    "old_TRACK_1_2_3_resolved_before_registration": true
+  },
+  "numeric": {
+    "path": "ASTRA_TRACKING_FINAL_SCORE.json",
+    "sha256": "bc33c6e8f167a47192142d78b74d6b2bb08edb776681547ab2941fa282c83991",
+    "status": "PASS_COMPLETE_INDEPENDENT_TRACKING_NUMERIC",
+    "case_identities": 192,
+    "method_windows": 576,
+    "conditions": 9,
+    "frames_per_window": 960,
+    "invalid_windows": 0,
+    "strict": "native float32 <0",
+    "deep": "native float32 <-np.float32(.005)",
+    "safety_epsilon": null,
+    "all_60_zero_prefix_frames_included": true,
+    "totals": {
+      "joint_reference": {
+        "expected_windows": 192,
+        "verified_windows": 192,
+        "unavailable_or_invalid_windows": 0,
+        "strict": {
+          "failed_windows": 24,
+          "env_steps": 226,
+          "class_failed_windows": {
+            "cross": 1,
+            "self_F": 0,
+            "self_U": 3,
+            "table": 23
+          },
+          "class_env_steps": {
+            "cross": 18,
+            "self_F": 0,
+            "self_U": 13,
+            "table": 197
+          }
+        },
+        "deep": {
+          "failed_windows": 18,
+          "env_steps": 97,
+          "class_failed_windows": {
+            "cross": 1,
+            "self_F": 0,
+            "self_U": 1,
+            "table": 17
+          },
+          "class_env_steps": {
+            "cross": 12,
+            "self_F": 0,
+            "self_U": 3,
+            "table": 82
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": -0.02814609929919243,
+          "self_F": 0.003336578607559204,
+          "self_U": -0.008145228028297424,
+          "table": -0.015454482287168503
+        }
+      },
+      "tight_reference": {
+        "expected_windows": 192,
+        "verified_windows": 192,
+        "unavailable_or_invalid_windows": 0,
+        "strict": {
+          "failed_windows": 179,
+          "env_steps": 121528,
+          "class_failed_windows": {
+            "cross": 18,
+            "self_F": 0,
+            "self_U": 67,
+            "table": 170
+          },
+          "class_env_steps": {
+            "cross": 1135,
+            "self_F": 0,
+            "self_U": 19681,
+            "table": 115867
+          }
+        },
+        "deep": {
+          "failed_windows": 179,
+          "env_steps": 119434,
+          "class_failed_windows": {
+            "cross": 17,
+            "self_F": 0,
+            "self_U": 57,
+            "table": 170
+          },
+          "class_env_steps": {
+            "cross": 997,
+            "self_F": 0,
+            "self_U": 16547,
+            "table": 114383
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": -0.06406041234731674,
+          "self_F": 0.003336578607559204,
+          "self_U": -0.07183919847011566,
+          "table": -0.04346005246043205
+        }
+      },
+      "delay_reserve": {
+        "expected_windows": 192,
+        "verified_windows": 192,
+        "unavailable_or_invalid_windows": 0,
+        "strict": {
+          "failed_windows": 179,
+          "env_steps": 121528,
+          "class_failed_windows": {
+            "cross": 18,
+            "self_F": 0,
+            "self_U": 67,
+            "table": 170
+          },
+          "class_env_steps": {
+            "cross": 1135,
+            "self_F": 0,
+            "self_U": 19681,
+            "table": 115867
+          }
+        },
+        "deep": {
+          "failed_windows": 179,
+          "env_steps": 119434,
+          "class_failed_windows": {
+            "cross": 17,
+            "self_F": 0,
+            "self_U": 57,
+            "table": 170
+          },
+          "class_env_steps": {
+            "cross": 997,
+            "self_F": 0,
+            "self_U": 16547,
+            "table": 114383
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": -0.06406041234731674,
+          "self_F": 0.003336578607559204,
+          "self_U": -0.07183919847011566,
+          "table": -0.04346005246043205
+        }
+      }
+    },
+    "primary_paired": {
+      "strict": {
+        "rescue": 0,
+        "new_failure": 155,
+        "both_fail": 24,
+        "both_safe": 13
+      },
+      "deep": {
+        "rescue": 0,
+        "new_failure": 161,
+        "both_fail": 18,
+        "both_safe": 13
+      }
+    },
+    "q0_full_tape_and_initial_state_pairing": "Verified all192; first six applied/q/qd prefixes exact for every registered comparison.",
+    "all_consumed_inputs_hash_before_after_pass": true,
+    "parent_counts_used_for_independent_scoring": false,
+    "source_algorithm_modified_for_reconciliation": false
+  },
+  "geometry_archive_scope": "Full9021 pre rows bind959 preceding post frames; final post959 uses native class minima. First two failing environments per condition receive selected-J binding; no all-row J archive claim.",
+  "reserve_archive_scope": "Archived all-row reserve minima/exemptions and native gap formula verified; full J was checked by frozen producer, not archived/recomputed at every frame.",
+  "reconciliation": {
+    "path": "ASTRA_TRACKING_FINAL_RECONCILIATION_REREVIEW.json",
+    "sha256": "4d89cde885400866008af4abec4375455302bddfa416b3f149d9dd5bcc6048c7",
+    "checks": 4658,
+    "failures": 0,
+    "matched_parent_raw_file_bindings": 351,
+    "negative_controls": 7,
+    "initial_fail_preserved": "ASTRA_TRACKING_FINAL_RECONCILIATION.json",
+    "supplement": "astra_tracking_supplemental_file_identity.json",
+    "supplemental_scope": "18 unconsumed mechanism/project diagnostic file identities freshly read twice and matched; no diagnostic arithmetic rerun or score rewrite.",
+    "unavailable_parent_fields": [
+      "per-case deep first step",
+      "per-case duration",
+      "per-case deep class flags",
+      "per-class deep totals and duration"
+    ]
+  },
+  "trajectory_identity": {
+    "path": "ASTRA_TRACKING_FINAL_TRAJECTORY_IDENTITY.json",
+    "sha256": "9c886f29afd9f1e1ddf42195318f721877c841fc6d9113de70ca6fba2071fcfa",
+    "pairs": 192,
+    "declared_persisted_arrays": 14,
+    "bitwise_equal": true,
+    "scope": "Post-observation comparison of tight/adaptive saved arrays, not full unarchived rigid state; retains all576 registered windows without claiming independent candidate trajectories."
+  },
+  "first_failure_and_lp": {
+    "independently_raw_bound_selected_first_failures": 18,
+    "all_parent_first_failure_case_identities_and_steps_reconciled": 382,
+    "parent_snapshot_hashes_bound_to_raw_receipts": true,
+    "nearest_previous_not_admitted_parent_count": 0,
+    "parent_lp_summary": [
+      {
+        "mode": "joint_reference",
+        "cases": 24,
+        "F_infeasible": 0,
+        "U_infeasible": 18
+      },
+      {
+        "mode": "tight_reference",
+        "cases": 179,
+        "F_infeasible": 16,
+        "U_infeasible": 178
+      },
+      {
+        "mode": "delay_reserve",
+        "cases": 179,
+        "F_infeasible": 16,
+        "U_infeasible": 178
+      }
+    ],
+    "fixed_selected_states": 5184,
+    "fixed_robot_sets": 10368,
+    "backend": "Registered Python3.11.15/NumPy1.26.0/SciPy1.15.3",
+    "scope": "Parent source/backend/exit/result inventory and aggregate review. No independent rerun of all382 first-failure or10368 fixed-set LP solves. Binary64 normalized HiGHS tolerance1e-9 is not a physical threshold epsilon or a continuous viability proof."
+  },
+  "posthoc": {
+    "zero_prefix_failed_windows": [
+      {
+        "mode": "joint_reference",
+        "independent_zero_prefix_failed_windows": 0
+      },
+      {
+        "mode": "tight_reference",
+        "independent_zero_prefix_failed_windows": 30
+      },
+      {
+        "mode": "delay_reserve",
+        "independent_zero_prefix_failed_windows": 30
+      }
+    ],
+    "adaptive_floor_env_steps": 184320,
+    "adaptive_total_env_steps": 184320,
+    "floor_scope": "Checked consistency of two parent fresh-readback outputs and source; frozen independent scorer verified reserve minima/gap arithmetic, but this final step does not independently recount all floor frames.",
+    "initial_zero_selectedJ_parent_count": 0,
+    "initial_positive_physical_distance_parent_count": 192,
+    "zeroJ_hypothesis_supported": false,
+    "forced_zero_bound_parent_counts": [
+      252,
+      10852,
+      10852
+    ],
+    "nonzero_target_increment_parent_counts": [
+      1986,
+      11104,
+      11104
+    ],
+    "forced_bound_arithmetic_independently_rerun": false,
+    "initial_target_equals_q0_verified_all576": true,
+    "new_random_windows": 0,
+    "unique_physical_cause_proven": false,
+    "causal_boundary": "New target issued at a failing step cannot directly influence that same step through a six-pending-target FIFO; first possible delivery is transition7. Pure same-state helper replay is not an alternate physical trajectory.",
+    "retained_failure": "Parent saturation initial missing sphere_centers KeyError retained; schema amendment limits equality to archived arrays."
+  },
+  "camera": {
+    "path": "ASTRA_TRACKING_FINAL_CAMERA_REVIEW.json",
+    "sha256": "44d071fe8f27793f2ba9a7cef0660b77ad15eef9d9445a8b70adaa795aaf4795",
+    "actual_original_pngs_viewed": 72,
+    "pixel_groups": 8,
+    "all_native_metadata_groups": 54,
+    "all_png_hash_header_checks": 486,
+    "unviewed_pngs": 414,
+    "all_nine_views_per_preselected_group": true,
+    "selection_sha256": "c469c7d1a3afbd239fe8cfe51002dd2fb7c961a427145a182a48bc27262834ea",
+    "own_state_status": "PASS",
+    "minimum_actual_sphere_plane_margin_m": 0.22316375175487901,
+    "exact_numeric_forward_status": "FAIL_BOTH_METHODS",
+    "first_q_difference_step": 0,
+    "max_q_difference_rad": {
+      "joint_reference": 1.045699119567871,
+      "delay_reserve": 0.5448153018951416
+    },
+    "own_visual_strict_deep_windows": {
+      "joint_reference": [
+        8,
+        7
+      ],
+      "delay_reserve": [
+        58,
+        58
+      ]
+    },
+    "state_scope": "All-group native q/qd/root/root_vel before/after, own controller/applied/post-FIFO bindings, six actual USD frustum planes and own native geometry; no temporal mesh/occlusion certification.",
+    "pixel_scope": "72 actual original view_image reads. Global four-arm/table context and opposite low/high F/U views visible; some non-target cropping and depth occlusion. Pixels do not measure signed clearance or certify physical safety.",
+    "camera_windows_add_to_numeric_denominator": false
+  },
+  "report_and_presentation": {
+    "report_actual_bytes_reviewed": true,
+    "presentation_source_rereview": "astra_tracking_presentation_source_rereview.json",
+    "resolved_findings": [
+      "PRESENT-1",
+      "PRESENT-2"
+    ],
+    "denominators": "192 cases,576 numeric windows;128 same-bank/tape separate camera executions excluded from numeric denominator.",
+    "negative_outcomes_retained": true,
+    "duration_disclosed": true,
+    "class_counts_disclosed_in_panel": true,
+    "posthoc_labeling_explicit": true,
+    "full_J_claim": "Full9021 J finite checks belong to the frozen producer. Only selected J at fixed/first-failure snapshots is archived; no direct every-frame full-J recomputation claim.",
+    "motion_cost_scope": "Parent source/output L2 path12.363407→3.375664rad and four-arm moving fraction.428981→.612199 reviewed; these are not independently raw-recomputed L2 metrics, and reduced path does not imply safety.",
+    "actual_deployed_rendering_reviewed": false,
+    "actual_browser_journeys_executed_by_astra": false,
+    "public_asset_bytes_reviewed_by_astra": false,
+    "final_raw_archive_seal_reviewed_by_astra": false
+  },
+  "outer_exit_disclosure": {
+    "receipt": "OUTER_SESSION_EXIT_AUDIT.json",
+    "sha256": "1c5b697408c491d7f53a77342e23495d69546f5bee6ddb7f51cc6524fd9afc67",
+    "outer_tool_sessions": [
+      26638,
+      85768
+    ],
+    "observed_outer_exit_codes": [
+      143,
+      143
+    ],
+    "cause_established": false,
+    "canonical_numeric_children_exit0": 9,
+    "camera_children_exit0": 2,
+    "parent_analysis_children_exit0": 6,
+    "outer_status_converted_to_zero": false,
+    "valid_windows_removed_or_retried": false,
+    "scope": "Outer tool status retained separately from canonical child/protocol/raw closure; not a physical claim."
+  },
+  "tests_and_execution": {
+    "independent_source_tests": 38,
+    "source_mutations_rejected": 9,
+    "raw_scoring_CPU_tests": 29,
+    "camera_CPU_tests": 14,
+    "trajectory_identity_CPU_tests": 4,
+    "reconciliation_negative_controls": 7,
+    "raw_actual_child_exit_code": 0,
+    "camera_math_tool_session": 12643,
+    "camera_math_actual_exit_code": 0,
+    "reconciliation_initial_tool_session": 64252,
+    "reconciliation_initial_actual_exit_code": 1,
+    "reconciliation_rereview_tool_session": 5419,
+    "reconciliation_rereview_actual_exit_code": 0,
+    "terminal_evidence_gate_actual_exit_code": 0
+  },
+  "process_scope": {
+    "active_own_workers_observed": [],
+    "raw_supervisor_127496_absent": true,
+    "raw_child_127552_absent": true,
+    "no_new_watcher": true,
+    "no_process_killed_by_astra": true,
+    "final_writer_closure_receipt": "astra_tracking_final_worker_closure.json"
+  },
+  "authority_scope": {
+    "writes": "Only current H/astra_* and authorized ASTRA_TRACKING* audit outputs",
+    "parent_or_production_source_edited": false,
+    "old_sealed_namespace_written": false,
+    "gpu_simulation_hardware_or_publish_launched": false
+  },
+  "evidence_gate": {
+    "path": "astra_tracking_final_evidence_gate.json",
+    "sha256": "0a858e29af22ffacc0347ba13175120e6853d676835f805b7fcdbca05a72b306"
+  }
+}

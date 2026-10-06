@@ -1,0 +1,98 @@
+{
+  "status": "PREPARATION_CLOSED_RAW_AUDIT_ACTIVE_FINAL_EVIDENCE_PENDING",
+  "utc": "2026-10-06T08:14:40.509253+00:00",
+  "source_review": "ASTRA_TRACKING_REVIEW.json",
+  "independent_scoring_registration_sha256": "fe25e23f0b5fd1963c3b391ce4de9378b0c58ca9d69a0f3fb9eb0b1fe8c2cd25",
+  "independent_camera_registration_sha256": "0a173e5950bf3e78d97fb4cbde404a6ebbc60e2219d4fd954a6dc5395a2bae58",
+  "raw_tests": 29,
+  "camera_state_math_tests": 14,
+  "current_raw_progress": {
+    "utc": "2026-10-06T08:14:36.923906+00:00",
+    "status": "WAITING_CANONICAL_CLOSURE",
+    "canonical_closed_blocks": [],
+    "completed_conditions": 0,
+    "total_conditions": 9,
+    "running_conditions": [],
+    "workers_limit": 2,
+    "conditions": []
+  },
+  "observed_own_processes": [
+    {
+      "role": "supervisor_pid",
+      "pid": 127496,
+      "exists": true,
+      "argv": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_supervise.py"
+      ],
+      "cwd": "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535",
+      "status": [
+        "State:\tS (sleeping)",
+        "Tgid:\t127496",
+        "Ngid:\t0"
+      ]
+    },
+    {
+      "role": "child_pid",
+      "pid": 127552,
+      "exists": true,
+      "argv": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_score.py",
+        "--watch"
+      ],
+      "cwd": "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535",
+      "status": [
+        "State:\tS (sleeping)",
+        "Tgid:\t127552",
+        "Ngid:\t0"
+      ]
+    }
+  ],
+  "raw_score_exists": false,
+  "actual_pixels_inspected": 0,
+  "no_camera_watcher_started": true,
+  "changed_owned_files": [
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_backend_arithmetic.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_core.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_derivation.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_plan.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_prepare.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_readiness.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_selection.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_tests.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_tests_attempt1.log",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_camera_tests_receipt.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_contract.md",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_derivation.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_launch.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_plan.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_process.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_progress.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_score.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_supervise.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_tests.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_tests_attempt1.log",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_tests_attempt2.log",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_tests_final.log",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_tests_receipt.json",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_worker.log",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_writer.lock",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_score_core.py",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_torch_BinaryDivTrueKernel.cu"
+  ],
+  "frozen_source_bytes_stable": true,
+  "final_review_not_complete": true,
+  "pending": [
+    "nine canonical conditions and independent percell/rawhash closure",
+    "both canonical camera replays plus own-state/math and actual selected PNG observations",
+    "direct independent score reconciliation with parent case/min/class/duration/pairs",
+    "parent final report/source review",
+    "observed own child/supervisor/writer closure before final seal"
+  ],
+  "no_policy_changes": true,
+  "no_gpu_or_simulation_launch": true,
+  "no_old_namespace_writes": true
+}
