@@ -1,0 +1,17 @@
+{
+  "status": "PASS_OUTPUT_SCHEMA_REPAIR_ONLY",
+  "registered_utc": "2026-10-06T08:22:36.722707+00:00",
+  "baseline_source_sha256": "00e12b2c36e9e70dbd53cf3e40b26770ceb13bfd2ff8de8649f7903f2736ed64",
+  "corrected_source_sha256": "505f0e4be6527422bb749a5397c97b7c547e87d66cf9da2899a0f0e9e7a2938b",
+  "baseline_failure_log_sha256": "d5fd4b1293c408df64cca55981752fe2917557c6b8a6ed9138536ed61b08c98f",
+  "old_expression": "cases.append(dict(**c,pass_task=all(v['pass_task'] for v in objects.values()),official_violation_steps=viols,resets=resets,objects=objects))",
+  "new_expression": "cases.append(dict(**{k:v for k,v in c.items() if k!='objects'},layout_objects=c['objects'],pass_task=all(v['pass_task'] for v in objects.values()),official_violation_steps=viols,resets=resets,objects=objects))",
+  "unchanged": "all numeric calculations, original task gates, raw-data validation and image-state comparisons unchanged byte-for-byte",
+  "regression": {
+    "baseline_error_reproduced": true,
+    "layout_metadata_preserved": true,
+    "measured_results_preserved": true,
+    "failed_object_yields_failed_task": true
+  },
+  "scope": "post-run output packaging correction before any successful result export; not a new physical experiment or threshold change"
+}

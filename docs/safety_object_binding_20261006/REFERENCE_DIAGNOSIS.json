@@ -1,0 +1,9 @@
+{
+  "status": "DIAGNOSED_AND_SOFTWARE_REGRESSION_FIXED",
+  "v3_failure_sha256": "f235cf91dc5b95b9f33ad56629864c9396e604cedd7c3949548e12bbdd74f1f5",
+  "red": "test_reference_v1.py; reference_red.log, ValueError binding changed registered q0",
+  "green": "test_reference.py; reference_green.log, exact original q0/final pose plus changed active pickup reference",
+  "mechanism": "pivot + (flange-pivot) introduces float32 cancellation even when weight is exactly zero; running IK on those rows perturbs untouched q0. Only positive-weight rows may be updated. Native-frame nominal centers are computed through the same world/local float32 roundtrip, preventing artificial layout offsets.",
+  "core_sdk_actor_modified": false,
+  "complete_native_cases_before_v4": 0
+}

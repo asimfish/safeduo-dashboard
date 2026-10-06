@@ -1,0 +1,13 @@
+{
+  "status": "DIAGNOSED",
+  "reproduction": "native_runner_v2.py REGISTRATION_V2.json",
+  "v2_failure_sha256": "ed6f6f581d68f306772831fea1ceea61fe9835d9faddb8b7cdd4582c9f410607",
+  "completed_native_trials_v1_v2": 0,
+  "original_native_control_dt_s": 0.016666,
+  "original_trajectory_grid_dt_s": 0.016666666666666666,
+  "absolute_grid_difference_s": 6.666666666661769e-07,
+  "cause": "new harness confused controller clock with stored interpolation grid; exception hidden by Kit shutdown in v1, persisted before cleanup in v2",
+  "counterfactual": "clock_contract preserves exact registered native dt while allowing an independent positive trajectory grid; changed native clocks are rejected",
+  "regression_tests": "2 passed; clock_tests.log",
+  "sdk_or_core_changed": false
+}

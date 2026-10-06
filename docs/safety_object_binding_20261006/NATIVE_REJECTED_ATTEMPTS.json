@@ -1,0 +1,36 @@
+{
+  "status": "RETAINED_ZERO_COMPLETED_TASK_TRIALS",
+  "attempts": [
+    {
+      "attempt": "native_v1",
+      "complete_task_trials": 0,
+      "recording_receipt_exists": false,
+      "native_output": "/mnt/nas/data/lyf/double_hand/safety_object_binding_20261006/native_v1"
+    },
+    {
+      "attempt": "native_v2",
+      "complete_task_trials": 0,
+      "recording_receipt_exists": false,
+      "native_output": "/mnt/nas/data/lyf/double_hand/safety_object_binding_20261006/native_v2",
+      "failure": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/native_runner_v2.py\", line 187, in <module>\n    try:main()\n        ^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/native_runner_v2.py\", line 46, in main\n    env=ProbeEnv(cfg);print('PHASE scene constructed',flush=True);assert abs(env.step_dt-dt)<1e-7\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "failure_sha256": "ed6f6f581d68f306772831fea1ceea61fe9835d9faddb8b7cdd4582c9f410607"
+    },
+    {
+      "attempt": "native_v3",
+      "complete_task_trials": 0,
+      "recording_receipt_exists": false,
+      "native_output": "/mnt/nas/data/lyf/double_hand/safety_object_binding_20261006/native_v3",
+      "failure": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/native_runner_v3.py\", line 189, in <module>\n    try:main()\n        ^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/native_runner_v3.py\", line 78, in main\n    bound,ik_audit=bind_reference(traj.q,traj.dt,task_input,enabled,reg['nominal_centers'],reg['nominal_yaws_rad'])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/object_binding.py\", line 73, in bind_reference\n    if not np.array_equal(out[a][e,0],base_q[a][0]):raise ValueError('binding changed registered q0')\n                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: binding changed registered q0\n",
+      "failure_sha256": "f235cf91dc5b95b9f33ad56629864c9396e604cedd7c3949548e12bbdd74f1f5"
+    },
+    {
+      "attempt": "native_v4",
+      "complete_task_trials": 0,
+      "recording_receipt_exists": false,
+      "native_output": "/mnt/nas/data/lyf/double_hand/safety_object_binding_20261006/native_v4",
+      "failure": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/native_runner_v4.py\", line 190, in <module>\n    try:main()\n        ^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/native_runner_v4.py\", line 84, in main\n    assert np.all(bound[a]>=qlimit[:,0]-1e-5) and np.all(bound[a]<=qlimit[:,1]+1e-5),(a,'reference exceeds native soft limits')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('F_L', 'reference exceeds native soft limits')\n",
+      "failure_sha256": "237e1eef18165c0ec0a049a24f95ee7d3921e1d67851081e138fd6b4af85a3f0"
+    }
+  ],
+  "scope": "these setup/admission failures are not silently removed or counted as eight-case physical successes"
+}
