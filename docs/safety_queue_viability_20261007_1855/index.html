@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SafeDuo · 队列与联合可行性实验</title>
+<style>
+:root{color-scheme:light;--ink:#172537;--muted:#54677c;--line:#d8e1eb;--blue:#176dc1;--red:#bc3848;--amber:#976400}
+*{box-sizing:border-box}body{margin:0;background:#f2f6fa;color:var(--ink);font:16px/1.65 system-ui,sans-serif}main{max-width:1180px;margin:auto;padding:28px 20px 60px}h1{font-size:32px;line-height:1.3}h2{font-size:23px;margin:0 0 12px}h3{font-size:17px}a{color:var(--blue)}section{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;margin:20px 0}p{margin:10px 0}.small{font-size:13px;color:var(--muted)}.tag{background:#fff1cf;color:#704d00;border-radius:6px;padding:4px 10px;font-weight:700}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{padding:16px;background:#edf4fb;border-radius:8px}.stat b{display:block;font-size:28px}.scroll{overflow:auto}table{border-collapse:collapse;min-width:650px;width:100%;font-size:13px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px}th{background:#f2f6fa}.controls{display:flex;gap:12px;flex-wrap:wrap}select{max-width:100%;padding:9px;font-size:14px;border:1px solid #adbccd;border-radius:6px}button{padding:9px 13px;color:var(--blue);background:#edf4fb;border:1px solid var(--line);border-radius:6px;cursor:pointer}svg{width:100%;height:auto;display:block;background:#fafcfe;border:1px solid var(--line)}.plots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.legend{font-size:13px;color:var(--muted)}.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.gallery img{width:100%;aspect-ratio:16/9;display:block;background:#e5edf4}.gallery figure{margin:0}.gallery figcaption{font-size:12px}.warn{border-left:4px solid var(--amber);padding-left:14px}#error{color:var(--red);white-space:pre-wrap}code{overflow-wrap:anywhere}ul{padding-left:22px}@media(max-width:650px){main{padding:16px 12px}h1{font-size:26px}section{padding:16px}.grid,.plots{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery{grid-template-columns:1fr}.stat b{font-size:23px}.plots{grid-template-columns:1fr}}
+</style></head><body><main>
+<a href="../../">← SafeDuo 总面板</a>
+<h1>六步队列、跟踪偏差与联合可行性</h1>
+<p><span class="tag">开发实验完成 · 物理安全未验证</span></p>
+<p>新进展是找到约束的联合矛盾与提前报警时点。上一轮零输入候选仍被拒绝；当前模块只做诊断，控制策略尚未据此验证。</p>
+<div class="grid"><div class="stat"><b>12,288</b>新增随机线性案例</div><div class="stat"><b>2,954</b>反例线性集合检查</div><div class="stat"><b>552,960</b>旧轨迹帧报警回读</div><div class="stat"><b>0</b>本轮新增机器人窗口</div></div>
+<p class="small">独立 GPT‑6 Astra xhigh 结果：<span id="peer">加载中</span>。随机线性案例不代表机器人空间、动力学或硬件覆盖。</p>
+<section><h2>哪些机制判断需要修正</h2>
+<p>零输入模式的 7 个失败中，U 机器人的联合约束都不可行；单行检查却全部通过。包含零增量、逐行收紧和增加投影迭代次数，都不能自动解决联合矛盾。</p>
+<p>固定已保存的约束后，放宽至原始可达命令箱使 422/422 个集合可行；重算依赖于命令箱的 authority 预算后为 421/422。这个差异说明，调整边界时必须同时重算相关约束。</p>
+<p class="warn">以上是已知失败状态的数学诊断，选择行和 alpha 仍冻结。它没有执行新的机器人控制，也没有证明六个不可撤销目标之后的真实运动安全。</p>
+<div class="scroll"><table id="decomposition"><thead><tr><th>方法 / 机器人</th><th>失败快照</th><th>原集合不可行</th><th>去掉alpha</th><th>宽箱固定h</th><th>宽箱重算authority</th></tr></thead><tbody></tbody></table></div>
+</section>
+<section><h2>报警是否早于越界</h2>
+<p>两个新增失败在 t225/t165 已有残差报警，到 t620/t193 才首次越界，分别提前 395/28 步。这是报警时间，不是联合集合首次不可行的时间。</p>
+<div class="scroll"><table id="warnings"><thead><tr><th>方法</th><th>窗口</th><th>严格失败</th><th>提前报警的失败</th><th>最短提前步数</th><th>未严格越界但报警</th></tr></thead><tbody></tbody></table></div>
+<p class="warn">零输入模式的 185 个未严格越界窗口中，162 个也报警。它们不是已证明的误报；“报警即停”不能作为已验证策略。未来实验必须同时检查真实运动、覆盖和新失败。</p>
+<div class="controls"><button id="newA">新增失败：t620</button><button id="newB">新增失败：t193</button></div>
+<p><a href="adverse_endpoints.png">下载两个新增失败的独立科学图（PNG）</a></p><h3>211 个首次失败的实际保存数据</h3>
+<div class="controls"><label>方法 <select id="method"><option value="all">全部</option><option value="joint_reference">原参考</option><option value="tight_reference">原收紧</option><option value="zero_inclusive">零包含</option></select></label><label>样本 <select id="case"></select></label></div>
+<p id="caseInfo"></p><p class="legend">橙色竖线：首次残差报警；红色竖线：首次严格越界。横轴为原始帧编号；曲线是稀疏显示，保留首次报警/越界附近原始帧。判据按完整 960 帧计算。</p>
+<div class="plots"><div><h3>原始最小球距（mm）</h3><svg id="margin" viewBox="0 0 600 230"></svg></div><div><h3>实际最大关节速度（rad/s）</h3><svg id="velocity" viewBox="0 0 600 230"></svg></div><div><h3>目标跟踪偏差（rad）</h3><p class="legend">蓝：最新下发目标；绿：六个待执行目标</p><svg id="debt" viewBox="0 0 600 230"></svg></div><div><h3>当前约束数值残差（mm）</h3><p class="legend">蓝：实际返回增量；绿：单行不可能性下界</p><svg id="residual" viewBox="0 0 600 230"></svg></div></div>
+<h3>首次越界前保存的选中集合</h3><div class="scroll"><table id="caseLP"><thead><tr><th>机器人 / 探针</th><th>数值状态</th><th>单行不可能行数</th></tr></thead><tbody></tbody></table></div>
+<p class="small">报警阈值使用原投影器数值容差 1e-6（各通道原单位）；严格几何越界仍为 native float32 &lt;0m，没有评分 epsilon。没有保存每一帧的完整 G，因此不能据此报告首次联合不可行时间。</p>
+</section>
+<section><h2>新随机机制实验</h2><p>3 个新的 OS 随机种子 × F14/U12 两个维度 × 4 类解析可判定线性集合 × 每类 512。覆盖非对称边界、多关节耦合、实际 qd ±5rad/s 和六个随机待执行目标；所有未来安全状态保持 UNKNOWN。</p>
+<div class="scroll"><table id="random"><thead><tr><th>种子</th><th>维度</th><th>构造类别</th><th>案例</th><th>不符合预定类别</th></tr></thead><tbody></tbody></table></div>
+<p>这是诊断 API 的性质实验。已通过 10 个聚焦机制 CPU 测试和 3 个原生快照存储隔离测试；Isaac 的完整原生快照集成还未执行。</p></section>
+<section><h2>九视角图像与 state 证据</h2>
+<p class="warn">复用上一轮封存的 47 组、423 张实际图像。本轮没有新增相机采集。图像绑定各自相机运行状态；相机轨迹与数值轨迹重放不一致，不能把下图当作上方数值反例的精确原生重现。</p>
+<p>数值反例缺完整原生关节、每臂 root transform/root velocity。已增加下一轮完整 getter 采集模块，需实跑后再做渲染前后绑定验证。</p>
+<select id="cameraGroup"></select><p id="cameraInfo"></p><p id="stateLinks"></p><div id="gallery" class="gallery"></div>
+</section>
+<section><h2>报告、代码与原始记录</h2><p><a href="REPORT.md">完整阶段报告</a> · <a href="queue_guard.py">当前集合诊断模块</a> · <a href="native_state_capture.py">下一轮完整原生采集模块（Isaac未执行）</a> · <a href="ASTRA_DEVELOPMENT_REVIEW.json">独立初审</a> · <a href="ASTRA_FINAL_REPORT_REVIEW.json">报告修订独立复核</a> · <a href="PUBLIC_SOURCE_BINDINGS.json">公开证据绑定</a></p>
+<p>首次报警审计 exit1 使用了错误的距离通道；原源码、注册和日志保留，v2只修正为原评分使用的 official_margins，并核对全部211个首次失败，实际 exit0。<a href="WARNING_ATTEMPT1_DIAGNOSIS.json">查看诊断</a>。</p>
+<p><a href="../safety_zero_intent_20261006_2225/">上一轮完整576窗口、运动代价、覆盖与九视角证据</a></p>
+<p class="small">本轮新机器人窗口0，新硬件实验0；不报告独立同分布安全置信界或全26维机器人空间覆盖。</p></section><p id="error"></p>
+</main><script>
+const $=s=>document.querySelector(s), names={joint_reference:'原参考',tight_reference:'原收紧',zero_inclusive:'零包含'}, colors=['#176dc1','#27846d'];
+function cellRow(table,values){const tr=document.createElement('tr');for(const v of values){const td=document.createElement('td');td.textContent=v;tr.append(td)}$(table+' tbody').append(tr)}
+function node(svg,type,attrs,text){const n=document.createElementNS('http://www.w3.org/2000/svg',type);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);if(text!=null)n.textContent=text;svg.append(n);return n}
+function draw(id,t,series){const svg=$(id);svg.replaceChildren();const values=series.flatMap(x=>x.values);let lo=Math.min(0,...values),hi=Math.max(0,...values);if(hi-lo<1e-12){hi=lo+1}const pad=(hi-lo)*.08;lo-=pad;hi+=pad;const x=i=>55+i/959*525,y=v=>195-(v-lo)/(hi-lo)*170;
+node(svg,'line',{x1:55,y1:195,x2:580,y2:195,stroke:'#9dadbf'});node(svg,'line',{x1:55,y1:y(0),x2:580,y2:y(0),stroke:'#d8e1eb'});
+for(const v of [lo,hi])node(svg,'text',{x:3,y:y(v),fill:'#54677c','font-size':12},v.toPrecision(3));for(const i of [0,480,959])node(svg,'text',{x:x(i)-12,y:217,fill:'#54677c','font-size':12},i);
+for(const [i,s] of series.entries())node(svg,'polyline',{points:t.indices.map((v,k)=>x(v)+','+y(s.values[k])).join(' '),fill:'none',stroke:colors[i%2],'stroke-width':2,'data-series':s.key});
+for(const [v,color,label] of [[t.first_alarm_step,'#976400','报警'],[t.first_strict_step,'#bc3848','越界']])if(v!==null){node(svg,'line',{x1:x(v),y1:20,x2:x(v),y2:195,stroke:color,'stroke-dasharray':'4 3'});node(svg,'text',{x:Math.min(x(v)+3,530),y:15,fill:color,'font-size':12},label+' '+v)}
+}
+function fillCases(){const mode=$('#method').value;$('#case').replaceChildren();window.QUEUE.traces.forEach((t,i)=>{if(mode!=='all'&&t.mode!==mode)return;const opt=document.createElement('option');opt.value=i;opt.textContent=`${names[t.mode]} · ${t.seed} / env${t.env} / t${t.first_strict_step}`;$('#case').append(opt)});selectCase()}
+function selectCase(){const i=Number($('#case').value),t=window.QUEUE.traces[i];const d=window.QUEUE.decomposition.find(r=>r.condition===t.condition&&r.env===t.env);const a=window.QUEUE.authority.find(r=>r.condition===t.condition&&r.env===t.env);window.QUEUE_SELECTION={index:i,trace:t,decomposition:d,authority:a};$('#caseInfo').textContent=`${names[t.mode]} · seed${t.seed} · env${t.env}：首次报警 ${t.first_alarm_step}，首次严格越界 ${t.first_strict_step}，提前 ${t.lead_steps} 步。`;
+draw('#margin',t,[{key:'margin_mm',values:t.margin_mm}]);draw('#velocity',t,[{key:'max_qd_rad_s',values:t.max_qd_rad_s}]);draw('#debt',t,[{key:'max_issued_debt_rad',values:t.max_issued_debt_rad},{key:'max_pending_debt_rad',values:t.max_pending_debt_rad}]);draw('#residual',t,[{key:'target_safety_residual_m',values:t.target_safety_residual_m.map(x=>x*1000)},{key:'individual_lower_bound_m',values:t.individual_lower_bound_m.map(x=>x*1000)}]);
+$('#caseLP tbody').replaceChildren();for(const r of ['F','U'])for(const [k,v] of Object.entries({...d.checks[r],...a.checks[r]}))cellRow('#caseLP',[r+' / '+k,v.highs_status===0?'当前数值可行':v.highs_status===2?'当前数值不可行':'未知',v.individual_impossible_rows])}
+function choose(seed,env){$('#method').value='all';fillCases();$('#case').value=window.QUEUE.traces.findIndex(t=>t.mode==='zero_inclusive'&&t.seed===seed&&t.env===env);selectCase()}
+function camera(){const g=window.QUEUE.visual.galleries[Number($('#cameraGroup').value)],base=window.QUEUE.visual.assetBase+'visual/'+g.mode+'/';$('#gallery').replaceChildren();$('#stateLinks').replaceChildren();$('#cameraInfo').textContent=`封存相机自身状态：${names[g.mode]} / env${g.env} / t${g.step} / ${g.kind}；不是上方数值轨迹重放。`;
+for(const k of ['state','before','after']){const a=document.createElement('a');a.href=base+g[k];a.textContent=k+' 原生记录 ';$('#stateLinks').append(a)}for(const im of g.images){const f=document.createElement('figure'),pic=document.createElement('img'),cap=document.createElement('figcaption');pic.src=base+im.path;pic.loading='lazy';pic.alt=im.view;cap.textContent=im.view;f.append(pic,cap);$('#gallery').append(f)}}
+async function main(){const resp=await fetch('payload.json.gz');if(!resp.ok)throw new Error('payload '+resp.status);const stream=resp.body.pipeThrough(new DecompressionStream('gzip'));window.QUEUE=await new Response(stream).json();const p=window.QUEUE;$('#peer').textContent=p.peer.status+'（CPU/数学/源码范围）';
+for(const r of p.decompositionSummary){const a=p.authoritySummary.find(x=>x.mode===r.mode&&x.robot===r.robot);cellRow('#decomposition',[names[r.mode]+' / '+r.robot,r.cases,r.infeasible.captured,r.infeasible.remove_alpha_same_frozen_safety_box,r.infeasible.widen_bounds_same_frozen_rows_rhs,a.infeasible.widen_recompute_authority_keep_alpha])}
+for(const r of p.warningSummary)cellRow('#warnings',[names[r.mode],r.windows,r.strict_windows,r.warned_before_first_strict,r.minimum_lead_steps,r.warning_only_windows]);
+for(const r of p.random.results)for(const [s,v] of Object.entries(r.strata))cellRow('#random',[r.seed,r.dimension,s,v.cases,v.unexpected]);
+$('#method').onchange=fillCases;$('#case').onchange=selectCase;$('#newA').onclick=()=>choose(658533148,38);$('#newB').onclick=()=>choose(69425290,38);fillCases();choose(69425290,38);
+p.visual.galleries.forEach((g,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${names[g.mode]} env${g.env} t${g.step} ${g.kind}`;$('#cameraGroup').append(o)});$('#cameraGroup').onchange=camera;camera();window.QUEUE_READY=true;}
+main().catch(e=>{$('#error').textContent=String(e);throw e});
+</script></body></html>

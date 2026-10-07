@@ -1,0 +1,62 @@
+{
+  "schema": "safeduo.astra.final_report_review.v1",
+  "created_utc": "2026-10-07T11:13:54.354901+00:00",
+  "status": "PASS_REPORT_LANGUAGE_CORRECTIONS_DEVELOPMENT_ONLY",
+  "review_scope": "Only the two requested REPORT.md text changes and their SHA-256 binding. No renewed mechanism, panel, API, deployment, archive, trajectory, camera or robot acceptance review.",
+  "report_path": "/home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/REPORT.md",
+  "report_sha256": "c08679fc0f3f2fbf7411bb1f5d36258359acfed4f83640ca14a1a51bf97d6a7f",
+  "initial_report_path": "/home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/REPORT_INITIAL_REVIEW.md",
+  "initial_report_sha256": "43bc7b9e93d86feebc86b9bdb34eaf7c6796192832c10b273b715951f71507d4",
+  "revision_record_path": "/home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/REPORT_REVISION.json",
+  "revision_record_sha256": "a59f6c0c3a9cec4074378538f50574a04126f8befd74e3f7177fa940de88802e",
+  "prior_review_path": "/home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/ASTRA_DEVELOPMENT_REVIEW.json",
+  "prior_review_sha256": "c454c85d8e4d566ac1d46d52642e67a6f06f11407dd13919317901f0443e780a",
+  "prior_review_verdict_preserved": "CONDITIONAL_PASS_DEVELOPMENT_DIAGNOSTICS_ONLY",
+  "prior_review_modified": false,
+  "exact_changed_line_count": 2,
+  "all_other_report_lines_identical": true,
+  "conditions_closed": [
+    {
+      "id": "R2",
+      "revised_report_line": 11,
+      "status": "PASS",
+      "finding": "Report now distinguishes observed alarms in 162/185 no-strict-failure windows from unmeasured intervention effects on movement and safety. No measured stopping benefit or activity loss is claimed.",
+      "new_text": "- 零包含7个失败全部提前报警，提前28至729步；185个未发生严格越界窗口中162个也报警。未越界报警不是已证明的误报；若把报警直接用作停止条件，将在162个未越界窗口触发停止；对实际活动量和安全的影响尚未通过干预实验测量，不能据此声称安全改进。"
+    },
+    {
+      "id": "R1",
+      "revised_report_line": 30,
+      "status": "PASS",
+      "finding": "Actual independent 12 fixed + 384 random = 396 checks, 320 negative controls, test exit 0, two snapshots and four F/U sets are stated. Parent 12,288 cases/all 2,954 LP checks and old camera evidence are explicitly outside independent rerun scope.",
+      "new_text": "专门GPT-6 Astra xhigh完成独立审查：12个固定检查、384个预注册随机案例，320个错误推论负控全部识别，实际退出0；复核2个旧快照、4个F/U集合，2个U集合有精确不可行证书且单行可行。独立范围是开发诊断，未重跑父代理12,288案例、未独立求解全部2,954个集合、未重验旧相机或证明物理安全。报告初审为条件通过，要求明确复核数量及未经干预验证的运动影响；本版本已修正，最终报告复核见独立附录。需要验证的候选方向是提前发现联合不可行、按原始可达边界调整参考区间；必须重算依赖于边界的authority/input/alpha，并在新开发状态中检查六步不可撤销队列的真实跟踪误差。先开发和冻结，再新种子盲验证，保留运动覆盖与所有失败；不把本轮反例诊断用作候选验收。"
+    }
+  ],
+  "independent_results_referenced_not_rerun": {
+    "deterministic_cases": 12,
+    "random_cases": 384,
+    "total_test_cases": 396,
+    "negative_controls": 320,
+    "negative_controls_detected": 320,
+    "unexpected_test_failures": 0,
+    "actual_test_exit_code": 0,
+    "old_snapshots": 2,
+    "robot_sets": 4,
+    "bounded_review_exit_code": 0
+  },
+  "retained_boundaries": {
+    "development_diagnostics_only": true,
+    "future_physical_safety_certificate": false,
+    "new_robot_blind_validation_completed": false,
+    "new_control_intervention_validated": false,
+    "hardware_or_production_safety_certified": false,
+    "isaac_native_capture_or_exact_numeric_camera_replay_certified": false,
+    "publishing_or_archiving_approval_in_scope": false
+  },
+  "interpretation": "This appendix closes R1/R2 as report-language corrections. It does not convert the preserved conditional scientific review into physical-safety acceptance or expand its evidence scope.",
+  "writes_this_followup": [
+    "/home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/ASTRA_FINAL_REPORT_REVIEW.json"
+  ],
+  "earlier_astra_files_and_manifest_unchanged": true,
+  "sidecar_followup_closed": true,
+  "further_writes_planned": false
+}
