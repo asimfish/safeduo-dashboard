@@ -1,0 +1,414 @@
+{
+  "schema": "safeduo.astra.development_review.v1",
+  "created_utc": "2026-10-07T11:09:50.210131+00:00",
+  "verdict": "CONDITIONAL_PASS_DEVELOPMENT_DIAGNOSTICS_ONLY",
+  "summary": {
+    "independent_deterministic_tests": 12,
+    "independent_random_cases": 384,
+    "independent_total_test_cases": 396,
+    "random_positive_feasibility_controls": 64,
+    "random_negative_control_cases": 320,
+    "analytic_counterexample_negative_controls": 256,
+    "no_certificate_scope_negative_controls": 64,
+    "negative_control_bad_inferences_detected": 320,
+    "negative_controls_missed": 0,
+    "unexpected_test_failures": 0,
+    "actual_test_process_exit_code": 0,
+    "independent_old_snapshots": 2,
+    "independent_robot_sets": 4,
+    "bounded_lp_process_exit_code": 0,
+    "bounded_F_feasible": 2,
+    "bounded_U_infeasible_with_exact_separation": 2,
+    "bounded_U_individual_rows_all_feasible": 2,
+    "bounded_queue_nonnegative_endpoints": 2,
+    "independent_robot_runs": 0,
+    "independent_gpu_runs": 0,
+    "physical_safety_certified": false,
+    "new_controller_candidate_implemented": false,
+    "new_robot_blind_validation_completed": false,
+    "parent_warning_attempt1_actual_exit": 1,
+    "parent_warning_v2_actual_exit": 0,
+    "parent_first_failure_identifiers_reconciled": 211,
+    "parent_authority_recomputed_feasible_sets": 421,
+    "parent_authority_recomputed_total_sets": 422
+  },
+  "review_scope": "Independent mathematical oracle, preregistered CPU negative controls, bounded two-snapshot current-set review, and read-only scientific/source/output review of parent diagnostics and REPORT.md. No publishing, archiving, robot rerun or full raw-trajectory audit.",
+  "identity": {
+    "requested_label": "GPT6Astra xhigh",
+    "attestation": "Task-assigned sidecar label. This artifact does not independently attest provider model routing or reasoning effort."
+  },
+  "dimensions": {
+    "functional_achievement": {
+      "status": "Pass",
+      "evidence": "Independent current-set certificates; 396 CPU test cases; two snapshots/four robot sets; parent recorded outputs and source reviewed."
+    },
+    "correctness_reliability": {
+      "status": "Pass",
+      "scope": "stated development/selected-row scope only",
+      "evidence": "Exact rational replay of witnesses/separators, fail-to-UNKNOWN, parent numeric/heuristic labels remain explicit, warning V2 corrected channel reconciles all 211 failure identifiers."
+    },
+    "architecture": {
+      "status": "Pass",
+      "evidence": "Independent NumPy/SciPy implementation; no parent imports or code modifications, no robot/GPU dependency; passive APIs."
+    },
+    "api_design": {
+      "status": "Risk",
+      "evidence": "Parent HiGHS status remains numerical; downstream consumers must not relabel it certified. Astra returns exact certificate/witness status and UNKNOWN otherwise."
+    },
+    "style_maintainability": {
+      "status": "Pass",
+      "evidence": "Small pure functions, directly runnable scripts, recorded source hashes and deterministic RNG replay."
+    },
+    "performance": {
+      "status": "Unable to determine",
+      "evidence": "CPU functional runs only; no real-time latency or control-loop budget validation was requested or executed."
+    }
+  },
+  "blocking_scientific_findings": [],
+  "report_conditions_before_final_label": [
+    {
+      "id": "R1",
+      "path": "REPORT.md",
+      "location": "独立审查与后续 paragraph",
+      "observed": "Draft says 3 original counterexample LP reviews in progress; actual independent review is two snapshots/four robot sets, now complete.",
+      "required_edit": "Replace only the independent-review sentence with completed counts and actual exits; do not enlarge sample scope.",
+      "suggested_sentence": "独立 Astra sidecar 已完成 12 个固定 CPU 检查与 384 个预注册随机案例（320 个错误推论负控均识别，测试失败 0，actual exit 0），并只复核 2 个原失败快照、4 个 F/U 选中集合：F 均有可行见证，U 均有精确不可行证书（复核 actual exit 0）；详细范围与源码 hash 见 ASTRA_DEVELOPMENT_REVIEW.json。"
+    },
+    {
+      "id": "R2",
+      "path": "REPORT.md",
+      "location": "alarm/immediate-stop activity statement",
+      "observed": "162/185 no-strict-failure windows trigger the passive warning. No stop intervention or resulting activity was executed.",
+      "required_scope": "Treat severe movement loss as a concern/inference, not a measured intervention outcome. Exact supported statement: alarm-if-stop would trigger in 162/185 of these observed no-strict-failure windows; activity loss magnitude remains unmeasured."
+    }
+  ],
+  "nonblocking_improvements": [
+    {
+      "path": "queue_guard.py:53",
+      "recommendation": "Preserve NUMERICALLY in output names and show witness residual; if a downstream exact set claim is needed, replay an independent primal/separation check and return UNKNOWN when unverified."
+    },
+    {
+      "path": "queue_guard.py:83",
+      "recommendation": "Preserve HEURISTIC and future UNKNOWN for both positive and negative queue/CV6 probes. Endpoint signs are not a servo or path certificate."
+    },
+    {
+      "path": "audit_warning_v2.py:37",
+      "recommendation": "Display first residual warning separately from first joint infeasibility. Complete G/h was not saved at every frame, and an early warning may persist long before the failure."
+    }
+  ],
+  "minimum_required_repair": "No parent mechanism change required for this bounded passive-development conclusion. Correct REPORT independent sample count/completion sentence; explicitly label movement-loss severity as inference. Parent owns these text edits. This review did not edit parent files.",
+  "api_contract": {
+    "selected_set": "selected_set(G_float32,h_float32,lower,upper,row_labels=...) -> VALID/INVALID input plus SELECTED_FEASIBLE, SELECTED_INFEASIBLE or UNKNOWN; selected safety AND active alpha rows must be supplied.",
+    "decomposition": "diagnose_current({F:{G,h,row_labels},U:{G,h,row_labels}},lower26,upper26); F columns 0..13, U columns 14..25. K=K_F x K_U only for frozen independent command blocks and their already-allocated h. A feasible product is not a certificate for unsplit physical constraints.",
+    "queue": "queue_local_risk(J_float32,d_float32,dmin_float32,q26,pending6x26); no queue changes. Returns LOCAL_LINEAR_UNSAFE or LOCAL_ENDPOINTS_NONNEGATIVE and always future_physical_safety UNKNOWN. No timing inferred from FIFO indices.",
+    "state_meanings": {
+      "VALID": "Well-formed finite exact input snapshot for the declared algebraic question, not physically safe.",
+      "SELECTED_FEASIBLE": "Explicit rationally checked current-set witness exists.",
+      "SELECTED_INFEASIBLE": "Exact box contradiction or rational separating certificate excludes every current boxed command; not a physical collision assertion.",
+      "UNKNOWN": "Malformed/nonfinite/missing coverage, failed numerical solve, unverified certificate, or missing future dynamics. Never coerced to SAFE.",
+      "OBSERVED_UNSAFE": "Only supplied current geometric d<dmin is strictly negative.",
+      "LOCAL_LINEAR_UNSAFE": "A frozen-J target endpoint has strictly negative rational margin. Conditional mathematical risk only."
+    },
+    "minimum_preissue_recommendation": "At the selected-call seam capture actual float32 G/h, row IDs/masks, alpha rows, all 26 box endpoints, measured q/qd, issued target, exact six pending targets and state/queue identity. Report current-set status, returned-command residual and conflict support. Queue probes add heuristic flags; they do not authorize a recovery action or overwrite FIFO.",
+    "strict_endpoint": "No geometry epsilon. Equality is nonnegative; one negative float32 ULP and the smallest negative float32 RHS are tested. Rational checks interpret finite float32 coefficients exactly. HiGHS 1e-9 tolerance only proposes candidates; it never changes h/box/endpoints.",
+    "minimal_certificate": "For y>=0, a=y^T G, b=y^T h, L=sum_j a_j*(lower_j if a_j>=0 else upper_j). If exact L-b>0 then current set empty. If an exact witness x satisfies all original rows/box then current set nonempty. Otherwise UNKNOWN.",
+    "per_row_limit": "min_box G_i x<=h_i for every row is necessary, not sufficient; 2 opposing rows can be individually feasible with empty intersection.",
+    "f_u_safety_limit": "Post-authority allocated rows certify only themselves, not raw h_before_authority, excluded rows, all9021 geometry, or physical motion."
+  },
+  "proved_counterexamples": [
+    {
+      "name": "command_vmax_not_measured_qd_bound",
+      "example": "dt=.02, vmax=1.5, u=0 obeys |u|<=.03. Linear double integrator qdot=v, vdot=0 with v=2 obeys the command constraint while measured speed exceeds vmax. Without a plant relation/bound on v, the implication cannot be derived. All other 25 coordinates may vary independently.",
+      "random_family": "command_not_velocity",
+      "cases": 64,
+      "proof_status": "analytic explicit toy dynamics, not SafeDuo dynamics"
+    },
+    {
+      "name": "zero_hull_not_feasibility",
+      "example": "Original B=[-1,1], reference R=[.25,.5], hull(R,0)=[0,.5], row x<=-.25. Original B intersects the row; hull contains zero but its intersection is empty. The 26D randomized positive-orthant version fails even for the componentwise hull, which contains the true convex hull.",
+      "random_family": "zero_hull",
+      "cases": 64
+    },
+    {
+      "name": "current_feasible_not_queue_future_feasible",
+      "example": "Linear margin m(q)=.5+q, q=0, command u in [-.1,.1], current row -u<=.5 is feasible. Six irrevocable targets -1 and explicit toy plant q_next=pending[0] give q_next=-1, m=-.5 and next row -u<=-.5, infeasible in the same box. A new command cannot alter the oldest pending target.",
+      "random_family": "current_not_queue",
+      "cases": 64,
+      "proof_status": "conditional exact linear example, not a plant estimate"
+    },
+    {
+      "name": "row_authority_not_joint_feasibility",
+      "example": "u in [-1,1], u<=-.25 and -u<=-.25. Each halfspace intersects the box; summing gives 0<=-.5.",
+      "random_family": "collective_infeasible",
+      "cases": 64
+    },
+    {
+      "name": "benign_endpoint_does_not_supply_missing_model",
+      "example": "The same current J/q/six targets permit different future acceleration/servo responses when dynamics are unbounded. Nonnegative frozen endpoint probes supply no bound on the actual path; output must remain UNKNOWN.",
+      "random_family": "benign_local_unknown_future",
+      "cases": 64,
+      "proof_status": "scope/identifiability negative controls, not measured physical failures"
+    }
+  ],
+  "random_evidence": {
+    "registration": "ASTRA_PREREGISTRATION.json",
+    "registration_sha256": "ecdd1e4dde07ff92d7824c867722aafeb06054de1f4111202719ca6b380748c9",
+    "execution_registration": "ASTRA_EXECUTION_REGISTRATION.json",
+    "results": "astra_test_results.json",
+    "exit_receipt": "ASTRA_TEST_EXIT_RECEIPT.json",
+    "source_sha256": {
+      "astra_oracle.py": "5b3c564d0fe71a66871bd493008771edbed8e08d03b71af2fe74de410d2d01ce",
+      "astra_tests.py": "fa48b77f4b10aa61c3c77335510928fe175666e0b71af109c95419a483c4bf28"
+    },
+    "rng": "NumPy PCG64",
+    "seeds": [
+      2026100711,
+      2026100712,
+      2026100713,
+      2026100714,
+      2026100715,
+      2026100716
+    ],
+    "counts_by_family": {
+      "dense_feasible": 64,
+      "collective_infeasible": 64,
+      "zero_hull": 64,
+      "command_not_velocity": 64,
+      "current_not_queue": 64,
+      "benign_local_unknown_future": 64
+    },
+    "no_seed_or_distribution_changes_after_outcomes": true,
+    "case_input_hashes": "All 384 in astra_test_results.json; generators, versions and seeds replay every input.",
+    "meaning_of_negative_control_count": "320 invalid-inference detections: 256 constructive algebra/dynamics counterexamples plus 64 missing-model/scope controls. They are not 320 robot failures.",
+    "independence_limit": "Independent code and rational certificate replay, but same SciPy/HiGHS family as parent, not an independently implemented LP solver. Certificates do not trust solver status."
+  },
+  "bounded_review": {
+    "snapshots": 2,
+    "robot_sets": 4,
+    "all_sets_include_saved_active_alpha": true,
+    "records": [
+      {
+        "step": 620,
+        "env": 38,
+        "path": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_1/zero_inclusive_658533148/first_failures/step_0620.npz",
+        "sha256": "5228a4e89e5dfe17d95b26ae33634dccb0fbe525312635d97be15b899882ce1f",
+        "F_status": "SELECTED_FEASIBLE",
+        "U_status": "SELECTED_INFEASIBLE",
+        "F_rows_including_alpha": 6,
+        "U_rows_including_alpha": 15,
+        "U_each_row_individually_feasible": true,
+        "U_separation_verified": true,
+        "U_separation_gap": 0.00014878691289904044,
+        "U_separation_gap_exact": "12657390722036247662644989041684595/85070591730234615865843651857942052864",
+        "U_certificate_support": [
+          "safety:global=8974:position=13",
+          "safety:global=8978:position=15"
+        ],
+        "U_certificate_uses_alpha": false,
+        "U_returned_command_exact_residual": 0.0006738241187618977,
+        "queue_status": "LOCAL_ENDPOINTS_NONNEGATIVE",
+        "queue_minimum_frozen_linear_pending_margin_m": 6.344464188692645e-06,
+        "future_physical_safety": "UNKNOWN"
+      },
+      {
+        "step": 193,
+        "env": 38,
+        "path": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_2/zero_inclusive_69425290/first_failures/step_0193.npz",
+        "sha256": "59c81f9350379e0b840a0ca8c82a79c7e2a659a55b06bac7b45693877db57b97",
+        "F_status": "SELECTED_FEASIBLE",
+        "U_status": "SELECTED_INFEASIBLE",
+        "F_rows_including_alpha": 0,
+        "U_rows_including_alpha": 25,
+        "U_each_row_individually_feasible": true,
+        "U_separation_verified": true,
+        "U_separation_gap": 0.0007114875779274805,
+        "U_separation_gap_exact": "7215341241717598241621695743/10141204801825835211973625643008",
+        "U_certificate_support": [
+          "safety:global=8992:position=10",
+          "safety:global=9003:position=16",
+          "safety:global=9020:position=25"
+        ],
+        "U_certificate_uses_alpha": false,
+        "U_returned_command_exact_residual": 0.000578886110013314,
+        "queue_status": "LOCAL_ENDPOINTS_NONNEGATIVE",
+        "queue_minimum_frozen_linear_pending_margin_m": 0.020668461479284,
+        "future_physical_safety": "UNKNOWN"
+      }
+    ],
+    "additional_old_snapshot_solves": 0,
+    "raw_leadup_reaudit": false,
+    "selection_bias": "Two already-known failures; development-only, not fresh validation.",
+    "subtle_observation": "Both six-target frozen-J endpoint probes were nonnegative despite certified current U infeasibility and the old recorded following strict violation. Endpoints do not replace current hard-set diagnosis.",
+    "numeric_residual_scope": "Rational/double residuals of stored float32 coefficients may differ from production float32 reduction; saved strict endpoints and original residual thresholds were not recomputed or changed."
+  },
+  "parent_review": {
+    "files_sha256": {
+      "queue_guard.py": "537075d46db1589b29bc314a1b88913a1a607ab05f8e404d9fa48ea732b2407d",
+      "test_queue_guard.py": "32fdeb2573081f5523f23263a68a959f1cb6c17fb24d27927fd508a126e16f84",
+      "random_experiment.py": "69a95f61f3b6d3b3daca88c25326db3ed36491cede01acad5a86ad70745a81a2",
+      "audit_counterexamples.py": "ad58b0024bba03f2749ab5a5f77f94efb816d9f698801b7bddc3c5efe7893519",
+      "audit_warning.py": "8eda18b943fe0116879777ff79076a5728b6605570cb4d0985927fa4b7ad9116",
+      "audit_warning_v2.py": "4571fadd01a41b5033b47cd33d93f9f8ea0ad4788ef7a421220e8db8f82e8b98",
+      "audit_authority.py": "a8082edbf36a6f172f160aeaefd1859e1f37cb6d6a61b046f99472a0c14aca56",
+      "native_state_capture.py": "6848af7845ccc074e2b8a440b02dbe702bba661582723aa0d6c9ef67b24684e1",
+      "test_native_state_capture.py": "a24868e89fa30f8a6c2f5968e19deb7d30ed6f0707edcff6e96115ad3d3970af",
+      "DIAGNOSTIC_REGISTRATION.json": "32d5e8b0ff54426a0cb08800ef6d692945f903ce60692585b99ab55331d801c8",
+      "RANDOM_REGISTRATION.json": "efd6551949a668bd7bfd7420c3b198e98fb1fd5c66c5dedaa698c6f5010e8567",
+      "WARNING_REGISTRATION_V2.json": "60a060c368344ee1df87fbf38bfe1894fdd55eb8eb2570f2affb98ce9292a901",
+      "AUTHORITY_REGISTRATION.json": "f5cc63a42703aa244369a4581d92b30cf797921176f593e0791f06c54cae08e4",
+      "RANDOM_RESULTS.json": "da3a9b9c308b3c770d27afdf3a4b83ea3ee8a05d8cd4a4a24d49acded2c95575",
+      "CONSTRAINT_DECOMPOSITION.json": "da888e12d7e8bb74abc23123b3429bef998e6a817f7bcec9845a0b47aef5eba9",
+      "WARNING_ATTEMPT1_DIAGNOSIS.json": "dfefadcba222c35c3e4ce47cf7bfa8995be4ab7a22799dac848bc2796d2682ad",
+      "WARNING_AUDIT.json": "e130def239c12a36bd6c91cfa7eeb63525b00282f850769142fed1fbc89e0d7f",
+      "AUTHORITY_AUDIT.json": "acadac88a8c3fb9602ff8d249c58c984d230983f57e313272fb094c597213f10",
+      "NATIVE_STATE_AVAILABILITY.json": "3ce5c2e9a086031daa548cc3463c8e9a6cc29647b0b2dbe5342c013a79799a6b",
+      "REPORT.md": "43bc7b9e93d86feebc86b9bdb34eaf7c6796192832c10b273b715951f71507d4"
+    },
+    "actual_receipts_verified": {
+      "focused_tests": {
+        "actual_exit": 0,
+        "receipt_sha256": "262b1ff8f038219b2113423a8db9b8448e5b1522625034b7101f3376a4c061ea",
+        "log_sha256": "1822e087313c63643806534667202591c83ac2d5a5db377f3c9f836e91dd8ad4",
+        "log_hash_verified": true
+      },
+      "random_experiment": {
+        "actual_exit": 0,
+        "receipt_sha256": "1fa731b6373d6d6785952bf7bdae0166820fc81c11c9609192e87d36562c6ce5",
+        "log_sha256": "2e4ad2efacee63267a021dcffb2e11517c15f9e4a4fad54d45d029c71d4fe7de",
+        "log_hash_verified": true
+      },
+      "constraint_decomposition": {
+        "actual_exit": 0,
+        "receipt_sha256": "edd3fb4e0fe6dae006cd1c7f752d79f227583a22a1900fec18dfe34959c5f62c",
+        "log_sha256": "809e704b8202415f59f8c76d90907c6ab20b8057cfe960fb000f46d9e71844b5",
+        "log_hash_verified": true
+      },
+      "warning_audit": {
+        "actual_exit": 1,
+        "receipt_sha256": "2485bd113f2bfffa330a79b4bcc4648015e9b0f3a166e274fe96cbbe32b88b6b",
+        "log_sha256": "a1b38038b6b7ebcd8c400acb152cd69e77e4f11b79609ca392f480a0555fef72",
+        "log_hash_verified": true
+      },
+      "warning_audit_v2": {
+        "actual_exit": 0,
+        "receipt_sha256": "b448004575d8ab8284cf1864837bebab06c69e4b988b79cd4594b03023ee87ba",
+        "log_sha256": "2bf69d47558384de823af33086ba23a41c69de91bc76cfacdef73e5373a64826",
+        "log_hash_verified": true
+      },
+      "authority_audit": {
+        "actual_exit": 0,
+        "receipt_sha256": "5621e9af9f2b8414b775e70082116d71b521fd701e93c7d5c4148a4f47e91a1c",
+        "log_sha256": "4a53e37207a95b63fbf942c1a944c279f0cef9258fcebce58fb7e419b64c2cfa",
+        "log_hash_verified": true
+      },
+      "native_copy_tests": {
+        "actual_exit": 0,
+        "receipt_sha256": "e573a1d317910c5d952eaa09b4571b4c554a3e0c75303090bae7e99cb1eb2f66",
+        "log_sha256": "946acfd74cc11aff8da84cf35f68137c7af2d277f03e4bec7c5baf2f80df4833",
+        "log_hash_verified": true
+      }
+    },
+    "cpu_random_results": {
+      "cases": 12288,
+      "fresh_robot_windows": 0,
+      "status": "parent result/log/source consistency reviewed; parent experiment not rerun by sidecar"
+    },
+    "constraint_decomposition": {
+      "parent_lp_count": 2110,
+      "fixed_G_h_widened_feasible": 422,
+      "denominator": 422,
+      "scope": "Frozen mathematical variation; not row reselection, production policy execution or physical counterfactual."
+    },
+    "authority_dependency": {
+      "parent_lp_count": 844,
+      "recomputed_authority_feasible": 421,
+      "denominator": 422,
+      "remaining_infeasible": "one joint_reference U set",
+      "zero_inclusive_U_feasible": 7,
+      "zero_inclusive_U_total": 7,
+      "scope": "Binary64 max(h_before,.9*min_Gu_new), alpha and input/selection/gates remain frozen. Even recomputing this term is not full production behavior."
+    },
+    "warning_v2": {
+      "original_attempt_exit": 1,
+      "corrected_attempt_exit": 0,
+      "correction_only": [
+        "read WARNING_REGISTRATION_V2 instead of DIAGNOSTIC_REGISTRATION",
+        "margins -> official_margins",
+        "211 exact first-failure key reconciliation"
+      ],
+      "read_only_reconciliation_performed": true,
+      "first_failure_identifiers": 211,
+      "all_window_identifiers": 576,
+      "projection_threshold": 1e-06,
+      "geometry_strict_epsilon": 0,
+      "zero_inclusive_failure_leads": [
+        138,
+        395,
+        536,
+        729,
+        261,
+        28,
+        54
+      ],
+      "new_two_failure_leads": [
+        395,
+        28
+      ],
+      "no_strict_failure_windows": 185,
+      "no_strict_failure_windows_with_warning": 162,
+      "interpretation": "First residual alarm lead only. No first-joint-infeasibility time, causal attribution, prevention fraction, stopping performance or physical safety improvement measured. Warning-only is not an established false positive."
+    },
+    "native_capture": {
+      "cpu_storage_isolation_tests": 3,
+      "actual_exit": 0,
+      "isaac_integration_executed": false,
+      "exact_native_restore_or_render_certified": false,
+      "scope": "Static getters plus CPU copies of q/qd/roots/root velocities/control indices/six targets. No actual PhysX schema/timing/all-scene restoration demonstrated. Parent camera availability metadata read; no camera/trajectory re-audit by sidecar."
+    },
+    "report_review": {
+      "file": "REPORT.md",
+      "sha256_at_review": "43bc7b9e93d86feebc86b9bdb34eaf7c6796192832c10b273b715951f71507d4",
+      "scientific_body": "Consistent with scoped source/output evidence subject to R1 count and R2 inference wording. Existing 47x9-view images and failed numerical-state replay are inherited evidence, not newly independently verified here.",
+      "report_after_parent_edit": "Not yet reviewed in this version; parent may verify only changed review sentence/hash separately."
+    }
+  },
+  "missing_bounds_for_future_safety": [
+    "Validated actuator/servo dynamics and tracking-error reachable sets from measured q, qd, full native state, actuator limits and target backlog.",
+    "Actual joint velocity, acceleration, braking/torque and response-delay bounds; command vmax constrains issued increments only.",
+    "Exact applied-target identity, FIFO schedule, latency/jitter and whether any separately validated intervention can affect pending targets.",
+    "Bounded Jacobian/geometry linearization remainder along the whole reachable path, including intersample behavior and changing/contact/exempt/unselected rows.",
+    "Robust joint/cross-robot constraints over all relevant rows, disturbances, state uncertainty, valid recovery/terminal invariant set, and post-queue recursive feasibility.",
+    "Native root/uncontrolled-DOF/world/contact state, exact runtime capture/restore and render-time binding for camera evidence."
+  ],
+  "blind_validation_disposition": {
+    "development_diagnostic_cycle": "Supported by scoped CPU and retrospective evidence.",
+    "new_robot_blind_safety_validation": "NOT_ESTABLISHED_OR_STARTED; no control candidate or trustworthy future bound validated here.",
+    "permissible_next_research": "Freeze the passive diagnostic integration and definitions, then separately preregister new-state shadow evaluation. Any control intervention requires its own candidate definition, full dependent recomputation, model bounds or explicitly limited empirical protocol, and motion/failure accounting.",
+    "hardware_or_production_safety_claim": false
+  },
+  "write_boundary": {
+    "root": "/home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855",
+    "allowed_names": [
+      "astra_*",
+      "ASTRA_*"
+    ],
+    "old_read_sources_hash_unchanged": {
+      "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/COUNTEREXAMPLE_FRONTIER.json": true,
+      "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/projection_diagnostics.py": true,
+      "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/target_forecast.py": true,
+      "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/reference_envelope.py": true,
+      "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py": true
+    },
+    "two_raw_snapshot_hashes_unchanged": true,
+    "parent_files_modified_by_sidecar": false,
+    "git_used": false,
+    "gpu_started": false,
+    "old_pycache_written": false
+  },
+  "commands": {
+    "tests": "/home/liyufeng/miniforge3/envs/safeduo/bin/python -B /home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/astra_tests.py",
+    "oracle_demo": "/home/liyufeng/miniforge3/envs/safeduo/bin/python -B /home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/astra_oracle.py",
+    "bounded_review": "/home/liyufeng/miniforge3/envs/safeduo/bin/python -B /home/liyufeng/safeduo/artifacts/safety_queue_viability_20261007_1855/astra_oracle.py --bounded-review"
+  },
+  "artifact_inventory": "ASTRA_ARTIFACT_MANIFEST.json lists every sidecar file and SHA-256 (manifest itself excluded from recursive hashing)."
+}
