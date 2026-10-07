@@ -1,0 +1,11 @@
+# R34-A probe 2 (mass sweep): identical to duo_env_v7_r34_beam_r27r16.yaml except the two 4080 profiles
+# weigh 0.39 kg (039 = 0.39 kg; 0.39 = thin-wall light profile, 0.78 = solid-core catalogue value).
+# Tests the five-finger pinch's grip margin (hand actuator 100/5/5) on a realistic aluminium mass.
+extends: duo_env_v7_r34_beam_r27r16.yaml
+
+assets:
+  table_objects:
+    - {name: rod_l, catalog: profile_4080_L300, pos: [0.53, -0.35, 0.84], mass: 0.39, static_friction: 0.35, dynamic_friction: 0.30}
+    - {name: rod_r, catalog: profile_4080_L300, pos: [0.53, 0.35, 0.84], mass: 0.39, static_friction: 0.35, dynamic_friction: 0.30}
+    - {name: cube_u_l, pos: [-0.44, 0.42, 0.825], size: 0.05, color: [0.2, 0.5, 0.9]}
+    - {name: cube_u_r, pos: [-0.46, -0.20, 0.825], size: 0.05, color: [0.2, 0.8, 0.4]}

@@ -1,0 +1,13 @@
+# R27 S3 (2026-09-05): physical-grasp RECORDING env (N=1 demos only, never
+# training). = final execution stack objects env (R29 + R30b dwell 10) +
+# chembench-grade contact physics so the five-finger hands can really hold a
+# prop: hand actuator gains (was 5/0.5/2 -- decoration-level), articulation
+# and object solver iterations (was 8/0). Values start moderated relative to
+# chembench UR5e-Aoyi (200/10/50, 255) because Inspire finger links are small;
+# tune from the S0/S1 telemetry (GRASP_TELE rows in the recorder log).
+extends: duo_env_v7_r18_objects_stack.yaml
+
+assets:
+  hand_actuator: {stiffness: 100.0, damping: 5.0, effort_limit_sim: 5.0}
+  solver: {position_iterations: 64, velocity_iterations: 4}
+  object_solver: {position_iterations: 64, velocity_iterations: 4}

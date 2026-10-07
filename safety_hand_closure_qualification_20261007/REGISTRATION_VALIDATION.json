@@ -1,0 +1,2550 @@
+{
+  "env_yaml": "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/env_random_base.yaml",
+  "trajectory": "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/task_qualified_two_pair.npz",
+  "physics_dt_s": 0.008333,
+  "disable_self_collision": false,
+  "object_yaws_rad": [
+    0.0,
+    1.5707963267948966
+  ],
+  "contact_capacity": 4096,
+  "views": {
+    "top": {
+      "eye": [
+        0,
+        0.001,
+        3.2
+      ],
+      "target": [
+        0,
+        0,
+        0.86
+      ]
+    },
+    "front": {
+      "eye": [
+        0,
+        -2.4,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.92
+      ]
+    },
+    "side": {
+      "eye": [
+        2.4,
+        0,
+        1.9
+      ],
+      "target": [
+        0,
+        0,
+        0.92
+      ]
+    },
+    "detail": {
+      "hand_focus": "U_L",
+      "eye_offset_m": [
+        0.32,
+        -0.3,
+        0.28
+      ]
+    }
+  },
+  "criteria": {
+    "pair_normal_max_n": 0.1,
+    "body_net_max_n": 0.1,
+    "net_filter_accounting_max_abs_n": 0.001,
+    "open_error_max_rad": 0.02,
+    "target_error_max_rad": 1e-06,
+    "closed_tracking_error_max_rad": 0.02
+  },
+  "constructor_thumb_rad": 0.35,
+  "target_open_thumb_rad": 0.35,
+  "status": "FROZEN_BEFORE_NATIVE_VALIDATION",
+  "seed": 90610761,
+  "profiles_per_cycle": 4,
+  "cycle_steps": 720,
+  "ramp_s": 1.0,
+  "legacy_metadata": "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/legacy_native_metadata.json",
+  "hand_ids": {
+    "F_L": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "F_R": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "U_L": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "U_R": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "hand_names": {
+    "F_L": [
+      "left_index_1_joint",
+      "left_middle_1_joint",
+      "left_pinky_1_joint",
+      "left_ring_1_joint",
+      "left_thumb_1_joint",
+      "left_index_2_joint",
+      "left_middle_2_joint",
+      "left_pinky_2_joint",
+      "left_ring_2_joint",
+      "left_thumb_2_joint",
+      "left_thumb_3_joint",
+      "left_thumb_4_joint"
+    ],
+    "F_R": [
+      "right_index_1_joint",
+      "right_middle_1_joint",
+      "right_pinky_1_joint",
+      "right_ring_1_joint",
+      "right_thumb_1_joint",
+      "right_index_2_joint",
+      "right_middle_2_joint",
+      "right_pinky_2_joint",
+      "right_ring_2_joint",
+      "right_thumb_2_joint",
+      "right_thumb_3_joint",
+      "right_thumb_4_joint"
+    ],
+    "U_L": [
+      "left_index_1_joint",
+      "left_little_1_joint",
+      "left_middle_1_joint",
+      "left_ring_1_joint",
+      "left_thumb_1_joint",
+      "left_index_2_joint",
+      "left_little_2_joint",
+      "left_middle_2_joint",
+      "left_ring_2_joint",
+      "left_thumb_2_joint",
+      "left_thumb_3_joint",
+      "left_thumb_4_joint"
+    ],
+    "U_R": [
+      "right_index_1_joint",
+      "right_little_1_joint",
+      "right_middle_1_joint",
+      "right_ring_1_joint",
+      "right_thumb_1_joint",
+      "right_index_2_joint",
+      "right_little_2_joint",
+      "right_middle_2_joint",
+      "right_ring_2_joint",
+      "right_thumb_2_joint",
+      "right_thumb_3_joint",
+      "right_thumb_4_joint"
+    ]
+  },
+  "os_random_seeds": {
+    "uniform": 5075805936112801721,
+    "latin_hypercube": 795084671048433727,
+    "validation": 2047446702337179257
+  },
+  "scope": "Exact development-qualified goals at 3 new static references, fresh native admission every step. 32 unknown target profiles rejected and not physically executed. No System0 or payload tasks.",
+  "capture_envs": [
+    0
+  ],
+  "validation_contract": {
+    "new_reference_times_s": [
+      2.0,
+      8.0,
+      20.0
+    ],
+    "random_unknown_count": 32,
+    "max_qualified_profiles": 12,
+    "ramp_s": 1.0,
+    "no_interpolation": true
+  },
+  "created_utc": "2026-10-07T16:14:57.112968+00:00",
+  "run": "validation",
+  "source_sha256": {
+    "/home/liyufeng/safeduo/src/conftest.py": "e798f12d7fc6e5d6d684971a6a70068c4c1757f7bd04f094258f42a6083fac53",
+    "/home/liyufeng/safeduo/src/safeduo/__init__.py": "157b2cdeb552be2d22ea39580fc18c15a559f15a9980ce0ab25d7e337800323b",
+    "/home/liyufeng/safeduo/src/safeduo/viz/__init__.py": "bd73173125ffd72097ad97d826e49e76c1edb355e0b5c4871b2ab196a85be061",
+    "/home/liyufeng/safeduo/src/safeduo/viz/record_video.py": "5f50bc1e0714157e22e9674c68b09a4ec12846e01f443408fa2e6f3079e46955",
+    "/home/liyufeng/safeduo/src/safeduo/viz/replica_visuals.py": "2992e2403d091c6396089c5aca1147267e2df372d2a1301d792ddb3fdc02aeca",
+    "/home/liyufeng/safeduo/src/safeduo/safety/__init__.py": "a696d8df23f71a4df275eac54eb0fbbf1d987bc36fdbe33ef9596b7a5ed9ed5b",
+    "/home/liyufeng/safeduo/src/safeduo/safety/target_guard.py": "81349e7097c58779ffc43531fa6e25cb73dd68203245264b33f5819a91cdf971",
+    "/home/liyufeng/safeduo/src/safeduo/safety/parity_probe.py": "3b85a909ba92b9b1cbbee503f20b59844ce479040c12cd508de82d77bdcd3aa7",
+    "/home/liyufeng/safeduo/src/safeduo/safety/coupling.py": "9942fb7abcfc89cdd1da5477d55f8002b7db7db3d3a093c10cf12012eddd01f0",
+    "/home/liyufeng/safeduo/src/safeduo/safety/semantics.py": "10ef2fba44d02d22d5d4b502a8b2657435dbe6dce189922084c619472194bfda",
+    "/home/liyufeng/safeduo/src/safeduo/safety/parity_runner.py": "ac23dd0ee79bab5f992c902cf599cb4f14ad3fda490bb1777e7b2f8b32fe8dac",
+    "/home/liyufeng/safeduo/src/safeduo/safety/release_schedule.py": "a0256fe3a7c67d83d66d5b155579398129452d27ca6673d584a4a7a199ee8697",
+    "/home/liyufeng/safeduo/src/safeduo/safety/consistency_parity.py": "0fd1332a26c5ef10040049c11c242b9a05b490e396af6128880a0e6b8b9e46d2",
+    "/home/liyufeng/safeduo/src/safeduo/safety/types.py": "7ed46347ff0264d4b15d016dfab3329a31be53a2c64a63027b250c93873774a2",
+    "/home/liyufeng/safeduo/src/safeduo/safety/release_evidence.py": "8c9ceea38bbda86285092b46db46da500d2c292f474b6948e03427c7c36416bf",
+    "/home/liyufeng/safeduo/src/safeduo/safety/retreat.py": "a2a95ccd7b3588fa200e9911ce202099b9a5a54e4156e4ad1e48fc9c4a7af0ef",
+    "/home/liyufeng/safeduo/src/safeduo/safety/contact_parity.py": "994608427693bbe2c013e2f71241e058d4af2ed4146f2ab1c87a279b0033b683",
+    "/home/liyufeng/safeduo/src/safeduo/safety/target_history.py": "e58dcf8273dd684e04ec5388c1451247981633f291c0460c647ee5a2df60f41d",
+    "/home/liyufeng/safeduo/src/safeduo/safety/geometry.py": "86ca63288973161dd3a7d2c41539c7f3d26a0e30dc26ef7568e7eebe3299375d",
+    "/home/liyufeng/safeduo/src/safeduo/safety/sphere_distance.py": "c4a57526f7f66bf57e224a70977a2534e21ca4e247348500846149444325296f",
+    "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py": "82a0f0e5ddbbe1b9eecbdbbd249a9354b50d78ab6e121473286e8dbb28f19afa",
+    "/home/liyufeng/safeduo/src/safeduo/safety/damper_audit.py": "5b891af463a450bbf1b7e7a1f651d52c97b0e89d0283e113a0e7ba68c7255fdb",
+    "/home/liyufeng/safeduo/src/safeduo/safety/sphere_audit.py": "aaff3f1ebd907f8458572188fb14d446cc0b816c309497bb3aefb55cfdf55fb5",
+    "/home/liyufeng/safeduo/src/safeduo/safety/object_context.py": "6b69e3641a013e8220bf3c719971ae0a17ab01476bbb98ab39874b4a1a1ec9eb",
+    "/home/liyufeng/safeduo/src/safeduo/safety/sphere_specs.py": "bc3f35d374117c39eef2d05230616a959ba3d76052b4806b352569b6148fcf7c",
+    "/home/liyufeng/safeduo/src/safeduo/delta/__init__.py": "3e47c23a94d5ffe432c4308dfad247407ab078f4826d20a968316bbac0d2396a",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r34.py": "45321e527a9306612b148ff5dbe529838ae8320d10605de5d19898facdad3ded",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l2_scenarios.py": "a14e57915586050c66d62c3bd27dd293eedf2da564e27cd60858134d50287442",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_plan_server_v7.py": "455c1a14ddc0e80e63ce9711d41141ac11a331f4b406b2aa3ee2029153295f81",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r24.py": "de9c58c007e5e9d85266c61117baf3b3f1b88480edcb5558c38c613a0e411734",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_coverage.py": "349ba44cc663d327e14b314c8f705a50fb0e7b71c454ae402c9af9777382d95c",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_record_s9.py": "0d878dd30d699efccc001c0a13051938934146173308b1facf95831a72bdf890",
+    "/home/liyufeng/safeduo/src/safeduo/delta/smoke_noise.py": "5729fd8b10d46d76423ebf24ef9cc4dcbb5d2a0a51a023992f9e0cd9df54a0b4",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_random.py": "55d311cf3677031fab38b2ee8bf06b76f8c7f6492b4bf87ef0093eab1b33de0c",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r35.py": "7aef3461e46ed2960192d14f38ae8c2f40e437e1426a52e07b3b5b90c17237c2",
+    "/home/liyufeng/safeduo/src/safeduo/delta/d032_plank_plan.py": "b8672b6c4d127d5a71d533066a3fa3b77bc50ba72021e1c0d254b33e3ba4ec39",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_record_v7.py": "a496abc5b7373338cae77053a0a3a05180695fe692a1c5eb63c0352d74495daa",
+    "/home/liyufeng/safeduo/src/safeduo/delta/trajectory_task_replay.py": "af9ab42be55da9bcfb7ac94376daba4c7988500880f5ddbf297f26e53f0edd62",
+    "/home/liyufeng/safeduo/src/safeduo/delta/grasp_gen.py": "c14708abcdc74822d3b2d3a5d85e9c52a046ba25f38d1ebd9c9389df0f3bd4f5",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l2_env_source.py": "a834c5643b6fb2b7153e8b3158e8ea3bd94c20d5d9b48a6df1148fa6ed1d35d4",
+    "/home/liyufeng/safeduo/src/safeduo/delta/traj_planner.py": "ae63d97da3e7ffe6714d196a51cd0c0c4fd0f34b567c7b7e2741361477e35531",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_replay.py": "ce4ce2100db2a255eb6e9d4b4f1e651acecd8f2c29caf8742af4ec9fc5652c5a",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_plan_server.py": "bc1562838e0aa962117e336e18e69fc062691489b9f54c9f36bf126a505384c6",
+    "/home/liyufeng/safeduo/src/safeduo/delta/_contract_stub.py": "92572cbe14252faed0b5970c56203155c50bd382b7fc0ca7e80809c46ad9c93f",
+    "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r26.py": "c9d09317c89405d486e423cb7c9bf2d61b233119370ed0fb72281cc186d783be",
+    "/home/liyufeng/safeduo/src/safeduo/delta/skill_record.py": "5abf0359b96c53b7a17c106e9862d160b9cc07490b9796ad9b2070713e2b2e78",
+    "/home/liyufeng/safeduo/src/safeduo/delta/a31_replay_mix.py": "3d4bc01a0d51bfffffecaa8fb26bf80a9bfba801eec64a91a07582d625afca46",
+    "/home/liyufeng/safeduo/src/safeduo/delta/make_previews.py": "0b19a736d0757a2c4310f8f07dc04fc207299e064b4f45b8a54c3ca4a101e027",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_reach_calib_v7.py": "487a73095c9614368c6b7d1cead2fe8ff381b602c4453f85e32f6602e4a8e246",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_workspace.py": "e3d3e6390fc8f8691e6d22f5d364edb7ad6256e2f8772484a295db56e7ac4168",
+    "/home/liyufeng/safeduo/src/safeduo/delta/l1_workspace_v7.py": "7feaccb149d49100354dcd9976fc5b3b21dcab96e1829619497094967f666b41",
+    "/home/liyufeng/safeduo/src/safeduo/delta/hand_grasp_frame.py": "74f7d3ccb4b16cac66542ad8bc92e4c48f9d7c3967d7bfcabd84497f08c622c1",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_la15_bl.yaml": "8f786bdc2deab35230c007a90af65c9befd03308430166221c96ec8705a6fa32",
+    "/home/liyufeng/safeduo/src/safeduo/configs/__init__.py": "1238cf90e72490cbce48de04b8ee9b9491e0fbc1aec9e79efa4961708e6d2725",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_bl.yaml": "62639a30636b555ac73322bf8785874c091cdf5621b91a7c5412df4c8bd6fadd",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_tube_racking.yaml": "7587eab649bcaf7ff8fa997856e8b72d6af7774d435fd0a844f4487fb379ea74",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_bin_packing.yaml": "39d97b863432dd33be865985f1c3b021654065f534fc594a9a319b8ca5e9ef8e",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_vmax10.yaml": "f3851c70b164d53092972ab3b34f0561f3760a13d41dc3c4266886e5444a72e7",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_profile_stage_blocks.yaml": "4f32d54b493bec1ced7f9ec444175c8f612e1e2d2109a3ee625135534f1b97f2",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix2_bl.yaml": "dd56e4bcb06bfb2131b5e1cc1e6a94ca48f62ae630295b23c361ad704a23e915",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix.yaml": "5d41c3e100fa76ded6e24f8cba171f9ccf7b5463172ea0b26bcb82720da0b45a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_r27r16.yaml": "d975aa01d84e1484c013fbf6520f30ada9f7182ddcb0879e02fdbce1a2d3c968",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle_stack.yaml": "3762595741fd7266f8afafca5bb3588629079c452b1e7bbd969e2651d399cffa",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_reagent_pick.yaml": "f6723f65f80a426d2e75bbcd9a5166b254e939f8649e6ba9e104675ab57b124a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pending_guard.yaml": "4bc35454cf781f01547f9c1cc794360ebbaf67aaee091ee3a4adf37886e09c08",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray.yaml": "8868c3de6db7ea5a3865de6741c12b7a7e9bf013b7dc269f3d97ca3642d0f857",
+    "/home/liyufeng/safeduo/src/safeduo/configs/skill_success_v7.yaml": "7e844cb3f0765d399ba78576d95ced09adb3a3695867034ba4db92081236b642",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_converge_center.yaml": "428626ac80e4d21f416aaad2aa3b55d70718e19bb6cc25731427974d2fc39bac",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_converge_depth078.yaml": "7a59004031f83b6179b809428e35d5f15c3a7cdea5e9885ca14317e825605a0b",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_la.yaml": "b361efc9244006b38066fb7275dba1093df57add80685d10de019a9d147a74f2",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_dw1.yaml": "82a12d9c79437ca635302f0d75b8a4a18273bf77b43f0d2847b8f82ff4ecea39",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_carton_packing.yaml": "b888f9d08d6b47b6bf124552ec3d6a9658309fd4321f47d29f607fde279af648",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beaker_relay.yaml": "68a5b216f996567b9a49b996eee2acaf77a4e3f608373f0c7be3f3d6edfd3589",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_stack.yaml": "ada6bf5ff1905fa8dfc5f605d1261765165cc018bc7a4854f8702a2d5ff513ff",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v6.yaml": "05672718e8240f43bf7d40ef5ea539ff132b0c70c3e39256e542363b28fc0ea6",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_profile_colift.yaml": "9667f02beef26ad8d39c73d56de03ff22fd51fb86f10caa4e7ff0c91fc3fc86a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_objects.yaml": "8e66eb223f789d47f5c14d3e84f1b0bb57146cd4c305f445a0a95749688fb772",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_mix_pick_center.yaml": "224e97b8813c0e26668912bd2ca91bbeb0f6373cfd957065a6b78d110443069f",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_carton_packing.yaml": "0cb3c62d1e97b21221e9a54a71f6d514ef196cd968a092c94d9274ad5fff285a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_profile_rail.yaml": "cc0a24de3b96cff3916de372589f433a74974583879b19e9815826a08fbe7240",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r16.yaml": "10a7a441f9d46511791a155d9338797c51f49c34269735832f1e183f8b1ec8c3",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_pdz_uax07.yaml": "c2d9be0763d217aa9b45da5b186ebbc9cf6b68904cf43f2e57dc9a3a126e6e19",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles.yaml": "e89e3099b9a64ba6607c680f72f18c140759fe769649394cd32883c8e19f5311",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray_r29.yaml": "799a16abd83f515d963456df9c96ae809daa88a09532771289ec31d2d947c57e",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_la06.yaml": "cadd5916504b976cb8bee3554d19b3fa53a9fedd463a4b8112cec19846690886",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_pipe_sorting.yaml": "1673e75926a60b63e7113139c5558bdf4896cb4b9e910535f5ab9a452fe0cfab",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_profile_rail.yaml": "cf1e79be1f04a19143144606d9dd065e5ef57badd6b887bceba07e745d035c38",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18.yaml": "3f80641437ea9b80a60776fcc403ef1635882a3fc638e8bdca01a50d5a8d370d",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_self_la15.yaml": "9b37d22d136d2ed92bf276b2776a0c8fb9de2391daef02b08f9e7660982771ca",
+    "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v62.yaml": "df5a87a5e9f92f6ded8f007e34f1115ae9cc950281040b8ce6be23218a0384e0",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle_r29.yaml": "f56cb65e8f2dbcafcbbad46a893014deca63569455f2ff8b2c5e1309febd35d8",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_dw3.yaml": "1c5079cfb36589efb9e2efd87638ee80040ff6c8ae5615f19e977570b81371bf",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_rebase.yaml": "51d49f78111000543bb9d208e2b121b6c0ee418cc7fe73ed33eb3e8335dca3b4",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_stored_guard.yaml": "791e3d9b0b76f17d8ae7beaf801835ffe06f51097554de1642c207dcea8c5481",
+    "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v7.yaml": "5f208701688d144ade0f73856f0b51747dc4241fdad6c923c59ca69cac2fc303",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod_stack.yaml": "51fea454129c5ff2cf82e565ebebce8c6042708b61a78028b371ccf90285715a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v3.yaml": "8406d691f805fca926f520f7f417ad28d9fbbf6c4e66d817dc5cd64388f38aea",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack.yaml": "767b1c06e006c9851d243e13bf0ff029977687cd798dd5a404ccdcea9158e0a8",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_r29b.yaml": "58c2bdd670875dc7c64047dfd9cba6a943ab79acc574c99977a15cfc6daefb39",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod_r27r16.yaml": "085169b4c2af5d0d1c469ff92bba12107eadf521ba0cc1a2abefe6221bb94d5f",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r27r16.yaml": "70d6be0823c649c9d20ffb62e56fd5695b98f47bcf6f7285d99d999633888c9c",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_mu09_h200_r27r16.yaml": "1d56499f40380a9e4deb37d3852565e9c88b3cbfdabd9d7c3db177a0cf079a7b",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_fix.yaml": "52bc76dd3979e1d0972c9bf7b9ae207c7e6884d1ac4181567b61e3816a01792c",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_jig.yaml": "0a73299ceb51cffe0f72dd5a883bc2ed814f207d9b46e1e3b2da71cc8c353b99",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray_r27r16.yaml": "c887a7ff63a3c15c67b7fa7adc0325db0e80cc07b22cb7a79957c2e6a2466aa3",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v4.yaml": "e9755ca173218326ede0aa4987ed5bfbb9a18644f40b1a0f1d357a97fd91cf96",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_pdz2.yaml": "db0ee9dedf3847f2c092003b522047d420502a71f2fef65334f2106d0015406e",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox.yaml": "3cf03c9d0456936a81d7012a75c7079b5ef72fa408555c3953411cb985dff4fe",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects.yaml": "0e15af9b5ce87860157310279c78bea5bfec5034399e6899706a5e84854595d7",
+    "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v7r16.yaml": "f66efc90ed57d460e3fb782f745925b006d36f8d22f15a768381b2d54d2f02fd",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r29b.yaml": "9ba0b6e1d518393698f7be0342c0858b6b5a8bb27efc45f6865d999871e35b3f",
+    "/home/liyufeng/safeduo/src/safeduo/configs/skill_success.yaml": "588bd1ced15f1734ea1d809536a63e9d14fca7d4cba929020aabd0835b89f89c",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r29.yaml": "e268bd6063081324668ead0ba3f2702decd64a1c22ba9138706a75ab60eacb41",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox_r29.yaml": "52524082c4cc1f4d30de3da7269eaf38f6cb308b51e3180ca07fde33c9911a31",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_depth015.yaml": "9e00aaabe5d64f8428d1b604f153913fc48bf258413a29df8d9045d0374a3ea9",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r38_f_x_minus5.yaml": "b2fe50008665094b29e0e487dd1c89e030609333759d1f7384592884167abc20",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_colift.yaml": "31a58f0171cc634c914e5f89af80ea3830ca3d871e7b811e10083c9faebce70c",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_r16.yaml": "624661d02bf9f62d104f3e5278cf06708e18688c70f16715fdde254dfd64ce87",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_u_profile.yaml": "c9ba667d17dee8674ae3e125c28651b850505748004b2cf875284652fc1cc7af",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_com_guard.yaml": "abdfaa79090e269893284d6006ca7d6f335ab55fa0e27e98ef5776aad291c016",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7.yaml": "7c1b58034a1ab07889b632acdc4ff84ece28afc22f6587baacdd7cff98551e0e",
+    "/home/liyufeng/safeduo/src/safeduo/configs/object_catalog_r34_industrial.yaml": "0f852afc7683cb3bd796f1ff60bdb1d8b953d1724a4f3dc3630d286767e084f6",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod_r29.yaml": "a298008dad70a9afa6e4983d58b7f05ff7b4ea0a510c197597f1a207b8f8e1c1",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_frame_r27r16.yaml": "a9fdfd05a9281c092de2fedb2beaf7d22b838effe7ec7d22cbafb25dc114c80a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r27.yaml": "23b0f7804238cd62b4c59f890d3c2cfc3bd40b284a79dbe9efca16d49f512f03",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_profile_colift.yaml": "cc14bef489f6ef706989833958578301f6e15dac05e73b9facb1e5513dc5d620",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_dw10.yaml": "391e2aed1531c95cec19d0a9b51d7b6410f480521b578ea24e86cd4fda75acad",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_pdz_usq06.yaml": "516a9b75b7f78f02b6d40bdb039d72dee03894d0e3f36f8453287f5408545341",
+    "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum.yaml": "51c93dd209f040ba622e50bffebf2e70cbdf5e80474cd6b094bc6222cde2b178",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_mu09_h100_r27r16.yaml": "49620d04bd17233ebcc5972b76ab5366137cf614ff018f2587a3cdfaf28e5180",
+    "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v7_cov.yaml": "863758434deba06ac1f80521e6a0947512390571aa49b31a13a6674b7affcaf6",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_h200_r27r16.yaml": "1bb0b0a1a7393f73c0fd952521cf254d4bc3cd88b95740222d60db6c988ea246",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31.yaml": "f22ff80002b2e0b23afab6b00ac83ec1dd4a9963eed37e41db194d9bcaa2b63b",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle_r27r16.yaml": "f5719b16d00349d0ae31a336f9aa6efe5cdcdd53247df6a8ea9f63a45e4ad16b",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_nostruct.yaml": "6542c5161d2096575c7538b9c3a1f63b8078e92038e3b8a0f9fc129fdebd6387",
+    "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v62_challenge.yaml": "3bec8bc1386a7cc322c49671e1f8146939723a9e8dc8103efc9edae5e8119cad",
+    "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v7.yaml": "84d1ababbc870f74a37b9fe636aa9574568f5b072903567340d550ca7b63a852",
+    "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_t3.yaml": "acb812adf7443c731329afde59917e7a4293f425915151ac117bd30ccc63ef88",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox_stack.yaml": "074e75254f2649c34045e7552734e4bf74394eb0ea68dfa36d2762e40c3302ab",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_converge.yaml": "e744e60b592f4519b24381f7423635c4d44eb4002df41f446a01767b87ca9fb4",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_r27r16.yaml": "c7dcf902edf1f2d7b8b677a314509775599d142573b563ce35f8090871940653",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_bounded_guard.yaml": "07557f2e40e84eb545ef4f949c597ce401a60e0bac64849bf6e150b524645c80",
+    "/home/liyufeng/safeduo/src/safeduo/configs/hand_grasp_calib_v7.json": "7adc880d789168ef09aab090a63a990024b2f5a747e8a05a5fcb1487ed45eea2",
+    "/home/liyufeng/safeduo/src/safeduo/configs/dressing_r35_factory_cell.yaml": "176897c4986a4232c5b91b4c3939b557847f1693ae490af8e2d40a2ea7363cee",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_object_obstacle_review.yaml": "de84859f07273fedf9a27ca4998699008058f4f39a491f73c01a6df02a5c784f",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_crossrow.yaml": "c772b6af3ba41d543da28184a6eae43285ae057f66c79f9653bdf6c6bdaa4345",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_bar.yaml": "1cad2adfb822cc6b5e6dae4642fc005a67ef475d35c33d6ebcb8820106d40e01",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pipe_sorting.yaml": "7fc64b6159ed5663e7258b1ffd03dbf3b06cb7e5b52e4bca0cd15f314fc7cbba",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_camera_crossrow.yaml": "4825db8914ca44cc4969d4077fc1fce1d52d1b52ed77a1d2ed50596c9416a18e",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_bar_stack.yaml": "529c9df7f7a1803d2f05ff5675d2e9ad0a591a4bd2cc22927afad4fabdcb273d",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_beaker_relay.yaml": "5fff1ad85b242a2bde04ac590ad3132e6b8a75101779ab52bc00c69db940c440",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_colift_pair.yaml": "f9a15fbd5fa4f2cac36e10fa9d27b6be4a9b6c6b35d7df72178dd77654eaee20",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_depth015_carry09.yaml": "96e9173f3dddf234b6f11c82abb9e0420aa4f1380624e9c5b4e02cb5c196fc7c",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_neg_flange.yaml": "1af077c99e0f1a958833bb622e8d0f4c870f962a38ed84d2a3fc7d913c8dab09",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_pdz.yaml": "125ac394d8836ccc5aecea63318de821a9a0873ba7d59e815c22cea0f569c1b1",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod.yaml": "7b1ac2909ed82485af73dca3f804b72da3c8e12ded516e2dfe055fd29a3df667",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_pillow_r29.yaml": "12bf913ddbb37bb5f996577745c39de3c88d864c1d13defdb73e56c6bd4ed90a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_safe_low_speed.yaml": "026834a45c53794a27f659976d3a84dfcd4ecfc84095a55796d7b868b8e10778",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_priority_guard.yaml": "35ea2cd8f46a064e36c0668ef4bbc24bc2f2e93029602ac562050b7e4bc90c0a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_r16a.yaml": "796b38ebc66a77256172a670d3d1462c3f6fd3dd0846de045861606c85d16e6b",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_latency_guard.yaml": "0c881ddecb43fc38e8b0188aa5d01222a4bd8b0d3c8ee5fba7eb6301c4e9d8cf",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_pillow.yaml": "e7912d5c44f54688c2779e7ed21cf7bc920c20a420576571c34fdfa96b71dbba",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_rack_colift.yaml": "ccaea8313b2a76fc18d3a3c6cb3cc396036593a6f9534d123e3a5b90d2e999a8",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m039_r27r16.yaml": "bce9be0dbcc84fe64e698d8ee749b5288c7fc4e0fb6fdcc516caba03643dc021",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox_r27r16.yaml": "83c978afcc3bda983617b9d6da0122ca6860f871ad4863d6301562926135ddb6",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_reagent_pick.yaml": "648fe400b03637839928558b1f5a7368c30b869d677955c28cc55f57d68bd931",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_bin_packing.yaml": "01038338996c24b93ed1ef39f65aee82fe57d40132199f92016c804b5621ff05",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_u_colift_profile300.yaml": "2b70027df38866f8a295299f9c54e730b559f8102f7a9cb9c828ba388773419c",
+    "/home/liyufeng/safeduo/src/safeduo/configs/dressing_r35_factory_cell_lite.yaml": "99538ec8f4ed12143c026f894e7feb5931ccf8a9eeb5b8b4d729bacc5dc4b0fe",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_rack_colift.yaml": "10cc18a410fcd71f82b07ec9896578b7626c9a5a8fcbf0d317ddce5199758f85",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_v8.yaml": "865f7ebf81120cb755255cb0b8abada62959e936b92cd579bdec286b9ebc7d59",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env.yaml": "ff1614e0591800733eaf7c5a3dccbed4576f0e76d808a00e7427056b8b81876a",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_tube_racking.yaml": "8e9abc26cb4d6c73ef39150ae45c714778d8c865294d920b059d06ce05e29fb7",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_lab_probe.yaml": "ff0719253e8a6f440977a7c34f6b4d3f00a447b33ad110351a4fda98d217a9ff",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle.yaml": "1b8a914f1d3321550d441deed864134268a1d2f383673d24cf795b0797c2d5dd",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_jig2.yaml": "f9379be790f5720f71d0e06b7320732dd13600032679561d253ac902596ff0ec",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_lag_guard.yaml": "8fb5ae20bf427bcec70d5ff04ca2448315eb94186d3fb1c5d1bd371eb04970d7",
+    "/home/liyufeng/safeduo/src/safeduo/configs/object_catalog_lab.yaml": "5e12e1eeb1e188dbddab222488190254fd05d8de0ff8dddcac954e625028ab8b",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pending_debit_guard.yaml": "b7d29fc3e9aec25c84ad85c72b868a8f0e9c3452375612d8365c487f572aa7e5",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_pillow_stack.yaml": "ee89eae6fcf071f9936eedf617dc52f897a24cb39624cef5c9becd8a0940ad05",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v5.yaml": "d3437011ea007a34c5448b3ea51e107ba154b9b0cfe1f51f2ba0329158455856",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray_stack.yaml": "5e239defe08775dfe4e885734b7f968e97da45c5b1b2f0fbc6ab681057982a68",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_r29.yaml": "13ea0be1ec62d16ccc5a8b4b6f5522ebbfd93515b232502c2b518412d5b33566",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_bar_r29.yaml": "44fc8789cd4d15aaffbf8e7fdd338527e3f25a15e40c3dbcbe7cdddb15a71576",
+    "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r38_f_x_plus5.yaml": "f32260e3cdccb8e1604131d155849f3c6389084ef88a5ebf23039ecd7b177147",
+    "/home/liyufeng/safeduo/src/safeduo/skills/__init__.py": "540bd2d6a7a6777413d47420c9c62458b6658e0a5338905b6369f8aaf67948e2",
+    "/home/liyufeng/safeduo/src/safeduo/skills/taxonomy.py": "014e5aefc30dbea98c2b73405bd2960b55b538022498b0bf30551e23cbd6360f",
+    "/home/liyufeng/safeduo/src/safeduo/skills/spec.py": "c8139089929eef582db9a2749f7c02d73fa96e972200ff971efd695d444cc140",
+    "/home/liyufeng/safeduo/src/safeduo/skills/compile.py": "4d89cc5e6016ddf75c53dc3229381d10b25fdde2a22a6820dd198df0da8cfe43",
+    "/home/liyufeng/safeduo/src/safeduo/skills/build.py": "4da296648747364c0e8e7cf388bb201c6103fcf909e58bdf0ca5884b0f1a1443",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/two_pair_colift.yaml": "51067008a1a463ee264837dd88f49e2b7cdc17bad06f3e99b69fbf5fa7ee38fa",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/profile_stage_blocks.yaml": "18d85ce752eefac42832775109c33d7129d199c3cdd05cadc3f1681fc85da998",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/converge_center.yaml": "0c93990a77a06441343c15447d6a3ad8e39574bf122fe95ca46600c8a9b4ace3",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/crossrow_colift_pair_finger.yaml": "94d54d5161f3bd755d165562235fc8379fe1a763dbe15ab97435b2759602d564",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/crossrow_colift_pair.yaml": "55f8e5b24086cf4396fb0b98cfd00b1e8ad2ee020057d7b4aa2233193c646448",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/u_colift_profile300.yaml": "263b0afb759faf1e3cca9c096b1204b4d2f8122b3ea8d9a4dfb72e03019a7493",
+    "/home/liyufeng/safeduo/src/safeduo/skills/specs/mix_pick_center.yaml": "d8cc9024bf34541a655c04fff52ff8190af73ee92d01a78168128b1c03765077",
+    "/home/liyufeng/safeduo/src/safeduo/envs/__init__.py": "1cee72f5248200ccebd839813a461dc4d0fb8f43caedd7161e9d0fee717ef787",
+    "/home/liyufeng/safeduo/src/safeduo/envs/compose_robot_usd.py": "47fd59c48a9413957ab802d7753db169263972331803d4a9469d90a908dcaf89",
+    "/home/liyufeng/safeduo/src/safeduo/envs/partner_contact_view.py": "3508f5296d3462338a3afeabf8383d16cfeb22d82505589b85fd7f89f435f1e5",
+    "/home/liyufeng/safeduo/src/safeduo/envs/contact_gated_grasp.py": "deaee8cc125ab8e30f678b1225d082578cae11b64fbc8dcd281294d474e9646b",
+    "/home/liyufeng/safeduo/src/safeduo/envs/v7_offline_geometry.py": "2b60d2f9a91474ecb06b6ae42c8801f186d248888bf9f974a29538d4dd69ccf4",
+    "/home/liyufeng/safeduo/src/safeduo/envs/task_objects.py": "7bdf386a8041517a7ef645e0280dc923892cdca77b617dda7e72c522c228d5e5",
+    "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py": "cd5d3b8b473a7d713da7a4dbc400dcbe231a2dd9563732671c4e3b7047e3fe0c",
+    "/home/liyufeng/safeduo/src/safeduo/envs/v4_scene_smoke.py": "8fd7bc1108a439df9beac9764d44e834ffd7ca09958f0962ea12a8635a57ca73",
+    "/home/liyufeng/safeduo/src/safeduo/envs/v7_l1_roam_smoke.py": "95babe3a7749908ad36cfff648bb44b4599c7f05cf009de06b2e4ae568811914",
+    "/home/liyufeng/safeduo/src/safeduo/envs/birth_pose_search_v7.py": "d6a6973cfde5f1f5e796f4fa317a0e0fffbb56a9181d53b11f2b394db8adad8c",
+    "/home/liyufeng/safeduo/src/safeduo/envs/birth_pose_search.py": "395f4d16f0f81a505663ec313713189181bf01f8561edc6c438e6fc67d691a89",
+    "/home/liyufeng/safeduo/src/safeduo/eval/__init__.py": "2e7440fd7b7d2009800eae38ce71fcc2ddecb93857f268d8dae00adf7daa736d",
+    "/home/liyufeng/safeduo/src/safeduo/eval/skill_success_v7.py": "2cb911db2fa1003c699f4abe0e8f65b6a84483d6b8918f5cc9ffd2485d8c88ee",
+    "/home/liyufeng/safeduo/src/safeduo/eval/runner.py": "0ca96ba287841b203cdc61569badc788edcf150e7a116ed2a095e5deec617597",
+    "/home/liyufeng/safeduo/src/safeduo/eval/random_battery.py": "236226053a118c293b18598f4a519f43e4fc314cc768d5d1ea130e3fe0769bd2",
+    "/home/liyufeng/safeduo/src/safeduo/eval/coverage_matrix.py": "8965694f433ce94ddb6e49169906cb99f43206c2ede10262ec892f6705b307b1",
+    "/home/liyufeng/safeduo/src/safeduo/eval/collision_recut.py": "a101e87c9eb2cae54dd8fb971846afa7bba73ade88a1660aaaaf9947e978c8bd",
+    "/home/liyufeng/safeduo/src/safeduo/eval/target_guard_trace.py": "47d80555c1f2894a4bc03da21751a7093adb5f9ee60a8eac81491748aee6bfd4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/parity_attribution.py": "1c911ea9467e8d11b4bf9e87ef065cae7449bfe66870072d4b477faac98f6942",
+    "/home/liyufeng/safeduo/src/safeduo/eval/trajectory_task_bundle.py": "856406ef2dc28504ec8370bbd7545974a4ee74e07ff4d9bcdc9b763297f37140",
+    "/home/liyufeng/safeduo/src/safeduo/eval/glove_episode_recorder.py": "0fba5edefde03fec2025fb6b96406b58c82a5dcc28f045a51aaaa31473f80bc4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/clutch.py": "ed5c2de7c8663af421d2f7339dbd218f0e8d17f7aae4e5f3d3d679fbe4c68ec3",
+    "/home/liyufeng/safeduo/src/safeduo/eval/block1_harness.py": "2900dda6d5d0233c35d3f1cad1abe0ec4255cfaff681230f80c68ceacb1e8d7a",
+    "/home/liyufeng/safeduo/src/safeduo/eval/run_baseline_grid.py": "f15ffb0e2874a7d85a10c3156c4e73eba00186c1446deb38f3de7300e2bf7854",
+    "/home/liyufeng/safeduo/src/safeduo/eval/d032_plank_bundle.py": "18d16ec1e38e93ae9198d979ede8a9b12550e2cf2060bc06da6aa381605a06ef",
+    "/home/liyufeng/safeduo/src/safeduo/eval/research_battery.py": "4113b362da98b73a30cd6adc7bd260a8083f3c106910eab4a4319c9be0fb4963",
+    "/home/liyufeng/safeduo/src/safeduo/eval/manus_shm_v1.py": "bf3d1ef125e231eecaa0d0b5bccfa94c18a8bfb0133ce0e704a554e1c7f483b4",
+    "/home/liyufeng/safeduo/src/safeduo/eval/report_html.py": "347110a0f99df5161835151c5865d8de918ce5f2aeca5fb22ed0f2f04e0836b0",
+    "/home/liyufeng/safeduo/src/safeduo/eval/clutch_eval.py": "09658d68b66434eec9bb7c25c342c7933b9964337176b9c73a86e432ff10a2be",
+    "/home/liyufeng/safeduo/src/safeduo/eval/endurance_eval.py": "0b43071f1b7b167c4468d0402346f2654a98d3c13babaeae25eb7ca2a7aef4b3",
+    "/home/liyufeng/safeduo/src/safeduo/eval/anticipation_material.py": "b9b71709ae22c81f065b330812ed2cf51f68ab2afbcede46697a50f7cf110f70",
+    "/home/liyufeng/safeduo/src/safeduo/eval/coverage_design.py": "caeed8055f8a2112d528ae16768adb7d4d1ce59403e13a93a8059cb9e70c3980",
+    "/home/liyufeng/safeduo/src/safeduo/eval/metrics.py": "3e962e68df8e1e6b17e0b44df906de7198955c37030770cc4a3e3f953d6f47b6",
+    "/home/liyufeng/safeduo/src/safeduo/eval/classwise_recut.py": "215d483bf4a678bb00ea8f90b957b812a602f60e23b8eb190bf554e57a430859",
+    "/home/liyufeng/safeduo/src/safeduo/eval/train_events_analysis.py": "d3cfb2aedce06833efbb260ccd2d16806747124615eaf721557616d8c2af1962",
+    "/home/liyufeng/safeduo/src/safeduo/eval/perturbations.py": "5c7ade79753a557474a6e4778ecf90b4ca9f80df9b8b6d123247e1ad513bd59e",
+    "/home/liyufeng/safeduo/src/safeduo/eval/manus_glove_adapter.py": "239aa8f31d8318ead8ffb9909d245ebf1d1c35c979e7dc1364c29d18ed9e31ef",
+    "/home/liyufeng/safeduo/src/safeduo/eval/object_task_success.py": "dfcb19a8ba29fc3669a7bd0d084df5eccfe4b5c11a19cc3b4a19bc4fdd1d7888",
+    "/home/liyufeng/safeduo/src/safeduo/eval/p_head_diagnosis.py": "89dc6556dad4d34078146d7f47558a232700b929e5242b3275db83cfe014210e",
+    "/home/liyufeng/safeduo/src/safeduo/eval/success_report.py": "6c1c20ae4243980a009a7ee5ca5fe278b6a4a4cae9548b9667519bc8026b6781",
+    "/home/liyufeng/safeduo/src/safeduo/eval/parity.py": "1922b807ac478b20f85911442f761cf175f2da7c1942895185a09b0cea0ea21a",
+    "/home/liyufeng/safeduo/src/safeduo/eval/four_arm_workspace.py": "25df040a3dad27820be1bb2a8980d7040a206396f72c7db07cd87274c5e22e4d",
+    "/home/liyufeng/safeduo/src/safeduo/eval/formal_capture_bundle.py": "8941ca1be2ef6f5253849faa2320d62640e1afb76fe945199d6b9a960427d865",
+    "/home/liyufeng/safeduo/src/safeduo/eval/scientific_matrix.py": "8f5902b0628276c20614a25b279f7251873bc2eac639ef36e31bd2377c0d1a6b",
+    "/home/liyufeng/safeduo/src/safeduo/eval/paired_report.py": "1c3a41473e90247bd7853260727d89afed0215f9d29710765ec835a08b79d031",
+    "/home/liyufeng/safeduo/src/safeduo/eval/skill_success.py": "54dac32270e97b428f9cd005fd788e60b43079e661b40fed764b1e63ea31ca4d",
+    "/home/liyufeng/safeduo/src/safeduo/eval/coverage_source.py": "c1fbfee9d6ca442effdc3b0151f44562056536b040374f3498306b30cbbaa2f1",
+    "/home/liyufeng/safeduo/src/safeduo/algo/__init__.py": "7e49c38b87e6a232226b10247a8674a30029ca79781b5ad1e355b4ba167901d7",
+    "/home/liyufeng/safeduo/src/safeduo/algo/adversary.py": "82eeed802ab14bab9f377451a2b4420c4d4a61103e00dde59ce59438a5049c68",
+    "/home/liyufeng/safeduo/src/safeduo/algo/warmstart_protection.py": "e9128e774b1e14a2daa607b971391aab77c0696fbe9814c1b9dbb26b7411f1e1",
+    "/home/liyufeng/safeduo/src/safeduo/algo/warmstart_oracle.py": "b2bea8eb18d9d688aaa824cdda2863df9693c5dd43bebe1c94e5abc7f41d1990",
+    "/home/liyufeng/safeduo/src/safeduo/algo/train_lagrangian.py": "18db98dd76fb0b72b61636e12b66b108d2818e12c28398e61e335d610918d23d",
+    "/home/liyufeng/safeduo/src/safeduo/algo/bc_warmstart_run.py": "ee8fc06fd77f1828cd3bdc5d79f9c98eb9b519e45cf550009f37c1bf4e41902c",
+    "/home/liyufeng/safeduo/src/safeduo/algo/train_sac_lagrangian.py": "e7f2865f554d21d01c8ae7f70d8398ffe487d59f6e1759fee67eff6adfab3888",
+    "/home/liyufeng/safeduo/src/safeduo/algo/bc_smoke_check.py": "a74f7c4f67309891fcd545639dbd80572440f27570106c5b8920c59871c7dc96",
+    "/home/liyufeng/safeduo/src/safeduo/algo/bc_pretrain_v2.py": "5080e02e2ffc6bb060b5834f152e06a8f5739d5a92fc31e35a13894e798df38d",
+    "/home/liyufeng/safeduo/src/safeduo/algo/lagrangian.py": "ef80271e2275c4250e7313d49bdff7513dc4c3b4c90281a0a6a4b80fe9adcaf0",
+    "/home/liyufeng/safeduo/src/safeduo/algo/sac_lagrangian.py": "fd6cd8df1a79cc14a77dcbf40892c523c5ae6dfe73a78de562a31c7986c792cd",
+    "/home/liyufeng/safeduo/src/safeduo/algo/kinematic_env.py": "38b7059deb98a7b31e273613c1a6db85f0cb7eda654790a06f0b3baba8ff6084",
+    "/home/liyufeng/safeduo/src/safeduo/algo/freeze_sentinel.py": "60acfd95ef30bc99b23aed35819b48259c9bc28cea47ab28382eed88802de88e",
+    "/home/liyufeng/safeduo/src/safeduo/algo/reward_shaping.py": "d2bfc9b3c56692aa9cac766215d289a93459c41ddaaab9590ab9de4fc50ff538",
+    "/home/liyufeng/safeduo/src/safeduo/algo/beta_actor.py": "f444039e01cb69108e05da06e207c4516e798f7e5f3e90f8403e23cd72226efd",
+    "/home/liyufeng/safeduo/src/safeduo/algo/lagrangian_ppo.py": "8f7110b93086b770bbbf22b6e0b46fc78a48ee26e878be55838250bc265f7f46",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/__init__.py": "a71abdfe4c7c7f1f9556f9a029ddd2197f5a3e5d61191eb36aecbb7728767638",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/base.py": "ff9852fa8363927dd591541b0b65640b65d2d1cbb2a787adab4e2a4a3e21cb47",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/speed_scaling.py": "e8639ec0148aa4d71f4fc89817798c91d31a7857f848923f0331aed02afebeba",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/qp_solvers.py": "f4f4abda5cc18ed495ea6e445153c6d94884535e5dea4f1ef9d6a67a48522b69",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/estop.py": "eda10e0d2e2b715a1bd3333bed444379360d802857a77334ec716cf2100e049b",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/strong_cbf_qp.py": "218c5a1894080910f3f2de30bb0561941dab48ecbcf4af575c8707468a2ab8b1",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/scene_layout_v8.py": "1f732462f3b2e6063dec5b7c4286943531fc637a98c14669e7343b5211fd8249",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/real_geometry.py": "3665ace273486ea2451302760b32fbac91f6406270080f73cf7dfe1e60ba2505",
+    "/home/liyufeng/safeduo/src/safeduo/baselines/real_geometry_v7.py": "e704a0abbd12902846c89f277002c349f7ed62ac3c806fb6439a53f798e55ff3",
+    "/home/liyufeng/safeduo/src/safeduo/train/__init__.py": "c104f298425555256228e5416d01bdd504df1c3e84c6bd417a4cf47ef0e9604d",
+    "/home/liyufeng/safeduo/src/safeduo/train/wandb_logger.py": "b0ecfb487d318d5c004f1af2cc2dcaf279ff4695ea94c053d0374d678d4f742b",
+    "/home/liyufeng/safeduo/src/safeduo/train/benchmark.py": "afee5579e59a50ad536ac9370099268b8505eb2f27accdbbaa05b4ba1e4734f8",
+    "/home/liyufeng/safeduo/src/safeduo/train/bc_init.py": "c2094bc1f7e0fd98c2460d5d0c728b80cc3cebed7c676f14f671b427697d5a45",
+    "/home/liyufeng/safeduo/src/safeduo/train/tb_summary.py": "ed186c7be665ee877e3db53d00b6c63cf6313eaed1ca0dedcf497c97568731b9",
+    "/home/liyufeng/safeduo/src/safeduo/train/train_ppo.py": "ad1fb520bdcfcca1cd91f4f12d4c299cbd88bfc2ac51567fc29190dfab5735ac",
+    "/home/liyufeng/safeduo/src/safeduo/train/events.py": "e13ed8fd6e6873ad468259b0c9186667d399a4dbf6a6b3ad5363af75cf1ed171",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_v4_swap.py": "ce7654592a60eb7b92200bdbd4d920903a21dbae6f03c13f71870f8bb6fdf347",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_v5_swap.py": "2fa6645dea1b05d9f254ee7ed518b8aafc140537c615ed24322edc8b09d72553",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_backstop.py": "6cc33cfd9db36122ebc1dbf68143e894127fb6b38bc03b8a50d9ff657430be5d",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_colift_axial_clear.py": "f83ae3e27de13b085b3097781ec8181c21b9d66738c798dfce2e118a59696c7c",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_wandb_logger.py": "7b5d8a449e93f8dd2c766e5b7bba1d54e1b7a162085716c0b98161f13eda89cd",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_skills_spec.py": "637848f811855f7ff8794378442ef8a892f2724ee91930e902d92e94fc7cfc58",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_p0_regression.py": "2c8920cc52ce5ff83925d73057a4fbaffdc84a6387fca2245a813a90cddf1189",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_types.py": "413c455094247a54c7c8b97873ecc2492c334a873838c2da39a76424cc2701b6",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_multi_object_check.py": "b15f2de3da440de94619653f472320cf1b7c19f8aaba90063ab727dbc8c5abf4",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_sphere_distance.py": "68ca4b41cbcb847aea3a98dc68b73b39ab7b1c2291e5aba335245a16e183b3dc",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_random_battery.py": "038b75517b4f5d4dfe1b29a1163ea0f280ff9435413c3f05a87b076314ef13cd",
+    "/home/liyufeng/safeduo/src/safeduo/tests/test_v3_obs_reward.py": "c183fcdec11daa1ea3dbf6eaad136cfa3237089d5909b1726af85dc35190d688",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/task_qualified_two_pair.npz": "821d4b71ff982865f0b55e8d863d144dde843d2c1eae13aea2c5dcf5c8251a8d",
+    "/home/liyufeng/safeduo/artifacts/forensics/20261004_randomized_safety_campaign_v4/env_random_base.yaml": "1562c538fc0b3f5b18e88d3fa39f143f015104b64ba8bbd39cd946d892c6790a",
+    "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_v5.usd": "f97e1e24d1c99cd87a0061fe42e0a675d7d675d1a65fd1f743aca88a3b2ebedb",
+    "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5.usd": "b5c24e25f71736cd51024d3d2314ed5e8a85802aeba46354d44d66b2e389838b",
+    "/home/liyufeng/safeduo/assets_real/usd/ur5_dfx_left_v7.usd": "77cd93689f10fa34e048eda73fa3f3131908f3319ddbaeef08c1c842582cdde7",
+    "/home/liyufeng/safeduo/assets_real/usd/ur5_dfx_right_v7.usd": "63e063dc8db2542c01586098645bc0b792a3b6e2facd7f6fa5ed6764ee084d1f",
+    "/home/liyufeng/safeduo/assets_real/objects/industrial/alu_profile_4080_700/alu_profile_4080_700.usda": "bc9d704759735fcb1daad17a27bd8f9edc6377450499c2f71f1a496692d2e58e",
+    "/home/liyufeng/safeduo/assets_real/objects/industrial/alu_profile_4080_300/alu_profile_4080_300.usda": "66f1257005f7dc8baf615b7c8af89943efd49888b008aa6aac449dfb9f9c45cf",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/check_paths.py": "db906311b3dba4f42e01bef6f88d476a32bd6cef0208bd94f37321ec6b8e0bcf",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/PASSPORT.json": "1ad9b99ad65e35a477a0edbca04b7e96685e5b2ae20c0a4b1e6cf9dd12cf78b3",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/joint_paths.py": "ce16b685f33e2642d2096739ce3bf9ffb53f7b440fbc3735b1ab69ae1b078ed1",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/analyze_paired.py": "49a1b9188a28f7578a6f0a501da893fbbd4a84567f5bbf8c7b090a0421b471c7",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/test_scalar_contacts.py": "25bf6da3fd3283ce86d5c14dab6d529584f0283cfed4f79ef50e0fc86879b7a2",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/analyze.py": "d0950ec90f0a28efdd8a8b35671debf22ed33a1bcea48f957f47efc8666eac46",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/SOURCE_SNAPSHOT.json": "b9705086e6d297414053516472d931b9832ab6773c357ed87b52f994b5d7a9ef",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/WORK_IN_PROGRESS.md": "4f247de981361fcd48560cebad2e10c8c388aa49f5a3b02084f3ff4578a4e1c5",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/RECORDING_COPY_NOTE.md": "ce482e5f12baa2103fdcdd26ee5b33b04d199869099c21c16a2ac44137d2593f",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/SCALAR_NORMAL_CONTRACT.md": "6fa323e539f587bbcee6ab98b18965080e0c6889e6d96d21851912abe01f33b5",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/DEVELOPMENT_RESULTS.json": "3a666f2d170ac25beb6186b003fe1ec2abea1d7552e0da8fc166498c89efb635",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/VALIDATION_SELECTION_RULE.md": "05452f1cc12a643a2648d1abc93309703883c080d1ca985e9906fd35e75ff943",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/test_admission.py": "86a75cd0310494fb50fc6e58e3b5be2a04edd6d52f4568aaa32a733d5ecde6b7",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/audit_scalar_contacts.py": "2c45c15df30047040688a2184d1b7547587b49bf3df64b6cc7aa303cccd57687",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/TERMINAL_CONTRACT.md": "623cdbedf74573f6d8dc835e81d5571c7bda51903b5e4d94ed64d9fbc5467530",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/native_probe_base.py": "d8cd35203a409f1c05c86c915a4d3284fb01ad2a4de5b42503730dba0331fca8",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/verify_archive.py": "eb7c5a530602c95478921ad9603b85d75e0147cbec5fdfd9895f5e3edcae4d51",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/verify_public.py": "0e1c46748ed8c9e8e0c71daac8dcd79e6069d5320c60c42bffbbc3ee9f800842",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/register_validation.py": "a2b6204a30164a04de8528f23a59b2f9feadcd42b7f15c70f6a86f4e2c6b37fa",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/check_browser.py": "1f6cbc8e9c084291f9424d77bb3b9c71c789adf90e557a7d8615f087f3853d9c",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/PATH_COMMAND_CHECK.json": "e05009e9cb7c3176496c3108f52b7f9c49de51fdb4be7d6508ea314d5d8fa618",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/FAILURE_CONTRACT.md": "f797f8f2323517bf7d51eb05e57a7970b1487e9d9a021c23fefefd8cb0ca5629",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/build_payload.py": "a54d9a4436b2bb28f13c640ba241900523091db6d93c684d6bd6e777985c9564",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/native_paired.py": "67bac62b6cce3bde25ffefb795fdfe7e68090f25595248949cb30f75890e3f5e",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/audit_admission.py": "63ae0a658dc66aa9f7c459113ebffdaf6b9b1a3e4344f86de57f1e22f664564f",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/validation_paths.py": "97725de4801d745a1ff61957057a77569de231d13d7df0fd2b2cd59a807d0231",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/REPRODUCE.md": "a222a505c4418491e8c6f204b523a0dead6e8545e2aae941e710da891385ebfe",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/COUNT_FIELD_NOTE.json": "3bce6dbf52aedc88a3db69fd38b451b74731f4f50e14961cee8548870b784714",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/paired_paths.py": "9d957140c68e76b62f2982479353aea871305ab4ff7a5bf3423306edb49c3ac3",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/legacy_native_metadata.json": "d857b7d04fbd50dc743fe767f520d9de4a8cc603773105c9ad5ee5d047927f26",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/encode_videos.py": "0d780d7ef20f4a9287e2b2963dfa24cc9eac2dfbf19f1c853d0454ec3322a86e",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/REGISTRATION_DEVELOPMENT.json": "59f93f432da72cfeb9f749d01b790330b20d29732e5c50eb9941f5f5c839f13a",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/coverage.py": "0293c3de81c3894612d6ec69b35a41c1049322f43e53f0e30df24c68e37e5081",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/hand_admission.py": "344c9696f369173af46e06efee4a4a8315c0b6e7a0ba258a0a509674240a5bb4",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/PAIRED_CONTRACT.md": "bf353d9bdb2b8ba43204aa0a9d6901e8109756118ae5af33a982e0b6f969ae79",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/acceptance_matrix.py": "ee49d0a378f0e6264de9aa98f3792b310a2cd2b496ccad898b71a87ea24421b9",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/contact_points.py": "d3b990f4e91dbf68228683837b348b627b032c36e94a6879a5117fa8d85d1d66",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/native_probe.py": "32019a24e17a3894a798a946cc531c95043b417c6f8a1dcefceb1121ca406707",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/DEVELOPMENT_EXIT.json": "09766aaed96d8b5bfea348a3ffa36d3f2689860ccf243df484e4460d5aeaba23",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/KINEMATIC_SPAN_NOTE.md": "bccbe969426ac6aaa8d05b05598e78cca0ea462a602e6cd08c8f350dc8d58ff6",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/REGISTRATION_SEAL.json": "7f82b265865ca28721482b41ecc547931f2ef33f75e29d3cad33c89040afac53",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/register.py": "347f1fa5e6ba3fb8228f24102e4932ef7c58a5a64585a1fc6e2e29b1ad275e63",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/COVERAGE_REPORT.json": "37a1fce094a1333fd979d17616a39f661fe4b8cf50a0a3891b7c4ed0877d49af",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/ADMISSION_BOUNDARY_FIX.md": "9e2f391a91a63668a2ff28ad4f86a3329b7cc9bc524fac015d73933dc03db33f",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/register_paired.py": "a53c88e3cb6f5428638cc37bab1d886397d353fce3d5fa661e038cc45186b15b",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/native_validation.py": "c65f311b5f5f19a3e2dcefd231dd370c92bb24047844b4675fa22586f6e30bf1",
+    "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/build_panel.py": "3a02ec1da5912cdc6c934b7ace013ec62bdae5b281000fd62064821014a39d73"
+  },
+  "profiles": [
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 1.0,
+      "thumb2_fraction": 0.0,
+      "finger_fraction": 0.475,
+      "development_profile_index": 48
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.25,
+      "thumb2_fraction": 0.25,
+      "finger_fraction": 1.0,
+      "development_profile_index": 59
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.5,
+      "thumb2_fraction": 0.5,
+      "finger_fraction": 0.0,
+      "development_profile_index": 15
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.5,
+      "thumb2_fraction": 0.25,
+      "finger_fraction": 1.0,
+      "development_profile_index": 64
+    },
+    {
+      "kind": "uniform_random",
+      "thumb1_fraction": 0.7406770566337522,
+      "thumb2_fraction": 0.05550633510829728,
+      "finger_fraction": 0.609109527802952,
+      "development_profile_index": 88
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.5,
+      "thumb2_fraction": 0.0,
+      "finger_fraction": 0.0,
+      "development_profile_index": 13
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.25,
+      "thumb2_fraction": 0.25,
+      "finger_fraction": 0.0,
+      "development_profile_index": 9
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.75,
+      "thumb2_fraction": 0.25,
+      "finger_fraction": 1.0,
+      "development_profile_index": 69
+    },
+    {
+      "kind": "open_control",
+      "thumb1_fraction": 0.2670972954970194,
+      "thumb2_fraction": 0,
+      "finger_fraction": 0,
+      "development_profile_index": 0
+    },
+    {
+      "kind": "full_grid",
+      "thumb1_fraction": 0.25,
+      "thumb2_fraction": 0.25,
+      "finger_fraction": 0.475,
+      "development_profile_index": 34
+    },
+    {
+      "kind": "latin_hypercube",
+      "thumb1_fraction": 0.9966256608944437,
+      "thumb2_fraction": 0.05760199569873363,
+      "finger_fraction": 0.3752289901397349,
+      "development_profile_index": 100
+    },
+    {
+      "kind": "latin_hypercube",
+      "thumb1_fraction": 0.737060949147682,
+      "thumb2_fraction": 0.5496699217995382,
+      "finger_fraction": 0.40781543112581853,
+      "development_profile_index": 113
+    }
+  ],
+  "cases": [
+    {
+      "env": 0,
+      "kind": "isolated_hand",
+      "label": "validation_ref2.0_slot0",
+      "reference_time_s": 2.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 0,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 1,
+      "kind": "isolated_hand",
+      "label": "validation_ref2.0_slot1",
+      "reference_time_s": 2.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 1,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 2,
+      "kind": "isolated_hand",
+      "label": "validation_ref2.0_slot2",
+      "reference_time_s": 2.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 2,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 3,
+      "kind": "isolated_hand",
+      "label": "validation_ref2.0_slot3",
+      "reference_time_s": 2.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 3,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 4,
+      "kind": "isolated_hand",
+      "label": "validation_ref8.0_slot0",
+      "reference_time_s": 8.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 0,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 5,
+      "kind": "isolated_hand",
+      "label": "validation_ref8.0_slot1",
+      "reference_time_s": 8.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 1,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 6,
+      "kind": "isolated_hand",
+      "label": "validation_ref8.0_slot2",
+      "reference_time_s": 8.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 2,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 7,
+      "kind": "isolated_hand",
+      "label": "validation_ref8.0_slot3",
+      "reference_time_s": 8.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 3,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 8,
+      "kind": "isolated_hand",
+      "label": "validation_ref20.0_slot0",
+      "reference_time_s": 20.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 0,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 9,
+      "kind": "isolated_hand",
+      "label": "validation_ref20.0_slot1",
+      "reference_time_s": 20.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 1,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 10,
+      "kind": "isolated_hand",
+      "label": "validation_ref20.0_slot2",
+      "reference_time_s": 20.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 2,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    },
+    {
+      "env": 11,
+      "kind": "isolated_hand",
+      "label": "validation_ref20.0_slot3",
+      "reference_time_s": 20.0,
+      "post_write_thumb_rad": 0.35,
+      "profile_slot": 3,
+      "centers_m": [
+        [
+          0.5,
+          1.3,
+          1.5
+        ],
+        [
+          -0.4,
+          -1.3,
+          1.5
+        ]
+      ]
+    }
+  ],
+  "steps": 2160,
+  "capture_steps": [
+    0,
+    12,
+    24,
+    36,
+    48,
+    60,
+    72,
+    84,
+    96,
+    108,
+    120,
+    132,
+    144,
+    156,
+    168,
+    180,
+    192,
+    204,
+    216,
+    228,
+    240,
+    252,
+    264,
+    276,
+    288,
+    300,
+    312,
+    324,
+    336,
+    348,
+    359,
+    360,
+    372,
+    384,
+    396,
+    408,
+    420,
+    432,
+    444,
+    456,
+    468,
+    480,
+    492,
+    504,
+    516,
+    528,
+    540,
+    552,
+    564,
+    576,
+    588,
+    600,
+    612,
+    624,
+    636,
+    648,
+    659,
+    660,
+    672,
+    684,
+    696,
+    708,
+    1079,
+    1379,
+    1799,
+    2099
+  ],
+  "passport": {
+    "status": "FROZEN_EXPERIMENTAL_EMPTY_HAND_CANDIDATE_NOT_GLOBAL_CERTIFICATE",
+    "open_rad": {
+      "U_L": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3499999940395355,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "U_R": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3499999940395355,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "limits_rad": {
+      "U_L": [
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.310383915901184
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          0.5234770178794861
+        ],
+        [
+          0.0,
+          0.6068440079689026
+        ],
+        [
+          0.0,
+          0.43086597323417664
+        ]
+      ],
+      "U_R": [
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.3442769050598145
+        ],
+        [
+          0.0,
+          1.310383915901184
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          1.5956199169158936
+        ],
+        [
+          0.0,
+          0.5234770178794861
+        ],
+        [
+          0.0,
+          0.6068440079689026
+        ],
+        [
+          0.0,
+          0.43086597323417664
+        ]
+      ]
+    },
+    "allowed_goals_rad": {
+      "U_L": [
+        [
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          1.310383915901184,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.0,
+          0.2882508933544159,
+          0.20466133952140808
+        ],
+        [
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          0.327595978975296,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          0.13086925446987152,
+          0.6068440079689026,
+          0.43086597323417664
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.655191957950592,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.26173850893974304,
+          0.0,
+          0.0
+        ],
+        [
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          0.655191957950592,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          0.13086925446987152,
+          0.6068440079689026,
+          0.43086597323417664
+        ],
+        [
+          0.81881183385849,
+          0.81881183385849,
+          0.81881183385849,
+          0.81881183385849,
+          0.9705712795257568,
+          0.9719072580337524,
+          0.9719072580337524,
+          0.9719072580337524,
+          0.9719072580337524,
+          0.029056290164589882,
+          0.3696344494819641,
+          0.26244455575942993
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.655191957950592,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.327595978975296,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.13086925446987152,
+          0.0,
+          0.0
+        ],
+        [
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          0.9827879667282104,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          0.13086925446987152,
+          0.6068440079689026,
+          0.43086597323417664
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.3499999940395355,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          0.327595978975296,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.13086925446987152,
+          0.2882508933544159,
+          0.20466133952140808
+        ],
+        [
+          0.5044116973876953,
+          0.5044116973876953,
+          0.5044116973876953,
+          0.5044116973876953,
+          1.3059622049331665,
+          0.5987228751182556,
+          0.5987228751182556,
+          0.5987228751182556,
+          0.5987228751182556,
+          0.030153321102261543,
+          0.2277054637670517,
+          0.1616734117269516
+        ],
+        [
+          0.5482168793678284,
+          0.5482168793678284,
+          0.5482168793678284,
+          0.5482168793678284,
+          0.9658328294754028,
+          0.6507183909416199,
+          0.6507183909416199,
+          0.6507183909416199,
+          0.6507183909416199,
+          0.2877395749092102,
+          0.2474803477525711,
+          0.17571379244327545
+        ]
+      ],
+      "U_R": [
+        [
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          1.310383915901184,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.0,
+          0.2882508933544159,
+          0.20466133952140808
+        ],
+        [
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          0.327595978975296,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          0.13086925446987152,
+          0.6068440079689026,
+          0.43086597323417664
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.655191957950592,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.26173850893974304,
+          0.0,
+          0.0
+        ],
+        [
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          0.655191957950592,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          0.13086925446987152,
+          0.6068440079689026,
+          0.43086597323417664
+        ],
+        [
+          0.81881183385849,
+          0.81881183385849,
+          0.81881183385849,
+          0.81881183385849,
+          0.9705712795257568,
+          0.9719072580337524,
+          0.9719072580337524,
+          0.9719072580337524,
+          0.9719072580337524,
+          0.029056290164589882,
+          0.3696344494819641,
+          0.26244455575942993
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.655191957950592,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.327595978975296,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.13086925446987152,
+          0.0,
+          0.0
+        ],
+        [
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          1.3442769050598145,
+          0.9827879667282104,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          1.5956199169158936,
+          0.13086925446987152,
+          0.6068440079689026,
+          0.43086597323417664
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.3499999940395355,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          0.638531506061554,
+          0.327595978975296,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.757919430732727,
+          0.13086925446987152,
+          0.2882508933544159,
+          0.20466133952140808
+        ],
+        [
+          0.5044116973876953,
+          0.5044116973876953,
+          0.5044116973876953,
+          0.5044116973876953,
+          1.3059622049331665,
+          0.5987228751182556,
+          0.5987228751182556,
+          0.5987228751182556,
+          0.5987228751182556,
+          0.030153321102261543,
+          0.2277054637670517,
+          0.1616734117269516
+        ],
+        [
+          0.5482168793678284,
+          0.5482168793678284,
+          0.5482168793678284,
+          0.5482168793678284,
+          0.9658328294754028,
+          0.6507183909416199,
+          0.6507183909416199,
+          0.6507183909416199,
+          0.6507183909416199,
+          0.2877395749092102,
+          0.2474803477525711,
+          0.17571379244327545
+        ]
+      ]
+    },
+    "ramp_s": 1.0,
+    "max_speed_rad_s": 3.0,
+    "max_self_normal_n": 0.1,
+    "max_start_error_rad": 0.02,
+    "registered_reference_times_s": [
+      2.0,
+      8.0,
+      20.0
+    ],
+    "development_selected_indices": [
+      48,
+      59,
+      15,
+      64,
+      88,
+      13,
+      9,
+      69,
+      0,
+      34,
+      100,
+      113
+    ],
+    "development_results_sha256": "3a666f2d170ac25beb6186b003fe1ec2abea1d7552e0da8fc166498c89efb635",
+    "production_deployed": false,
+    "normal_oracle": "maximum over internal sensor/partner pairs of sum(abs(native point normal forces)); no vector cancellation"
+  },
+  "unknown_goals_rad": {
+    "U_L": [
+      [
+        0.26701316237449646,
+        0.26701316237449646,
+        0.26701316237449646,
+        0.26701316237449646,
+        0.8615213632583618,
+        0.31693732738494873,
+        0.31693732738494873,
+        0.31693732738494873,
+        0.31693732738494873,
+        0.497300922870636,
+        0.1205371767282486,
+        0.08558273315429688
+      ],
+      [
+        1.2537705898284912,
+        1.2537705898284912,
+        1.2537705898284912,
+        1.2537705898284912,
+        0.6804412007331848,
+        1.4881913661956787,
+        1.4881913661956787,
+        1.4881913661956787,
+        1.4881913661956787,
+        0.3715507686138153,
+        0.5659869313240051,
+        0.4018569886684418
+      ],
+      [
+        0.501430332660675,
+        0.501430332660675,
+        0.501430332660675,
+        0.501430332660675,
+        0.5394457578659058,
+        0.5951840877532959,
+        0.5951840877532959,
+        0.5951840877532959,
+        0.5951840877532959,
+        0.500099241733551,
+        0.22635960578918457,
+        0.16071783006191254
+      ],
+      [
+        0.7542309165000916,
+        0.7542309165000916,
+        0.7542309165000916,
+        0.7542309165000916,
+        1.2058709859848022,
+        0.895251452922821,
+        0.895251452922821,
+        0.895251452922821,
+        0.895251452922821,
+        0.22105318307876587,
+        0.34048083424568176,
+        0.24174515902996063
+      ],
+      [
+        1.250939130783081,
+        1.250939130783081,
+        1.250939130783081,
+        1.250939130783081,
+        0.6973360776901245,
+        1.4848304986953735,
+        1.4848304986953735,
+        1.4848304986953735,
+        1.4848304986953735,
+        0.13774606585502625,
+        0.5647087097167969,
+        0.4009494483470917
+      ],
+      [
+        0.9371407628059387,
+        0.9371407628059387,
+        0.9371407628059387,
+        0.9371407628059387,
+        0.8840957283973694,
+        1.1123604774475098,
+        1.1123604774475098,
+        1.1123604774475098,
+        1.1123604774475098,
+        0.34091928601264954,
+        0.4230514168739319,
+        0.3003711998462677
+      ],
+      [
+        0.8234249353408813,
+        0.8234249353408813,
+        0.8234249353408813,
+        0.8234249353408813,
+        0.11766301840543747,
+        0.9773828387260437,
+        0.9773828387260437,
+        0.9773828387260437,
+        0.9773828387260437,
+        0.2596462368965149,
+        0.3717169165611267,
+        0.26392313838005066
+      ],
+      [
+        1.1588120460510254,
+        1.1588120460510254,
+        1.1588120460510254,
+        1.1588120460510254,
+        0.9751100540161133,
+        1.3754781484603882,
+        1.3754781484603882,
+        1.3754781484603882,
+        1.3754781484603882,
+        0.00035325257340446115,
+        0.5231199860572815,
+        0.3714210093021393
+      ],
+      [
+        0.7028304934501648,
+        0.7028304934501648,
+        0.7028304934501648,
+        0.7028304934501648,
+        0.8838099837303162,
+        0.8342405557632446,
+        0.8342405557632446,
+        0.8342405557632446,
+        0.8342405557632446,
+        0.26689866185188293,
+        0.3172772228717804,
+        0.2252703607082367
+      ],
+      [
+        0.006131181959062815,
+        0.006131181959062815,
+        0.006131181959062815,
+        0.006131181959062815,
+        0.16517187654972076,
+        0.007277545053511858,
+        0.007277545053511858,
+        0.007277545053511858,
+        0.007277545053511858,
+        0.13348697125911713,
+        0.0027677861507982016,
+        0.0019651588518172503
+      ],
+      [
+        1.0015358924865723,
+        1.0015358924865723,
+        1.0015358924865723,
+        1.0015358924865723,
+        0.1604834944009781,
+        1.1887956857681274,
+        1.1887956857681274,
+        1.1887956857681274,
+        1.1887956857681274,
+        0.41855889558792114,
+        0.45212116837501526,
+        0.3210110366344452
+      ],
+      [
+        0.11593396961688995,
+        0.11593396961688995,
+        0.11593396961688995,
+        0.11593396961688995,
+        1.1122877597808838,
+        0.13761045038700104,
+        0.13761045038700104,
+        0.13761045038700104,
+        0.13761045038700104,
+        0.4274823069572449,
+        0.052335821092128754,
+        0.03715901076793671
+      ],
+      [
+        0.205097958445549,
+        0.205097958445549,
+        0.205097958445549,
+        0.205097958445549,
+        1.0202182531356812,
+        0.24344566464424133,
+        0.24344566464424133,
+        0.24344566464424133,
+        0.24344566464424133,
+        0.2755991220474243,
+        0.0925869271159172,
+        0.06573774665594101
+      ],
+      [
+        0.15804770588874817,
+        0.15804770588874817,
+        0.15804770588874817,
+        0.15804770588874817,
+        0.6691281199455261,
+        0.1875983029603958,
+        0.1875983029603958,
+        0.1875983029603958,
+        0.1875983029603958,
+        0.47183534502983093,
+        0.07134713232517242,
+        0.050657253712415695
+      ],
+      [
+        0.3639911115169525,
+        0.3639911115169525,
+        0.3639911115169525,
+        0.3639911115169525,
+        1.291744351387024,
+        0.4320474863052368,
+        0.4320474863052368,
+        0.4320474863052368,
+        0.4320474863052368,
+        0.2247534990310669,
+        0.16431571543216705,
+        0.11666598170995712
+      ],
+      [
+        0.4046233296394348,
+        0.4046233296394348,
+        0.4046233296394348,
+        0.4046233296394348,
+        0.14548823237419128,
+        0.48027685284614563,
+        0.48027685284614563,
+        0.48027685284614563,
+        0.48027685284614563,
+        0.4329444169998169,
+        0.18265824019908905,
+        0.12968938052654266
+      ],
+      [
+        0.7620352506637573,
+        0.7620352506637573,
+        0.7620352506637573,
+        0.7620352506637573,
+        0.7586439251899719,
+        0.9045150279998779,
+        0.9045150279998779,
+        0.9045150279998779,
+        0.9045150279998779,
+        0.10762736946344376,
+        0.34400391578674316,
+        0.24424660205841064
+      ],
+      [
+        0.2554784417152405,
+        0.2554784417152405,
+        0.2554784417152405,
+        0.2554784417152405,
+        0.5482679605484009,
+        0.3032459318637848,
+        0.3032459318637848,
+        0.3032459318637848,
+        0.3032459318637848,
+        0.052898507565259933,
+        0.11533008515834808,
+        0.08188563585281372
+      ],
+      [
+        0.17795898020267487,
+        0.17795898020267487,
+        0.17795898020267487,
+        0.17795898020267487,
+        1.1220768690109253,
+        0.21123243868350983,
+        0.21123243868350983,
+        0.21123243868350983,
+        0.21123243868350983,
+        0.3418838083744049,
+        0.08033563196659088,
+        0.05703919008374214
+      ],
+      [
+        0.3573910892009735,
+        0.3573910892009735,
+        0.3573910892009735,
+        0.3573910892009735,
+        0.14595869183540344,
+        0.4242134392261505,
+        0.4242134392261505,
+        0.4242134392261505,
+        0.4242134392261505,
+        0.23302070796489716,
+        0.161336287856102,
+        0.11455055326223373
+      ],
+      [
+        0.3229386508464813,
+        0.3229386508464813,
+        0.3229386508464813,
+        0.3229386508464813,
+        0.8257054090499878,
+        0.38331934809684753,
+        0.38331934809684753,
+        0.38331934809684753,
+        0.38331934809684753,
+        0.35365423560142517,
+        0.14578349888324738,
+        0.10350789874792099
+      ],
+      [
+        0.459067702293396,
+        0.459067702293396,
+        0.459067702293396,
+        0.459067702293396,
+        0.26759272813796997,
+        0.5449007749557495,
+        0.5449007749557495,
+        0.5449007749557495,
+        0.5449007749557495,
+        0.20192283391952515,
+        0.2072359323501587,
+        0.14713981747627258
+      ],
+      [
+        0.2755974233150482,
+        0.2755974233150482,
+        0.2755974233150482,
+        0.2755974233150482,
+        0.20602530241012573,
+        0.3271266222000122,
+        0.3271266222000122,
+        0.3271266222000122,
+        0.3271266222000122,
+        0.1880800873041153,
+        0.12441235035657883,
+        0.08833415061235428
+      ],
+      [
+        0.352546751499176,
+        0.352546751499176,
+        0.352546751499176,
+        0.352546751499176,
+        0.016770178452134132,
+        0.4184633493423462,
+        0.4184633493423462,
+        0.4184633493423462,
+        0.4184633493423462,
+        0.09156868606805801,
+        0.1591494232416153,
+        0.11299785226583481
+      ],
+      [
+        0.2169964462518692,
+        0.2169964462518692,
+        0.2169964462518692,
+        0.2169964462518692,
+        1.1721330881118774,
+        0.2575688362121582,
+        0.2575688362121582,
+        0.2575688362121582,
+        0.2575688362121582,
+        0.060207463800907135,
+        0.09795823693275452,
+        0.06955143064260483
+      ],
+      [
+        1.3078677654266357,
+        1.3078677654266357,
+        1.3078677654266357,
+        1.3078677654266357,
+        1.1224405765533447,
+        1.5524033308029175,
+        1.5524033308029175,
+        1.5524033308029175,
+        1.5524033308029175,
+        0.5153828859329224,
+        0.5904079079627991,
+        0.41919615864753723
+      ],
+      [
+        0.3995992839336395,
+        0.3995992839336395,
+        0.3995992839336395,
+        0.3995992839336395,
+        0.35552236437797546,
+        0.4743134379386902,
+        0.4743134379386902,
+        0.4743134379386902,
+        0.4743134379386902,
+        0.012720190919935703,
+        0.18039023876190186,
+        0.12807907164096832
+      ],
+      [
+        0.7197856903076172,
+        0.7197856903076172,
+        0.7197856903076172,
+        0.7197856903076172,
+        0.40928298234939575,
+        0.854365885257721,
+        0.854365885257721,
+        0.854365885257721,
+        0.854365885257721,
+        0.1273035854101181,
+        0.3249312937259674,
+        0.23070481419563293
+      ],
+      [
+        0.041610945016145706,
+        0.041610945016145706,
+        0.041610945016145706,
+        0.041610945016145706,
+        0.43803754448890686,
+        0.04939105361700058,
+        0.04939105361700058,
+        0.04939105361700058,
+        0.04939105361700058,
+        0.178315669298172,
+        0.018784338608384132,
+        0.013337088748812675
+      ],
+      [
+        1.259177803993225,
+        1.259177803993225,
+        1.259177803993225,
+        1.259177803993225,
+        0.5966125130653381,
+        1.4946095943450928,
+        1.4946095943450928,
+        1.4946095943450928,
+        1.4946095943450928,
+        0.3592183589935303,
+        0.5684279203414917,
+        0.4035901129245758
+      ],
+      [
+        0.4690034091472626,
+        0.4690034091472626,
+        0.4690034091472626,
+        0.4690034091472626,
+        0.9577751159667969,
+        0.5566942095756531,
+        0.5566942095756531,
+        0.5566942095756531,
+        0.5566942095756531,
+        0.09389083832502365,
+        0.21172119677066803,
+        0.15032438933849335
+      ],
+      [
+        1.2993009090423584,
+        1.2993009090423584,
+        1.2993009090423584,
+        1.2993009090423584,
+        1.2765190601348877,
+        1.5422346591949463,
+        1.5422346591949463,
+        1.5422346591949463,
+        1.5422346591949463,
+        0.14013519883155823,
+        0.5865405797958374,
+        0.4164503216743469
+      ]
+    ],
+    "U_R": [
+      [
+        0.26701316237449646,
+        0.26701316237449646,
+        0.26701316237449646,
+        0.26701316237449646,
+        0.8615213632583618,
+        0.31693732738494873,
+        0.31693732738494873,
+        0.31693732738494873,
+        0.31693732738494873,
+        0.497300922870636,
+        0.1205371767282486,
+        0.08558273315429688
+      ],
+      [
+        1.2537705898284912,
+        1.2537705898284912,
+        1.2537705898284912,
+        1.2537705898284912,
+        0.6804412007331848,
+        1.4881913661956787,
+        1.4881913661956787,
+        1.4881913661956787,
+        1.4881913661956787,
+        0.3715507686138153,
+        0.5659869313240051,
+        0.4018569886684418
+      ],
+      [
+        0.501430332660675,
+        0.501430332660675,
+        0.501430332660675,
+        0.501430332660675,
+        0.5394457578659058,
+        0.5951840877532959,
+        0.5951840877532959,
+        0.5951840877532959,
+        0.5951840877532959,
+        0.500099241733551,
+        0.22635960578918457,
+        0.16071783006191254
+      ],
+      [
+        0.7542309165000916,
+        0.7542309165000916,
+        0.7542309165000916,
+        0.7542309165000916,
+        1.2058709859848022,
+        0.895251452922821,
+        0.895251452922821,
+        0.895251452922821,
+        0.895251452922821,
+        0.22105318307876587,
+        0.34048083424568176,
+        0.24174515902996063
+      ],
+      [
+        1.250939130783081,
+        1.250939130783081,
+        1.250939130783081,
+        1.250939130783081,
+        0.6973360776901245,
+        1.4848304986953735,
+        1.4848304986953735,
+        1.4848304986953735,
+        1.4848304986953735,
+        0.13774606585502625,
+        0.5647087097167969,
+        0.4009494483470917
+      ],
+      [
+        0.9371407628059387,
+        0.9371407628059387,
+        0.9371407628059387,
+        0.9371407628059387,
+        0.8840957283973694,
+        1.1123604774475098,
+        1.1123604774475098,
+        1.1123604774475098,
+        1.1123604774475098,
+        0.34091928601264954,
+        0.4230514168739319,
+        0.3003711998462677
+      ],
+      [
+        0.8234249353408813,
+        0.8234249353408813,
+        0.8234249353408813,
+        0.8234249353408813,
+        0.11766301840543747,
+        0.9773828387260437,
+        0.9773828387260437,
+        0.9773828387260437,
+        0.9773828387260437,
+        0.2596462368965149,
+        0.3717169165611267,
+        0.26392313838005066
+      ],
+      [
+        1.1588120460510254,
+        1.1588120460510254,
+        1.1588120460510254,
+        1.1588120460510254,
+        0.9751100540161133,
+        1.3754781484603882,
+        1.3754781484603882,
+        1.3754781484603882,
+        1.3754781484603882,
+        0.00035325257340446115,
+        0.5231199860572815,
+        0.3714210093021393
+      ],
+      [
+        0.7028304934501648,
+        0.7028304934501648,
+        0.7028304934501648,
+        0.7028304934501648,
+        0.8838099837303162,
+        0.8342405557632446,
+        0.8342405557632446,
+        0.8342405557632446,
+        0.8342405557632446,
+        0.26689866185188293,
+        0.3172772228717804,
+        0.2252703607082367
+      ],
+      [
+        0.006131181959062815,
+        0.006131181959062815,
+        0.006131181959062815,
+        0.006131181959062815,
+        0.16517187654972076,
+        0.007277545053511858,
+        0.007277545053511858,
+        0.007277545053511858,
+        0.007277545053511858,
+        0.13348697125911713,
+        0.0027677861507982016,
+        0.0019651588518172503
+      ],
+      [
+        1.0015358924865723,
+        1.0015358924865723,
+        1.0015358924865723,
+        1.0015358924865723,
+        0.1604834944009781,
+        1.1887956857681274,
+        1.1887956857681274,
+        1.1887956857681274,
+        1.1887956857681274,
+        0.41855889558792114,
+        0.45212116837501526,
+        0.3210110366344452
+      ],
+      [
+        0.11593396961688995,
+        0.11593396961688995,
+        0.11593396961688995,
+        0.11593396961688995,
+        1.1122877597808838,
+        0.13761045038700104,
+        0.13761045038700104,
+        0.13761045038700104,
+        0.13761045038700104,
+        0.4274823069572449,
+        0.052335821092128754,
+        0.03715901076793671
+      ],
+      [
+        0.205097958445549,
+        0.205097958445549,
+        0.205097958445549,
+        0.205097958445549,
+        1.0202182531356812,
+        0.24344566464424133,
+        0.24344566464424133,
+        0.24344566464424133,
+        0.24344566464424133,
+        0.2755991220474243,
+        0.0925869271159172,
+        0.06573774665594101
+      ],
+      [
+        0.15804770588874817,
+        0.15804770588874817,
+        0.15804770588874817,
+        0.15804770588874817,
+        0.6691281199455261,
+        0.1875983029603958,
+        0.1875983029603958,
+        0.1875983029603958,
+        0.1875983029603958,
+        0.47183534502983093,
+        0.07134713232517242,
+        0.050657253712415695
+      ],
+      [
+        0.3639911115169525,
+        0.3639911115169525,
+        0.3639911115169525,
+        0.3639911115169525,
+        1.291744351387024,
+        0.4320474863052368,
+        0.4320474863052368,
+        0.4320474863052368,
+        0.4320474863052368,
+        0.2247534990310669,
+        0.16431571543216705,
+        0.11666598170995712
+      ],
+      [
+        0.4046233296394348,
+        0.4046233296394348,
+        0.4046233296394348,
+        0.4046233296394348,
+        0.14548823237419128,
+        0.48027685284614563,
+        0.48027685284614563,
+        0.48027685284614563,
+        0.48027685284614563,
+        0.4329444169998169,
+        0.18265824019908905,
+        0.12968938052654266
+      ],
+      [
+        0.7620352506637573,
+        0.7620352506637573,
+        0.7620352506637573,
+        0.7620352506637573,
+        0.7586439251899719,
+        0.9045150279998779,
+        0.9045150279998779,
+        0.9045150279998779,
+        0.9045150279998779,
+        0.10762736946344376,
+        0.34400391578674316,
+        0.24424660205841064
+      ],
+      [
+        0.2554784417152405,
+        0.2554784417152405,
+        0.2554784417152405,
+        0.2554784417152405,
+        0.5482679605484009,
+        0.3032459318637848,
+        0.3032459318637848,
+        0.3032459318637848,
+        0.3032459318637848,
+        0.052898507565259933,
+        0.11533008515834808,
+        0.08188563585281372
+      ],
+      [
+        0.17795898020267487,
+        0.17795898020267487,
+        0.17795898020267487,
+        0.17795898020267487,
+        1.1220768690109253,
+        0.21123243868350983,
+        0.21123243868350983,
+        0.21123243868350983,
+        0.21123243868350983,
+        0.3418838083744049,
+        0.08033563196659088,
+        0.05703919008374214
+      ],
+      [
+        0.3573910892009735,
+        0.3573910892009735,
+        0.3573910892009735,
+        0.3573910892009735,
+        0.14595869183540344,
+        0.4242134392261505,
+        0.4242134392261505,
+        0.4242134392261505,
+        0.4242134392261505,
+        0.23302070796489716,
+        0.161336287856102,
+        0.11455055326223373
+      ],
+      [
+        0.3229386508464813,
+        0.3229386508464813,
+        0.3229386508464813,
+        0.3229386508464813,
+        0.8257054090499878,
+        0.38331934809684753,
+        0.38331934809684753,
+        0.38331934809684753,
+        0.38331934809684753,
+        0.35365423560142517,
+        0.14578349888324738,
+        0.10350789874792099
+      ],
+      [
+        0.459067702293396,
+        0.459067702293396,
+        0.459067702293396,
+        0.459067702293396,
+        0.26759272813796997,
+        0.5449007749557495,
+        0.5449007749557495,
+        0.5449007749557495,
+        0.5449007749557495,
+        0.20192283391952515,
+        0.2072359323501587,
+        0.14713981747627258
+      ],
+      [
+        0.2755974233150482,
+        0.2755974233150482,
+        0.2755974233150482,
+        0.2755974233150482,
+        0.20602530241012573,
+        0.3271266222000122,
+        0.3271266222000122,
+        0.3271266222000122,
+        0.3271266222000122,
+        0.1880800873041153,
+        0.12441235035657883,
+        0.08833415061235428
+      ],
+      [
+        0.352546751499176,
+        0.352546751499176,
+        0.352546751499176,
+        0.352546751499176,
+        0.016770178452134132,
+        0.4184633493423462,
+        0.4184633493423462,
+        0.4184633493423462,
+        0.4184633493423462,
+        0.09156868606805801,
+        0.1591494232416153,
+        0.11299785226583481
+      ],
+      [
+        0.2169964462518692,
+        0.2169964462518692,
+        0.2169964462518692,
+        0.2169964462518692,
+        1.1721330881118774,
+        0.2575688362121582,
+        0.2575688362121582,
+        0.2575688362121582,
+        0.2575688362121582,
+        0.060207463800907135,
+        0.09795823693275452,
+        0.06955143064260483
+      ],
+      [
+        1.3078677654266357,
+        1.3078677654266357,
+        1.3078677654266357,
+        1.3078677654266357,
+        1.1224405765533447,
+        1.5524033308029175,
+        1.5524033308029175,
+        1.5524033308029175,
+        1.5524033308029175,
+        0.5153828859329224,
+        0.5904079079627991,
+        0.41919615864753723
+      ],
+      [
+        0.3995992839336395,
+        0.3995992839336395,
+        0.3995992839336395,
+        0.3995992839336395,
+        0.35552236437797546,
+        0.4743134379386902,
+        0.4743134379386902,
+        0.4743134379386902,
+        0.4743134379386902,
+        0.012720190919935703,
+        0.18039023876190186,
+        0.12807907164096832
+      ],
+      [
+        0.7197856903076172,
+        0.7197856903076172,
+        0.7197856903076172,
+        0.7197856903076172,
+        0.40928298234939575,
+        0.854365885257721,
+        0.854365885257721,
+        0.854365885257721,
+        0.854365885257721,
+        0.1273035854101181,
+        0.3249312937259674,
+        0.23070481419563293
+      ],
+      [
+        0.041610945016145706,
+        0.041610945016145706,
+        0.041610945016145706,
+        0.041610945016145706,
+        0.43803754448890686,
+        0.04939105361700058,
+        0.04939105361700058,
+        0.04939105361700058,
+        0.04939105361700058,
+        0.178315669298172,
+        0.018784338608384132,
+        0.013337088748812675
+      ],
+      [
+        1.259177803993225,
+        1.259177803993225,
+        1.259177803993225,
+        1.259177803993225,
+        0.5966125130653381,
+        1.4946095943450928,
+        1.4946095943450928,
+        1.4946095943450928,
+        1.4946095943450928,
+        0.3592183589935303,
+        0.5684279203414917,
+        0.4035901129245758
+      ],
+      [
+        0.4690034091472626,
+        0.4690034091472626,
+        0.4690034091472626,
+        0.4690034091472626,
+        0.9577751159667969,
+        0.5566942095756531,
+        0.5566942095756531,
+        0.5566942095756531,
+        0.5566942095756531,
+        0.09389083832502365,
+        0.21172119677066803,
+        0.15032438933849335
+      ],
+      [
+        1.2993009090423584,
+        1.2993009090423584,
+        1.2993009090423584,
+        1.2993009090423584,
+        1.2765190601348877,
+        1.5422346591949463,
+        1.5422346591949463,
+        1.5422346591949463,
+        1.5422346591949463,
+        0.14013519883155823,
+        0.5865405797958374,
+        0.4164503216743469
+      ]
+    ]
+  },
+  "unknown_profiles_normalized": [
+    [
+      0.6574572086494529,
+      0.9499957040675212,
+      0.19862959309747397
+    ],
+    [
+      0.5192685927749726,
+      0.7097747353840493,
+      0.9326728821104371
+    ],
+    [
+      0.41167001055597197,
+      0.9553413109847751,
+      0.3730111980834798
+    ],
+    [
+      0.9202424625712696,
+      0.4222786659757539,
+      0.5610681211134813
+    ],
+    [
+      0.5321616643439311,
+      0.26313679769422793,
+      0.9305665400065493
+    ],
+    [
+      0.6746845137330314,
+      0.6512592825135207,
+      0.6971336980869207
+    ],
+    [
+      0.08979278001352742,
+      0.4960031398615037,
+      0.6125411228419647
+    ],
+    [
+      0.7441407180333774,
+      0.0006748196520933725,
+      0.8620337316261917
+    ],
+    [
+      0.6744664500482386,
+      0.5098574640964181,
+      0.5228316389557814
+    ],
+    [
+      0.126048462000115,
+      0.25500062542651236,
+      0.004560951777061617
+    ],
+    [
+      0.12247059122291204,
+      0.7995745656772388,
+      0.7450368887936087
+    ],
+    [
+      0.848825854699058,
+      0.8166209232491906,
+      0.08624262260969084
+    ],
+    [
+      0.7785643967548074,
+      0.5264780131987791,
+      0.15257122159672487
+    ],
+    [
+      0.5106351898562249,
+      0.9013486982905681,
+      0.117570792060671
+    ],
+    [
+      0.9857755415613938,
+      0.4293474068730989,
+      0.2707709377311751
+    ],
+    [
+      0.11102718201529183,
+      0.8270552665906465,
+      0.30099701403942547
+    ],
+    [
+      0.5789478239347549,
+      0.2056009500286472,
+      0.5668737346907053
+    ],
+    [
+      0.4184025144690333,
+      0.10105221267364106,
+      0.19004898150224037
+    ],
+    [
+      0.8562963192096016,
+      0.653101867042813,
+      0.13238267674726
+    ],
+    [
+      0.11138620806137867,
+      0.44514028073069356,
+      0.2658612188488825
+    ],
+    [
+      0.6301247894999956,
+      0.6755869100915712,
+      0.2402322478316884
+    ],
+    [
+      0.20420941115348124,
+      0.3857338986801385,
+      0.34149786620357026
+    ],
+    [
+      0.15722513966932394,
+      0.3592900593250865,
+      0.2050153835481996
+    ],
+    [
+      0.012797913013993245,
+      0.17492399273916648,
+      0.2622575556627724
+    ],
+    [
+      0.8944959503083588,
+      0.11501453301222708,
+      0.16142242775840054
+    ],
+    [
+      0.8565738669494062,
+      0.9845377376413573,
+      0.9729154858752576
+    ],
+    [
+      0.2713116102305162,
+      0.0242994262894336,
+      0.29725967321420166
+    ],
+    [
+      0.3123382358311837,
+      0.24318848272848337,
+      0.5354444965055972
+    ],
+    [
+      0.3342818246467686,
+      0.34063705316958803,
+      0.030954146387387027
+    ],
+    [
+      0.45529598010267947,
+      0.6862161167053231,
+      0.9366952657141068
+    ],
+    [
+      0.7309118512217525,
+      0.17936000049843792,
+      0.34888900528782407
+    ],
+    [
+      0.9741564981200775,
+      0.26770077208829757,
+      0.9665426131735391
+    ]
+  ],
+  "original_task_goals_rad": {
+    "U_L": [
+      0.641085684299469,
+      0.641085684299469,
+      0.641085684299469,
+      0.641085684299469,
+      0.9918295741081238,
+      0.7609511613845825,
+      0.7609511613845825,
+      0.7609511613845825,
+      0.7609511613845825,
+      0.39621976017951965,
+      0.45932021737098694,
+      0.3261224627494812
+    ],
+    "U_R": [
+      0.6379938125610352,
+      0.6379938125610352,
+      0.6379938125610352,
+      0.6379938125610352,
+      0.9888157248497009,
+      0.7572811841964722,
+      0.7572811841964722,
+      0.7572811841964722,
+      0.7572811841964722,
+      0.39501574635505676,
+      0.457924485206604,
+      0.32513147592544556
+    ]
+  }
+}

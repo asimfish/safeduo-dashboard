@@ -1,0 +1,18 @@
+# A31 physical task evaluation; preserve existing task layout and fixtures.
+extends: duo_env_v7_r35_carton_packing.yaml
+assets:
+  arm_armature: {ur: 0.05}
+  arm_gravity_comp: {franka: true}
+safety:
+  backstop:
+    exempt_structural_rows: true
+    lookahead_s: 0.06
+coordinator:
+  retreat_passthrough: true
+  retreat_dwell_steps: 10
+  arm_aware_obs: true
+  p2_obs: true
+  r18_hazard_flags: true
+  mask_structural_obs: true
+  coupling_obs: true
+  coupling_enabled: true

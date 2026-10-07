@@ -1,0 +1,56 @@
+# R25 覆盖配方(delta_curriculum_v7.yaml 的 fork,2026-08-28)。
+# 消费方式(对现行训练配置零改动,不显式指到本文件不生效):
+#   coordinator:
+#     delta_source: l2_mix
+#     curriculum_yaml: delta_curriculum_v7_cov.yaml
+#     delta_env_yaml: duo_env_v7.yaml      # 或 duo_env_v7_r18.yaml
+# 相对 v7 配方的三处变化(主报告 §9 R25 定案):
+#   1. l1 0.4 拆成 l1_ws 0.15 + l1_full 0.25:l1_ws 保留为冲突带回归锚,
+#      l1_full 是全域覆盖族(own-side 半区/深互穿/全伸壳层/6D 姿态/变速,
+#      实现与默认参数见 delta/l1_coverage.py);
+#   2. sweep_across 1.0 -> 1.5:横扫族补同排(自碰)流量盲区;
+#   3. 其余(amp 课程/技能族/L2 家族权重)与 v7 配方一字不动。
+# 护栏(启用前必核):tube_fraction 相对 v7 配方降幅 < 30%。
+schema_version: 2
+
+geometry: v7
+
+mix:
+  l1: 0.15
+  l2: 0.4
+scenarios:
+  head_on_crossing: 3.0
+  center_grab: 1.5
+  handover_approach: 1.0
+  table_slam: 1.0
+  sweep_across: 1.5
+  chase: 1.5
+  freeze_one: 1.0
+  latency_spike: 0.5
+skills:
+  dir: artifacts/skill_trajs_v7
+  tier: 1
+  weight: 0.2
+  loop: true
+
+# R25 覆盖族:weight 与 mix.l1/mix.l2/skills.weight 同池归一化
+# (0.15+0.4+0.2+0.25=1.0,即 l1_ws 15% / L2 40% / skill 20% / l1_full 25%);
+# 其余键 = L1FullParams 字段覆盖,缺省即设计值。
+l1_full:
+  weight: 0.25
+
+l1_mapper: workspace
+
+amp_stages:
+  - {until_frac: 0.25, amp_max: 0.03}
+  - {until_frac: 1.00, amp_max: 0.06}
+
+split: train
+n_variants: 100
+l1_params:
+  pause_prob: 0.0
+  seg_dur: [2.0, 5.0]
+  ou_sigma: 0.02
+  ou_mix: 0.2
+ee_speed_default: 0.45
+stages: null

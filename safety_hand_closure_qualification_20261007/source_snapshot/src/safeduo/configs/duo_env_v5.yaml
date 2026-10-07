@@ -1,0 +1,120 @@
+# SafeDuo 4 臂场景配置 v5（v5 bundle：球模型收径+去膨胀 / gap=0 真布局 / 凸分解）
+# = duo_env_v4.yaml 的场景层换装 profile（A9-W9，单一入口
+#   assets_src/real/v5_bundle_manifest.yaml，监管 Round-120 开闸）。
+# 红线：运行参数/奖励权重/C5 配方与 v4 逐字一致——对照变量只有场景层；
+# v4 在用件（duo_env_v4.yaml / scene_layout_v3.yaml / v4 组合 USD / v1 球 YAML）
+# 零改动，s42/s43 可复现性不受影响。
+# 消费：make_duo_env_cfg(yaml_name="duo_env_v5.yaml")
+sim:
+  dt: 0.008333
+  decimation: 2
+  episode_length_s: 10.0
+  # v5 专属 PhysX 缓冲抬升（A9-W9 门①实测）：凸分解 +80 collision prim/env，
+  # 4096 env 下 patch 需求 >=249856 > 默认 163840（溢出 = 静默丢接触，
+  # 物理不可信）。取 2^19 留双倍动态余量；v4 yaml 无此节，行为零漂移。
+  physx:
+    gpu_max_rigid_patch_count: 524288
+
+scene:
+  num_envs: 4096
+  env_spacing: 4.0
+  # v5 布局（B2 照片取证）：gap=0 拼死 / 台宽 1.5 / 桌心 ±0.40 / 跑道垫板；
+  # 基座锚点（±0.55/±0.50/0.816）与桌高 0.80 不变。垫板与 v4 同为"无物理
+  # 碰撞体"（duo_env 只 spawn 桌板；垫板数据供 viz/replica 层，B2 diff 表
+  # 的"F 臂低位掠板"在物理层维持 v4 现状，如需实体化归下一版工单）。
+  layout_yaml: assets_src/real/scene_layout_v5.yaml
+  base_x_abs: null
+
+assets:
+  # v5 组合 USD（凸分解换装：JAKA link1-5 + F2 palm_casing 共 7 件 CoACD，
+  # 每块单凸包；base_link/link6 保持单包——manifest integrate 名单）。
+  # FilteredPairsAPI 三对（link3|link5 / link4|link6 / link5|hand_base）
+  # 为 body 级，compose_robot_usd 重打，凸分解不影响（B2 checklist 第 1 步）。
+  franka: {variant: fr3, custom_usd: "", hands: true}
+  ur: {variant: jaka_zu7, custom_usd: "", hands: true}
+  arm_usd_overrides:
+    F_L: assets_real/usd/combined/fr3_f2_left_v5.usd
+    F_R: assets_real/usd/combined/fr3_f2_right_v5.usd
+    U_L: assets_real/usd/combined/jaka_f2_left_v5.usd
+    U_R: assets_real/usd/combined/jaka_f2_right_v5.usd
+  # 球分解 v5：fr3.yaml(去 fr3_hand)+法兰球（零改动）+ jaka_zu7_v5(18 球)
+  #  + F2 v5 左右手(11 球/手)。球数真值 F 31 / U 29，cross 对 31*29*4=3596
+  # （manifest anchors 的 27/3132 系 ASSEMBLY §4 旧账面，A9-W9 已更正入册）。
+  spheres: real_v5
+  # 语义结构零改（B2 checklist 第 6 步）：腕环对保留检查、手内豁免 link 级。
+  semantics_yaml: src/safeduo/configs/contact_semantics_v3.yaml
+
+# ── 出生位：沿用 v4.1（A7-W7 重工程；B2 裁定 j6=0 腕环最优不变，无需重搜）──
+# v5 出生读数（A9-W9 门③本地预检，birth_pose_search --scene v5 --mode verify）：
+# cross 129.9 / self 23.1 / table 19.0 / 腕环 25.3-26.1mm，含腕环全类
+# ±0.02 rad 抖动地板 23.1mm ≥ 2cm——Round-114 裁定在 v5 下零豁免成立。
+init_qpos:
+  franka:
+    fr3_joint1: 0.0592
+    fr3_joint2: -0.6042
+    fr3_joint3: -0.0997
+    fr3_joint4: -2.2558
+    fr3_joint5: 0.3542
+    fr3_joint6: 1.4988
+    fr3_joint7: 1.2033
+  ur:
+    joint1: 0.1623
+    joint2: 1.0319
+    joint3: -0.8742
+    joint4: 1.2292
+    joint5: 1.5062
+    joint6: 0.0
+
+action:
+  delta_clip: 0.08
+
+safety:
+  max_active: 32
+  quota_cross: 8
+  tau_ttc: 0.5
+  contact_gt: false
+  # ── d_min 重排（bundle manifest thresholds_v5；A6-W6 hot-fix 旋钮）────────
+  # v5 球面统一"贴身 +1~2mm"语义，缓冲职能移交 d_min：self/cross 0.013，
+  # table 0.020 不变（沿 semantics yaml）。d_warn 维持 0.050（B2 给的两案里
+  # 的"接受略紧"案）：训练器 cost 通道 d_warn 硬编码 0.05
+  # （lagrangian_ppo cost_channels_from_obs），env 侧若单独抬 0.058 会造成
+  # 塑形带与约束通道语义分叉——维持 0.050 保证两侧一致，重排权在 C 线重扫。
+  # 【A9 更正入册】manifest 称 v4 现行 self=5mm 系笔误：代码真值 self 0.02 /
+  # cross 0.03（contact_semantics_v3 thresholds + 训练器 D_MIN_BY_CLASS）。
+  # 等效换算口径（+8mm 双边去膨胀差）应得 self 0.028 / cross 0.038；本文件
+  # 按 manifest 采纳值 0.013 执行（监管 Round-121 已背书门④ d_min=13mm 语义），
+  # 物理含义 = 刹停边界比 v4 更贴真实（v5 球报负即真逼近），@C @D 复核后可改。
+  d_min_override:
+    self: 0.013
+    cross: 0.013
+  backstop:
+    gamma: 4.0
+    vmax: 1.5
+    max_passes: 30
+    tol: 1.0e-6
+  # D-033 production caller: explicit opt-in; false preserves legacy targets.
+  target_guard:
+    enabled: false
+
+coordinator:
+  enabled: false
+  delta_source: l2_mix
+  delta_amp_max: 0.015
+  reward:
+    w_track: 10.0
+    w_tube: 0.05
+    w_progress: 2.0
+    w_smooth: 0.1
+    w_flip: 0.5
+    w_backstop: 5.0
+    w_violation: 100.0
+    w_margin: 2.0
+
+events:
+  n_log_envs: 64
+  flush_every: 512
+
+benchmark:
+  env_counts: [1024, 2048, 4096]
+  warmup_steps: 30
+  timed_steps: 200

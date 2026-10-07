@@ -1,0 +1,18 @@
+# R34-A probe 1 (2026-09-07, design line): the R27 rod_pick physical-grasp recording env with the
+# two 4x30x8 cm box beams replaced by real 4080 aluminium T-slot profiles (object_catalog_r34_industrial).
+# Everything else -- names rod_l / rod_r, positions (0.53, -+0.35, 0.84), bbox 0.04 x 0.30 x 0.08
+# (= ROD_PHYS_SIZE), mass 0.20 kg, U cubes, physics knobs -- is identical to
+# duo_env_v7_r26_rod_r27r16.yaml, so the existing artifacts/task_trajs_r26_r27/rod_pick trajectory
+# replays unchanged and the probe isolates ONE variable: T-slot mesh (convexHull) vs box.
+#   mass 0.20 is the R27 parity value; the catalog's authored 0.78 kg (solid 4080) is probe 2
+#   (set `mass: 0.39` / `0.78` here to sweep).
+# Schema: table_objects usd/scale/yaw/catalog (envs/task_objects.py, experiment line 2026-09-06).
+extends: duo_env_v7_r18_objects_r27r16.yaml
+
+assets:
+  object_catalog: object_catalog_r34_industrial.yaml
+  table_objects:
+    - {name: rod_l, catalog: profile_4080_L300, pos: [0.53, -0.35, 0.84], mass: 0.20, static_friction: 0.35, dynamic_friction: 0.30}
+    - {name: rod_r, catalog: profile_4080_L300, pos: [0.53, 0.35, 0.84], mass: 0.20, static_friction: 0.35, dynamic_friction: 0.30}
+    - {name: cube_u_l, pos: [-0.44, 0.42, 0.825], size: 0.05, color: [0.2, 0.5, 0.9]}
+    - {name: cube_u_r, pos: [-0.46, -0.20, 0.825], size: 0.05, color: [0.2, 0.8, 0.4]}

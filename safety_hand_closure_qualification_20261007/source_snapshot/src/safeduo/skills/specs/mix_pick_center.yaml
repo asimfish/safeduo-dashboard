@@ -1,0 +1,22 @@
+# Category 3 (quad_independent) with deliberately overlapping workspaces: all four
+# arms pick their own object and stand it down in the shared centre band
+# (F places at x=0.24, U places at x=-0.16..-0.18) -- near-but-no-conflict traffic
+# the safety filter must let through. Validated layouts: F starts (0.50,-/+0.36),
+# U starts (-0.44,0.42)/(-0.46,-0.20) (R34/R35).
+family: mix_pick_center
+category: 3
+env_base: factory
+objects:
+  - {name: can_fl,    catalog: soup_can,                    xy: [0.50, -0.36], place_xy: [0.24, -0.24]}
+  - {name: bottle_fr, catalog: brown_reagent_bottle_large,  xy: [0.50,  0.36], place_xy: [0.24,  0.24]}
+  - {name: can_ul,    catalog: soup_can,                    xy: [-0.44, 0.42], place_xy: [-0.16, 0.26]}
+  - {name: block_ur,  catalog: cube_connector_50x80,        xy: [-0.46, -0.20], place_xy: [-0.18, -0.26]}
+arms:
+  F_L: {do: pick_place, obj: can_fl,    grasp: top}
+  F_R: {do: pick_place, obj: bottle_fr, grasp: top}
+  U_L: {do: pick_place, obj: can_ul,    grasp: top}
+  U_R: {do: pick_place, obj: block_ur,  grasp: top}
+success: {object: can_fl, radius_m: 0.08, min_disp_m: 0.10}
+# build 1/2: the finger-approach combo tripped the 0.03 rad/step joint cap on U_R (0.0305 both times,
+# unchanged by slower carries) -> the long retreat from the far place point; slow every U move
+timing: {approach: 3.5, descend: 1.8, lift: 1.8, carry: 3.6, carry_u: 2.0, place: 2.8, clear: 1.8, retreat: 3.5}

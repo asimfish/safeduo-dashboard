@@ -1,0 +1,9 @@
+# Fresh validation expansion, frozen before any fresh result
+
+This expands the three-reference plan in SCENE_CONTACT_V3_CONTRACT.md to twelve new trajectory-derived references. All v3 mechanism, force/speed/angle thresholds, 12 exact goals and known-context exclusions remain frozen. Four unique frame indices are drawn without replacement in each [1,480), [480,960), [960,1453) stratum using a new OS-random 63-bit seed. All six earlier reference frames are excluded. No further pose selection or failure-driven replacement is allowed.
+
+Each of twelve environments has its own fresh reference and executes the same twelve profiles sequentially over twelve six-second cycles. There are144 native environment cycles,288 U hand attempted paths and103680 recorded environment states. These are correlated cycles and bilateral hand outcomes, not288 independent safety trials. Thirty-two frozen unknown target specifications are request-only negative controls; denied requests do not increase physical coverage.
+
+All physics frames are measured. Env0 has four-view continuous images for the first profile and close/open phase images for each profile; all twelve references receive four-view close/open images on the last profile. These choices precede results. The camera records three workspace views plus an adaptive hand detail; no image retouching.
+
+Acceptance: primary outcome is executed-and-qualified paths / admitted requests with all-partner scalar <=0.1 N, native hand speed <=3 rad/s, <=0.02 rad starting/closed/returned tracking, <=1e-6 rad command oracle error, unchanged bounds, finite data and complete receipts. Refusals, aborted trajectories, recovery time and residual pressure are reported separately. One safety crossing rejects that path; any aborted path rejects blanket adoption of this candidate. This remains static four-arm scene qualification, with F hands open and objects parked away; no full System0 or true grasp task.

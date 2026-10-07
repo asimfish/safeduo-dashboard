@@ -1,0 +1,6 @@
+# Experimental: include full closing PD target backlog in risk prediction.
+# Keep the per-step backlog debit, actor, geometry and actuator settings.
+extends: duo_env_a31_latency_guard.yaml
+safety:
+  backstop:
+    predict_backlog: true

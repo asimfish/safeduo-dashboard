@@ -1,0 +1,9 @@
+# R34-A probe 3 ("grip harder"): the 0.78 kg solid 4080 profile with a stronger finger actuator.
+# Probe 2 result (09-07 01:59): at hand_actuator 100/5/5 the 0.78 kg profile is never lifted (both hands
+# slip at lift), 0.39 kg is lifted by F_L only. chembench's Aoyi hand runs 200/10/50; R27 moderated to
+# 100/5/5 "because Inspire finger links are small". This yaml raises to 200/10/20 to measure the grip
+# margin gained; everything else = duo_env_v7_r34_beam_m078_r27r16.yaml (mass 0.78 kg both beams).
+extends: duo_env_v7_r34_beam_m078_r27r16.yaml
+
+assets:
+  hand_actuator: {stiffness: 200.0, damping: 10.0, effort_limit_sim: 20.0}

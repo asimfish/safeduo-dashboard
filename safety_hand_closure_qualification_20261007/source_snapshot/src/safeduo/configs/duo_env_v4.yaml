@@ -1,0 +1,92 @@
+# SafeDuo 4 臂场景配置 v4（真布局真资产：scene_layout_v3 + FR3/JAKA Zu7 + F2 手）
+# = duo_env.yaml 的换装 profile（A6-W6，B 七步清单第 5 步）。运行参数/奖励权重
+# 与 v3 主线保持一致（v4 配方改动等监管批准后另行注入，勿在此文件私改）。
+# 消费：make_duo_env_cfg(yaml_name="duo_env_v4.yaml")
+sim:
+  dt: 0.008333
+  decimation: 2
+  episode_length_s: 10.0
+
+scene:
+  num_envs: 4096
+  env_spacing: 4.0
+  layout_yaml: assets_src/real/scene_layout_v3.yaml   # 实测布局（B 交付）
+  # 实测基座 ±0.55 已写死在 layout；不再覆盖（v0-v3 的 0.70 仲裁值就此退役）
+  base_x_abs: null
+
+assets:
+  # 组合 USD（compose_robot_usd.py 产出；左右手 F2 不同 -> 每臂覆盖）
+  franka: {variant: fr3, custom_usd: "", hands: true}
+  ur: {variant: jaka_zu7, custom_usd: "", hands: true}
+  arm_usd_overrides:
+    F_L: assets_real/usd/combined/fr3_f2_left.usd
+    F_R: assets_real/usd/combined/fr3_f2_right.usd
+    U_L: assets_real/usd/combined/jaka_f2_left.usd
+    U_R: assets_real/usd/combined/jaka_f2_right.usd
+  # 球分解：real_v3 = fr3.yaml(去 fr3_hand)+法兰球 + jaka_zu7.yaml + F2 左右手
+  spheres: real_v3
+  semantics_yaml: src/safeduo/configs/contact_semantics_v3.yaml
+
+# ── 出生位 v4.1（A7-W7 重工程，Round-114 裁定②）────────────────────────────
+# 目标：±0.02 rad 关节抖动下出生边距 ≥2cm。旧预备位实测（birth_pose_search
+# --mode audit）：跨机手对手 5.5mm / U link2-桌 14.4mm，0.02 抖动下 cross
+# 跌 -22.9mm（16%->44% 出生违规的真实来源）。新位形 8192 抖动样本地板：
+# cross 8.9cm / self(除腕环) 2.31cm / table 1.59cm（U link2 近端粗球对本桌
+# 的准结构性天花板 ~1.7cm，@B 收球径后可再抬）。腕环结构对（F link6|link8
+# 恒 12.5mm 已语义豁免；U link4|hand_base 全关节空间天花板 6.2mm，保留在查，
+# j6=0 为其最优）。复核工具：safeduo.envs.birth_pose_search --mode verify。
+# 改动只在本 env cfg；C 线 real_geometry 的 *_INIT_Q_V4 与 grid 锚点同步小修
+# 由 C 线后续跟（STATUS_A W7 @C）。
+init_qpos:
+  franka:
+    fr3_joint1: 0.0592
+    fr3_joint2: -0.6042
+    fr3_joint3: -0.0997
+    fr3_joint4: -2.2558
+    fr3_joint5: 0.3542
+    fr3_joint6: 1.4988
+    fr3_joint7: 1.2033
+  ur:
+    joint1: 0.1623
+    joint2: 1.0319
+    joint3: -0.8742
+    joint4: 1.2292
+    joint5: 1.5062
+    joint6: 0.0
+
+action:
+  delta_clip: 0.08
+
+safety:
+  max_active: 32
+  quota_cross: 8
+  tau_ttc: 0.5
+  contact_gt: false
+  backstop:
+    gamma: 4.0
+    vmax: 1.5
+    max_passes: 30
+    tol: 1.0e-6
+
+coordinator:
+  enabled: false
+  delta_source: l2_mix
+  delta_amp_max: 0.015
+  reward:
+    w_track: 10.0
+    w_tube: 0.05
+    w_progress: 2.0
+    w_smooth: 0.1
+    w_flip: 0.5
+    w_backstop: 5.0
+    w_violation: 100.0
+    w_margin: 2.0
+
+events:
+  n_log_envs: 64
+  flush_every: 512
+
+benchmark:
+  env_counts: [1024, 2048, 4096]
+  warmup_steps: 30
+  timed_steps: 200

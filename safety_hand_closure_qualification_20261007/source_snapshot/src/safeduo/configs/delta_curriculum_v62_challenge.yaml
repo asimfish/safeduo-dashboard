@@ -1,0 +1,37 @@
+# v6.2 0.08 challenge (R13 curriculum split, G3 RCA §4.1 P2): a SEPARATE
+# 300-iter job resumed from the healthy end of the v6.2_core main run
+# (delta_curriculum_v62.yaml caps at 0.06). Constant amp 0.08 -- the tier the
+# v6.1 collapse developed in; the R13 latched sentinel gates guard this run.
+schema_version: 2
+
+mix:
+  l1: 0.4
+  l2: 0.4
+scenarios:
+  head_on_crossing: 3.0
+  center_grab: 1.5
+  handover_approach: 1.0
+  table_slam: 1.0
+  sweep_across: 1.0
+  chase: 1.5
+  freeze_one: 1.0
+  latency_spike: 0.5
+skills:
+  dir: artifacts/skill_trajs
+  tier: 1
+  weight: 0.2
+  loop: true
+
+l1_mapper: workspace
+
+amp_stages:
+  - {until_frac: 1.00, amp_max: 0.08}
+
+split: train
+n_variants: 100
+l1_params:
+  pause_prob: 0.0
+  seg_dur: [0.8, 2.0]
+  ou_sigma: 0.02
+ee_speed_default: 0.25
+stages: null

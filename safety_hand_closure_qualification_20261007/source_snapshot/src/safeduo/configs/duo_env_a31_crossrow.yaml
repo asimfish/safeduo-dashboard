@@ -1,0 +1,14 @@
+extends: duo_env_v7_spec_crossrow_colift_pair.yaml
+coordinator:
+  retreat_passthrough: true
+  retreat_dwell_steps: 10
+  arm_aware_obs: true
+  p2_obs: true
+  r18_hazard_flags: true
+  mask_structural_obs: true
+  coupling_obs: true
+  coupling_enabled: true
+safety:
+  backstop:
+    exempt_structural_rows: true
+    lookahead_s: 0.06

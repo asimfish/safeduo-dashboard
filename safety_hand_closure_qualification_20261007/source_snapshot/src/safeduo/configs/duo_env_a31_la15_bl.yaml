@@ -1,0 +1,8 @@
+# Safety stress profile for coverage evaluation: A31 observation/coupling
+# contract plus a longer velocity lookahead and target-backlog accounting.
+extends: duo_env_a31.yaml
+
+safety:
+  backstop:
+    lookahead_s: 0.15
+    backlog_aware: true

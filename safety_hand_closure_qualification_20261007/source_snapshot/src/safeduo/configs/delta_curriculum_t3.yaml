@@ -1,0 +1,52 @@
+# T3 训练数据配方（spec S1 三层全量 + owner 20:58 三点升级；T2 线 2026-08-13）
+# 消费方式（对 duo_env 完全 opt-in，不改本文件不生效）：
+#   coordinator:
+#     delta_source: l2_mix
+#     curriculum_yaml: delta_curriculum_t3.yaml
+# 现行 delta_curriculum.yaml 与 s44/s45 在训配置零改动——本文件是新增可选配方。
+schema_version: 2
+
+# 家族混流：l1 漫游 + 8 类 L2 冲突 + 技能回放（三层数据配方齐活）。
+# skills.weight 与 mix.l1/l2 同尺度（归一化前），0.2 ≈ 每 5 个 env 1 个在播技能。
+mix:
+  l1: 0.4
+  l2: 0.4
+scenarios:
+  head_on_crossing: 3.0
+  center_grab: 1.5
+  handover_approach: 1.0
+  table_slam: 1.0
+  sweep_across: 1.0
+  chase: 1.5
+  freeze_one: 1.0
+  latency_spike: 0.5
+skills:
+  dir: artifacts/skill_trajs
+  tier: 1            # T2 噪声档（0 精确回放 / 1-3 递进；对抗课程后期可升 2-3）
+  weight: 0.2
+  loop: true
+
+# 空间全域（T2-C ②）：l1 waypoint 漫游扩到共享工作区全域（EE 空间采样，
+# 逐臂 reach 夹紧盒，0.574m 跨机重叠带全覆盖——依据见 delta/l1_workspace.py 模块头）
+l1_mapper: workspace
+
+# 幅度课程（T2-C ① / spec S1-T3"amp 课程进 l1 漫游"训练侧接线，Round 136 半项闭案）：
+# 档位语义与评估侧 endurance_eval.TIER_AMPS 对齐——
+#   regular 上限 0.03（轻快真人）→ adversarial 上限 0.06（"刹不住"）→
+#   extreme 0.08/0.10（超过刹车尺度：60Hz 下 0.10 rad/步 ≈ 6 rad/s 指令关节速度，
+#   超出 FR3/JAKA 执行器包络，执行侧饱和在物理限速——owner"故意打手"极限压力层）。
+# set_progress(it/max_it) 推进；技能族回放自身 amp_max=0.06 硬帽不随课程放大。
+amp_stages:
+  - {until_frac: 0.25, amp_max: 0.03}
+  - {until_frac: 0.50, amp_max: 0.06}
+  - {until_frac: 0.75, amp_max: 0.08}
+  - {until_frac: 1.00, amp_max: 0.10}
+
+split: train
+n_variants: 100
+l1_params:
+  pause_prob: 0.0     # 不停歇漫游（endurance wild profile 同款）
+  seg_dur: [0.8, 2.0]
+  ou_sigma: 0.02
+ee_speed_default: 0.25
+stages: null

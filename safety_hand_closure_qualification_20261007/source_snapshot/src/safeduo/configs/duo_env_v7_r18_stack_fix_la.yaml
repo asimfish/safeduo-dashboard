@@ -1,0 +1,9 @@
+# R33 (2026-09-06): stack_fix + velocity-aware damper band (lookahead 0.15 s
+# of PD lag). Head-on approaches at 0.7 m/s crossed the 40 mm band after the
+# clutch had already stopped the command (headon_violation_trace.py); rows are
+# now engaged/budgeted on their predicted margin d + 0.15*min(J qd, 0).
+extends: duo_env_v7_r18_stack_fix.yaml
+
+safety:
+  backstop:
+    lookahead_s: 0.15

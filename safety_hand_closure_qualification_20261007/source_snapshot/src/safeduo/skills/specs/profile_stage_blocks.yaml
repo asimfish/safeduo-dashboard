@@ -1,0 +1,20 @@
+# Category 4 (quad_cooperative, assembly staging): the Franka pair carries the 70 cm
+# profile 16 cm towards the assembly position while the UR5 pair stages the two
+# connector blocks in the centre band next to it -- four arms bring the parts of one
+# assembly together (the insertion itself needs the insert primitive, next step).
+family: profile_stage_blocks
+category: 4
+env_base: factory
+objects:
+  - {name: profile700, catalog: alu_profile_4080_700, xy: [0.53, 0.0]}
+  - {name: block_l, catalog: cube_connector_50x80, xy: [-0.44, 0.42],  place_xy: [-0.12, 0.38]}
+  - {name: block_r, catalog: cube_connector_50x80, xy: [-0.46, -0.20], place_xy: [-0.14, -0.36]}
+arms:
+  F_L: {do: colift}
+  F_R: {do: colift}
+  U_L: {do: pick_place, obj: block_l, grasp: top}
+  U_R: {do: pick_place, obj: block_r, grasp: top}
+groups:
+  - {arms: [F_L, F_R], obj: profile700, do: colift, half_station: 0.31, carry_dxy: [-0.16, 0.0], lift: 0.10}
+success: {object: profile700, radius_m: 0.10, min_disp_m: 0.08}
+timing: {approach: 3.5, descend: 1.8, lift: 1.8, carry: 3.6, carry_u: 2.0, place: 2.8, clear: 1.8, retreat: 3.5}

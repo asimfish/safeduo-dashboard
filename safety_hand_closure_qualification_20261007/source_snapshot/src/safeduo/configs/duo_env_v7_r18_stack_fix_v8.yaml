@@ -1,0 +1,10 @@
+# Layout-shift diagnostic (design line, 2026-09-07): the stack_fix four-gate env with ONLY the scene layout
+# switched to v8 (Franka row 20 cm closer: row distance 1.2964 m, owner update 09-07). Everything else --
+# armature, gravity comp, R29+R30b stack, spheres, semantics -- is inherited from duo_env_v7_r18_stack_fix.yaml.
+# Purpose: run a27@0.5:0.2 here and compare with a27@stack_fix (v7) to measure what the layout change alone
+# costs the current clutch (denser cross-robot band -> expect more braking / lower fidelity). Evaluation only;
+# the trained policies have never seen v8. Retraining on v8 is decision D8.
+extends: duo_env_v7_r18_stack_fix.yaml
+
+scene:
+  layout_yaml: assets_src/real/scene_layout_v8.yaml

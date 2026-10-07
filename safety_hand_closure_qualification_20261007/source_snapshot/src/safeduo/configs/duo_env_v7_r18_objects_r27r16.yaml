@@ -1,0 +1,14 @@
+# R27 (2026-09-05): physical-grasp RECORDING env with the r16 geometry shell.
+# = duo_env_v7_r18_objects_r27.yaml (stack + contact physics knobs) with the
+# F-side sphere bundle switched to real_v7r16 (F2 fingers 3 balls r15-18
+# instead of 1 ball r45; fr3_link3/link6 refit) and its semantics yaml, so the
+# safety layer sees fingers the size they really are and a pinch at cube
+# mid-height (2.5 cm below the top) is admissible. Recording only; the
+# trained policy (a27) has never seen this shell -> gated runs are probes.
+extends: duo_env_v7_r18_objects_r27.yaml
+
+assets:
+  spheres: real_v7r16
+  semantics_yaml: src/safeduo/configs/contact_semantics_v7r16.yaml
+  arm_armature: {ur: 0.05}   # R27: stabilise the UR5-DFX wrist_3 drive (see duo_env.py)
+  arm_gravity_comp: {franka: true, ur: true}   # R27/R33: FR3 shoulder sag 4-7 deg at kp 400; UR5 hand 3-4 cm low at kp 1200 (see duo_env.py)

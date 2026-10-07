@@ -1,0 +1,29 @@
+# Category 2 (dual_coordinated): the UR5/DFX pair co-lifts a 30 cm 4080 profile
+# (build 3: carrying +x pushed U_R's IK to 400 iters -> carry -x, towards the U bases)
+# (pinch stations 12 cm either side of the centre), carries it 12 cm towards the
+# table centre and sets it down; the Franka pair patrols object-free.
+# First DFX-claw co-lift -- the build gate decides whether the 4 cm profile top
+# is pinchable by the claw at all.
+family: u_colift_profile300
+category: 2
+env_base: factory
+objects:
+  # build 1/2 (profile along y at x=-0.45/-0.32): both U approaches folded the wrist to self 1.3-2.0 mm --
+  # the claws had to yaw 90 deg to close across x. Along x (yaw 90) the claws close along y, the natural
+  # direction for arms reaching in from the +/-y bases; stations at x = -0.40 -/+ 0.11
+  - {name: profile300, catalog: alu_profile_4080_300, xy: [-0.40, 0.0], yaw: 90}
+arms:
+  F_L: {do: idle}
+  F_R: {do: idle}
+  U_L: {do: colift}
+  U_R: {do: colift}
+groups:
+  - {arms: [U_L, U_R], obj: profile300, do: colift, half_station: 0.11, carry_dxy: [-0.10, 0.0], lift: 0.10}
+success: {radius_m: 0.10, min_disp_m: 0.08}
+# build 4: the -x carry passed approach/carry/place; the default U homes (x=-0.38/-0.40) folded the
+# arms on the way back (retreat self 2.5 mm) -> retreat to more extended points
+homes:
+  F_L: [0.44, -0.30, 1.25]
+  F_R: [0.44, 0.30, 1.25]
+  U_L: [-0.30, 0.40, 1.20]
+  U_R: [-0.32, -0.36, 1.20]

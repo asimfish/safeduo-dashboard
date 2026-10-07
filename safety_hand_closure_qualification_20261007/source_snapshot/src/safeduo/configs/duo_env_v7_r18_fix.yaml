@@ -1,0 +1,13 @@
+# R33 (2026-09-06): a27 training env + the two arm-actuator fidelity fixes.
+# (1) UR5-DFX wrist_3 implicit drive was numerically unstable (3e-4 kg m^2 at
+#     kp 1200 @120 Hz): the U hand roll was uncontrolled in every v7 run since
+#     R14 -> armature 0.05 on the U arm joints.
+# (2) FR3 at kp 400 sags 4-7 deg at the shoulder in stretched poses (~5 cm at
+#     the hand); the real FR3 compensates gravity -> disable_gravity on the F
+#     robot links (objects unaffected).
+# a30 = a27 recipe warm-started here so the clutch sees the live wrist.
+extends: duo_env_v7_r18.yaml
+
+assets:
+  arm_armature: {ur: 0.05}
+  arm_gravity_comp: {franka: true}

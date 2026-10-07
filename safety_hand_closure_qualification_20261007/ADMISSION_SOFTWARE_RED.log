@@ -1,0 +1,29 @@
+test_abort_latches_after_admission (__main__.Contract.test_abort_latches_after_admission) ... ok
+test_boundary_contact_passes (__main__.Contract.test_boundary_contact_passes) ... FAIL
+test_contact (__main__.Contract.test_contact) ... ok
+test_different_duration (__main__.Contract.test_different_duration) ... ok
+test_float_perturbation_rejected (__main__.Contract.test_float_perturbation_rejected) ... ok
+test_missing_state (__main__.Contract.test_missing_state) ... ok
+test_non_neutral_start (__main__.Contract.test_non_neutral_start) ... ok
+test_qualified_exact_target (__main__.Contract.test_qualified_exact_target) ... ok
+test_speed (__main__.Contract.test_speed) ... ok
+test_state_nonfinite (__main__.Contract.test_state_nonfinite) ... ok
+test_state_stale (__main__.Contract.test_state_stale) ... ok
+test_target_bounds (__main__.Contract.test_target_bounds) ... ok
+test_target_nonfinite (__main__.Contract.test_target_nonfinite) ... ok
+test_unknown_no_interpolation (__main__.Contract.test_unknown_no_interpolation) ... ok
+test_unregistered_arm_pose (__main__.Contract.test_unregistered_arm_pose) ... ok
+
+======================================================================
+FAIL: test_boundary_contact_passes (__main__.Contract.test_boundary_contact_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/test_admission.py", line 25, in test_boundary_contact_passes
+    def test_boundary_contact_passes(self):self.assertTrue(self.req(self.gate(),s=state(self_normal_n=[.1])).admitted)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.001s
+
+FAILED (failures=1)

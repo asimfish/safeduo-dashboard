@@ -1,0 +1,124 @@
+# =============================================================================
+# SafeDuo 接触语义 v7 —— R14 换装(U 臂 JAKA Zu7 -> UR5 + RH56DFX 手)
+# 基线 = contact_semantics_v3.yaml(F 侧 fr3+F2 逐字保留);变更全部在 U 侧:
+#   - robot_keys.U: jaka_zu7 -> ur5_dfx
+#   - link_classes: U 臂 UR 标准命名;shoulder_link 归基座区(同 v0 UR5e 处理,
+#     恒高于桌且贴邻基座);手指类并集 pinky(F2)/little(DFX)
+#   - hand_palm 增补 U 侧 hand/wrist_3_link:convert_urdf --merge-joints 把
+#     DFX 手基座/法兰/掌并入腕 body,掌球挂腕 -> 掌语义(近桌豁免)跟球走
+#   - adjacency.ur5_dfx: UR 链 + 腕簇 diff=2 豁免(forearm|wrist_2、
+#     wrist_1|wrist_3——v0 UR5e/cuRobo 表同款,结构性贴邻不可分离)
+#   - hand_wrist.ur5_dfx: [wrist_1_link, wrist_2_link, wrist_3_link]
+#     (手底座并入 wrist_3 -> wrist_3 归 hand_palm 类,adjacency 表的
+#     wrist_1|wrist_3 条目对手类不生效(semantics 邻接分支只裁非手对),
+#     腕簇豁免必须由 hand_wrist 承载——R14-S1 2026-08-19:漏 wrist_1 导致
+#     wrist_1<->wrist_3 静息假穿 -11mm,a18 预览 self_U 100% 步违规。
+#     FK 扫 wrist_2 全程球心距最小 111.5mm,wrist_3 球需 <=48.3mm 才不穿,
+#     但其必须包直径 82mm 腕壳,物理不可达 -> 结构性贴邻。手指够不到
+#     wrist_1(掌基座隔挡 >130mm),该豁免不损失有效检查;
+#     forearm 及以下 <-> 手全部保留检查)
+# =============================================================================
+
+schema_version: 7
+units: {length: m, velocity: m/s}
+
+robot_keys: {F: fr3, U: ur5_dfx}
+
+thresholds:
+  d_warn: 0.05
+  d_soft: 0.05
+  d_min:
+    cross: 0.03
+    self: 0.02
+    table: 0.02
+
+link_classes:
+  - {class: ground,      pattern: '^ground$'}
+  - {class: table,       pattern: '^table_(F|U)$'}
+  - {class: object,      pattern: '^obj_'}
+  - {class: hand_finger, pattern: '^(F_L|F_R|U_L|U_R)/hand/(right|left)_(thumb|index|middle|ring|pinky|little)_'}
+  - {class: hand_palm,   pattern: '^(F_L|F_R)/hand/(right|left)_hand_base$|^(U_L|U_R)/hand/wrist_3_link$'}
+  - {class: arm_base,    pattern: '^(F_L|F_R)/fr3_link0$|^(U_L|U_R)/(base_link|shoulder_link)$'}
+  - {class: arm_link,    pattern: '^(F_L|F_R)/fr3_link[1-8]$|^(U_L|U_R)/(upper_arm_link|forearm_link|wrist_1_link|wrist_2_link)$'}
+
+pair_rules:
+  - {name: hand_object,        pair: [hand_finger, object],  verdict: allow}
+  - {name: palm_object,        pair: [hand_palm,   object],  verdict: allow}
+  - {name: object_table,       pair: [object, table],        verdict: allow}
+  - {name: object_object,      pair: [object, object],      verdict: allow}
+  - {name: object_ground,      pair: [object, ground],       verdict: allow}
+  - {name: base_own_table,     pair: [arm_base, table],      verdict: allow,
+     scope: same_table}
+  - {name: armlink_object,     pair: [arm_link, object],     verdict: soft}
+  - {name: base_object,        pair: [arm_base, object],     verdict: soft}
+  - {name: hand_table_exempt,  pair: [hand_finger, table],   verdict: conditional_exempt,
+     exemption: near_table, margin_category: table}
+  - {name: palm_table_exempt,  pair: [hand_palm, table],     verdict: conditional_exempt,
+     exemption: near_table, margin_category: table}
+  - {name: cross_robot,        pair: [any_robot_link, any_robot_link], verdict: forbid,
+     condition: different_robot, margin_category: cross}
+  - {name: intra_robot,        pair: [any_robot_link, any_robot_link], verdict: forbid,
+     condition: same_robot, margin_category: self}
+  - {name: link_table,         pair: [any_robot_link, table], verdict: forbid,
+     margin_category: table}
+  - {name: link_ground,        pair: [any_robot_link, ground], verdict: forbid,
+     margin_category: table}
+
+exemptions:
+  near_table:
+    applies_scope: same_table
+    height_above_table_max: 0.10
+    closing_speed_max: 0.05
+    override:
+      d_min: 0.005
+      violation_on_contact: false
+    fallback_note: >
+      超速接近(>=closing_speed_max)时按 forbid 常规 d_min=0.02 处理并正常
+      触发 velocity-damper;即"允许贴桌,不允许拍桌"。
+
+adjacency:
+  fr3:
+    - [fr3_link0, fr3_link1]
+    - [fr3_link0, fr3_link2]
+    - [fr3_link1, fr3_link2]
+    - [fr3_link1, fr3_link3]
+    - [fr3_link1, fr3_link4]
+    - [fr3_link2, fr3_link3]
+    - [fr3_link2, fr3_link4]
+    - [fr3_link3, fr3_link4]
+    - [fr3_link3, fr3_link6]
+    - [fr3_link4, fr3_link5]
+    - [fr3_link4, fr3_link6]
+    - [fr3_link4, fr3_link7]
+    - [fr3_link5, fr3_link6]
+    - [fr3_link5, fr3_link7]
+    - [fr3_link6, fr3_link7]
+    - [fr3_link7, fr3_link8]
+    - [fr3_link6, fr3_link8]
+  ur5_dfx:
+    - [base_link, shoulder_link]
+    - [shoulder_link, upper_arm_link]
+    - [upper_arm_link, forearm_link]
+    - [forearm_link, wrist_1_link]
+    - [wrist_1_link, wrist_2_link]
+    - [wrist_2_link, wrist_3_link]
+    # 腕簇 diff=2 结构性贴邻(v0 UR5e/cuRobo 表同款;UR 腕三环几何上
+    # 任意位形不可分离,不豁免会钉死 self 静息包络)。
+    # 注意:wrist_3_link 因 merge-joints 归 hand_palm 类,下面
+    # [wrist_1_link, wrist_3_link] 条目在 semantics 邻接分支走不到
+    # (只裁非手对),真正生效的腕簇豁免在 hand_wrist.ur5_dfx(R14-S1);
+    # 条目保留作运动链事实记录。
+    - [forearm_link, wrist_2_link]
+    - [wrist_1_link, wrist_3_link]
+  hand_internal: all
+  hand_wrist:
+    fr3: [fr3_link7, fr3_link8]
+    # ur5_dfx 含 wrist_1_link:承载腕簇 (wrist_1, wrist_3) 结构性豁免
+    # (见文件头 R14-S1 说明;手指被掌基座隔挡够不到 wrist_1,无检查损失)
+    ur5_dfx: [wrist_1_link, wrist_2_link, wrist_3_link]
+
+margin_categories:
+  cross:  "所有 verdict=forbid 且 condition=different_robot 的对"
+  self_F: "robot F(F_L,F_R)内部 verdict=forbid 的对(自臂非相邻 + 双臂间)"
+  self_U: "robot U(U_L,U_R)内部同上"
+  table:  "所有 robot link <-> table/ground 的 forbid/conditional 对"

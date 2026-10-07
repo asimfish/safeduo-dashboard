@@ -1,0 +1,64 @@
+# SafeDuo 4 臂场景主配置 v2（阈值/资产/训练权重唯一来源；场景几何以
+# assets_src/scene_layout.yaml 为准——B 的职权，此处只留引用与运行参数）
+sim:
+  dt: 0.008333          # 120 Hz 物理
+  decimation: 2         # 控制 60 Hz
+  episode_length_s: 10.0
+
+scene:
+  num_envs: 4096
+  env_spacing: 4.0
+  layout_yaml: assets_src/scene_layout.yaml     # 桌/基座/命名（B 交付）
+  # 基座 |x| 仲裁值（STATUS.md Round 12）：默认 0.70；压力变体 0.40（近距）；
+  # scene_layout 里的 0.95（贴桌后沿）已废弃。null = 不覆盖直接用 layout。
+  base_x_abs: 0.70
+
+assets:
+  # 变体切换：franka: panda|fr3   ur: ur10|ur5e；custom_usd 非空直接用
+  franka: {variant: fr3, custom_usd: ""}
+  ur: {variant: ur5e, custom_usd: ""}
+  # 球分解：bundled = B 的 assets_src/spheres/*.yaml；placeholder = W1 占位球
+  spheres: bundled
+  semantics_yaml: assets_src/contact_semantics.yaml
+
+action:
+  delta_clip: 0.08      # raw 模式关节 delta 直通限幅（rad/步）
+
+safety:
+  max_active: 32        # 活跃球对集合上限 M（ROUND2_DELTAS）
+  quota_cross: 8        # active 集为跨机行保底名额（防观测饥饿，监管线 P0 附带）
+  tau_ttc: 0.5          # TTC 门（秒）；d_soft/d_warn/d_min 读 semantics_yaml
+  contact_gt: false
+  backstop:
+    gamma: 4.0
+    vmax: 1.5
+    max_passes: 30
+    tol: 1.0e-6
+
+coordinator:            # A5 训练模式（action = alpha(4)+p(1)）
+  enabled: false
+  # l1 = C 的 L1RandomDelta；smoke = 均匀噪声；l2_mix = 冲突富集课程流
+  # （L1:L2 混合，configs/delta_curriculum.yaml；v2 起默认——v1 用 l1 时
+  # tube_fraction≈0，跨机冲突从不发生，训练/评测都看不到冲突）
+  delta_source: l2_mix
+  delta_amp_max: 0.015  # rad/步 @60Hz ~= 0.9 rad/s（真人手套量级；0.06 刹不住）
+  reward:
+    w_track: 10.0       # -||exec-cmd||^2
+    w_tube: 0.05        # conflict tube 在管惩罚/步
+    w_progress: 2.0     # 冲突期沿命令方向进展
+    w_smooth: 0.1       # -(|d_alpha|^2)；v3 起 p 不再走平滑罚（角落锁，见 w_flip）
+    w_flip: 0.5         # v3 p 翻转罚：tube 门控 x 死区±0.1 越区符号翻转记一次
+                        # （metrics PRIORITY_FLIP 同口径）；消融臂 {0, 0.5, 2}
+    w_backstop: 5.0     # L2 改写深度（进展损失），不惩罚激活本身
+    w_violation: 100.0  # VIOLATION 一次性惩罚（并终止）
+    w_margin: 2.0       # 逐步 margin 逼近塑形（C2 reward_shaping，最坏行
+                        # 归一化平方 in [0,4]；贴刹车边界满罚 2/步 vs 终端 100）
+
+events:
+  n_log_envs: 64        # 全事件流只记前 K 个 env（其余聚合计数）
+  flush_every: 512      # 步
+
+benchmark:
+  env_counts: [1024, 2048, 4096]
+  warmup_steps: 30
+  timed_steps: 200

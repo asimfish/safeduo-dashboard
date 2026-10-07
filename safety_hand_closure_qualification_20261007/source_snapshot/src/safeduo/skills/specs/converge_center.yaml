@@ -1,0 +1,22 @@
+# 2026-09-10: bottle body pinch depth 70 -> 78 mm; raw/s0 per-object QA pass.
+# Category 4 (quad_cooperative through shared space): four independent picks whose place
+# targets form one tight 2x2 cluster in the table centre (x = -/+0.20, y = -/+0.20; the 20x24 and 32x36 cm
+# clusters of builds 1-2 left 1.9 / 4.9 mm of cross margin in the carry vs the 20 mm design floor) -- all four hands
+# converge within ~35 cm at the same moment. No shared object, maximal
+# cross-row proximity: the contested-space case for the gate.
+family: converge_center
+category: 4
+env_base: factory
+objects:
+  - {name: can_fl,    catalog: soup_can,                   xy: [0.50, -0.36], place_xy: [0.20, -0.20]}
+  - {name: bottle_fr, catalog: brown_reagent_bottle_large, grasp_depth: 0.078, xy: [0.50,  0.36], place_xy: [0.20,  0.20]}
+  - {name: can_ul,    catalog: soup_can,                   xy: [-0.44, 0.42], place_xy: [-0.20, 0.20]}
+  # build 3: the standing 5x8 block tipped at release in this layout -> a can (stood up in every run so far)
+  - {name: can_ur,    catalog: soup_can,                   xy: [-0.46, -0.20], place_xy: [-0.20, -0.20]}
+arms:
+  F_L: {do: pick_place, obj: can_fl,    grasp: top}
+  F_R: {do: pick_place, obj: bottle_fr, grasp: top}
+  U_L: {do: pick_place, obj: can_ul,    grasp: top}
+  U_R: {do: pick_place, obj: can_ur,    grasp: top}
+success: {object: can_fl, radius_m: 0.08, min_disp_m: 0.10}
+timing: {approach: 3.5, descend: 1.8, lift: 1.8, carry: 4.0, carry_u: 2.2, place: 2.8, clear: 1.8, retreat: 3.5}

@@ -1,0 +1,21 @@
+# R27 (2026-09-05): physical-grasp RECORDING env for the R26 rod family =
+# stack env + contact physics knobs (hand 100/5/5, solver 64/4) + r16 shell.
+extends: duo_env_v7_r26_rod_stack.yaml
+
+assets:
+  hand_actuator: {stiffness: 100.0, damping: 5.0, effort_limit_sim: 5.0}
+  solver: {position_iterations: 64, velocity_iterations: 4}
+  object_solver: {position_iterations: 64, velocity_iterations: 4}
+  spheres: real_v7r16
+  semantics_yaml: src/safeduo/configs/contact_semantics_v7r16.yaml
+  arm_armature: {ur: 0.05}   # R27: stabilise the UR5-DFX wrist_3 drive (see duo_env.py)
+  # R27 physical layout: 4x30x8 cm beams (fingertips clear the table, pinch
+  # line above the COM), 5 cm further out (y = -/+0.35) and gripped at
+  # their centre -- the inner-end stations put the two Franka wrists 10 cm
+  # apart under the finger approach (task_library_r26.ROD_PHYS_Y).
+  table_objects:
+    - {name: rod_l, pos: [0.53, -0.35, 0.84], size: [0.04, 0.30, 0.08], mass: 0.20, color: [0.75, 0.25, 0.60]}
+    - {name: rod_r, pos: [0.53, 0.35, 0.84], size: [0.04, 0.30, 0.08], mass: 0.20, color: [0.25, 0.45, 0.85]}
+    - {name: cube_u_l, pos: [-0.44, 0.42, 0.825], size: 0.05, color: [0.2, 0.5, 0.9]}
+    - {name: cube_u_r, pos: [-0.46, -0.20, 0.825], size: 0.05, color: [0.2, 0.8, 0.4]}
+  arm_gravity_comp: {franka: true, ur: true}   # R27/R33: FR3 shoulder sag 4-7 deg at kp 400; UR5 hand 3-4 cm low at kp 1200 (see duo_env.py)

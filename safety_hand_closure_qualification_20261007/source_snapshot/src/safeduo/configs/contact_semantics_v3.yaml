@@ -1,0 +1,126 @@
+# =============================================================================
+# SafeDuo 接触语义 v3 —— A 侧合并版（v4 换装：FR3+法兰+F2 / JAKA Zu7+法兰+F2）
+# 来源 = assets_src/contact_semantics.yaml（v0 全量，B 职权、未动）
+#      + assets_src/real/contact_semantics_v3_patch.yaml（B 的差异 patch）
+# 合并人 = Agent A6（B 在 patch 头授权 "A 换装 v4 时合并或生成 v3 全量文件"）。
+# 消费方式与 v0 完全相同（semantics.py）；新增 robot_keys 节声明 U 臂邻接表键
+# （semantics.py v3 起按此解析，缺省仍为 {F: fr3, U: ur5e} 兼容 v0 文件）。
+# =============================================================================
+
+schema_version: 3
+units: {length: m, velocity: m/s}
+
+# U 臂换装 JAKA：adjacency / hand_wrist 的机器人键映射（新增节）
+robot_keys: {F: fr3, U: jaka_zu7}
+
+# ── 全局距离阈值（与 v0 相同）────────────────────────────────────────────────
+thresholds:
+  d_warn: 0.05
+  d_soft: 0.05
+  d_min:
+    cross: 0.03
+    self: 0.02
+    table: 0.02
+
+# ── link 分类（patch 1) 替换：F2 手命名 + JAKA link 名；其余 v0 原样）─────────
+link_classes:
+  - {class: ground,      pattern: '^ground$'}
+  - {class: table,       pattern: '^table_(F|U)$'}
+  - {class: object,      pattern: '^obj_'}
+  - {class: hand_finger, pattern: '^(F_L|F_R|U_L|U_R)/hand/(right|left)_(thumb|index|middle|ring|pinky)_'}
+  - {class: hand_palm,   pattern: '^(F_L|F_R|U_L|U_R)/hand/(right|left)_hand_base$'}
+  # fr3_link8（法兰虚拟体）归 arm_link；JAKA link1（肩）归基座区（恒高于桌、
+  # 贴邻基座，同 UR5e shoulder 处理）——patch 说明原文
+  - {class: arm_base,    pattern: '^(F_L|F_R)/fr3_link0$|^(U_L|U_R)/(base_link|link1)$'}
+  - {class: arm_link,    pattern: '^(F_L|F_R)/fr3_link[1-8]$|^(U_L|U_R)/link[2-6]$'}
+
+# ── 成对规则（v0 原样：类驱动，命名无关）────────────────────────────────────
+pair_rules:
+  - {name: hand_object,        pair: [hand_finger, object],  verdict: allow}
+  - {name: palm_object,        pair: [hand_palm,   object],  verdict: allow}
+  - {name: object_table,       pair: [object, table],        verdict: allow}
+  - {name: object_object,      pair: [object, object],       verdict: allow}
+  - {name: object_ground,      pair: [object, ground],       verdict: allow}
+  - {name: base_own_table,     pair: [arm_base, table],      verdict: allow,
+     scope: same_table}
+  - {name: armlink_object,     pair: [arm_link, object],     verdict: soft}
+  - {name: base_object,        pair: [arm_base, object],     verdict: soft}
+  - {name: hand_table_exempt,  pair: [hand_finger, table],   verdict: conditional_exempt,
+     exemption: near_table, margin_category: table}
+  - {name: palm_table_exempt,  pair: [hand_palm, table],     verdict: conditional_exempt,
+     exemption: near_table, margin_category: table}
+  - {name: cross_robot,        pair: [any_robot_link, any_robot_link], verdict: forbid,
+     condition: different_robot, margin_category: cross}
+  - {name: intra_robot,        pair: [any_robot_link, any_robot_link], verdict: forbid,
+     condition: same_robot, margin_category: self}
+  - {name: link_table,         pair: [any_robot_link, table], verdict: forbid,
+     margin_category: table}
+  - {name: link_ground,        pair: [any_robot_link, ground], verdict: forbid,
+     margin_category: table}
+
+# ── 豁免区定义（v0 原样）─────────────────────────────────────────────────────
+exemptions:
+  near_table:
+    applies_scope: same_table
+    height_above_table_max: 0.10
+    closing_speed_max: 0.05
+    override:
+      d_min: 0.005
+      violation_on_contact: false
+    fallback_note: >
+      超速接近(>=closing_speed_max)时按 forbid 常规 d_min=0.02 处理并正常
+      触发 velocity-damper;即"允许贴桌,不允许拍桌"。
+
+# ── 运动学邻接豁免（patch 2) 替换：fr3 原样 + jaka_zu7 链；hand_wrist 换装）──
+adjacency:
+  fr3:
+    - [fr3_link0, fr3_link1]
+    - [fr3_link0, fr3_link2]
+    - [fr3_link1, fr3_link2]
+    - [fr3_link1, fr3_link3]
+    - [fr3_link1, fr3_link4]
+    - [fr3_link2, fr3_link3]
+    - [fr3_link2, fr3_link4]
+    - [fr3_link3, fr3_link4]
+    - [fr3_link3, fr3_link6]
+    - [fr3_link4, fr3_link5]
+    - [fr3_link4, fr3_link6]
+    - [fr3_link4, fr3_link7]
+    - [fr3_link5, fr3_link6]
+    - [fr3_link5, fr3_link7]
+    - [fr3_link6, fr3_link7]
+    # 法兰虚拟体与末端两节安装邻接（Ø63x17 垫块夹在 link7 法兰面与手之间）
+    - [fr3_link7, fr3_link8]
+    # A7-W7 修订（@B 复核，出生位重工程 Round-114）：link6|link8 补豁免——
+    # 该对球边距在 j6/j7 全程扫描下恰好恒定 12.5mm（法兰球心在 j7 轴上，
+    # 相对几何不随任何关节变化）=> 几何上永不可碰、零信息，只会把 F 臂
+    # self 静息包络钉死在 12.5mm（estop 族阈值简并的同款机制）。真实腕部
+    # 网格接触自 v4 起由 PhysX 自碰物理兜底（Round-110 裁定②已开启）。
+    # 复核工具：safeduo.envs.birth_pose_search --mode audit（j6/j7 扫描）。
+    - [fr3_link6, fr3_link8]
+  jaka_zu7:
+    - [base_link, link1]
+    - [link1, link2]
+    - [link2, link3]
+    - [link3, link4]
+    - [link4, link5]
+    - [link5, link6]
+    # A6-W6 修订（@B 复核）：腕簇 diff=2 对补豁免——v4 冒烟实测该两对在
+    # 任意预备位形恒 -1.7~-3.4mm 出生重叠（link5 短杆 + link6 并法兰球的
+    # 结构性贴邻，J4/J5 网格扫描不可分离）；v0/cuRobo 的 UR5e 表对同构腕簇
+    # （forearm|wrist_2、wrist_1|wrist_3）本就豁免，B patch 未带过来。
+    # 腕全折的真实风险仍由 hand<->link3/4（活跃在查，settle 实测 +5.4mm）
+    # 与 link3|link6（diff=3，保留）覆盖。B 的干净修法=收 link4/6 球径。
+    - [link3, link5]
+    - [link4, link6]
+    # 长肢 diff=2 对（link1|link3、link2|link4）保留检查——大限位下可真碰
+  hand_internal: all
+  hand_wrist:
+    fr3: [fr3_link7, fr3_link8]
+    jaka_zu7: [link5, link6]
+
+margin_categories:
+  cross:  "所有 verdict=forbid 且 condition=different_robot 的对"
+  self_F: "robot F(F_L,F_R)内部 verdict=forbid 的对(自臂非相邻 + 双臂间)"
+  self_U: "robot U(U_L,U_R)内部同上"
+  table:  "所有 robot link <-> table/ground 的 forbid/conditional 对"

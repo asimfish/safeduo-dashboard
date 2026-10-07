@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/runtime_camera/native_camera_replay.py", line 42, in <module>
+    try:main()
+        ^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_hand_closure_qualification_20261007/runtime_camera/native_camera_replay.py", line 29, in main
+    pose=z[obj+':pose'][ix,r['source_envs']].copy();pose[:,:3]=pose[:,:3]-srcorig[r['source_envs']]+orig;pose[:,3:]=pose[:,[6,3,4,5]];env._objects[obj].write_root_pose_to_sim(torch.tensor(pose,device=env.device));env._objects[obj].write_root_velocity_to_sim(torch.tensor(z[obj+':vel'][ix,r['source_envs']],device=env.device))
+         ~^^^^^^^^^^^^^
+KeyError: 'beam700:pose'

@@ -1,0 +1,50 @@
+# L1:L2 冲突富集课程配置（C2-W3 提案；消费方 delta/l2_env_source.py）
+# 接线（@A2，一行改动 duo_env._pre_physics_step 之前的构造分支）：
+#   coordinator.delta_source: l2_mix 时构造
+#   ConflictMixSource(num_envs, load_curriculum_cfg(), device=device,
+#                     amp_max=coordinator.delta_amp_max)
+#   可选：训练循环每个 iter 调 set_progress(it/max_it) 推进 stages；
+#         记录 mix_fractions 与 backend.calib_report 各一次进日志。
+schema_version: 1
+
+# 单阶段固定比例（无 stages 或不调 set_progress 时生效）。
+# W3 推荐起点 l1:l2 = 0.5:0.5——tube_fraction 首要是拉起来；若 violation
+# 率训练初期爆炸再退 0.7:0.3。
+mix:
+  l1: 0.5
+  l2: 0.5
+
+# L2 内部 8 类相对权重（自动归一化）。head_on/center_grab/chase 是
+# 让行仲裁的核心现象，给 1.5x；latency_spike 依赖延迟随机化（M1 接），
+# 暂降权 0.5。
+# v3（08-12，v3_recipe_proposal §2.1）：head_on_crossing 1.5 -> 3.0——
+# oracle 需求扫描里它是唯一产生对称僵局 p 需求的家族（其余 7 类经
+# aggressor 规则单边解决 p*≡0），p 需求密度 0.48% -> 预计 ~1%+；其余不动。
+scenarios:
+  head_on_crossing: 3.0
+  center_grab: 1.5
+  handover_approach: 1.0
+  table_slam: 1.0
+  sweep_across: 1.0
+  chase: 1.5
+  freeze_one: 1.0
+  latency_spike: 0.5
+
+# 场景库 split：训练永远 train；eval runner 用 eval split（种子区间硬分离）
+split: train
+n_variants: 100
+
+# L1 子源参数覆盖（默认 L1Params；amp_max 由构造方传 delta_amp_max 对齐）
+l1_params: {}
+
+# 场景 EE 意图未显式给速度时的默认 EE 速度（m/s）
+ee_speed_default: 0.25
+
+# 可选课程表：按训练进度分阶段（set_progress(frac) 切换；
+# 只影响新 reset 的 env，不打断进行中的回合）。null = 用上面的 mix。
+# 示例（提案，等首条 l2_mix 曲线后再启用）：
+# stages:
+#   - {until_frac: 0.2, l1: 0.8, l2: 0.2}
+#   - {until_frac: 0.6, l1: 0.5, l2: 0.5}
+#   - {until_frac: 1.0, l1: 0.4, l2: 0.6}
+stages: null

@@ -1,0 +1,7 @@
+# Candidate mitigation for pair-pressure residuals, not a certified policy.
+# Keep the frozen learned policy, speed, source, geometry and 60 ms cross/table
+# response. Only same-robot collision rows receive a 150 ms lag horizon.
+extends: duo_env_a31.yaml
+safety:
+  backstop:
+    self_lookahead_s: 0.15

@@ -1,0 +1,10 @@
+# R33 (2026-09-06): stack_fix_bl with gravity compensation on the UR arms as
+# well. The backlog-aware damper charges each row for the PD backlog; the UR5
+# at kp 1200 carries a constant ~0.03 rad gravity sag (hand 3-4 cm low in the
+# relay probes) that never releases yet is charged every step -> fidelity 0.05
+# in stack_fix_bl. Compensating gravity on both robots leaves only the dynamic
+# backlog (the momentum that actually crosses the band).
+extends: duo_env_v7_r18_stack_fix_bl.yaml
+
+assets:
+  arm_gravity_comp: {franka: true, ur: true}

@@ -1,0 +1,12 @@
+from pathlib import Path
+import json,numpy as np
+p=Path(__file__).resolve().parent;root=Path('/mnt/nas/data/lyf/double_hand/safety_hand_closure_qualification_20261007');samples={arm:[] for arm in ['F_L','F_R','U_L','U_R']};refs=[];names={};limits={}
+for run in ['development','validation_v2','validation_fresh_v3']:
+ m=json.loads((root/run/'native_metadata.json').read_text());cases=m['cases'];refs.extend([c['reference_time_s'] for c in cases])
+ for arm,v in m['arms'].items():
+  ids=v['arm_ids'];names[arm]=[v['joint_names'][i] for i in ids];limits[arm]=np.asarray(v['soft_limits_rad'][0])[ids];samples[arm].extend(v['arm_reference_rad'])
+spans={}
+for arm,values in samples.items():
+ q=np.asarray(values);lim=limits[arm];span=q.max(0)-q.min(0);width=lim[:,1]-lim[:,0];spans[arm]=[dict(joint=n,min_rad=float(a),max_rad=float(b),span_rad=float(c),soft_limit_width_rad=float(d),marginal_span_fraction=float(c/d)) for n,a,b,c,d in zip(names[arm],q.min(0),q.max(0),span,width)]
+out=dict(status='MEASURED_MARGINAL_SPANS_NOT_WORKSPACE_COVERAGE',unique_static_four_arm_references=sorted(set(refs)),unique_reference_count=len(set(refs)),arm_marginal_spans=spans,development=json.loads((p/'COVERAGE_REPORT.json').read_text()),fresh=dict(unique_references=12,exact_hand_goals=12,native_cycles=144,u_hand_attempts=288,env_states=103680,independent_iid_task_count=0),random_scope='Development: 20 IID uniform3D goals +20 Latin hypercube3D goals. Fresh:12 stratified random time indices on one fixed arm trajectory. Hand fingers/thumb3/4 coupled. No independent26-arm/48-hand-DOF sampling.',uncovered=['continuous interpolation between admitted goals','independent hand joints beyond three latent controls','26-dimensional joint-state volume','Cartesian reachability/occupancy volume','all6 arm-pair collision interactions','loaded dual-hand grasp/carry/place/release','perception and calibration perturbations','dynamic System0 arm action projection','real-robot safety'],minimum_arm_span_fraction=min(x['marginal_span_fraction'] for v in spans.values() for x in v),maximum_arm_span_fraction=max(x['marginal_span_fraction'] for v in spans.values() for x in v),global_workspace_coverage_proven=False)
+(p/'COVERAGE_FINAL_REPORT.json').write_text(json.dumps(out,indent=2)+'\n');print('REFERENCES',len(set(refs)),'JOINTS',sum(len(v) for v in spans.values()),'MIN_MAX_MARGINAL_SPAN',out['minimum_arm_span_fraction'],out['maximum_arm_span_fraction'])

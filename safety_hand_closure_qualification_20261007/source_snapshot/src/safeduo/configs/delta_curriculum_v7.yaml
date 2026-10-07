@@ -1,0 +1,48 @@
+# v7 curriculum (R15 recipe, forked from delta_curriculum_v62.yaml,
+# 2026-08-20). Changes vs v62, all driven by the UR5 v7 scene:
+#   - geometry: v7 -> ConflictMixSource uses EnvEEBackendV7 (URDF UR5 chain)
+#     and make_roam_mapper_v7 boxes (S4 calibration, practical reach 0.80).
+#   - skills.dir -> artifacts/skill_trajs_v7 (13 families re-recorded for
+#     UR5 kinematics, S5).
+#   - l1_params/ee_speed_default -> V7_ROAM_PROFILE (S4 server sweep: the v5
+#     wild profile's 0.8-2.0s segments never finish v7's ~0.3m transits;
+#     2-5s segments + ee_speed 0.45 give 24-33%/arm 30s in-band dwell).
+# Amplitude schedule unchanged from v62 (0.03 warmup quarter -> 0.06 cap;
+# 0.08 stays a separate challenge job).
+schema_version: 2
+
+geometry: v7
+
+mix:
+  l1: 0.4
+  l2: 0.4
+scenarios:
+  head_on_crossing: 3.0
+  center_grab: 1.5
+  handover_approach: 1.0
+  table_slam: 1.0
+  sweep_across: 1.0
+  chase: 1.5
+  freeze_one: 1.0
+  latency_spike: 0.5
+skills:
+  dir: artifacts/skill_trajs_v7
+  tier: 1
+  weight: 0.2
+  loop: true
+
+l1_mapper: workspace
+
+amp_stages:
+  - {until_frac: 0.25, amp_max: 0.03}
+  - {until_frac: 1.00, amp_max: 0.06}
+
+split: train
+n_variants: 100
+l1_params:
+  pause_prob: 0.0
+  seg_dur: [2.0, 5.0]
+  ou_sigma: 0.02
+  ou_mix: 0.2
+ee_speed_default: 0.45
+stages: null

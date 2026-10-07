@@ -1,0 +1,16 @@
+# R34-A frame-assembly recording env (2026-09-07, design line): beams on the F side, the kinematic
+# frame_base_fixture on the U table, one connector cube on the lane. For the beam_seat / sleeve_insert
+# / profile_handover families (task design in assets_src/tasks/r34/r34_assets.yaml `tasks:`).
+#   F arms cannot reach the U table (reach ~0.85 m from x=+0.70), so the fixture is served by the U
+#   arms after a handover / relay across the seam; fixture plate x in [-0.50, -0.30], seats at
+#   (-0.44, -+0.12, rest z 0.948), sleeve axis along x at z 0.91 opening towards +x.
+#   No U cubes here (the plate would overlap the rod_pick cube stations).
+extends: duo_env_v7_r18_objects_r27r16.yaml
+
+assets:
+  object_catalog: object_catalog_r34_industrial.yaml
+  table_objects:
+    - {name: beam_l, catalog: profile_4080_L300, pos: [0.53, -0.35, 0.84], mass: 0.39, static_friction: 0.35, dynamic_friction: 0.30}
+    - {name: beam_r, catalog: profile_4080_L300, pos: [0.53, 0.35, 0.84], mass: 0.39, static_friction: 0.35, dynamic_friction: 0.30}
+    - {name: frame_base, catalog: frame_base_fixture, pos: [-0.40, 0.0, 0.80], static_friction: 0.5, dynamic_friction: 0.42}
+    - {name: conn_a, catalog: conn_cube_4040, pos: [0.10, -0.25, 0.82], static_friction: 0.45, dynamic_friction: 0.38}
