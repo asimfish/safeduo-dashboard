@@ -1,0 +1,225 @@
+{
+  "status": "DIAGNOSED_SELF_CONTACT_AND_QUALIFIED_STATIC_OPENING_TARGET_ONLY",
+  "display_paragraphs": [
+    "已定位U手旧开放目标的自碰约束：原生伙伴矩阵明确记录thumb_2与合并手基座wrist_3_link碰撞；关闭自碰的诊断对照使角度偏差与接触力归零。",
+    "保留自碰，把U侧拇指第一关节开放目标设为0.35rad后，静态开放验收由原目标0/4变为4/4；验收窗目标误差最大0.000005rad，伙伴法向最大0.000000N。四个任务相位只有3个不同四臂参考构型，不能当成四个独立姿态覆盖。",
+    "U物体终点约31.0%由台面、68.8%由NIST夹具承重。完整法向归因通过静态重量核验；真实抓持、启动瞬态、动态摩擦与System0任务安全仍未验证。",
+    "整段仍有反例：修正组在物理时间0.008333秒测到22860.75N的最大伙伴法向瞬态。初始化仍沿用旧手角，静态开度通过不代表启动或完整任务安全；候选尚未部署到原任务。"
+  ],
+  "observed": "Zero hand position target is natively inside limits, but U thumb1 settles beyond old0.2rad opening gate without payload.",
+  "mechanism": "Native hand partner matrix identifies thumb2 contacting wrist3 merged hand base. U default-zero target drives against this self contact; self-collision-off removes both contact and tracking residual, while a positive neutral thumb1 reference removes it with self collision preserved.",
+  "scope": "These USD roots, gains, seeds and three distinct four-arm reference configurations sampled at four task phases. No task replay qualification.",
+  "hypotheses": {
+    "native_limit_or_joint_order": "REJECTED: limits/default native readback valid, cache/getter agree",
+    "wrong_driver_target": "REJECTED: native target zero",
+    "self_contact": "SUPPORTED_BY_NATIVE_NAMED_PAIR_AND_TWO_COUNTERFACTUALS",
+    "gravity_or_external_only": "REJECTED_AS_SOLE_CAUSE_BY_SELF_OFF_COUNTERFACTUAL_WITH_OTHER_PARAMETERS_FIXED"
+  },
+  "opening": {
+    "criteria": {
+      "window_s": [
+        9.0,
+        11.999
+      ],
+      "max_error_to_proposed_open_rad": 0.02,
+      "max_each_body_net_n": 0.1,
+      "max_each_pair_normal_n": 0.1,
+      "net_filter_reconstruction_max_abs_n": 0.001,
+      "closed_excursion_min_rad": 0.2,
+      "require_native_limits": true
+    },
+    "candidate_accepted": 4,
+    "candidate_cases": 4,
+    "baseline_accepted": 0,
+    "baseline_cases": 4,
+    "unique_joint_reference_configurations": 3,
+    "registered_phase_samples": 4,
+    "returned_open_max_error_rad": 5.1498413086159545e-06,
+    "returned_open_max_partner_normal_n": 0.0,
+    "original_contacts": [
+      {
+        "sensor": "/World/envs/env_0/U_L/left_thumb_2",
+        "partner": "/World/envs/env_0/U_L/wrist_3_link",
+        "max_normal_n": 493.4839172363281
+      },
+      {
+        "sensor": "/World/envs/env_0/U_L/wrist_3_link",
+        "partner": "/World/envs/env_0/U_L/left_thumb_2",
+        "max_normal_n": 493.4839172363281
+      },
+      {
+        "sensor": "/World/envs/env_0/U_R/right_thumb_2",
+        "partner": "/World/envs/env_0/U_R/wrist_3_link",
+        "max_normal_n": 541.7723388671875
+      },
+      {
+        "sensor": "/World/envs/env_0/U_R/wrist_3_link",
+        "partner": "/World/envs/env_0/U_R/right_thumb_2",
+        "max_normal_n": 541.7723388671875
+      },
+      {
+        "sensor": "/World/envs/env_2/U_L/left_thumb_2",
+        "partner": "/World/envs/env_2/U_L/wrist_3_link",
+        "max_normal_n": 504.7917785644531
+      },
+      {
+        "sensor": "/World/envs/env_2/U_L/wrist_3_link",
+        "partner": "/World/envs/env_2/U_L/left_thumb_2",
+        "max_normal_n": 504.7917785644531
+      },
+      {
+        "sensor": "/World/envs/env_2/U_R/right_thumb_2",
+        "partner": "/World/envs/env_2/U_R/wrist_3_link",
+        "max_normal_n": 556.3090209960938
+      },
+      {
+        "sensor": "/World/envs/env_2/U_R/wrist_3_link",
+        "partner": "/World/envs/env_2/U_R/right_thumb_2",
+        "max_normal_n": 556.3090209960938
+      },
+      {
+        "sensor": "/World/envs/env_4/U_L/left_thumb_2",
+        "partner": "/World/envs/env_4/U_L/wrist_3_link",
+        "max_normal_n": 495.6571960449219
+      },
+      {
+        "sensor": "/World/envs/env_4/U_L/wrist_3_link",
+        "partner": "/World/envs/env_4/U_L/left_thumb_2",
+        "max_normal_n": 495.6571960449219
+      },
+      {
+        "sensor": "/World/envs/env_4/U_R/right_thumb_2",
+        "partner": "/World/envs/env_4/U_R/wrist_3_link",
+        "max_normal_n": 554.899169921875
+      },
+      {
+        "sensor": "/World/envs/env_4/U_R/wrist_3_link",
+        "partner": "/World/envs/env_4/U_R/right_thumb_2",
+        "max_normal_n": 554.899169921875
+      },
+      {
+        "sensor": "/World/envs/env_6/U_L/left_thumb_2",
+        "partner": "/World/envs/env_6/U_L/wrist_3_link",
+        "max_normal_n": 512.557373046875
+      },
+      {
+        "sensor": "/World/envs/env_6/U_L/wrist_3_link",
+        "partner": "/World/envs/env_6/U_L/left_thumb_2",
+        "max_normal_n": 512.557373046875
+      },
+      {
+        "sensor": "/World/envs/env_6/U_R/right_thumb_2",
+        "partner": "/World/envs/env_6/U_R/wrist_3_link",
+        "max_normal_n": 564.7626953125
+      },
+      {
+        "sensor": "/World/envs/env_6/U_R/wrist_3_link",
+        "partner": "/World/envs/env_6/U_R/right_thumb_2",
+        "max_normal_n": 564.7626953125
+      }
+    ],
+    "candidate_max_partner_force_over_entire_run_n": {
+      "e1:U_L:hand_partner_normal": 13513.9990234375,
+      "e1:U_R:hand_partner_normal": 22212.4453125,
+      "e3:U_L:hand_partner_normal": 16046.2158203125,
+      "e3:U_R:hand_partner_normal": 22860.748046875,
+      "e5:U_L:hand_partner_normal": 15129.09375,
+      "e5:U_R:hand_partner_normal": 22685.3671875,
+      "e7:U_L:hand_partner_normal": 15129.2314453125,
+      "e7:U_R:hand_partner_normal": 22719.224609375
+    },
+    "warning": "Acceptance is9-12s static opening only. Initialization uses old joint angle and transient contact is preserved; do not claim whole-run no self collision.",
+    "whole_run_contact_peak_identities": {
+      "e1:U_L:hand_partner_normal": {
+        "normal_n": 13513.9990234375,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_1/U_L/left_thumb_2",
+        "partner": "/World/envs/env_1/U_L/wrist_3_link"
+      },
+      "e1:U_R:hand_partner_normal": {
+        "normal_n": 22212.4453125,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_1/U_R/right_thumb_2",
+        "partner": "/World/envs/env_1/U_R/wrist_3_link"
+      },
+      "e3:U_L:hand_partner_normal": {
+        "normal_n": 16046.2158203125,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_3/U_L/left_thumb_2",
+        "partner": "/World/envs/env_3/U_L/wrist_3_link"
+      },
+      "e3:U_R:hand_partner_normal": {
+        "normal_n": 22860.748046875,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_3/U_R/right_thumb_2",
+        "partner": "/World/envs/env_3/U_R/wrist_3_link"
+      },
+      "e5:U_L:hand_partner_normal": {
+        "normal_n": 15129.09375,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_5/U_L/left_thumb_2",
+        "partner": "/World/envs/env_5/U_L/wrist_3_link"
+      },
+      "e5:U_R:hand_partner_normal": {
+        "normal_n": 22685.3671875,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_5/U_R/right_thumb_2",
+        "partner": "/World/envs/env_5/U_R/wrist_3_link"
+      },
+      "e7:U_L:hand_partner_normal": {
+        "normal_n": 15129.2314453125,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_7/U_L/left_thumb_2",
+        "partner": "/World/envs/env_7/U_L/wrist_3_link"
+      },
+      "e7:U_R:hand_partner_normal": {
+        "normal_n": 22719.224609375,
+        "step": 0,
+        "state_time_s": 0.008333,
+        "sensor": "/World/envs/env_7/U_R/right_thumb_2",
+        "partner": "/World/envs/env_7/U_R/wrist_3_link"
+      }
+    },
+    "whole_run_largest_peak": {
+      "normal_n": 22860.748046875,
+      "step": 0,
+      "state_time_s": 0.008333,
+      "sensor": "/World/envs/env_3/U_R/right_thumb_2",
+      "partner": "/World/envs/env_3/U_R/wrist_3_link"
+    }
+  },
+  "support": {
+    "table_weight_fraction": 0.3103745958176003,
+    "nist_board_weight_fraction": 0.6882142966685214,
+    "full_normal_accounting": {
+      "full_normal_contact_accounting_qualified": true,
+      "static_support_weight_qualified": true,
+      "normal_reconstruction_max_abs_n": 1.52587890625e-05,
+      "net_minus_filtered_normal_max_abs_n": 0.0,
+      "net_minus_filtered_normal_and_friction_max_abs_n": 6.469805717468262,
+      "max_normal_count": 8,
+      "max_friction_count": 4,
+      "capacity": 4096,
+      "collision_shapes": 193,
+      "instance_proxy_collision_shapes": 21,
+      "partner_count_env0": 90,
+      "verified_images": 54,
+      "native_render_checks": 3
+    },
+    "net_contact_equals_normal_sum_only_in_this_record": true
+  },
+  "action": "Qualified a proposed opening reference in isolated native diagnostics; did not deploy to the existing task guard or change old score thresholds.",
+  "new_static_environments": 20,
+  "new_environment_states": 28800,
+  "new_task_trials": 0,
+  "new_final_trials": 0,
+  "original_images": 180,
+  "next": "Bind calibrated reference to native identities; qualify collision-free initialization/aperture and true grip, then use full support feedback before registered task comparisons."
+}
