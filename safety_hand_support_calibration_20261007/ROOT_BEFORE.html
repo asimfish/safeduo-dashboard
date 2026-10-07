@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeDuo 计划面板</title>
+<style>
+  :root { color-scheme: light; --blue:#2563eb; --green:#059669; --amber:#d97706; --red:#dc2626; --muted:#64748b; --line:#e2e6ea; --purple:#7c3aed; --bg:#f6f7f9; }
+  * { box-sizing: border-box; }
+  body { margin:0; color:#1a1a2e; background:var(--bg); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.5; }
+  header.top { position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid var(--line); }
+  .topin { max-width:1440px; margin:0 auto; padding:10px 18px 0; }
+  .brand { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+  .brand h1 { font-size:20px; margin:0 0 6px; }
+  .brand .meta { font-size:12px; color:var(--muted); }
+  nav.tabs { display:flex; gap:2px; flex-wrap:wrap; }
+  nav.tabs a { padding:8px 14px; border-radius:6px 6px 0 0; color:#334155; text-decoration:none; font-size:14px; border:1px solid transparent; border-bottom:none; }
+  nav.tabs a.active { background:var(--bg); border-color:var(--line); color:var(--blue); font-weight:600; }
+  main { max-width:1440px; margin:0 auto; padding:18px 18px 48px; }
+  section.tab { display:none; } section.tab.active { display:block; }
+  h2 { margin:22px 0 8px; font-size:16px; color:#1e293b; padding-left:10px; border-left:4px solid var(--blue); }
+  h3 { margin:14px 0 6px; font-size:14px; color:#334155; }
+  .small,.meta { color:var(--muted); font-size:12px; }
+  .grid { display:grid; gap:12px; } .g2 { grid-template-columns:repeat(2,1fr); } .g3 { grid-template-columns:repeat(3,1fr); } .g4 { grid-template-columns:repeat(4,1fr); } .g6 { grid-template-columns:repeat(6,1fr); }
+  @media (max-width:1100px) { .g3,.g4,.g6 { grid-template-columns:repeat(2,1fr); } .g2 { grid-template-columns:1fr; } }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .card .t { font-weight:700; font-size:13px; color:#1e293b; margin-bottom:4px; }
+  .card .pct { font-size:22px; font-weight:700; margin:2px 0; }
+  .bar { height:7px; background:#e5e7eb; border-radius:4px; overflow:hidden; margin:3px 0 6px; } .bar > i { display:block; height:100%; background:var(--blue); }
+  .pill { display:inline-block; padding:1px 8px; border-radius:10px; font-size:11px; font-weight:600; color:#fff; white-space:nowrap; vertical-align:middle; }
+  .pill.done { background:var(--green); } .pill.run,.pill.training { background:var(--blue); } .pill.verifying,.pill.wait { background:var(--amber); } .pill.negative { background:var(--red); } .pill.planned,.pill.idle { background:var(--muted); } .pill.open { background:var(--purple); }
+  .table-wrap { overflow-x:auto; border:1px solid var(--line); background:#fff; border-radius:8px; margin-bottom:8px; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  th { padding:6px 8px; color:#fff; background:#1e293b; text-align:left; white-space:nowrap; position:sticky; top:0; }
+  td { padding:5px 8px; border-top:1px solid #eef0f3; vertical-align:top; }
+  tr:hover td { background:#f8fafc; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .ok { color:var(--green); font-weight:600; } .bad { color:var(--red); font-weight:600; } .warn { color:var(--amber); font-weight:600; }
+  .mbar { display:inline-block; width:84px; height:9px; background:#e5e7eb; border-radius:3px; vertical-align:middle; overflow:hidden; margin-right:5px; } .mbar > i { display:block; height:100%; background:#94a3b8; } .mbar.hot > i { background:var(--blue); } .mbar.util > i { background:var(--green); }
+  .tag { display:inline-block; padding:0 6px; border-radius:3px; font-size:11px; margin:1px 3px 1px 0; background:#e2e8f0; color:#334155; white-space:nowrap; }
+  .tag.safeduo { background:#dbeafe; color:#1e40af; font-weight:600; } .tag.chembench,.tag.other { background:#f3e8ff; color:#5b21b6; }
+  td.tags { min-width:280px; }
+  .vgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; } @media (max-width:1100px) { .vgrid { grid-template-columns:repeat(2,1fr); } }
+  .vcard { background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .vcard video { width:100%; aspect-ratio:16/9; background:#0b1020; display:block; }
+  .vcard .b { padding:8px 10px; font-size:12px; } .vcard .b b { display:block; font-size:12.5px; color:#1e293b; word-break:break-all; }
+  .gcard { background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .gcard img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:#e5e7eb; }
+  .gcard .b { padding:8px 10px; font-size:12px; } .gcard .b b { display:block; font-size:13px; color:#1e293b; margin-bottom:2px; }
+  ul.q { margin:6px 0; padding-left:20px; font-size:13px; } ul.q li { margin:3px 0; }
+  code { background:#eef1f5; padding:1px 4px; border-radius:3px; font-size:12px; }
+  .stale { color:var(--red); }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; margin:8px 0; font-size:12px; align-items:center; }
+  .chip { padding:2px 10px; border:1px solid var(--line); border-radius:12px; background:#fff; cursor:pointer; color:#334155; } .chip.on { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .northstar { background:#fff; border:1px solid var(--line); border-left:4px solid var(--purple); border-radius:8px; padding:10px 12px; font-size:13.5px; margin:10px 0; }
+  .decision { background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin:8px 0; font-size:13px; }
+  .decision b.tp { color:#1e293b; } .decision .rec { color:var(--green); font-weight:600; }
+  details.st summary { cursor:pointer; color:#334155; }
+  .filters { font-size:12px; color:#334155; margin:6px 0; display:flex; gap:14px; flex-wrap:wrap; align-items:center; } .filters label { cursor:pointer; }
+  .line { background:#fff; border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13px; } .line b { color:#1e293b; }
+  .btn { display:inline-block; padding:4px 12px; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-size:12px; color:#334155; }
+  .sci-card { border-top:4px solid var(--muted); } .sci-card.safe { border-top-color:var(--green); } .sci-card.warn { border-top-color:var(--amber); } .sci-card.bad { border-top-color:var(--red); }
+  .sci-card .rate { font-size:24px; font-weight:750; margin:2px 0; } .sci-card .sub { color:var(--muted); font-size:12px; }
+  .sci-note { background:#fff7ed; border:1px solid #fed7aa; color:#7c2d12; border-radius:8px; padding:9px 12px; font-size:13px; }
+  .sci-links a { margin-right:12px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <div class="brand"><h1>SafeDuo 计划面板</h1><span class="meta">内容 <span id="upd-status">-</span> · 服务器 <span id="upd-runs">-</span> · 视频 <span id="upd-media">-</span> · 60 秒自动刷新 <span id="stale" class="stale"></span></span></div>
+  <nav class="tabs">
+    <a href="#overview" data-tab="overview">总览</a><a href="#algorithm" data-tab="algorithm">算法</a><a href="#videos" data-tab="videos">视频</a><a href="#experiments" data-tab="experiments">实验</a><a href="#scientific" data-tab="scientific">科研评测</a><a href="#plan" data-tab="plan">计划</a><a href="#assets" data-tab="assets">任务与资产</a><a href="#records" data-tab="records">记录</a>
+    <a href="MASTER_REPORT.html" target="_blank" style="margin-left:auto">MASTER 活文档 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/REFERENCE_STUDY_20260907.md" target="_blank">参考深读 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/BENCHMARK_4ARM_ASSEMBLY.md" target="_blank">四臂 benchmark 笔记 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/LITERATURE_SAI_TRACE.md" target="_blank">SAI/TRACE ↗</a><a href="https://github.com/asimfish/safeduo-dashboard/blob/main/docs/R34_SCENE_ASSETS.md" target="_blank">R34 方案 ↗</a><a href="https://github.com/asimfish/safeduo-dashboard" target="_blank">仓库 ↗</a>
+  </nav>
+</div></header>
+<main>
+
+<!-- ============================ 总览 ============================ -->
+<section class="tab" id="tab-overview">
+  <div class="grid g4" style="margin-top:6px">
+    <div class="card"><div class="t">服务器（5090 + A100）</div><div id="ov-gpu" class="small">-</div></div>
+    <div class="card"><div class="t">在跑作业</div><div id="ov-jobs" class="small">-</div></div>
+    <div class="card"><div class="t">最新四门结果</div><div id="ov-gates" class="small">-</div></div>
+    <div class="card"><div class="t">最新科研评测</div><div id="ov-scientific" class="small">-</div></div>
+    <div class="card"><div class="t">待 owner 决策 <span id="ov-ndec" class="pill open">0</span></div><div id="ov-dec" class="small">-</div></div>
+  </div>
+  <h2>两条线现在在做什么</h2>
+  <div class="grid g2" id="ov-lines"></div>
+  <div class="small" id="ov-alg" style="margin:6px 0"></div>
+  <h2>今日焦点</h2>
+  <ul class="q" id="focus"></ul>
+  <h2>最新视频（全景机位优先） <span class="small">（<a href="#videos">全部 →</a>）</span></h2>
+  <p><a href="#videos">查看新增四臂风险对照：制动有效、恢复失败 →</a></p>
+  <div class="vgrid" id="ov-videos"></div>
+  <h2>最近判决</h2>
+  <div class="table-wrap"><table id="ov-verdicts"><thead><tr><th>日期</th><th>主题</th><th>判词</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- ============================ 算法 ============================ -->
+<section class="tab" id="tab-algorithm">
+  <div class="northstar" id="alg-oneliner" style="border-left-color:var(--blue)"></div>
+  <div class="meta" id="alg-version"></div>
+  <h2>算法框图</h2>
+  <div class="card" style="padding:8px"><a id="alg-diagram-link" href="#" target="_blank"><img id="alg-diagram" src="" alt="算法框图" style="width:100%;display:block"></a></div>
+  <div class="small" id="alg-diagram-note"></div>
+  <h2>问题建模（约束强化学习）</h2>
+  <div class="grid g2">
+    <div class="card"><div class="t">状态 / 观测</div><div class="small" id="alg-state"></div><div class="t" style="margin-top:8px">动作</div><div class="small" id="alg-action"></div><div class="t" style="margin-top:8px">奖励</div><div class="small" id="alg-reward"></div></div>
+    <div class="card"><div class="t">约束通道（代价上限由 PID 拉格朗日乘子自动满足）</div><div class="table-wrap" style="margin-top:6px"><table id="alg-cons"><thead><tr><th>通道</th><th>cost-scale</th><th>上限</th><th>λ 上限</th></tr></thead><tbody></tbody></table></div><div class="small" id="alg-why"></div></div>
+  </div>
+  <h2>组件与当前状态</h2>
+  <div class="table-wrap"><table id="alg-comp"><thead><tr><th>模块</th><th>做什么 / 关键数字</th><th>代码位置</th><th>自</th><th>状态</th></tr></thead><tbody></tbody></table></div>
+  <h2>当前训练配方 <span class="small" id="alg-run"></span></h2>
+  <div class="grid g2">
+    <div class="table-wrap"><table id="alg-args"><thead><tr><th>参数</th><th>值</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="t">谱系（为什么是这个配方）</div><div class="small" id="alg-lineage-note"></div><div class="table-wrap" style="margin-top:6px"><table id="alg-lineage"><thead><tr><th>版本</th><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div></div>
+  </div>
+  <h2>增量实验（SafeTransport 容量流 → SafeDuo）<span class="small" id="alg-inc-where"></span></h2>
+  <div class="grid g2">
+    <div class="card"><div class="t">五臂 + v2.2 臂（共同配置：<span id="alg-inc-common"></span>）</div><div class="table-wrap" style="margin-top:6px"><table id="alg-inc-arms"><thead><tr><th>臂</th><th>机制</th></tr></thead><tbody></tbody></table></div><div class="small" id="alg-inc-e56"></div></div>
+    <div class="card"><div class="t">诊断（为什么论文机制在这里不生效）</div><ol class="small" id="alg-inc-diag" style="padding-left:18px;margin:6px 0"></ol></div>
+  </div>
+  <div class="card" style="margin-top:10px"><div class="t" id="alg-inc-res-title">E0–E4 结果（配对四门）</div><div class="table-wrap" style="margin-top:6px"><table id="alg-inc-res"><thead></thead><tbody></tbody></table></div><div class="small" id="alg-inc-verdict" style="margin-top:6px"></div><div class="small" id="alg-inc-evidence"></div></div>
+  <div class="card" style="margin-top:10px"><div class="t">v2.2 修复 <span class="small" id="alg-inc-v22-commit"></span></div><ul class="small" id="alg-inc-v22" style="padding-left:18px;margin:6px 0"></ul><div class="small" id="alg-inc-v22-ab"></div><div class="small" id="alg-inc-v22-impl" style="margin-top:4px"></div></div>
+  <h2>参考设计对照（SAI / TRACE / TriPilot-FF → SafeDuo）</h2>
+  <div class="filters" id="rdfilters"><span>筛选：</span><label><input type="checkbox" data-st="planned" checked> 规划中</label><label><input type="checkbox" data-st="proposal" checked> 提案/建议</label><label><input type="checkbox" data-st="other" checked> 其它（定位/不采用）</label><span class="small" id="rdsum"></span></div>
+  <div class="table-wrap"><table id="alg-refs"><thead><tr><th>来源</th><th>他们的设计</th><th>我们的对应改动</th><th>状态</th><th>为什么值得</th></tr></thead><tbody></tbody></table></div>
+  <h2>算法设计变更日志</h2>
+  <div class="table-wrap"><table id="alg-changelog"><thead><tr><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- ============================ 视频 ============================ -->
+<section class="tab" id="tab-videos">
+<div id="camera-review-0918"><h2>相机与物体检查 · 09-18</h2>
+<p><b>同步四视角：全景、俯视、正视、侧视。</b>每路原始 1280×720，状态文字位于画面外。下方为闭合与抬升阶段的诊断片段（仿真 0–11 秒，半速播放），不代表完整任务通过。建议全屏观看。</p>
+<video style="width:100%;max-height:none" controls playsinline preload="metadata" poster="https://asimfish.github.io/safeduo-media/thumbs/camera_review_crossrow_grasp_20260918.jpg" src="https://asimfish.github.io/safeduo-media/videos/camera_review_crossrow_grasp_20260918.mp4"></video>
+<p><b>模型输入缺口已确认：</b>a31b System 0 不接收物体位姿、尺寸、速度或相机图像；任务物体不在机器人安全球模型中。四路相机仅用于观察，不能因此宣称模型具备物体感知。</p>
+<p>此片使用独立的简洁诊断场景：移除任务板、备用料箱、秤等附加道具，显示真实桌面；机器人、两根梁和输入轨迹保留。它不与下方旧场景指标混算。两根梁初始间隙约 55 cm，无初始物体重叠；新片逐物体轨迹显示最大抬升分别为 0 mm 和 0.35 mm：移除道具后仍未抓起，不能只归因于拥挤；抓取姿态、闭合和接触需继续修复。</p>
+<p><a href="docs/camera_object_audit_20260918.md">输入与场景检查记录</a> · <a href="https://asimfish.github.io/safeduo-media/videos/camera_review_crossrow_grasp_20260918.mp4">直接打开高清四视角视频</a></p></div>
+<div id="four-arm-random-new"><h2>新增四臂任务与随机测试 · 09-18</h2>
+<p><b>结果包含失败：当前不能宣称四臂协作完整成功，也不能宣称随机测试已安全通过。</b>下面四段为新增物理抓取录像。已有遇险制动对照在本节下方。</p>
+<h3>四臂共享空间汇聚取放</h3><p>两组均 0 违规，跨机器人臂最低余量均 +45.97 mm。主物体通过，但未作四物体完整验收；这组没有展示安全增益。</p><div class="grid g2"><article class="vcard"><video controls playsinline preload="none" aria-label="四臂共享空间汇聚取放 无安全过滤" src="https://asimfish.github.io/safeduo-media/videos/four_arm_converge_depth078_20260917_raw.mp4"></video><div class="b"><b>无安全过滤</b></div></article><article class="vcard"><video controls playsinline preload="none" aria-label="四臂共享空间汇聚取放 System 0 · a31b 离合门控" src="https://asimfish.github.io/safeduo-media/videos/four_arm_converge_depth078_20260917_s0.mp4"></video><div class="b"><b>System 0 · a31b 离合门控</b></div></article></div><h3>跨排配对共抬尝试</h3><p>两组均 0 违规，但主梁最大抬升为 0，物体未抓起。它是协同任务失败录像，不是成功共抬证明。</p><div class="grid g2"><article class="vcard"><video controls playsinline preload="none" aria-label="跨排配对共抬尝试 无安全过滤" src="https://asimfish.github.io/safeduo-media/videos/four_arm_crossrow_colift_pair_20260917_raw.mp4"></video><div class="b"><b>无安全过滤</b></div></article><article class="vcard"><video controls playsinline preload="none" aria-label="跨排配对共抬尝试 System 0 · a31b 离合门控" src="https://asimfish.github.io/safeduo-media/videos/four_arm_crossrow_colift_pair_20260917_s0.mp4"></video><div class="b"><b>System 0 · a31b 离合门控</b></div></article></div><h3>随机统计：离合门控 vs 连续模型输出</h3><p>seed 17；每流 128 环境 × 20 秒；幅度参数 0.03。l1_full 为随机目标、姿态和速度的全域漫游，含覆盖与风险带采样规则；不是独立均匀关节噪声。mixed 含 50% 脚本冲突，不能叫纯随机。</p>
+<div class="table-wrap"><table><thead><tr><th>输入流</th><th>离合门控：违规窗口</th><th>连续模型：违规窗口</th><th>违规率 CP95 单侧上界（门控 / 连续）</th></tr></thead><tbody><tr><td>l1_full</td><td>72/128</td><td>51/128</td><td>63.7% / 47.5%</td></tr><tr><td>mixed</td><td>41/128</td><td>35/128</td><td>39.5% / 34.6%</td></tr></tbody></table></div>
+<p><b>两流合计：门控 113/256（44.1%），连续模型 86/256（33.6%）。本轮没有显示门控更安全。</b>违规是安全球距离判据，不是物理碰撞力。类别包括 self_F / self_U 和桌面，详见原始 JSON。</p><p>theta off 仅关闭离合，仍运行模型和执行安全层，不能称作“无 System 0”对照。所有六个臂对都达到风险暴露条件的窗口数为 0；单种子短跑不足以证明可靠性。完整安全关闭的随机对照仍待补充。</p><p>视频按 30 fps 编码，仿真控制为 60 Hz，约半速播放；TASK SUCCESS 字幕只判主物体。</p><p><a href="docs/four_arm_random_20260918.json">四段录像原始指标及全部随机窗口统计</a></p></div>
+<div id="four-arm-conflict-actual"><h2>新实录：四臂共享空间遇险，制动有效但恢复失败 · 09-17</h2>
+<p>固定同一输入与 seed 42，在搬运途中给 U_L 第一关节加入可撤回的 +0.15 rad 指令扰动（仿真 9.8–14.8 秒），对比无门控与 a31b θ=0.5:0.2。两组均为真实物理夹持，无吸附；这是四臂共享空间取放，不是四手共持同一物体。</p>
+<p><b>结论：不能宣布完整协作成功。</b>门控消除了本次安全球跨臂越界，但 U_L 放置偏差约 29 cm；F_R 瓶子两组均未抓起。录像内的 TASK SUCCESS 仅判主物体，不能代表四物体任务成功。</p>
+<p><button type="button" onclick="playConflictPair(0)">从头同步播放</button> <button type="button" onclick="playConflictPair(19)">跳到风险前（仿真 9.5 秒）</button> <button type="button" onclick="document.querySelectorAll('#four-arm-conflict-actual video').forEach(v=>v.pause())">同时暂停</button></p>
+<div class="grid g2"><article class="vcard"><video id="conflict-raw" controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/four_arm_conflict_v2_20260916_raw.mp4"></video><div class="b"><b>无门控 · 真实物理抓取</b><p>跨臂违规 72 步；最低余量 −18.6 mm；逐物体检查 3/4。</p></div></article><article class="vcard"><video id="conflict-s0" controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/four_arm_conflict_v2_20260916_s0.mp4"></video><div class="b"><b>a31b 门控 · 相同输入</b><p>各类违规均为 0；cross 最低 +35.7 mm；逐物体检查 2/4。</p></div></article></div><p>看点：U_L 在仿真 11.53 秒锁定，到 22.28 秒才解锁，未能完成放置。视频以半速播放，字幕是仿真时间。−18.6 mm 是安全球余量，不等同于物理网格穿透深度。单种子诊断，不代表可靠性统计。</p><p><a href="docs/four_arm_conflict_20260917.json">原始指标、逐物体结果与锁定时序</a></p></div>
+
+<div id="four-arm-safety-review">
+<h2>旧版协同素材与证据边界</h2>
+<p><b>新增实录见上方；“四手真实物理协同 → 遇险 → 门控 → 恢复完成”的完整成功证据仍缺失。</b>下面是现有最相关素材，不能作为该能力已实现的证明。</p>
+<div class="vgrid"><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_relay_camC_v32.mp4" aria-label="四臂接力 · 无门控"></video><div class="b"><b>四臂接力 · 无门控</b><p>记录无跨臂违规，不能作为遇险演示。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_relay_s0_a27t50_r29_camC.mp4" aria-label="四臂接力 · a27 门控"></video><div class="b"><b>四臂接力 · a27 门控</b><p>记录无跨臂违规，不能作为遇险演示。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_fourlift_camC.mp4" aria-label="双臂共搬＋双臂取放 · 无门控"></video><div class="b"><b>双臂共搬＋双臂取放 · 无门控</b><p>存在桌面安全距离违规；跨臂违规为 0。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article><article class="vcard"><video controls playsinline preload="none" src="https://asimfish.github.io/safeduo-media/videos/r24_fourlift_s0_a27t50_r29_camC.mp4" aria-label="双臂共搬＋双臂取放 · a27 门控"></video><div class="b"><b>双臂共搬＋双臂取放 · a27 门控</b><p>存在桌面安全距离违规；跨臂违规为 0。</p><span class="small">旧版 R24 · 吸附式抓取（physics_grasp=false），不是真实物理夹持验证。</span></div></article></div>
+<p>接力是四臂依次交接；搬运是两臂共搬、另外两臂并行取放，都不是四手同时共持同一物体。搬运中的桌面距离违规也不等于四臂互撞。</p>
+<p><a href="docs/four_arm_video_evidence_20260914.json">对应录像的原始结果</a>。这些版本未确认为同配置配对，不据此计算安全改善率。</p>
+<p><b>待补的演示：</b>四臂共享交接区的真实物理任务，固定相同输入对比无门控与门控；标出冲突时刻、受影响臂、最小间距、门控动作和恢复结果。共享空间扰动对照已运行，结果见上方：制动有效，恢复失败。</p>
+</div>
+
+  <!-- a31b-curated-videos -->
+  <div id="a31b-video-review">
+    <h2>a31b 场景回顾 · 2026-09-12</h2>
+    <p>最新测试尚未通过验收。a31b 本轮未录制视频；下列七段为旧版参考，每张卡片另列本轮测试结果，画面不能代表 a31b 效果。试管上架暂无对应录像。</p>
+    <p><a href="docs/a31b_acceptance_20260913.md">完整验收与指标对照</a> · <a href="docs/a31b_acceptance_20260913.json">原始验收汇总</a></p>
+    <div class="vgrid"><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r35_colift12_s0_video.jpg" src="https://asimfish.github.io/safeduo-media/videos/r35_colift12_s0_video.mp4" aria-label="型材协同搬运旧版参考录像"></video><div class="b"><b>型材协同搬运</b><p>最新 a31b：通过 · 落点误差 1.6 mm</p><span class="small">旧版参考 · 2026-09-08 21:11 · r35_colift12_s0_video</span></div></article><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r35_pipe8_s0_video.jpg" src="https://asimfish.github.io/safeduo-media/videos/r35_pipe8_s0_video.mp4" aria-label="管件分拣旧版参考录像"></video><div class="b"><b>管件分拣</b><p>最新 a31b：通过 · 主物体落点误差 5.3 mm</p><span class="small">旧版参考 · 2026-09-08 16:16 · r35_pipe8_s0_video</span></div></article><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r35_carton25_s0_video.jpg" src="https://asimfish.github.io/safeduo-media/videos/r35_carton25_s0_video.mp4" aria-label="纸箱装载旧版参考录像"></video><div class="b"><b>纸箱装载</b><p>最新 a31b：待补证据 · 主任务成功，纸箱缺遥测</p><span class="small">旧版参考 · 2026-09-08 20:34 · r35_carton25_s0_video</span></div></article><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r34_reagent8_s0_camU.jpg" src="https://asimfish.github.io/safeduo-media/videos/r34_reagent8_s0_camU.mp4" aria-label="试剂取放旧版参考录像"></video><div class="b"><b>试剂取放</b><p>最新 a31b：通过 · 主物体落点误差 47.1 mm</p><span class="small">旧版参考 · 2026-09-07 02:49 · r34_reagent8_s0_camU</span></div></article><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r34_rr2_rack_s0_camX.jpg" src="https://asimfish.github.io/safeduo-media/videos/r34_rr2_rack_s0_camX.mp4" aria-label="架体协同搬运旧版参考录像"></video><div class="b"><b>架体协同搬运</b><p>最新 a31b：通过 · 落点误差 3.2 mm</p><span class="small">旧版参考 · 2026-09-07 05:45 · r34_rr2_rack_s0_camX</span></div></article><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r34_bin4_s0_camX.jpg" src="https://asimfish.github.io/safeduo-media/videos/r34_bin4_s0_camX.mp4" aria-label="收纳箱装载旧版参考录像"></video><div class="b"><b>收纳箱装载</b><p>最新 a31b：待复核 · 瓶子需按箱体相对坐标验收</p><span class="small">旧版参考 · 2026-09-07 15:50 · r34_bin4_s0_camX</span></div></article><article class="vcard"><div style="aspect-ratio:16/9;display:grid;place-items:center;background:#eef2f7">暂无对应录像</div><div class="b"><b>试管上架</b><p>最新 a31b：失败 · 距目标 92.7 mm，超过 20 mm 要求</p><span class="small">旧版参考 · 尚未收录</span></div></article><article class="vcard"><video controls playsinline preload="none" poster="https://asimfish.github.io/safeduo-media/thumbs/r34_rr2_relay_s0_camY.jpg" src="https://asimfish.github.io/safeduo-media/videos/r34_rr2_relay_s0_camY.mp4" aria-label="烧杯交接旧版参考录像"></video><div class="b"><b>烧杯交接</b><p>最新 a31b：失败 · 交接后移动距离为 0</p><span class="small">旧版参考 · 2026-09-07 05:45 · r34_rr2_relay_s0_camY</span></div></article></div>
+    <p class="small">每场景仅一次物理仿真回放，尚未证明重复性。纸箱缺遥测、装箱瓶子的坐标判据待复核，均不计验收通过。</p>
+  </div>
+  <h2>全部历史录像</h2>
+
+  <div class="meta" style="margin-top:6px">视频库 <a href="https://github.com/asimfish/safeduo-media" target="_blank">asimfish/safeduo-media</a>（远端 <code>~/Code/safeduo_media</code> 与录制器输出 <code>artifacts/viz/a8_v4demo</code> 自动同步、转码 ≤960 px）。点播放按需加载；文件名里 <code>s0</code> = 门控运行（具体策略以该次记录为准），<code>raw</code> = 无门控直通，<code>cam?</code> = 机位。</div>
+  <div class="chips" id="vchips"></div>
+  <div class="chips" id="vchips2"></div>
+  <div class="vgrid" id="videos"></div>
+  <div style="margin:12px 0"><span class="btn" id="vmore">显示更多</span> <span class="small" id="vcount"></span></div>
+</section>
+
+<!-- ============================ 实验 ============================ -->
+<section class="tab" id="tab-experiments">
+  <h2>服务器与算力（bjxy_5090 · 2×RTX 5090 ｜ tianyiyun-30109 · 8×A100-80G，环境在本地 NVMe + NFS）</h2>
+  <div id="servers"></div>
+  <div class="small">tmux：<span id="tmux"></span></div>
+  <h3>训练运行（stats.jsonl 末行）</h3>
+  <div class="table-wrap"><table id="runs"><thead><tr><th>run</th><th>iter</th><th>α_exec</th><th>α</th><th>cost cross/self/table</th><th>λ</th><th>hazard_rate</th><th>熵</th><th>ckpt</th><th>最近更新</th><th>状态</th></tr></thead><tbody></tbody></table></div>
+  <h3>四门评测目录（最近）</h3>
+  <ul class="q" id="gatedirs"></ul>
+  <h2>四门实验矩阵</h2>
+  <div class="meta" id="protocol"></div>
+  <h3>计划 vs 完成（plan.json ⨝ gates.json ⨝ runs.json）</h3>
+  <div class="meta" id="msum"></div>
+  <div class="table-wrap"><table id="matrix"><thead><tr><th>策略</th><th>执行栈</th><th>θ</th><th>目的</th><th>目标</th><th>状态</th><th>brake</th><th>viol-free</th><th>min cross</th><th>no-dl(hys)</th><th>done h/m</th><th>误刹(arm)</th><th>fidelity</th><th>硬门</th><th>日期</th></tr></thead><tbody></tbody></table></div>
+  <h3>全部四门 cell（自动生成，数字不可手改）</h3>
+  <div class="filters"><label><input type="checkbox" id="fullonly" checked> 只看完整四门</label><label><input type="checkbox" id="recentonly" checked> 只看 a25 及之后</label><span class="small" id="gsum"></span></div>
+  <div class="table-wrap"><table id="gates"><thead><tr><th>日期</th><th>策略</th><th>执行栈</th><th>栈标签</th><th>θ</th><th>brake</th><th>viol-free cross/any</th><th>min cross mm</th><th>cmd-stop p50/p95</th><th>no-dl(hys)</th><th>done hys/man</th><th>误刹 arm/any</th><th>fidelity</th><th>衰减</th><th>硬门</th><th>grid</th></tr></thead><tbody></tbody></table></div>
+  <div class="small">硬门 = brake 1.0 ∧ viol-free(cross) 1.0 ∧ no-deadlock(hys) 1.0（R28 口径）；fidelity 越高越好；误刹越低越好。执行栈：r18 = 死腕（有效 5 DOF）旧栈；stack = R29+R30b；fix = 活腕 armature + F 重力补偿；fix2 = 双臂重力补偿；bl = backlog-aware；la/la06 = lookahead 0.15/0.06 s。</div>
+</section>
+
+<!-- ============================ 科研评测 ============================ -->
+<section class="tab" id="tab-scientific">
+  <div class="northstar" id="scientific-summary" style="border-left-color:var(--red)"></div>
+  <div class="small" id="scientific-updated"></div>
+<section class="sci-note" id="releaseFeedbackEvidence"><h2>最新物体任务：静止释放与退离反馈</h2><p>24条完整开发任务，4布局×三条件×两种子并轮换槽位。原计划 原门槛2/8，合格完成2/8，中止0/8；静止释放 原门槛2/8，合格完成2/8，中止0/8；退离反馈 原门槛0/8，合格完成0/8，中止8/8。原安全球指标不等同物体夹持安全；候选尚未通过全面准入。</p><p>新增实际连续录像3段，全部24案例的360张三视角原图、完整接触及物体曲线可查。原门槛不变，中止与实际运动量单独列出；四臂各成对搬两件物体，尚未测试四臂共持或扩大随机范围。</p><p><a href="docs/safety_release_feedback_20261006/">查看三组实际录像、全部任务与安全失败证据 →</a></p><p>静止释放组的2条原判据通过只在后续退离时抬升U物体，搬运阶段双手抬升为0，不能计作真实夹持成功；反馈组8/8超时，拒绝采用。</p></section>
+<section class="sci-note" id="objectBindingEvidence"><h2>真实四臂物体任务：输入绑定与夹持诊断</h2><p>新增8个原生物理开发对照，132张同次执行俯视/正视/侧视实图。固定轨迹通过1/4，物体位姿绑定通过1/4；两方案共6/8失败，原门槛通过也未证明稳定双手抓持；未通过全面安全准入。</p><p>旧128个开发样本逐步复核：U物体抬升时双手接触约33%，F约96%。原19/192任务结果及FAIL_UNCALIBRATED保留；没有新增正式留出或广域覆盖宣称。</p><p><a href="docs/safety_object_binding_20261006/">查看全部8案例、接触曲线、原图与诊断证据 →</a></p></section>
+<section class="sci-note" id="benchmarkProtocolEvidence"><h2>完整实验协议与充分性审计</h2><p>已完成768个封存窗口、26个关节与全部325种关节对的覆盖审计；正式矩阵物理试验尚未执行；原生接触基础校准已完成。六类随机、八类物体任务、六类鲁棒性实验均列入矩阵，正式输入仍待准入与统计功效登记。</p><p>目前仍不充分：旧物体任务19/192通过，接触测量校准未过；几何事件、运动范围和任务成功分开报告。</p><p><a href="docs/safety_benchmark_protocol_20261006/">打开规范协议、完整图表、实验矩阵与证据缺口 →</a></p></section>
+  <section class="sci-note" id="queueEnvelopeEvidence"><h2>新增：队列预测机制与随机留出</h2><p>三组新随机输入完整对照，384窗口 / 192对：违例120/192 → 40/192；救回82个窗口，新增2个桌面失败。候选仍有38个桌面、2个U自碰失败，安全准入未通过。</p><p><a href="docs/safety_mechanism_20261005_causal_obs/">打开完整机制面板：全部配对曲线、反例与84张七视角实图 →</a></p><p class="small">最新相机图像绑定PhysX原生状态、实际节点位姿与内参；来自独立开发重放，跨运行轨迹exact FAIL。候选采用积压目标的预测约束准入；原面板的固定积压幅值四方法对照独立统计。稳定初态库复用不计新空间覆盖；原搬运19/192及旧结果保持原分母。</p></section>
+<section class="sci-note" id="jointGuardEvidence"><h2>最新：全新初态四方法配对实验</h2><p>192个全新初态与192段新随机输入，六类双臂风险各24个，另48个广域初态；注册768方法窗口，完成768，无效0。基线 / 预测准入 / 积压限制 / 组合的违规数：126 / 42 / 31 / 24。完整反例和暴露不足均保留，仍未批准硬件安全策略。</p><p><a href="docs/safety_joint_guard_20261005_1005/">打开四方法面板：全部曲线、新增失败、实际覆盖及378张九视角实图 →</a></p><p class="small">本轮全新初态与旧384个无完全重复；全量9021行预测留存，真实NaN停止边界0物理推进。渲染前后64环境的原生状态均已保存并离线核验。图像绑定独立重放状态；跨运行逐位比较结论在面板单列。旧预测准入、固定积压、搬运19/192和原科研JSON各用原分母。</p></section>
+<section class="sci-note" id="dynamicsPassiveEvidence"><h2>实际运动预测：持续随机动作与 IID 对照</h2><p>状态：完整结果已复算。完成 384/384 方法窗口；192条新随机指令，0个新初态。四种预测只作观察，不参与控制。</p><p>每条轨迹包含450步持续随机动作、450步逐步独立随机指令和60步零指令。历史校准平均误差下降，但存在较大尾部误差；不能当作安全保证。</p><p><a href="docs/safety_dynamics_prediction_20261006/">查看协议、误差、危险漏报与逐案例结果 →</a></p></section>
+<section class="sci-note" id="trackingReserveEvidence"><h2>最新完整实验：跟踪余量与零指令反例</h2><p>192个新初态×三条件，576窗口全部完成，无效0。严格违规：原参考 24/192；固定收紧 179/192；自适应 179/192。本轮候选增加失败，拒绝采用。</p><p>固定收紧与自适应的存档轨迹逐位相同；零指令前缀各30/192失败。486张实际九视角图像绑定各自状态，全部案例、随机覆盖、线性可行性及GPT‑6 Astra xhigh独立复算可查。物理安全尚未验证。</p><p><a href="docs/safety_tracking_reserve_20261006_1535/">打开完整结果、失败机制诊断与原始图像 →</a></p></section>
+<section class="sci-note" id="fifoPredictorEvidence"><h2>上一轮完整实验：FIFO 运动预测与随机对照</h2><p>192个新初态×四方法，768窗口完成，无效0。严格违规：原参考 21/192；速度 20/192；PD 20/192；联合 18/192。联合救回4个，新增失败1个。物理安全尚未验证。</p><p>实际九视角图像450张；全部案例、首次失败/FIFO、实际覆盖、预测漏报及GPT‑6 Astra xhigh独立复算可查。</p><p><a href="docs/safety_fifo_predictor_20261006_0630/">打开上一轮完整结果、逐案例曲线与图像 →</a></p></section>
+<section class="sci-note" id="feasibleGuardEvidence"><h2>上一轮完整实验：联合重求解与强度对照</h2><p>192个新初态×四方法，768窗口全部完成，无效0。严格几何违规 admission_full: 50/192；admission_scaled_036: 16/192；joint_reference: 25/192；joint_repair: 30/192。物理安全尚未验证；救回、新增失败和强度差异均保留。</p><p>实际九视角图像468张；完整首次失败状态、六步FIFO、覆盖范围及GPT‑6 Astra xhigh独立复算可查。</p><p><a href="docs/safety_feasible_guard_20261005_2100/">查看上一轮完整结果、逐案例曲线与图像 →</a></p></section>
+  <h2>最新安全 / 不安全效果</h2>
+  <div id="scientific-admission" style="display:none">
+    <h3>最新：完整速度提前入选与全新初态五方法对照</h3>
+    <div class="sci-note" id="scientific-admission-note"></div>
+    <p class="small" id="scientific-admission-protocol"></p>
+    <p class="small" id="scientific-admission-rule"></p>
+    <div class="table-wrap"><table id="scientific-admission-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>全16秒违规</th><th>超过5mm</th><th>cross / F / U / 桌面</th><th>压力期四臂同时动</th><th>输出 / 命令L2</th><th>目标积压P95</th><th>平均关节跨度 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-admission-bank"></p>
+    <details id="scientific-admission-speed"><summary>展开速度限制单独作用（补充配对对照）</summary>
+    <p class="small" id="scientific-admission-speed-note"></p>
+    <div class="table-wrap"><table id="scientific-admission-speed-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>违规</th><th>超过5mm</th><th>cross / F / U / 桌面</th><th>平均关节跨度</th><th>平均安全前缀 / 跨度</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-admission-speed-pairs"><thead><tr><th>种子 / 左→仅速度限制</th><th>左独有 / 仅限速独有失败</th><th>双方失败 / 双方通过</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">仅裁剪到原速度盒，关闭模型门控和全部安全投影；软目标限位、积分目标与六步FIFO保持。复用同一批初态和外部随机指令，0新增独立轨迹，不混入主960窗口分母。全程裁剪与目标积分由独立oracle核验；零残差占位不表示几何可行。</p>
+    </details>
+    <details id="scientific-admission-zero"><summary>展开16秒连续零指令对照（补充诊断）</summary>
+    <p class="small" id="scientific-admission-zero-note"></p>
+    <div class="table-wrap"><table id="scientific-admission-zero-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>违规</th><th>cross / F / U / 桌面</th><th>非零执行窗口</th><th>最大关节漂移</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">复用本轮初态、全960步零输入；0新增随机轨迹，不并入主压力分母，不据此重筛初态。保护器可主动退让，仍按原球距负值判失败。</p>
+    </details>
+    <h4>首次违规前的真实操作</h4>
+    <div class="table-wrap"><table id="scientific-admission-safe"><thead><tr><th>方法</th><th>平均安全前缀</th><th>前缀关节跨度</th><th>前缀关节路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">排除首次危险转移及碰撞后的运动；安全前缀长短不同，时间同时报告。完整16秒运动指标保留在上表。</p>
+    <details><summary>展开关节二维边际访问（50组统计）</summary>
+    <div class="table-wrap"><table id="scientific-admission-joint"><thead><tr><th>方法 / 臂组</th><th>关节对数</th><th>平均 / 最少 / 最多已访格（每对100格）</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">每方法325个关节对各10×10格，包含所有实际窗口和失败；超软限位样本不增加对应格。二维边际访问不能证明26维联合覆盖、可达体积或无碰撞空间。</p>
+    </details>
+    <h4>配对失败变化（同初态、同外部指令）</h4>
+    <div class="table-wrap"><table id="scientific-admission-inputs"><thead><tr><th>种子 / 左 / 右</th><th>左独有 / 右独有失败</th><th>双方失败 / 双方通过</th><th>66步实际q前缀一致</th><th>最大q差rad</th></tr></thead><tbody></tbody></table></div>
+    <h4>六组臂对配额与实际随机压力</h4>
+    <div class="table-wrap"><table id="scientific-admission-pair-results"><thead><tr><th>臂对 / 方法</th><th>完成 / 24</th><th>≥3帧80mm：全窗 / 随机目标到达后</th><th>违规</th><th>超过5mm</th></tr></thead><tbody></tbody></table></div>
+    <h4>全部帧的实测操作范围</h4>
+    <label class="small">选择分层与方法：<select id="scientific-admission-coverage-select" style="max-width:100%"></select></label>
+    <p class="small" id="scientific-admission-coverage-note"></p>
+    <div id="scientific-admission-heatmap"></div>
+    <div class="table-wrap"><table id="scientific-admission-ee"><thead><tr><th>臂</th><th>初态 / 实测10cm格</th><th>实测x / y / z范围（米）</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-admission-pairs"><thead><tr><th>六组臂对</th><th>≥3帧80mm / 总窗口</th><th>5mm内 / 重叠</th><th>末端接近 / 远离 / 切向帧</th></tr></thead><tbody></tbody></table></div>
+    <h4>五方法配对曲线与保护器放大视图：改善、仍失败与新增失败</h4>
+    <label class="small">选择轨迹（seed / env）：<select id="scientific-admission-select" style="max-width:100%"></select></label>
+    <div id="scientific-admission-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-admission-caption"></p>
+    <p class="small" id="scientific-admission-diagnostic"></p>
+    <div class="sci-note" id="scientific-admission-verdict"></div>
+  </div>
+  <div id="scientific-mechanism" style="display:none">
+    <h3>目标积压机制：独立留出安全 / 不安全效果</h3>
+    <div class="sci-note" id="scientific-mechanism-note"></div>
+    <p class="small" id="scientific-mechanism-protocol"></p>
+    <p class="small" id="scientific-mechanism-rule"></p>
+    <div class="table-wrap"><table id="scientific-mechanism-table"><thead><tr><th>方法</th><th>完成 / 192</th><th>全16秒违规</th><th>超过5mm</th><th>cross / F / U / 桌面</th><th>压力期四臂同时动</th><th>输出 / 命令L2</th><th>目标积压P95</th><th>平均关节跨度 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-mechanism-bank"></p>
+    <h4>配对失败变化（同初态、同外部指令）</h4>
+    <div class="table-wrap"><table id="scientific-mechanism-inputs"><thead><tr><th>种子 / 左 / 右</th><th>左独有 / 右独有失败</th><th>双方失败 / 双方通过</th><th>66步实际q前缀一致</th><th>最大q差rad</th></tr></thead><tbody></tbody></table></div>
+    <h4>六组臂对配额与实际随机压力</h4>
+    <div class="table-wrap"><table id="scientific-mechanism-pair-results"><thead><tr><th>臂对 / 方法</th><th>完成 / 24</th><th>≥3帧80mm：全窗 / 随机目标到达后</th><th>违规</th><th>超过5mm</th></tr></thead><tbody></tbody></table></div>
+    <h4>全部帧的实测操作范围</h4>
+    <label class="small">选择分层与方法：<select id="scientific-mechanism-coverage-select" style="max-width:100%"></select></label>
+    <p class="small" id="scientific-mechanism-coverage-note"></p>
+    <div id="scientific-mechanism-heatmap"></div>
+    <div class="table-wrap"><table id="scientific-mechanism-ee"><thead><tr><th>臂</th><th>初态 / 实测10cm格</th><th>实测x / y / z范围（米）</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-mechanism-pairs"><thead><tr><th>六组臂对</th><th>≥3帧80mm / 总窗口</th><th>5mm内 / 重叠</th><th>末端接近 / 远离 / 切向帧</th></tr></thead><tbody></tbody></table></div>
+    <h4>四方法配对曲线：改善、仍失败与新增失败</h4>
+    <label class="small">选择种子与臂对：<select id="scientific-mechanism-select" style="max-width:100%"></select></label>
+    <div id="scientific-mechanism-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-mechanism-caption"></p>
+    <p class="small" id="scientific-mechanism-diagnostic"></p>
+    <div class="sci-note" id="scientific-mechanism-verdict"></div>
+  </div>
+  <div id="scientific-risk" style="display:none">
+    <h3>六组臂对风险分层：稳定初态后的安全 / 不安全对照</h3>
+    <div class="sci-note" id="scientific-risk-note"></div>
+    <p class="small" id="scientific-risk-protocol"></p>
+    <div class="table-wrap"><table id="scientific-risk-table"><thead><tr><th>初态分层 / 方法</th><th>完成 / 计划</th><th>全部16秒违规</th><th>超过5mm</th><th>cross / self_F / self_U / 桌面</th><th>零输入前缀违规</th><th>随机目标到达前违规</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-risk-bank"></p>
+    <p class="small">初态和外部指令逐位一致。保护器也可能在零输入阶段产生避险动作，实际q前缀不必相同；下表单列首条随机目标到达前66步的观测差值。</p>
+    <div class="table-wrap"><table id="scientific-risk-inputs"><thead><tr><th>种子</th><th>初态 / 指令一致</th><th>66步q前缀一致</th><th>最大q差(rad)</th><th>raw单独 / 保护单独 / 双方失败</th></tr></thead><tbody></tbody></table></div>
+    <h3>逐臂对配额与实际风险暴露</h3>
+    <div class="table-wrap"><table id="scientific-risk-pair-results"><thead><tr><th>风险初态臂对 / 方法</th><th>完成 / 24</th><th>3帧80mm：全窗 / 随机目标到达后</th><th>官方违规</th><th>超过5mm</th></tr></thead><tbody></tbody></table></div>
+    <h3>初态与运动后的实测覆盖</h3>
+    <label class="small">选择分层：<select id="scientific-risk-coverage-select" style="max-width:100%"></select></label>
+    <p class="small" id="scientific-risk-coverage-note"></p>
+    <div id="scientific-risk-heatmap"></div>
+    <div class="table-wrap"><table id="scientific-risk-ee"><thead><tr><th>臂</th><th>初态 / 实测10cm格</th><th>实测x / y / z范围（米）</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-risk-pairs"><thead><tr><th>六组臂对</th><th>3帧80mm / 总窗口</th><th>5mm内 / 重叠</th><th>末端接近 / 远离 / 切向帧</th></tr></thead><tbody></tbody></table></div>
+    <h3>相同初态和随机指令的全部分层距离曲线</h3>
+    <label class="small">选择种子与臂对：<select id="scientific-risk-select" style="max-width:100%"></select></label>
+    <div id="scientific-risk-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-risk-caption"></p>
+    <h3>旧初态零输入诊断：无随机指令也会违规</h3>
+    <p class="small">独立192窗口；外部输入全零且实际目标恒定。前版amp=0参数被CLI拒绝，未运行的窗口不计入测试。零时钟刷新未改变几何读数。桌面豁免撤回与物理初态漂移的详细记录见报告。</p>
+    <div class="table-wrap"><table id="scientific-risk-zero"><thead><tr><th>旧初态种子</th><th>零输入违规</th><th>初态豁免桌面重叠</th><th>负余量豁免撤回</th><th>最大关节漂移</th></tr></thead><tbody></tbody></table></div>
+    <div class="sci-note" id="scientific-risk-verdict"></div>
+  </div>
+  <div id="scientific-random" style="display:none">
+    <h3>强随机四臂运动：扩大初态、方向、幅度与保持时间</h3>
+    <div class="sci-note" id="scientific-random-note"></div>
+    <p class="small" id="scientific-random-protocol"></p>
+    <div class="table-wrap"><table id="scientific-random-table"><thead><tr><th>随机来源 / 方法</th><th>完成 / 计划窗口</th><th>初态违规</th><th>初态无违规后的违规</th><th>深度超过5mm</th><th>无效 / 待完成</th><th>全窗口关节跨度 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-random-bank"></p>
+    <h3>实际覆盖：初态无违规的窗口</h3>
+    <label class="small">选择条件：<select id="scientific-random-coverage-select" style="max-width:100%"></select></label>
+    <p class="small" id="scientific-random-coverage-note"></p>
+    <div id="scientific-random-heatmap"></div>
+    <div class="table-wrap"><table id="scientific-random-ee"><thead><tr><th>臂</th><th>初态 / 实测10cm格</th><th>实测x / y / z范围（米）</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap"><table id="scientific-random-pairs"><thead><tr><th>六组臂对</th><th>3帧进入80mm / 总窗口</th><th>5mm内 / 重叠</th><th>末端接近 / 远离 / 切向帧</th></tr></thead><tbody></tbody></table></div>
+    <h3>同初态、同随机指令的实测距离</h3>
+    <label class="small">选择配对：<select id="scientific-random-select" style="max-width:100%"></select></label>
+    <div id="scientific-random-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-random-caption"></p>
+    <div class="sci-note" id="scientific-random-verdict"></div>
+  </div>
+  <div id="scientific-bounded" style="display:none">
+    <h3>限幅停止：独立进程配对诊断</h3>
+    <div class="sci-note" id="scientific-bounded-note"></div>
+    <p class="small" id="scientific-bounded-protocol"></p>
+    <div class="table-wrap"><table id="scientific-bounded-table"><thead><tr><th>条件 / 事后提前量</th><th>全环境重叠</th><th>干预环境重叠</th><th>未干预失败 / 新增失败</th><th>最小非豁免球距</th><th>实际输出增量 / 箱上限</th></tr></thead><tbody></tbody></table></div>
+    <h3>每条停止轨迹的响应</h3>
+    <div class="table-wrap"><table id="scientific-bounded-stops"><thead><tr><th>提前量 / 环境</th><th>干预前观测前缀</th><th>触发 / 首消息到达 / 固定目标全部到达</th><th>首消息到达前 / 后重叠</th><th>原目标偏差</th></tr></thead><tbody></tbody></table></div>
+    <label class="small">查看全部干预环境及未干预失败：<select id="scientific-bounded-select" style="max-width:100%"></select></label>
+    <div id="scientific-bounded-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-bounded-caption"></p>
+    <div class="sci-note" id="scientific-bounded-verdict"></div>
+  </div>
+  <div id="scientific-queue" style="display:none">
+    <h3>严格 FIFO：延迟对照与固定目标制动</h3>
+    <div class="sci-note" id="scientific-queue-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-queue-controls"><thead><tr><th>运行顺序 / 目标延迟</th><th>初态无违规窗口</th><th>发生违规</th><th>最小非豁免球距</th><th>实测关节范围 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <h3>停止响应诊断（事后触发，单独统计）</h3>
+    <p class="small" id="scientific-queue-diagnostic-note"></p>
+    <div class="table-wrap"><table id="scientific-queue-stops"><thead><tr><th>固定目标方式 / 环境</th><th>干预前可比性</th><th>触发 / 首条停止消息到达</th><th>到达前 / 到达后重叠</th><th>到达后200ms最大移动 / 逆目标超调</th></tr></thead><tbody></tbody></table></div>
+    <label class="small">查看延迟和制动曲线：<select id="scientific-queue-select" style="max-width:100%"></select></label>
+    <div id="scientific-queue-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-queue-caption"></p>
+    <div class="sci-note" id="scientific-queue-verdict"></div>
+  </div>
+  <h3>上一轮：冻结方案对照</h3>
+  <div class="grid g4" id="scientific-headline"></div>
+  <div id="scientific-forensics" style="display:none">
+    <h2>最新：临界约束保留与单因素复测</h2>
+    <div class="sci-note" id="scientific-forensics-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-forensics-table"><thead><tr><th>配置因素</th><th>原初态漫游 · 5s</th><th>±0.3rad / 100ms · 10s</th><th>临界行规则</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">均为固定学习权重的 System 0；actor 仍看原32行，新增约束只进入解析层。纯随机保持组核对初态与完整命令；漫游组是相同种子的状态反馈源，策略改变后命令可不同。</p>
+    <h3>未参与诊断的新种子检验</h3>
+    <div class="table-wrap"><table id="scientific-forensics-holdout"><thead><tr><th>seed / 初态 / 延迟</th><th>初态违规</th><th>无违规初态后的违规</th><th>实测关节范围 / 路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-forensics-coverage"></p>
+    <label class="small">查看逐帧证据：<select id="scientific-forensics-select" style="max-width:100%"></select></label>
+    <div id="scientific-forensics-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-forensics-caption"></p>
+    <div class="sci-note" id="scientific-forensics-verdict"></div>
+  </div>
+  <div id="scientific-perturbation" style="display:none">
+    <h2>新增：随机初态与执行端延迟</h2>
+    <div class="sci-note" id="scientific-perturbation-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-perturbation-table"><thead><tr><th>配置 / 方法</th><th>初态 / 延迟 / 保持</th><th>初态违规 / 全部</th><th>无违规初态后的违规</th><th>最小臂/手球距</th><th>实测关节范围</th><th>实测关节路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">初态逐关节均匀扰动；限位裁剪记录在报告中，没有按碰撞筛选初态。避碰结果只统计初态无违规子集。延迟在安全层之后发送到执行器，测量使用当前状态；不等于传感延迟。</p>
+    <label class="small">查看原失败条件的匹配重播：<select id="scientific-perturbation-select" style="max-width:100%"></select></label>
+    <div id="scientific-perturbation-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-perturbation-caption"></p>
+    <div class="sci-note" id="scientific-perturbation-verdict"></div>
+  </div>
+  <div id="scientific-robustness" style="display:none">
+    <h2>速度一致性修正与扩大随机覆盖</h2>
+    <div class="sci-note" id="scientific-robustness-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-robustness-table"><thead><tr><th>分布 / 方法</th><th>种子 / 时长 / 保持</th><th>违规 / 窗口</th><th>最小臂/手球距</th><th>平均关节范围</th><th>六配对暴露</th><th>安全层输出/指令</th></tr></thead><tbody></tbody></table></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-robustness-regression"><thead><tr><th>回归分组</th><th>条件</th><th>违规 / 窗口</th><th>最小臂/手球距</th><th>平均关节路径</th></tr></thead><tbody></tbody></table></div>
+    <p class="small" id="scientific-robustness-coverage"></p>
+    <p class="small">输出比例为 Σ‖安全层目标增量‖ / Σ‖输入指令‖；无保护路径仍可能被执行器限位裁剪。实际运动量取实测关节路径，输出比例不等于任务完成率。</p>
+    <label class="small">查看诊断与实测曲线：<select id="scientific-robustness-select"></select></label>
+    <div id="scientific-robustness-trace" style="margin-top:8px"></div>
+    <p class="small" id="scientific-robustness-caption"></p>
+    <div class="sci-note" id="scientific-robustness-negative"></div>
+  </div>
+  <div id="scientific-refinement" style="display:none">
+    <h2>延迟制动的历史复测</h2>
+    <div class="sci-note" id="scientific-refinement-note"></div>
+    <div class="table-wrap" style="margin-top:8px"><table id="scientific-refinement-table"><thead><tr><th>复测条件</th><th>原策略违规</th><th>改进策略违规</th><th>原 / 新臂/手最小球距</th><th>原 / 新实际运动量</th><th>原 / 新执行量比例</th></tr></thead><tbody></tbody></table></div>
+    <p class="small">距离取 cross/self_F/self_U，包含本臂手部与连杆，桌面另计非豁免违规。运动量为每 episode 平均关节路径，执行量比例为 Σ‖exec‖ / Σ‖cmd‖，不代表任务成功率。</p>
+    <label class="small">查看冻结失败场景：<select id="scientific-trace-select"></select></label>
+    <div id="scientific-trace" style="margin-top:8px"></div>
+    <p class="small">红线：原 System 0；绿线：改进 System 0；灰虚线：13 mm 同机器人制动边界。曲线为测量后的最小 self_F 球间距，低于 0 表示球层重叠。状态反馈源在两种策略下会产生不同后续命令。</p>
+  </div>
+  <div id="scientific-history-cards" style="display:none">
+    <h2>历史配置的安全结果</h2>
+    <div class="grid g4" id="scientific-historical-headline"></div>
+  </div>
+  <h2>协议与历史结果</h2>
+  <div class="sci-note" id="scientific-protocol"></div>
+  <div class="sci-note" id="scientific-coverage" style="margin-top:8px"></div>
+  <div class="table-wrap" style="margin-top:8px"><table id="scientific-main"><thead><tr><th>配置</th><th>轨迹</th><th>episode</th><th>违规</th><th>违规率</th><th>CP95 上界</th><th>六配对跨窗口暴露</th></tr></thead><tbody></tbody></table></div>
+  <h2>纯均匀随机消融</h2>
+  <p class="small">同一 seed / 幅度使用同一条可哈希命令 tape；raw 没有安全投影，backstop-only 与 System 0 逐条对照。</p>
+  <div class="table-wrap"><table id="scientific-ablation"><thead><tr><th>方法</th><th>amp=0.005</th><th>amp=0.015</th><th>总 episode</th><th>总违规</th><th>CP95 上界</th><th>解释</th></tr></thead><tbody></tbody></table></div>
+  <h2>四臂配对暴露</h2>
+  <div class="table-wrap"><table id="scientific-pairs"><thead><tr><th>配对</th><th>低速暴露 episode</th><th>标准暴露 episode</th><th>覆盖说明</th></tr></thead><tbody></tbody></table></div>
+  <h2>六臂对分层压力测试</h2>
+  <div class="sci-note" id="scientific-stratified-note"></div>
+  <div class="table-wrap"><table id="scientific-stratified"><thead><tr><th>方法</th><th>配对</th><th>尝试</th><th>进入 80 mm</th><th>进入 5 mm</th><th>违规</th><th>违规率</th></tr></thead><tbody></tbody></table></div>
+  <h2>证据与限制</h2>
+  <div class="sci-links" id="scientific-links"></div>
+  <ul class="q" id="scientific-limitations"></ul>
+</section>
+
+<!-- ============================ 计划 ============================ -->
+<section class="tab" id="tab-plan">
+  <div class="northstar" id="northstar"></div>
+  <div class="grid g6" id="goals"></div>
+  <div class="small" id="pctnote"></div>
+  <h2>工作队列（agent 按此干活）</h2>
+  <div class="table-wrap"><table id="queue"><thead><tr><th>#</th><th>目标</th><th>任务</th><th>状态</th><th>负责</th><th>预计</th><th>备注</th></tr></thead><tbody></tbody></table></div>
+  <h2>待 owner 决策</h2>
+  <div id="decisions"></div>
+  <h2>工作项路线图（MASTER §9 R 行 + 面板提案）</h2>
+  <div class="filters" id="rmfilters">
+    <span>筛选：</span>
+    <label><input type="checkbox" data-st="run" checked> 进行中</label>
+    <label><input type="checkbox" data-st="wait" checked> 待决/待续</label>
+    <label><input type="checkbox" data-st="planned" checked> 未开工/提案</label>
+    <label><input type="checkbox" data-st="negative" checked> 负结果</label>
+    <label><input type="checkbox" data-st="done"> 已完成</label>
+    <label><input type="checkbox" data-st="idle"> 搁置</label>
+    <span class="small" id="rmsum"></span>
+  </div>
+  <div class="table-wrap"><table id="roadmap"><thead><tr><th>ID</th><th>优先</th><th>目标</th><th>工作项</th><th>状态</th><th>进展（点开看全文）</th><th>验收标准</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- ============================ 任务与资产 ============================ -->
+<section class="tab" id="tab-assets">
+  <div class="meta" id="tasknote" style="margin-top:6px"></div>
+  <h2>已物理化的任务族（R26 / S9）</h2>
+  <div class="grid g4" id="gallery"></div>
+  <h2 id="r34title"></h2>
+  <div class="small" id="r34why"></div>
+  <h3>进展（两条线）</h3>
+  <div id="r34progress"></div>
+  <div class="grid g4" id="r34gallery"></div>
+  <h3>子族</h3>
+  <div class="table-wrap"><table id="r34sub"><thead><tr><th>子族</th><th>物体</th><th>任务</th><th>复用原语</th><th>验收</th><th>优先</th></tr></thead><tbody></tbody></table></div>
+  <h3>资产来源（优先级）</h3>
+  <div class="table-wrap"><table id="r34src"><thead><tr><th>来源</th><th>为什么</th><th>许可</th></tr></thead><tbody></tbody></table></div>
+  <h3>资产现状与硬约束</h3>
+  <div class="small" id="assets-summary"></div>
+  <ul class="q" id="assets-constraints"></ul>
+  <h3>流水线 / 待定问题</h3>
+  <ul class="q" id="r34pipe"></ul>
+  <ul class="q" id="r34open"></ul>
+</section>
+
+<!-- ============================ 记录 ============================ -->
+<section class="tab" id="tab-records">
+  <h2>判决记录</h2>
+  <div class="table-wrap"><table id="verdicts"><thead><tr><th>日期</th><th>主题</th><th>判词</th><th>证据</th></tr></thead><tbody></tbody></table></div>
+  <h2>文献启发</h2>
+  <div id="literature"></div>
+  <h2>变更日志</h2>
+  <div class="table-wrap"><table id="changelog"><thead><tr><th>时间</th><th>变更</th></tr></thead><tbody></tbody></table></div>
+  <h2>维护契约（人 + 多 agent）</h2>
+  <ul class="q">
+    <li><b>服务器快照</b>（<code>runs.json</code>）与<b>视频库</b>（<code>safeduo-media/index.json</code>）由 Mac 端 <code>update_dashboard.sh</code>（launchd，每 10 分钟）采集、转码、推送；Mac 休眠或服务器不可达时停更并标红。</li>
+    <li><b>四门矩阵</b>：<code>gates.json</code> 由 <code>build_gates.py</code> 从远端 <code>artifacts/clutch/*/cell_*.json</code> 自动生成，禁止手改数字；<b>新增实验先写进 <code>plan.json</code> 再发车</b>；<code>build_matrix.py</code> 合成计划 vs 完成。</li>
+    <li><b>内容快照</b>（<code>status.json</code>：两条线动态、目标、焦点、决策、判决、队列、文献、日志；<code>roadmap.json</code>；<code>tasks.json</code>）由 agent 在里程碑手工更新；每条判决必须带证据路径，与 <code>safeduo/paper/MASTER_REPORT.html</code>（活文档，实验线维护）一致。面板不替代 MASTER，只做索引与看板。</li>
+    <li><b>算法设计</b>（<code>algorithm.json</code> + <code>diagrams/algorithm_vN.svg</code> + <code>docs/ALGORITHM_DESIGN.md</code>）：训练配方、网络、执行语义、代价/乘子任何改动都必须同步这三处并写入算法变更日志（版本号 +1）；参考设计对照表记录采纳/不采纳及理由。</li>
+    <li><b>分工</b>：实验线（原 <code>safeduo_实验</code> 会话）= 训练 / 四门 / 录制 / MASTER；设计线（本面板维护者）= 方案、总结、文献、面板、仓库、工业资产。两线不同时改同一文件；设计线只加新文件。</li>
+    <li><b>编码红线</b>：含中文文件一律 shell heredoc 写入并 <code>file --mime-encoding</code> 验证。<b>安全红线</b>：远程服务器不 kill 他人进程；GPU 探针看空档；训练/评测 yaml 默认值改动须经 owner。</li>
+  </ul>
+</section>
+</main>
+<script>
+function playConflictPair(time) {
+  const videos = [...document.querySelectorAll('#four-arm-conflict-actual video')];
+  for (const video of videos) video.pause();
+  Promise.all(videos.map(video => new Promise(resolve => {
+    if (video.readyState >= 1) resolve();
+    else { video.addEventListener('loadedmetadata', resolve, {once: true}); video.load(); }
+  }))).then(() => {
+    for (const video of videos) { video.currentTime = time; video.play().catch(console.warn); }
+  });
+}
+
+const RAW = "https://raw.githubusercontent.com/asimfish/safeduo-dashboard/data/";
+const MEDIA = "https://asimfish.github.io/safeduo-media/";
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const PILL = {done:"完成", run:"在跑", training:"训练中", verifying:"验证中", wait:"待决/待续", negative:"负结果", planned:"未开工/提案", idle:"搁置", open:"待决"};
+const pill = (st) => `<span class="pill ${st}">${PILL[st] || st}</span>`;
+const fmtAge = (iso) => { if (!iso) return "-"; const m = Math.round((Date.now() - new Date(iso)) / 60000); return `${iso.replace("T"," ").slice(5,16)}（${m < 60 ? m + " 分钟前" : (m/60).toFixed(1) + " 小时前"}）`; };
+const f = (x, d=3) => (x === null || x === undefined || isNaN(x)) ? "-" : Number(x).toFixed(d);
+const fmtEpoch = (s) => { if (!s) return "-"; const d = new Date(s*1000); const p = (n) => String(n).padStart(2,"0"); return `${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; };
+async function getJSON(url) { const r = await fetch(url + "?v=" + Math.floor(Date.now()/60000), {cache:"no-store"}); if (!r.ok) throw new Error(url); return r.json(); }
+const clsRate = (v, good=0.999, warn=0.95) => v === null || v === undefined ? "" : (v >= good ? "ok" : (v >= warn ? "warn" : "bad"));
+const clsMm = (v) => v === null || v === undefined ? "" : (v < 0 ? "bad" : (v < 3 ? "warn" : "ok"));
+
+// ---- tabs
+function showTab(name) {
+  const known = ["overview","algorithm","videos","experiments","scientific","plan","assets","records"];
+  if (!known.includes(name)) name = "overview";
+  document.querySelectorAll("section.tab").forEach(s => s.classList.toggle("active", s.id === "tab-" + name));
+  document.querySelectorAll("nav.tabs a[data-tab]").forEach(a => a.classList.toggle("active", a.dataset.tab === name));
+}
+window.addEventListener("hashchange", () => showTab(location.hash.slice(1)));
+showTab(location.hash.slice(1));
+
+// ---- servers / runs
+let RUNS = null;
+function serverBlock(r) {
+  const busy = (r.gpus||[]).filter(c => c.used_mb > 2000).length, mine = (r.gpus||[]).filter(c => c.mine).length;
+  const rows = (r.gpus||[]).map(c => {
+    const mem = Math.round(100 * c.used_mb / Math.max(1, c.total_mb));
+    const tags = (c.procs || []).map(p => `<span class="tag ${p.tag}">${esc(p.label)} ${(p.mem_mb/1024).toFixed(1)}G</span>`).join("") || `<span class="small">空闲</span>`;
+    return `<tr><td class="num">g${c.idx}</td><td><span class="mbar ${c.mine ? "hot" : ""}"><i style="width:${mem}%"></i></span><span class="small">${(c.used_mb/1024).toFixed(1)} / ${Math.round(c.total_mb/1024)} G</span></td><td><span class="mbar util"><i style="width:${Math.max(0,c.util)}%"></i></span><span class="small">${c.util}%</span></td><td>${tags}</td></tr>`;
+  }).join("");
+  return `<div class="small" style="margin:6px 0"><b>${esc(r.node||r.host||"?")}</b> · ${esc(r.host||"")} · load ${esc(r.load||"-")} / ${r.ncpu||"-"} 核 · ${busy}/${(r.gpus||[]).length} 卡在用 · SafeDuo 占 ${mine} 卡 · 快照 ${(r.updated||"").slice(11,16)}</div>
+    <div class="table-wrap"><table><thead><tr><th style="width:40px">卡</th><th style="width:190px">显存</th><th style="width:160px">利用率</th><th>正在跑（蓝 = SafeDuo；紫 = 其它项目）</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderServers(r) {
+  RUNS = r;
+  $("#upd-runs").textContent = fmtAge(r.updated);
+  const ageMin = (Date.now() - new Date(r.updated)) / 60000;
+  $("#stale").textContent = ageMin > 40 ? `· 服务器快照已过期 ${(ageMin/60).toFixed(1)} 小时` : "";
+  const servers = r.servers && r.servers.length ? r.servers : [r];
+  $("#servers").innerHTML = servers.map(serverBlock).join("");
+  const allRuns = [].concat(...servers.map(s => (s.runs||[]).map(x => ({...x, node: s.node||s.host}))));
+  const allGates = [].concat(...servers.map(s => (s.gates||[]).map(x => ({...x, node: s.node||s.host})))).sort((a,b) => b.mtime - a.mtime);
+  r = {...r, runs: allRuns, gates: allGates, tmux: [].concat(...servers.map(s => (s.tmux||[]).map(t => (s.node||s.host||"") + ":" + t)))};
+  $("#runs tbody").innerHTML = (r.runs||[]).map(x => `<tr><td><code>${esc(x.name)}</code> <span class="small">${esc(x.node||"")}</span></td><td class="num">${x.iter ?? "-"}</td><td class="num">${f(x.alpha_exec)}</td><td class="num">${f(x.alpha)}</td><td class="num">${(x.costs||[]).map(c=>f(c)).join(" / ")}</td><td class="num">${(x.lambdas||[]).map(c=>f(c,2)).join(" / ")}</td><td class="num">${f(x.hazard_rate,4)}</td><td class="num">${f(x.entropy,2)}</td><td class="num">${x.n_ckpt}${x.has_last ? " ✓" : ""}</td><td class="small">${fmtEpoch(x.mtime)}</td><td>${x.active ? pill("training") : "<span class='small'>停</span>"}</td></tr>`).join("") || "<tr><td colspan=11 class='small'>无</td></tr>";
+  $("#gatedirs").innerHTML = (r.gates||[]).slice(0,8).map(g => `<li><code>${esc(g.dir)}</code> · ${g.n_cells} cell${g.cells.length ? "（" + g.cells.join(", ") + "）" : ""} · ${fmtEpoch(g.mtime)} ${g.active ? pill("run") : ""}</li>`).join("");
+  $("#tmux").textContent = (r.tmux||[]).join(" · ");
+  // overview cards
+  $("#ov-gpu").innerHTML = servers.map(s => `<div><b>${esc(s.node||s.host||"")}</b></div>` + (s.gpus||[]).filter(c => servers.length === 1 || c.mine || c.used_mb > 2000 || (s.gpus||[]).length <= 2).map(c => `<div>g${c.idx} <span class="mbar ${c.mine ? "hot" : ""}"><i style="width:${Math.round(100*c.used_mb/Math.max(1,c.total_mb))}%"></i></span>${(c.used_mb/1024).toFixed(1)}/${Math.round(c.total_mb/1024)} G · ${c.util}%${c.mine ? " ·（SafeDuo）" : ""}</div>`).join("") + `<div class="small">${(s.gpus||[]).filter(c => c.used_mb <= 2000 && c.util < 5).length} 张空闲</div>`).join("") + `<div style="margin-top:4px" class="small">快照 ${(r.updated||"").slice(5,16).replace("T"," ")}</div>`;
+  const jobs = [].concat(...servers.map(s => [].concat(...(s.gpus||[]).map(c => (c.procs||[]).filter(p => p.tag === "safeduo").map(p => `${s.node||s.host} g${c.idx} · ${p.label} (${(p.mem_mb/1024).toFixed(1)}G)`)))));
+  const act = (r.runs||[]).filter(x => x.active).map(x => `训练 ${x.name} @ iter ${x.iter}`);
+  $("#ov-jobs").innerHTML = (jobs.length ? jobs : ["无 SafeDuo GPU 作业"]).map(j => `<div>${esc(j)}</div>`).join("") + (act.length ? `<div class="small" style="margin-top:4px">${esc(act.join(" · "))}</div>` : "");
+}
+// ---- status
+let STATUS = null;
+function renderStatus(s) {
+  STATUS = s;
+  $("#upd-status").textContent = fmtAge(s.updated);
+  $("#northstar").innerHTML = `<b>北极星</b> · ${esc(s.north_star)}`;
+  $("#pctnote").textContent = s.pct_note || "";
+  $("#goals").innerHTML = s.goals.map(g => `<div class="card"><div class="t">${esc(g.id)} ${esc(g.name)}</div><div class="pct">${g.pct}%</div><div class="bar"><i style="width:${g.pct}%"></i></div>${pill(g.status)} <span class="small">${esc(g.summary)}</span><div class="small" style="margin-top:4px">证据：${esc(g.evidence)}</div>${g.next ? `<div class="small">下一步：${esc(g.next)}</div>` : ""}</div>`).join("");
+  $("#focus").innerHTML = s.focus.map(x => `<li>${esc(x)}</li>`).join("");
+  const dec = (s.decisions||[]).filter(d => d.status === "open");
+  $("#ov-ndec").textContent = dec.length;
+  $("#ov-dec").innerHTML = dec.slice(0,4).map(d => `<div>${esc(d.id)} ${esc(d.topic)}</div>`).join("") + (dec.length ? `<div style="margin-top:4px"><a href="#plan">去决策 →</a></div>` : "");
+  $("#decisions").innerHTML = (s.decisions||[]).map(d => `<div class="decision">${pill(d.status)} <b class="tp">${esc(d.id)} ${esc(d.topic)}</b><div>选项：${esc(d.options)}</div><div class="rec">建议：${esc(d.rec)}</div><div class="small">提出：${esc(d.since)}</div></div>`).join("");
+  $("#ov-lines").innerHTML = (s.lines||[]).map(l => `<div class="line"><b>${esc(l.name)}</b> ${pill(l.status||"run")}<div style="margin-top:4px">${esc(l.now)}</div><div class="small" style="margin-top:4px">下一步：${esc(l.next||"")}</div><div class="small">更新 ${esc(l.updated||"")}</div></div>`).join("");
+  $("#verdicts tbody").innerHTML = s.verdicts.map(v => `<tr><td style="white-space:nowrap">${esc(v.date)}</td><td>${esc(v.topic)}</td><td>${esc(v.verdict)}</td><td class="small">${esc(v.evidence)}</td></tr>`).join("");
+  $("#ov-verdicts tbody").innerHTML = s.verdicts.slice(0,4).map(v => `<tr><td style="white-space:nowrap">${esc(v.date)}</td><td>${esc(v.topic)}</td><td>${esc(v.verdict)}</td></tr>`).join("");
+  $("#queue tbody").innerHTML = s.queue.map((q, i) => `<tr><td>${i+1}</td><td>${esc(q.goal)}</td><td>${esc(q.task)}</td><td>${pill(q.status)}</td><td class="small">${esc(q.owner)}</td><td class="small">${esc(q.eta)}</td><td class="small">${esc(q.note)}</td></tr>`).join("");
+  $("#literature").innerHTML = (s.literature||[]).map(l => `<div class="decision"><b class="tp">${esc(l.key)}</b> · <a href="${esc(l.url)}" target="_blank">${esc(l.title)}</a><div class="small" style="margin:4px 0">${esc(l.gist)}</div><ul class="q">${(l.for_safeduo||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`).join("");
+  $("#changelog tbody").innerHTML = s.changelog.map(c => `<tr><td style="white-space:nowrap">${esc(c.time)}</td><td>${esc(c.text)}</td></tr>`).join("");
+}
+// ---- roadmap
+let ROADMAP = null;
+function renderRoadmap() {
+  if (!ROADMAP) return;
+  const on = new Set([...document.querySelectorAll("#rmfilters input:checked")].map(i => i.dataset.st));
+  const rows = ROADMAP.rows.filter(r => on.has(r.status));
+  $("#rmsum").textContent = `显示 ${rows.length} / ${ROADMAP.rows.length} 行`;
+  $("#roadmap tbody").innerHTML = rows.map(r => `<tr><td><b>${esc(r.id)}</b></td><td>${esc(r.prio)}</td><td class="small">${esc(r.goal)}</td><td>${esc(r.name)}</td><td>${pill(r.status)}</td><td><details class="st"><summary>${esc((r.status_text||"").slice(0,90))}${(r.status_text||"").length > 90 ? "…" : ""}</summary><div style="margin-top:4px">${esc(r.status_text)}</div></details></td><td class="small">${esc(r.accept)}</td></tr>`).join("");
+}
+// ---- matrix / gates
+function renderMatrix(m) {
+  $("#protocol").textContent = m.protocol || "";
+  const s = m.summary || {};
+  $("#msum").textContent = `共 ${s.total} 格 · 完成 ${s.done} · 在跑/训练 ${s.run} · 计划 ${s.planned} · 更新 ${fmtAge(m.updated)}`;
+  $("#matrix tbody").innerHTML = m.rows.map(r => `<tr><td><b>${esc(r.policy)}</b></td><td><code>${esc(r.env)}</code></td><td>${esc(r.theta)}</td><td class="small">${esc(r.purpose)}</td><td class="small">${esc(r.goal)}</td><td>${pill(r.status)}</td><td class="num ${clsRate(r.brake_rate)}">${f(r.brake_rate,2)}</td><td class="num ${clsRate(r.viol_free_cross)}">${f(r.viol_free_cross,2)}</td><td class="num ${clsMm(r.min_cross_mm)}">${r.min_cross_mm ?? "-"}</td><td class="num ${clsRate(r.no_deadlock_hys, 0.999, 0.9)}">${f(r.no_deadlock_hys,2)}</td><td class="num">${f(r.done_hys,2)}/${f(r.done_man,2)}</td><td class="num">${f(r.false_brake_arm)}</td><td class="num">${f(r.fidelity)}</td><td>${r.hard_pass === true ? "<span class='ok'>✓</span>" : (r.hard_pass === false ? "<span class='bad'>✗</span>" : "")}</td><td class="small">${esc((r.date||"").slice(5,16))}</td></tr>`).join("");
+}
+let GATES = null;
+function renderGates() {
+  if (!GATES) return;
+  const full = $("#fullonly").checked, recent = $("#recentonly").checked;
+  const order = ["a25","a26","a27","a28","a28b","a29","a30","a30b","a31","a32"];
+  const rows = GATES.rows.filter(r => !r.error && (!full || (r.brake_rate !== null && r.brake_rate !== undefined)) && (!recent || order.includes(r.policy)));
+  $("#gsum").textContent = `显示 ${rows.length} / ${GATES.n} cells · 更新 ${fmtAge(GATES.updated)}`;
+  $("#gates tbody").innerHTML = rows.map(r => `<tr><td class="small" style="white-space:nowrap">${esc((r.date||"").slice(5,16))}</td><td><b>${esc(r.policy)}</b></td><td><code>${esc(r.env)}</code></td><td class="tags">${(r.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</td><td>${esc(r.theta)}</td><td class="num ${clsRate(r.brake_rate)}">${f(r.brake_rate,2)}</td><td class="num ${clsRate(r.viol_free_cross)}">${f(r.viol_free_cross,2)}/${f(r.viol_free_any,2)}</td><td class="num ${clsMm(r.min_cross_mm)}">${r.min_cross_mm ?? "-"}</td><td class="num">${r.cmd_stop_p50 ?? "-"}/${r.cmd_stop_p95 ?? "-"}</td><td class="num ${clsRate(r.no_deadlock_hys, 0.999, 0.9)}">${f(r.no_deadlock_hys,2)}</td><td class="num">${f(r.done_hys,2)}/${f(r.done_man,2)}</td><td class="num">${f(r.false_brake_arm)}/${f(r.false_brake_any,2)}</td><td class="num">${f(r.fidelity)}</td><td class="num">${f(r.mean_atten,2)}</td><td>${r.hard_pass === true ? "<span class='ok'>✓</span>" : (r.hard_pass === false ? "<span class='bad'>✗</span>" : "")}</td><td class="small"><code>${esc(r.grid)}</code></td></tr>`).join("");
+  // overview: latest 3 complete cells
+  const latest = GATES.rows.filter(r => !r.error && r.brake_rate !== null && r.brake_rate !== undefined).slice(0,3);
+  $("#ov-gates").innerHTML = latest.map(r => `<div><b>${esc(r.policy)}</b>@<code>${esc(r.env)}</code> ${r.hard_pass ? "<span class='ok'>硬门✓</span>" : "<span class='bad'>硬门✗</span>"}<br><span class="small">viol-free ${f(r.viol_free_cross,2)} · min ${r.min_cross_mm} mm · no-dl ${f(r.no_deadlock_hys,2)} · 误刹 ${f(r.false_brake_arm,2)} · fid ${f(r.fidelity,3)} · ${esc((r.date||"").slice(5,16))}</span></div>`).join("") + `<div style="margin-top:4px"><a href="#experiments">矩阵 →</a></div>`;
+}
+// ---- scientific evaluation
+let SCIENTIFIC = null;
+function sciPct(x) { return x === null || x === undefined ? "-" : `${(Number(x) * 100).toFixed(2)}%`; }
+function sciStatus(kind) { return kind === "safe" ? "safe" : (kind === "bad" ? "bad" : "warn"); }
+function renderRefinementTrace(index) {
+  const x = SCIENTIFIC?.safety_refinement?.traces?.[Number(index)];
+  if (!x) { $("#scientific-trace").textContent = "暂无逐帧数据"; return; }
+  const width = 760, height = 230, left = 55, right = 18, top = 15, bottom = 35;
+  const ymax = 30, ymin = -10, duration = x.duration_s || 5;
+  const sx = t => left + t / duration * (width - left - right);
+  const sy = m => top + (ymax - m) / (ymax - ymin) * (height - top - bottom);
+  const points = values => values.map((m, i) => `${sx(x.time_s[i]).toFixed(2)},${sy(m).toFixed(2)}`).join(" ");
+  const ygrid = [-10, 0, 10, 20, 30].map(m => `<line x1="${left}" x2="${width-right}" y1="${sy(m)}" y2="${sy(m)}" stroke="#d1d5db"/><text x="${left-8}" y="${sy(m)+4}" text-anchor="end" font-size="11">${m}</text>`).join("");
+  const xgrid = [0, duration/2, duration].map(t => `<text x="${sx(t)}" y="${height-10}" text-anchor="middle" font-size="11">${t.toFixed(1)} s</text>`).join("");
+  $("#scientific-trace").innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)} 原策略与改进策略的测量球间距"><title>${esc(x.label)}</title><rect x="${left}" y="${sy(0)}" width="${width-left-right}" height="${sy(ymin)-sy(0)}" fill="#fef2f2"/>${ygrid}${xgrid}<text x="10" y="14" font-size="11">mm</text><line x1="${left}" x2="${width-right}" y1="${sy(13)}" y2="${sy(13)}" stroke="#6b7280" stroke-dasharray="5 4"/><polyline points="${points(x.before_margin_mm)}" fill="none" stroke="#dc2626" stroke-width="2"/><polyline points="${points(x.after_margin_mm)}" fill="none" stroke="#15803d" stroke-width="2"/></svg>`;
+}
+function renderRobustnessTrace(index, sourceKey="safety_robustness", container="scientific-robustness") {
+  const x = SCIENTIFIC?.[sourceKey]?.traces?.[Number(index)];
+  if (!x) { $(`#${container}-trace`).textContent = "暂无逐帧数据"; return; }
+  const width=760, height=240, left=58, right=18, top=25, bottom=35;
+  const sx = t => left + (t-x.x_min)/(x.x_max-x.x_min)*(width-left-right);
+  const sy = v => top + (x.y_max-v)/(x.y_max-x.y_min)*(height-top-bottom);
+  const ticks = Array.from({length:5}, (_,i) => x.y_min+(x.y_max-x.y_min)*i/4);
+  const grid = ticks.map(v => `<line x1="${left}" x2="${width-right}" y1="${sy(v)}" y2="${sy(v)}" stroke="#d1d5db"/><text x="${left-7}" y="${sy(v)+4}" text-anchor="end" font-size="11">${v.toFixed(1)}</text>`).join("");
+  const xticks = [x.x_min,(x.x_min+x.x_max)/2,x.x_max].map(t => `<text x="${sx(t)}" y="${height-10}" text-anchor="middle" font-size="11">${t.toFixed(2)} s</text>`).join("");
+  const zero = x.y_min <= 0 && x.y_max >= 0 ? `<line x1="${left}" x2="${width-right}" y1="${sy(0)}" y2="${sy(0)}" stroke="#111827" stroke-dasharray="5 4"/>` : "";
+  const lines = x.series.map(s => `<polyline points="${s.values.map((v,i) => `${sx(x.time_s[i]).toFixed(2)},${sy(v).toFixed(2)}`).join(" ")}" fill="none" stroke="${esc(s.color)}" stroke-width="2"/>`).join("");
+  const events = (x.events || []).filter(e => e.time_s >= x.x_min && e.time_s <= x.x_max);
+  const marks = events.map(e => `<line x1="${sx(e.time_s)}" x2="${sx(e.time_s)}" y1="${top}" y2="${height-bottom}" stroke="${esc(e.color)}" stroke-dasharray="3 4"/>`).join("");
+  const legend = [...x.series.map(s => `<span style="color:${esc(s.color)}">● ${esc(s.label)}</span>`), ...events.map(e => `<span style="color:${esc(e.color)}">┆ ${esc(e.label)} ${f(e.time_s,3)}s</span>`)].join(" · ");
+  $(`#${container}-trace`).innerHTML = `<div class="small" style="margin-bottom:5px">${legend}</div><svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:900px;background:#fff;border:1px solid #d1d5db;border-radius:8px;color:#111827" role="img" aria-label="${esc(x.label)}"><title>${esc(x.label)}</title><defs><clipPath id="${container}-plot"><rect x="${left}" y="${top}" width="${width-left-right}" height="${height-top-bottom}"/></clipPath></defs>${grid}${xticks}${zero}<g clip-path="url(#${container}-plot)">${marks}${lines}</g><text x="10" y="15" font-size="11">${esc(x.unit)}</text></svg>`;
+  $(`#${container}-caption`).textContent = x.caption;
+}
+function renderPerturbation(d) {
+  const r=d.safety_perturbation;
+  $("#scientific-perturbation").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-perturbation-note").textContent=r.summary;
+  $("#scientific-perturbation-verdict").textContent=r.verdict;
+  $("#scientific-perturbation-table tbody").innerHTML=r.rows.map(x => `<tr><td><b>${esc(x.display_candidate)} · ${esc(x.label)}</b><br><span class="small">seed ${esc(x.seeds.join(","))} · ${x.duration_s}s</span></td><td>±${x.jitter_rad} rad / ${f(x.delay_ms,0)} ms / ${x.hold_s == null ? "漫游" : f(x.hold_s,2)+"s"}</td><td class="num">${x.initial_violations}/${x.episodes}</td><td class="num ${x.safe_initial_violations ? "bad" : "ok"}">${x.safe_initial_violations}/${x.initially_safe}</td><td class="num">${x.min_arm_hand_mm == null ? "—" : f(x.min_arm_hand_mm,2)+" mm"}</td><td class="num">${x.mean_joint_range == null ? "—" : sciPct(x.mean_joint_range)}</td><td class="num">${x.mean_joint_path_rad == null ? "—" : f(x.mean_joint_path_rad,2)+" rad"}</td></tr>`).join("");
+  $("#scientific-perturbation-select").innerHTML=r.traces.map((x,i) => `<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-perturbation-select").onchange=e => renderRobustnessTrace(e.target.value,"safety_perturbation","scientific-perturbation");
+  $("#scientific-perturbation-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_perturbation","scientific-perturbation");
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#scientific-robustness h2").textContent="原初态、零额外延迟：上一轮 512 窗口";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.overview)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">初态与执行延迟评测 →</a></div>`;
+}
+function renderForensics(d) {
+  const r=d.safety_forensics;
+  $("#scientific-forensics").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-forensics-note").textContent=r.summary;
+  $("#scientific-forensics-verdict").textContent=r.verdict;
+  const count=x => `<span class="${x.violations ? "bad" : "ok"}">${x.violations}/${x.initially_safe}</span><br><span class="small">初态违规 ${x.initial_violations}/${x.episodes}</span>`;
+  $("#scientific-forensics-table tbody").innerHTML=r.rows.map(x => `<tr><td><b>${esc(x.label)}</b></td><td class="num">${count(x.nominal)}</td><td class="num">${count(x.delayed)}</td><td>${esc(x.rule)}</td></tr>`).join("");
+  $("#scientific-forensics-holdout tbody").innerHTML=r.holdout_rows.map(x => `<tr><td>seed ${x.seed} · ±${x.jitter_rad}rad · ${f(x.delay_ms,0)}ms</td><td class="num">${x.initial_violations}/${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.initially_safe}</td><td class="num">${sciPct(x.mean_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  $("#scientific-forensics-coverage").textContent=r.coverage_note;
+  $("#scientific-forensics-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-forensics-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_forensics","scientific-forensics");
+  $("#scientific-forensics-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_forensics","scientific-forensics");
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#scientific-perturbation h2").textContent="上一阶段：随机初态与执行端延迟";
+  $("#scientific-robustness h2").textContent="原初态、零额外延迟：冻结参考512窗口";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">最新单因素复测 →</a></div>`;
+}
+function renderQueue(d) {
+  const r=d.safety_queue_braking;
+  $("#scientific-queue").style.display=r?.controls?.length ? "block" : "none";
+  if (!r?.controls?.length) return;
+  $("#scientific-queue-note").textContent=r.summary;
+  $("#scientific-queue-verdict").textContent=r.verdict;
+  $("#scientific-queue-diagnostic-note").textContent=r.diagnostic_note;
+  const controls=[...r.cold_start_controls.map(x=>({...x,order:"独立进程首窗口"})),...r.controls.map(x=>({...x,order:"正向0→50→100"})),...r.reverse_controls.map(x=>({...x,order:"反向100→50→0"}))];
+  $("#scientific-queue-controls tbody").innerHTML=controls.map(x=>`<tr><td>${esc(x.order)} · ${f(x.delay_ms,0)}ms / ${x.delay_steps}步</td><td class="num">${x.initially_safe}/${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.initially_safe}</td><td class="num">${f(x.min_nonexempt_mm,2)}mm</td><td class="num">${sciPct(x.mean_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  const modeLabel={stored:"固定旧持久目标",measured:"固定触发时实测q"};
+  const pairPrefix=new Map(r.stop_pairwise_prefix.map(x=>[x.env,x.observed_prefix_exact]));
+  $("#scientific-queue-stops tbody").innerHTML=r.stop_diagnostics.flatMap(s=>s.trajectories.map(x=>`<tr><td>${esc(modeLabel[s.mode])} · env${x.env}</td><td>对冷启动控制：${x.cold_control_observed_prefix_exact ? "观测前缀逐位一致" : "同输入，q差≤"+f(x.cold_control_prefix_max_q_difference_rad*1000,3)+"mrad"}<br>两停止方式：${pairPrefix.get(x.env) ? "观测前缀逐位一致" : "前缀不同"}</td><td class="num">${f(x.trigger_step*r.dt,3)}s / ${f(x.first_stop_message_delivery_step*r.dt,3)}s</td><td class="num">${x.violation_before_stop_delivery ? "有" : "无"} / ${x.violation_after_stop_delivery ? "有" : "无"}</td><td class="num">${f(x.max_arm_joint_displacement_200ms_after_delivery_rad,4)} / ${f(x.max_further_travel_away_from_target_200ms_rad,4)}rad</td></tr>`)).join("");
+  $("#scientific-queue-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-queue-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_queue_braking","scientific-queue");
+  $("#scientific-queue-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_queue_braking","scientific-queue");
+  $("#scientific-forensics h2").textContent="上一轮：临界约束保留与单因素复测";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">队列与制动证据 →</a></div>`;
+}
+function renderBounded(d) {
+  const r=d.safety_bounded_stop;
+  $("#scientific-bounded").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-bounded-note").textContent=r.summary;
+  $("#scientific-bounded-protocol").textContent=r.protocol_note;
+  $("#scientific-bounded-verdict").textContent=r.verdict;
+  $("#scientific-bounded-table tbody").innerHTML=r.rows.map(x=>`<tr><td>${x.lead_steps == null ? "未干预控制" : x.lead_steps+"步 / "+f(x.lead_steps*r.dt*1000,0)+"ms"}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.episodes}</td><td class="num">${x.lead_steps == null ? "—" : x.intervened_violations+"/"+x.triggered_envs.length}</td><td>${esc(x.non_intervened_failed_envs.join(", ")) || "无"} / ${esc(x.new_failed_envs.join(", ")) || "无"}</td><td class="num">${f(x.min_nonexempt_mm,2)}mm</td><td class="num">${f(x.max_actual_increment_rad,6)} / ${f(x.increment_box_rad,6)}rad<br><span class="small">${x.fifo_exact && x.increment_box_pass && x.soft_limit_pass ? "FIFO / 限幅 / 软限位通过" : "核验失败"}</span></td></tr>`).join("");
+  const when=step=>step == null ? "未收敛" : f(step*r.dt,3)+"s";
+  $("#scientific-bounded-stops tbody").innerHTML=r.rows.flatMap(row=>row.trajectories.map(x=>`<tr><td>${row.lead_steps}步 · env${x.env}</td><td>${x.observed_prefix_exact ? "逐位一致" : "不同，q差≤"+f(x.prefix_max_q_difference_rad*1000,3)+"mrad"}</td><td class="num">${when(x.trigger_step)} / ${when(x.first_stop_message_delivery_step)} / ${when(x.goal_reached_delivery_step)}</td><td class="num">${x.violation_before_first_delivery ? "有" : "无"} / ${x.violation_after_first_delivery ? "有" : "无"}</td><td class="num">${f(x.old_target_offset_rad,4)}rad</td></tr>`)).join("");
+  $("#scientific-bounded-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-bounded-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_bounded_stop","scientific-bounded");
+  $("#scientific-bounded-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_bounded_stop","scientific-bounded");
+  $("#scientific-queue h3").textContent="上一轮：延迟、旧目标与超限实测q诊断";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">限幅停止证据 →</a></div>`;
+}
+const renderRandomCoverage = (index, sourceKey="safety_random_space", container="scientific-random") => {
+  const c=SCIENTIFIC[sourceKey].coverage_cases[Number(index)];
+  if (!c) return;
+  $(`#${container}-coverage-note`).textContent=c.note;
+  const width=680, height=530, left=92, top=45, cellw=53, cellh=17;
+  const rows=c.visited.counts;
+  const labels=Array.from({length:26},(_,i)=>i<7 ? `F_L j${i+1}` : i<14 ? `F_R j${i-6}` : i<20 ? `U_L j${i-13}` : `U_R j${i-19}`);
+  const columns=Array.from({length:10},(_,i)=>`<text x="${left+i*cellw+cellw/2}" y="${top-10}" text-anchor="middle" font-size="11">${i*10}–${(i+1)*10}%</text>`).join("");
+  const cells=rows.map((counts,j)=>{
+    const peak=Math.max(1,...counts);
+    const label=`<text x="${left-8}" y="${top+j*cellh+12}" text-anchor="end" font-size="11">${labels[j]}</text>`;
+    return label+counts.map((v,i)=>{
+      const strength=Math.log1p(v)/Math.log1p(peak);
+      const color=v ? `rgb(${Math.round(230-200*strength)},${Math.round(240-150*strength)},${Math.round(250-105*strength)})` : "#f3f4f6";
+      const initial=c.initial.counts[j][i];
+      return `<rect x="${left+i*cellw}" y="${top+j*cellh}" width="${cellw-2}" height="${cellh-2}" fill="${color}" stroke="${initial ? '#d97706' : '#fff'}" stroke-width="${initial ? 1.5 : 0.5}"><title>${labels[j]} ${i*10}–${(i+1)*10}%：初态${initial}，实测${v}次</title></rect>`;
+    }).join("");
+  }).join("");
+  $(`#${container}-heatmap`).innerHTML=`<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:850px;background:white" role="img" aria-label="26关节归一化软限位覆盖"><title>26关节初态与实测覆盖</title>${columns}${cells}<text x="${left}" y="${height-24}" font-size="12">蓝色：实测访问频次（每关节对数着色）；橙框：初态已占据</text><text x="${left}" y="${height-7}" font-size="12">灰色：未访问。十个边际分箱不能证明26维联合空间覆盖。</text></svg>`;
+  const arms=["F_L","F_R","U_L","U_R"];
+  $(`#${container}-ee tbody`).innerHTML=arms.map((a,i)=>`<tr><td>${a}</td><td class="num">${c.ee_initial.visited_voxels_per_arm[i]} / ${c.ee_visited.visited_voxels_per_arm[i]}</td><td>${c.ee_visited.aabb_min_m[i].map((v,j)=>`${f(v,2)}～${f(c.ee_visited.aabb_max_m[i][j],2)}`).join(" / ")}</td></tr>`).join("");
+  $(`#${container}-pairs tbody`).innerHTML=c.pairs.map(p=>`<tr><td>${esc(p.pair)}</td><td class="num">${p.exposed_80mm}/${p.episodes}</td><td class="num">${p.near_5mm} / ${p.overlap}</td><td class="num">${p.approach_ee_steps} / ${p.recede_ee_steps} / ${p.tangent_ee_steps}</td></tr>`).join("");
+};
+const renderRandomSpace = d => {
+  const r=d.safety_random_space;
+  $("#scientific-random").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-random-note").textContent=r.summary;
+  $("#scientific-random-protocol").textContent=r.protocol_note;
+  $("#scientific-random-bank").textContent=r.bank_note;
+  $("#scientific-random-verdict").textContent=r.verdict;
+  $("#scientific-random-table tbody").innerHTML=r.aggregates.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.completed_windows}/${x.planned_windows}</td><td class="num">${x.initial_violations}/${x.attempted_windows}</td><td class="num ${x.initially_safe_evaluated && x.safe_initial_violations ? 'bad' : ''}">${x.initially_safe_evaluated ? x.safe_initial_violations+"/"+x.initially_safe_evaluated : "未得到完整窗口"}</td><td class="num">${x.initially_safe_evaluated ? x.safe_initial_damaging : '—'}</td><td class="num">${x.invalid_windows} / ${x.pending_windows}</td><td class="num">${x.mean_within_window_joint_range == null ? '—' : sciPct(x.mean_within_window_joint_range)+" / "+f(x.mean_joint_path_rad,2)+"rad"}</td></tr>`).join("");
+  $("#scientific-random-coverage-select").innerHTML=r.coverage_cases.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-random-coverage-select").onchange=e=>renderRandomCoverage(e.target.value);
+  $("#scientific-random-coverage-select").value=String(r.default_coverage);
+  renderRandomCoverage(r.default_coverage);
+  $("#scientific-random-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-random-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_random_space","scientific-random");
+  renderRobustnessTrace(r.default_trace,"safety_random_space","scientific-random");
+  $("#scientific-random-select").value=String(r.default_trace);
+  $("#scientific-bounded h3").textContent="上一轮：限幅停止的事后诊断";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.overview)}</span><div style="margin-top:4px"><a href="#scientific">强随机覆盖与全部失败 →</a></div>`;
+};
+const renderAdmission = d => {
+  const r=d.safety_predictive_admission;
+  $("#scientific-admission").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-admission-note").textContent=r.summary;
+  $("#scientific-admission-protocol").textContent=r.protocol_note;
+  $("#scientific-admission-rule").textContent=r.mechanism_note;
+  $("#scientific-admission-bank").textContent=r.bank_note;
+  const z=r.zero_command_diagnostic;
+  const speed=r.speed_box_control;
+  $("#scientific-admission-speed").style.display=speed && r.speed_comparison_rows?.length ? "block" : "none";
+  if (speed && r.speed_comparison_rows?.length) {
+    $("#scientific-admission-speed-note").textContent=`仅限速${speed.completed_windows}/192、配套raw/System0重复${speed.comparison_completed_windows}/384，共${speed.supplementary_total_windows}/576相关窗口；三方法同cuda:1。主压力部分结果可见后独立登记；配套对照在仅限速结束但结果分析前登记，全部三种子原样重复。主960条件保持。`;
+    $("#scientific-admission-speed-table tbody").innerHTML=r.speed_comparison_rows.map(x=>`<tr><td>${esc(x.method_label)}</td><td>${x.windows}/192</td><td>${x.violations}/${x.windows}</td><td>${x.deep}</td><td>${x.class_violations.join(" / ")}</td><td>${sciPct(x.mean_within_window_joint_range)}</td><td>${f(x.mean_safe_duration_s,3)}s / ${sciPct(x.mean_safe_prefix_joint_range)}</td></tr>`).join("");
+    const leftNames={raw:'无安全保护',baseline:'原System 0'};
+    $("#scientific-admission-speed-pairs tbody").innerHTML=speed.paired_inputs.filter(x=>x.both_failure != null).map(x=>`<tr><td>${x.seed}<br>${esc(leftNames[x.left_mode])}</td><td>${x.left_only_failure} / ${x.right_only_failure}</td><td>${x.both_failure} / ${x.neither_failure}</td></tr>`).join("");
+  }
+  $("#scientific-admission-zero").style.display=z ? "block" : "none";
+  if (z) {
+    $("#scientific-admission-zero-note").textContent=`${z.completed_windows}/${z.registered_windows}完整窗口，无效${z.invalid_windows}，待完成${z.pending_windows}；原三方法576在主压力部分结果后、自身结果前登记；新两个因子384在已有零/速度结果后、自身结果前补充登记。参数及初态不改。`;
+    $("#scientific-admission-zero-table tbody").innerHTML=z.aggregate_rows.map(x=>`<tr><td>${esc(x.method_label)}</td><td>${x.windows}/192</td><td>${x.violations}/${x.windows}</td><td>${x.class_violations.join(" / ")}</td><td>${x.nonzero_execution_windows}</td><td>${f(x.max_actual_joint_drift_rad,6)}rad</td></tr>`).join("");
+  }
+  $("#scientific-admission-safe tbody").innerHTML=r.aggregate_rows.map(x=>`<tr><td>${esc(x.method_label)}</td><td>${f(x.mean_safe_duration_s,3)}s</td><td>${sciPct(x.mean_safe_prefix_joint_range)}</td><td>${f(x.mean_safe_prefix_joint_path_rad,2)}rad</td></tr>`).join("");
+  $("#scientific-admission-joint tbody").innerHTML=r.operation_joint_rows.map(x=>`<tr><td>${esc(x.method_label)}<br>${esc(x.arm_i)} / ${esc(x.arm_j)}</td><td>${x.joint_pairs}</td><td>${f(x.mean_cells,2)} / ${x.minimum_cells} / ${x.maximum_cells}</td></tr>`).join("");
+  $("#scientific-admission-diagnostic").textContent=r.diagnostic_note;
+  $("#scientific-admission-verdict").textContent=r.verdict;
+  $("#scientific-admission-table tbody").innerHTML=r.aggregate_rows.map(x=>`<tr><td><b>${esc(x.method_label)}</b></td><td class="num">${x.windows}/192</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td><td class="num">${x.class_violations.join(" / ")}</td><td class="num">${sciPct(x.four_arms_moving_fraction)}</td><td class="num">${f(x.exec_command_l2_ratio,3)}</td><td class="num">${f(x.pre_target_debt_abs_p95_rad,4)}rad</td><td class="num">${sciPct(x.mean_within_window_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  const names={raw:'无安全保护',baseline:'原System 0动态512',envelope_050:'固定积压限制',predictive:'完整速度提前入选',predictive_envelope:'提前入选＋积压限制'};
+  $("#scientific-admission-inputs tbody").innerHTML=r.paired_inputs.filter(x=>x.both_failure != null).map(x=>`<tr><td>${x.seed}<br>${esc(names[x.left_mode])} / ${esc(names[x.right_mode])}</td><td class="num">${x.left_only_failure} / ${x.right_only_failure}</td><td class="num">${x.both_failure} / ${x.neither_failure}</td><td>${x.actual_q_prefix66_exact ? "是" : "否"}</td><td class="num">${f(x.actual_q_prefix66_max_diff_rad,6)}</td></tr>`).join("");
+  $("#scientific-admission-pair-results tbody").innerHTML=r.pair_rows.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.windows}/24</td><td class="num">${x.target_pair_exposure.exposed_80mm} / ${x.target_pair_pressure_exposure.exposed_80mm}</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td></tr>`).join("");
+  $("#scientific-admission-coverage-select").innerHTML=r.coverage_cases.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-admission-coverage-select").onchange=e=>renderRandomCoverage(e.target.value,"safety_predictive_admission","scientific-admission");
+  $("#scientific-admission-coverage-select").value=String(r.default_coverage);
+  renderRandomCoverage(r.default_coverage,"safety_predictive_admission","scientific-admission");
+  $("#scientific-admission-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-admission-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_predictive_admission","scientific-admission");
+  $("#scientific-admission-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_predictive_admission","scientific-admission");
+  $("#scientific-mechanism h3").textContent="上一轮：固定积压限制与独立留出";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">最新机制实验 →</a></div>`;
+};
+const renderMechanism = d => {
+  const r=d.safety_mechanism;
+  $("#scientific-mechanism").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-mechanism-note").textContent=r.summary;
+  $("#scientific-mechanism-protocol").textContent=r.protocol_note;
+  $("#scientific-mechanism-rule").textContent=r.mechanism_note;
+  $("#scientific-mechanism-bank").textContent=r.bank_note;
+  $("#scientific-mechanism-diagnostic").textContent=r.diagnostic_note;
+  $("#scientific-mechanism-verdict").textContent=r.verdict;
+  $("#scientific-mechanism-table tbody").innerHTML=r.aggregate_rows.map(x=>`<tr><td><b>${esc(x.method_label)}</b></td><td class="num">${x.windows}/192</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td><td class="num">${x.class_violations.join(" / ")}</td><td class="num">${sciPct(x.four_arms_moving_fraction)}</td><td class="num">${f(x.exec_command_l2_ratio,3)}</td><td class="num">${f(x.pre_target_debt_abs_p95_rad,4)}rad</td><td class="num">${sciPct(x.mean_within_window_joint_range)} / ${f(x.mean_joint_path_rad,2)}rad</td></tr>`).join("");
+  const names={raw:"raw",baseline:"原System 0",box_only:"增量限制",envelope_050:"积压限制"};
+  $("#scientific-mechanism-inputs tbody").innerHTML=r.paired_inputs.filter(x=>x.both_failure != null).map(x=>`<tr><td>${x.seed}<br>${esc(names[x.left_mode])} / ${esc(names[x.right_mode])}</td><td class="num">${x.left_only_failure} / ${x.right_only_failure}</td><td class="num">${x.both_failure} / ${x.neither_failure}</td><td>${x.actual_q_prefix66_exact ? "是" : "否"}</td><td class="num">${f(x.actual_q_prefix66_max_diff_rad,6)}</td></tr>`).join("");
+  $("#scientific-mechanism-pair-results tbody").innerHTML=r.pair_rows.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.windows}/24</td><td class="num">${x.target_pair_exposure.exposed_80mm} / ${x.target_pair_pressure_exposure.exposed_80mm}</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td></tr>`).join("");
+  $("#scientific-mechanism-coverage-select").innerHTML=r.coverage_cases.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-mechanism-coverage-select").onchange=e=>renderRandomCoverage(e.target.value,"safety_mechanism","scientific-mechanism");
+  $("#scientific-mechanism-coverage-select").value=String(r.default_coverage);
+  renderRandomCoverage(r.default_coverage,"safety_mechanism","scientific-mechanism");
+  $("#scientific-mechanism-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-mechanism-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_mechanism","scientific-mechanism");
+  $("#scientific-mechanism-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_mechanism","scientific-mechanism");
+  $("#scientific-risk h3").textContent="上一轮：六组臂对风险分层与稳定初态";
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">${esc(r.verdict)}</span><div style="margin-top:4px"><a href="#scientific">最新机制实验 →</a></div>`;
+};
+function renderRiskStrata(d) {
+  const r=d.safety_risk_strata;
+  $("#scientific-risk").style.display=r?.rows?.length ? "block" : "none";
+  if (!r?.rows?.length) return;
+  $("#scientific-risk-note").textContent=r.summary;
+  $("#scientific-risk-protocol").textContent=r.protocol_note;
+  $("#scientific-risk-bank").textContent=r.bank_note;
+  $("#scientific-risk-verdict").textContent=r.verdict;
+  $("#scientific-risk-table tbody").innerHTML=r.aggregate_rows.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.windows}/${x.planned_windows}</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td><td class="num">${x.class_violations.join(" / ")}</td><td class="num">${x.zero_prefix_violations}</td><td class="num">${x.before_first_random_delivery}</td></tr>`).join("");
+  $("#scientific-risk-inputs tbody").innerHTML=r.paired_inputs.filter(x=>x.pre_first_random_delivery_q_exact != null).map(x=>`<tr><td>${esc(x.raw)}</td><td>是 / 是</td><td>${x.pre_first_random_delivery_q_exact ? "是" : "否"}</td><td class="num">${f(x.pre_first_random_delivery_q_max_diff_rad,6)}</td><td class="num">${x.raw_only_failure} / ${x.protected_only_failure} / ${x.both_failure}</td></tr>`).join("");
+  $("#scientific-risk-pair-results tbody").innerHTML=r.pair_rows.map(x=>`<tr><td><b>${esc(x.label)}</b><br>${esc(x.method_label)}</td><td class="num">${x.windows}/24</td><td class="num">${x.target_pair_exposure.exposed_80mm} / ${x.target_pair_pressure_exposure.exposed_80mm}（/${x.windows}）</td><td class="num ${x.violations ? 'bad' : 'ok'}">${x.violations}/${x.windows}</td><td class="num">${x.deep}</td></tr>`).join("");
+  $("#scientific-risk-zero tbody").innerHTML=r.zero_diagnostic.rows.map(x=>`<tr><td>${esc(x.id)}</td><td class="num bad">${x.violations}/${x.windows}</td><td class="num">${x.initial_exempt_table_overlap}</td><td class="num">${x.negative_table_exemption_withdrawal}</td><td class="num">${f(x.max_q_drift_rad,3)} rad</td></tr>`).join("");
+  $("#scientific-risk-coverage-select").innerHTML=r.coverage_cases.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-risk-coverage-select").onchange=e=>renderRandomCoverage(e.target.value,"safety_risk_strata","scientific-risk");
+  $("#scientific-risk-coverage-select").value=String(r.default_coverage);
+  renderRandomCoverage(r.default_coverage,"safety_risk_strata","scientific-risk");
+  $("#scientific-risk-select").innerHTML=r.traces.map((x,i)=>`<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-risk-select").onchange=e=>renderRobustnessTrace(e.target.value,"safety_risk_strata","scientific-risk");
+  $("#scientific-risk-select").value=String(r.default_trace);
+  renderRobustnessTrace(r.default_trace,"safety_risk_strata","scientific-risk");
+  $("#scientific-random h3").textContent="上一轮：广域纯随机与全部容量失败";
+  $("#scientific-protocol").textContent=r.protocol_note;
+  $("#ov-scientific").innerHTML=`<b>${esc(r.summary)}</b><br><span class="small">完整窗口、六臂对暴露和失败曲线已分别报告。</span><div style="margin-top:4px"><a href="#scientific">风险分层配对结果 →</a></div>`;
+}
+function renderRobustness(d) {
+  const r = d.safety_robustness || {};
+  $("#scientific-robustness").style.display = r.rows?.length ? "block" : "none";
+  $("#scientific-robustness-note").textContent = r.summary || "";
+  $("#scientific-robustness-coverage").textContent = r.coverage_note || "";
+  $("#scientific-robustness-negative").textContent = r.negative_note || "";
+  $("#scientific-robustness-table tbody").innerHTML = (r.rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td>${esc(x.condition)}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.episodes}</td><td class="num">${f(x.arm_arm_min_mm,2)} mm</td><td class="num">${sciPct(x.mean_joint_range_fraction)}</td><td class="num">${x.pair_union_exposed}/6</td><td class="num">${f(x.exec_command_l2_ratio,3)}</td></tr>`).join("");
+  $("#scientific-robustness-regression tbody").innerHTML = (r.regression_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td>${esc(x.condition)}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}/${x.episodes}</td><td class="num">${f(x.arm_arm_min_mm,2)} mm</td><td class="num">${f(x.mean_joint_path_rad,2)} rad</td></tr>`).join("");
+  $("#scientific-robustness-select").innerHTML = (r.traces || []).map((x,i) => `<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-robustness-select").onchange = e => renderRobustnessTrace(e.target.value);
+  if (r.rows?.length) {
+    $("#ov-scientific").innerHTML = `<b>${esc(r.overview_note)}</b><br><span class="small">${esc(r.overview_detail)}</span><div style="margin-top:4px"><a href="#scientific">随机覆盖与失败记录 →</a></div>`;
+    const initialTrace = Math.min(2, r.traces.length-1);
+    $("#scientific-robustness-select").value = String(initialTrace);
+    renderRobustnessTrace(initialTrace);
+    $("#scientific-protocol").textContent = `最新候选 ${r.candidate}；32环境；各分组窗口5/10秒；随机保持0.5/1.5秒；checkpoint固定。下方历史配置使用各自协议，完整新协议与源码hash见报告链接。`;
+  }
+}
+function renderScientific(d) {
+  SCIENTIFIC = d;
+  const p = d.protocol || {};
+  const headline = d.headline || [];
+  $("#scientific-summary").innerHTML = `<b>${esc(d.title || "科研型安全评测")}</b> · ${esc(d.summary || "")}`;
+  $("#scientific-updated").textContent = `更新 ${fmtAge(d.updated)} · checkpoint ${esc(p.checkpoint || "-")}`;
+  $("#scientific-headline").innerHTML = headline.map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="sub">违规率 ${sciPct(x.rate)} · ${x.cp95_upper == null ? "不报独立样本置信界" : `CP95 上界 ${sciPct(x.cp95_upper)}`}</div><div class="small" style="margin-top:6px">${esc(x.note || "")}</div></div>`).join("");
+  const historical = d.historical_headline || [];
+  $("#scientific-history-cards").style.display = historical.length ? "block" : "none";
+  $("#scientific-historical-headline").innerHTML = historical.map(x => `<div class="card sci-card ${sciStatus(x.status)}"><div class="t">${esc(x.label)}</div><div class="rate">${x.violations}/${x.episodes}</div><div class="small">${esc(x.note || "")}</div></div>`).join("");
+  const low = headline.find(x => String(x.label).startsWith("低速"));
+  const standard = headline.find(x => String(x.label).startsWith("标准"));
+  $("#ov-scientific").innerHTML = `${low ? `低速 <b>${low.violations}/${low.episodes}</b>（${sciPct(low.rate)}）` : "低速 -"}<br>${standard ? `标准 <b>${standard.violations}/${standard.episodes}</b>（${sciPct(standard.rate)}）` : "标准 -"}<div style="margin-top:4px"><a href="#scientific">查看分层结果 →</a></div>`;
+  const refinement = d.safety_refinement || {};
+  $("#scientific-refinement").style.display = refinement.rows?.length ? "block" : "none";
+  $("#scientific-refinement-note").textContent = refinement.summary || "";
+  $("#scientific-refinement-table tbody").innerHTML = (refinement.rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td class="num ${x.before.violations ? "bad" : "ok"}">${x.before.violations}/${x.before.episodes}</td><td class="num ${x.after.violations ? "bad" : "ok"}">${x.after.violations}/${x.after.episodes}</td><td class="num">${f(x.before.arm_arm_min_mm,2)} / ${f(x.after.arm_arm_min_mm,2)} mm</td><td class="num">${f(x.before.mean_joint_path_rad,2)} / ${f(x.after.mean_joint_path_rad,2)} rad</td><td class="num">${f(x.before.exec_command_l2_ratio,3)} / ${f(x.after.exec_command_l2_ratio,3)}</td></tr>`).join("");
+  $("#scientific-trace-select").innerHTML = (refinement.traces || []).map((x,i) => `<option value="${i}">${esc(x.label)}</option>`).join("");
+  $("#scientific-trace-select").onchange = e => renderRefinementTrace(e.target.value);
+  if (refinement.rows?.length) {
+    const x = refinement.rows[0];
+    $("#ov-scientific").innerHTML = `最新配对复测 <b>${x.before.violations}/${x.before.episodes} → ${x.after.violations}/${x.after.episodes}</b><br><span class="small">${esc(refinement.overview_note || "候选改进，仍需更广泛验证")}</span><div style="margin-top:4px"><a href="#scientific">查看制动曲线与限制 →</a></div>`;
+    renderRefinementTrace(0);
+  }
+  $("#scientific-protocol").innerHTML = `主种子 <b>${(p.seeds || []).join(" / ")}</b> · ${p.num_envs || "-"} 环境 × ${p.steps || "-"} 步（${p.duration_s || "-"} 秒） · 轨迹 <code>${(p.flows || []).join("</code> / <code>")}</code> · 违规口径：${esc(p.violation_definition || "球层非豁免 margin < 0")}`;
+  if (refinement.rows?.length) {
+    const runs = (refinement.manifests || []).map(x => x.args || {});
+    const seeds = [...new Set(runs.flatMap(x => x.seeds || []))].sort((a,b) => a-b);
+    const sizes = [...new Set(runs.map(x => x.num_envs))].join(" / ");
+    const durations = [...new Set(runs.map(x => x.duration_s))].sort((a,b) => a-b).join(" / ");
+    $("#scientific-protocol").textContent = `本轮组合防护：${sizes} 环境；种子 ${seeds.join(" / ")}；分组窗口 ${durations} 秒；配置 ${refinement.candidate}；非豁免球层 margin < 0 算违规。下方历史组使用各自冻结协议，详情见报告链接。`;
+  }
+  const coverage = d.coverage_assessment || {};
+  $("#scientific-coverage").innerHTML = `<b>${esc(coverage.title || "随机范围覆盖判定")}</b> · ${esc(coverage.summary || "")}${coverage.items ? `<ul class="q" style="margin-bottom:0">${coverage.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}`;
+  $("#scientific-main tbody").innerHTML = (d.protocol_rows || []).map(x => `<tr><td><b>${esc(x.label)}</b></td><td><code>${esc(x.flow)}</code></td><td class="num">${x.episodes}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num ${x.violations ? "bad" : "ok"}">${sciPct(x.rate)}</td><td class="num">${sciPct(x.cp95_upper)}</td><td class="num">${x.pair_union_exposed}/6</td></tr>`).join("");
+  $("#scientific-ablation tbody").innerHTML = (d.ablation || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td class="num ${x.low.violations ? "bad" : "ok"}">${x.low.violations}/${x.low.episodes}</td><td class="num ${x.standard.violations ? "bad" : "ok"}">${x.standard.violations}/${x.standard.episodes}</td><td class="num">${x.total.episodes}</td><td class="num ${x.total.violations ? "bad" : "ok"}">${x.total.violations}</td><td class="num">${sciPct(x.total.cp95_upper)}</td><td>${esc(x.note || "")}</td></tr>`).join("");
+  $("#scientific-pairs tbody").innerHTML = (d.pair_exposure || []).map(x => `<tr><td><b>${esc(x.pair)}</b></td><td class="num">${x.low_speed}</td><td class="num">${x.standard}</td><td>${esc(x.note || "跨窗口并集计数")}</td></tr>`).join("");
+  const strat = d.pair_stratified || {};
+  $("#scientific-stratified-note").innerHTML = strat.complete === true
+    ? `<b>目标指令设计单元已补齐</b> · 六组臂对 × 四个 EE 目标间距 × 三种目标方向 × ${(strat.amps || []).join(" / ")} · 实际球间距及运动方向需按 trace 判断。重复几何轨迹相关，不报告独立采样安全置信界。`
+    : `<b>分层设计仍有缺口</b> · ${strat.missing_cells || 0} 个单元未覆盖；不要把未暴露样本当作安全证据。`;
+  $("#scientific-stratified tbody").innerHTML = (strat.pair_rows || []).map(x => `<tr><td><b>${esc(x.method)}</b></td><td><code>${esc(x.pair)}</code></td><td class="num">${x.attempts}</td><td class="num">${x.exposed}</td><td class="num">${x.near}</td><td class="num ${x.violations ? "bad" : "ok"}">${x.violations}</td><td class="num">${sciPct(x.violation_rate)}</td></tr>`).join("");
+  $("#scientific-links").innerHTML = (d.links || []).map(x => `<a href="${esc(x.url)}" target="_blank">${esc(x.label)} ↗</a>`).join("");
+  $("#scientific-limitations").innerHTML = (d.limitations || []).map(x => `<li>${esc(x)}</li>`).join("");
+  renderRobustness(d);
+  renderPerturbation(d);
+  renderForensics(d);
+  renderQueue(d);
+  renderBounded(d);
+  renderRandomSpace(d);
+  renderRiskStrata(d);
+  renderMechanism(d);
+  renderAdmission(d);
+}
+// ---- tasks / R34
+function renderTasks(t) {
+  $("#tasknote").textContent = t.note || "";
+  $("#gallery").innerHTML = (t.families||[]).map(x => `<div class="gcard">${x.thumb ? `<img src="${esc(x.thumb)}" alt="${esc(x.name)}" loading="lazy">` : `<div style="aspect-ratio:16/9;background:#e5e7eb"></div>`}<div class="b"><b>${esc(x.name)} ${pill(x.status)}</b><div><span class="small">物体：</span>${esc(x.objects)}</div><div><span class="small">抓法：</span>${esc(x.grasp)}</div><div><span class="small">物理化：</span>${esc(x.phys)}</div><div><span class="small">门控：</span>${esc(x.gate)}</div></div></div>`).join("");
+  $("#assets-summary").textContent = t.assets_now?.summary || "";
+  $("#assets-constraints").innerHTML = (t.assets_now?.constraints||[]).map(c => `<li>${esc(c)}</li>`).join("");
+  const r = t.r34 || {};
+  $("#r34title").textContent = r.title || "";
+  $("#r34why").textContent = r.why || "";
+  $("#r34progress").innerHTML = (r.progress||[]).map(p => `<div class="decision"><b class="tp">${esc(p.time)} · ${esc(p.line)}</b><div>${esc(p.text)}</div></div>`).join("");
+  const thumbs = [].concat(...(r.progress||[]).map(p => p.thumbs || []));
+  $("#r34gallery").innerHTML = thumbs.map(th => `<div class="gcard"><img src="${esc(th)}" alt="${esc(th)}" loading="lazy"><div class="b small">${esc(th.split("/").pop())}</div></div>`).join("");
+  $("#r34sub tbody").innerHTML = (r.subfamilies||[]).map(s => `<tr><td><b>${esc(s.id)}</b> ${esc(s.name)}</td><td>${esc(s.objects)}</td><td>${esc(s.tasks)}</td><td class="small">${esc(s.grasp_reuse)}</td><td class="small">${esc(s.accept)}</td><td>${esc(s.priority)}</td></tr>`).join("");
+  $("#r34src tbody").innerHTML = (r.asset_sources||[]).map(s => `<tr><td>${esc(s.src)}</td><td>${esc(s.why)}</td><td class="small">${esc(s.license)}</td></tr>`).join("");
+  $("#r34pipe").innerHTML = (r.pipeline||[]).map((p,i) => `<li>${i+1}. ${esc(p)}</li>`).join("");
+  $("#r34open").innerHTML = (r.open_questions||[]).map(p => `<li><b>待定：</b>${esc(p)}</li>`).join("");
+}
+// ---- algorithm
+let ALG = null;
+function refStatusClass(st) { st = String(st||""); if (st.startsWith("planned") || st.startsWith("G3")) return "planned"; if (st.startsWith("提案") || st.startsWith("建议") || st.startsWith("可选")) return "proposal"; return "other"; }
+function renderAlgorithm() {
+  if (!ALG) return; const a = ALG;
+  $("#alg-oneliner").innerHTML = `<b>一句话</b> · ${esc(a.one_liner)}`;
+  $("#ov-alg").innerHTML = `算法：<b>${esc(a.version)}</b> · 最近变更 ${esc((a.changelog||[{}])[0].time||"")} ${esc(((a.changelog||[{}])[0].text||"").slice(0,60))}… <a href="#algorithm">框图与配方 →</a>`;
+  $("#alg-version").textContent = `${a.version} · 更新 ${fmtAge(a.updated)}`;
+  $("#alg-diagram").src = a.diagram + "?v=" + encodeURIComponent(a.updated); $("#alg-diagram-link").href = a.diagram;
+  $("#alg-diagram-note").textContent = a.diagram_note || "";
+  const pr = a.problem || {};
+  $("#alg-state").textContent = pr.state || ""; $("#alg-action").textContent = pr.action || ""; $("#alg-reward").textContent = pr.reward || ""; $("#alg-why").textContent = pr.why_constrained_rl || "";
+  $("#alg-cons tbody").innerHTML = (pr.constraints||[]).map(c => `<tr><td>${esc(c.channel)}</td><td class="num">${c.scale}</td><td class="num">${c.limit}</td><td class="num">${c.lambda_max}</td></tr>`).join("");
+  $("#alg-comp tbody").innerHTML = (a.components||[]).map(c => `<tr><td><b>${esc(c.block)}</b></td><td>${esc(c.what)}</td><td class="small"><code>${esc(c.file)}</code></td><td class="small">${esc(c.since)}</td><td>${esc(c.status)}</td></tr>`).join("");
+  const r = a.current_recipe || {};
+  $("#alg-run").textContent = `${r.run || ""} · ${r.server || ""} · 起 ${r.started || ""} · env ${r.env || ""} · 课程 ${r.curriculum || ""}`;
+  $("#alg-args tbody").innerHTML = (r.args||[]).map(([k,v]) => `<tr><td><code>${esc(k)}</code></td><td>${esc(v)}</td></tr>`).join("");
+  $("#alg-lineage-note").textContent = r.lineage_note || "";
+  $("#alg-lineage tbody").innerHTML = (a.lineage||[]).map(l => `<tr><td><b>${esc(l.ver)}</b></td><td class="small" style="white-space:nowrap">${esc(l.when)}</td><td>${esc(l.change)}</td></tr>`).join("");
+  const inc = r.increments || {};
+  $("#alg-inc-where").textContent = inc.where ? ` · ${inc.where}` : "";
+  $("#alg-inc-common").textContent = inc.common || "";
+  $("#alg-inc-arms tbody").innerHTML = (inc.arms||[]).map(([k,v]) => `<tr><td style="white-space:nowrap"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`).join("");
+  const e56 = inc.e5_e6 || {};
+  $("#alg-inc-e56").innerHTML = Object.keys(e56).length ? `<div style="margin-top:6px"><b>E5/E6</b> · ${esc(e56.launched||"")}<br>首迭代诊断：${esc(e56.e5_first_iter||"")}<br>判读：${esc(e56.acceptance||"")}</div>` : "";
+  $("#alg-inc-diag").innerHTML = (inc.diagnosis||[]).map(x => `<li>${esc(x)}</li>`).join("");
+  const res = inc.results_e0_e4 || {};
+  $("#alg-inc-res-title").textContent = `E0–E4 结果（配对四门）${res.when ? " · " + res.when : ""}`;
+  $("#alg-inc-res thead").innerHTML = res.columns ? `<tr>${res.columns.map(c => `<th>${esc(c)}</th>`).join("")}</tr>` : "";
+  $("#alg-inc-res tbody").innerHTML = (res.rows||[]).map(row => `<tr>${row.map((c,i) => `<td class="${i >= 2 ? "num" : ""}">${i === 0 ? "<b>" + esc(c) + "</b>" : esc(c)}</td>`).join("")}</tr>`).join("");
+  $("#alg-inc-verdict").textContent = res.verdict ? `判读：${res.verdict}` : "";
+  $("#alg-inc-evidence").textContent = res.evidence ? `证据：${res.evidence}${res.protocol ? " · 协议：" + res.protocol : ""}` : "";
+  const v22 = inc.v22 || {};
+  $("#alg-inc-v22-commit").textContent = v22.commit || "";
+  $("#alg-inc-v22").innerHTML = (v22.design||[]).map(x => `<li>${esc(x)}</li>`).join("");
+  $("#alg-inc-v22-ab").textContent = v22.real_rollout_ab ? `同一真实 rollout A/B：${v22.real_rollout_ab}` : "";
+  $("#alg-inc-v22-impl").textContent = v22.implication ? `含义：${v22.implication}` : "";
+  const on = new Set([...document.querySelectorAll("#rdfilters input:checked")].map(i => i.dataset.st));
+  const refs = (a.reference_designs||[]).filter(x => on.has(refStatusClass(x.status)));
+  $("#rdsum").textContent = `显示 ${refs.length} / ${(a.reference_designs||[]).length} 项`;
+  $("#alg-refs tbody").innerHTML = refs.map(x => `<tr><td><b>${esc(x.src)}</b></td><td>${esc(x.design)}</td><td>${esc(x.ours)}</td><td>${pill(refStatusClass(x.status) === "planned" ? "planned" : (refStatusClass(x.status) === "proposal" ? "open" : "idle"))}<div class="small">${esc(x.status)}</div></td><td class="small">${esc(x.why)}</td></tr>`).join("");
+  $("#alg-changelog tbody").innerHTML = (a.changelog||[]).map(c => `<tr><td style="white-space:nowrap">${esc(c.time)}</td><td>${esc(c.text)}</td></tr>`).join("");
+}
+document.querySelectorAll("#rdfilters input").forEach(i => i.addEventListener("change", renderAlgorithm));
+// ---- videos
+let VIDEOS = null, VF = {round:"all", mode:"all", view:"all"}, VLIMIT = 16;
+function vcard(v) {
+  return `<div class="vcard"><video controls preload="none" poster="${MEDIA + esc(v.thumb)}" src="${MEDIA + esc(v.file)}"></video><div class="b"><b>${esc(v.name)}</b><span class="small">${esc(v.date)} · ${v.dur_s ?? "-"} s · ${v.size_mb} MB · ${esc(v.round)} / ${esc(v.family)} / ${v.mode === "gated" ? "门控" : v.mode}${v.cam ? " / cam" + esc(v.cam) : ""} / ${v.view === "wide" ? "全景" : "近景"}</span></div></div>`;
+}
+function renderVideos() {
+  if (!VIDEOS) return;
+  $("#upd-media").textContent = fmtAge(VIDEOS.updated) + `，${VIDEOS.n} 部`;
+  const rounds = ["all", ...Array.from(new Set(VIDEOS.videos.map(v => v.round))).sort()];
+  $("#vchips").innerHTML = `<span class="small">轮次：</span>` + rounds.map(r => `<span class="chip ${VF.round===r?"on":""}" data-k="round" data-v="${esc(r)}">${r === "all" ? "全部" : esc(r)}</span>`).join("");
+  $("#vchips2").innerHTML = `<span class="small">模式：</span>` + ["all","gated","raw","attach"].map(m => `<span class="chip ${VF.mode===m?"on":""}" data-k="mode" data-v="${m}">${{all:"全部",gated:"门控 s0",raw:"raw 直通",attach:"旧吸附对照"}[m]}</span>`).join("")
+    + `<span class="small" style="margin-left:14px">视角：</span>` + ["all","wide","close"].map(m => `<span class="chip ${VF.view===m?"on":""}" data-k="view" data-v="${m}">${{all:"全部",wide:"全景（camW/camC/远景）",close:"近景特写"}[m]}</span>`).join("");
+  document.querySelectorAll(".chip").forEach(c => c.onclick = () => { VF[c.dataset.k] = c.dataset.v; VLIMIT = 16; renderVideos(); });
+  const rows = VIDEOS.videos.filter(v => (VF.round === "all" || v.round === VF.round) && (VF.mode === "all" || v.mode === VF.mode) && (VF.view === "all" || v.view === VF.view));
+  $("#videos").innerHTML = rows.slice(0, VLIMIT).map(vcard).join("") || "<div class='small'>无匹配视频</div>";
+  $("#vcount").textContent = `显示 ${Math.min(VLIMIT, rows.length)} / ${rows.length}`;
+  $("#vmore").style.display = rows.length > VLIMIT ? "" : "none";
+  const wide = VIDEOS.videos.filter(v => v.view === "wide");
+  $("#ov-videos").innerHTML = (wide.length >= 2 ? wide : VIDEOS.videos).slice(0,4).map(vcard).join("");
+}
+$("#vmore").onclick = () => { VLIMIT += 16; renderVideos(); };
+async function refresh() {
+  try { renderServers(await getJSON(RAW + "runs.json")); } catch (e) { $("#upd-runs").textContent = "加载失败"; }
+  try { renderStatus(await getJSON(RAW + "status.json")); } catch (e) { $("#upd-status").textContent = "加载失败"; console.warn(e); }
+  try { ROADMAP = await getJSON(RAW + "roadmap.json"); renderRoadmap(); } catch (e) { console.warn(e); }
+  try { renderMatrix(await getJSON(RAW + "matrix.json")); } catch (e) { console.warn(e); }
+  try { GATES = await getJSON(RAW + "gates.json"); renderGates(); } catch (e) { console.warn(e); }
+  try { renderScientific(await getJSON(RAW + "scientific_eval.json")); } catch (e) { console.warn(e); }
+  try { renderTasks(await getJSON(RAW + "tasks.json")); } catch (e) { console.warn(e); }
+  try { ALG = await getJSON(RAW + "algorithm.json"); renderAlgorithm(); } catch (e) { console.warn(e); }
+  try { VIDEOS = await getJSON(MEDIA + "index.json"); renderVideos(); } catch (e) { $("#upd-media").textContent = "加载失败"; }
+}
+document.querySelectorAll("#rmfilters input").forEach(i => i.addEventListener("change", renderRoadmap));
+$("#fullonly").addEventListener("change", renderGates); $("#recentonly").addEventListener("change", renderGates);
+refresh(); setInterval(refresh, 60000);
+</script>
+</body>
+</html>

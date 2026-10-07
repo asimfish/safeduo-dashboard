@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_hand_support_calibration_20261007/native_probe.py", line 235, in <module>
+    try: main()
+         ^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_hand_support_calibration_20261007/native_probe.py", line 55, in main
+    env = ProbeEnv(cfg); env.reset()
+                         ^^^^^^^^^^^
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 315, in reset
+    self._reset_idx(indices)
+  File "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py", line 1522, in _reset_idx
+    super()._reset_idx(env_ids)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 613, in _reset_idx
+    self.scene.reset(env_ids)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/scene/interactive_scene.py", line 463, in reset
+    sensor.reset(env_ids)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sensors/camera/camera.py", line 369, in reset
+    super().reset(env_ids)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sensors/sensor_base.py", line 180, in reset
+    self._timestamp_last_update[env_ids] = 0.0
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

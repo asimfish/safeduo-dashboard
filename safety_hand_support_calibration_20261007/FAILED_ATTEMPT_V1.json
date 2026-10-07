@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_INITIALIZATION_ZERO_VALID_DIAGNOSTICS",
+  "raw": "/mnt/nas/data/lyf/double_hand/safety_hand_support_calibration_20261007/baseline",
+  "failure": "one-camera timestamp tensor indexed by all six env ids in env.reset()",
+  "evidence": "failure.txt identifies Camera.reset -> SensorBase._timestamp_last_update[env_ids]",
+  "correction": "Detach viz_cam before env.reset as sealed working native task recorder does.",
+  "gates_changed": false,
+  "new_task_trials": 0
+}
