@@ -22,7 +22,7 @@
 <div class="scroll"><table id="warnings"><thead><tr><th>方法</th><th>窗口</th><th>严格失败</th><th>提前报警的失败</th><th>最短提前步数</th><th>未严格越界但报警</th></tr></thead><tbody></tbody></table></div>
 <p class="warn">零输入模式的 185 个未严格越界窗口中，162 个也报警。它们不是已证明的误报；“报警即停”不能作为已验证策略。未来实验必须同时检查真实运动、覆盖和新失败。</p>
 <div class="controls"><button id="newA">新增失败：t620</button><button id="newB">新增失败：t193</button></div>
-<p><a href="adverse_endpoints.png">下载两个新增失败的独立科学图（PNG）</a></p><h3>211 个首次失败的实际保存数据</h3>
+<p><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/9f9d52af3cf9652f7016e652a6a600e3473367ce/docs/safety_queue_viability_20261007_1855/adverse_endpoints.png">下载两个新增失败的独立科学图（PNG）</a></p><h3>211 个首次失败的实际保存数据</h3>
 <div class="controls"><label>方法 <select id="method"><option value="all">全部</option><option value="joint_reference">原参考</option><option value="tight_reference">原收紧</option><option value="zero_inclusive">零包含</option></select></label><label>样本 <select id="case"></select></label></div>
 <p id="caseInfo"></p><p class="legend">橙色竖线：首次残差报警；红色竖线：首次严格越界。横轴为原始帧编号；曲线是稀疏显示，保留首次报警/越界附近原始帧。判据按完整 960 帧计算。</p>
 <div class="plots"><div><h3>原始最小球距（mm）</h3><svg id="margin" viewBox="0 0 600 230"></svg></div><div><h3>实际最大关节速度（rad/s）</h3><svg id="velocity" viewBox="0 0 600 230"></svg></div><div><h3>目标跟踪偏差（rad）</h3><p class="legend">蓝：最新下发目标；绿：六个待执行目标</p><svg id="debt" viewBox="0 0 600 230"></svg></div><div><h3>当前约束数值残差（mm）</h3><p class="legend">蓝：实际返回增量；绿：单行不可能性下界</p><svg id="residual" viewBox="0 0 600 230"></svg></div></div>
@@ -37,7 +37,8 @@
 <p>数值反例缺完整原生关节、每臂 root transform/root velocity。已增加下一轮完整 getter 采集模块，需实跑后再做渲染前后绑定验证。</p>
 <select id="cameraGroup"></select><p id="cameraInfo"></p><p id="stateLinks"></p><div id="gallery" class="gallery"></div>
 </section>
-<section><h2>报告、代码与原始记录</h2><p><a href="REPORT.md">完整阶段报告</a> · <a href="queue_guard.py">当前集合诊断模块</a> · <a href="native_state_capture.py">下一轮完整原生采集模块（Isaac未执行）</a> · <a href="ASTRA_DEVELOPMENT_REVIEW.json">独立初审</a> · <a href="ASTRA_FINAL_REPORT_REVIEW.json">报告修订独立复核</a> · <a href="PUBLIC_SOURCE_BINDINGS.json">公开证据绑定</a></p>
+<section><h2>报告、代码与原始记录</h2><p><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/9f9d52af3cf9652f7016e652a6a600e3473367ce/docs/safety_queue_viability_20261007_1855/payload.json.gz">完整曲线数据（GZIP）</a> · <a href="ASSET_RELOCATION.json">固定提交与文件完整性</a></p>
+<p><a href="REPORT.md">完整阶段报告</a> · <a href="queue_guard.py">当前集合诊断模块</a> · <a href="native_state_capture.py">下一轮完整原生采集模块（Isaac未执行）</a> · <a href="ASTRA_DEVELOPMENT_REVIEW.json">独立初审</a> · <a href="ASTRA_FINAL_REPORT_REVIEW.json">报告修订独立复核</a> · <a href="PUBLIC_SOURCE_BINDINGS.json">公开证据绑定</a></p>
 <p>首次报警审计 exit1 使用了错误的距离通道；原源码、注册和日志保留，v2只修正为原评分使用的 official_margins，并核对全部211个首次失败，实际 exit0。<a href="WARNING_ATTEMPT1_DIAGNOSIS.json">查看诊断</a>。</p>
 <p><a href="../safety_zero_intent_20261006_2225/">上一轮完整576窗口、运动代价、覆盖与九视角证据</a></p>
 <p class="small">本轮新机器人窗口0，新硬件实验0；不报告独立同分布安全置信界或全26维机器人空间覆盖。</p></section><p id="error"></p>
@@ -58,7 +59,7 @@ $('#caseLP tbody').replaceChildren();for(const r of ['F','U'])for(const [k,v] of
 function choose(seed,env){$('#method').value='all';fillCases();$('#case').value=window.QUEUE.traces.findIndex(t=>t.mode==='zero_inclusive'&&t.seed===seed&&t.env===env);selectCase()}
 function camera(){const g=window.QUEUE.visual.galleries[Number($('#cameraGroup').value)],base=window.QUEUE.visual.assetBase+'visual/'+g.mode+'/';$('#gallery').replaceChildren();$('#stateLinks').replaceChildren();$('#cameraInfo').textContent=`封存相机自身状态：${names[g.mode]} / env${g.env} / t${g.step} / ${g.kind}；不是上方数值轨迹重放。`;
 for(const k of ['state','before','after']){const a=document.createElement('a');a.href=base+g[k];a.textContent=k+' 原生记录 ';$('#stateLinks').append(a)}for(const im of g.images){const f=document.createElement('figure'),pic=document.createElement('img'),cap=document.createElement('figcaption');pic.src=base+im.path;pic.loading='lazy';pic.alt=im.view;cap.textContent=im.view;f.append(pic,cap);$('#gallery').append(f)}}
-async function main(){const resp=await fetch('payload.json.gz');if(!resp.ok)throw new Error('payload '+resp.status);const stream=resp.body.pipeThrough(new DecompressionStream('gzip'));window.QUEUE=await new Response(stream).json();const p=window.QUEUE;$('#peer').textContent=p.peer.status+'（CPU/数学/源码范围）';
+async function main(){const resp=await fetch('https://raw.githubusercontent.com/asimfish/safeduo-dashboard/9f9d52af3cf9652f7016e652a6a600e3473367ce/docs/safety_queue_viability_20261007_1855/payload.json.gz');if(!resp.ok)throw new Error('payload '+resp.status);const stream=resp.body.pipeThrough(new DecompressionStream('gzip'));window.QUEUE=await new Response(stream).json();const p=window.QUEUE;$('#peer').textContent=p.peer.status+'（CPU/数学/源码范围）';
 for(const r of p.decompositionSummary){const a=p.authoritySummary.find(x=>x.mode===r.mode&&x.robot===r.robot);cellRow('#decomposition',[names[r.mode]+' / '+r.robot,r.cases,r.infeasible.captured,r.infeasible.remove_alpha_same_frozen_safety_box,r.infeasible.widen_bounds_same_frozen_rows_rhs,a.infeasible.widen_recompute_authority_keep_alpha])}
 for(const r of p.warningSummary)cellRow('#warnings',[names[r.mode],r.windows,r.strict_windows,r.warned_before_first_strict,r.minimum_lead_steps,r.warning_only_windows]);
 for(const r of p.random.results)for(const [s,v] of Object.entries(r.strata))cellRow('#random',[r.seed,r.dimension,s,v.cases,v.unexpected]);

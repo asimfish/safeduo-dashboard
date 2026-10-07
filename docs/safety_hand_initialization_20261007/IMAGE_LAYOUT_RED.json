@@ -1,0 +1,25 @@
+{
+  "status": "FAIL_DISPLAY_ASPECT_RATIO_NATIVE_PIXELS_UNCHANGED",
+  "rows": [
+    {
+      "width": 366,
+      "height": 720,
+      "expectedRatio": 1.7777777777777777,
+      "actualRatio": 0.5083333333333333
+    },
+    {
+      "width": 366,
+      "height": 720,
+      "expectedRatio": 1.7777777777777777,
+      "actualRatio": 0.5083333333333333
+    },
+    {
+      "width": 366,
+      "height": 720,
+      "expectedRatio": 1.7777777777777777,
+      "actualRatio": 0.5083333333333333
+    }
+  ],
+  "cause": "HTML height=720 attribute remained effective while CSS width shrank to column width",
+  "fix": "Set CSS height:auto and assert bounding rectangle ratio at both desktop/mobile viewports"
+}
