@@ -1,0 +1,43 @@
+{
+  "status": "CONFIRMED_MODEL_HAND_INTERNAL_EXEMPTION_FOR_MEASURED_CONTACT_PAIR",
+  "analysis_timing": "Source-path analysis after native results; not an added prespecified physical endpoint",
+  "resolved_semantics_yaml": "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v7r16.yaml",
+  "semantics_sha256": "f66efc90ed57d460e3fb782f745925b006d36f8d22f15a768381b2d54d2f02fd",
+  "checks": [
+    {
+      "arm": "U_L",
+      "semantic_sensor": "U_L/hand/left_thumb_2",
+      "semantic_partner": "U_L/hand/wrist_3_link",
+      "classes": [
+        "hand_finger",
+        "hand_palm"
+      ],
+      "verdict": {
+        "keep": false,
+        "category": "",
+        "d_min": 0.0,
+        "conditional": false,
+        "verdict": "adjacency_exempt"
+      }
+    },
+    {
+      "arm": "U_R",
+      "semantic_sensor": "U_R/hand/right_thumb_2",
+      "semantic_partner": "U_R/hand/wrist_3_link",
+      "classes": [
+        "hand_finger",
+        "hand_palm"
+      ],
+      "verdict": {
+        "keep": false,
+        "category": "",
+        "d_min": 0.0,
+        "conditional": false,
+        "verdict": "adjacency_exempt"
+      }
+    }
+  ],
+  "interpretation": "Both measured thumb2/palm pairs are excluded from official distance hazard rows by hand_internal: all. This confirms a model coverage gap, not a physical collision exemption or proof that the guarded controller was exercised in these static probes.",
+  "recommendation": "Qualify a separate hand closure/self-contact layer with native states and pre-admitted collision-free hand targets; do not simply unexempt all hand pairs in an arm-only action/Jacobian controller.",
+  "production_sources_unchanged": true
+}
