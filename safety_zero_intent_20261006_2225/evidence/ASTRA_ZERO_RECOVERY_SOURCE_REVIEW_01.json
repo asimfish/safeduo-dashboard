@@ -1,0 +1,199 @@
+{
+  "verdict": "Blocked",
+  "dimensions": [
+    {
+      "dimension": "Functional achievement",
+      "status": "Unable to determine",
+      "evidence": "Initial archived metadata declares 448 complete and 128 unstarted invalid windows. Recovery is running by parent notice; no final576 or camera outcome validation performed."
+    },
+    {
+      "dimension": "Correctness and reliability",
+      "status": "Fail",
+      "evidence": "Historical false-zero/false-PASS chain reproduced; recovery rejects planned/missing protocol but terminal failure persistence still has ZERO-RECOVERY-02."
+    },
+    {
+      "dimension": "Architecture",
+      "status": "Risk",
+      "evidence": "Numeric recovery preserves original canonical plan/argv and nests retained_initial_attempt; camera device amendment is explicit. Legacy camera audit binding and downstream failure propagation need disposition."
+    },
+    {
+      "dimension": "Function and API design",
+      "status": "Fail",
+      "evidence": "ZERO-RECOVERY-01 reproduces the camera registration/receipt incompatibility. Existing frozen numerical scorer rejects failed child0 before reading any arrays."
+    },
+    {
+      "dimension": "Style and maintainability",
+      "status": "Risk",
+      "evidence": "Keep OS exit, semantic protocol validity, partial readback success and scientific completion as separate named fields; current producer/consumer meanings differ."
+    },
+    {
+      "dimension": "Performance",
+      "status": "Unable to determine",
+      "evidence": "No recovery performance, provider CI, final bundle capacity or runtime rendering claim is evaluated here."
+    }
+  ],
+  "blocking_findings": [
+    {
+      "id": "ZERO-RECOVERY-01",
+      "severity": "Major",
+      "status": "Fail",
+      "dimension": "Function and API design",
+      "scope_relationship": "Introduced",
+      "title": "Bind the camera amendment through a separate audit invocation contract",
+      "evidence": [
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:96",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/astra_zero_camera_prepare.py:42",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/astra_zero_camera_prepare.py:128",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/astra_zero_camera_prepare.py:223"
+      ],
+      "reproduction": "CPU captured-source camera success fixture produces status complete without plan_sha256; frozen run raises KeyError. With the original plan supplied, frozen audit_mode rejects both amended CUDA1 argv before reading arrays.",
+      "impact": "The unchanged legacy camera entrypoint cannot audit the approved amended execution. This blocks that entrypoint and final independent camera acceptance, not continuation of authorized numeric recovery.",
+      "minimum_fix": "Register a separate additive camera amendment binding/invocation that verifies original plan SHA, amendment SHA, executed recovery plan SHA and exact two-token device-only delta. Reuse frozen camera math, own-state checks and original 72-image selection. Preserve original source/registration and actual argv; never relabel CUDA1 as CUDA0 or manufacture an original-plan execution receipt.",
+      "verification": "Add CPU fixtures for exactly the registered device delta, all other argv/source/recipe/selection changes rejected, and missing/incomplete receipts rejected. Actual all-group/native/PNG/72-original review remains after camera closure."
+    },
+    {
+      "id": "ZERO-RECOVERY-02",
+      "severity": "Major",
+      "status": "Fail",
+      "dimension": "Correctness and reliability",
+      "scope_relationship": "Exposed",
+      "title": "Persist terminal failure and actual wait result on every recovery validation exit",
+      "evidence": [
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:74",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:76",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:111",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:112",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/follow_analysis.py:21",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/follow_recovery_analysis.py:45"
+      ],
+      "reproduction": "CPU fixtures using the actual captured verify_child reject planned protocol, and camera fixture rejects missing protocol; both propagate errors while the last persisted record remains running/recovery_running without child exit_code. The original follow_analysis.wait_closed only exits for complete or explicit FAIL/failed.",
+      "impact": "Errors are not converted into scientific PASS, but a camera initialization/validation failure after numerical closure can leave the analysis follower waiting indefinitely. A closed driver cannot establish fresh terminal metadata from these stale records.",
+      "minimum_fix": "Use an explicitly bound operational finalizer/supervisor to persist actual child wait result, terminal failed status, failed validation stage and error for every attempt, preserving original failed records. An already-running frozen driver must not be silently edited. Retain a fresh outer run_closed_step actual-exit receipt; ensure dependent followers observe the terminal failure.",
+      "verification": "Inject nonzero child exit, child0 plus planned protocol, missing numeric products and missing camera protocol; verify finite failure, retained actual rc and terminal failed metadata, with no complete/PASS promotion."
+    }
+  ],
+  "non_blocking_improvements": [
+    {
+      "id": "ZERO-RECOVERY-03",
+      "severity": "Minor",
+      "status": "Risk",
+      "dimension": "Correctness and reliability",
+      "title": "Assert the registered amended plan hash before camera execution",
+      "evidence": [
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:93",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py:128"
+      ],
+      "observed": "Current amended plan SHA matches PLANS_RECOVERY_AMENDMENT and exact device-only delta was independently checked. The driver checks its own hash but does not itself assert visual_recovery_plan_sha256 or the two-token-only delta before camera launch.",
+      "minimum_fix": "Bind and verify the executed recovery-plan hash in the operational receipt/invocation, together with original-plan hash and amendment hash. Preserve current registration bytes."
+    },
+    {
+      "id": "ZERO-RECOVERY-04",
+      "severity": "Minor",
+      "status": "Risk",
+      "dimension": "Correctness and reliability",
+      "title": "Describe failed scene construction rather than no construction having begun",
+      "evidence": [
+        "Archived candidate logs: FileNotFoundError raised within DuoEnv/scene/USD construction; research_battery.py:339 precedes experimental run_window at line379."
+      ],
+      "observed": "The failed jobs did not reach experimental initial-state setup or any sampled frame. Some scene/asset construction had begun; the logs do not support literal absence of all construction.",
+      "minimum_fix": "Use initialization failed during scene construction, before experimental state/frame loop. HTTP reads attest availability of those URLs at that later time, not resolver success or transitive asset byte identity across attempts."
+    }
+  ],
+  "minimum_required_repair": [
+    "Resolve the two explicit operational/audit integration findings without changing frozen policy, raw scoring, camera math or pixel selection.",
+    "Preserve all completed448 trajectories including observed violations and all initial128-invalid attempt evidence; no repeated completed window or outcome-based selection.",
+    "Wait for explicit actual allnumericclosed notification before invoking the original frozen scorer. Require nine unique canonical complete jobs, actual rc0 and complete protocols/artifacts, then independently verify all576 native raw windows.",
+    "Later verify all actual camera native groups and PNG headers/hashes; inspect the originally declared72 original images using view_image. Keep same-step/FIFO, full-J/LP, own-state/exact-replay and physical-safety claim boundaries.",
+    "Review actual REPORT after independent results and closure. Initial GPU FAIL, baseline-only same-process pause/resume, first448/128, Kit child0 false aggregate and post-outcome camera device amendment must remain visible."
+  ],
+  "status": "BLOCKED_SCOPED_RECOVERY_INTEGRATION_REVIEW_NOT_FINAL_SCIENTIFIC_VERDICT",
+  "utc": "2026-10-07T04:46:46.048393+00:00",
+  "debugging_verdict": {
+    "status": "DIAGNOSED",
+    "evidence_rung": "Captured-source CPU replay plus archived causal traces",
+    "proximate_initial_failure": "Remote USD assets were unavailable to the simulator resolver during scene construction; default_environment.usd raises FileNotFoundError and FR3 reference warnings precede it. Underlying network/service/cache cause not determined.",
+    "first_incorrect_success_transition": "execute_numeric.py returns normally after run_campaign returned complete_with_failures; execute_all.py:39 promotes three wrapper rc0 values to PASS_ALL_NUMERIC_CLOSED.",
+    "counterfactual": "Captured campaign still contains failed candidate and planned protocol; exact wrapper exits0 and exact aggregation expression returns PASS, while frozen independent score_cell rejects before array IO.",
+    "not_a_fix_claim": true,
+    "initial_camera_failure": "Reference camera constructor failed before visual_protocol creation; original execute_visual.py throws on missing protocol and finally preserves running status. Zero-inclusive camera was not launched in that original attempt.",
+    "downstream_analysis": "Fixed LP audit failed on missing candidate step_0000 NPZ; outer follower exited1 before completing all6. ANALYSIS_EXECUTION PASS is partial readback execution, not576 completion.",
+    "physics_safety_verdict": "Unavailable; no independent raw scoring performed."
+  },
+  "initial_attempt_accounting": {
+    "basis": "Archived campaign and per-child protocol identities, not raw scoring or parent safety metrics",
+    "complete_declared_conditions": 7,
+    "complete_declared_method_windows": 448,
+    "unstarted_invalid_conditions": 2,
+    "unstarted_invalid_method_windows": 128,
+    "frame_lengths_not_independently_recomputed_yet": true,
+    "initial_camera_reference": "initialization failure, no protocol/images",
+    "initial_camera_candidate": "not launched",
+    "latest_parent_progress_not_completion": "Parent reports recovery frame300/960; no current outcome arrays read or inferred final counts."
+  },
+  "evidence_snapshot": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/ASTRA_ZERO_FAILURE_EVIDENCE_SNAPSHOT_01.json",
+    "sha256": "9045d4b1234065abf2f20a3321eda67ba04dc766eecd5d9cda833c4d5afcd082"
+  },
+  "parent_preservation": {
+    "archived14_files_actual_hash_and_size_match": true,
+    "original_numeric_campaign_archives_bound": true,
+    "original_failed_protocols_only_completed_cells0": true,
+    "completed448_raw_byte_retention_still_requires_final_closed_raw_ledger": true
+  },
+  "validation": {
+    "tests": 11,
+    "actual_child_exit_code": 0,
+    "all_test_children_reaped": true,
+    "receipt": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/astra_zero_exit_contract_tests_attempt03_receipt.json",
+    "receipt_sha256": "34913cfde78856b49ce9be95a79c31ca41a34660f78f622c3cce74b574858983",
+    "source_sha256": "5d8a98e9d824dd2aad9980b30f930b47c68a8672badc47b1df8df0c5d27c4ce3",
+    "initial_fixture_error_retained": "attempt01 exit1 omitted STDOUT in mock; attempt02 exit0 with8 tests; attempt03 exit0 with11 and actual verify_child extraction",
+    "metadata_collection_race_retained": "astra_zero_failure_snapshot_attempt01_error.json; initial canonical snapshot interrupted by recovery_running; final evidence uses archived attempts",
+    "passing_diagnostic_tests_do_not_mean_defects_fixed": true
+  },
+  "current_presentation_and_operation_source_sha256": {
+    "build_report.py": "b3a16b2642d4b86daa5eb19dbf9958a32e8f5d71e523a15a35d342dd3519dfa9",
+    "build_delivery.py": "51ffd0b7ceb6b4b6c99fbf31bb830395fe68ebaeeab35b282ee8d85b65843ffb",
+    "panel_template.html": "287332d135bb79e4233dd77d7e759250d2c50a183786f629a44492df851ed0ab",
+    "check_panel.py": "a354651eca72dc6deb20961727a44e2993b96f230b51a2dfa00fd9e61ca6230b",
+    "update_root.py": "758a52f096279f8f3910b2daa62478c20017f87df9efc90351cb62987d446383",
+    "plot_results.py": "4eaf8109f8fad1ddc16b71a894282fbaca433bc1b3e3faf5774c9cee9ffa9a5d",
+    "candidate_decision.py": "6ed3fd553b978b103ba4e2b0ef6d9e946dc0c045337203f1c7569cd3cc7e5035",
+    "CANDIDATE_DECISION_REGISTRATION.json": "6e0a4198b8eb542cf0e151b6331e1b340264f5cad13e1eaead19018202df6de5",
+    "finalize_certificate.py": "9400a51ca92e4c7ed9d53d1d756cb64f8645173d15174e300252f265f8ea2b20",
+    "seal_evidence.py": "3c97727bab497faff249fe12fab9e9c0ef15d85e429d3f9f9e3dec3bcccc0820",
+    "recover_unstarted.py": "159e91d9b7f5b6cb56a23b47c9f7a6a141d3e0ad034a8ee433fd84bae3f5bb85",
+    "follow_recovery_analysis.py": "d46564e4b5842320062d2bb1210165c87b7f91dff2124f4662fc9ef381a3b030",
+    "run_closed_step.py": "9d459da0e8895d2e5b857d72bc1c3ca83ed455a0ec640522827275d0363ded81",
+    "follow_analysis.py": "d697f0298727895fc965f1e188658251a4b7001c9d2864b083cdd37e5b0831d1",
+    "audit_zero_intent.py": "cfa5487794c11e229c674281722b3a9f4cb5f7a579de06e68589807f1847126b",
+    "PLANS_RECOVERY_AMENDMENT.json": "a6625e21a881f6085a25bd7ff83f8442d9e4df9e8b362224ec731197b79bdf76",
+    "visual_recovery_plan.json": "3e72cc373a52e35e3c99f3613a155e0cc144c2fa2ac0e233cfd6e4123de45fb2"
+  },
+  "presentation_snapshot": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/ASTRA_ZERO_RECOVERY_PRESENTATION_SNAPSHOT_01.json",
+    "sha256": "1c7e020a0cd20d52befe8f13b11907d56939f62fe3159559d99e7e37ab9a93b6"
+  },
+  "operational_binding": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/RECOVERY_OPERATIONAL_SOURCE_BINDING.json",
+    "sha256": "945efb2814318f562772f0013ac277053e1cedf7df90c55e2c6b9cbc19339205",
+    "all_three_current_hashes_match": true
+  },
+  "presentation_source_findings": {
+    "new_deviations_present": true,
+    "initial448_128_or_missing_recovery_rejected_in_fixture": true,
+    "original_initial_GPU_FAIL_and_pause_disclosure_retained": true,
+    "actual_REPORT_not_read_or_generated": true,
+    "final_source_review_after_data_pending": true
+  },
+  "frozen_six_policy_and_own_raw_camera_helpers_match": true,
+  "new_raw_arrays_read": false,
+  "new_camera_pixels_viewed": 0,
+  "parent_scores_used_to_compute_independent_results": false,
+  "canonical_scorer_started": false,
+  "own_GPU_or_simulation_workers_started": false,
+  "own_workers_running": 0,
+  "indefinite_watcher_started": false,
+  "prior_reviews_registrations_unchanged": true,
+  "no_final_PASS_or_release_approval": true
+}

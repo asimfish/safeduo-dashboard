@@ -1,0 +1,43 @@
+{
+  "schema": "astra.zero.decision_ack.v1",
+  "utc": "2026-10-06T14:45:17.761235+00:00",
+  "status": "DECLARED_REPORT_RULE_RECORDED_SCORER_UNCHANGED",
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/CANDIDATE_DECISION_REGISTRATION.json": "6e0a4198b8eb542cf0e151b6331e1b340264f5cad13e1eaead19018202df6de5",
+    "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/candidate_decision.py": "6ed3fd553b978b103ba4e2b0ef6d9e946dc0c045337203f1c7569cd3cc7e5035"
+  },
+  "rule": {
+    "status": "REGISTERED_BEFORE_NEW_POLICY_OUTCOMES",
+    "primary": "joint_reference__vs__zero_inclusive",
+    "adverse_endpoints": [
+      "any new paired strictfailure",
+      "candidate strictfailcount>reference",
+      "candidate deepfailcount>reference",
+      "candidate deepenvframes>reference"
+    ],
+    "adverse_decision": "REJECTED_ADVERSE_ENDPOINTS",
+    "all_pass_but_residual_failures": "RESEARCH_ONLY_RESIDUAL_FAILURES",
+    "observed_zero_candidate_failures": "OBSERVED_ZERO_FAILURES_LIMITED_SCOPE_ONLY",
+    "software_invariant_pass_is_physical_safety": false,
+    "motion_and_exposure": "report actual q path/full26joint coverage/sixpair exposure/underexposed; never equate lower motion with safety or independentIID evidence",
+    "hardware_approved": false,
+    "production_promoted": false,
+    "utc": "2026-10-06T14:44:28.114423+00:00"
+  },
+  "source_registration_sha256": "4f5cd77d28f3a0b5f6707096807c10795b840ca544528ad64ed964e4960c70fa",
+  "plan_registration_sha256": "0567ff584dabd2694c999eae1f2b864ef40379f4d21bfefdf36bba3cda221566",
+  "frozen_scorer_sources_unchanged": true,
+  "new_outcome_arrays_read": 0,
+  "preoutcome_timing_basis": "Parent notification and registration timestamp; no policy outcome inspection performed",
+  "scope": "Static rule acknowledgement only; final report/code review pending",
+  "final_review_requirements": [
+    "Independently apply declared primary adverse endpoints to complete verified paired results before reconciling parent decision.",
+    "Never classify missing or invalid windows as zero failures. Helper assumes complete totals and three block pair records; validate that precondition at final report boundary.",
+    "Report strict and deep counts/durations, paired new failures, actual motion/exposure and underexposure without claiming reduced motion proves safety.",
+    "Retain limited-scope residual or observed-zero wording; no hardware/production claim."
+  ],
+  "resource_update_source": "Parent reports original unchanged schedule now meets initial GPU gate; reviewer did not launch or inspect GPU work",
+  "scoring_algorithm_changed": false,
+  "workers_started": 0,
+  "watcher_started": false
+}

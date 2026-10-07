@@ -1,0 +1,110 @@
+Loading user config located at: '/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261007_130135.log
+2026-10-07T05:01:35Z [235ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:35Z [235ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:35Z [276ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-10-07T05:01:35Z [288ms] [Warning] [carb.cudainterop.plugin] CUDA_VISIBLE_DEVICES environment variable is set.
+2026-10-07T05:01:35Z [288ms] [Warning] [carb.cudainterop.plugin] Note CUDA device enumeration and Omniverse device enumeration are different.
+2026-10-07T05:01:35Z [288ms] [Warning] [carb.cudainterop.plugin] Setting CUDA_VISIBLE_DEVICES can lead to undesired behavior or crashes.
+2026-10-07T05:01:36Z [613ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:36Z [613ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 570.124.06    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 5090          | Yes: 0 |     | 32607   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2b85      | b129224c.. |
+|     |                                  |        |     |            | 41        |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | NVIDIA GeForce RTX 5090          |        |     | 32607   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2b85      | 828bb172.. |
+|     |                                  |        |     |            | 81        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| Processor: AMD Ryzen Threadripper 7960X 24-Cores
+| Cores: 24 | Logical Cores: 48
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 257228 | Free Memory: 67682
+| Total Page/Swap (MB): 131071 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+2026-10-07T05:01:37Z [1,333ms] [Warning] [gpu.foundation.plugin] PCIe link width current (2) and maximum (16) for device 0 don't match.
+2026-10-07T05:01:37Z [1,333ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-07T05:01:37Z [1,333ms] [Warning] [gpu.foundation.plugin] Detected IOMMU is enabled. Running CUDA peer-to-peer bandwidth and latency validation.
+Unidirectional P2P=Enabled Bandwidth (P2P Writes) Matrix (GB/s)
+   D\D     0      1 
+     0 1511.12   7.10 
+     1   7.01 1528.86 
+P2P=Enabled Latency (P2P Writes) Matrix (us)
+   GPU     0      1 
+     0   2.12  13.62 
+     1  13.45   2.06 
+
+   CPU     0      1 
+     0   2.06   5.41 
+     1   5.59   1.81 
+2026-10-07T05:01:37Z [1,582ms] [Warning] [gpu.foundation.plugin] CUDA peer-to-peer observed bandwidth: 7.0 GB/s.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/liyufeng/safeduo_isaaclab/apps/isaaclab.python.headless.rendering.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-10-07_13-01-44.log[0m
+[36m======================================================================================[0m
+
+[33m13:01:44 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 0
+	Physics step-size     : 0.008333
+	Rendering step-size   : 0.016666
+	Environment step-size : 0.016666
+[INFO]: Time taken for scene creation : 3.661842 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 64
+	Environment spacing   : 4.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 5.939347 seconds
+[INFO]: Completed setting up the environment...
+[battery] step 0/960 (1.41 steps/s = 91 env-steps/s, eta 679s) viol_eps=0
+NINE_VIEW step=75 slots=7 kind=scheduled
+NINE_VIEW step=113 slots=1 kind=first_failure
+NINE_VIEW step=114 slots=1 kind=first_failure
+NINE_VIEW step=250 slots=1 kind=first_failure
+[battery] step 300/960 (0.85 steps/s = 54 env-steps/s, eta 779s) viol_eps=4
+NINE_VIEW step=465 slots=1 kind=first_failure
+NINE_VIEW step=480 slots=7 kind=scheduled
+[battery] step 600/960 (0.91 steps/s = 58 env-steps/s, eta 397s) viol_eps=7
+[battery] step 900/960 (1.00 steps/s = 64 env-steps/s, eta 60s) viol_eps=7
+NINE_VIEW step=959 slots=7 kind=scheduled
+2026-10-07T05:01:37Z [1,582ms] [Warning] [gpu.foundation.plugin] CUDA peer-to-peer observed latency: 13.6 us.
+2026-10-07T05:01:37Z [1,582ms] [Warning] [gpu.foundation.plugin] Please verify if observed bandwidth and latency are expected.
+2026-10-07T05:01:38Z [2,415ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:38Z [2,415ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:38Z [2,438ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:38Z [2,438ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:38Z [2,445ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:38Z [2,445ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:38Z [2,458ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:38Z [2,458ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:38Z [2,460ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:38Z [2,460ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:38Z [2,460ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-07T05:01:38Z [2,460ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-07T05:01:38Z [2,687ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-07T05:01:38Z [3,046ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-07T05:01:38Z [3,058ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-07T05:01:39Z [3,692ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-07T05:01:39Z [3,987ms] [Warning] [omni.graph.core.plugin] Found duplicate of category 'Replicator' - was 'Annotators', adding 'Fabric Reader'
+2026-10-07T05:01:39Z [3,987ms] [Warning] [omni.graph.core.plugin] Category 'Replicator' not accepted on node type 'omni.replicator.core.FabricReader' in extension 'omni.replicator.core'
+2026-10-07T05:01:39Z [3,988ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-07T05:01:43Z [8,142ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 7
+
+2026-10-07T05:01:50Z [14,504ms] [Warning] [omni.fabric.plugin] getAttributeCount called on non-existent path /World/envs/env_9/U_R/wrist_3_link/visuals/wrist3/Scene
+2026-10-07T05:01:50Z [14,504ms] [Warning] [omni.fabric.plugin] getTypes called on non-existent path /World/envs/env_9/U_R/wrist_3_link/visuals/wrist3/Scene
+2026-10-07T05:03:00Z [85,060ms] [Warning] [carb] Client gpu.foundation.plugin has acquired [gpu::unstable::IMemoryBudgetManagerFactory v0.1] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)

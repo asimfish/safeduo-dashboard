@@ -1,0 +1,836 @@
+{
+  "schema": "astra.zero.independent_numeric_completion_review.v1",
+  "utc": "2026-10-07T05:17:45.616743+00:00",
+  "status": "PASS_FROZEN_INDEPENDENT_RAW_AUDIT_CANDIDATE_REJECTED_BY_PREREGISTERED_ENDPOINT",
+  "bindings": {
+    "ASTRA_ZERO_FINAL_SCORE.json": "979de60872246e070fe569521106faeecb852ae7d6205254a3c0653e0a533bde",
+    "astra_zero_raw_execution.json": "c42877980c57ae7e06cfdf88c4af84bc613b55f38ccbd4aed0b6cb51d92f00af",
+    "astra_zero_raw_process_exit.json": "2a0f80b336c65cce0a05023e0750fe0f5010e5cb87efef474c201e25c492ffdb",
+    "astra_zero_raw_supervisor_attempt01_receipt.json": "8939c55d1e699dd2d8362206eb157c5315680074834af7384d67e92ef0793f1f",
+    "astra_zero_raw_supervisor_attempt01.log": "53ebad64052efb0ecd14b68800763a873bc8f1999fe9ae6dd7db53ddf26db92e",
+    "ASTRA_ZERO_RAW_SOURCE_REGISTRATION.json": "4f5cd77d28f3a0b5f6707096807c10795b840ca544528ad64ed964e4960c70fa",
+    "astra_zero_raw_plan.json": "0567ff584dabd2694c999eae1f2b864ef40379f4d21bfefdf36bba3cda221566",
+    "CANDIDATE_DECISION_REGISTRATION.json": "6e0a4198b8eb542cf0e151b6331e1b340264f5cad13e1eaead19018202df6de5",
+    "candidate_decision.py": "6ed3fd553b978b103ba4e2b0ef6d9e946dc0c045337203f1c7569cd3cc7e5035",
+    "ASTRA_ZERO_FAILURE_EVIDENCE_SNAPSHOT_01.json": "9045d4b1234065abf2f20a3321eda67ba04dc766eecd5d9cda833c4d5afcd082",
+    "ASTRA_ZERO_OPERATIONAL_DEVIATION_ACK.json": "b8ecc410a3b9e765910bc5492fc0ff509024cf7d07ce00f8d14e08ba775c48a3",
+    "ASTRA_ZERO_ORIGINAL_CAMERA_SOURCE_REVIEW_01.json": "6bd83ef988e1052f8cb1d0ebcb3c566588263186cd2dfdcf0730243ec478a46c"
+  },
+  "numeric": {
+    "verified_windows": 576,
+    "paired_cases": 192,
+    "conditions": 9,
+    "frames_per_window": 960,
+    "total_environment_frames": 552960,
+    "all_prefix_frames_included": true,
+    "native_comparison_dtype": "native float32 before JSON conversion",
+    "strict_boundary": "<np.float32(0)",
+    "deep_boundary": "<-np.float32(.005)",
+    "no_epsilon": true,
+    "all_source_and_plan_bindings_unchanged": true,
+    "consumed_input_hashes": 827,
+    "raw_before_after_pass": true,
+    "changed_inputs": [],
+    "scorer_actual_exit_code": 0,
+    "supervisor_actual_exit_code": 0,
+    "all_own_scoring_processes_absent": {
+      "2091154": true,
+      "2091155": true,
+      "2091156": true,
+      "2159291": true
+    },
+    "own_workers_running": 0,
+    "cached_old_results_used": false,
+    "parent_scores_used": false,
+    "parent_analysis_imported": false,
+    "source_math_changed_to_reconcile": false
+  },
+  "totals": {
+    "joint_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 23,
+        "env_steps": 157,
+        "class_failed_windows": {
+          "cross": 2,
+          "self_F": 0,
+          "self_U": 2,
+          "table": 19
+        },
+        "class_env_steps": {
+          "cross": 9,
+          "self_F": 0,
+          "self_U": 48,
+          "table": 100
+        }
+      },
+      "deep": {
+        "failed_windows": 17,
+        "env_steps": 102,
+        "class_failed_windows": {
+          "cross": 1,
+          "self_F": 0,
+          "self_U": 2,
+          "table": 14
+        },
+        "class_env_steps": {
+          "cross": 3,
+          "self_F": 0,
+          "self_U": 44,
+          "table": 55
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": -0.0067620426416397095,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.056738726794719696,
+        "table": -0.017603734508156776
+      }
+    },
+    "tight_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 181,
+        "env_steps": 126908,
+        "class_failed_windows": {
+          "cross": 9,
+          "self_F": 0,
+          "self_U": 68,
+          "table": 176
+        },
+        "class_env_steps": {
+          "cross": 600,
+          "self_F": 0,
+          "self_U": 21165,
+          "table": 120382
+        }
+      },
+      "deep": {
+        "failed_windows": 180,
+        "env_steps": 124911,
+        "class_failed_windows": {
+          "cross": 6,
+          "self_F": 0,
+          "self_U": 60,
+          "table": 176
+        },
+        "class_env_steps": {
+          "cross": 513,
+          "self_F": 0,
+          "self_U": 17519,
+          "table": 119166
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": -0.057525359094142914,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.06920424103736877,
+        "table": -0.04943662881851196
+      }
+    },
+    "zero_inclusive": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 7,
+        "env_steps": 154,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 6
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 77,
+          "table": 77
+        }
+      },
+      "deep": {
+        "failed_windows": 2,
+        "env_steps": 77,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 1
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 70,
+          "table": 7
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": 0.002181991934776306,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.04197297990322113,
+        "table": -0.010050131008028984
+      }
+    }
+  },
+  "zero_prefix_totals": {
+    "joint_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 0,
+        "env_steps": 0,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        }
+      },
+      "deep": {
+        "failed_windows": 0,
+        "env_steps": 0,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": 0.0021361634135246277,
+        "self_F": 0.0016748011112213135,
+        "self_U": 0.0008163005113601685,
+        "table": 0.0010207593441009521
+      }
+    },
+    "tight_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 18,
+        "env_steps": 497,
+        "class_failed_windows": {
+          "cross": 8,
+          "self_F": 0,
+          "self_U": 5,
+          "table": 5
+        },
+        "class_env_steps": {
+          "cross": 185,
+          "self_F": 0,
+          "self_U": 152,
+          "table": 160
+        }
+      },
+      "deep": {
+        "failed_windows": 15,
+        "env_steps": 357,
+        "class_failed_windows": {
+          "cross": 5,
+          "self_F": 0,
+          "self_U": 5,
+          "table": 5
+        },
+        "class_env_steps": {
+          "cross": 121,
+          "self_F": 0,
+          "self_U": 111,
+          "table": 125
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": -0.046119943261146545,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.046606309711933136,
+        "table": -0.0407450795173645
+      }
+    },
+    "zero_inclusive": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 1,
+        "env_steps": 3,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 3,
+          "table": 0
+        }
+      },
+      "deep": {
+        "failed_windows": 1,
+        "env_steps": 2,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 2,
+          "table": 0
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": 0.002181991934776306,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.014833495020866394,
+        "table": 0.0010193884372711182
+      }
+    }
+  },
+  "primary_pair_partition": {
+    "strict": {
+      "rescue": 18,
+      "new_failure": 2,
+      "both_fail": 5,
+      "both_safe": 167
+    },
+    "deep": {
+      "rescue": 15,
+      "new_failure": 0,
+      "both_fail": 2,
+      "both_safe": 175
+    },
+    "verified_pairs": 192,
+    "new_strict_case_ids": [
+      "b1:i2059055426:c658533148:e38",
+      "b2:i514644998:c69425290:e38"
+    ]
+  },
+  "numeric_first_six_prefix_identity": {
+    "joint_reference__vs__zero_inclusive": {
+      "checked_pairs": 192,
+      "differences_or_unavailable": [],
+      "scope": "Native dtype/shape/byte fingerprints. Does not assert full unarchived rigid-state equality."
+    },
+    "joint_reference__vs__tight_reference": {
+      "checked_pairs": 192,
+      "differences_or_unavailable": [],
+      "scope": "Native dtype/shape/byte fingerprints. Does not assert full unarchived rigid-state equality."
+    },
+    "tight_reference__vs__zero_inclusive": {
+      "checked_pairs": 192,
+      "differences_or_unavailable": [],
+      "scope": "Native dtype/shape/byte fingerprints. Does not assert full unarchived rigid-state equality."
+    }
+  },
+  "decision": {
+    "code": "REJECTED_ADVERSE_ENDPOINTS",
+    "reason": "Any new primary paired strict failure triggers rejection under the pre-outcome CANDIDATE_DECISION_REGISTRATION; independent frozen raw score found2.",
+    "application": "Direct application of the registered logical criterion to own frozen scorer output; no parent results or parent scoring function used.",
+    "new_strict_failures": 2,
+    "aggregate_count_reductions_do_not_override_registered_rejection": true,
+    "independent_audit_PASS_is_not_candidate_acceptance": true
+  },
+  "adverse_case_details": [
+    {
+      "case_id": "b1:i2059055426:c658533148:e38",
+      "new_primary_strict_failure": true,
+      "reference_metrics": {
+        "strict": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.026376262307167053,
+          "self_F": 0.01446138322353363,
+          "self_U": 0.0022464394569396973,
+          "table": 0.0009447038173675537
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate_metrics": {
+        "strict": {
+          "failed": true,
+          "steps": 57,
+          "first_step": 620,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": true
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 57
+          }
+        },
+        "deep": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.026376262307167053,
+          "self_F": 0.023082256317138672,
+          "self_U": 0.012428447604179382,
+          "table": -0.0016934722661972046
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate_zero_prefix": {
+        "strict": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.026376262307167053,
+          "self_F": 0.023082807660102844,
+          "self_U": 0.05646492540836334,
+          "table": 0.001422792673110962
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "case_id": "b2:i514644998:c69425290:e38",
+      "new_primary_strict_failure": true,
+      "reference_metrics": {
+        "strict": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.05455397814512253,
+          "self_F": 0.023082301020622253,
+          "self_U": 0.018636971712112427,
+          "table": 0.00148048996925354
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate_metrics": {
+        "strict": {
+          "failed": true,
+          "steps": 1,
+          "first_step": 193,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": true
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 1
+          }
+        },
+        "deep": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.05455397814512253,
+          "self_F": 0.02308236062526703,
+          "self_U": 0.012616977095603943,
+          "table": -0.00019925832748413086
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate_zero_prefix": {
+        "strict": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": false,
+          "steps": 0,
+          "first_step": null,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": false,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 0,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.05455397814512253,
+          "self_F": 0.023083120584487915,
+          "self_U": 0.05118788778781891,
+          "table": 0.0015103518962860107
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "case_id": "b2:i514644998:c69425290:e47",
+      "new_primary_strict_failure": false,
+      "reference_metrics": {
+        "strict": {
+          "failed": true,
+          "steps": 41,
+          "first_step": 491,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": true,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 41,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": true,
+          "steps": 38,
+          "first_step": 491,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": true,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 38,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.700475811958313,
+          "self_F": 0.01899881660938263,
+          "self_U": -0.056738726794719696,
+          "table": 0.0009711682796478271
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate_metrics": {
+        "strict": {
+          "failed": true,
+          "steps": 77,
+          "first_step": 57,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": true,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 77,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": true,
+          "steps": 70,
+          "first_step": 58,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": true,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 70,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.7499794363975525,
+          "self_F": 0.023082464933395386,
+          "self_U": -0.04197297990322113,
+          "table": 0.001519232988357544
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate_zero_prefix": {
+        "strict": {
+          "failed": true,
+          "steps": 3,
+          "first_step": 57,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": true,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 3,
+            "table": 0
+          }
+        },
+        "deep": {
+          "failed": true,
+          "steps": 2,
+          "first_step": 58,
+          "class_failed": {
+            "cross": false,
+            "self_F": false,
+            "self_U": true,
+            "table": false
+          },
+          "class_steps": {
+            "cross": 0,
+            "self_F": 0,
+            "self_U": 2,
+            "table": 0
+          }
+        },
+        "minimum_nonexempt_margin_m": {
+          "cross": 0.8308261036872864,
+          "self_F": 0.02308274805545807,
+          "self_U": -0.014833495020866394,
+          "table": 0.0015356838703155518
+        },
+        "positive_infinite_margin_class_frames": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "retained_history": {
+    "initial_complete_windows": 448,
+    "initial_unstarted_invalid_attempt_windows": 128,
+    "recovered_unstarted_windows": 128,
+    "all_initial_complete_windows_retained_no_restart": true,
+    "history_scope": "Initial counts and protocols independently classified in ASTRA_ZERO_FAILURE_EVIDENCE_SNAPSHOT_01; recovery provenance retained. Current valid-window denominator does not erase original invalid attempts.",
+    "initial_wrong_outer_rc_only_PASS_retained": true,
+    "initial_GPU_capacity_gate_failed": true,
+    "baseline_early_SIGSTOP_SIGCONT_deviation_retained": true,
+    "remote_USD_cross_attempt_byte_equivalence_not_established": true,
+    "initial_camera_remote_asset_failure_retained": true,
+    "actual_unsupported_GPU1_camera_attempt_retained": true,
+    "GPU1_child_wait": "UNRECORDED",
+    "original_CUDA0_camera_recovery_pending_independent_actual_closure": true
+  },
+  "limits": [
+    "Full9021 pre rows bind959 preceding post frames; final post959 uses native class minima. First two failing environments per condition receive selected-J binding; no all-row J archive claim.",
+    "Archived all-row reserve minima/exemptions and native gap formula verified; producer full-J checks remain source evidence, not independent full-J recomputation at every frame.",
+    "Environment-step counts within 960 correlated frames; not IID samples or elapsed wall-clock duration.",
+    "First6 native field hashes agree for all pairs; this does not establish identity of all unarchived physical state.",
+    "Same-step newly issued target cannot be attributed as the same-step physical failure cause through the6-targetFIFO.",
+    "Initial resource-gate violation and baseline-only early wall-clock pause prevent a clean preregistered-execution claim.",
+    "Lower actual motion or exposure cannot be equated with improved safety; corresponding parent closed analyses remain to reconcile.",
+    "Candidate has7 strict failures including2 newly failing primary pairs and1 zero-prefix failing window. No zero-executed-output or physical-safety guarantee."
+  ],
+  "pending": [
+    "Explicit closure of all parent analysis products before reconciliation",
+    "Actual original-CUDA0 camera closure and receipts",
+    "Frozen all-group native-state and all-PNG hash/header audit",
+    "Actual view_image of the72 predeclared original PNGs",
+    "Actual REPORT and current presentation/source review"
+  ],
+  "final_review_pass": false,
+  "physical_safety_certified": false,
+  "hardware_approved": false,
+  "production_promoted": false
+}

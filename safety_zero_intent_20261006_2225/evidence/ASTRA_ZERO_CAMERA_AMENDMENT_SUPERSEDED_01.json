@@ -1,0 +1,63 @@
+{
+  "status": "SUPERSEDED_UNUSED_GPU1_AUDIT_INVOCATION_PRESERVED",
+  "utc": "2026-10-07T05:00:45.031877+00:00",
+  "registration": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/ASTRA_ZERO_CAMERA_AMENDMENT_REGISTRATION_01.json",
+  "registration_sha256": "9350d1ed285660a8b4a45a96d58584beb92490e809b65afc3675d4186091031d",
+  "registered_sources": {
+    "astra_zero_camera_amendment.py": "75edb18f5ce3395e88add7f081e95a3e9cc30257f36f8af2f54cb1e5564184aa",
+    "astra_zero_camera_amendment_tests.py": "170473a7bb0a5404a8b95cd35c851e17e022874b725f0272abc85d20a0bfc60b",
+    "astra_zero_camera_amendment_supervise.py": "f1dc692267dc43f7c956c20d93f435d1040452cf9a42ff331bb66cd980aa782b"
+  },
+  "actual_actions_completed": [
+    "CPU fixtures:15, childexit0",
+    "registration check:childexit0"
+  ],
+  "actual_camera_audit_invoked": false,
+  "actual_camera_arrays_read": false,
+  "actual_camera_pixels_viewed": 0,
+  "reason": "Parent reports and source log confirms actual usdrt GPU1 unsupported; parent requested exact owned camera child SIGTERM. Return to original CUDA0 camera plan requires new operational driver/registration.",
+  "gpu1_camera_attempt_did_happen": true,
+  "stop_request": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/CAMERA_GPU1_STOP_REQUEST.json",
+    "sha256": "aaa0a76e43f3dfd2d8dc8de918b7882e170d9b508bfbcc18c6db5760e4c36b2f",
+    "receipt": {
+      "status": "OWNED_UNSUPPORTED_GPU1_CAMERA_STOP_REQUESTED",
+      "pid": 2061618,
+      "actual_argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/visual_runner.py",
+        "--out",
+        "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/visual/joint_reference",
+        "--ckpt",
+        "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+        "--env-yaml",
+        "duo_env_a31_pending_guard.yaml",
+        "--seeds",
+        "1638973897",
+        "--methods",
+        "system0",
+        "--duration-s",
+        "16",
+        "--device",
+        "cuda:1",
+        "--headless",
+        "--enable_cameras"
+      ],
+      "parent_pid": 1966700,
+      "process_start_ticks": "147169908",
+      "signal": "SIGTERM",
+      "produced_files_before_stop": 0,
+      "camera_frames_or_images_claimed": 0,
+      "reason": "Actual usdrt reports GPU1 unsupported; no usable camera products, preserve source/logs/emptyroot",
+      "source_log": "visual_recovery_joint_reference.log",
+      "foreign_processes_untouched": true,
+      "utc": "2026-10-07T04:58:01.594514+00:00"
+    }
+  },
+  "actual_gpu1_child_wait_exit_not_inferred_from_signal": true,
+  "original_cuda0_plan_math_core_source_registration_72selection_unchanged": true,
+  "prior_initial_camera_asset_failure_also_retained": true,
+  "new_original_cuda0_attempt": "Pending independently reviewed robust driver and actual gate; no execution success claimed.",
+  "numeric576_original_frozen_scorer_continues": true,
+  "do_not_invoke_superseded_gpu1_command": true
+}

@@ -1,0 +1,175 @@
+{
+  "utc": "2026-10-06T14:49:53.688183+00:00",
+  "status": "INITIAL_GATE_FAIL_RECORDED_SCORING_NOT_STARTED",
+  "original_gate_passed": false,
+  "supersedes_prior_parent_pass_message": true,
+  "parent_gate": {
+    "status": "FAIL_BELOW_REGISTERED_INITIAL_FREE_MEMORY",
+    "actual_gpu_snapshot": "0, 24272, 32607, 68\n1, 31832, 32607, 0",
+    "minimum_free_memory_MiB": 25600,
+    "foreign_jobs_untouched": true,
+    "utc": "2026-10-06T14:46:09.794380+00:00"
+  },
+  "parent_containment": {
+    "status": "OWNED_PRELAUNCH_GATE_FAILURE_CONTAINED_BY_PAUSE",
+    "original_gate_passed": false,
+    "subsequent_launch_was_operator_error": true,
+    "science_started_status": "to_be_inspected_afterpause",
+    "paused_exact_own_processes": [
+      {
+        "pid": 1965617,
+        "argv": [
+          "python3",
+          "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/execute_numeric.py",
+          "0"
+        ],
+        "start_ticks": "142085651",
+        "signal": "SIGSTOP"
+      },
+      {
+        "pid": 1965619,
+        "argv": [
+          "python3",
+          "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/execute_numeric.py",
+          "1"
+        ],
+        "start_ticks": "142085651",
+        "signal": "SIGSTOP"
+      },
+      {
+        "pid": 1965620,
+        "argv": [
+          "python3",
+          "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/execute_numeric.py",
+          "2"
+        ],
+        "start_ticks": "142085652",
+        "signal": "SIGSTOP"
+      },
+      {
+        "pid": 1965688,
+        "argv": [
+          "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+          "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/guard_runner.py",
+          "--ckpt",
+          "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+          "--env-yaml",
+          "duo_env_a31_pending_guard.yaml",
+          "--num-envs",
+          "64",
+          "--duration-s",
+          "16",
+          "--seeds",
+          "1638973897",
+          "--amps",
+          ".05",
+          "--flows",
+          "risk_burst",
+          "--methods",
+          "system0",
+          "--init-jitter-rad",
+          "0",
+          "--actuator-delay-steps",
+          "6",
+          "--device",
+          "cuda:0",
+          "--headless",
+          "--log-every",
+          "300",
+          "--out",
+          "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_0/joint_reference_1638973897"
+        ],
+        "start_ticks": "142085755",
+        "signal": "SIGSTOP"
+      },
+      {
+        "pid": 1965690,
+        "argv": [
+          "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+          "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/guard_runner.py",
+          "--ckpt",
+          "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+          "--env-yaml",
+          "duo_env_a31_pending_guard.yaml",
+          "--num-envs",
+          "64",
+          "--duration-s",
+          "16",
+          "--seeds",
+          "69425290",
+          "--amps",
+          ".05",
+          "--flows",
+          "risk_burst",
+          "--methods",
+          "system0",
+          "--init-jitter-rad",
+          "0",
+          "--actuator-delay-steps",
+          "6",
+          "--device",
+          "cuda:1",
+          "--headless",
+          "--log-every",
+          "300",
+          "--out",
+          "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_2/joint_reference_69425290"
+        ],
+        "start_ticks": "142085755",
+        "signal": "SIGSTOP"
+      },
+      {
+        "pid": 1965691,
+        "argv": [
+          "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+          "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/guard_runner.py",
+          "--ckpt",
+          "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+          "--env-yaml",
+          "duo_env_a31_pending_guard.yaml",
+          "--num-envs",
+          "64",
+          "--duration-s",
+          "16",
+          "--seeds",
+          "658533148",
+          "--amps",
+          ".05",
+          "--flows",
+          "risk_burst",
+          "--methods",
+          "system0",
+          "--init-jitter-rad",
+          "0",
+          "--actuator-delay-steps",
+          "6",
+          "--device",
+          "cuda:1",
+          "--headless",
+          "--log-every",
+          "300",
+          "--out",
+          "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_1/joint_reference_658533148"
+        ],
+        "start_ticks": "142085755",
+        "signal": "SIGSTOP"
+      }
+    ],
+    "foreign_processes_untouched": true,
+    "utc": "2026-10-06T14:46:56.278896+00:00"
+  },
+  "evidence_sha256": {
+    "NUMERIC_INITIAL_RESOURCE_GATE.json": "d3abf2d1c9b66e6a5e491d891731523631dbb188a432dfa14460c7ae57fdd795",
+    "INITIAL_RESOURCE_GATE_CONTAINMENT.json": "8afe8fad472fd599d47407c4bde147c9fe21db3be98701f040c9451328bc9d4f"
+  },
+  "own_actions": {
+    "signals_sent": 0,
+    "gpu_launches": 0,
+    "new_outcome_arrays_read": 0,
+    "scorer_started": false,
+    "watchers_running": 0
+  },
+  "actual_science_stage": "Undetermined pending parent inspection; no assumption of zero outcomes",
+  "scorer_freeze_validity": "Previously frozen source/plan bytes retained; launch gate failure must remain visible in final evidence chain",
+  "next": "Await new explicit canonical-closure notification before scoring; preserve actual attempts/stage/resumption evidence"
+}

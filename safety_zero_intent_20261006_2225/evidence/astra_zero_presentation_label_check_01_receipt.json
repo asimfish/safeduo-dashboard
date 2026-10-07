@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-06T15:18:21.501832+00:00",
+  "actual_argv": [
+    "/usr/bin/python3",
+    "-B",
+    "-c",
+    "<inline code bound by SHA256 below>"
+  ],
+  "inline_code": "\nfrom pathlib import Path\nimport json,hashlib,ast\nh=Path('/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225')\ns=json.loads((h/'astra_zero_presentation_source_snapshot_initial.json').read_text())\nreplacements={'build_report.py':('最大目标漂移rad','相对初始测量q的最大已发目标位移rad'),'panel_template.html':('最大目标漂移 rad','相对初始测量q的最大已发目标位移 rad')}\nrows={}\nfor n,row in s['sources'].items():\n    data=(h/n).read_bytes();current=data.decode();old=row['text']\n    if n in replacements:\n        before,after=replacements[n]\n        assert old.count(before)==1,n\n        assert current==old.replace(before,after),n\n        assert current.count(after)==1 and before not in current,n\n        line=next(i for i,t in enumerate(current.splitlines(),1) if after in t)\n        rows[n]=dict(sha256=hashlib.sha256(data).hexdigest(),prior_sha256=row['sha256'],only_declared_title_replacement=True,line=line,label=after)\n    else:\n        assert hashlib.sha256(data).hexdigest()==row['sha256'],n\n        rows[n]=dict(sha256=row['sha256'],unchanged=True)\nast.parse((h/'build_report.py').read_text())\nassert \"data['controller_target'][:60]-data['q_initial']\" in (h/'audit_zero_intent.py').read_text()\nassert 'maximum_target_drift_rad' in (h/'build_report.py').read_text()\nassert 'maximum_target_drift_rad' in (h/'panel_template.html').read_text()\nprint(json.dumps(dict(status='PASS_BOUNDED_TWO_LABEL_SOURCE_CHECK',bindings=rows,audit_math_and_key_unchanged=True,new_outcome_reads=0),ensure_ascii=False))\n",
+  "inline_code_sha256": "702193520772136c9f51101e11f7790e43c0596fddaf2c08e3fab8cbff048c59",
+  "actual_child_pid": 2176169,
+  "actual_child_exit_code": 0,
+  "child_reaped": true,
+  "log_sha256": "fe05df2b73ec774061dfb6768beadf8ff4619a0b7393a98a05e724bb34f1305f",
+  "prior_review_sha256": "7d85057867bb2f7e236d338d1b0bb26be7d1d610d683a3b798363c143ba7b453",
+  "new_outcome_reads": 0
+}

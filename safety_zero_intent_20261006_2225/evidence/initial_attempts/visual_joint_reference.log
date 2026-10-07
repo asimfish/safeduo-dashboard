@@ -1,0 +1,136 @@
+Loading user config located at: '/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261006_233530.log
+2026-10-06T15:35:30Z [178ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:30Z [178ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:30Z [220ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-10-06T15:35:30Z [234ms] [Warning] [carb.cudainterop.plugin] CUDA_VISIBLE_DEVICES environment variable is set.
+2026-10-06T15:35:30Z [234ms] [Warning] [carb.cudainterop.plugin] Note CUDA device enumeration and Omniverse device enumeration are different.
+2026-10-06T15:35:30Z [234ms] [Warning] [carb.cudainterop.plugin] Setting CUDA_VISIBLE_DEVICES can lead to undesired behavior or crashes.
+2026-10-06T15:35:30Z [517ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:30Z [517ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 570.124.06    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 5090          | Yes: 0 |     | 32607   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2b85      | b129224c.. |
+|     |                                  |        |     |            | 41        |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | NVIDIA GeForce RTX 5090          |        |     | 32607   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2b85      | 828bb172.. |
+|     |                                  |        |     |            | 81        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| Processor: AMD Ryzen Threadripper 7960X 24-Cores
+| Cores: 24 | Logical Cores: 48
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 257228 | Free Memory: 64520
+| Total Page/Swap (MB): 131071 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+2026-10-06T15:35:31Z [1,281ms] [Warning] [gpu.foundation.plugin] PCIe link width current (2) and maximum (16) for device 0 don't match.
+2026-10-06T15:35:31Z [1,282ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-06T15:35:31Z [1,282ms] [Warning] [gpu.foundation.plugin] Detected IOMMU is enabled. Running CUDA peer-to-peer bandwidth and latency validation.
+Unidirectional P2P=Enabled Bandwidth (P2P Writes) Matrix (GB/s)
+   D\D     0      1 
+     0 1519.94   7.03 
+     1   6.91 1530.22 
+P2P=Enabled Latency (P2P Writes) Matrix (us)
+   GPU     0      1 
+     0   2.06  14.10 
+     1  14.11   2.06 
+
+   CPU     0      1 
+     0   1.86   5.60 
+     1   5.08   1.97 
+2026-10-06T15:35:31Z [1,545ms] [Warning] [gpu.foundation.plugin] CUDA peer-to-peer observed bandwidth: 6.9 GB/s.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/liyufeng/safeduo_isaaclab/apps/isaaclab.python.headless.rendering.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-10-06_23-35-37.log[0m
+[36m======================================================================================[0m
+
+[33m23:35:37 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 0
+	Physics step-size     : 0.008333
+	Rendering step-size   : 0.016666
+	Environment step-size : 0.016666
+[33m23:36:35 [prims.py] WARNING: Could not perform 'modify_articulation_root_properties' on any prims under: '/World/envs/env_0/F_L'. This might be because of the following reasons:
+	(1) The desired attribute does not exist on any of the prims.
+	(2) The desired attribute exists on an instanced prim.
+		Discovered list of instanced prim paths: ['/World/envs/env_0/F_L/f2_hand/left_hand_base/visuals', '/World/envs/env_0/F_L/f2_hand/left_hand_base/collisions', '/World/envs/env_0/F_L/f2_hand/left_index_1/visuals', '/World/envs/env_0/F_L/f2_hand/left_index_1/collisions', '/World/envs/env_0/F_L/f2_hand/left_index_2/visuals', '/World/envs/env_0/F_L/f2_hand/left_index_2/collisions', '/World/envs/env_0/F_L/f2_hand/left_middle_1/visuals', '/World/envs/env_0/F_L/f2_hand/left_middle_1/collisions', '/World/envs/env_0/F_L/f2_hand/left_middle_2/visuals', '/World/envs/env_0/F_L/f2_hand/left_middle_2/collisions', '/World/envs/env_0/F_L/f2_hand/left_pinky_1/visuals', '/World/envs/env_0/F_L/f2_hand/left_pinky_1/collisions', '/World/envs/env_0/F_L/f2_hand/left_pinky_2/visuals', '/World/envs/env_0/F_L/f2_hand/left_pinky_2/collisions', '/World/envs/env_0/F_L/f2_hand/left_ring_1/visuals', '/World/envs/env_0/F_L/f2_hand/left_ring_1/collisions', '/World/envs/env_0/F_L/f2_hand/left_ring_2/visuals', '/World/envs/env_0/F_L/f2_hand/left_ring_2/collisions', '/World/envs/env_0/F_L/f2_hand/left_thumb_1/visuals', '/World/envs/env_0/F_L/f2_hand/left_thumb_1/collisions', '/World/envs/env_0/F_L/f2_hand/left_thumb_2/visuals', '/World/envs/env_0/F_L/f2_hand/left_thumb_2/collisions', '/World/envs/env_0/F_L/f2_hand/left_thumb_3/visuals', '/World/envs/env_0/F_L/f2_hand/left_thumb_3/collisions', '/World/envs/env_0/F_L/f2_hand/left_thumb_4/visuals', '/World/envs/env_0/F_L/f2_hand/left_thumb_4/collisions'][0m
+2026-10-06T15:35:31Z [1,546ms] [Warning] [gpu.foundation.plugin] CUDA peer-to-peer observed latency: 14.1 us.
+2026-10-06T15:35:31Z [1,546ms] [Warning] [gpu.foundation.plugin] Please verify if observed bandwidth and latency are expected.
+2026-10-06T15:35:32Z [2,141ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:32Z [2,141ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:32Z [2,163ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:32Z [2,163ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:32Z [2,172ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:32Z [2,172ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:32Z [2,181ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:32Z [2,181ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:32Z [2,182ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:32Z [2,182ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:32Z [2,183ms] [Warning] [carb.windowing-glfw.plugin] GLFW initialization failed.
+2026-10-06T15:35:32Z [2,183ms] [Warning] [carb] Failed to startup plugin carb.windowing-glfw.plugin (interfaces: [carb::windowing::IGLContext v1.0],[carb::windowing::IWindowing v1.5]) (impl: carb.windowing-glfw.plugin)
+2026-10-06T15:35:32Z [2,406ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-06T15:35:32Z [2,732ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-06T15:35:32Z [2,743ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-06T15:35:33Z [3,309ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-06T15:35:33Z [3,417ms] [Warning] [omni.graph.core.plugin] Found duplicate of category 'Replicator' - was 'Annotators', adding 'Fabric Reader'
+2026-10-06T15:35:33Z [3,417ms] [Warning] [omni.graph.core.plugin] Category 'Replicator' not accepted on node type 'omni.replicator.core.FabricReader' in extension 'omni.replicator.core'
+2026-10-06T15:35:33Z [3,417ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-06T15:35:37Z [6,925ms] [Warning] [omni.fabric.plugin] Warning: attribute viewportHandle not found for bucket id 7
+
+2026-10-06T15:36:35Z [65,368ms] [Warning] [omni.usd] Warning: in _ReportErrors at line 3172 of /builds/omniverse/usd-ci/USD/pxr/usd/usd/stage.cpp -- In </World/envs/env_0/F_L>: Could not open asset @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/FrankaRobotics/FrankaFR3/fr3.usd@ for reference introduced by @/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_v5.usd@</Robot>. (recomposing stage on stage @anon:0x5bca926eb020:World0.usd@ <0x5bca90787810>)
+
+2026-10-06T15:36:35Z [65,489ms] [Warning] [omni.usd] Warning: in _ReportErrors at line 3172 of /builds/omniverse/usd-ci/USD/pxr/usd/usd/stage.cpp -- In </World/envs/env_0/F_R>: Could not open asset @https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/FrankaRobotics/FrankaFR3/fr3.usd@ for reference introduced by @/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5.usd@</Robot>. (recomposing stage on stage @anon:0x5bca926eb020:World0.usd@ <0x5bca90787810>)
+
+[33m23:36:35 [prims.py] WARNING: Could not perform 'modify_articulation_root_properties' on any prims under: '/World/envs/env_0/F_R'. This might be because of the following reasons:
+	(1) The desired attribute does not exist on any of the prims.
+	(2) The desired attribute exists on an instanced prim.
+		Discovered list of instanced prim paths: ['/World/envs/env_0/F_R/f2_hand/right_hand_base/visuals', '/World/envs/env_0/F_R/f2_hand/right_hand_base/collisions', '/World/envs/env_0/F_R/f2_hand/right_index_1/visuals', '/World/envs/env_0/F_R/f2_hand/right_index_1/collisions', '/World/envs/env_0/F_R/f2_hand/right_index_2/visuals', '/World/envs/env_0/F_R/f2_hand/right_index_2/collisions', '/World/envs/env_0/F_R/f2_hand/right_middle_1/visuals', '/World/envs/env_0/F_R/f2_hand/right_middle_1/collisions', '/World/envs/env_0/F_R/f2_hand/right_middle_2/visuals', '/World/envs/env_0/F_R/f2_hand/right_middle_2/collisions', '/World/envs/env_0/F_R/f2_hand/right_pinky_1/visuals', '/World/envs/env_0/F_R/f2_hand/right_pinky_1/collisions', '/World/envs/env_0/F_R/f2_hand/right_pinky_2/visuals', '/World/envs/env_0/F_R/f2_hand/right_pinky_2/collisions', '/World/envs/env_0/F_R/f2_hand/right_ring_1/visuals', '/World/envs/env_0/F_R/f2_hand/right_ring_1/collisions', '/World/envs/env_0/F_R/f2_hand/right_ring_2/visuals', '/World/envs/env_0/F_R/f2_hand/right_ring_2/collisions', '/World/envs/env_0/F_R/f2_hand/right_thumb_1/visuals', '/World/envs/env_0/F_R/f2_hand/right_thumb_1/collisions', '/World/envs/env_0/F_R/f2_hand/right_thumb_2/visuals', '/World/envs/env_0/F_R/f2_hand/right_thumb_2/collisions', '/World/envs/env_0/F_R/f2_hand/right_thumb_3/visuals', '/World/envs/env_0/F_R/f2_hand/right_thumb_3/collisions', '/World/envs/env_0/F_R/f2_hand/right_thumb_4/visuals', '/World/envs/env_0/F_R/f2_hand/right_thumb_4/collisions'][0m
+[INFO]: Time taken for scene creation : 90.414072 seconds
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/visual_runner.py", line 277, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/visual_runner.py", line 250, in main
+    env=DuoEnv(cfg)
+        ^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py", line 639, in __init__
+    super().__init__(cfg, render_mode, **kwargs)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 135, in __init__
+    self._setup_scene()
+  File "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py", line 1049, in _setup_scene
+    ground.func("/World/ground", ground)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/spawners/from_files/from_files.py", line 202, in spawn_ground_plane
+    create_prim(prim_path, usd_path=cfg.usd_path, translation=translation, orientation=orientation, stage=stage)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/utils/prims.py", line 157, in create_prim
+    add_usd_reference(prim_path=prim_path, usd_path=usd_path, stage=stage)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/utils/prims.py", line 951, in add_usd_reference
+    raise FileNotFoundError(f"Unable to open the usd file at path: {usd_path}")
+FileNotFoundError: Unable to open the usd file at path: https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Environments/Grid/default_environment.usd
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Annotators' for removal
+2026-10-06T15:37:08Z [98,052ms] [Warning] [omni.graph.core.plugin] Could not find category 'Replicator:Core' for removal
+2026-10-06T15:37:08Z [98,056ms] [Warning] [omni.physx.plugin] USD stage detach not called, holding a loose ptr to a stage!
+2026-10-06T15:37:08Z [98,121ms] [Warning] [omni.fabric.plugin] gFabricState->gUsdStageToSimStageWithHistoryMap had 1 outstanding SimStageWithHistory(s) at shutdown
+2026-10-06T15:37:08Z [98,136ms] [Warning] [carb] Recursive unloadAllPlugins() detected!

@@ -1,0 +1,10 @@
+READBACK_CLOSED failure_audit.py 0
+READBACK_CLOSED audit_fixed_feasibility.py 1
+READBACK_CLOSED audit_commands.py 0
+READBACK_CLOSED execute_analysis.py 0
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/follow_analysis.py", line 46, in <module>
+    if __name__=='__main__':main()
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/follow_analysis.py", line 35, in main
+    assert all(r['exit_code']==0 for r in rows),rows
+AssertionError: [{'name': 'execute_analysis.py', 'actual_argv': ['python3', '/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/execute_analysis.py'], 'child_pid': 2274640, 'exit_code': 0, 'source_sha256': '8cd243aa38ac0d20e442eebc4196c10aa9e2263549ae69fcfdac96df110dad65'}, {'name': 'failure_audit.py', 'actual_argv': ['/home/liyufeng/miniforge3/envs/safeduo/bin/python', '/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/failure_audit.py'], 'child_pid': 2274641, 'exit_code': 0, 'source_sha256': 'bb8112f26ed9403bf8415b9574884adbf3f0a5c3c2bc4317cddbef58aa435e10'}, {'name': 'audit_fixed_feasibility.py', 'actual_argv': ['/home/liyufeng/miniforge3/envs/safeduo/bin/python', '/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_fixed_feasibility.py'], 'child_pid': 2276199, 'exit_code': 1, 'source_sha256': 'e464a7663ab18d1638b5620c00dff584e4f313bc269819a2866e010bf399c880'}, {'name': 'audit_commands.py', 'actual_argv': ['python3', '/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_commands.py'], 'child_pid': 2277202, 'exit_code': 0, 'source_sha256': '5c4e583d4e3eda31f3d17a13572bd3586da6f6fa8dd4fa194b97af32ecf334be'}]

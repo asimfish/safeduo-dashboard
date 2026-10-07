@@ -1,0 +1,1 @@
+SafeDuo zero-intent simulation evidence. Original images bind own actual states. Full methods, failures, independent sources and closed evidence are at https://asimfish.github.io/safeduo-dashboard/docs/safety_zero_intent_20261006_2225/ . No hardware approval.

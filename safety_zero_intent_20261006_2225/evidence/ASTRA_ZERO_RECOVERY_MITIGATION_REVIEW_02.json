@@ -1,0 +1,69 @@
+{
+  "verdict": "Conditional pass",
+  "dimensions": [
+    {
+      "dimension": "Functional achievement",
+      "status": "Pass",
+      "evidence": "Bounded CPU fixtures demonstrate declared exact-device-only standalone binding and failed_record unknown-wait semantics, without actual outcome acceptance."
+    },
+    {
+      "dimension": "Correctness and reliability",
+      "status": "Risk",
+      "evidence": "General producer exception/exit bug remains. Mitigation relies on a real closed outer wait receipt and can terminalize only persisted observable metadata; timeout without that receipt remains unresolved."
+    },
+    {
+      "dimension": "Architecture",
+      "status": "Pass",
+      "evidence": "New observer leaves the running producer source unchanged and uses a separate camera execution binding instead of rewriting original-plan claims."
+    },
+    {
+      "dimension": "Function and API design",
+      "status": "Pass",
+      "evidence": "failed_record deep-copies input, preserves known wait values and completed jobs, leaves missing exit_code absent and records UNRECORDED. Original wait_closed rejects failed immediately in finite fixture."
+    },
+    {
+      "dimension": "Style and maintainability",
+      "status": "Pass",
+      "evidence": "Current mitigation scope and unknown observation boundary are explicit; no claim that the legacy general driver is fixed."
+    },
+    {
+      "dimension": "Performance",
+      "status": "Unable to determine",
+      "evidence": "No timing/performance benchmark or actual camera completeness verified."
+    }
+  ],
+  "blocking_findings": [],
+  "non_blocking_improvements": [],
+  "minimum_required_repair": [
+    "Keep no-wait/timeout states unknown; do not manufacture a child exit value or successful physics/camera completion.",
+    "For new CUDA0 camera attempt, review the robust driver and require actual wait persistence plus terminal failure; this review covers the existing finite finalizer only."
+  ],
+  "status": "PASS_SCOPED_CPU_TERMINATION_MITIGATION_REVIEW_NOT_ACTUAL_CLOSURE",
+  "utc": "2026-10-07T05:00:45.031877+00:00",
+  "reviewed_finalizer_source_sha256": "b05d315b28b1ea7f869e42dc8330fc561248892854f954d05cc6f382e35c7848",
+  "fixture_snapshot_sha256": "3869bd63c17ed66d51df2729629c09b4d92d77e47f2b1880352c695812c83312",
+  "source_check_current": true,
+  "cpu_tests": {
+    "total": 15,
+    "actual_child_exit": 0,
+    "child_reaped": true,
+    "receipt_sha256": "3f02d551c41a1646e1d32a63f14f9150ef5c1e4e65b1c0e777d14be0c5c9270a",
+    "fixture_failures_retained": true
+  },
+  "supported_semantics": [
+    "Actual outer child_reaped and exit receipt is a prerequisite.",
+    "Known persisted per-child exits are preserved; missing child wait remains UNRECORDED and no exit_code0 is inserted.",
+    "Terminal failed metadata makes original follow_analysis.wait_closed throw rather than continue waiting.",
+    "Successful camera_binding requires complete row status and recorded zero exit, actual amended argv, and exact whole-plan equality except the two device tokens.",
+    "The independent adapter additionally verifies three pinned SHA values and actual camera execution SHA without adding legacy plan fields to producer receipts."
+  ],
+  "limits": [
+    "No general repair of the original driver or Kit exception-to-exit behavior.",
+    "The finalizer itself checks recorded job status/exit, not every native trajectory or every protocol/product again; producer verification and subsequent independent audits remain necessary.",
+    "If no outer wait receipt arrives within7200s, the observer raises timeout; this does not establish a child exit or guarantee dependent follower completion.",
+    "No completed-frame, all-LP/full-J, pixel, hardware or physical-safety conclusion.",
+    "GPU1 adapter is superseded and unused after actual unsupported-GPU1 attempt; all source/tests/registration remain preserved."
+  ],
+  "raw_scorer_status": "Original frozen576 CPU scorer launched after explicit allnumericclosure; still running, no reconciliation claim.",
+  "actual_final_scientific_review": false
+}

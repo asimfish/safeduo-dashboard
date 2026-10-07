@@ -1,0 +1,403 @@
+{
+  "schema": "astra.zero.numeric_reconciliation.v1",
+  "utc": "2026-10-07T05:35:00.978243+00:00",
+  "status": "PASS_SCOPED_PARENT_NUMERIC_RECONCILIATION",
+  "source_and_input_sha256": {
+    "holdout_results.json": "0886377ecc070a72c84f824df3a6843eb518874041c6b1950a816b86994bff5a",
+    "ANALYSIS_EXECUTION.json": "288cba354f188a71de055df0a8e1a56919800dfa562288349e74ca50099bebd7",
+    "ASTRA_ZERO_FINAL_SCORE.json": "979de60872246e070fe569521106faeecb852ae7d6205254a3c0653e0a533bde",
+    "ASTRA_ZERO_RAW_SOURCE_REGISTRATION.json": "4f5cd77d28f3a0b5f6707096807c10795b840ca544528ad64ed964e4960c70fa",
+    "astra_zero_raw_plan.json": "0567ff584dabd2694c999eae1f2b864ef40379f4d21bfefdf36bba3cda221566",
+    "astra_zero_raw_process.json": "253a9fb43678ce6cf9fe80401c52613f690950e3342860ce11565e9cb06579fe",
+    "astra_zero_raw_process_exit.json": "2a0f80b336c65cce0a05023e0750fe0f5010e5cb87efef474c201e25c492ffdb",
+    "astra_zero_raw_supervisor_attempt01_receipt.json": "8939c55d1e699dd2d8362206eb157c5315680074834af7384d67e92ef0793f1f",
+    "analyze.py": "674a49758d5a77308e7dd704074906b442bec750c4b101ec6bf52399ef2bc386",
+    "dense_audit.py": "d53335a1c125dceeab86e59ecf188e21011147eb2c893b035b5f7cd480aab4d0",
+    "execute_analysis.py": "8cd243aa38ac0d20e442eebc4196c10aa9e2263549ae69fcfdac96df110dad65",
+    "follow_analysis.py": "d697f0298727895fc965f1e188658251a4b7001c9d2864b083cdd37e5b0831d1",
+    "CANDIDATE_DECISION_REGISTRATION.json": "6e0a4198b8eb542cf0e151b6331e1b340264f5cad13e1eaead19018202df6de5",
+    "ALL_ANALYSIS_EXECUTION.json": "abc7861b14e88ff7ea2dd83570eb00c915ef46ab1c589d621ebbdf1c33b69049",
+    "recovery_follower_closed_execution.json": "d4e73ef2ef07f72ad715bb6bbd28c0414a14427926c4182d48659026fdc28a9d",
+    "astra_zero_reconcile_numeric.py": "452bba776cb76e540b97e6f3d6981883e7e4c2c79ef4e9ac833304d105f6598d"
+  },
+  "independent_score_completed_before_parent_reconciliation": true,
+  "frozen_scoring_math_changed": false,
+  "parent_scores_used_to_compute_independent_results": false,
+  "purpose": "Compare existing independently scored results with closed parent output; no rescoring, parent module imports or new simulations.",
+  "expected_windows": 576,
+  "checked_windows": 576,
+  "checked_cases": 192,
+  "checked_condition_rows": 9,
+  "checked_mode_totals": 3,
+  "checked_per_seed_pair_rows": 9,
+  "checked_window_class_minima": 2304,
+  "checks_by_category": {
+    "inventory": 12,
+    "mode_totals": 21,
+    "condition_rows": 81,
+    "shared_geometry_metadata": 63,
+    "shared_raw_hashes": 342,
+    "case_identity": 768,
+    "window_endpoints": 1728,
+    "window_minimum_mm": 576,
+    "per_seed_pair_partitions": 36,
+    "tape_uniqueness": 1,
+    "primary_new_failure_identities": 1,
+    "analysis_closure_evidence": 1,
+    "input_stability": 2
+  },
+  "checks_total": 3632,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "shared_raw_input_hashes_compared": 342,
+  "parent_only_raw_input_hashes_not_compared": [
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_0/joint_reference_1638973897/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_0/tight_reference_1638973897/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_0/zero_inclusive_1638973897/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_1/joint_reference_658533148/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_1/tight_reference_658533148/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_1/zero_inclusive_658533148/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_2/joint_reference_69425290/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_2/tight_reference_69425290/mechanism.npz",
+    "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_2/zero_inclusive_69425290/mechanism.npz"
+  ],
+  "parent_fresh_readback": {
+    "status": "PASS_FROZEN_FRESH_FULL_READBACK",
+    "seconds": 1450.6991421789862,
+    "result_sha256": "0886377ecc070a72c84f824df3a6843eb518874041c6b1950a816b86994bff5a",
+    "persisted_cache": false
+  },
+  "parent_all6_actual_closed": {
+    "status": "PASS_ALL6_FRESH_ANALYSIS_JOBS",
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "follower_actual_exit": 0,
+    "follower_reaped": true,
+    "scope": "Execution receipts only, not independent reconstruction of every analysis arithmetic."
+  },
+  "observed_numeric_closure_log": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recovered_analysis_child.log",
+    "bytes_observed": 249,
+    "observed_prefix_sha256": "5c45ef2acc17b3bccbdd193e5eb3c4cc1ba63307530365670711a53d73eaf930",
+    "numeric_lines": [
+      "READBACK_CLOSED failure_audit.py 0",
+      "READBACK_CLOSED audit_fixed_feasibility.py 0",
+      "READBACK_CLOSED audit_commands.py 0",
+      "READBACK_CLOSED execute_analysis.py 0"
+    ],
+    "scope": "Captured numeric wait-return log lines; observer may append and this is not a final ALL6 structured receipt."
+  },
+  "minimum_display_comparison": "Exact float32 metres multiplied by float32(1000), then JSON float; no epsilon and no changes to original native float32 strict/deep classification.",
+  "totals": {
+    "joint_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 23,
+        "env_steps": 157,
+        "class_failed_windows": {
+          "cross": 2,
+          "self_F": 0,
+          "self_U": 2,
+          "table": 19
+        },
+        "class_env_steps": {
+          "cross": 9,
+          "self_F": 0,
+          "self_U": 48,
+          "table": 100
+        }
+      },
+      "deep": {
+        "failed_windows": 17,
+        "env_steps": 102,
+        "class_failed_windows": {
+          "cross": 1,
+          "self_F": 0,
+          "self_U": 2,
+          "table": 14
+        },
+        "class_env_steps": {
+          "cross": 3,
+          "self_F": 0,
+          "self_U": 44,
+          "table": 55
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": -0.0067620426416397095,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.056738726794719696,
+        "table": -0.017603734508156776
+      }
+    },
+    "tight_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 181,
+        "env_steps": 126908,
+        "class_failed_windows": {
+          "cross": 9,
+          "self_F": 0,
+          "self_U": 68,
+          "table": 176
+        },
+        "class_env_steps": {
+          "cross": 600,
+          "self_F": 0,
+          "self_U": 21165,
+          "table": 120382
+        }
+      },
+      "deep": {
+        "failed_windows": 180,
+        "env_steps": 124911,
+        "class_failed_windows": {
+          "cross": 6,
+          "self_F": 0,
+          "self_U": 60,
+          "table": 176
+        },
+        "class_env_steps": {
+          "cross": 513,
+          "self_F": 0,
+          "self_U": 17519,
+          "table": 119166
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": -0.057525359094142914,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.06920424103736877,
+        "table": -0.04943662881851196
+      }
+    },
+    "zero_inclusive": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 7,
+        "env_steps": 154,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 6
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 77,
+          "table": 77
+        }
+      },
+      "deep": {
+        "failed_windows": 2,
+        "env_steps": 77,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 1
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 70,
+          "table": 7
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": 0.002181991934776306,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.04197297990322113,
+        "table": -0.010050131008028984
+      }
+    }
+  },
+  "zero_prefix_totals": {
+    "joint_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 0,
+        "env_steps": 0,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        }
+      },
+      "deep": {
+        "failed_windows": 0,
+        "env_steps": 0,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 0,
+          "table": 0
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": 0.0021361634135246277,
+        "self_F": 0.0016748011112213135,
+        "self_U": 0.0008163005113601685,
+        "table": 0.0010207593441009521
+      }
+    },
+    "tight_reference": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 18,
+        "env_steps": 497,
+        "class_failed_windows": {
+          "cross": 8,
+          "self_F": 0,
+          "self_U": 5,
+          "table": 5
+        },
+        "class_env_steps": {
+          "cross": 185,
+          "self_F": 0,
+          "self_U": 152,
+          "table": 160
+        }
+      },
+      "deep": {
+        "failed_windows": 15,
+        "env_steps": 357,
+        "class_failed_windows": {
+          "cross": 5,
+          "self_F": 0,
+          "self_U": 5,
+          "table": 5
+        },
+        "class_env_steps": {
+          "cross": 121,
+          "self_F": 0,
+          "self_U": 111,
+          "table": 125
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": -0.046119943261146545,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.046606309711933136,
+        "table": -0.0407450795173645
+      }
+    },
+    "zero_inclusive": {
+      "expected_windows": 192,
+      "verified_windows": 192,
+      "unavailable_or_invalid_windows": 0,
+      "strict": {
+        "failed_windows": 1,
+        "env_steps": 3,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 3,
+          "table": 0
+        }
+      },
+      "deep": {
+        "failed_windows": 1,
+        "env_steps": 2,
+        "class_failed_windows": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 1,
+          "table": 0
+        },
+        "class_env_steps": {
+          "cross": 0,
+          "self_F": 0,
+          "self_U": 2,
+          "table": 0
+        }
+      },
+      "minimum_nonexempt_margin_m": {
+        "cross": 0.002181991934776306,
+        "self_F": 0.0016748011112213135,
+        "self_U": -0.014833495020866394,
+        "table": 0.0010193884372711182
+      }
+    }
+  },
+  "primary_partition": {
+    "strict": {
+      "rescue": 18,
+      "new_failure": 2,
+      "both_fail": 5,
+      "both_safe": 167
+    },
+    "deep": {
+      "rescue": 15,
+      "new_failure": 0,
+      "both_fail": 2,
+      "both_safe": 175
+    }
+  },
+  "new_primary_strict_cases": [
+    "b1:i2059055426:c658533148:e38",
+    "b2:i514644998:c69425290:e38"
+  ],
+  "candidate_decision": "REJECTED_ADVERSE_ENDPOINTS",
+  "decision_reason": "Two new primary paired strict failures trigger the unchanged pre-outcome rejection rule.",
+  "explicitly_not_reconciled": [
+    "Parent per-frame curves/actuation exports; not available in the frozen score output schema.",
+    "Parent L2 movement, coverage volumes/bin counts, six-pair exposure and solver diagnostics. Frozen score has different L1 movement summaries; these are not interchangeable.",
+    "Deep per-class and per-case frame durations are retained independently but are not exported as comparable fields in the parent aggregate.",
+    "No independent all-LP or full-J everyframe reconstruction.",
+    "Camera groups, native state, PNG inventory and actual pixels remain pending explicit BOTH-camera closure.",
+    "Actual REPORT independent review and final delivery remain pending."
+  ],
+  "retained_deviations": [
+    "First attempt448complete/128unstartedinvalid; original erroneous rc-only PASS retained.",
+    "Initial GPU gate FAIL and baseline-only early SIGSTOP/SIGCONT pause retained.",
+    "Actual failed remote-asset and unsupportedGPU1 camera attempts retained; old unknown childwait remainsUNRECORDED.",
+    "No cross-attempt remoteUSD dependency byte-equivalence or clean one-attempt preregistered-execution claim."
+  ],
+  "camera_audit_started": false,
+  "actual_camera_pixels_viewed": 0,
+  "final_review_pass": false,
+  "physical_safety_certified": false,
+  "hardware_approved": false,
+  "production_promoted": false,
+  "runtime": {
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "numpy": "2.2.6"
+  }
+}

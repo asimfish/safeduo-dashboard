@@ -1,0 +1,73 @@
+{
+  "status": "complete",
+  "plan_sha256": "0ed20b89f9f3f1978e3fded6c9c4e6440c4e63fc776a7a1fa82694ae57633589",
+  "registered_original_plan_executed_exactly": true,
+  "camera_recovery_registration_sha256": "9196530dcc5635ba9fad1a98cc8762267a55d9d8e03e8db0efd4b28fb6a64357",
+  "superseded_failed_GPU1_attempt": "camera_gpu1_failed_attempt/visual_execution.json",
+  "jobs": [
+    {
+      "mode": "joint_reference",
+      "status": "complete",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/visual_runner.py",
+        "--out",
+        "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/visual/joint_reference",
+        "--ckpt",
+        "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+        "--env-yaml",
+        "duo_env_a31_pending_guard.yaml",
+        "--seeds",
+        "1638973897",
+        "--methods",
+        "system0",
+        "--duration-s",
+        "16",
+        "--device",
+        "cuda:0",
+        "--headless",
+        "--enable_cameras"
+      ],
+      "out": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/visual/joint_reference",
+      "stage": "complete",
+      "pid": 2121174,
+      "process_start_ticks": "147218091",
+      "exit_code": 0,
+      "child_reaped": true,
+      "visual_protocol_sha256": "4766fdcd830a43f0b17f9add3cd13de5c20a2eca2f629769da2a4f64bef2b632"
+    },
+    {
+      "mode": "zero_inclusive",
+      "status": "complete",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/visual_runner.py",
+        "--out",
+        "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/visual/zero_inclusive",
+        "--ckpt",
+        "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+        "--env-yaml",
+        "duo_env_a31_pending_guard.yaml",
+        "--seeds",
+        "1638973897",
+        "--methods",
+        "system0",
+        "--duration-s",
+        "16",
+        "--device",
+        "cuda:0",
+        "--headless",
+        "--enable_cameras"
+      ],
+      "out": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/visual/zero_inclusive",
+      "stage": "complete",
+      "pid": 2212816,
+      "process_start_ticks": "147317826",
+      "exit_code": 0,
+      "child_reaped": true,
+      "visual_protocol_sha256": "2e4cc092c52a9982d89364a582d5426a0973656c61583e4acc171900b2f8825d"
+    }
+  ],
+  "started_utc": "2026-10-07T05:01:34.410621+00:00",
+  "finished_utc": "2026-10-07T05:30:39.362268+00:00"
+}

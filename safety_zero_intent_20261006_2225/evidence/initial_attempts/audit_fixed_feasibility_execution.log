@@ -1,0 +1,44 @@
+FIXED_LP_CLOSED tight_reference_1638973897 576
+FIXED_LP_CLOSED joint_reference_1638973897 576
+FIXED_LP_CLOSED zero_inclusive_1638973897 576
+FIXED_LP_CLOSED joint_reference_658533148 576
+FIXED_LP_CLOSED tight_reference_658533148 576
+FIXED_LP_CLOSED joint_reference_69425290 576
+FIXED_LP_CLOSED tight_reference_69425290 576
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_fixed_feasibility.py", line 56, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_fixed_feasibility.py", line 43, in main
+    with ThreadPoolExecutor(max_workers=2) as pool:rows=[r for records in pool.map(inspect,args) for r in records]
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_fixed_feasibility.py", line 43, in <listcomp>
+    with ThreadPoolExecutor(max_workers=2) as pool:rows=[r for records in pool.map(inspect,args) for r in records]
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_fixed_feasibility.py", line 18, in inspect
+    file=root/'projection_snapshots'/f'step_{t:04d}.npz';digest=sha(file)
+                                                                ^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/audit_fixed_feasibility.py", line 12, in sha
+    def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+                                     ^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/pathlib.py", line 1050, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/holdout_1/zero_inclusive_658533148/projection_snapshots/step_0000.npz'

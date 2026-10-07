@@ -1,0 +1,228 @@
+Loading user config located at: '/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261006_222856.log
+2026-10-06T14:28:56Z [250ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-10-06T14:28:57Z [696ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-10-06T14:28:57Z [969ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-06T14:28:57Z [983ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-06T14:28:59Z [2,777ms] [Warning] [carb.cudainterop.plugin] CUDA_VISIBLE_DEVICES environment variable is set.
+2026-10-06T14:28:59Z [2,777ms] [Warning] [carb.cudainterop.plugin] Note CUDA device enumeration and Omniverse device enumeration are different.
+2026-10-06T14:28:59Z [2,777ms] [Warning] [carb.cudainterop.plugin] Setting CUDA_VISIBLE_DEVICES can lead to undesired behavior or crashes.
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 570.124.06    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 5090          |        |     | 32607   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2b85      | b129224c.. |
+|     |                                  |        |     |            | 41        |            |
+|---------------------------------------------------------------------------------------------|
+| 1   | NVIDIA GeForce RTX 5090          | Yes: 0 |     | 32607   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2b85      | 828bb172.. |
+|     |                                  |        |     |            | 81        |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| Processor: AMD Ryzen Threadripper 7960X 24-Cores
+| Cores: 24 | Logical Cores: 48
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 257228 | Free Memory: 77965
+| Total Page/Swap (MB): 131071 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+2026-10-06T14:29:00Z [3,570ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-06T14:29:00Z [3,570ms] [Warning] [gpu.foundation.plugin] Detected IOMMU is enabled. Running CUDA peer-to-peer bandwidth and latency validation.
+Unidirectional P2P=Enabled Bandwidth (P2P Writes) Matrix (GB/s)
+   D\D     0      1 
+     0 1511.12   7.11 
+     1   7.01 1543.97 
+P2P=Enabled Latency (P2P Writes) Matrix (us)
+   GPU     0      1 
+     0   2.11  13.09 
+     1  12.89   2.09 
+
+   CPU     0      1 
+     0   1.82   5.51 
+     1   5.37   1.74 
+2026-10-06T14:29:00Z [3,817ms] [Warning] [gpu.foundation.plugin] CUDA peer-to-peer observed bandwidth: 7.0 GB/s.
+2026-10-06T14:29:00Z [3,817ms] [Warning] [gpu.foundation.plugin] CUDA peer-to-peer observed latency: 13.1 us.
+2026-10-06T14:29:00Z [3,817ms] [Warning] [gpu.foundation.plugin] Please verify if observed bandwidth and latency are expected.
+[INFO][AppLauncher]: Using device: cuda:1
+[INFO][AppLauncher]: Loading experience file: /home/liyufeng/safeduo_isaaclab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-10-06_22-29-00.log[0m
+[36m======================================================================================[0m
+
+[33m22:29:00 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:1
+	Environment seed      : 0
+	Physics step-size     : 0.008333
+	Rendering step-size   : 0.016666
+	Environment step-size : 0.016666
+[INFO]: Time taken for scene creation : 3.324734 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 64
+	Environment spacing   : 4.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 1.587039 seconds
+[INFO]: Completed setting up the environment...
+RISK seed=1052656817 pair=0 restart=0 iter=0 found=1/8
+RISK seed=1052656817 pair=0 restart=1 iter=0 found=2/8
+RISK seed=1052656817 pair=0 restart=2 iter=2 found=3/8
+RISK seed=1052656817 pair=0 restart=3 iter=2 found=4/8
+RISK seed=1052656817 pair=0 restart=4 no admissible pose
+RISK seed=1052656817 pair=0 restart=5 iter=1 found=5/8
+RISK seed=1052656817 pair=0 restart=6 iter=2 found=6/8
+RISK seed=1052656817 pair=0 restart=7 iter=0 found=7/8
+RISK seed=1052656817 pair=0 restart=8 iter=2 found=8/8
+RISK seed=1052656817 pair=1 restart=0 no admissible pose
+RISK seed=1052656817 pair=1 restart=1 no admissible pose
+RISK seed=1052656817 pair=1 restart=2 iter=22 found=1/8
+RISK seed=1052656817 pair=1 restart=3 iter=25 found=2/8
+RISK seed=1052656817 pair=1 restart=4 iter=14 found=3/8
+RISK seed=1052656817 pair=1 restart=5 iter=18 found=4/8
+RISK seed=1052656817 pair=1 restart=6 iter=23 found=5/8
+RISK seed=1052656817 pair=1 restart=7 iter=11 found=6/8
+RISK seed=1052656817 pair=1 restart=8 iter=14 found=7/8
+RISK seed=1052656817 pair=1 restart=9 iter=14 found=8/8
+RISK seed=1052656817 pair=2 restart=0 iter=14 found=1/8
+RISK seed=1052656817 pair=2 restart=1 iter=21 found=2/8
+RISK seed=1052656817 pair=2 restart=2 iter=16 found=3/8
+RISK seed=1052656817 pair=2 restart=3 iter=23 found=4/8
+RISK seed=1052656817 pair=2 restart=4 iter=30 found=5/8
+RISK seed=1052656817 pair=2 restart=5 iter=22 found=6/8
+RISK seed=1052656817 pair=2 restart=6 iter=10 found=7/8
+RISK seed=1052656817 pair=2 restart=7 iter=12 found=8/8
+RISK seed=1052656817 pair=3 restart=0 iter=16 found=1/8
+RISK seed=1052656817 pair=3 restart=1 iter=16 found=2/8
+RISK seed=1052656817 pair=3 restart=2 iter=15 found=3/8
+RISK seed=1052656817 pair=3 restart=3 iter=11 found=4/8
+RISK seed=1052656817 pair=3 restart=4 iter=19 found=5/8
+RISK seed=1052656817 pair=3 restart=5 iter=19 found=6/8
+RISK seed=1052656817 pair=3 restart=6 iter=16 found=7/8
+RISK seed=1052656817 pair=3 restart=7 iter=22 found=8/8
+RISK seed=1052656817 pair=4 restart=0 no admissible pose
+RISK seed=1052656817 pair=4 restart=1 iter=21 found=1/8
+RISK seed=1052656817 pair=4 restart=2 no admissible pose
+RISK seed=1052656817 pair=4 restart=3 iter=16 found=2/8
+RISK seed=1052656817 pair=4 restart=4 iter=19 found=3/8
+RISK seed=1052656817 pair=4 restart=5 iter=19 found=4/8
+RISK seed=1052656817 pair=4 restart=6 iter=13 found=5/8
+RISK seed=1052656817 pair=4 restart=7 iter=12 found=6/8
+RISK seed=1052656817 pair=4 restart=8 iter=17 found=7/8
+RISK seed=1052656817 pair=4 restart=9 iter=13 found=8/8
+RISK seed=1052656817 pair=5 restart=0 iter=0 found=1/8
+RISK seed=1052656817 pair=5 restart=1 iter=17 found=2/8
+RISK seed=1052656817 pair=5 restart=2 iter=14 found=3/8
+RISK seed=1052656817 pair=5 restart=3 iter=7 found=4/8
+RISK seed=1052656817 pair=5 restart=4 iter=8 found=5/8
+RISK seed=1052656817 pair=5 restart=5 iter=4 found=6/8
+RISK seed=1052656817 pair=5 restart=6 iter=14 found=7/8
+RISK seed=1052656817 pair=5 restart=7 iter=5 found=8/8
+{"seed": 1052656817, "status": "complete", "risk_quotas": [8, 8, 8, 8, 8, 8], "general_count": 16, "selected_count": 64, "policy_outcomes_used": false, "conditioning": "all table and robot margins >=1mm; raw zero hold1s no violation, drift<=.05rad, final velocity<=.1rad/s", "risk_band_m": [0.02, 0.06], "bank_sha256": "26e1c5814057e10adff19efc0d9ffd59bcaccac84eac90e96724585edcb99804"}
+RISK seed=2059055426 pair=0 restart=0 iter=0 found=1/8
+RISK seed=2059055426 pair=0 restart=1 iter=2 found=2/8
+RISK seed=2059055426 pair=0 restart=2 iter=3 found=3/8
+RISK seed=2059055426 pair=0 restart=3 iter=0 found=4/8
+RISK seed=2059055426 pair=0 restart=4 iter=0 found=5/8
+RISK seed=2059055426 pair=0 restart=5 no admissible pose
+RISK seed=2059055426 pair=0 restart=6 iter=1 found=6/8
+RISK seed=2059055426 pair=0 restart=7 iter=0 found=7/8
+RISK seed=2059055426 pair=0 restart=8 iter=2 found=8/8
+RISK seed=2059055426 pair=1 restart=0 iter=14 found=1/8
+RISK seed=2059055426 pair=1 restart=1 iter=10 found=2/8
+RISK seed=2059055426 pair=1 restart=2 iter=29 found=3/8
+RISK seed=2059055426 pair=1 restart=3 iter=24 found=4/8
+RISK seed=2059055426 pair=1 restart=4 iter=24 found=5/8
+RISK seed=2059055426 pair=1 restart=5 no admissible pose
+RISK seed=2059055426 pair=1 restart=6 no admissible pose
+RISK seed=2059055426 pair=1 restart=7 iter=18 found=6/8
+RISK seed=2059055426 pair=1 restart=8 iter=34 found=7/8
+RISK seed=2059055426 pair=1 restart=9 iter=15 found=8/8
+RISK seed=2059055426 pair=2 restart=0 iter=20 found=1/8
+RISK seed=2059055426 pair=2 restart=1 iter=19 found=2/8
+RISK seed=2059055426 pair=2 restart=2 iter=13 found=3/8
+RISK seed=2059055426 pair=2 restart=3 iter=13 found=4/8
+RISK seed=2059055426 pair=2 restart=4 iter=6 found=5/8
+RISK seed=2059055426 pair=2 restart=5 iter=4 found=6/8
+RISK seed=2059055426 pair=2 restart=6 iter=15 found=7/8
+RISK seed=2059055426 pair=2 restart=7 iter=16 found=8/8
+RISK seed=2059055426 pair=3 restart=0 iter=18 found=1/8
+RISK seed=2059055426 pair=3 restart=1 iter=15 found=2/8
+RISK seed=2059055426 pair=3 restart=2 iter=18 found=3/8
+RISK seed=2059055426 pair=3 restart=3 iter=16 found=4/8
+RISK seed=2059055426 pair=3 restart=4 iter=15 found=5/8
+RISK seed=2059055426 pair=3 restart=5 iter=12 found=6/8
+RISK seed=2059055426 pair=3 restart=6 iter=11 found=7/8
+RISK seed=2059055426 pair=3 restart=7 iter=14 found=8/8
+RISK seed=2059055426 pair=4 restart=0 iter=15 found=1/8
+RISK seed=2059055426 pair=4 restart=1 iter=13 found=2/8
+RISK seed=2059055426 pair=4 restart=2 iter=20 found=3/8
+RISK seed=2059055426 pair=4 restart=3 iter=22 found=4/8
+RISK seed=2059055426 pair=4 restart=4 iter=19 found=5/8
+RISK seed=2059055426 pair=4 restart=5 iter=14 found=6/8
+RISK seed=2059055426 pair=4 restart=6 iter=15 found=7/8
+RISK seed=2059055426 pair=4 restart=7 iter=23 found=8/8
+RISK seed=2059055426 pair=5 restart=0 iter=3 found=1/8
+RISK seed=2059055426 pair=5 restart=1 iter=7 found=2/8
+RISK seed=2059055426 pair=5 restart=2 iter=22 found=3/8
+RISK seed=2059055426 pair=5 restart=3 iter=13 found=4/8
+RISK seed=2059055426 pair=5 restart=4 iter=16 found=5/8
+RISK seed=2059055426 pair=5 restart=5 iter=28 found=6/8
+RISK seed=2059055426 pair=5 restart=6 iter=18 found=7/8
+RISK seed=2059055426 pair=5 restart=7 iter=39 found=8/8
+{"seed": 2059055426, "status": "complete", "risk_quotas": [8, 8, 8, 8, 8, 8], "general_count": 16, "selected_count": 64, "policy_outcomes_used": false, "conditioning": "all table and robot margins >=1mm; raw zero hold1s no violation, drift<=.05rad, final velocity<=.1rad/s", "risk_band_m": [0.02, 0.06], "bank_sha256": "d295d4fc5c2ea673911955ccab785261a6099c6cf49ad88dfcb5abdbc55b32be"}
+RISK seed=514644998 pair=0 restart=0 iter=2 found=1/8
+RISK seed=514644998 pair=0 restart=1 iter=2 found=2/8
+RISK seed=514644998 pair=0 restart=2 iter=3 found=3/8
+RISK seed=514644998 pair=0 restart=3 iter=0 found=4/8
+RISK seed=514644998 pair=0 restart=4 iter=2 found=5/8
+RISK seed=514644998 pair=0 restart=5 iter=2 found=6/8
+RISK seed=514644998 pair=0 restart=6 iter=3 found=7/8
+RISK seed=514644998 pair=0 restart=7 iter=0 found=8/8
+RISK seed=514644998 pair=1 restart=0 iter=17 found=1/8
+RISK seed=514644998 pair=1 restart=1 iter=18 found=2/8
+RISK seed=514644998 pair=1 restart=2 iter=22 found=3/8
+RISK seed=514644998 pair=1 restart=3 iter=22 found=4/8
+RISK seed=514644998 pair=1 restart=4 iter=27 found=5/8
+RISK seed=514644998 pair=1 restart=5 iter=27 found=6/8
+RISK seed=514644998 pair=1 restart=6 iter=16 found=7/8
+RISK seed=514644998 pair=1 restart=7 iter=13 found=8/8
+RISK seed=514644998 pair=2 restart=0 iter=19 found=1/8
+RISK seed=514644998 pair=2 restart=1 iter=15 found=2/8
+RISK seed=514644998 pair=2 restart=2 iter=26 found=3/8
+RISK seed=514644998 pair=2 restart=3 iter=11 found=4/8
+RISK seed=514644998 pair=2 restart=4 iter=8 found=5/8
+RISK seed=514644998 pair=2 restart=5 iter=3 found=6/8
+RISK seed=514644998 pair=2 restart=6 iter=27 found=7/8
+RISK seed=514644998 pair=2 restart=7 iter=14 found=8/8
+RISK seed=514644998 pair=3 restart=0 iter=15 found=1/8
+RISK seed=514644998 pair=3 restart=1 iter=13 found=2/8
+RISK seed=514644998 pair=3 restart=2 iter=12 found=3/8
+RISK seed=514644998 pair=3 restart=3 iter=14 found=4/8
+RISK seed=514644998 pair=3 restart=4 iter=19 found=5/8
+RISK seed=514644998 pair=3 restart=5 iter=14 found=6/8
+RISK seed=514644998 pair=3 restart=6 iter=15 found=7/8
+RISK seed=514644998 pair=3 restart=7 iter=16 found=8/8
+RISK seed=514644998 pair=4 restart=0 iter=13 found=1/8
+RISK seed=514644998 pair=4 restart=1 iter=15 found=2/8
+RISK seed=514644998 pair=4 restart=2 iter=14 found=3/8
+RISK seed=514644998 pair=4 restart=3 iter=12 found=4/8
+RISK seed=514644998 pair=4 restart=4 iter=26 found=5/8
+RISK seed=514644998 pair=4 restart=5 iter=17 found=6/8
+RISK seed=514644998 pair=4 restart=6 iter=21 found=7/8
+RISK seed=514644998 pair=4 restart=7 iter=14 found=8/8
+RISK seed=514644998 pair=5 restart=0 iter=21 found=1/8
+RISK seed=514644998 pair=5 restart=1 iter=11 found=2/8
+RISK seed=514644998 pair=5 restart=2 iter=14 found=3/8
+RISK seed=514644998 pair=5 restart=3 iter=12 found=4/8
+RISK seed=514644998 pair=5 restart=4 iter=16 found=5/8
+RISK seed=514644998 pair=5 restart=5 iter=9 found=6/8
+RISK seed=514644998 pair=5 restart=6 iter=9 found=7/8
+RISK seed=514644998 pair=5 restart=7 iter=13 found=8/8
+{"seed": 514644998, "status": "complete", "risk_quotas": [8, 8, 8, 8, 8, 8], "general_count": 16, "selected_count": 64, "policy_outcomes_used": false, "conditioning": "all table and robot margins >=1mm; raw zero hold1s no violation, drift<=.05rad, final velocity<=.1rad/s", "risk_band_m": [0.02, 0.06], "bank_sha256": "681f2e11f662ae7e74184682a76acf23d8fbb66ab831aa1af9ad76e4ffd185e3"}

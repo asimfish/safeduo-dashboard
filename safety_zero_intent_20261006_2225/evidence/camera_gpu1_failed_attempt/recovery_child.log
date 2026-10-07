@@ -1,0 +1,16 @@
+RECOVERED_NUMERIC 1
+RECOVERED_NUMERIC 2
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py", line 143, in <module>
+    main()
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py", line 136, in main
+    camera()
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py", line 112, in camera
+    protocol = read(out / 'visual_protocol.json')
+  File "/home/liyufeng/safeduo/artifacts/safety_zero_intent_20261006_2225/recover_unstarted.py", line 24, in read
+    return json.loads(Path(path).read_text())
+  File "/usr/lib/python3.10/pathlib.py", line 1134, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/usr/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/visual/joint_reference/visual_protocol.json'

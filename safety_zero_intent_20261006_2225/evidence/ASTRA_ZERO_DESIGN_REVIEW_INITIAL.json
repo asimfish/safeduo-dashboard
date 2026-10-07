@@ -1,0 +1,143 @@
+{
+  "schema": "astra.zero.design_review.v1",
+  "utc": "2026-10-06T14:29:06.892222+00:00",
+  "verdict": "Conditional pass",
+  "scope": "Intended zero-inclusive contract and sealed prior causal boundary only; not candidate implementation approval or global safety",
+  "dimensions": {
+    "Functional achievement": "Unable to determine: implementation and closed new outcomes pending",
+    "Correctness and reliability": "Risk: invariant and integration tests required",
+    "Architecture": "Unable to determine: candidate source review pending",
+    "Function and API design": "Risk: explicit tensor/scalar shape and dtype/device contract required",
+    "Style and maintainability": "Unable to determine: candidate source review pending",
+    "Performance": "Unable to determine; no performance claim or simulation performed"
+  },
+  "blocking_findings": [],
+  "contract_risks": [
+    {
+      "id": "ZERO-D01",
+      "severity": "Major contract boundary",
+      "status": "Required invariant; candidate not yet inspected",
+      "topic": "Zero outside original reachable limits",
+      "evidence": "Prior reference_envelope.py:20-28 permits a nonempty original interval excluding zero if target is outside soft limits but within one rate step.",
+      "example": {
+        "lower": -1.0,
+        "upper": 1.0,
+        "target": 1.01,
+        "q": 1.0,
+        "box": 0.02,
+        "gap": 0.01,
+        "original_interval": [
+          -0.02,
+          -0.01
+        ]
+      },
+      "impact": "Unconditional min(lo,0)/max(hi,0) after the final intersection would admit an increment that retains an invalid target.",
+      "minimum_requirement": "Form the hull of the ordinary clipped reference interval and the original-interval projection of zero. Retain Z within original R. If 0 is outside R, never promise zero inclusion; reject original empty R.",
+      "verification": "Hand-computed out-of-limit targets on both sides; unreachable original interval must reject; nonzero correction interval remains available."
+    },
+    {
+      "id": "ZERO-D02",
+      "severity": "Major implementation risk",
+      "status": "Required invariant; candidate not yet inspected",
+      "topic": "Shape, finite, dtype, device",
+      "evidence": "Prior reference_envelope.py checks q/target/limits shapes but gap conversion alone permits broadcasting.",
+      "impact": "A gap of shape (B,) can silently bind the joint axis when B==J or create a larger tensor with extra leading dimensions; mixed dtype may promote output; nonfinite scalar parameters can bypass intended validation.",
+      "minimum_requirement": "Require same floating dtype/device for measured state, target and limits; finite ordered inputs, scalar finite positive box; explicit accepted gap shapes with output exactly q.shape, positive finite gap before/after conversion. For per-env gaps use (B,1), not ambiguous (B,).",
+      "verification": "B=J and B!=J; scalar and (B,1) gap; reject broadcast expansion, NaN/Inf/nonpositive parameters, integer/mixed input dtype and inconsistent devices or document enforced caller contract."
+    },
+    {
+      "id": "ZERO-D03",
+      "severity": "Major integration risk",
+      "status": "Required invariant; candidate not yet inspected",
+      "topic": "R19 and prelimit ordering",
+      "evidence": "Prior reference_envelope.py:43-54 limits the incoming command before original R19 can return it verbatim.",
+      "impact": "Correct projection bounds alone do not constrain a bypassed command.",
+      "minimum_requirement": "Apply the same zero-inclusive bounds to prelimit, actual projection delta_bounds and diagnostic shadow. Preserve original R19 semantics and changed/active bookkeeping.",
+      "verification": "Fake real boundary with a verbatim-return R19 projection; out-of-bounds proposal reaches projection already limited; no disabling or unconditional-zero branch."
+    },
+    {
+      "id": "ZERO-D04",
+      "severity": "Major interpretation/integration risk",
+      "status": "Required invariant; candidate not yet inspected",
+      "topic": "Safety corrections and pending FIFO",
+      "evidence": "Prior raw contract and verify_fifo bind six pending target slots, issued target integration and applied target stream.",
+      "impact": "An admitted zero may still be replaced by a nonzero safety correction; previous issued commands and mechanical state continue affecting motion.",
+      "minimum_requirement": "Keep nonzero feasible interval and projection correction freedom; do not rewrite pending targets, q/qd/root, actor output or projection result to force zero. Keep six pending slots and original vmax1.5, finite30 passes, dmin/exemptions and full9021 geometry/actor32 rows.",
+      "verification": "Projection double returns permitted nonzero correction on zero input; queue/state/config snapshots unchanged; native FIFO raw audit later."
+    },
+    {
+      "id": "ZERO-D05",
+      "severity": "Major scientific boundary",
+      "status": "Prior causal boundary accepted, not a new physical result",
+      "topic": "Delayed causal attribution and adverse endpoints",
+      "evidence": "User-provided previous study and sealed astra_tracking_zero_intent_scope_review.json.",
+      "impact": "Newly issued target at step t first arrives after the six queued targets (transition7), so a failure in that same transition is not evidence that this newly issued target caused it.",
+      "minimum_requirement": "Preserve all960 frames including first60 zero-command prefix in all576 windows; distinguish own trajectories from helper counterfactuals and camera own state from exact numerical replay; report failure counts, minima and correlated env-step durations without claiming physical safety.",
+      "verification": "Independent native float32 scoring, full denominators, paired q0/qd0/initial target/tapes/banks, first-six actual fingerprints and separate camera state/pixel audits."
+    }
+  ],
+  "nonblocking_improvements": [],
+  "minimum_required_verification": [
+    "Hand-computed out-of-limit targets on both sides; unreachable original interval must reject; nonzero correction interval remains available.",
+    "B=J and B!=J; scalar and (B,1) gap; reject broadcast expansion, NaN/Inf/nonpositive parameters, integer/mixed input dtype and inconsistent devices or document enforced caller contract.",
+    "Fake real boundary with a verbatim-return R19 projection; out-of-bounds proposal reaches projection already limited; no disabling or unconditional-zero branch.",
+    "Projection double returns permitted nonzero correction on zero input; queue/state/config snapshots unchanged; native FIFO raw audit later.",
+    "Independent native float32 scoring, full denominators, paired q0/qd0/initial target/tapes/banks, first-six actual fingerprints and separate camera state/pixel audits."
+  ],
+  "mathematical_contract": {
+    "R": "L=max(lower-target,-box), U=min(upper-target,box); require L<=U",
+    "E": "ordinary clipped envelope endpoints eL=clip(q-gap-target,L,U), eU=clip(q+gap-target,L,U)",
+    "Z": "z=clip(0,L,U); zero-inclusive endpoints min(eL,z), max(eU,z)",
+    "invariants": [
+      "E subset Z subset R",
+      "Z ordered and finite",
+      "0 in Z iff 0 in R",
+      "When 0 in E, Z equals E",
+      "An admitted zero does not require projection output==0",
+      "gap=None retains original box/soft-limit R"
+    ],
+    "candidate_gap_rad": 0.01,
+    "control_gaps_rad": {
+      "joint_reference": 0.05,
+      "tight_reference": 0.01
+    },
+    "primary_comparison": "joint_reference__vs__zero_inclusive"
+  },
+  "prior_results_source": "User-provided context, not independently rescored in this phase",
+  "prior_results": {
+    "states": 192,
+    "conditions": 3,
+    "windows": 576,
+    "frames": 960,
+    "strict_reference": 24,
+    "strict_tight": 179,
+    "strict_adaptive": 179,
+    "tight_and_adaptive_zero_prefix_failure_windows_each": 30,
+    "adaptive_tight_seven_arrays_bitwise_equal": true
+  },
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/reference_envelope.py": "2ae5b20dd4bb797a7e450f66652759f9e22c3c0bf69a188650d4cea179cf1d3a",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_score_core.py": "87c28d99cffe9ab1e57e95ef7cb9ea41093d301e39aed35c6da6e6761b3e887e",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_score.py": "66c0110549635481129abf3d2b004a20cc4e934e2796cfed6dab55b4bad70aa9",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_tests.py": "db3a4e431ea29795638019ca6f436205d97735e7710037d45ff7d6ac2f3df1c7",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_zero_intent_scope_review.json": "f979335854f5c208e79ab540aa4e94aeee1b8a335c4fd175360070b2168a1387",
+    "/home/liyufeng/safeduo/artifacts/safety_tracking_reserve_20261006_1535/astra_tracking_raw_contract.md": "f2f3fcaeeb6edaa25d2396cb671060d96d51dcdea41906a144b77bd66b5be635"
+  },
+  "independence": {
+    "new_policy_outcome_reads": 0,
+    "parent_score_inputs": false,
+    "old_namespace_writes": false,
+    "allowed_writes": [
+      "H/astra_zero_*",
+      "H/ASTRA_ZERO_*"
+    ],
+    "gpu_or_simulation_launches": 0,
+    "watcher_started": false
+  },
+  "reviewer_model": {
+    "session_family": "GPT-6 per developer instruction",
+    "Astra_xhigh_runtime_configuration": "Not independently visible in this session; no stronger attestation claimed"
+  },
+  "final_review_complete": false,
+  "physical_safety_certified": false
+}
