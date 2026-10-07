@@ -1,0 +1,1 @@
+从RANDOM_EXPERIMENT_DESIGN、NUMERIC_REGISTRATION与plans读取真实初态/输入种子、原演员和源哈希；先用原几何及原始零输入资格筛选，核对bank_audit，再使用不可变计划运行三个条件。独立scorer/math来源见ASTRA_ZERO_RAW_SOURCE_REGISTRATION。必须保留初始内存门禁失败和暂停/恢复链，不能声称无流程偏差。所有原始逐帧、选中J/首失败/相机native数据保存在RAW双次完整回读档案；公开附属证据在asset_manifest所绑定固定提交，PNG无像素转换。复现实验应另建namespace、新资格银行；封存目录只读。

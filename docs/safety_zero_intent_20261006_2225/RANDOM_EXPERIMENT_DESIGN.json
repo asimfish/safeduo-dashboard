@@ -1,0 +1,85 @@
+{
+  "schema": "safeduo.zero_intent.design.v1",
+  "registered_utc": "2026-10-06T14:28:54.861110+00:00",
+  "rows": [
+    {
+      "block": 0,
+      "initial_seed": 1052656817,
+      "command_seed": 1638973897
+    },
+    {
+      "block": 1,
+      "initial_seed": 2059055426,
+      "command_seed": 658533148
+    },
+    {
+      "block": 2,
+      "initial_seed": 514644998,
+      "command_seed": 69425290
+    }
+  ],
+  "modes": [
+    "joint_reference",
+    "tight_reference",
+    "zero_inclusive"
+  ],
+  "comparisons": [
+    [
+      "joint_reference",
+      "zero_inclusive"
+    ],
+    [
+      "joint_reference",
+      "tight_reference"
+    ],
+    [
+      "tight_reference",
+      "zero_inclusive"
+    ]
+  ],
+  "primary_comparison": [
+    "joint_reference",
+    "zero_inclusive"
+  ],
+  "cases_per_bank": 64,
+  "paired_cases": 192,
+  "method_windows": 576,
+  "frames_per_window": 960,
+  "dt_s": 0.016666666666666666,
+  "zero_prefix_steps": 60,
+  "actuator_FIFO_steps": 6,
+  "raw_command_scale": 1.0,
+  "mechanism": "minimal zero-inclusive .010 reachable reference interval; old .050 baseline and original .010 ablation; min(lower_ref,0),max(upper_ref,0) inside original box/softlimits",
+  "risk": "old frozen-J reserveforecast diagnostic only; no adaptive gap or PDmodel. Zero-inclusive interval is a targetreference contract, not a robust dynamics or physical-safety proof",
+  "all_modes_admission": "original actor32 + original measured/target forecast union; capacity9021 no dropping; no CV/PD extra admission",
+  "thresholds_and_exemptions_unchanged": true,
+  "solver": "unchanged finite original with original R19 bypass respecting reachable interval",
+  "randomness": "six fresh OS seeds; first-qualified raw-zero stable order; 6pair strata8each/global16; independent four-arm mixed random holds900frames",
+  "metrics": [
+    "strict full original nonexempt distance<0",
+    "deep<-0.005m",
+    "strict/deep durations",
+    "paired rescue/new failure",
+    "actual q path/range",
+    "four-arm movement",
+    "reference residual/debt",
+    "coverage/exposure",
+    "FIFO truth",
+    "all selected membership",
+    "allframe zero-inclusion bounds",
+    "zero-prefix actualeffective target changes vs projectioncorrections",
+    "prelimit injectedmotion counts",
+    "first failure causal FIFO boundary"
+  ],
+  "development_data": "previousSEALED studies retrospective development only; no new cycle policy outcomes inspected beforefreeze",
+  "camera": "primary methods first new bank, independent own-state trajectories, nine original1280x720 views, all6pair strata+global at75/480/959, first-failure per stratum, native all64 q/qd/root snapshots unchanged by rendering; CUDA0 registered before run",
+  "hardware_approved": false,
+  "production_promoted": false,
+  "predeclared_invariants": [
+    "original reachablebounds must contain0 or abort invalidwindow",
+    "candidate reference interval contains0 everyframe/component",
+    "rawzero survives reference prelimit exactly; safetyprojector may return nonzero correction",
+    "no actor/projector/threshold/exemption/queue reset/lateblind tuning"
+  ],
+  "acceptance": "report every registered full960window; compare strict/deep windows/durations/newfailures and motion. A zero-inclusive software PASS never implies physical candidate adoption; any residualfailures or reducedexposure explicitlyretained"
+}
