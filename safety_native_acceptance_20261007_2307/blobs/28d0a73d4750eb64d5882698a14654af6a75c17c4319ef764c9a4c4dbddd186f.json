@@ -1,0 +1,185 @@
+{
+  "schema": "safeduo.nominal_motion_visual.v1",
+  "args": {
+    "out": "/mnt/nas/data/lyf/double_hand/safety_native_acceptance_20261007_2307/acceptance/block_0/box_admission",
+    "ckpt": "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+    "env_yaml": "duo_env_a31_pending_guard.yaml",
+    "seeds": 294844708,
+    "methods": "system0",
+    "duration_s": 16.0,
+    "enable_cameras": true,
+    "xr": false,
+    "device": "cuda:0",
+    "cpu": false,
+    "verbose": false,
+    "info": false,
+    "rendering_mode": null,
+    "kit_args": "",
+    "anim_recording_enabled": false,
+    "anim_recording_start_time": 0,
+    "anim_recording_stop_time": 10,
+    "headless": true,
+    "hide_ui": true,
+    "create_new_stage": false,
+    "physics_gpu": 0,
+    "active_gpu": 0,
+    "multi_gpu": false
+  },
+  "steps": 960,
+  "dt": 0.016666,
+  "status": "complete",
+  "resolved_config": {
+    "sim": {
+      "dt": 0.008333,
+      "decimation": 2,
+      "episode_length_s": 10.0,
+      "physx": {
+        "gpu_max_rigid_patch_count": 524288
+      }
+    },
+    "scene": {
+      "num_envs": 4096,
+      "env_spacing": 4.0,
+      "layout_yaml": "assets_src/real/scene_layout_v7.yaml",
+      "base_x_abs": null
+    },
+    "assets": {
+      "franka": {
+        "variant": "fr3",
+        "custom_usd": "",
+        "hands": true
+      },
+      "ur": {
+        "variant": "ur5_dfx",
+        "custom_usd": "",
+        "hands": true
+      },
+      "arm_usd_overrides": {
+        "F_L": "assets_real/usd/combined/fr3_f2_left_v5.usd",
+        "F_R": "assets_real/usd/combined/fr3_f2_right_v5.usd",
+        "U_L": "assets_real/usd/ur5_dfx_left_v7.usd",
+        "U_R": "assets_real/usd/ur5_dfx_right_v7.usd"
+      },
+      "spheres": "real_v7",
+      "semantics_yaml": "src/safeduo/configs/contact_semantics_v7.yaml",
+      "arm_armature": {
+        "ur": 0.05
+      },
+      "arm_gravity_comp": {
+        "franka": true
+      }
+    },
+    "init_qpos": {
+      "franka": {
+        "fr3_joint1": -0.4133,
+        "fr3_joint2": -0.7454,
+        "fr3_joint3": 0.0387,
+        "fr3_joint4": -2.5007,
+        "fr3_joint5": 0.9908,
+        "fr3_joint6": 2.1395,
+        "fr3_joint7": 1.6729
+      },
+      "ur": {
+        "shoulder_pan_joint": -0.6296,
+        "shoulder_lift_joint": -2.2481,
+        "elbow_joint": 1.9604,
+        "wrist_1_joint": -1.3038,
+        "wrist_2_joint": -1.0278,
+        "wrist_3_joint": -0.2445
+      }
+    },
+    "action": {
+      "delta_clip": 0.08
+    },
+    "safety": {
+      "damper_warn_mm": 40,
+      "max_active": 32,
+      "quota_cross": 8,
+      "tau_ttc": 0.5,
+      "contact_gt": false,
+      "d_min_override": {
+        "self": 0.013,
+        "cross": 0.038
+      },
+      "d_warn_override": 0.08,
+      "d_min_per_link": {
+        "upper_arm_link": 0.001
+      },
+      "backstop": {
+        "gamma": 4.0,
+        "vmax": 1.5,
+        "max_passes": 30,
+        "tol": 1e-06,
+        "row_authority_clamp": true,
+        "exit_box_invariant": true,
+        "exempt_structural_rows": true,
+        "lookahead_s": 0.16,
+        "self_lookahead_s": 0.4,
+        "table_lookahead_s": 0.3,
+        "retain_conditional_rows": true,
+        "predict_backlog": true,
+        "pending_target_steps": 6
+      },
+      "jacobian_reference": "com",
+      "row_priority_lookahead_s": 0.4,
+      "project_target_limits": true
+    },
+    "coordinator": {
+      "enabled": false,
+      "delta_source": "l2_mix",
+      "delta_amp_max": 0.015,
+      "delta_env_yaml": "duo_env_v7.yaml",
+      "reward": {
+        "w_track": 10.0,
+        "w_tube": 0.05,
+        "w_progress": 2.0,
+        "w_smooth": 0.1,
+        "w_flip": 0.5,
+        "w_backstop": 5.0,
+        "w_violation": 100.0,
+        "w_margin": 2.0
+      },
+      "retreat_passthrough": true,
+      "retreat_dwell_steps": 10,
+      "arm_aware_obs": true,
+      "p2_obs": true,
+      "r18_hazard_flags": true,
+      "mask_structural_obs": true,
+      "coupling_obs": true,
+      "coupling_enabled": true
+    },
+    "events": {
+      "n_log_envs": 64,
+      "flush_every": 512
+    },
+    "benchmark": {
+      "env_counts": [
+        1024,
+        2048,
+        4096
+      ],
+      "warmup_steps": 30,
+      "timed_steps": 200
+    }
+  },
+  "actor_sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6",
+  "scope": "actual scored numeric run with full native two-boundary stream and same-run nine-view images; no independent replay or exact restore certification",
+  "slots": [
+    0,
+    8,
+    16,
+    24,
+    32,
+    40,
+    56
+  ],
+  "capture_steps": [
+    75,
+    480,
+    959
+  ],
+  "first_failure_capture": "earliest measured negative per risk label, lowest env ID, at most7 additional groups per mode",
+  "observer_sha256": "2c2f439eabcede9cbad17bb9d9618601975c3cdbad798aff2785ea22d66eec49",
+  "completed_windows": 64,
+  "violations": 5
+}

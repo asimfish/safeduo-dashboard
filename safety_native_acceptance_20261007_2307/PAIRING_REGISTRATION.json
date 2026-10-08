@@ -1,0 +1,23 @@
+{
+  "schema": "safeduo.full_native_pairing.criteria.v1",
+  "registered_utc": "2026-10-07T15:42:13.183015+00:00",
+  "registered_before_fresh_policy_outcomes": true,
+  "criteria_sha256": "01a5b45d1ada7635946f15c1b2e0cee141e8128266bdbed423844cf833c054a3",
+  "required_same_requested_initial_and_tape": true,
+  "required_same_actual_controlled_initial_q": true,
+  "full_native_actual_initial_fields": [
+    "native_q",
+    "native_qd",
+    "native_root_xyzw",
+    "native_root_velocity",
+    "issued_controlled_target",
+    "applied_controlled_target",
+    "pending_controlled_targets",
+    "pending_project_targets"
+  ],
+  "all_four_modes_all64_each_bank_native_initial_identity": true,
+  "any_actual_native_discrepancy": "report each field/env/maxdiff and reject causal/adoption acceptance; do not substitute requested pose for measured state or epsilon-match",
+  "native_step_source": "native_initial.npz actual getters after reset and before step0",
+  "full_native_restore_certified": false,
+  "no_initial_state_intervention": true
+}

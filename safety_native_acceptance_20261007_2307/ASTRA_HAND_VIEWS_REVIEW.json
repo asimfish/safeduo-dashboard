@@ -1,0 +1,113 @@
+{
+  "schema": "safeduo.astra_hand_views_review.v1",
+  "created_utc": "2026-10-07T16:11:12.756464+00:00",
+  "decision": "CPU_READY_FOR_PARENT_DEVELOPMENT06_INTEGRATION",
+  "review_type": "implementation self-check and measured CPU evidence; separate independent acceptance agent not invoked",
+  "actual_camera_status": "NOT_RUN_REQUIRES_PARENT_GPU_VALIDATION",
+  "policy_outcomes_status": "NO_NEW_OUTCOME_CLAIM",
+  "written_files": [
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/hand_views.py",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/test_hand_views.py",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/ASTRA_HAND_VIEWS_REVIEW.json",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/ASTRA_HAND_VIEWS_TEST_RECEIPT.json",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/astra_hand_views_test.log"
+  ],
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/hand_views.py": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/test_hand_views.py": "fbd724941545c5e35e084c9fcc8b4eb13068dd0e55108ef2a7740f700f50db36"
+  },
+  "test_receipt": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/ASTRA_HAND_VIEWS_TEST_RECEIPT.json",
+    "sha256": "4ff0914640bea1302e1a5684dc6248ca39755572c550e10cb7b84a4acbb646f4",
+    "tests": 28,
+    "child_pid": 1088169,
+    "actual_child_wait_returncode": 0,
+    "python_B": true,
+    "gpu_visible": false,
+    "Isaac_started": false
+  },
+  "integration": {
+    "api": "capture_hand_views(env, out, t, slots, kind, contact_identity) -> list[group_receipt]",
+    "example": "from hand_views import capture_hand_views\nhand_receipts = capture_hand_views(env, self.out, t, slots, kind, self.out / \"native_contact_identity.json\")",
+    "placement": "Invoke once per (kind,t), all selected slots together, after the parent nine-view capture and before any next physics/control step, while parent owns the same macro-post hold. No parent source edited here.",
+    "contact_identity": "Path to identity JSON or parsed native_hand_contact.v1 dict. Prefer current-run observer identity. CPU reference is native_smoke_04/native_contact_identity.json. All64 live PhysX link_paths/body_names must match exact sensors before capture.",
+    "prerequisites": [
+      "64 environments; four arms F_L/F_R/U_L/U_R",
+      "existing shared /World/viz_cam, 1280x720, uint8 RGB/RGBA",
+      "camera update_period=0; PARTIAL_RENDERING or FULL_RENDERING; exactly one sensor row",
+      "meter-scaled USD stage and centered perspective optics; nonzero aperture offsets rejected",
+      "IsaacLab articulation PhysX simulation-view subspace root /, so native link positions are already world coordinates",
+      "parent holds physical time synchronously; no concurrent physics/control task"
+    ],
+    "returns": "One receipt per slot: state JSON path/SHA and twelve original PNG paths/SHAs. Separate final receipts.json includes visibility restoration and final native invariant. Exclusive output creation prevents accidental overwrite.",
+    "runtime_output": "out/hand_views/{kind}/step_{t:04d}/; per-slot state.json and 12 raw PNGs; all64 before/final NPZ plus after NPZ for each image; full exact identity mapping JSON. Existing out/multiview nine-view output is retained.",
+    "parent_oracle": "Reads matching parent groupstate and original native snapshot if present; checks snapshot SHA and all64 q/qd/root/root_vel bytes plus selected controlled q/qd. Missing parent group remains pending. cell_001.npz/macropost oracle binding remains explicitly pending_parent_integration.",
+    "time": "Records measured env.sim.current_time and current_time_step_index alongside logical (t+1)*step_dt. Camera.update(0, force_recompute=True) refreshes sensors without adding virtual elapsed time. Sensor frame must increment exactly once."
+  },
+  "implemented_invariants": [
+    "Exactly four arms x three hand-relative views per slot, no crop, resize, montage or RGB value rescaling.",
+    "Hand sensors map by exact PhysX rigidpath AND body_name to get_link_transforms tensor indices; all64 hand link inventory equality rejects drops, unmatched paths, duplicate names/sensors and wrong environment ordering.",
+    "Each F hand has native left/right_hand_base anchor; each U hand has wrist_3_link anchor. Actual native XYZW quaternion rotates opposing above/below and cross-above local camera directions.",
+    "AABB center of actual hand-link world positions is camera target. No old controlled-q replay or environment-origin double addition.",
+    "Analytical distance interval fits .06m link-center spheres plus .05m clearance to left/right/top/bottom/near/far planes, including impossible-far-plane rejection; pose and framing are checked again from USD after render.",
+    "Actual USD camera-to-world row matrix, focal/aperture optics, K with SDK cross-check, clipping range, per-sphere plane margins and raw PNG/pixel hashes accompany each image.",
+    "Allfour-hand full native q/qd/root transforms/root velocities/link transforms/position targets included with every image state, selected hand positions and exact mapping included.",
+    "All64 detached native snapshots compared with identical dtype, shape and bytes around each render; signed-zero changes rejected. Physical time/index and origins included.",
+    "Only camera.set_world_poses_from_view, env.sim.render and camera.update are called to obtain views; USD visibility edits restored in finally. No physics step, reset, joint/root/target writes or physics state replay.",
+    "Native historical contact microstep peaks are not relabelled as macro camera states."
+  ],
+  "cpu_evidence": {
+    "read_only_fixture_sha256": {
+      "/mnt/nas/data/lyf/double_hand/safety_native_acceptance_20261007_2307/native_smoke_04/native_contact_identity.json": "a794ce89a2427ad0b83d4a3795ac225fb2e2d132305b3b67dfc8ae12959f10fc",
+      "/mnt/nas/data/lyf/double_hand/safety_native_acceptance_20261007_2307/native_smoke_04/camera_receipts.json": "369514da15b64fb1aa4747b1aa97fe1ad2463bb14deadb061839a7cb1fec48e0",
+      "/mnt/nas/data/lyf/double_hand/safety_native_acceptance_20261007_2307/native_smoke_04/multiview/first_native_contact/env_048/step_0000_state.json": "7496e41c145a2843eacc9bbdbc0b0c85f290ad8b54623a32f2f06212c49894e3",
+      "/mnt/nas/data/lyf/double_hand/safety_native_acceptance_20261007_2307/native_smoke_04/native_render_first_native_contact_step_0000_before.npz": "35f02d293fef26095b4de5e3033bb8fd2eb753dd557ebfe5907e1d0c28d6403e"
+    },
+    "sensor_total": 3328,
+    "sensors_per_arm_per_environment": 13,
+    "fixture_metadata_limit": "CPU link_paths/body_names reconstructed from actual raw rigid inventory in permuted order; this proves matching algorithm on real identities, not live PhysX runtime ordering.",
+    "numerical_tests": [
+      "all six exact Euclidean distances",
+      "independent corner-ray cross-product plane oracle with asymmetric K",
+      "six inside-center but radius-clipped negative controls",
+      "additional 5cm rejection",
+      "near/far/behind-camera rejection",
+      "distance-fit feasible interval and impossible far interval",
+      "rotated row-matrix/origin invariance",
+      "known XYZW 90-degree rotations, sign symmetry and opposing local directions"
+    ],
+    "identity_state_tests": [
+      "exact 3328-sensor bijection",
+      "wrong same-basename path, consistent all64 thumb drop, duplicate sensor/bodyname, wrong env_id and body order rejection",
+      "native_smoke_04 first group all64 native q/qd/root/root_vel binding and source SHA",
+      "hidden environment63 mutation and signed-zero mutation rejection",
+      "detached native link/position target snapshots and simulation clock mutation rejection"
+    ],
+    "camera_contract_tests": [
+      "frozen raw USD camera optics and sphere projection recomputed",
+      "known stale SDK camera position not used as USD actual pose",
+      "nonzero offsets rejected",
+      "non-rendering mode, resized camera, multirow sensor, nonzero update_period and stale sensor frame rejected"
+    ],
+    "negative_control_note": "No intentional broken implementation was committed. Executed negative controls explicitly demonstrate center-only framing, radius omission, all64 sensor drop and byte-state mutations are rejected."
+  },
+  "remaining_parent_validation": [
+    "Development06 live get_link_transforms/link_paths/body_names agreement and all64 zero-drop exact mapping.",
+    "Live 12 PNGs per slot: inspect known native04 contacts and corrected .35rad-open hands, especially U_R thumb2/wrist3; do not infer new contact outcomes from CPU tests.",
+    "Read back actual live USD optics/pose/clips, raw PNG dimensions/SHA, measured simulation time, sensor refresh and all64 before/after bytes.",
+    "Run separate parent cell oracle to bind macro q/qd and actual hold time; retain nine overview views and identify microstep-vs-macro scope.",
+    "Only parent freezes fresh128x4x960 acceptance after development evidence; no fresh acceptance or new policy result is claimed here."
+  ],
+  "limitations": [
+    "Link-center spheres are a conservative framing proxy, not certified containment of all mesh vertices.",
+    "Three views do not certify visibility of every finger surface or absence of occlusion.",
+    "The capture path was not executed here: actual camera/renderer, exact live PhysX mapping and physical-state invariance still require parent GPU validation.",
+    "Stage visibility is restored; the shared camera remains at the last hand view. Each parent view already sets its camera pose before rendering.",
+    "No third-party agent, GPU/Isaac process, production source mutation or SEALED artifact mutation was performed."
+  ],
+  "read_only_reference_sources": {
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/native_contact_runner.py": "d633fff5c9ecb953ccfce2705d60efdd64e6844f8bb340b27307b5220a21ab7d",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/native_contacts.py": "b090805278036df093cd8d431ffb96d697046fc18541daee132006da8a291248",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/native_state_capture.py": "eb9516ede6c0ff389ecf7a01bdb0afd6d7ea27fd33be77b15cc33ba3728ba671"
+  }
+}

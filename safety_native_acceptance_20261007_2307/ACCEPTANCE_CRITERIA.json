@@ -1,0 +1,91 @@
+{
+  "schema": "safeduo.native_paired_acceptance.criteria.v1",
+  "registered_utc": "2026-10-07T15:38:03.465259+00:00",
+  "registered_before_policy_outcomes": true,
+  "scope": "finite simulation on conditioned wide/risk initial states; neither hardware nor whole-mesh/friction/global dynamic safety",
+  "modes": [
+    "joint_reference",
+    "zero_inclusive",
+    "box_admission",
+    "adaptive_joint"
+  ],
+  "initial_bank_rows": [
+    {
+      "block": 0,
+      "initial_seed": 1101342169,
+      "command_seed": 294844708
+    },
+    {
+      "block": 1,
+      "initial_seed": 25496091,
+      "command_seed": 1293277606
+    }
+  ],
+  "independent_initial_banks": 2,
+  "unique_paired_cases": 128,
+  "method_windows": 512,
+  "steps_per_window": 960,
+  "dt_s": 0.016666,
+  "physics_dt_s": 0.008333,
+  "zero_prefix_steps": 60,
+  "random_steps": 900,
+  "actuator_fifo_steps": 6,
+  "primary_comparison": [
+    "zero_inclusive",
+    "adaptive_joint"
+  ],
+  "admission_ablation": [
+    "zero_inclusive",
+    "box_admission"
+  ],
+  "width_ablation": [
+    "box_admission",
+    "adaptive_joint"
+  ],
+  "legacy_reference": [
+    "joint_reference",
+    "adaptive_joint"
+  ],
+  "observations": [
+    "native3boundaries everycontrol step all64; full uncontrolled hand joints q/qd/root/positiontargets",
+    "exact native hand partner normal/net/counts everyphysics substep; normal capacity262144 strict before overflow",
+    "full9021 raw nativefloat32 original exemption/classification geometry everyframe including last",
+    "nine actual USD camera views per all6risk+general slots at75/480/959 plus firstsphere failure and firstnativecontact perrisklabel macro post state",
+    "all raw tapes/initial poses/queue/actor hashes; actual childwait prior product validation"
+  ],
+  "represented_sphere_acceptance": {
+    "strict_threshold_m": 0,
+    "strict_operator": "<",
+    "deep_threshold_m": -0.005,
+    "deep_operator": "<",
+    "candidate_strict_windows_required": 0,
+    "candidate_deep_windows_required": 0,
+    "new_paired_strict_failures_allowed": 0,
+    "mean_q_path_minimum_ratio_vs_zero": 0.9,
+    "mean_q_path_minimum_ratio_each_stratum_vs_zero": 0.9,
+    "four_arm_movement_minimum_ratio_vs_zero": 0.9,
+    "minimum_all26_joints_mean_measured_range_rad": 0.001,
+    "all_registered_windows_required": true,
+    "partial_windows_count_safe": false
+  },
+  "native_hand_qualification": {
+    "normal_diagnostic_limit_N": 0.1,
+    "candidate_windows_exceeding_limit_allowed": 0,
+    "all_explicit_physics_substeps_required": true,
+    "constructor_contacts_observed": false,
+    "all_mesh_contacts_observed": false,
+    "full_friction_observed": false,
+    "even_pass_is_not_whole_machine_certificate": true
+  },
+  "source_policy": "freeze actual candidate+observers after known-data development checks, before any fresh random-policy outcome; no controller/actor/score/FIFO tuning after blind outcome",
+  "failure_policy": "preserve every attempt, signal/actual nonzero/Kit0 protocolFAIL/resource-gate nochild; no automatic policy-outcome reruns; failed method blocks acceptance",
+  "randomness_limits": [
+    "conditioned pre-policy CEM/LHS sample, not unconditional IID physical safety population",
+    "hands/finger target randomness excluded; full native hand state/contact passively measured",
+    "mass/friction/gains/layout/delay held fixed, not robust domain-randomized acceptance",
+    "only2 independent seed banks; no extrapolated collision probability from correlated windows"
+  ],
+  "queued_future_status": "UNKNOWN",
+  "hardware_approved": false,
+  "production_promoted": false
+}
