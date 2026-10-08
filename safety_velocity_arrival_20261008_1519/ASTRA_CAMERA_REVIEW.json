@@ -1,0 +1,159 @@
+{
+  "schema": "safeduo.camera_event_selection_review.v1",
+  "status": "PASS_CPU_SELECTION_ONLY",
+  "created_at_utc": "2026-10-08T07:24:43.587199+00:00",
+  "scope": "Bounded CPU helper and tests; parent owns runner integration, physics, rendering and publication.",
+  "model_provenance": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "xhigh",
+    "effective_runtime_model_attested_by_this_receipt": false,
+    "note": "Parent agent-launch evidence is required for effective runtime model attribution; this helper receipt does not independently attest it."
+  },
+  "sources": [
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/camera_event_selection.py",
+      "bytes": 3217,
+      "sha256": "6bac6c41f70552181a0fe991b913ec023c2cb079a2513d1c6c229a2652a5f8c3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/test_camera_event_selection.py",
+      "bytes": 10137,
+      "sha256": "1fb8445ab79b9e064a38aa3670c6196a64231b357d0176190680a1e5f4d5dbaf"
+    }
+  ],
+  "reviewed_readonly_sources": [
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/native_full_view_runner.py",
+      "bytes": 25957,
+      "sha256": "2c2f439eabcede9cbad17bb9d9618601975c3cdbad798aff2785ea22d66eec49",
+      "reviewed_sections": [
+        "VisualTrace.start",
+        "VisualTrace.capture",
+        "VisualTrace.step lines 267-293",
+        "VisualTrace.write lines 295-320"
+      ]
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/hand_views.py",
+      "bytes": 30911,
+      "sha256": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af",
+      "reviewed_sections": [
+        "module scope",
+        "native_snapshot",
+        "assert_native_bitwise",
+        "bind_parent_group",
+        "capture_hand_views"
+      ]
+    }
+  ],
+  "test_execution": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest -v test_camera_event_selection",
+    "cwd": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519",
+    "interpreter": "/usr/bin/python3",
+    "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+    "numpy": "2.2.6",
+    "actual_exit_code": 0,
+    "tests_run": 18,
+    "unittest_elapsed_seconds": 0.028,
+    "result": "OK",
+    "tool_result_chunk_id": "7f80bb",
+    "evidence": "Actual exec_command completed with exit_code 0; all 18 named unittest cases passed.",
+    "no_pycache": true
+  },
+  "regression_negative_control": {
+    "description": "Compile the exact previous runner chosen=[] and per-label selection For AST; env13 then env9+env13, both label1.",
+    "command_argv": [
+      "/usr/bin/python3",
+      "-B",
+      "-c",
+      "import ast\nfrom pathlib import Path\nfrom types import SimpleNamespace\nimport numpy as np\nsource = Path('/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/native_full_view_runner.py').read_text()\ntree = ast.parse(source)\ncls = next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == 'VisualTrace')\nstep = next(n for n in cls.body if isinstance(n, ast.FunctionDef) and n.name == 'step')\nstart = next(i for i, n in enumerate(step.body) if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'chosen' for t in n.targets))\nassert isinstance(step.body[start + 1], ast.For)\nloop = ast.Module(body=step.body[start:start + 2], type_ignores=[])\ncode = compile(ast.fix_missing_locations(loop), '<old-selector-exact-ast>', 'exec')\nlabels = np.zeros(64, dtype=int)\nlabels[[9, 13]] = 1\nscope = dict(np=np, self=SimpleNamespace(failure_labels_seen=set()), labels=labels)\nscope['bad'] = np.arange(64) == 13\nexec(code, scope)\nfirst = list(scope['chosen'])\nscope['bad'] = np.isin(np.arange(64), [9, 13])\nexec(code, scope)\nsecond = list(scope['chosen'])\nprint(dict(first=first, late_same_label_expected=[9], late_same_label_actual=second), flush=True)\nassert first == [13]\nassert second == [9], 'old per-stratum selector loses late env9 after env13'\n"
+    ],
+    "cwd": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519",
+    "actual_exit_code": 1,
+    "stdout": "{'first': [13], 'late_same_label_expected': [9], 'late_same_label_actual': []}\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 24, in <module>\nAssertionError: old per-stratum selector loses late env9 after env13\n",
+    "expected_exit_code": 1,
+    "expected_failure": "old per-stratum selector loses late env9 after env13",
+    "result": "EXPECTED_REGRESSION_FAILURE_OBSERVED",
+    "inline_source_sha256": "4583d760f073f721770f255bc3105a3d4fc8776824462bf7f5c144c12f598143"
+  },
+  "contract": {
+    "constructor": "CameraEventSelector()",
+    "once_per_macro_step": "selector.select(geometry_bad, native_contact_over)",
+    "inputs": "Two exact bool[64] arrays or bool lists; nonbool, malformed, masked or nonfinite numeric inputs raise ValueError before either ledger changes.",
+    "outputs": {
+      "first_failure": "all newly negative environment IDs, sorted ascending",
+      "first_native_contact": "all newly over-threshold environment IDs, sorted ascending"
+    },
+    "seen_properties": [
+      "seen_geometry_env_ids: frozenset[int]",
+      "seen_native_contact_env_ids: frozenset[int]"
+    ],
+    "ledgers": "Independent per kind, per run; no labels, no stratum cap, new instance per run.",
+    "geometry_predicate": "((original_9021_dists < 0) & ~original_full_viol_exempt).any(-1)",
+    "contact_predicate": "native_normal_max > 0.1 N in either of the two recorded physical substeps",
+    "mutation": "Only private event ledgers; never simulator state, input masks or files.",
+    "atomicity": "Both masks validate before committing either ledger.",
+    "failed_render_semantics": "Selection records the event immediately; a renderer failure must fail the run and preserve partial evidence. Do not silently continue or claim capture completion.",
+    "max_event_groups": 128,
+    "max_event_png": 2688
+  },
+  "covered_behaviors": [
+    "late env9 after same-label env13 geometry failure",
+    "late same-label native contact",
+    "all simultaneous alarms and all64 environments",
+    "sustained and recovered/repeated alarms emitted only once",
+    "independent geometry/contact ledgers in both directions",
+    "new run starts independent state",
+    "strict 1d bool64 and nonfinite rejection for both inputs",
+    "masked arrays cannot hide observations",
+    "invalid input cannot partially consume events",
+    "caller arrays and returned collections cannot corrupt ledgers",
+    "readonly/noncontiguous bool inputs",
+    "synthetic original9021 strict zero boundary/exemption and strict .1 N threshold",
+    "80-step seeded stream compared to independent assigned first-timestamp oracle"
+  ],
+  "parent_integration": {
+    "start": "from camera_event_selection import CameraEventSelector\nself.camera_event_selector = CameraEventSelector()",
+    "step": "chosen = self.camera_event_selector.select(bad, self.contact_over)\nfor kind, slots in chosen.items():\n    if slots:\n        self.capture(env, t, slots=slots, kind=kind)",
+    "insertion": "At held macro-post state after original bad mask and both native-contact substeps are available; invoke once, then one combined capture per nonempty kind.",
+    "remove": "Remove failure_labels_seen/native_contact_labels_seen loops and <=7 terminal assertions in the NEW runner only.",
+    "completion_checks": [
+      "For each kind, camera receipt env IDs must equal the corresponding selector seen set exactly; one receipt per env, count <=64.",
+      "Retain exact (step, env_id, capture_kind) equality between overview and hand receipts.",
+      "Retain original scheduled capture count separately.",
+      "Each selected group requires 9 overview and 12 actual hand views with source/image/state receipts; rendering failure invalidates completion."
+    ]
+  },
+  "camera_scope_review": {
+    "overview_count": 9,
+    "hand_views_per_group": 12,
+    "hand_directions_per_arm": 3,
+    "image_dimensions": [
+      1280,
+      720
+    ],
+    "native_invariant": "hand_views compares dtype, shape and exact C-order bytes of all64 q/qd/root transforms/root velocities/link transforms/position targets/environment origins/actual simulation time and step before and after each hand image and across the group.",
+    "framing": "Original hand scope: .06 m link-center spheres with .05 m clearance to all six actual USD camera planes.",
+    "limitations": [
+      "No full-mesh, silhouette or occlusion certificate.",
+      "Native force alarm images remain macro-post; no microstep force-peak image claim.",
+      "CPU selection tests do not verify renderer coverage or native state invariance in a new simulation.",
+      "NaN/Inf already converted to bool cannot be detected by this helper; parent must validate raw numeric evidence before comparison.",
+      "Parent integration and final receipt equality checks are still required."
+    ]
+  },
+  "boundaries": {
+    "written_files": [
+      "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/camera_event_selection.py",
+      "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/test_camera_event_selection.py",
+      "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/ASTRA_CAMERA_REVIEW.json"
+    ],
+    "gpu_jobs_run": 0,
+    "images_rendered": 0,
+    "published": false,
+    "runner_edited": false,
+    "prior_sealed_source_edited": false,
+    "hardware_safety_claim": false
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "verdict": "Conditional pass",
+  "dimensions": [
+    {
+      "dimension": "Functional achievement",
+      "status": "Pass",
+      "scope": "CPU implementation and configured development path only",
+      "evidence": "Signed velocity debit, actual guard AST, selected row mapping, exact FIFO delivery and same-row raw immutability probes passed."
+    },
+    {
+      "dimension": "Correctness and reliability",
+      "status": "Risk",
+      "evidence": "No blocker found for R19-off development. R19-on path has a reproduced effective-distance gap; physics and closed paired audits remain outstanding."
+    },
+    {
+      "dimension": "Architecture",
+      "status": "Pass",
+      "evidence": "Pure arrival helper, evaluation-only guard wrapper and original projector remain separate. No production or simulator files changed by this reviewer."
+    },
+    {
+      "dimension": "Function and API design",
+      "status": "Pass",
+      "evidence": "Exact six pending slots, four-arm identities/widths, nonempty row shapes and finite intermediates checked. Closing-only debit has no opening credit."
+    },
+    {
+      "dimension": "Style and maintainability",
+      "status": "Risk",
+      "evidence": "Guard metadata still labels reference_zero_inclusive/adaptive_current_joint_feasibility with old mode membership; velocity_arrival actually uses install_adaptive. Nonblocking provenance correction should use a new version after closed producers."
+    },
+    {
+      "dimension": "Performance",
+      "status": "Unable to determine",
+      "evidence": "No GPU or real-time benchmark was run; no throughput or safety performance claim."
+    }
+  ],
+  "blocking_findings": [],
+  "non_blocking_improvements": [
+    {
+      "id": "ARRIVAL-R19-001",
+      "severity": "Major if R19 is activated",
+      "scope_relationship": "Exposed by new dmin debit in optional R19 path; inactive in scoped config",
+      "status": "Risk",
+      "evidence": [
+        "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/guard_native.py:203",
+        "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py:351"
+      ],
+      "trigger": "R19 enabled, alpha=1, selected table row d=.13, original dmin=.02, Jqd=-.4 m/s, dt=.016666.",
+      "observed": {
+        "raw_distance": 0.13,
+        "original_dmin": 0.02,
+        "velocity": -0.4,
+        "debit": 0.03999840095639229,
+        "new_dmin": 0.05999840050935745,
+        "raw_new_margin": 0.07000159949064255,
+        "bypass_remained": true,
+        "protected_UR_increment": 0.003333093598484993,
+        "bypassed_UR_increment": -0.008999999612569809,
+        "returned_U_residual": 0.012333093211054802,
+        "LP_status": [
+          [
+            -2,
+            0
+          ]
+        ]
+      },
+      "impact": "Raw margin after arrival debit is .0700016 > .04, so R19 stays enabled despite negative effective projected budget. Post-projection bypass returns closing -.009 instead of retreat +.00333309; selected-row U residual .01233309. Adaptive LP is feasible and does not rescue this bypass.",
+      "current_cycle_disposition": "Configured safety.bypass_emergency_mm is absent; DuoEnv initializes _r19_bypass_band=None, and the reviewed runner does not enable R19. This finding does not block the bounded current R19-off development experiment.",
+      "minimum_fix_before_activation": "In a new producer version, derive bypass cancellation from the same effective selected-row threat/gate used for the adjusted projector, or explicitly restrict velocity_arrival to R19 off. Verify conditional/structural exemptions and unaffected-arm passthrough.",
+      "verification": "Keep the reproduced far-row case plus newly-threatened-only near-row CPU assertion. Do not edit the running frozen producer."
+    },
+    {
+      "id": "ARRIVAL-META-002",
+      "severity": "Minor",
+      "scope_relationship": "Introduced mode registration omission",
+      "evidence": [
+        "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/guard_native.py:268",
+        "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/guard_native.py:270"
+      ],
+      "impact": "Metadata reference_zero_inclusive and adaptive_current_joint_feasibility omit velocity_arrival although it installs the adaptive zero-inclusive governor. Actual control path is correct.",
+      "minimum_fix": "For a later unfrozen producer version, include velocity_arrival in the two corresponding mode predicates; preserve old receipts."
+    }
+  ],
+  "minimum_required_repair": {
+    "for_current_bounded_r19_off_development": "None identified by this CPU/source review.",
+    "before_r19_activation": "Resolve ARRIVAL-R19-001 and rerun its CPU regression.",
+    "before_any_adoption": "Close paired known-bank runs and independent audits; enforce motion >=.9 baseline, no newly failing case, and raw native hand normal <=.1 N. CPU/source review is not acceptance."
+  },
+  "schema": "safeduo.arrival_independent_review.v1",
+  "created_at_utc": "2026-10-08T07:34:20.442Z",
+  "scope": {
+    "phase": "DEVELOPMENT",
+    "banks": "Two known banks x64, old adaptive versus velocity_arrival, planned paired 960-control-step windows",
+    "fresh_acceptance": false,
+    "review_only_parent_sources": true,
+    "GPU_jobs_run_by_reviewer": 0,
+    "producer_edited_by_reviewer": false,
+    "physical_safety_certified": false,
+    "queued_future_status": "UNKNOWN"
+  },
+  "sources": [
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/arrival_budget.py",
+      "bytes": 2706,
+      "sha256": "6cd8cafa2b762b851df179ae98b951d58ca76a7777a028331ca766ccecb48d27"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/test_arrival_budget.py",
+      "bytes": 2725,
+      "sha256": "3bece7aee824d8d11e3038d1df7e37ae4d6ab14e013717d0e2f697fa1e7f7460"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/guard_native.py",
+      "bytes": 26293,
+      "sha256": "9221dc3d15063c541000ba8b8a71bd9f4a582e8e58fef7cf8dab31e643ec79c0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/adaptive_reference.py",
+      "bytes": 13297,
+      "sha256": "562da73abffb124e8e39908ec973a2de6f2712ad5ee1d1f191ccec7f4754868e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/target_forecast.py",
+      "bytes": 1877,
+      "sha256": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_full_view_runner.py",
+      "bytes": 26594,
+      "sha256": "bbd52b6e6af59530b0e4959ebcc81ed4d90b873f118b983dddb6d5fe238e1d9c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/astra_native_audit.py",
+      "bytes": 59227,
+      "sha256": "c9125553a03338734b7b60171f5db75b697ea700652012d0447dbca35086098f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py",
+      "bytes": 21712,
+      "sha256": "82a0f0e5ddbbe1b9eecbdbbd249a9354b50d78ab6e121473286e8dbb28f19afa"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/geometry.py",
+      "bytes": 6440,
+      "sha256": "86ca63288973161dd3a7d2c41539c7f3d26a0e30dc26ef7568e7eebe3299375d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/perturbations.py",
+      "bytes": 4375,
+      "sha256": "5c7ade79753a557474a6e4778ecf90b4ca9f80df9b8b6d123247e1ad513bd59e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py",
+      "bytes": 86658,
+      "sha256": "cd5d3b8b473a7d713da7a4dbc400dcbe231a2dd9563732671c4e3b7047e3fe0c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pending_guard.yaml",
+      "bytes": 242,
+      "sha256": "4bc35454cf781f01547f9c1cc794360ebbaf67aaee091ee3a4adf37886e09c08"
+    }
+  ],
+  "model_provenance": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "xhigh",
+    "effective_runtime_model_attested_by_this_receipt": false,
+    "parent_launch_receipt_required_for_attribution": true
+  },
+  "invariants": {
+    "sign": "J units m/rad, Jqd signed distance rate m/s; debit=max(-Jqd,0)*6*dt >=0. Add debit to selected dmin, decreasing cap gamma*(d_eff-dmin)*dt.",
+    "exact_delay": "TargetDelayQueue(6) pushes after projection once per control step; repeated physics substeps reuse the popped target. Fifteen CPU pushes verified output[t]=issued[t-6].",
+    "units": {
+      "configured_physics_dt_s": 0.008333,
+      "decimation": 2,
+      "configured_control_dt_s": 0.016666,
+      "configured_six_slot_horizon_s": 0.099996,
+      "exact_60Hz_horizon_s": 0.1
+    },
+    "row_binding": "Guard recomputes debit from selected rows.J, then kwargs['dmin']=original_dmin+debit. Reordered/padded-row CPU probe verified per-row mapping; no class-flattened floor.",
+    "raw_geometry": "rows.d, rows.d_min, original full geometry/scoring and original exemption arrays are not rewritten by arrival adjustment; original_dmin remains the caller's tensor.",
+    "fifo_forecast": "min(0, min_i J*(pending_i-q)) is diagnostic/admission debt. Additional projected debit is only constant current closing speed over FIFO6. No acceleration/braking bound, queue preemption or future safety certificate.",
+    "bypass": "CPU near-boundary case proves only newly threatened U_R is cleared. Optional far-row R19 gap is documented separately."
+  },
+  "cpu_tests": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/home/liyufeng/safeduo/src CUDA_VISIBLE_DEVICES='' /home/liyufeng/miniforge3/envs/safeduo/bin/python -B -m unittest -v test_arrival_budget",
+      "cwd": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519",
+      "actual_exit_code": 0,
+      "tests": 6,
+      "stdout": "test_bad_dt_queue_and_nonfinite_abort (test_arrival_budget.ArrivalTests.test_bad_dt_queue_and_nonfinite_abort) ... ok\ntest_closing_measured_even_when_every_target_opens (test_arrival_budget.ArrivalTests.test_closing_measured_even_when_every_target_opens) ... ok\ntest_horizon_scaling_and_coupled_signed_velocity (test_arrival_budget.ArrivalTests.test_horizon_scaling_and_coupled_signed_velocity) ... ok\ntest_inputs_unchanged_and_no_cross_environment_leak (test_arrival_budget.ArrivalTests.test_inputs_unchanged_and_no_cross_environment_leak) ... ok\ntest_opening_cannot_cancel_closing_fifo (test_arrival_budget.ArrivalTests.test_opening_cannot_cancel_closing_fifo) ... ok\ntest_stationary_no_debit (test_arrival_budget.ArrivalTests.test_stationary_no_debit) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.008s\n\nOK\n",
+      "execution_chunks": [
+        "d2b506",
+        "38b25c"
+      ]
+    },
+    {
+      "description": "Read-only exact guard AST + actual production projector/adaptive wrapper + actual FIFO CPU probes",
+      "actual_exit_code": 0,
+      "execution_chunk": "3f4fb8",
+      "result": {
+        "status": "PASS_CPU_REVIEW_PROBES",
+        "control_dt": 0.016666,
+        "six_control_slots_s": 0.099996,
+        "physical_dt": 0.008333,
+        "physical_decimation": 2,
+        "fifo_checked_pushes": 15,
+        "selected_row_padded_mapping_verified": true,
+        "raw_geometry_and_dmin_immutable": true,
+        "active_config_r19": "OFF",
+        "r19_if_enabled": {
+          "raw_distance": 0.13,
+          "original_dmin": 0.02,
+          "velocity": -0.4,
+          "debit": 0.03999840095639229,
+          "new_dmin": 0.05999840050935745,
+          "raw_new_margin": 0.07000159949064255,
+          "bypass_remained": true,
+          "protected_UR_increment": 0.003333093598484993,
+          "bypassed_UR_increment": -0.008999999612569809,
+          "returned_U_residual": 0.012333093211054802,
+          "LP_status": [
+            [
+              -2,
+              0
+            ]
+          ]
+        },
+        "source_hashes": {
+          "arrival_budget.py": "6cd8cafa2b762b851df179ae98b951d58ca76a7777a028331ca766ccecb48d27",
+          "test_arrival_budget.py": "3bece7aee824d8d11e3038d1df7e37ae4d6ab14e013717d0e2f697fa1e7f7460",
+          "guard_native.py": "9221dc3d15063c541000ba8b8a71bd9f4a582e8e58fef7cf8dab31e643ec79c0",
+          "adaptive_reference.py": "562da73abffb124e8e39908ec973a2de6f2712ad5ee1d1f191ccec7f4754868e",
+          "native_full_view_runner.py": "bbd52b6e6af59530b0e4959ebcc81ed4d90b873f118b983dddb6d5fe238e1d9c"
+        }
+      }
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/home/liyufeng/safeduo/src CUDA_VISIBLE_DEVICES='' /home/liyufeng/miniforge3/envs/safeduo/bin/python -B - <<'PY'\nimport ast, json\nfrom pathlib import Path\nfrom types import SimpleNamespace\nimport torch\nfrom arrival_budget import arrival_debit\nfrom safeduo.safety.types import ARM_KEYS\nsource=Path('guard_native.py');tree=ast.parse(source.read_text())\ncls=next(n for n in tree.body if isinstance(n,ast.ClassDef) and n.name=='GuardTrace')\nstart=next(n for n in cls.body if isinstance(n,ast.FunctionDef) and n.name=='start')\nproject=next(n for n in start.body if isinstance(n,ast.FunctionDef) and n.name=='project')\nbranch=project.body[0].body[0]\nfn=ast.parse('def adjust(self, env, rows, dt, kwargs):\\n pass').body[0]\nfn.body=[branch,ast.Return(ast.Name('kwargs',ast.Load()))]\nspace={};exec(compile(ast.fix_missing_locations(ast.Module(body=[fn],type_ignores=[])),str(source),'exec'),space)\nq={a:torch.zeros(1,w,dtype=torch.float64) for a,w in zip(ARM_KEYS,(7,7,6,6))}\nqd={a:v.clone() for a,v in q.items()};qd['U_R'][0,0]=-.3\nstate=SimpleNamespace(q=q,qd=qd,dt=1/60)\npending=[{a:v.clone() for a,v in q.items()} for _ in range(6)]\nrows=SimpleNamespace(d=torch.tensor([[.085]],dtype=torch.float64),d_min=torch.tensor([[.02]],dtype=torch.float64),J={'F':torch.zeros(1,1,14,dtype=torch.float64),'U':torch.zeros(1,1,12,dtype=torch.float64)},valid=torch.ones(1,1,dtype=torch.bool),arm_mask=torch.tensor([[[False,False,False,True]]]))\nrows.J['U'][0,0,6]=1\nsaved={k:v.clone() for k,v in vars(rows).items() if torch.is_tensor(v)}\nsavedJ={k:v.clone() for k,v in rows.J.items()}\nsavedstate={name:{a:v.clone() for a,v in getattr(state,name).items()} for name in ('q','qd')}\nsavedpending=[{a:v.clone() for a,v in target.items()} for target in pending]\nenv=SimpleNamespace(scene_state=lambda:state,_evaluation_actuator_delay=SimpleNamespace(queue=SimpleNamespace(pending=pending)))\nkwargs=dict(dmin=rows.d_min,bypass_arm=torch.ones(1,4,dtype=torch.bool))\nactual=space['adjust'](SimpleNamespace(mode='velocity_arrival'),env,rows,1/60,kwargs)\nexpected=rows.d_min+.1*(-torch.tensor([[-.3]],dtype=torch.float64)).clamp_min(0)\ntorch.testing.assert_close(actual['dmin'],expected,rtol=0,atol=0)\ntorch.testing.assert_close(actual['bypass_arm'],torch.tensor([[True,True,True,False]]),rtol=0,atol=0)\nassert (rows.d-rows.d_min>.04).all() and (rows.d-actual['dmin']<=.04).all()\nfor k,v in saved.items():torch.testing.assert_close(getattr(rows,k),v,rtol=0,atol=0)\nfor k,v in savedJ.items():torch.testing.assert_close(rows.J[k],v,rtol=0,atol=0)\nfor name,values in savedstate.items():\n for a,v in values.items():torch.testing.assert_close(getattr(state,name)[a],v,rtol=0,atol=0)\nfor before,after in zip(savedpending,pending):\n for a,v in before.items():torch.testing.assert_close(after[a],v,rtol=0,atol=0)\nassert kwargs['dmin'] is rows.d_min and kwargs['bypass_arm'].all()\nprint(json.dumps(dict(status='PASS_EXACT_60HZ_CPU_INTEGRATION',dt=1/60,pending_slots=6,horizon_s=.1,closing_m_s=.3,original_dmin=rows.d_min.tolist(),adjusted_dmin=actual['dmin'].tolist(),assertion_rtol=0,assertion_atol=0,original_raw_margin=(rows.d-rows.d_min).tolist(),new_budget_margin=(rows.d-actual['dmin']).tolist(),only_newly_threatened_UR_bypass_cleared=actual['bypass_arm'].tolist(),raw_rows_state_and_fifo_unchanged=True,extracts_original_guard_AST=True)))\nPY",
+      "cwd": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519",
+      "actual_exit_code": 0,
+      "execution_chunk": "e6371c",
+      "result": {
+        "status": "PASS_EXACT_60HZ_CPU_INTEGRATION",
+        "dt": 0.016666666666666666,
+        "pending_slots": 6,
+        "horizon_s": 0.1,
+        "closing_m_s": 0.3,
+        "original_dmin": [
+          [
+            0.02
+          ]
+        ],
+        "adjusted_dmin": [
+          [
+            0.05
+          ]
+        ],
+        "assertion_rtol": 0,
+        "assertion_atol": 0,
+        "original_raw_margin": [
+          [
+            0.065
+          ]
+        ],
+        "new_budget_margin": [
+          [
+            0.035
+          ]
+        ],
+        "only_newly_threatened_UR_bypass_cleared": [
+          [
+            true,
+            true,
+            true,
+            false
+          ]
+        ],
+        "raw_rows_state_and_fifo_unchanged": true,
+        "extracts_original_guard_AST": true
+      }
+    }
+  ],
+  "independent_auditor_update": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/astra_native_audit.py",
+    "changes": "Explicit matching protocol/receipt event_selection=per_environment_first_event.v1 selects raw per-environment first-hit timelines for both geometry and native contact. Both markers absent retain sealed legacy per-risk-label behavior. Partial, contradictory or unknown markers reject.",
+    "source_sha256": "c9125553a03338734b7b60171f5db75b697ea700652012d0447dbca35086098f",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python3 -B astra_native_audit.py --self-test",
+    "cwd": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519",
+    "actual_exit_code": 0,
+    "execution_chunk": "561e9b",
+    "negative_controls_caught": 44,
+    "added_negative_controls": 14,
+    "result": {
+      "status": "PASS_CPU_AUDITOR_SELF_TEST_ONLY",
+      "complete_synthetic_frames": 9,
+      "negative_controls_caught": [
+        "pre_F_L_applied_controlled_target",
+        "physics_U_L_pending_project_targets",
+        "post_F_R_pending_project_targets",
+        "post_U_R_pending_controlled_targets",
+        "physics_F_L_native_q",
+        "pre_F_R_native_root_velocity",
+        "post_U_R_issued_controlled_target",
+        "pre_F_L_native_q",
+        "post_U_R_native_q",
+        "physics_U_L_native_root_xyzw",
+        "duplicate controlled index",
+        "tiny negative threshold relaxation",
+        "running root cannot pass",
+        "terminal geometry score",
+        "episode score",
+        "camera center vs cell",
+        "camera receipt frame",
+        "camera FIFO6",
+        "render native changed",
+        "camera clipping",
+        "forecast coverage hole",
+        "contact F_L_native_position_targets sub0",
+        "contact U_R_native_position_targets sub1",
+        "contact F_R_native_qd sub1",
+        "contact U_L_normal_counts sub1",
+        "contact F_L_normal_starts sub1",
+        "same-hand exemption cannot erase raw normal peak or exempt ground",
+        "missing contact image",
+        "wrong micro-trigger macro frame",
+        "wrong lowest contact env",
+        "per-env late same-label env9 missing",
+        "per-env old stratum cap rejected",
+        "per-env repeated frame is not first",
+        "per-env duplicate group rejected",
+        "per-env unaffected environment rejected",
+        "per-env declared count mismatch",
+        "per-env native contact missing",
+        "per-env geometry time cannot label contact",
+        "per-env both ledgers cannot share one image",
+        "per-env 64th simultaneous environment missing",
+        "new event protocol lacks receipt marker",
+        "new event receipt lacks protocol marker",
+        "contradictory event protocol",
+        "unknown event protocol"
+      ],
+      "real_root_accepted": false,
+      "utc": "2026-10-08T07:31:48.789635+00:00",
+      "auditor_sha256": "c9125553a03338734b7b60171f5db75b697ea700652012d0447dbca35086098f",
+      "physical_safety_certified": false,
+      "queued_future_status": "UNKNOWN",
+      "exitcode": 0
+    },
+    "preserves": "All existing native/FIFO/raw scoring/frustum/contact audits; no producer helper import or render simulation.",
+    "real_new_root_accepted": false
+  },
+  "limitations": [
+    "Known-bank development is not fresh holdout acceptance.",
+    "No GPU, render, native force, movement or completed 960-step acceptance result was produced by this sidecar.",
+    "Initial geometry qualification alone is not an initial raw-contact certificate.",
+    "Original velocity/lookahead and target-history handling remain active; additive delay debit is an intentional heuristic.",
+    "Any source change after the listed hashes requires renewed review."
+  ]
+}
