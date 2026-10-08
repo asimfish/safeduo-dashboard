@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="no-referrer">
+<meta name="asset-base" content="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/">
+<title>双手协同 · 原生物理验收</title>
+<!-- Integration: replace the three named tokens globally. SUMMARY is serialized
+JSON; escape literal < as \u003c to keep it inert inside the pre element. The
+DEFAULT_GALLERY token is trusted, parent-rendered HTML, despite its JSON name.
+The parent fills tbody#method-rows with the actual four summary rows (preserving
+its ID) for no-JS rendering. Reuse this table; do not add a duplicate table.
+Margin series are CLASSES [跨臂,Franka自碰,UR自碰,台面]; native force series are
+ARMS [F_L,F_R,U_L,U_R]. Curve times are window elapsed times from control dt,
+not the absolute PhysX clock; original state JSON retains the physical clock.
+All remote paths resolve beneath a single immutable raw.githubusercontent.com
+commit directory. No library, font, telemetry, service worker or runtime CDN.
+-->
+<style>
+:root{--ink:#182c36;--muted:#526774;--line:#d7e1e6;--paper:#f3f6f7;--white:#fff;--blue:#1558a6;--red:#a92c35;--amber:#986006;--a0:#225dba;--a1:#af4d15;--a2:#754bab;--a3:#137978;--radius:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 system-ui,-apple-system,"Segoe UI","Noto Sans SC",sans-serif}a{color:var(--blue);text-underline-offset:3px}button,select{font:inherit}button,select,a{touch-action:manipulation}button:focus-visible,select:focus-visible,a:focus-visible,svg:focus-visible{outline:3px solid #2e75cd;outline-offset:3px}[hidden]{display:none!important}.shell{width:min(1440px,calc(100% - 56px));margin:auto}.masthead{border-bottom:1px solid var(--line);background:#fff}.masthead .shell{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0}.brand{font-weight:750;letter-spacing:.02em}.brand small{display:block;font-size:11px;letter-spacing:.18em;color:var(--muted);font-weight:600}.nav{display:flex;gap:22px;flex-wrap:wrap;font-size:13px}.nav a{color:var(--muted);text-decoration:none}.nav a:hover{color:var(--blue)}main{padding:36px 0 48px}.eyebrow{color:var(--blue);font-size:12px;letter-spacing:.14em;font-weight:700}.hero{display:grid;grid-template-columns:1.7fr 1fr;gap:28px;align-items:stretch;margin-bottom:24px}h1{font-size:clamp(27px,3.5vw,43px);line-height:1.25;letter-spacing:-.04em;margin:12px 0 16px}h2{font-size:21px;line-height:1.35;margin:0 0 8px}h3{font-size:16px;margin:0 0 8px}p{margin:8px 0}.lede{max-width:780px;color:var(--muted)}.verdict{background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;justify-content:center}.verdict .label{font-size:12px;letter-spacing:.1em;color:#d0dce5}.verdict strong{font-size:31px;letter-spacing:.01em;display:block;margin:9px 0}.verdict[data-state=failed]{border-left:7px solid #e07575}.verdict[data-state=pass]{border-left:7px solid #83b5e5}.verdict[data-state=unknown]{border-left:7px solid #d4ad5c}.verdict p{font-size:13px;color:#d7e2e8}.subtle{color:var(--muted);font-size:13px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0 28px}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px 20px}.stat span{font-size:12px;color:var(--muted);display:block}.stat strong{font-size:27px;line-height:1.3;display:block;margin-top:8px;font-variant-numeric:tabular-nums}.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:20px 0}.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}.section-head p{font-size:13px;color:var(--muted)}.tag{padding:4px 10px;border:1px solid var(--line);border-radius:5px;font-size:12px;white-space:nowrap;color:var(--muted)}.note{border-left:3px solid #afbdc8;padding:10px 14px;background:#f6f8fa;font-size:13px;color:var(--muted);margin:14px 0}.error{color:var(--red)!important}.warning{color:var(--amber)}.scroll-table{overflow:auto;max-width:100%}table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th{background:#f1f5f7;color:var(--muted);font-size:12px;font-weight:600;text-align:right}th:first-child,td:first-child{text-align:left}th,td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f8fafc}.method-name{font-weight:650}.method-name small{display:block;font-weight:400;color:var(--muted);font-size:11px}.bad{color:var(--red);font-weight:650}.unknown{color:var(--muted)}.criteria{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin-top:12px}.criteria span{background:#f3f6f8;padding:5px 9px;border-radius:4px}.reject-list{padding-left:22px;font-size:14px}.reject-list li{padding:3px 0}.filters{display:grid;grid-template-columns:1.5fr .8fr .8fr 1fr;gap:14px;padding:16px;background:#f5f8fa;border:1px solid var(--line);border-radius:12px}.filters label,.capture-label{font-size:12px;font-weight:600;color:var(--muted);display:block}select{display:block;width:100%;padding:10px 30px 10px 10px;margin-top:5px;border:1px solid #b8c8d1;border-radius:7px;background:#fff;color:var(--ink);min-height:43px}select:disabled{color:#788892;background:#edf1f3}.case-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.case-strip div{border-left:2px solid var(--line);padding-left:12px}.case-strip span{display:block;color:var(--muted);font-size:12px}.case-strip strong{font-size:15px;font-variant-numeric:tabular-nums}.legend{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;margin:17px 0}.legend span:before{content:"";display:inline-block;width:17px;height:3px;background:var(--series);vertical-align:middle;margin-right:7px}.plots{display:grid;grid-template-columns:1fr 1fr;gap:18px}.plot{min-width:0;padding:17px 12px;background:#fbfcfd;border:1px solid var(--line);border-radius:11px}.plot svg{display:block;width:100%;aspect-ratio:2/1;height:auto;overflow:visible}.plot .empty{padding:45px 12px;text-align:center;color:var(--muted)}.plot-readout{font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere;min-height:42px;color:var(--muted);padding:7px 4px}.plot-readout:empty{display:none}.curve-detail{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;color:var(--muted);font-size:12px}.toolbar{display:flex;align-items:end;gap:16px;flex-wrap:wrap;margin:18px 0}.capture-label{flex:1;min-width:230px}.button,button{display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border:1px solid #b8c8d1;background:#fff;color:var(--ink);border-radius:7px;cursor:pointer;text-decoration:none;font-size:13px;min-height:41px}.button:hover,button:hover{background:#eaf0f5}.gallery-grid,#default-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.gallery-grid figure,#default-gallery figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}.gallery-grid figure>a{display:block;background:#e9eef2}.gallery-grid img,#default-gallery img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#e9eef2}.gallery-grid figcaption,#default-gallery figcaption{padding:10px 12px;font-size:12px;overflow-wrap:anywhere}.gallery-grid .image-error{aspect-ratio:16/9;padding:20px;display:flex;align-items:center;justify-content:center;color:var(--red);background:#f8eeee;font-size:12px}.empty-state{border:1px dashed #b6c5cf;border-radius:10px;padding:28px;text-align:center;color:var(--muted);font-size:14px}.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.scope-text{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted);font-size:13px}details{margin:14px 0}summary{cursor:pointer;font-size:13px;font-weight:650}pre{font:12px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;background:#f2f5f7;border:1px solid var(--line);border-radius:8px;max-height:440px;overflow:auto}.case-table-wrap{max-height:380px;overflow:auto}.case-table-wrap th{position:sticky;top:0;z-index:1}.case-table-wrap tr[aria-selected=true]{background:#edf3fd}.case-table-wrap button{padding:2px 9px;min-height:29px;font-size:12px}.footer{font-size:12px;color:var(--muted);padding-top:12px;border-top:1px solid var(--line);display:flex;gap:18px;justify-content:space-between;flex-wrap:wrap}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.noscript-note{border:1px solid #d7b877;background:#fff9ed;padding:12px;border-radius:8px;margin:14px 0}.raw-status{overflow-wrap:anywhere}.loading{color:var(--muted)}
+@media(max-width:1000px){.shell{width:calc(100% - 36px)}.gallery-grid,#default-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.plots{grid-template-columns:1fr}.hero{grid-template-columns:1.4fr 1fr}.filters{grid-template-columns:1fr 1fr}.stats{gap:10px}.stat{padding:14px}}
+@media(max-width:620px){.shell{width:calc(100% - 24px)}.masthead .shell{align-items:flex-start}.nav{gap:12px;justify-content:flex-end}.hero{grid-template-columns:1fr;gap:12px}.stats{grid-template-columns:1fr 1fr}.stat strong{font-size:24px}.panel{padding:17px 12px}.section-head{flex-direction:column;gap:6px}.gallery-grid,#default-gallery{grid-template-columns:1fr}.case-strip{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr;gap:8px}.filters{padding:12px;gap:10px}.filters label:first-child{grid-column:1/-1}.verdict{padding:20px}main{padding-top:24px}.plot{padding:13px 5px}.criteria{gap:6px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:#fff}.shell{width:100%}.panel{break-inside:avoid}.nav,.filters,.toolbar{display:none}.gallery-grid{grid-template-columns:repeat(3,1fr)}.plot svg{max-height:250px}.verdict{background:#fff;color:#182c36}.verdict p,.verdict .label{color:#526774}}
+</style>
+</head>
+<body>
+<header class="masthead"><div class="shell"><div class="brand">双手协同 · 原生物理验收<small>NATIVE PHYSICS / EVIDENCE</small></div><nav class="nav" aria-label="页面导航"><a href="#methods">方法对照</a><a href="#curve">原始曲线</a><a href="#gallery">实拍视角</a><a href="#scope">证据范围</a></nav></div></header>
+<main class="shell">
+<section class="hero" aria-labelledby="title"><div><div class="eyebrow">有限仿真 · 同次运行 · 原始证据</div><h1 id="title">先看闭合结果，<br>再看每一次接触。</h1><p class="lede" id="latest-result">完整512窗口已闭合，候选结论：REJECTED。父审计与Astra独立原始数据验收一致。</p><p class="subtle">四方法配对比较 · 四臂原生状态 · 9 个整体视角 + 12 个手部近景</p></div><aside id="verdict" class="verdict" data-state="unknown" aria-live="polite"><span class="label">候选采用结论 / ADOPTION</span><strong id="adoption-status">拒绝采用</strong><p id="adoption-detail">验收覆盖有限模拟中的原球模型、原生手部全伙伴聚合法向接触和实际运动量。候选采用须同时满足预登记门槛；整机、摩擦、构造阶段、未来非线性动态与硬件安全均未认证。</p></aside></section>
+<div class="stats" aria-label="实验覆盖"><div class="stat"><span>闭合窗口 / 计划窗口</span><strong id="window-count">512 / 512</strong></div><div class="stat"><span>独立配对案例</span><strong id="case-count">128</strong></div><div class="stat"><span>每窗口控制步</span><strong id="step-count">960</strong></div><div class="stat"><span>未闭合与未来状态</span><strong>UNKNOWN</strong></div></div>
+<noscript><div class="noscript-note">JavaScript 已禁用。父填充的四方法统计、下方内嵌原始汇总及默认实拍仍可阅读。交互筛选与曲线需启用 JavaScript；缺失值不代表 0 或通过。</div></noscript>
+<section class="panel" id="methods" aria-labelledby="methods-title"><div class="section-head"><div><h2 id="methods-title">四方法对照</h2><p>只使用汇总中的已闭合结果。严格越界与深度越界是球模型指标，原生手部力单独统计。</p></div><span class="tag">原始口径 · 无补零</span></div>
+<div class="scroll-table"><table id="method-table"><caption class="subtle">缺失或未提供的统计显示 UNKNOWN；无脚本时请读取下方完整内嵌汇总。</caption><thead><tr><th scope="col">方法</th><th scope="col">窗口</th><th scope="col">严格越界窗口</th><th scope="col">深度越界窗口</th><th scope="col">原生力 &gt; 0.1 N 窗口</th><th scope="col">原生力峰值 / N</th><th scope="col">平均 q 的 L2 路径</th><th scope="col">四臂均运动比例</th></tr></thead><tbody id="method-rows"><tr><td class="method-name">原参考<small>joint_reference</small></td><td data-field="windows">128</td><td data-field="strict_windows">20</td><td data-field="deep_windows">11</td><td data-field="native_hand_raw_over_windows">4</td><td data-field="native_hand_raw_peak_N">60.29254913330153</td><td data-field="mean_q_l2_path">12.35214164965541</td><td data-field="four_arms_moving_fraction">0.4661539713541667</td></tr><tr><td class="method-name">零包含窄界<small>zero_inclusive</small></td><td data-field="windows">128</td><td data-field="strict_windows">7</td><td data-field="deep_windows">3</td><td data-field="native_hand_raw_over_windows">3</td><td data-field="native_hand_raw_peak_N">28.542882919313033</td><td data-field="mean_q_l2_path">3.1264087068822612</td><td data-field="four_arms_moving_fraction">0.40196126302083335</td></tr><tr><td class="method-name">完整指令界准入<small>box_admission</small></td><td data-field="windows">128</td><td data-field="strict_windows">7</td><td data-field="deep_windows">3</td><td data-field="native_hand_raw_over_windows">3</td><td data-field="native_hand_raw_peak_N">33.702400207519624</td><td data-field="mean_q_l2_path">3.1007565406467474</td><td data-field="four_arms_moving_fraction">0.383447265625</td></tr><tr><td class="method-name">联合可行性候选<small>adaptive_joint</small></td><td data-field="windows">128</td><td data-field="strict_windows">12</td><td data-field="deep_windows">8</td><td data-field="native_hand_raw_over_windows">4</td><td data-field="native_hand_raw_peak_N">181.9239807128908</td><td data-field="mean_q_l2_path">3.664335498152534</td><td data-field="four_arms_moving_fraction">0.42138671875</td></tr></tbody></table></div>
+<div class="criteria"><span>球模型严格阈值：0 m</span><span>原生法向力诊断阈值：0.1 N</span><span>阈值与采用结论分别展示</span></div>
+<details id="summary-details" open><summary>内嵌原始汇总 · 无网络亦可阅读</summary><pre id="summary-json">{
+  "status": "ADOPTION_FAILED",
+  "experiment_status": "COMPLETE_PREREGISTERED_FINITE_ACCEPTANCE",
+  "candidate_decision": "REJECTED",
+  "closed_windows": 512,
+  "planned_windows": 512,
+  "steps": 960,
+  "unique_cases": 128,
+  "modes": [
+    {
+      "mode": "joint_reference",
+      "windows": 128,
+      "strict_windows": 20,
+      "deep_windows": 11,
+      "strict_env_frames": 101,
+      "deep_env_frames": 42,
+      "native_hand_raw_over_windows": 4,
+      "native_hand_raw_peak_N": 60.29254913330153,
+      "mean_q_l2_path": 12.35214164965541,
+      "four_arms_moving_fraction": 0.4661539713541667,
+      "groups": 58,
+      "PNG": 1218,
+      "hand_PNG": 696,
+      "minimum_frustum_m": 0.300158118077739,
+      "initial_negative_envs": 1,
+      "mean_joint_ranges": [
+        0.9831771461758763,
+        0.940398012753576,
+        0.9523021134082228,
+        0.9404172790236771,
+        0.9990077335387468,
+        0.945348393637687,
+        1.0131853059865534,
+        0.9793957485817373,
+        0.9047974501736462,
+        0.9890728173777461,
+        0.8564024497754872,
+        0.941503616515547,
+        0.9237757055088878,
+        0.9294405895052478,
+        1.2705154800787568,
+        0.8647441638167948,
+        1.1790799059672281,
+        1.1678102067671716,
+        1.0503619029186666,
+        1.3145706019131467,
+        1.1835462371818721,
+        0.8365412299754098,
+        1.0397167156916112,
+        1.099541031057015,
+        1.0409754887223244,
+        1.200641517760232
+      ]
+    },
+    {
+      "mode": "zero_inclusive",
+      "windows": 128,
+      "strict_windows": 7,
+      "deep_windows": 3,
+      "strict_env_frames": 46,
+      "deep_env_frames": 9,
+      "native_hand_raw_over_windows": 3,
+      "native_hand_raw_peak_N": 28.542882919313033,
+      "mean_q_l2_path": 3.1264087068822612,
+      "four_arms_moving_fraction": 0.40196126302083335,
+      "groups": 51,
+      "PNG": 1071,
+      "hand_PNG": 612,
+      "minimum_frustum_m": 0.34195699313607886,
+      "initial_negative_envs": 1,
+      "mean_joint_ranges": [
+        0.22235789988189936,
+        0.220189148792997,
+        0.21599279291694984,
+        0.2307985241059214,
+        0.22586264181882143,
+        0.22294783405959606,
+        0.22874920384492725,
+        0.22146662522573024,
+        0.21160322381183505,
+        0.22358859376981854,
+        0.21310193894896656,
+        0.21552598348353058,
+        0.20505074737593532,
+        0.21348261914681643,
+        0.2945265852031298,
+        0.3912372603081167,
+        0.38843323293258436,
+        0.289026731334161,
+        0.27135874796658754,
+        0.30068024760112166,
+        0.27974919450934976,
+        0.34761631209403276,
+        0.3706797111663036,
+        0.26676828344352543,
+        0.27679609489860013,
+        0.28166412212885916
+      ]
+    },
+    {
+      "mode": "box_admission",
+      "windows": 128,
+      "strict_windows": 7,
+      "deep_windows": 3,
+      "strict_env_frames": 53,
+      "deep_env_frames": 16,
+      "native_hand_raw_over_windows": 3,
+      "native_hand_raw_peak_N": 33.702400207519624,
+      "mean_q_l2_path": 3.1007565406467474,
+      "four_arms_moving_fraction": 0.383447265625,
+      "groups": 51,
+      "PNG": 1071,
+      "hand_PNG": 612,
+      "minimum_frustum_m": 0.34195699313607886,
+      "initial_negative_envs": 1,
+      "mean_joint_ranges": [
+        0.21857994387391955,
+        0.2181561210891232,
+        0.21372687112307176,
+        0.22617479716427624,
+        0.22277543041855097,
+        0.22024090075865388,
+        0.22521374328061938,
+        0.2207137075602077,
+        0.21161458431743085,
+        0.223320102551952,
+        0.21267052029725164,
+        0.21489181776996702,
+        0.20486900536343455,
+        0.21263754356186837,
+        0.28982695657759905,
+        0.3919156906194985,
+        0.3764472663460765,
+        0.28410563548095524,
+        0.2675598309142515,
+        0.2938986335648224,
+        0.2750536223757081,
+        0.34515541628934443,
+        0.36567104008281603,
+        0.26246105559403077,
+        0.27148995228344575,
+        0.2750232396647334
+      ]
+    },
+    {
+      "mode": "adaptive_joint",
+      "windows": 128,
+      "strict_windows": 12,
+      "deep_windows": 8,
+      "strict_env_frames": 145,
+      "deep_env_frames": 50,
+      "native_hand_raw_over_windows": 4,
+      "native_hand_raw_peak_N": 181.9239807128908,
+      "mean_q_l2_path": 3.664335498152534,
+      "four_arms_moving_fraction": 0.42138671875,
+      "groups": 54,
+      "PNG": 1134,
+      "hand_PNG": 648,
+      "minimum_frustum_m": 0.34195699313607886,
+      "initial_negative_envs": 1,
+      "mean_joint_ranges": [
+        0.2509805632289499,
+        0.25895895273424685,
+        0.2573708326672204,
+        0.26594192790798843,
+        0.2599767536157742,
+        0.2577774119563401,
+        0.268253838759847,
+        0.30803196982014924,
+        0.2689753589220345,
+        0.28471869841450825,
+        0.26508002367336303,
+        0.26965258817654103,
+        0.27579173259437084,
+        0.27038294705562294,
+        0.341384562314488,
+        0.4244073510635644,
+        0.4253440030734055,
+        0.33176555117825046,
+        0.3099432488088496,
+        0.3487291889032349,
+        0.32320602430263534,
+        0.37314292596420273,
+        0.3915100325830281,
+        0.3133915350190364,
+        0.3105098506202921,
+        0.3297862372128293
+      ]
+    }
+  ],
+  "candidate_rejection_reasons": [
+    "candidate strict represented-sphere violations",
+    "candidate deep represented-sphere violations",
+    "new paired strict failure vs zero_inclusive",
+    "candidate actual initialized geometry negative before first physics step",
+    "raw native hand normal contact exceeds registered diagnostic .1N"
+  ],
+  "scope": "验收覆盖有限模拟中的原球模型、原生手部全伙伴聚合法向接触和实际运动量。候选采用须同时满足预登记门槛；整机、摩擦、构造阶段、未来非线性动态与硬件安全均未认证。",
+  "coverage": "两批独立随机初态、128个不同配对初态、四方法512个完整窗口；每窗口960控制步/1920物理子步；七个风险分层。实际21视角原图4494张。初态经过旧球模型和零指令稳定性条件筛选；质量/摩擦/增益/布局/FIFO6固定，未进行动力学域随机化。",
+  "queued_future_status": "UNKNOWN",
+  "actual_motion_path_ratio": 1.1720590113781726,
+  "actual_four_arm_movement_ratio": 1.0483266859676472,
+  "total_PNG": 4494,
+  "criteria_sha256": "01a5b45d1ada7635946f15c1b2e0cee141e8128266bdbed423844cf833c054a3",
+  "independent_decision": "REJECTED"
+}</pre></details>
+<div id="rejections"><h3>候选拒绝原因</h3><p id="rejection-empty" class="subtle">候选拒绝原因如下；实际科学结果全部保留。</p><ul id="rejection-list" class="reject-list"><li>candidate strict represented-sphere violations</li><li>candidate deep represented-sphere violations</li><li>new paired strict failure vs zero_inclusive</li><li>candidate actual initialized geometry negative before first physics step</li><li>raw native hand normal contact exceeds registered diagnostic .1N</li></ul></div></section>
+<section class="panel" id="explorer" aria-labelledby="explore-title"><div class="section-head"><div><h2 id="explore-title">沿着一个案例查看证据</h2><p>方法、配对区组与环境共同确定案例。缺少该案例的实拍时明确留空，不借用其他方法的画面。</p></div><span class="tag" id="data-status" role="status">等待加载</span></div>
+<div class="filters"><label for="mode">方法<select id="mode" disabled><option>等待数据</option></select></label><label for="block">配对区组 block<select id="block" disabled><option>等待数据</option></select></label><label for="env">环境 env<select id="env" disabled><option>等待数据</option></select></label><label for="job">原始运行 job<select id="job" disabled><option>等待数据</option></select></label></div>
+<p id="selection-status" class="subtle" role="status">案例数据尚未加载。默认实拍见下方。</p>
+<div class="case-strip"><div><span>风险分层</span><strong id="risk-label">UNKNOWN</strong></div><div><span>严格越界 / 深度越界</span><strong id="case-flags">UNKNOWN</strong></div><div><span>首次失败步</span><strong id="first-failure">UNKNOWN</strong></div><div><span>q 的 L2 路径 / 原生力峰值</span><strong id="case-motion">UNKNOWN</strong></div></div>
+<details><summary id="case-table-summary">当前方法 / 区组案例表</summary><div class="case-table-wrap"><table><thead><tr><th>环境</th><th>风险层</th><th>strict</th><th>deep</th><th>首失败步</th><th>q L2 路径</th><th>原生峰值 / N</th></tr></thead><tbody id="case-rows"></tbody></table></div></details>
+</section>
+<section class="panel" id="curve" aria-labelledby="curve-title"><div class="section-head"><div><h2 id="curve-title">球模型间隙与原生接触力</h2><p>分开的物理量、时间采样与纵轴。所有有限原值都参与坐标范围；不截断负间隙或高峰。</p></div><a id="curve-source" class="button" hidden target="_blank" rel="noopener noreferrer">原始曲线 JSON ↗</a></div>
+<div class="plots"><article class="plot"><h3>所代表球模型的间隙 / m</h3><p class="subtle">按碰撞类别 · 控制步采样 · 虚线 0 m</p><div id="margin-legend" class="legend" aria-label="球模型碰撞类别顺序"><span style="--series:#3653aa">跨臂</span><span style="--series:#9a6114">Franka自碰</span><span style="--series:#955290">UR自碰</span><span style="--series:#467235">台面</span></div><div id="margin-plot"><p class="empty">UNKNOWN · 尚无曲线</p></div><div id="margin-readout" class="plot-readout" aria-live="polite"></div></article><article class="plot"><h3>原生手部法向力 / N</h3><p class="subtle">按机械臂 · 每物理微步采样 · 虚线 0.1 N（诊断）</p><div id="force-legend" class="legend" aria-label="原生力机械臂顺序"><span style="--series:var(--a0)">F_L</span><span style="--series:var(--a1)">F_R</span><span style="--series:var(--a2)">U_L</span><span style="--series:var(--a3)">U_R</span></div><div id="force-plot"><p class="empty">UNKNOWN · 尚无曲线</p></div><div id="force-readout" class="plot-readout" aria-live="polite"></div></article></div>
+<div id="curve-detail" class="curve-detail"><span>悬停、轻触曲线，或聚焦后用左右方向键查看原始样本。</span></div>
+<p id="curve-status" class="subtle" role="status">尚未选择案例。</p><div class="note">曲线横轴是按控制 dt 构造的窗口经过时间；实际 PhysX 绝对时钟见原始状态 JSON。原生微步峰值与首次接触所在宏步实拍分开展示。宏步图像不能代表微步峰值瞬间；0 m 球模型指标也不能替代原生接触诊断。</div></section>
+<section class="panel" id="gallery" aria-labelledby="gallery-title"><div class="section-head"><div><h2 id="gallery-title">同次原生运行 · 21 个实际视角</h2><p>9 个整体视角与 12 个手部近景，保持原始比例、完整画幅。点击图片查看原图。</p></div><span class="tag" id="view-count">默认画廊</span></div>
+<p class="subtle">曲线覆盖全部案例；实拍仅覆盖计划中的 7 个环境槽及每风险层最早触发案例。没有图片不表示没有接触或没有曲线。</p>
+<div id="gallery-case-notice" class="note" role="status" hidden></div>
+<div id="representative-controls" class="toolbar" hidden><label for="representative-env" class="capture-label">另选代表案例 · 仅切换画廊，所选案例与曲线不变<select id="representative-env" disabled><option value="">不选代表案例 · 保持所选案例</option></select></label></div>
+<div class="toolbar"><label for="capture" class="capture-label">实拍宏步与触发类型<select id="capture" disabled><option>父提供的默认画廊</option></select></label><a id="state-source" class="button" hidden target="_blank" rel="noopener noreferrer">对应状态 JSON ↗</a></div>
+<p id="gallery-status" class="subtle" role="status">以下为父提供的默认实拍；交互数据加载后按所选案例匹配。</p>
+<div id="default-gallery"><p>默认实拍：b0_adaptive_joint / env 38 / step 198 / first_native_contact。原始状态绑定，完整21视角；原生接触报警图为宏步post状态。</p><div class="gallery-grid"><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/7e93defc058910732063cc7558d9b1acf87c67e525c1e74776fb8b5bfab5b7ac.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/7e93defc058910732063cc7558d9b1acf87c67e525c1e74776fb8b5bfab5b7ac.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_overview"></a><figcaption>step_0198_overview</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/eb74688df3f7c23458a451a5ff285be476f26e9690fab021315ec5c3884a324d.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/eb74688df3f7c23458a451a5ff285be476f26e9690fab021315ec5c3884a324d.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_front"></a><figcaption>step_0198_front</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/0a6e6c10722ef3f56754564716480c327486eb5bdf1efc1feed0fa6cf57ff90a.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/0a6e6c10722ef3f56754564716480c327486eb5bdf1efc1feed0fa6cf57ff90a.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_reverse"></a><figcaption>step_0198_reverse</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/a537c54282e189fd76da3e17cc9ff0129566815ff370f9ceb9587bd0e5416765.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/a537c54282e189fd76da3e17cc9ff0129566815ff370f9ceb9587bd0e5416765.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_f_pair"></a><figcaption>step_0198_f_pair</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/6d6700a7f7f7d67c5e5707c2a3545dce06cace095c018c655de06f4e5c01a6c8.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/6d6700a7f7f7d67c5e5707c2a3545dce06cace095c018c655de06f4e5c01a6c8.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_f_opposite_low"></a><figcaption>step_0198_f_opposite_low</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/b2b9b9d7356c253d861d59b56134dd49706e575c952948d05453df7bae328bee.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/b2b9b9d7356c253d861d59b56134dd49706e575c952948d05453df7bae328bee.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_f_opposite_high"></a><figcaption>step_0198_f_opposite_high</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/0de4083f6eb8f3a24ee365b8c8627e7f3966d026e364e5d13111a8b6e472aef6.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/0de4083f6eb8f3a24ee365b8c8627e7f3966d026e364e5d13111a8b6e472aef6.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_u_pair"></a><figcaption>step_0198_u_pair</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/65a98d3b670258545a5c985a523e2fc7b232922fe0a3406676e88fc66c9b2dbd.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/65a98d3b670258545a5c985a523e2fc7b232922fe0a3406676e88fc66c9b2dbd.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_u_opposite_low"></a><figcaption>step_0198_u_opposite_low</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/d76ee7a9e994aa60564229d7162b994c2fdec1cc1ef4bf6f52814adf37acd1fd.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/d76ee7a9e994aa60564229d7162b994c2fdec1cc1ef4bf6f52814adf37acd1fd.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="step_0198_u_opposite_high"></a><figcaption>step_0198_u_opposite_high</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/c87251999ab1112e5b2856d1637073200690e579071608a1bc3bbb552e0a7db2.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/c87251999ab1112e5b2856d1637073200690e579071608a1bc3bbb552e0a7db2.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="F_L oblique_above"></a><figcaption>F_L oblique_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/2f90498506ca7feb605b9328ecd9af686309db3df5f96ccd189b1fd32f8f077d.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/2f90498506ca7feb605b9328ecd9af686309db3df5f96ccd189b1fd32f8f077d.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="F_L opposite_below"></a><figcaption>F_L opposite_below</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/15a57c1b7f5831dc4be9c13f2803ceb315a7a663f688134ca77d9ed16718cbbb.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/15a57c1b7f5831dc4be9c13f2803ceb315a7a663f688134ca77d9ed16718cbbb.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="F_L cross_above"></a><figcaption>F_L cross_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/e755a9271b7bde1f2f0895a222d2ac549304f459211f8688cb54855a42b2f199.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/e755a9271b7bde1f2f0895a222d2ac549304f459211f8688cb54855a42b2f199.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="F_R oblique_above"></a><figcaption>F_R oblique_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/58a52f54a9c1d93523ea1889d45c2880d6b95c9c5791b41985a92341ac7cec21.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/58a52f54a9c1d93523ea1889d45c2880d6b95c9c5791b41985a92341ac7cec21.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="F_R opposite_below"></a><figcaption>F_R opposite_below</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/6c84ffc3009f8e589aeaf0477389ebd201771d5744dd60b1c802f62516767fa2.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/6c84ffc3009f8e589aeaf0477389ebd201771d5744dd60b1c802f62516767fa2.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="F_R cross_above"></a><figcaption>F_R cross_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/4aff36e99bb518a1a4df97333c91abf959de22d03043d51ee1db58fc8d71bc70.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/4aff36e99bb518a1a4df97333c91abf959de22d03043d51ee1db58fc8d71bc70.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="U_L oblique_above"></a><figcaption>U_L oblique_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/1babba1eb1ff3d8ae16b9f2d70bb7310b8fce3d41dbbcc3bc5a4be9283ff4963.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/1babba1eb1ff3d8ae16b9f2d70bb7310b8fce3d41dbbcc3bc5a4be9283ff4963.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="U_L opposite_below"></a><figcaption>U_L opposite_below</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/54625f0737013a07729034a39ece76506359145cc4ff3c2ab2415a240d65cd3f.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/54625f0737013a07729034a39ece76506359145cc4ff3c2ab2415a240d65cd3f.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="U_L cross_above"></a><figcaption>U_L cross_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/aa5f553a18027aa63991af797a0d795a082ab481be45b191e7d130ec17c2e40c.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/aa5f553a18027aa63991af797a0d795a082ab481be45b191e7d130ec17c2e40c.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="U_R oblique_above"></a><figcaption>U_R oblique_above</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/7bddfc415dcbef3b120f9919557c5ab0f5393f4e7b1513a6d559cb674bee335e.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/7bddfc415dcbef3b120f9919557c5ab0f5393f4e7b1513a6d559cb674bee335e.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="U_R opposite_below"></a><figcaption>U_R opposite_below</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/cfc528e6a71ee477bfe4d9163306c850382acbd1f70ebcf176d4d41460375574.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/cfc528e6a71ee477bfe4d9163306c850382acbd1f70ebcf176d4d41460375574.png" width="1280" height="720" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:contain" alt="U_R cross_above"></a><figcaption>U_R cross_above</figcaption></figure></div><p><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/047e5308bd571ba463c9c3cf633e9c3ef5dcee162cf2cb3b68a57a5d760213ad.json">原始整体状态</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/blobs/b9d7a252636496d8a1c61720c755e5458adebb1212bd62e622421941f2751b37.json">原始手部状态</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/canonical_raw_camera_mapping.json">原始路径与公开文件映射</a></p></div>
+<div id="gallery-images" class="gallery-grid" hidden></div><div id="gallery-empty" class="empty-state" hidden>UNKNOWN · 当前案例没有可用实拍。</div>
+<div class="note">手部近景基于实际原生 link 位姿。link-center 球的视锥覆盖不认证整张 mesh 或遮挡情况。首原生接触触发的图像仍是宏步 post 状态。</div></section>
+<section class="panel" id="scope" aria-labelledby="scope-title"><div class="section-head"><div><h2 id="scope-title">结论止于证据覆盖范围</h2><p>有限仿真中的采用结论不构成全局、整机或硬件安全保证。</p></div><span class="tag">未来 UNKNOWN</span></div><div class="split"><div><h3>汇总声明的范围</h3><div id="scope-content" class="scope-text">验收覆盖有限模拟中的原球模型、原生手部全伙伴聚合法向接触和实际运动量。候选采用须同时满足预登记门槛；整机、摩擦、构造阶段、未来非线性动态与硬件安全均未认证。</div></div><div><h3>实际覆盖</h3><div id="coverage-content" class="scope-text">两批独立随机初态、128个不同配对初态、四方法512个完整窗口；每窗口960控制步/1920物理子步；七个风险分层。实际21视角原图4494张。初态经过旧球模型和零指令稳定性条件筛选；质量/摩擦/增益/布局/FIFO6固定，未进行动力学域随机化。</div></div></div><details><summary>数据来源与当前发布</summary><p class="subtle">案例表、画廊索引与曲线来自同一个固定 commit 的原始资源。这里不重新计算科学验收结论。</p><p id="asset-source" class="mono subtle"></p><div id="source-links" class="criteria"></div><p class="subtle raw-status" id="raw-status">原始 status：见内嵌汇总。</p></details></section>
+<section class="panel" id="scientific-figures"><h2>完整实验比较与实际覆盖</h2><p class="subtle">图表来自闭合的512窗口；下载PDF可查看完整统计。</p><div class="gallery-grid"><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/figures/outcomes.pdf"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/figures/outcomes.png" loading="lazy" style="width:100%;height:auto;object-fit:contain" alt="违规与原生接触"></a><figcaption>违规与原生接触 · PDF</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/figures/actual_motion.pdf"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/figures/actual_motion.png" loading="lazy" style="width:100%;height:auto;object-fit:contain" alt="实际运动量"></a><figcaption>实际运动量 · PDF</figcaption></figure><figure><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/figures/initial_coverage.pdf"><img src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/figures/initial_coverage.png" loading="lazy" style="width:100%;height:auto;object-fit:contain" alt="随机初态覆盖"></a><figcaption>随机初态覆盖 · PDF</figcaption></figure></div><p>当前联合LP不可行2071个环境步，扩宽1940个环境步；重新投影后仍有17376个当前线性残差超限环境步。未来动态验收为UNKNOWN。</p><p><a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/ACCEPTANCE_RESULT.json">完整验收</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/ASTRA_ACCEPTANCE_REAL.json">Astra独立复核</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/COVERAGE_RESULT.json">实际覆盖统计</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/MECHANISM_RESULT.json">机制诊断</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/ADVERSE_CASE_DIAGNOSIS.md">8个新增失败时间线</a> · <a href="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/19e37d1172ee105b4f99416b81cc48aa45285f42/safety_native_acceptance_20261007_2307/ADVERSE_CASE_DIAGNOSIS.json">失败案例原始数据索引</a> · </p></section><footer class="footer"><span>真实状态 · 原始数值 · 明确未知</span><span>无外部脚本依赖 · 未闭合不计通过 · 无硬件安全宣称</span></footer>
+</main>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const MODES = ['joint_reference','zero_inclusive','box_admission','adaptive_joint'];
+const TITLES = {joint_reference:'原关节参考',zero_inclusive:'含零参考',box_admission:'盒约束准入',adaptive_joint:'自适应关节候选'};
+const MARGIN_CLASSES = ['跨臂','Franka自碰','UR自碰','台面'], MARGIN_COLORS = ['#3653aa','#9a6114','#955290','#467235'];
+const FORCE_ARMS = ['F_L','F_R','U_L','U_R'], FORCE_COLORS = ['#225dba','#af4d15','#754bab','#137978'];
+const isNumber = x => typeof x === 'number' && Number.isFinite(x);
+const exact = x => isNumber(x) ? String(x) : 'UNKNOWN';
+const label = x => x == null ? 'UNKNOWN' : typeof x === 'object' ? JSON.stringify(x,null,2) : String(x);
+const flag = x => x === true || x === 1 ? '是' : x === false || x === 0 ? '否' : 'UNKNOWN';
+// Published case rows describe evaluated windows; absent/unknown rows do not
+// acquire a negative-failure claim from null alone.
+const failureLabel = row => !row ? 'UNKNOWN' : Number.isInteger(row.first_failure_step)&&row.first_failure_step>=0 ? String(row.first_failure_step) : row.first_failure_step===null&&(row.strict===false||row.strict===0) ? '未违规' : 'UNKNOWN';
+const el = (tag,text,className) => {const node=document.createElement(tag);if(text!==undefined)node.textContent=String(text);if(className)node.className=className;return node;};
+const set = (id,text) => {$(id).textContent=String(text);};
+let summary={}, cases=[], galleries=[], assetBase, selectionVersion=0, activeGroups=[], galleryContext=null, galleryIndexLoaded=false;
+const curveCache=new Map();
+function message(id,text,error=false){set(id,text);$(id).classList.toggle('error',error);}
+function sourceURL(path){
+  if(typeof path!=='string'||!path||/[\\\u0000-\u001f]/.test(path))throw Error('资源路径无效');
+  const url=new URL(path,assetBase);
+  if(url.origin!==assetBase.origin||!url.pathname.startsWith(assetBase.pathname)||url.username||url.password||url.search||url.hash)throw Error('资源不在固定 commit 目录');
+  return url.href;
+}
+function initBase(){
+  const raw=document.querySelector('meta[name="asset-base"]').content;
+  assetBase=new URL(raw.endsWith('/')?raw:raw+'/');
+  const parts=assetBase.pathname.split('/').filter(Boolean);
+  if(assetBase.protocol!=='https:'||assetBase.hostname!=='raw.githubusercontent.com'||assetBase.port||assetBase.username||assetBase.password||assetBase.search||assetBase.hash||!parts[0]||!parts[1]||!/^[0-9a-f]{40}$/i.test(parts[2]||''))throw Error('资源基址须为 raw GitHub 固定40位 commit');
+  set('asset-source',assetBase.href);
+  for(const [name,path] of [['全部案例 JSON','case_table.json'],['画廊索引 JSON','galleries.json']]){const a=el('a',name);a.href=sourceURL(path);a.target='_blank';a.rel='noopener noreferrer';$('source-links').append(a);}
+}
+async function fetchJSON(path){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+  try{const response=await fetch(sourceURL(path),{credentials:'omit',redirect:'error',signal:controller.signal});if(!response.ok)throw Error('HTTP '+response.status);return await response.json();}
+  finally{clearTimeout(timer);}
+}
+function renderSummary(){
+  const raw=$('summary-json').textContent;
+  try{summary=JSON.parse(raw);if(!summary||typeof summary!=='object'||Array.isArray(summary))throw Error('汇总不是对象');}
+  catch(error){message('latest-result','汇总暂不可解析，结论保持 UNKNOWN。'+error.message,true);return;}
+  const status=typeof summary.status==='string'?summary.status.trim().toUpperCase():'';
+  const pass=['PASS','ADOPTION_PASS'].includes(status),failed=['FAILED','FAIL','ADOPTION_FAILED','ADOPTION_FAIL'].includes(status);
+  set('adoption-status',pass?'PASS':failed?'FAILED':'UNKNOWN');
+  $('verdict').dataset.state=pass?'pass':failed?'failed':'unknown';
+  set('adoption-detail',pass?'仅表示汇总声明的有限范围采用通过；不代表硬件或全局安全。':failed?'汇总判定候选采用失败。请查看拒绝原因与每个案例的原始证据。':'汇总尚未明确给出采用 PASS / FAILED；不从局部指标推断结论。');
+  set('raw-status','原始 status：'+label(summary.status));
+  set('window-count',exact(summary.closed_windows)+' / '+exact(summary.planned_windows));
+  set('case-count',exact(summary.unique_cases));set('step-count',exact(summary.steps));
+  set('latest-result','最新汇总：'+(pass?'候选采用 PASS':failed?'候选采用 FAILED':'候选采用 UNKNOWN')+'；已闭合 '+exact(summary.closed_windows)+' / '+exact(summary.planned_windows)+' 个窗口。未闭合与未来运行仍为 UNKNOWN。');
+  const modes=Array.isArray(summary.modes)?summary.modes:[];
+  $('method-rows').replaceChildren();
+  for(const mode of MODES){
+    const matches=modes.filter(row=>row&&row.mode===mode),row=matches.length===1?matches[0]:{},tr=el('tr');
+    const name=el('td',TITLES[mode],'method-name');name.append(el('small',mode));tr.append(name);
+    for(const key of ['windows','strict_windows','deep_windows','native_hand_raw_over_windows','native_hand_raw_peak_N','mean_q_l2_path','four_arms_moving_fraction']){
+      const value=row[key],td=el('td',exact(value));td.dataset.field=key;if(!isNumber(value))td.className='unknown';if(['strict_windows','deep_windows','native_hand_raw_over_windows'].includes(key)&&isNumber(value)&&value>0)td.className='bad';tr.append(td);
+    }
+    $('method-rows').append(tr);
+  }
+  const reasons=summary.candidate_rejection_reasons;
+  const list=Array.isArray(reasons)?reasons:reasons==null?[]:[reasons];
+  $('rejection-list').replaceChildren(...list.map(reason=>el('li',label(reason))));
+  set('rejection-empty',list.length?'拒绝原因按汇总原文显示。':reasons==null?'UNKNOWN · 汇总未提供拒绝原因。':'汇总拒绝原因列表为空；采用状态仍只读取 status。');
+  set('scope-content',label(summary.scope));set('coverage-content',label(summary.coverage));
+  $('summary-details').open=false;
+}
+function options(id,values,previous){
+  const select=$(id);select.replaceChildren();
+  for(const item of values){const option=el('option',item.text);option.value=String(item.value);select.append(option);}
+  if(values.length){select.value=values.some(x=>String(x.value)===String(previous))?String(previous):String(values[0].value);select.disabled=false;}
+  else{select.append(el('option','UNKNOWN · 无记录'));select.disabled=true;}
+}
+const keyMatches=(row,mode,block)=>row.mode===mode&&String(row.block)===String(block);
+function modeChanged(){
+  const mode=$('mode').value;
+  const blocks=[...new Set([...cases,...galleries].filter(r=>r.mode===mode).map(r=>String(r.block)))].sort((a,b)=>Number(a)-Number(b));
+  options('block',blocks.map(b=>({value:b,text:'区组 '+b})),$('block').value);blockChanged();
+}
+function blockChanged(){
+  const mode=$('mode').value,block=$('block').value,rows=cases.filter(r=>keyMatches(r,mode,block));
+  const envs=[...new Set([...rows.map(r=>r.env),...galleries.filter(r=>keyMatches(r,mode,block)).map(r=>r.env_id)])].sort((a,b)=>a-b);
+  options('env',envs.map(e=>({value:e,text:'环境 '+String(e).padStart(2,'0')})),$('env').value);
+  const jobs=[...new Set(galleries.filter(r=>keyMatches(r,mode,block)).map(r=>r.job_id))];
+  options('job',jobs.map(j=>({value:j,text:j})),$('job').value);
+  selectionChanged();
+}
+function renderCaseRows(mode,block,env){
+  const rows=cases.filter(r=>keyMatches(r,mode,block)).sort((a,b)=>a.env-b.env);$('case-rows').replaceChildren();
+  set('case-table-summary','当前方法 / 区组案例表 · '+rows.length+' 条（完整案例表 '+cases.length+' 条）');
+  for(const row of rows){const tr=el('tr');tr.setAttribute('aria-selected',String(row.env===env));const td=el('td'),button=el('button',String(row.env));button.type='button';button.addEventListener('click',()=>{$('env').value=String(row.env);selectionChanged();});td.append(button);tr.append(td);
+    for(const value of [label(row.risk_label),flag(row.strict),flag(row.deep),failureLabel(row),exact(row.q_l2_path),exact(row.native_hand_peak_N)])tr.append(el('td',value));$('case-rows').append(tr);}
+}
+function clearCurves(text){for(const id of ['margin-plot','force-plot'])$(id).replaceChildren(el('p',text,'empty'));set('margin-readout','');set('force-readout','');$('curve-source').hidden=true;set('curve-detail','曲线范围未知；未将缺失数据填为 0。');}
+async function selectionChanged(){
+  const version=++selectionVersion,mode=$('mode').value,block=$('block').value,env=Number($('env').value),job=$('job').disabled?'':$('job').value;
+  const found=cases.filter(r=>keyMatches(r,mode,block)&&r.env===env),row=found.length===1?found[0]:null;
+  message('selection-status',(TITLES[mode]||mode)+' / block '+block+' / env '+(Number.isInteger(env)?env:'UNKNOWN')+(row?'':' · 案例记录缺失或不唯一，指标 UNKNOWN'),!row);
+  set('risk-label',row?label(row.risk_label):'UNKNOWN');set('case-flags',row?flag(row.strict)+' / '+flag(row.deep):'UNKNOWN');set('first-failure',failureLabel(row));set('case-motion',row?exact(row.q_l2_path)+' / '+exact(row.native_hand_peak_N)+' N':'UNKNOWN');
+  renderCaseRows(mode,block,env);
+  configureGallery(mode,block,env,job);
+  clearCurves(job?'加载原始曲线…':'UNKNOWN · 未找到该方法 / 区组的 job');message('curve-status',job?'正在加载 '+job+'；结果只绑定当前所选运行。':'无匹配 job，不能推断曲线文件名。',!job);
+  if(!job||!Number.isInteger(env)||env<0||env>=64)return;
+  const path='curves/'+encodeURIComponent(job)+'.json';
+  try{
+    let data=curveCache.get(job);if(!data){data=await fetchJSON(path);validateCurves(data);if(curveCache.size>=2)curveCache.delete(curveCache.keys().next().value);curveCache.set(job,data);}
+    if(version!==selectionVersion)return;
+    const margin=plotSeries('margin-plot','margin-readout',data.times,data.margin_by_env,env,0,'m','球模型间隙',MARGIN_CLASSES,MARGIN_COLORS,'class');
+    const force=plotSeries('force-plot','force-readout',data.native_hand_micro_times,data.native_hand_max_by_env,env,.1,'N','原生法向力',FORCE_ARMS,FORCE_COLORS,'arm');
+    const link=$('curve-source');link.href=sourceURL(path);link.hidden=false;
+    set('curve-detail','控制步 '+data.times.length+' 个；物理微步 '+data.native_hand_micro_times.length+' 个。间隙原始最小值 '+exact(margin.min)+' m；原生力原始峰值 '+exact(force.max)+' N。');
+    message('curve-status','已读取 '+job+' / env '+env+'。缺失样本 '+(margin.missing+force.missing)+' 个，按断线保留；全部有限值均参与纵轴范围。');
+  }catch(error){if(version!==selectionVersion)return;clearCurves('UNKNOWN · 曲线加载或校验失败');message('curve-status','曲线未显示：'+error.message,true);}
+}
+function captureLabel(kind){return {scheduled:'定时实拍',first_failure:'首次球模型失败 · 宏步 post',first_native_contact:'首次原生接触 · 宏步 post（非微步峰值）'}[kind]||String(kind);}
+function configureGallery(mode,block,selectedEnv,job){
+  const groups=galleries.filter(g=>keyMatches(g,mode,block)&&g.job_id===job);
+  galleryContext={mode,block,selectedEnv,job,groups,ownImages:groups.some(g=>g.env_id===selectedEnv)};
+  const representativeEnvs=[...new Set(groups.map(g=>g.env_id))].filter(e=>e!==selectedEnv).sort((a,b)=>a-b);
+  options('representative-env',[{value:'',text:'不选代表案例 · 保持所选 env '+selectedEnv},...representativeEnvs.map(e=>({value:e,text:'代表案例 env '+e+' · '+mode+' / block '+block+'（只看图片）'}))],'');
+  $('representative-env').disabled=representativeEnvs.length===0;
+  $('representative-controls').hidden=false;
+  $('gallery-case-notice').hidden=false;
+  set('gallery-case-notice','所选案例：'+mode+' / block '+block+' / env '+selectedEnv+'。'+(galleryContext.ownImages?'该案例有实拍记录。':galleryIndexLoaded?'该案例未采图（当前发布画廊索引无记录）。':'画廊索引未加载，是否采图 UNKNOWN。')+' 所选案例的完整曲线独立加载；代表案例图片不能作为该案例的视觉证据。');
+  representativeChanged();
+}
+function representativeChanged(){
+  if(!galleryContext)return;
+  const value=$('representative-env').value;
+  const displayedEnv=value===''?galleryContext.selectedEnv:Number(value);
+  activeGroups=galleryContext.groups.filter(g=>g.env_id===displayedEnv).sort((a,b)=>a.step-b.step||String(a.capture_kind).localeCompare(String(b.capture_kind)));
+  options('capture',activeGroups.map((g,i)=>({value:i,text:'env '+displayedEnv+' · 宏步 '+g.step+' · '+captureLabel(g.capture_kind)})),0);
+  renderGallery();
+}
+function renderGallery(){
+  $('default-gallery').hidden=true;$('gallery-images').replaceChildren();$('gallery-images').hidden=true;$('state-source').hidden=true;
+  const group=activeGroups[Number($('capture').value)];
+  const selectedEnv=galleryContext?.selectedEnv,representative=!!group&&group.env_id!==selectedEnv;
+  $('gallery-images').dataset.selectedEnv=String(selectedEnv);
+  $('gallery-images').dataset.displayedEnv=group?String(group.env_id):'';
+  $('gallery-images').dataset.representative=String(representative);
+  if(!group){$('gallery-empty').hidden=false;set('view-count','0 个匹配视角');const text=galleryIndexLoaded?'该案例未采图。可在上方单独选择有实拍的代表案例；所选案例与曲线保持不变。':'UNKNOWN · 画廊索引不可用，尚不能判断该案例是否采图。';set('gallery-empty',text);message('gallery-status',text);return;}
+  $('gallery-empty').hidden=true;$('gallery-images').hidden=false;
+  const images=group.images;set('view-count',(representative?'代表 env '+group.env_id+' · ':'所选 env '+group.env_id+' · ')+images.length+' / 21 个视角');
+  const identity=representative?'另选代表案例图片：env '+group.env_id+'；所选案例仍为 env '+selectedEnv+'，曲线未切换。':'所选案例实拍：env '+group.env_id+'。';
+  message('gallery-status',identity+' '+group.job_id+' · '+group.mode+' · block '+group.block+' · env '+group.env_id+' · 宏步 '+group.step+' · '+captureLabel(group.capture_kind)+(images.length===21?'':' · 索引未提供完整21视角'),images.length!==21);
+  try{$('state-source').href=sourceURL(group.state_url);$('state-source').hidden=false;}catch(error){message('gallery-status',$('gallery-status').textContent+'；状态链接无效',true);}
+  for(const [i,image] of images.entries()){
+    const figure=el('figure'),caption=el('figcaption',(representative?'代表案例':'所选案例')+' env '+group.env_id+' · '+String(i+1).padStart(2,'0')+' · '+label(image.label));
+    try{const url=sourceURL(image.path),anchor=el('a');anchor.href=url;anchor.target='_blank';anchor.rel='noopener noreferrer';const img=el('img');img.alt=group.mode+' / env '+group.env_id+' / 宏步 '+group.step+' / '+label(image.label);img.width=1280;img.height=720;img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{anchor.replaceChildren(el('span','原图加载失败 · UNKNOWN','image-error'));});img.src=url;anchor.append(img);figure.append(anchor);}
+    catch(error){figure.append(el('div','图片路径无效 · UNKNOWN','image-error'));}
+    figure.append(caption);$('gallery-images').append(figure);
+  }
+}
+function validateCurves(data){
+  if(!data||typeof data!=='object')throw Error('曲线不是对象');
+  for(const [timeKey,valueKey] of [['times','margin_by_env'],['native_hand_micro_times','native_hand_max_by_env']]){
+    const times=data[timeKey],values=data[valueKey];
+    if(!Array.isArray(times)||!times.length||!Array.isArray(values)||values.length!==times.length)throw Error(timeKey+' 与数值行数不一致');
+    if(times.length>20000)throw Error('曲线超过本页约定样本上限');
+    for(let i=0;i<times.length;i++){
+      if(!isNumber(times[i])||(i>0&&times[i]<=times[i-1]))throw Error(timeKey+' 时间无效或非严格递增');
+      if(!Array.isArray(values[i])||values[i].length!==64||values[i].some(row=>!Array.isArray(row)||row.length!==4||row.some(v=>v!==null&&!isNumber(v))))throw Error(valueKey+' 必须为 T×64×4；缺失值只能是 null');
+    }
+  }
+  if(data.native_hand_micro_times.length!==2*data.times.length)throw Error('物理微步数不是控制步数的2倍');
+}
+const svgNode=(name,attrs,text)=>{const n=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [k,v] of Object.entries(attrs||{}))n.setAttribute(k,String(v));if(text!==undefined)n.textContent=text;return n;};
+function axisNumber(x){return x===0?'0':Math.abs(x)<.001||Math.abs(x)>=10000?x.toExponential(2):Number(x.toPrecision(5)).toString();}
+function plotSeries(container,readout,times,all,env,threshold,unit,title,seriesNames,seriesColors,seriesKind){
+  const series=times.map((_,i)=>all[i][env]);let low=threshold,high=threshold,min=Infinity,max=-Infinity,missing=0;
+  for(const row of series)for(const value of row){if(isNumber(value)){low=Math.min(low,value);high=Math.max(high,value);min=Math.min(min,value);max=Math.max(max,value);}else missing++;}
+  if(min===Infinity){$(container).replaceChildren(el('p','UNKNOWN · 所有样本缺失','empty'));return {min:null,max:null,missing};}
+  const pad=(high-low||Math.max(Math.abs(high),.001))*.08;low-=pad;high+=pad;
+  const W=700,H=330,L=83,R=18,T=18,B=50,x0=times[0],x1=times[times.length-1],span=x1-x0||1;
+  const x=t=>L+(t-x0)/span*(W-L-R),y=v=>T+(high-v)/(high-low)*(H-T-B);
+  const svg=svgNode('svg',{viewBox:'0 0 '+W+' '+H,role:'img','aria-label':title+'，原始'+unit+'；窗口经过时间 / s；按左右键逐样本读取',tabindex:0});
+  svg.append(svgNode('title',{},title+' — 所有有限样本，未截断'));
+  for(let i=0;i<=4;i++){
+    const value=low+(high-low)*i/4,py=y(value);svg.append(svgNode('line',{x1:L,x2:W-R,y1:py,y2:py,stroke:'#dce5ea','stroke-width':1}));svg.append(svgNode('text',{x:L-9,y:py+4,'text-anchor':'end',fill:'#526774','font-size':11},axisNumber(value)));
+    const t=x0+(x1-x0)*i/4,px=x(t);svg.append(svgNode('text',{x:px,y:H-B+23,'text-anchor':'middle',fill:'#526774','font-size':11},axisNumber(t)));
+  }
+  svg.append(svgNode('text',{x:W-R,y:H-5,'text-anchor':'end',fill:'#526774','font-size':11},'窗口经过时间 / s'));
+  svg.append(svgNode('line',{x1:L,x2:W-R,y1:y(threshold),y2:y(threshold),stroke:'#8b424a','stroke-width':1.5,'stroke-dasharray':'6 5'}));
+  svg.append(svgNode('text',{x:L+5,y:y(threshold)-6,fill:'#8b424a','font-size':11},String(threshold)+' '+unit));
+  for(let column=0;column<4;column++){
+    let d='',pen=false;for(let i=0;i<times.length;i++){const v=series[i][column];if(!isNumber(v)){pen=false;continue;}d+=(pen?'L':'M')+x(times[i])+' '+y(v)+' ';pen=true;}
+    const path=svgNode('path',{d,fill:'none',stroke:seriesColors[column],'stroke-width':1.7,'stroke-linejoin':'round','vector-effect':'non-scaling-stroke',['data-'+seriesKind]:seriesNames[column]});svg.append(path);
+    // A single isolated sample must remain visible, even around missing values.
+    for(let i=0;i<times.length;i++)if(isNumber(series[i][column])&&(i===0||!isNumber(series[i-1][column]))&&(i===times.length-1||!isNumber(series[i+1][column])))svg.append(svgNode('circle',{cx:x(times[i]),cy:y(series[i][column]),r:2.4,fill:seriesColors[column]}));
+  }
+  const cursor=svgNode('line',{x1:L,x2:L,y1:T,y2:H-B,stroke:'#6d7e89','stroke-dasharray':'3 4'});svg.append(cursor);let active=0;
+  function show(index){active=Math.max(0,Math.min(times.length-1,index));cursor.setAttribute('x1',x(times[active]));cursor.setAttribute('x2',x(times[active]));set(readout,'窗口 t='+String(times[active])+' s · '+seriesNames.map((name,i)=>name+' '+exact(series[active][i])+' '+unit).join(' · '));}
+  function point(event){const rect=svg.getBoundingClientRect();if(!rect.width)return;const t=x0+((event.clientX-rect.left)/rect.width*W-L)/(W-L-R)*span;let left=0,right=times.length-1;while(left<right){const mid=Math.floor((left+right)/2);if(times[mid]<t)left=mid+1;else right=mid;}show(left>0&&Math.abs(times[left-1]-t)<Math.abs(times[left]-t)?left-1:left);}
+  svg.addEventListener('pointermove',point);svg.addEventListener('pointerdown',point);svg.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();show(event.key==='Home'?0:event.key==='End'?times.length-1:active+(event.key==='ArrowRight'?1:-1));}});
+  $(container).replaceChildren(svg);show(0);return {min,max,missing};
+}
+function validateCases(data){
+  if(!Array.isArray(data))throw Error('case_table.json 必须为数组');const keys=new Set();
+  for(const row of data){if(!row||typeof row.mode!=='string'||!Number.isInteger(row.env)||row.env<0||row.env>=64||row.block==null)throw Error('案例身份字段无效');const key=JSON.stringify([row.mode,String(row.block),row.env]);if(keys.has(key))throw Error('案例身份重复');keys.add(key);}return data;
+}
+function validateGalleries(data){
+  if(!Array.isArray(data))throw Error('galleries.json 必须为数组');
+  for(const row of data){if(!row||typeof row.mode!=='string'||row.block==null||typeof row.job_id!=='string'||!row.job_id||!Number.isInteger(row.env_id)||row.env_id<0||row.env_id>=64||!Number.isInteger(row.step)||row.step<0||typeof row.capture_kind!=='string'||!Array.isArray(row.images)||row.images.some(im=>!im||typeof im.path!=='string'))throw Error('画廊身份或图像字段无效');}return data;
+}
+async function start(){
+  renderSummary();
+  try{initBase();}catch(error){message('data-status','资源未连接',true);message('selection-status',error.message+'。内嵌汇总与默认画廊仍保留。',true);return;}
+  const results=await Promise.allSettled([fetchJSON('case_table.json').then(validateCases),fetchJSON('galleries.json').then(validateGalleries)]);
+  const failures=[];
+  if(results[0].status==='fulfilled')cases=results[0].value;else failures.push('案例表：'+results[0].reason.message);
+  if(results[1].status==='fulfilled'){galleries=results[1].value;galleryIndexLoaded=true;}else failures.push('画廊：'+results[1].reason.message);
+  message('data-status',cases.length+' 条案例 · '+galleries.length+' 个实拍组'+(failures.length?' · 部分未知':''),!!failures.length);
+  if(failures.length)message('selection-status',failures.join('；'),true);
+  if(!cases.length&&!galleries.length)return;
+  const modes=[...new Set([...MODES,...cases.map(r=>r.mode),...galleries.map(r=>r.mode)])];
+  options('mode',modes.map(mode=>({value:mode,text:(TITLES[mode]||mode)+' · '+mode})),cases.some(r=>r.mode==='adaptive_joint')?'adaptive_joint':cases[0]?.mode||galleries[0]?.mode);
+  $('mode').addEventListener('change',modeChanged);$('block').addEventListener('change',blockChanged);$('env').addEventListener('change',selectionChanged);$('job').addEventListener('change',selectionChanged);$('capture').addEventListener('change',renderGallery);$('representative-env').addEventListener('change',representativeChanged);
+  modeChanged();
+}
+start().catch(error=>{message('data-status','加载失败 · UNKNOWN',true);message('selection-status','页面数据初始化失败：'+error.message,true);});
+})();
+</script>
+</body>
+</html>
