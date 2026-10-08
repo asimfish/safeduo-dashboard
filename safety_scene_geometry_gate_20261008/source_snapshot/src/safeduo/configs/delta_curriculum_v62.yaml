@@ -1,0 +1,43 @@
+# v6.2_core curriculum (R13 anti-collapse recipe, G3 RCA 2026-08-18).
+# Same three-layer data mix as delta_curriculum_t3.yaml; the ONLY change is
+# the amplitude schedule: main training caps at 0.06 and the 0.08 tier is
+# split into a SEPARATE 300-iter challenge run launched from a healthy
+# checkpoint (v6.1 evidence: the inversion collapse developed inside the 0.08
+# stage ~345 iters in; 0.10 was never reached and is deleted outright).
+schema_version: 2
+
+mix:
+  l1: 0.4
+  l2: 0.4
+scenarios:
+  head_on_crossing: 3.0
+  center_grab: 1.5
+  handover_approach: 1.0
+  table_slam: 1.0
+  sweep_across: 1.0
+  chase: 1.5
+  freeze_one: 1.0
+  latency_spike: 0.5
+skills:
+  dir: artifacts/skill_trajs
+  tier: 1
+  weight: 0.2
+  loop: true
+
+l1_mapper: workspace
+
+# R13 curriculum split: 0.03 warmup quarter, then 0.06 for the rest of the
+# main run. The 0.08 challenge is a separate job (fresh 300 iters from a
+# checkpoint that passed the .06 health gates), NOT part of this schedule.
+amp_stages:
+  - {until_frac: 0.25, amp_max: 0.03}
+  - {until_frac: 1.00, amp_max: 0.06}
+
+split: train
+n_variants: 100
+l1_params:
+  pause_prob: 0.0
+  seg_dur: [0.8, 2.0]
+  ou_sigma: 0.02
+ee_speed_default: 0.25
+stages: null

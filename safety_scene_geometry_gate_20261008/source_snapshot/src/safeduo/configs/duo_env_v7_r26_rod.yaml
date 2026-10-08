@@ -1,0 +1,10 @@
+# R26 rod_pick: F pair each pick-and-place a 30cm rod (lying along y,
+# 0.04x0.30x0.04 box approx); U pair keep their own cube pick-place.
+# Positions must match task_library_r26 ROD_*_POS / CUBE_U*_POS.
+extends: duo_env_v7_r18_objects.yaml
+assets:
+  table_objects:
+    - {name: rod_l, pos: [0.53, -0.30, 0.82], size: [0.04, 0.30, 0.04], mass: 0.20, color: [0.75, 0.25, 0.60]}
+    - {name: rod_r, pos: [0.53, 0.30, 0.82], size: [0.04, 0.30, 0.04], mass: 0.20, color: [0.25, 0.45, 0.85]}
+    - {name: cube_u_l, pos: [-0.44, 0.42, 0.825], size: 0.05, color: [0.2, 0.5, 0.9]}
+    - {name: cube_u_r, pos: [-0.46, -0.20, 0.825], size: 0.05, color: [0.2, 0.8, 0.4]}

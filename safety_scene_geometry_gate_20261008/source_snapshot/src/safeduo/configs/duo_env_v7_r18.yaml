@@ -1,0 +1,128 @@
+# SafeDuo 4 臂场景配置 v7-R18(离合器语义重训,S8 配方件① 2026-08-21)
+# = duo_env_v7.yaml 唯一 diff:safety.damper_warn_mm: 40——damper 行参与门
+# (毫米):margin >= 40mm 的活跃行不进 Dykstra 投影(安全区 exact-
+# passthrough),cap<0 强制退开行无条件保留(backstop 兜底原样,S8 网格零
+# 违规的功臣)。S8 §4 实测:0.5/0.2 格解析栈修正吃掉安全臂步 59.8%,收窄
+# 到 40mm 估算保真率 2%→~94%。键缺省(v7 原 yaml)= 无门 = 现行为逐位不变。
+# 注意:cross d_min=38mm,40mm 门下 damper 反应窗只余 2mm,刹停兜底窗口
+# 变小——16env 冒烟与四门评测验证零违规(任务书要求)。
+# 其余逐字 = duo_env_v7.yaml(v7 头注释保留于下)。
+# SafeDuo 4 臂场景配置 v7(R14 UR5+RH56DFX 迁移;owner 资产 2026-08-18)
+# = duo_env_v6.yaml 的换装 profile。与 v6 的 diff 与依据:
+# ① 布局 scene_layout_v5 -> v7:U 臂 JAKA Zu7 -> UR5;基座几何按 owner 标定
+#    robot_base.json 重排(两排 1.4964m——v5 为 1.10m!;F 对 0.9742 / U 对
+#    0.8717 / 基座高 0.80)。共享工作带宽 ~0.60 -> ~0.20m,交接几何收紧,
+#    出生位/课程/评测锚点全部漂移,v7 结果与 v5/v6 不可比。
+# ② U 臂资产:owner 组合 URDF(UR5+法兰+RH56DFX)convert_urdf --merge-joints
+#    直转 USD(ur5_dfx_{left,right}_v7.usd);增益 1200/80 烘焙+运行时同值。
+# ③ 球包 real_v5 -> real_v7:U 臂 = ur5e 球复用(去腕球)+ DFX 手球 22/侧
+#    (generate_dfx_spheres.py);F 臂零改动。U 球数 29->40,cross 对 6720。
+# ④ 语义 v3 -> v7:robot_keys.U=ur5_dfx;UR 链邻接 + 腕簇 diff=2 豁免;
+#    hand_palm 增补 U 侧 hand/wrist_3_link(掌球随 merge 挂腕)。
+# ⑤ d_min_per_link.link2(JAKA 肩-桌特例,Round 154 ③)删除后,S4 出生位
+#    审计(2026-08-19)判定病理复现且更甚:upper_arm_link #0 肩领球(r=0.0883,
+#    球心落在 shoulder_lift 轴上)被 UR5 d1=0.089159 钉在桌面上方 ~90mm,
+#    对桌 margin 恒 +1.7mm(全 lift 行程 +0.9~+1.9mm,任何出生位抬不动),
+#    < table d_min 0.02 -> 该行永久 cap<0(v6 B_pump 同激励源)。按预告的
+#    同机制回填 safety.d_min_per_link.upper_arm_link=0.001(静息 cap>0,
+#    余 0.6mm;代价 = upper_arm 全部对桌行刹停边界同降,该臂段肘/腕先于
+#    上臂触桌,风险可接受;证据 artifacts/report_20260819/S4_v7_env_prep.md)。
+# ⑥ init_qpos = S4 v7 出生位重搜回填(birth_pose_search_v7,2026-08-19):
+#    静息 cross/self_F/self_U/table(剔结构行) = 586/23.1/57.7/78.3mm 全过
+#    15mm 门;±0.05 rad x50 及 x8192 扰动零出生违规;四臂 EE 朝共享带
+#    (F 手轴 x=-0.67,U 手轴 x=+0.32);同排双臂同值(镜像由布局 y 对称承担)。
+# 其余(安全参数/奖励/PhysX 缓冲)与 v6 逐字一致。
+# 消费:make_duo_env_cfg(yaml_name="duo_env_v7.yaml")
+sim:
+  dt: 0.008333
+  decimation: 2
+  episode_length_s: 10.0
+  physx:
+    gpu_max_rigid_patch_count: 524288
+
+scene:
+  num_envs: 4096
+  env_spacing: 4.0
+  layout_yaml: assets_src/real/scene_layout_v7.yaml
+  base_x_abs: null
+
+assets:
+  franka: {variant: fr3, custom_usd: "", hands: true}
+  ur: {variant: ur5_dfx, custom_usd: "", hands: true}
+  arm_usd_overrides:
+    F_L: assets_real/usd/combined/fr3_f2_left_v5.usd
+    F_R: assets_real/usd/combined/fr3_f2_right_v5.usd
+    U_L: assets_real/usd/ur5_dfx_left_v7.usd
+    U_R: assets_real/usd/ur5_dfx_right_v7.usd
+  spheres: real_v7
+  semantics_yaml: src/safeduo/configs/contact_semantics_v7.yaml
+
+# 出生位:S4 重搜产物(注 ⑥;验证命令
+# PYTHONPATH=src python -m safeduo.envs.birth_pose_search_v7 --mode verify)
+init_qpos:
+  franka:
+    fr3_joint1: -0.4133
+    fr3_joint2: -0.7454
+    fr3_joint3: 0.0387
+    fr3_joint4: -2.5007
+    fr3_joint5: 0.9908
+    fr3_joint6: 2.1395
+    fr3_joint7: 1.6729
+  ur:
+    shoulder_pan_joint: -0.6296
+    shoulder_lift_joint: -2.2481
+    elbow_joint: 1.9604
+    wrist_1_joint: -1.3038
+    wrist_2_joint: -1.0278
+    wrist_3_joint: -0.2445
+
+action:
+  delta_clip: 0.08
+
+safety:
+  # R18 件①:damper 介入门(毫米);见文件头。仅本 r18 profile 开 40。
+  damper_warn_mm: 40
+  max_active: 32
+  quota_cross: 8
+  tau_ttc: 0.5
+  contact_gt: false
+  d_min_override:
+    self: 0.013
+    cross: 0.038
+  d_warn_override: 0.08
+  # S4(注 ⑤):UR5 upper_arm 肩领球结构性悬停 +1.7mm 的对桌行独立刹停边界
+  d_min_per_link:
+    upper_arm_link: 0.001
+  backstop:
+    gamma: 4.0
+    vmax: 1.5
+    max_passes: 30
+    tol: 1.0e-6
+    row_authority_clamp: true
+    exit_box_invariant: true
+
+coordinator:
+  enabled: false
+  delta_source: l2_mix
+  delta_amp_max: 0.015
+  # R15 v7 接线: ConflictMixSource 的 FK backend/漫游盒读本 yaml 的
+  # v7 场景真值(基座/工作区), 配套课程 yaml 里 geometry: v7
+  delta_env_yaml: duo_env_v7.yaml
+  reward:
+    w_track: 10.0
+    w_tube: 0.05
+    w_progress: 2.0
+    w_smooth: 0.1
+    w_flip: 0.5
+    w_backstop: 5.0
+    w_violation: 100.0
+    w_margin: 2.0
+
+events:
+  n_log_envs: 64
+  flush_every: 512
+
+benchmark:
+  env_counts: [1024, 2048, 4096]
+  warmup_steps: 30
+  timed_steps: 200

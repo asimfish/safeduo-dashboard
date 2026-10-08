@@ -1,0 +1,56 @@
+# R35 (2026-09-07): "factory cell" scene dressing shared by the R35 industrial
+# task yamls (pasted in by task_library_r35.write_env_yaml; keep this file the
+# single source). Coordinates: table slab x in [-1, 1], y in [-0.75, 0.75],
+# top z = 0.80; Franka bases x = +0.748, UR5 bases x = -0.748.
+# Everything here is visual / static: outside the sphere safety model and the
+# policy observation (like table_objects). Isaac assets mirrored under
+# assets_real/isaac (tools/r35_mirror_isaac_assets.py).
+dressing:
+  table_visible: false            # slab = collider + safety plane only
+  ground_visible: false           # the warehouse shell brings its own floor
+  dome_intensity: 2500.0
+  background:
+    usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/warehouse.usd
+    pos: [0.0, 0.0, 0.0]
+    yaw: 0.0
+    collision: false
+  static_props:
+    # two heavy-duty packing tables (cm asset, 247 x 76 x 99 cm) side by side
+    # under the 200 x 150 cm slab; z scaled so the top sits exactly at 0.80
+    - {name: bench_l, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd,
+       pos: [0.0, -0.381, 0.0], scale: [0.01, 0.01, 0.008048], collision: false}
+    - {name: bench_r, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Props/PackingTable/props/SM_HeavyDutyPackingTable_C02_01/SM_HeavyDutyPackingTable_C02_01.usd,
+       pos: [0.0, 0.381, 0.0], scale: [0.01, 0.01, 0.008048], collision: false}
+    # on-table fixtures (kinematic colliders): NIST task board between the UR
+    # bases, KLT bin between the Franka bases, parts scale at the far corner
+    - {name: nist_board, usd: assets_real/isaac/Assets/Isaac/6.1/Isaac/Props/NIST/Taskboard/nistboard.usd,
+       pos: [-0.95, 0.19, 0.80], yaw: 0.0, collision: true}
+    - {name: klt_spare, usd: assets_real/objects/industrial/small_KLT/small_KLT_safeduo.usd,
+       pos: [0.86, 0.0, 0.8732], yaw: 90.0, collision: true}
+    - {name: parts_scale, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/IsaacLab/Mimic/nut_pour_task/nut_pour_assets/sorting_scale.usd,
+       pos: [0.15, 0.64, 0.80], yaw: 0.0, collision: true}
+    # floor dressing around the cell (no colliders)
+    - {name: pallet_n, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_PaletteA_01.usd,
+       pos: [0.0, 1.95, 0.0], yaw: 0.0, collision: false}
+    - {name: box_n1, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_CardBoxB_01.usd,
+       pos: [-0.28, 1.95, 0.211], yaw: 0.0, collision: false}
+    - {name: box_n2, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_CardBoxC_01.usd,
+       pos: [0.27, 1.95, 0.211], yaw: 15.0, collision: false}
+    - {name: box_n3, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_CardBoxD_01.usd,
+       pos: [0.27, 1.95, 0.461], yaw: -10.0, collision: false}
+    - {name: crate_sw, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_CratePlastic_A_01.usd,
+       pos: [-1.75, -1.55, 0.0], yaw: 20.0, collision: false}
+    - {name: crate_sw2, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_CratePlastic_B_01.usd,
+       pos: [-1.75, -1.55, 0.4354], yaw: 5.0, collision: false}
+    - {name: cart_w, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_PushcartA_02.usd,
+       pos: [-2.1, 1.3, 0.0], yaw: 90.0, collision: false}
+    - {name: cone_se, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/S_TrafficCone.usd,
+       pos: [1.9, -1.6, 0.0], collision: false}
+    - {name: stripe_n, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_FloorDecal_StripeFull_4m.usd,
+       pos: [-2.0, 1.35, 0.001], yaw: 0.0, collision: false}
+    - {name: stripe_s, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_FloorDecal_StripeFull_4m.usd,
+       pos: [-2.0, -1.35, 0.001], yaw: 0.0, collision: false}
+    - {name: stripe_e, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_FloorDecal_StripeFull_4m.usd,
+       pos: [2.0, -1.35, 0.001], yaw: 90.0, collision: false}
+    - {name: stripe_w, usd: assets_real/isaac/Assets/Isaac/4.5/Isaac/Environments/Simple_Warehouse/Props/SM_FloorDecal_StripeFull_4m.usd,
+       pos: [-2.0, -1.35, 0.001], yaw: 90.0, collision: false}

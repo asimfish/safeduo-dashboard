@@ -1,0 +1,8 @@
+Warning: in _ReportErrors at line 3172 of /builds/omniverse/usd-ci/USD/pxr/usd/usd/stage.cpp -- In </World/envs/env_0/F_L>: Could not open asset @https:/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/FrankaRobotics/FrankaFR3/fr3.usd@ for reference introduced by @/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_v5.usd@</Robot>. (recomposing stage on stage @anon:0x5992d1529df0:tmp.usda@ <0x5992d14da650>)
+Warning: in _ReportErrors at line 3172 of /builds/omniverse/usd-ci/USD/pxr/usd/usd/stage.cpp -- In </World/envs/env_0/F_R>: Could not open asset @https:/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/FrankaRobotics/FrankaFR3/fr3.usd@ for reference introduced by @/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5.usd@</Robot>. (recomposing stage on stage @anon:0x5992d1529df0:tmp.usda@ <0x5992d14da650>)
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_scene_geometry_gate_20261008/diagnose_archive_v2.py", line 15, in <module>
+    x=UsdGeom.Xform.Define(stage,'/World/envs/env_0/Prop_'+name);x.GetPrim().GetReferences().AddReference(asset);x.AddTranslateOp().Set(Gf.Vec3d(*pos));x.AddRotateZOp().Set(yaw)
+                                                                                                                 ^^^^^^^^^^^^^^^^^^
+pxr.Tf.ErrorException: 
+	Error in 'pxrInternal_v0_24__pxrReserved__::UsdGeomXformable::AddXformOp' at line 189 in file /builds/omniverse/usd-ci/USD/pxr/usd/usdGeom/xformable.cpp : 'The xformOp 'xformOp:translate' already exists in xformOpOrder [[xformOp:translate, xformOp:orient, xformOp:scale]].'

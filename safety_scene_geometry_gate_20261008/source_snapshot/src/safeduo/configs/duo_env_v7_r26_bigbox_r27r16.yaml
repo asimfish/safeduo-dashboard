@@ -1,0 +1,12 @@
+# R27 (2026-09-05): physical-grasp RECORDING env for the R26 bigbox family =
+# stack env + contact physics knobs (hand 100/5/5, solver 64/4) + r16 shell.
+extends: duo_env_v7_r26_bigbox_stack.yaml
+
+assets:
+  hand_actuator: {stiffness: 100.0, damping: 5.0, effort_limit_sim: 5.0}
+  solver: {position_iterations: 64, velocity_iterations: 4}
+  object_solver: {position_iterations: 64, velocity_iterations: 4}
+  spheres: real_v7r16
+  semantics_yaml: src/safeduo/configs/contact_semantics_v7r16.yaml
+  arm_armature: {ur: 0.05}   # R27: stabilise the UR5-DFX wrist_3 drive (see duo_env.py)
+  arm_gravity_comp: {franka: true, ur: true}   # R27/R33: FR3 shoulder sag 4-7 deg at kp 400; UR5 hand 3-4 cm low at kp 1200 (see duo_env.py)

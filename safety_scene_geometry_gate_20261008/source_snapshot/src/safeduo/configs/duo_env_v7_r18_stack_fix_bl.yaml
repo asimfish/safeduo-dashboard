@@ -1,0 +1,10 @@
+# R33 (2026-09-06): stack_fix + backlog-aware L2 damper (A6-W6 fix, default
+# off since v3). With the live wrist_3 the clutch stops the COMMAND within 3-4
+# steps but the arms keep closing on the PD backlog for 1-1.6 s (r16a head-on
+# envs 7/24: cross -5.2 / -1.2 mm). backlog_aware charges each damper row for
+# the closing authority of the backlog releasable this step.
+extends: duo_env_v7_r18_stack_fix.yaml
+
+safety:
+  backstop:
+    backlog_aware: true

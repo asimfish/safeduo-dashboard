@@ -1,0 +1,14 @@
+# R34 (2026-09-07): industrial re-skin of the R27 physical rod family --
+# the 4x30x8 cm beams become 4080 T-slot aluminium profiles (same AABB, same
+# poses, same mass) and the 5 cm cubes become chamfered die-cast connector
+# blocks, so the validated rod_pick trajectory (artifacts/task_trajs_r26_r27/
+# rod_pick) is replayed unchanged on real-looking assets.
+extends: duo_env_v7_r26_rod_r27r16.yaml
+
+assets:
+  object_catalog: object_catalog_lab.yaml
+  table_objects:
+    - {name: rod_l, catalog: alu_profile_4080_300, pos: [0.53, -0.35, 0.84]}
+    - {name: rod_r, catalog: alu_profile_4080_300, pos: [0.53, 0.35, 0.84]}
+    - {name: cube_u_l, catalog: cube_connector_50, pos: [-0.44, 0.42, 0.825]}
+    - {name: cube_u_r, catalog: cube_connector_50, pos: [-0.46, -0.20, 0.825]}

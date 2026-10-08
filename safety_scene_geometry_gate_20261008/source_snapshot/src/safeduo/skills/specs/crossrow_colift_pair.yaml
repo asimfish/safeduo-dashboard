@@ -1,0 +1,32 @@
+# Category 4 (quad_cooperative): two CROSS-ROW co-lift groups in parallel -- F_L with U_R
+# carry one 70 cm profile lying along x (stations at x = -/+0.31, U at the -x end, F at
+# the +x end), F_R with U_L carry the second one; each pair shifts its profile 10 cm
+# outward in y. Exercises the gate's cross-row coupling (a rigid object held by one arm
+# from each row).
+family: crossrow_colift_pair
+category: 4
+env_base: factory
+objects:
+  # builds 1-2 at x=0: the F stations (x=0.31) sat 0.48 m from the F bases and the elbows folded to
+  # self 2.9 mm (design floor 8 mm) -> centre at x=-0.05: F stations 0.52 m out, U stations 0.42 m
+  # build 3 (4080 profiles): F_L+U_R carried theirs (0.6 cm, upright) but F_R+U_L lifted only 4.6 cm and
+  # slid the standing 4 cm profile the wrong way -> 5x5 cm square beams for both pairs
+  - {name: beam_neg, catalog: beam_50_700, xy: [-0.05, -0.30], yaw: 90}
+  - {name: beam_pos, catalog: beam_50_700, xy: [-0.05,  0.30], yaw: 90}
+arms:
+  F_L: {do: colift}
+  F_R: {do: colift}
+  U_L: {do: colift}
+  U_R: {do: colift}
+groups:
+  # build 1: F fingers 1.2 mm off the table on the x-long profile (descend floor) -> shallower 8 mm pinch;
+  # U_L folded at the place after a 10 cm outward carry -> 6 cm
+  - {arms: [U_R, F_L], obj: beam_neg, do: colift, half_station: 0.31, carry_dxy: [0.0, -0.06], lift: 0.10, grasp_depth: 0.008}
+  - {arms: [U_L, F_R], obj: beam_pos, do: colift, half_station: 0.31, carry_dxy: [0.0,  0.06], lift: 0.10, grasp_depth: 0.008}
+success: {object: beam_neg, radius_m: 0.10, min_disp_m: 0.08}
+timing: {carry: 3.5, retreat: 3.5}
+homes:
+  F_L: [0.44, -0.30, 1.25]
+  F_R: [0.44, 0.30, 1.25]
+  U_L: [-0.30, 0.40, 1.20]
+  U_R: [-0.32, -0.36, 1.20]

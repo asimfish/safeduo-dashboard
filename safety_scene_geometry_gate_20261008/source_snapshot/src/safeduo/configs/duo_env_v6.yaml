@@ -1,0 +1,142 @@
+# SafeDuo 4 臂场景配置 v6（v6 安全修正包：Round 152/154 定稿，C12 实装 2026-08-16）
+# = duo_env_v5.yaml 的安全参数节修订 profile：场景层/运行参数/奖励权重与 v5
+#   逐字一致（对照变量只有 safety 节）。与 v5 的 diff 与依据 Round：
+# ① d_min_override.cross 0.013 → 0.038（Round 152 ②主口径采纳：C10 反事实
+#    封堵 94%（30/32）；v5 的 17mm 收紧经数据检验为过度，回调有据。灵敏度臂
+#    0.030/0.045 走 grid 重扫，不进本文件）。self 维持 0.013——Round 152 只
+#    裁定 cross；C10 §5A 要求 self 通道深穿复核后再定（待裁决）。
+# ② d_warn_override: 0.08 新增（Round 152 ② d_warn 0.08 联动；C10 §5B：终端
+#    突刺 1-2 步吃 19-35mm，50mm 视界只有 2-3 步权柄）。d_soft 不动（活跃集/
+#    tube 语义不变）。【硬约束】训练器 cost 通道 d_warn 硬编码 0.05 必须同步
+#    （lagrangian_ppo.cost_channels_from_obs），否则塑形带与约束通道语义分叉
+#    ——训练器侧改动见 artifacts/C12_HANDOFF.md，不在本包内。
+# ③ d_min_per_link 新增（Round 154 ②治根）：JAKA link2 肩部球结构性悬停
+#    17.6mm < table d_min 20mm → 该行永久 cap<0（全电池 81.6% 活跃桌行）、
+#    |J|≈4e-5，是 backstop 泵病理的激励源（A10 判决 B_pump 40/41）。link2
+#    对桌面独立 d_min=0.015（< 17.6mm 悬停高度使静息 cap>0；高于 near_table
+#    豁免的 0.005 保留保护带）。【数值待裁决】Round 154 只定稿机制未定稿
+#    数字，0.015 为 C12 暂定值，需 owner/监管线随 R132② 场景 rev（垫板物理
+#    化+语义线重标）合并裁定后入册。
+# ④ backstop 新参数（Round 154 ①治本必做）：row_authority_clamp（F1 行权柄
+#    钳制 h ≥ -0.9*||G_row||₁*box，A10 实测最热 20 爆发步 exec_U 6.2→0.053
+#    rad）+ exit_box_invariant（出口箱不变量，第二道保险不可单用）。代码
+#    默认即开，此处显式声明入册。gamma=4.0 维持（Round 152：悬停段包络工作
+#    正常，突刺是绕过包络而非包络太松）。
+# ⑤ quota_cross 维持 8（Round 154：8→16 判无效撤回——复现实证 quota16 输出
+#    逐位不变；A10 判 A 类配额盲区空集）。
+# 连带警示（Round 154 入册）：泵修复改变 U 机 exec 分布（1.6-2.0% 步越箱爆发
+# 消失），v6 重评不可与 v5 表混读。
+# 消费：make_duo_env_cfg(yaml_name="duo_env_v6.yaml")
+sim:
+  dt: 0.008333
+  decimation: 2
+  episode_length_s: 10.0
+  # v5 专属 PhysX 缓冲抬升（A9-W9 门①实测）：凸分解 +80 collision prim/env，
+  # 4096 env 下 patch 需求 >=249856 > 默认 163840（溢出 = 静默丢接触，
+  # 物理不可信）。取 2^19 留双倍动态余量；v4 yaml 无此节，行为零漂移。
+  physx:
+    gpu_max_rigid_patch_count: 524288
+
+scene:
+  num_envs: 4096
+  env_spacing: 4.0
+  # v5 布局（B2 照片取证）：gap=0 拼死 / 台宽 1.5 / 桌心 ±0.40 / 跑道垫板；
+  # 基座锚点（±0.55/±0.50/0.816）与桌高 0.80 不变。垫板与 v4 同为"无物理
+  # 碰撞体"（duo_env 只 spawn 桌板；垫板数据供 viz/replica 层，B2 diff 表
+  # 的"F 臂低位掠板"在物理层维持 v4 现状，如需实体化归下一版工单）。
+  layout_yaml: assets_src/real/scene_layout_v5.yaml
+  base_x_abs: null
+
+assets:
+  # v5 组合 USD（凸分解换装：JAKA link1-5 + F2 palm_casing 共 7 件 CoACD，
+  # 每块单凸包；base_link/link6 保持单包——manifest integrate 名单）。
+  # FilteredPairsAPI 三对（link3|link5 / link4|link6 / link5|hand_base）
+  # 为 body 级，compose_robot_usd 重打，凸分解不影响（B2 checklist 第 1 步）。
+  franka: {variant: fr3, custom_usd: "", hands: true}
+  ur: {variant: jaka_zu7, custom_usd: "", hands: true}
+  arm_usd_overrides:
+    F_L: assets_real/usd/combined/fr3_f2_left_v5.usd
+    F_R: assets_real/usd/combined/fr3_f2_right_v5.usd
+    U_L: assets_real/usd/combined/jaka_f2_left_v5.usd
+    U_R: assets_real/usd/combined/jaka_f2_right_v5.usd
+  # 球分解 v5：fr3.yaml(去 fr3_hand)+法兰球（零改动）+ jaka_zu7_v5(18 球)
+  #  + F2 v5 左右手(11 球/手)。球数真值 F 31 / U 29，cross 对 31*29*4=3596
+  # （manifest anchors 的 27/3132 系 ASSEMBLY §4 旧账面，A9-W9 已更正入册）。
+  spheres: real_v5
+  # 语义结构零改（B2 checklist 第 6 步）：腕环对保留检查、手内豁免 link 级。
+  semantics_yaml: src/safeduo/configs/contact_semantics_v3.yaml
+
+# ── 出生位：沿用 v4.1（A7-W7 重工程；B2 裁定 j6=0 腕环最优不变，无需重搜）──
+# v5 出生读数（A9-W9 门③本地预检，birth_pose_search --scene v5 --mode verify）：
+# cross 129.9 / self 23.1 / table 19.0 / 腕环 25.3-26.1mm，含腕环全类
+# ±0.02 rad 抖动地板 23.1mm ≥ 2cm——Round-114 裁定在 v5 下零豁免成立。
+init_qpos:
+  franka:
+    fr3_joint1: 0.0592
+    fr3_joint2: -0.6042
+    fr3_joint3: -0.0997
+    fr3_joint4: -2.2558
+    fr3_joint5: 0.3542
+    fr3_joint6: 1.4988
+    fr3_joint7: 1.2033
+  ur:
+    joint1: 0.1623
+    joint2: 1.0319
+    joint3: -0.8742
+    joint4: 1.2292
+    joint5: 1.5062
+    joint6: 0.0
+
+action:
+  delta_clip: 0.08
+
+safety:
+  max_active: 32
+  # Round 154：quota 8→16 判无效撤回（quota16 输出逐位不变），维持 8
+  quota_cross: 8
+  tau_ttc: 0.5
+  contact_gt: false
+  # v6 d_min（依据见文件头 ①）：cross 0.038 = v4 物理平价（0.030 + 8mm 双边
+  # 去膨胀差）；self 0.013 维持待复核
+  d_min_override:
+    self: 0.013
+    cross: 0.038
+  # v6 d_warn 联动（文件头 ②）：塑形带 0.05→0.08；训练器同步见 C12_HANDOFF
+  d_warn_override: 0.08
+  # v6 per-link table d_min（文件头 ③）：键 = link 局部语义名；数值待裁决
+  d_min_per_link:
+    link2: 0.015
+  backstop:
+    gamma: 4.0
+    vmax: 1.5
+    max_passes: 30
+    tol: 1.0e-6
+    # v6 泵病理修正包（文件头 ④）：显式声明入册（代码默认已开）
+    row_authority_clamp: true
+    exit_box_invariant: true
+  # D-033 production caller：显式 opt-in；false 保持 legacy target 积分逐位路径。
+  target_guard:
+    enabled: false
+
+coordinator:
+  enabled: false
+  delta_source: l2_mix
+  delta_amp_max: 0.015
+  reward:
+    w_track: 10.0
+    w_tube: 0.05
+    w_progress: 2.0
+    w_smooth: 0.1
+    w_flip: 0.5
+    w_backstop: 5.0
+    w_violation: 100.0
+    w_margin: 2.0
+
+events:
+  n_log_envs: 64
+  flush_every: 512
+
+benchmark:
+  env_counts: [1024, 2048, 4096]
+  warmup_steps: 30
+  timed_steps: 200

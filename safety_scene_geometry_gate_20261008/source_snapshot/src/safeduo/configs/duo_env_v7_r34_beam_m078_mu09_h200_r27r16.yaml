@@ -1,0 +1,15 @@
+# R34-A probe 4 (friction hypothesis): 0.78 kg solid 4080 profile with the OBJECT material friction set for the
+# aluminium-vs-rubber-finger-pad contact pair (0.9/0.8) instead of aluminium-on-wood (0.35/0.30).
+# Probe 2/3 showed the profile slips at 0.39-0.78 kg and that raising finger gains 100/5/5 -> 200/10/20 did
+# not help; PhysX combines the two contact materials (average by default), so an object friction of 0.35
+# yields ~0.4 at the finger pads whereas the R27 box beams used the default prop friction 1.5/1.2.
+# h200: finger actuator 200/10/20
+extends: duo_env_v7_r34_beam_r27r16.yaml
+
+assets:
+  hand_actuator: {stiffness: 200.0, damping: 10.0, effort_limit_sim: 20.0}
+  table_objects:
+    - {name: rod_l, catalog: profile_4080_L300, pos: [0.53, -0.35, 0.84], mass: 0.78, static_friction: 0.9, dynamic_friction: 0.8}
+    - {name: rod_r, catalog: profile_4080_L300, pos: [0.53, 0.35, 0.84], mass: 0.78, static_friction: 0.9, dynamic_friction: 0.8}
+    - {name: cube_u_l, pos: [-0.44, 0.42, 0.825], size: 0.05, color: [0.2, 0.5, 0.9]}
+    - {name: cube_u_r, pos: [-0.46, -0.20, 0.825], size: 0.05, color: [0.2, 0.8, 0.4]}

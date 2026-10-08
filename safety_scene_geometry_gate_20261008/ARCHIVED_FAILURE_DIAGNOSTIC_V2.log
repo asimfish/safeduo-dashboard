@@ -1,0 +1,64 @@
+Warning: in _ReportErrors at line 3172 of /builds/omniverse/usd-ci/USD/pxr/usd/usd/stage.cpp -- In </World/envs/env_0/F_L>: Could not open asset @https:/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/FrankaRobotics/FrankaFR3/fr3.usd@ for reference introduced by @/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_v5.usd@</Robot>. (recomposing stage on stage @anon:0x5db7ec8ccbf0:tmp.usda@ <0x5db7ecec9920>)
+Warning: in _ReportErrors at line 3172 of /builds/omniverse/usd-ci/USD/pxr/usd/usd/stage.cpp -- In </World/envs/env_0/F_R>: Could not open asset @https:/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/5.1/Isaac/Robots/FrankaRobotics/FrankaFR3/fr3.usd@ for reference introduced by @/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5.usd@</Robot>. (recomposing stage on stage @anon:0x5db7ec8ccbf0:tmp.usda@ <0x5db7ecec9920>)
+{
+  "status": "PASS_ARCHIVED_FAILURE_PREDICTION_AND_NATIVE_FK",
+  "scope": "Development only; actual primitive/mesh dimensions for fixtures and robots; table inventory bounds. Objects omitted in this offline diagnostic; native gate includes them.",
+  "source_registration_sha256": "6747ad50669ce0a4a2565c919681fc98f091bc8f099de42a7480749464f30879",
+  "collision_boxes": 172,
+  "max_fk_position_error_m": 1.344079098575257e-06,
+  "max_fk_quaternion_error": 2.634943080948027e-07
+}
+[
+  {
+    "env": 9,
+    "reference_time_s": 19.633333333333333,
+    "arm": "U_L",
+    "development_profile": 48,
+    "fk_errors": {
+      "U_L": [
+        1.344079098575257e-06,
+        1.4728358548043996e-07
+      ],
+      "U_R": [
+        5.953977028627655e-07,
+        2.0309065607015953e-07
+      ]
+    },
+    "admitted": false,
+    "reason": "predicted_scene_overlap",
+    "minimum_axis_gap_m": -0.08602385542066293,
+    "witness": {
+      "hand_collider": "/World/envs/env_0/U_L/left_thumb_4/collisions/left_thumb_rubber_3/node_STL_BINARY_",
+      "obstacle": "/World/envs/env_0/Prop_nist_board/collisions/mesh_0",
+      "alpha": 0.7,
+      "padding_m": 0.04122085672983162
+    },
+    "samples": 121
+  },
+  {
+    "env": 10,
+    "reference_time_s": 19.85,
+    "arm": "U_L",
+    "development_profile": 48,
+    "fk_errors": {
+      "U_L": [
+        8.615837591152697e-07,
+        2.0226976327197832e-07
+      ],
+      "U_R": [
+        4.329153140414377e-07,
+        2.223631633824219e-07
+      ]
+    },
+    "admitted": false,
+    "reason": "predicted_scene_overlap",
+    "minimum_axis_gap_m": -0.08814145762737757,
+    "witness": {
+      "hand_collider": "/World/envs/env_0/U_L/left_thumb_4/collisions/left_thumb_rubber_3/node_STL_BINARY_",
+      "obstacle": "/World/envs/env_0/Prop_nist_board/collisions/mesh_0",
+      "alpha": 0.7,
+      "padding_m": 0.04122085672983162
+    },
+    "samples": 121
+  }
+]

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_scene_geometry_gate_20261008/runtime_batch/native_scene_batch.py", line 296, in <module>
+    try: main()
+         ^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_scene_geometry_gate_20261008/runtime_batch/native_scene_batch.py", line 61, in main
+    env = ProbeEnv(cfg)
+          ^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py", line 639, in __init__
+    super().__init__(cfg, render_mode, **kwargs)
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/envs/direct_rl_env.py", line 167, in __init__
+    self.sim.reset()
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py", line 530, in reset
+    self.render()
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py", line 601, in render
+    raise exception_to_raise
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/assets/asset_base.py", line 317, in _initialize_callback
+    self._initialize_impl()
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/assets/articulation/articulation.py", line 1578, in _initialize_impl
+    self._data = ArticulationData(self.root_physx_view, self.device)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/assets/articulation/articulation_data.py", line 68, in __init__
+    self._previous_joint_vel = self._root_physx_view.get_dof_velocities().clone()
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py", line 1764, in get_dof_velocities
+    raise Exception("Failed to get DOF velocities from backend")
+Exception: Failed to get DOF velocities from backend

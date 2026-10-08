@@ -1,0 +1,1 @@
+The independent full scorer requires at least one admitted non-neutral goal, in addition to full-path safety/tracking and neutral-safe refusals. A vacuous all-refusal or neutral-only outcome cannot pass. No physical threshold, code, frame bank or goal is changed. This closes an acceptance reporting gap before final scoring; per-method moving/neutral counts remain visible.

@@ -1,0 +1,57 @@
+# Per-skill task-completion criteria (R5 first half, T4 2026-08-16).
+# Consumed by safeduo/eval/skill_success.py (judge + endurance wire-in).
+#
+# 标定依据(2026-08-16 T4 离线标定,v5 FK 口径 = real_geometry FR3+JAKA +
+# SceneLayoutV5 法兰系;测量脚本 = python -m safeduo.eval.skill_success):
+# - radius_m 0.05:tier-0 精确回放下,13 技能全部关键航点的"轨迹到航点最小
+#   EE 距离"最差 0.49 mm(cross_pick_place_UF),0.05 m 留 100 倍裕量;物理
+#   语义 = 抓/放/交接的半掌宽到位容差。判据必须由噪声档而非阈值决定成败。
+# - dedupe_eps_m 0.01:hold 相位产生的重复边界航点折叠;静止臂折叠为单点。
+# - order_tol_s 1.0:贪心顺序匹配允许 1 s 内的局部乱序(时间抖动档回放的
+#   相邻航点近距互换不判失败)。
+# - handover_dist_m:tier-0 会合时法兰对距最小值 vs 出生位对距 0.345 m
+#   (tool_pass 第二会合空载对距 0.825 m),阈值取两者中点附近——低于出生
+#   对距(不许躺赢)、高于会合实测(留噪声裕量)。逐技能实测值注释在各节。
+defaults:
+  radius_m: 0.05
+  order_tol_s: 1.0
+  dedupe_eps_m: 0.01
+
+skills:
+  # F 双臂抬转,EE 对距恒 0.40(总表);航点判据已覆盖抬升/旋转/放下到位
+  bimanual_lift_rotate: {}
+  # 分时交叉取放(F 批次 -> U 批次),取点航点为准
+  center_grab_cross: {}
+  # F 侧取 -> 跨线放 U 侧;F_R/U_L 静止臂折叠为单航点
+  cross_pick_place_FU: {}
+  # U 侧取 -> 跨线放 F 侧(镜像)
+  cross_pick_place_UF: {}
+  # U 让位 -> F 双臂搬运全周期
+  dual_carry_both: {}
+  # tier-0 会合法兰对距 0.263 m @step104,出生位对距 0.345 m -> 阈值 0.30
+  handover_FL_UR:
+    handover_pairs: [["F_L", "U_R"]]
+    handover_dist_m: 0.30
+  # tier-0 会合 0.295 m @step253,出生位 0.345 m -> 阈值 0.32
+  handover_UR_FL:
+    handover_pairs: [["U_R", "F_L"]]
+    handover_dist_m: 0.32
+  # y>0 对角(F_R/U_L)高层;tier-0 会合 0.288 m @step62 -> 阈值 0.32
+  handover_high:
+    handover_pairs: [["F_R", "U_L"]]
+    handover_dist_m: 0.32
+  # 低层 z1.04 会合;tier-0 会合 0.284 m @step94 -> 阈值 0.31
+  handover_low:
+    handover_pairs: [["F_L", "U_R"]]
+    handover_dist_m: 0.31
+  # 四臂镜像推进+横摆(p 头压力技能,无抓放),纯航点判据
+  mirror_sync: {}
+  # 低位大范围周界扫掠(扇形分解),纯航点判据
+  perimeter_sweep: {}
+  # 四臂严格轮转取中,航点顺序判据即任务语义
+  sequential_center_grab: {}
+  # 三臂接力双会合:pair1 F_L-U_R tier-0 会合 0.275/出生 0.345 -> 0.31;
+  # pair2 U_R-F_R 会合 0.314/空载 0.825 -> 0.40;链序 = pair1 先于 pair2
+  tool_pass_chain:
+    handover_pairs: [["F_L", "U_R"], ["U_R", "F_R"]]
+    handover_dist_m: [0.31, 0.40]

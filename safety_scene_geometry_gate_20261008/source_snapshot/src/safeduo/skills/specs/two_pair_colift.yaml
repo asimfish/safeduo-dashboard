@@ -1,0 +1,27 @@
+# Category 4 (quad_cooperative): both pairs co-lift at the same time -- the Franka pair
+# carries the 70 cm profile (validated profile_colift geometry: stations y = -/+0.31,
+# carry -x 0.16) while the UR5/DFX pair carries the 30 cm profile lying along x
+# (u_colift_profile300 geometry, stations widened 11 -> 12 cm after the 4-step self_U touch).
+family: two_pair_colift
+category: 4
+env_base: factory
+objects:
+  # builds 2-3: both standing 4x8 profiles toppled / got flicked into the other claw at release (PhysX
+  # contact ordering) -> 5x5 cm square beams (validated pinch width, cannot tip)
+  - {name: beam700, catalog: beam_50_700, xy: [0.53, 0.0]}
+  - {name: beam300, catalog: beam_50_300, xy: [-0.40, 0.0], yaw: 90}
+arms:
+  F_L: {do: colift}
+  F_R: {do: colift}
+  U_L: {do: colift}
+  U_R: {do: colift}
+groups:
+  # build 1: index-locked combos never paired F flange_z with U finger (the validated mix) -> pin them
+  - {arms: [F_L, F_R], obj: beam700, do: colift, half_station: 0.31, carry_dxy: [-0.16, 0.0], lift: 0.10, approach: flange_z}
+  - {arms: [U_L, U_R], obj: beam300, do: colift, half_station: 0.12, carry_dxy: [-0.10, 0.0], lift: 0.10, approach: finger}
+success: {object: beam700, radius_m: 0.10, min_disp_m: 0.08}
+homes:
+  F_L: [0.44, -0.30, 1.25]
+  F_R: [0.44, 0.30, 1.25]
+  U_L: [-0.30, 0.40, 1.20]
+  U_R: [-0.32, -0.36, 1.20]
