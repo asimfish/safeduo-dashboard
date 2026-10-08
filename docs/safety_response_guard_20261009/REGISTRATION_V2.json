@@ -1,0 +1,170 @@
+{
+  "schema": "safeduo.response_guard_pilot.v1",
+  "registered_utc": "2026-10-08T18:15:13.747381+00:00",
+  "home": "/home/liyufeng/safeduo/artifacts/safety_response_multirow_pilot_20261009_0220",
+  "raw": "/mnt/nas/data/lyf/double_hand/safety_response_multirow_pilot_20261009_0220",
+  "phase": "KNOWN_SOURCE_MULTIROW_RESPONSE_PILOT",
+  "source_cycle": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519",
+  "source_states": [
+    {
+      "block": 0,
+      "env": 49,
+      "step": 844,
+      "row": 8887
+    },
+    {
+      "block": 0,
+      "env": 49,
+      "step": 864,
+      "row": 8887
+    },
+    {
+      "block": 0,
+      "env": 49,
+      "step": 884,
+      "row": 8887
+    },
+    {
+      "block": 0,
+      "env": 49,
+      "step": 892,
+      "row": 8887
+    },
+    {
+      "block": 1,
+      "env": 46,
+      "step": 790,
+      "row": 8917
+    },
+    {
+      "block": 1,
+      "env": 46,
+      "step": 810,
+      "row": 8917
+    },
+    {
+      "block": 1,
+      "env": 46,
+      "step": 830,
+      "row": 8917
+    },
+    {
+      "block": 1,
+      "env": 46,
+      "step": 838,
+      "row": 8917
+    }
+  ],
+  "profiles": [
+    "queued_original_target_replay",
+    "queued_single_row_response_cap_0p05",
+    "queued_multirow_response_cap_0p05",
+    "queued_multirow_response_cap_0p02",
+    "instant_multirow_cap_0p05_ORACLE",
+    "instant_multirow_cap_0p02_ORACLE",
+    "queued_multirow_no_arrival_ablation",
+    "queued_multirow_arm_only_rate_ablation"
+  ],
+  "lanes": 64,
+  "unique_source_states": 8,
+  "control_steps": 64,
+  "physics_substeps": 128,
+  "delay_slots": 6,
+  "control_dt_s": 0.016666,
+  "constructor_contact_qualified": false,
+  "solver_warmstart_restore_certified": false,
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "Irrevocable six queued targets contribute to clearance loss",
+      "contrast": "instant_last_issued versus queued_last_issued; only queue release changes"
+    },
+    {
+      "id": "H2",
+      "claim": "A locally retreating position target does not bound actual stopping response",
+      "contrast": "hold/retreat profiles and actual qdot/geometry, resolved PD/mass/bias fields"
+    },
+    {
+      "id": "H3",
+      "claim": "Inward native velocity drives failure even when queue targets retreat",
+      "contrast": "same state and queue at zero/reversed/doubled controlled velocity"
+    }
+  ],
+  "metrics": [
+    "initial original raw gap binding",
+    "time to nonclosing critical row",
+    "minimum actual raw critical gap",
+    "all9021 nonexempt geometry",
+    "scalar normal force per hand partner at eachphysics event",
+    "native q/qd/targets/queue at every control boundary",
+    "resolved stiffness/damping/effort/velocity/armature/mass/inertia/bias"
+  ],
+  "claim_boundary": "Two known source trajectories at eight time boundaries, reset q/qd/root/queue but no solver history. Original target tape is open-loop replay; instantaneous queue replacement is an explicitly marked oracle. Multirow uses nominal response that failed calibration; explicitly a diagnostic hypothesis trial, never a certified predictive bound.",
+  "acceptance": "No all9021 raw-negative or hand scalar>.1N in eight states, no new failures relative original replay, four arms retainmotion. Passing only permits fresh development study; not full System0 or safety certificate.",
+  "gpu_index": 0,
+  "other_gpu_not_touched": true,
+  "unique_source_trajectories": 2,
+  "guard_settings": {
+    "trigger_gap_m": 0.08,
+    "delay_extrapolation_s": 0.1,
+    "desired_outward_velocity_m_s": 0.15,
+    "reserve_gap_m": 0.03,
+    "kinematic_requested_displacement_m": 0.03,
+    "target_delta_caps_rad": [
+      0.05,
+      0.15,
+      0.25
+    ],
+    "physics_dt_s": 0.008333,
+    "full_native_mass_and_hand_J": true,
+    "gravity_disable_flag_bound": true,
+    "armature_added": true,
+    "critical_rows_only": true,
+    "effort_saturation_not_certified": true
+  },
+  "camera": {
+    "slots": [
+      0,
+      1,
+      2,
+      32,
+      33,
+      34
+    ],
+    "views": [
+      "top",
+      "front",
+      "side"
+    ],
+    "every_controls": 4,
+    "initial_and_final": true,
+    "actual_same_run": true,
+    "frustum_scope": "all represented four-arm spheres",
+    "camera_does_not_advance_physics": true
+  },
+  "amendment": "Input attempt2 found source native stream ends at macro960; maximum selected origin892 permits64 macros. Horizon64 fixed before any pilot outcome; all eight states retained.",
+  "multirow_settings": {
+    "rows": 24,
+    "reserve_m": 0.015,
+    "response_timescale_s": 0.125,
+    "arrival_delay_s": 0.1,
+    "outward_velocity_cap_m_s": 0.1,
+    "inward_velocity_cap_m_s": 0.15,
+    "target_delta_caps_rad": [
+      0.02,
+      0.05
+    ],
+    "projection_passes": 40,
+    "rows_selected_by": "smallest full raw9021 distances; no contact exemption filtering",
+    "preserve_original_FIFO_for_profiles": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      7
+    ],
+    "full_hand_rates": true,
+    "missing_constraint_or_infeasible": "retain bounded proposal and label prediction invalid; no safety acceptance"
+  }
+}

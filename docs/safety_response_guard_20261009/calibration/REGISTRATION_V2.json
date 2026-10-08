@@ -1,0 +1,33 @@
+{
+  "schema": "safeduo.native_joint_stop_calibration.v2",
+  "registered_utc": "2026-10-08T20:06:57.219294+00:00",
+  "source": "/mnt/nas/data/lyf/double_hand/safety_feasible_response_20261009_0316/raw_v1",
+  "selection": "up to1024 seeded samples from common-prefix-qualified states; present+past macro all-body scalar exactly zero; controlled arm q atpre/firstmicro strictlyinterior1mm; allnative q withinhardlimits plus1mm numericaltolerance; allnativepre/postvelocity below95%limit",
+  "seed": 95102007,
+  "sample_cap": 1024,
+  "arm_scope": "all74native DOFs, separatelyreport26controlled and48hand",
+  "models": [
+    "unclipped implicit PD",
+    "effort-clipped implicit PD",
+    "effort-clipped joint-stop constrained PD"
+  ],
+  "matched_actual_target": true,
+  "resolved_gravity_flags": true,
+  "rotor_added": true,
+  "physics_horizon": 1,
+  "physics_dt_s": 0.008333,
+  "descriptive_local_gate": {
+    "max_q_error_rad": 0.0001,
+    "max_qd_error_rad_s": 0.02
+  },
+  "no_automatic_policy_change": true,
+  "safety_certificate": false,
+  "source_point_force_gate_receipt": "/home/liyufeng/safeduo/artifacts/safety_feasible_response_20261009_0316/FORCE_ORACLE_raw.json",
+  "nominal_model_sha256": "412d2e0bdd4fa852a8d7c21c86c7b71751ca3c1dcff0f346671df73595a13ea6",
+  "new_native_physics_trials": 0,
+  "amendment": "Attempt1 had zero all-DOF interior samples: fixed hand joints sit at hard stops. Explicit coupled joint-stop model added; keep arm joints interior, allow hand stop boundaries. Primary safety outcomes unchanged.",
+  "posthoc_development": true,
+  "constrained_model_sha256": "ee9a440e4991505a213ad7a7f90d652aa8d2c8843cf28bee0075a65dd09bfc83",
+  "analytic_oracle_tests_actual_exit": 0,
+  "analytic_oracle_count": 4
+}
