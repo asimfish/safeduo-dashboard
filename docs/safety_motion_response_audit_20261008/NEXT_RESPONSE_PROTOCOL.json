@@ -1,0 +1,55 @@
+{
+  "schema": "safeduo.motion_response_frontier.v1",
+  "status": "DESIGNED_NOT_EXECUTED_NOT_YET_FROZEN",
+  "purpose": "Replace an unsupported constant-current-speed heuristic with a motion-response envelope that explicitly covers irrevocable queued targets, actuator response, geometric approximation and contact-permission transitions.",
+  "trigger_evidence": ["PAIRED_GEOMETRY.json", "FIRST_SCORE_EVENT_AUDIT.json", "block1/FIRST_SCORE_EVENT_AUDIT.json", "MOTION_FORECAST_AUDIT.json", "block1/MOTION_FORECAST_AUDIT.json"],
+  "current_candidate": "REJECTED_FOR_ADOPTION; two new primary-comparator geometry failures; fresh acceptance and full point-force recordings absent",
+  "hypotheses_to_separate": [
+    "Momentum/actuator response after a locally retreating applied target can consume remaining clearance.",
+    "Frozen current J and velocity do not bound nonlinear future clearance.",
+    "An already-negative permitted-contact row can become a scored violation when permission is revoked."
+  ],
+  "freeze_before_launch": [
+    "Complete immutable controller, simulator, asset, collision, hand-pose, load and resolved actuator-gain/effort/velocity-limit manifests.",
+    "Separate calibration/development seeds from fresh holdout seeds and hash their raw command tapes before launch.",
+    "Register strata, horizons, first-event definitions, exclusions, motion floors and all safety thresholds before observing candidate outcomes.",
+    "Any uncertainty bound must declare its source and validity domain; an observed calibration maximum alone is empirical and cannot certify an unobserved state."
+  ],
+  "calibration_grid": {
+    "arms": ["F_L", "F_R", "U_L", "U_R"],
+    "controlled_joints": 26,
+    "position_fractions_of_resolved_soft_limits": [0.02, 0.25, 0.5, 0.75, 0.98],
+    "velocity_fractions_of_resolved_limits": [-1.0, -0.5, 0.0, 0.5, 1.0],
+    "queued_target_patterns": ["neutral", "all approaching", "all retreating", "approach-to-retreat reversal", "alternating", "correlated four-arm motion"],
+    "raw_geometry_gap_bands_m": [[0.0, 0.005], [0.005, 0.01], [0.01, 0.02], [0.02, 0.05], [0.05, 0.1]],
+    "row_classes": ["cross-arm", "F self", "U self", "table"],
+    "contact_permission": ["never permitted", "permitted-to-revoked", "revoked-to-permitted"],
+    "delay_slots": 6,
+    "boundary_horizons_steps": [1, 6, 7, 18],
+    "coverage_rule": "Report realized valid-state coverage per stratum and all rejection reasons; these design coordinates are not claimed as sampled experiments or a full Cartesian workspace."
+  },
+  "measurements": [
+    "Native full joint q/qd, root pose/velocity and resolved actuator gains/limits at pre-control, pre-physics and every physics substep.",
+    "Original issued, applied and all six pending target slots; identify the first completed physics macro after each target is delivered.",
+    "All original nonexempt geometry rows and permissions, full row identities, collider-to-row correspondence and original collision observations.",
+    "Per-contact scalar normal forces plus per-partner vectors for every trial; no inference of scalar-force safety from vector norms.",
+    "For each closing row: actual approach before response, peak speed, time to nonclosing motion, remaining minimum clearance, and any velocity sign reversals.",
+    "Capture every geometry, force, permission-revocation and invalid-initial event with three wide views and hand views using the same native run."
+  ],
+  "mechanism_requirements": [
+    "Forecast the irrevocable six-target queue and actuator response to a newly delivered retreat target, including the first completed response macro.",
+    "Account for acceleration, effort saturation, changing Jacobians, full collision geometry and model error instead of treating current-speed times delay as a stopping bound.",
+    "Revalidate contact permission over the response horizon; an exemption must not hide an already unsafe state at revocation.",
+    "If no validated response envelope or viable retreat exists in the registered domain, report UNKNOWN or nonviable; a static projection residual of zero cannot establish future safety.",
+    "Keep candidate implementation in an isolated version until matched regressions and fresh tests are closed."
+  ],
+  "acceptance_phases": [
+    {"name": "CPU contract controls", "scope": "Queue clocks, sign conventions, finite inputs, empty/missing envelope rejection, exemption transitions, a known approach-to-retreat response counterexample and independently calculated prediction-error oracles."},
+    {"name": "Known-bank paired regression", "scope": "All original 128 cases retained; no new strict failure versus the primary baseline; all original geometry, force and motion gates remain in force; explicitly compare the two newly failed cases and five rescues."},
+    {"name": "Fresh native holdout", "scope": "New prehashed seeds, complete scalar force streams, resolved dynamics manifests, realized joint/velocity/FIFO/geometry/permission coverage, paired raw inputs and registered motion floors. Freeze sample size and failure-rate target before launch; use independent case counts rather than correlated frame/row counts for uncertainty."},
+    {"name": "Manipulation and load acceptance", "scope": "Only after native safety gates: reachable uncluttered layouts, object state/size/pose inputs, real maintained grasp, variable loads, four-arm task completion and calibrated top/front/side videos. Empty-hand trajectory safety does not pass this phase."}
+  ],
+  "new_physics_trials_in_this_motion_audit": 0,
+  "future_viability_certified": false,
+  "hardware_approved": false
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "safeduo.passive_motion_audit.v1",
+  "registered_utc": "2026-10-08T09:05:32.031500+00:00",
+  "scope": "Independent read-only analysis of closed block1 known-bank development using the unchanged preregistered block0 auditor and thresholds; no policy, physics or runtime source change; no fresh acceptance.",
+  "root": "/mnt/nas/data/lyf/double_hand/safety_velocity_arrival_20261008_1519/development/block_1/velocity_arrival",
+  "windows": 64,
+  "control_steps": 960,
+  "rows": 9021,
+  "control_dt_s": 0.016666,
+  "horizons_steps": [
+    1,
+    6,
+    7,
+    18
+  ],
+  "metric": "Frozen measured velocity prediction d[t]+h*dt*v[t], compared with actual raw d[t+h] at matched pre-control boundaries. 7-step horizon includes first completed macro-step receiving issued[t] under FIFO6; not a braking bound.",
+  "eligibility": "Origin distance >=0 and origin/future nonexempt; shared invalid initial context reported separately; observations correlated.",
+  "report_groups": [
+    "class",
+    "origin gap below10mm",
+    "10to50mm",
+    "above50mm"
+  ],
+  "events": "All late first geometry failures of the complete64-window block, no selected-case-only success rate.",
+  "thresholds_m": [
+    0,
+    0.02
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "First failure row omitted from admission",
+      "probe": "Check actual selected row IDs at first failure"
+    },
+    {
+      "id": "H2",
+      "claim": "Actually delivered target closes the failing local row",
+      "probe": "Native issued/applied/FIFO identity and signed row increments"
+    },
+    {
+      "id": "H3",
+      "claim": "Current constant-speed forecast underestimates future closure",
+      "probe": "All original rows/frames and first failures, horizons1/6/7/18; overestimation/error/missed crossings; not causal isolation"
+    }
+  ],
+  "source_receipts": {
+    "cell_001.npz": "40265dfe28cb67d7cc6089872ac816f65362d20ba49d4405c941c936da6364fe",
+    "forecast_receipts.json": "3148d3c2be53b83e71949ea76f653d8ec35e25cb94295822b734a007f933292e",
+    "native_receipts.json": "2de26334de46baf55849382e313795f72ef464a74e080cb49f584f833733f3e6",
+    "first_failure_receipts.json": "8e1fdf6bc69047d338b47bfadd37184203d23f186cd28b6b6540d1252dc9f5ee",
+    "full_row_identity.json": "3e9acf5a52ffaff1def8dfb48b7a8300dff8c8595fea0df21449e4d56c19dd12",
+    "post_geometry_final.npz": "e6759599dc5c8e1fd1c1163d98ff06aa0756c1e5586d83d976b1961e49938cc0"
+  },
+  "parent_registration_sha256": "1a959b4ee9ce1013bcc66a74604d077080d3b120971a7d441fc257f97fca5a81"
+}
