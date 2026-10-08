@@ -38,3 +38,5 @@ GPT-6 Astra xhigh参与独立接入检查、相机选择回归和原始数据判
 新增失败的原始观察：第一批环境49在894步前，台面行8887的间隙0.895毫米、闭合速度0.200米/秒、六拍闭合扣减20.022毫米，完整预测已为负。随后原生post间隙−2.188毫米，即使所记录的投影约束残差为0。预测警觉和当前投影可行不能证明真实延迟执行轨迹安全。该观察不是根因或因果证明，见BLOCK0_NEW_FAILURE_ROW_OBSERVATION.json与FIRST_FAILURE_OBSERVATIONS.json。
 
 逐接触点原生测量补充（第二版采集；第一版原图与原始记录及两次审计失败保留）：保留原始闭手默认值、固定机械臂目标、不调用actor，12控制步/24物理事件，64个相对姿态相同的复制环境，仅1个不同初态；起末两帧共42张原图。独立审计：{"status": "PASS_MEASUREMENT_RAW_AUDIT", "scalar_abs_partner_peak_N": 1076.6745359897614, "vector_partner_peak_N": 1064.0169503249833, "physics_events": 24, "original_PNG": 42, "unique_relative_initial_poses": 1, "old_full128_point_scalar_status": "UNKNOWN_UNRECORDED", "safety_acceptance": false}。正对照只验证测量；历史与新128完整窗口的逐点标量力继续UNKNOWN，不能回填、不能充作随机控制器安全验收。
+
+实际视觉检查补充：默认报警案例 b0/env38/step191 的21张原图中，F_L_oblique_above、F_R_opposite_below、F_R_cross_above、U_R_oblique_above 这4个手部视角被台面完全遮挡，另两张部分遮挡。视锥与原生状态/时钟检查通过不代表手部充分可见，本轮不通过充分视觉验收。原图全部保留；新视角必须另起真实采集版本，不能回填为同次原生实拍。
