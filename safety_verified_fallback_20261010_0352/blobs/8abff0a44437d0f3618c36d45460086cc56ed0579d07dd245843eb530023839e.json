@@ -1,0 +1,147 @@
+{
+  "schema": "safeduo.astra.first_full_candidate_independent_summary.v1",
+  "status": "PASS_CLOSED_SUBJOB_DATA_ONLY_PHYSICAL_AND_TASK_NOT_PASSED",
+  "scope": "FIRST_COMPLETE_PAIRED32_ONLY_ORIGINAL_OUTER_FAILED",
+  "lanes": 32,
+  "controls": 480,
+  "microsteps": 960,
+  "reports": {
+    "model": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/fullmodel_batch0_shard0_verified_20261009T221600788400Z.json",
+      "sha256": "162c9d689f1e3d7230b4e9ea5ba115f04d3d381df854bbdbe85d5460db63ad49"
+    },
+    "physical": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch0_shard0_verified_20261009T221044769335Z_physical.json",
+      "sha256": "f5e7405b2ff32899b91482925cdd898754ec9e6f0bbe44c4c9a7959a9c6df291"
+    },
+    "state": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch0_shard0_verified_20261009T221044769335Z_state.json",
+      "sha256": "f69246409fe2ca7d7e34530d6305a376e96c5e4a53b9fc6d92cd42073a8b8db3"
+    },
+    "tracking": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/INDEPENDENT_PAIRED_TRACKING_BATCH0_SHARD0_V1.json",
+      "sha256": "2e6d56c7d1b80831d5b52843faec4d448213c36ec9c9139543cf3c1f0ba80f1f"
+    }
+  },
+  "actual_wait_receipts": [
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch0_shard0_verified_20261009T221044769335Z_physical_actual_wait.json",
+      "sha256": "688398af0f3b51b0799c2f4f59cc8285942b623a1aaa355e9bb26ac44e3c032b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch0_shard0_verified_20261009T221044769335Z_state_actual_wait.json",
+      "sha256": "3207f92dc1b28406ea01c27beb871510fa395b48551e7041a87b4033143ce214"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch0_shard0_verified_20261009T221044769335Z_supervisor.json",
+      "sha256": "128fa8a1404a6bc027aaad935447ec63000c370f0e9a1f5397654c09836ab94b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/fullmodel_batch0_shard0_verified_20261009T221600788400Z_actual_wait.json",
+      "sha256": "a4925f0448d61015c5cad6faf7063b80391ed6dc323e50338cc30d4fd8c10caf"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/independent_paired_tracking_v1_20261009T222357429509Z.json",
+      "sha256": "52ee47a6b9d08d63ebfd4cb650fd791f552221c6460b6c2644bc34acbd2bbce6"
+    }
+  ],
+  "later_parent_failure": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/CANDIDATE_OUTER_FAILURE_OBSERVATION_V1.json",
+    "sha256": "bd422b6e14040079db36cbe8298a7f74798cf8e9237b701a1d61afb053d3e434"
+  },
+  "model": {
+    "events": 15360,
+    "rows_per_event": 9317,
+    "geometry_rows": 9021,
+    "velocity_rows": 148,
+    "effort_rows": 148,
+    "coefficient_disagreements": 0,
+    "reconstruction": "Independent NumPy64 against original stored GPU float32 coefficients, using predeclared comparison tolerance; NOT byte-identical numerical recomputation.",
+    "original_record_bytes": "All closed typed NPY/export ledgers preserved and verified; reference/lower/upper independently rebuilt byte-exact.",
+    "coefficient_max_abs_error": {
+      "A_geometry": 2.066031996150741e-06,
+      "A_velocity": 4.637743396429528e-06,
+      "A_effort": 0.00037212565666777664,
+      "b_geometry": 1.093691416542697e-06,
+      "b_velocity": 3.35921864191846e-06,
+      "b_effort": 0.0003060000472032698
+    },
+    "replay_tolerances": {
+      "atol": {
+        "geometry": 2e-05,
+        "velocity": 2e-05,
+        "effort": 0.0005
+      },
+      "rtol": 2e-05
+    },
+    "admission_tolerances": {
+      "geometry": 0.0001,
+      "velocity": 0.001,
+      "effort": 0.001
+    },
+    "decision_counts": {
+      "1": 5447,
+      "0": 9683,
+      "2": 230
+    },
+    "quantized_actual_model_passes": 5677,
+    "quantized_actual_cpu_gpu_admission_disagreements": 0,
+    "fifo6_preserved": true,
+    "actual_context_hash_not_persisted_by_original_producer": true,
+    "geometry_cache_not_independent_mesh_FK": true
+  },
+  "physical": {
+    "primary_failed_lanes": 19,
+    "geometry_failed_lanes": 9,
+    "scalar_failed_lanes": 17,
+    "native_limit_failed_lanes": {
+      "hard_position": 23,
+      "soft_position": 3,
+      "native_velocity": 12
+    },
+    "enabled_owners_per_lane": 82,
+    "raw_point_count": 884981,
+    "raw_point_scalar_sumabs_exact": true,
+    "camera_groups": 34,
+    "camera_scope": "Original minimal >200 same-rigid pixels; not new palm/5finger/wide, fullmesh, or absence-of-occlusion certification."
+  },
+  "paired": {
+    "common_primary_prefix": 17,
+    "primary_rescues": [
+      0,
+      1,
+      2,
+      15
+    ],
+    "primary_introduced": [],
+    "all_observed_full_pass_lanes": {
+      "raw": [
+        22
+      ],
+      "verified": [
+        2,
+        9,
+        22,
+        28
+      ]
+    },
+    "task_effect": "Reduced motion and worse original-request tracking confirmed independently from all original point-chunk native trajectories."
+  },
+  "all_cases_preserved": true,
+  "independent_holdout_states": 0,
+  "physical_safety_certified": false,
+  "task_success_certified": false,
+  "gpu_started": false,
+  "own_tool_model_wrapper_reap": {
+    "session_id": 25370,
+    "chunk_id": "0c0727",
+    "actual_exit": 0,
+    "actual_wait_completed": true
+  },
+  "own_tool_tracking_wrapper_reap": {
+    "session_id": 88323,
+    "chunk_id": "59aaed",
+    "actual_exit": 0,
+    "actual_wait_completed": true
+  }
+}

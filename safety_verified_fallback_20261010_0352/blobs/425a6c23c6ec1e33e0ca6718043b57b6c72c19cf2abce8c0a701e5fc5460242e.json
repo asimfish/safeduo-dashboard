@@ -1,0 +1,90 @@
+{
+  "schema": "safeduo.astra.queue74_task_native_error_frontier.v2",
+  "status": "PROSPECTIVE_TASK_CRITERIA_PROPOSAL_NOT_ACCEPTANCE",
+  "measured_first32": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/FIRST_FULL_CANDIDATE_INDEPENDENT_SUMMARY_V1.json",
+    "sha256": "8abff0a44437d0f3618c36d45460086cc56ed0579d07dd245843eb530023839e"
+  },
+  "rescued_lane_metric_ranges": {
+    "arm_tracking_rmse_ratio_vs_raw": [
+      1.239324033584658,
+      2.545997253269077
+    ],
+    "arm_tracking_rmse_ratio_vs_static": [
+      1.0372859604186953,
+      1.7256652137588104
+    ],
+    "arm_path_ratio_vs_raw": [
+      0.1352804407225201,
+      0.6653134054214482
+    ]
+  },
+  "interpretation": [
+    "Four primary rescues and zero introduced primary failures on common eligible prefix coexist with worse tracking on all16 rescued arm/lane groups.",
+    "Whole all-observed passing lanes2,9,22,28 also have one or more arms worse than static initial reference; they are not complete task successes.",
+    "Static initial error baseline is not a native SAFE_HOLD experiment. No torque/contact/geometry certificate follows from tracking ratios."
+  ],
+  "prospective_task_contract": {
+    "status": "MUST_BE_REGISTERED_BEFORE_NEW_VALIDATION_SEEDS; no retroactive old pass/fail rewrite",
+    "goal_reference": "Original random requested26, delayed by exact6control FIFO. Never candidate/fallback/insidehard hand targets as arm tracking ground truth.",
+    "per_case_per_arm": "Report all4 separately, all lanes, both full480 and postFIFO active segments; no selecting only rescues or censoring failures.",
+    "proposed_tracking_thresholds": {
+      "active_RMSE_vs_static_initial_max": 0.95,
+      "active_RMSE_vs_paired_raw_max": 1.1,
+      "reason": "A declared >5% improvement over motionless initial reference and <=10% tracking loss vs paired raw. These are proposed task thresholds, not changes to physical gates."
+    },
+    "motion": "Report path L1, native velocity RMS, joint excursions, paired raw ratios, command/issue magnitudes and held/unqualified fractions. Do not count motion magnitude alone as useful tracking; static or dithering cannot beat the declared tracking criteria.",
+    "pause_control_request_window": [
+      240,
+      272
+    ],
+    "actual_applied_pause_control_window": [
+      246,
+      278
+    ],
+    "pause": "Measure tracking to the actually frozen requested26 and all74 qd; final12 applied-pause controls compared with pre-pause active qd RMS. Proposed pause qd RMS <=10% prior active per arm, with native physical gates unchanged.",
+    "resume": "First32 applied controls278:310: tracking RMSE <=0.95 of frozen-pause-position baseline and <=1.10 paired raw on the same segment; then repeat active criteria to control479. No unrecorded restart/FIFO rewrite.",
+    "denominator": "All four conditions32/full480 complete per seed bank; all qualified windows must meet physical zero-failure and zero-introduced-failure requirements plus task criteria before any overall success claim.",
+    "eligibility": "Predeclared common initial/prefix qualifier retained only for causal suffix comparison; all failed/strong-random/unqualified samples remain in all-attempt results. A freeze/hold cannot become a successful substitute task."
+  },
+  "native_error": {
+    "known_witnesses": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/MODEL_FRONTIER_KNOWN_ERRORS_V1.json",
+      "sha256": "4faecbfec19389334af781284f21b4f92d6e714499503970a5cc4ab005ddef7d"
+    },
+    "exact_original_18_19": "New36micro model/strict gates can pass while actual lane18 hard limit fails at micro12 and lane19 force fails at micro13. Actual issued targets match through those first failures.",
+    "valid_future_comparison": "Only immutable12queued microsteps plus2microsteps of firstissued action are guaranteed from a single issue record. Later predicted repeated commands must be compared to recorded actual future targets before claiming matched error.",
+    "unknowns": [
+      "Implicit native actual drive/constraint/contact response; no validated uncertainty bound.",
+      "Native saturation/gravity/coriolis/armature approximation may contribute; no isolated native counterfactual proves single cause."
+    ],
+    "coupling_hypothesis": "Actual native USD scan found no gear/mimic/tendon coupling; do not introduce unobserved manifold G."
+  },
+  "extra_geometry_family": {
+    "authored_inventory": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/FOREARM_WRIST2_USD_COLLISION_INVENTORY_V1.json",
+      "sha256": "075b5a239b8789c555adff2509b17cf7e10b45010c8039ea396430164c886751"
+    },
+    "native_points": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/NATIVE_PAIR_SEPARATION_OBSERVATIONS_V1.json",
+      "sha256": "5bd482c3759f6964035a9621cff86c587f8af66db5e8f87962a5b6d6bfe8519d"
+    },
+    "actual_counterexample": "Lane19 micro13 U_R forearm/wrist2 scalar9.281611442565918N despite positive recorded contact-point separation9.253297321265563e-05m. A nonnegative distance alone cannot certify force<=0.1N.",
+    "proposed_family": "Separate same-arm forearm/wrist2 authored-convex candidate feature; keep original9021 raw scoring unchanged.",
+    "calibration_needed": [
+      "Bind cooked/live collision geometry and contact/rest offsets to actual native body pose and original USD/layer SHAs.",
+      "Retain nearest real other-lane and no-contact samples; no-contact gives UNKNOWN global separation, not positive certified clearance.",
+      "Parent-owned later paired native finite perturbations required for local counterexamples; no radius/reserve or force bound selected to make existing failures pass."
+    ],
+    "cooking_status": "UNKNOWN_NOT_CALIBRATED",
+    "contact_force_certificate": false
+  },
+  "campaign": "Finish remaining3 original candidate full windows under new immutable retry resource plan. Preserve all128 development raw+candidate. Future unused preregistered256 holdout required; no reuse of development128 as independent256.",
+  "camera_ready": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/CAMERA_HELPER_READY_V1.json",
+    "sha256": "e108383f755951ef9054cd3d5e9258fd7ea230f7583371bcbb2d572757364a8e"
+  },
+  "frozen_runtime_edits": false,
+  "gpu_started": false,
+  "physical_safety_certified": false
+}
