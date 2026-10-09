@@ -1,0 +1,102 @@
+{
+  "schema": "safeduo.astra.oracle_correction_history.v7",
+  "status": "PROVEN_CHECKER_SCHEMA_MISMATCH_CORRECTED_CPU_ONLY",
+  "utc": "2026-10-09T18:41:07.690435+00:00",
+  "original_v6_immutable_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py": "37ef81ab81824196f552360ac46f5d9507ebdc8ca262fcdb49b965ee67acf8a3",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_raw_v6.json": "5b6795a3b0ca773fcf2e75054c5baf88dd243ef7da3c3b2256927b3b5961fb7a",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_multirow_v6.json": "cac9748f21cbbd07401e073db8d5109280e65bb71e6d74445942bb0eb0cf2bdf",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_SUPERVISOR_ACTUAL_WAIT.json": "fd514b04c1d36b62ec2aaa0a161440792ba0d4240da4ceadc80b6f6658865d02",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_OVERALL.json": "a40de395ebc6b45d7c640da2481dd58c9dd54270dbc4c5a528a4fa801fa76c78",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_WORKERS_TERMINAL.json": "7e30dfcf9427fc1a850ee414e04e5d98e209aa57d9425dc1624b1f1f5705f582",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v4.py": "c86ce750e43d6a2f22d033a39887da6263eb0c5f9973f1b44b3989c1a7a79d25"
+  },
+  "v6_original_audit_verdicts_preserved": "raw FAIL/resource FAILED; multirow FAIL/resource PASS; actual worker/supervisor/tool exits2 retained",
+  "red_proof": [
+    {
+      "method": "raw",
+      "state": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/full_v5/raw/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/state.json",
+      "state_sha256": "9991b75fba70f6a51ae0bc029e0947f322bf9248d6b4cb7d0d962926daec4451",
+      "semantic_setup": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/semantic_setup.json",
+        "sha256": "f4f78262f4d1161207cc8040e9a0bf2b0c92e7a0141a47df248ef1cdf25b67da"
+      },
+      "native_path_mapping": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/native_path_mapping.json",
+        "sha256": "c4f3066864dd9c20fb9a332e98d4795830c8ffa29a6dc07884dda6a324f5b518"
+      },
+      "v6_actual_exception": "uneditable or ineffective deinstance override"
+    },
+    {
+      "method": "multirow",
+      "state": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/full_v6/multirow/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/state.json",
+      "state_sha256": "fdf98313ee432823cf1802d31958127f60a0bf84c4928d34a9b609b67148d449",
+      "semantic_setup": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/semantic_setup.json",
+        "sha256": "2d879d904d1cd5e44b2170ba59ece387c8482a7aec3fdd65270061dd18d443c4"
+      },
+      "native_path_mapping": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/native_path_mapping.json",
+        "sha256": "c4f3066864dd9c20fb9a332e98d4795830c8ffa29a6dc07884dda6a324f5b518"
+      },
+      "v6_actual_exception": "uneditable or ineffective deinstance override"
+    }
+  ],
+  "usd_causal_proof": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V7_USD_CAUSAL_PROOF.json",
+  "usd_causal_proof_sha256": "bfe4f250b93e2c48ae5cc742fcc375ab4afb34f597350b7226ae5910059a7bbb",
+  "actual_clone_metadata_counts": {
+    "total_overrides": 6656,
+    "rounds": 1,
+    "prior_instance_true": 104,
+    "already_false_but_editable": 6552,
+    "final_remaining_instance_paths": 0,
+    "final_remaining_proxy_paths": 0
+  },
+  "cause": "v6 confuses round-start IsInstance selection with fresh write-time flags after inherited env0 composition changes. is_instance=False, is_instanceable=False, proxy=False, after=False are valid editable no-op writes.",
+  "cascading_error": "cascades from rejecting each group before attempts are visited; does not establish missing files",
+  "change": "v7 checks write-time non-proxy editability, typed/consistent prior metadata, earlier same-round composition mutation for already-false rows, effective after=False, unchanged native paths and exact mesh owners. Round-start selection is not confused with write-time prior flags.",
+  "green_self_test_report": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V7_SELFTEST_v2.json",
+  "green_self_test_actual_exit": 0,
+  "negative_fixture_tests": [
+    "v7_native_fixture_real_proxy_rejected",
+    "v7_native_fixture_ineffective_mutation_rejected",
+    "v7_native_fixture_nonboolean_prior_flag_rejected",
+    "v7_native_fixture_inconsistent_prior_instanceability_rejected",
+    "v7_native_fixture_remaining_proxy_rejected",
+    "v7_native_fixture_remaining_instance_rejected",
+    "v7_native_fixture_changed_actual_paths_rejected",
+    "v7_native_fixture_round_out_of_order_rejected",
+    "v7_native_fixture_foreign_clone_mesh_owner_rejected",
+    "v7_native_fixture_duplicate_override_rejected",
+    "v7_native_fixture_noninstance_without_earlier_round_edit_rejected"
+  ],
+  "unchanged_gate_AST_sha256": {
+    "mask_oracle": "e444b343a4a9ea6a0b5da45e96ca25a935d50e8de33f3b29b8c1a92749148843",
+    "frustum": "828380a4e4f18bd0d8f065381cbe2f877beb7ef6f49afdf42daf0123e2104e70",
+    "exact_snapshot": "bb40e69a6c270a9afa6570de240e01c2984aa73474236519804d107041a7cb34",
+    "bind_microstep": "da58465ff9e45d9b64282889fc867abc8e4463f4e56af8205add32437be11322",
+    "first_exceedances": "8838f68e8957068a1627425dcc8d3b8ceacfbf4f5a8da9880d027fb61752193e",
+    "scalar_points": "f727a955fbdbc675a68f4e21b765df4ee427d1bc16c94213008cd8b398109157",
+    "resource_assessment": "53d7140bff899b854e3bef127a4c461db0fa4fc141eae3b0e76a7bac53746581",
+    "preserved_raw_failure": "f51c36960b7b0ffff8ba9e321f128d1d7a3bbf7c5eb9dc4d6df9ba7715a4fad7",
+    "evidence_verdict": "9a42b5e2e6effa9097fb0be626cf2efa796467066b35e6555c91ee9d7bdebc59",
+    "compare_npy_streams": "5f6237ffce088d425164ca3555c1000a97175350bc19102273c308b73fa99f99",
+    "Audit.snapshot": "5d028c0d7a1fa31939693ab98b6f745653cabcfb4f42ab22031aab5fcca51b92",
+    "Audit.attempt": "8690a3efeab8960f73f61abe1b097e75a3a1e6d78243c3b3b132acf8e1bbda49",
+    "Audit.cameras": "d1d9a8f65ddb43f82aa39dcee97a31d55180c4ffe1c3cdc6bb40d11df771116f",
+    "Audit.load_inventory": "33ec493659a5e7e5e07ddcea9c5e8ff3cb5cc4207b50a46234bb5355c7322322",
+    "Audit.setup": "32f3b90807d628237bd10a5dc4ee0a04fb04cd6331c0e86e2a93c0171df99976",
+    "Audit.forces": "43e8dca541d4ff2b6a33fe0c7e0719050dc4c5a64d2745936b09435cc96e2c9d",
+    "Audit.complete_exports": "89c8b4aa2a3b2037dd372b197d05350ee7499dd0ad50b4fb62ee9b3218a8fca0",
+    "source_check": "fa47860b54ba18a87dd675edd578b96aac50e51d24ec3b1a2ffb8abe2b165c7b",
+    "resource_check": "14f4259224a4a712b7435efd3e26ad91f32e5b163fa5d97cda2ddeb1b60a4fd1",
+    "producer_closure": "9d09a8236386cfbc90de8cdff5ff54ece58b42ff9f8942ec9a4311f6c5ac1329"
+  },
+  "v7_source": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v7.py",
+  "v7_source_sha256": "53f18533bb2d4c801c720f4109f4c43be6496b310c2dc013dce8b32a5bd4966f",
+  "source_archive": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_SOURCE_53f18533bb2d4c80.json",
+  "original_scientific_bytes_modified": false,
+  "actual_visual_reaudit_pending": true,
+  "registered_full_run_acceptance": "BLOCKED",
+  "physical_safety_certified": false
+}
