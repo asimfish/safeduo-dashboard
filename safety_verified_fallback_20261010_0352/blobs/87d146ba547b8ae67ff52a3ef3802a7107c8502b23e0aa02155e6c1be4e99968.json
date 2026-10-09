@@ -1,0 +1,292 @@
+{
+  "schema": "safeduo.astra.acceptance_contract.v3",
+  "status": "PREREGISTERED_REQUIREMENTS_NOT_EXECUTED",
+  "frozen_utc": "2026-10-09T20:05:18.591328+00:00",
+  "scope": "Prospective paired simulation experiment; CPU admission tests alone never satisfy this contract.",
+  "source_sha256": {
+    "multirow_response_v3.py": "14fa383f2642c19cab2d469032d3d32478a4c0bda27b2a66d8f328b841305edc",
+    "DYNAMIC_REGISTRATION.json": "743b7a92eece920a738993bfd20896f163e8584656d6005275c97f633484e5db",
+    "NOMINAL_REJECTION_DIAGNOSTIC_V6.json": "d2d26e699bf1ffe245c8039bc21a103c4e231464bb72b19c2061d9e00210c6f4"
+  },
+  "source_facts": {
+    "old_fresh_states": 64,
+    "control_steps": 480,
+    "physics_substeps": 960,
+    "fifo_slots": 6,
+    "raw_rows": 9021,
+    "enabled_contact_owners": 82,
+    "controlled_dof": 26,
+    "native_dof": 74,
+    "old_issued": 30720,
+    "old_model_satisfied": 0,
+    "old_reference_resource_pass": false
+  },
+  "freeze_policy": {
+    "freeze_before": "Any new holdout simulation outcome; hash this contract, executed source, constraints schema, parameters, input manifests, seed schedule and reporting gates before execution.",
+    "amendment": "A change creates a new contract version and new independent holdout. Preserve this version and every earlier failure; never relabel exploratory data as independent.",
+    "no_posthoc_eligibility_or_threshold_changes": true
+  },
+  "sampling": {
+    "independent_batches": 4,
+    "states_per_batch": 64,
+    "distinct_new_states_minimum": 256,
+    "old_64_role": "Regression only, excluded from independent count; retained in all-attempt reporting.",
+    "seed_schedule": [
+      {
+        "batch": 0,
+        "pose": 630104762881,
+        "velocity": 630104762982,
+        "command": 630104763092,
+        "assignment": 630104763188
+      },
+      {
+        "batch": 1,
+        "pose": 731208563947,
+        "velocity": 731208564048,
+        "command": 731208564158,
+        "assignment": 731208564254
+      },
+      {
+        "batch": 2,
+        "pose": 832309674013,
+        "velocity": 832309674114,
+        "command": 832309674224,
+        "assignment": 832309674320
+      },
+      {
+        "batch": 3,
+        "pose": 933410785079,
+        "velocity": 933410785180,
+        "command": 933410785290,
+        "assignment": 933410785386
+      }
+    ],
+    "seed_disjointness_required": "Check all four seed types and state/input SHA against old and all tuning runs before viewing outcomes. Seed difference alone does not prove independence.",
+    "pose_distribution": "Full native soft-limit uniform proposals, same 0.0001 m geometry-conditioned bank protocol as old registration; do not replace collision rejects silently.",
+    "request_denominator": "Retain every proposal/rejection, every accepted bank state, every attempted lane, constructor event, prefix rejection, incomplete run and terminal failure. Record proposal count and acceptance rate.",
+    "velocity_fractions": [
+      0.0,
+      0.1,
+      0.25,
+      0.5
+    ],
+    "command_amplitudes_rad": [
+      0.05,
+      0.1,
+      0.2,
+      0.35
+    ],
+    "factorial": "16 velocity x amplitude cells, four independent pose replicates/cell/batch; 16 attempts/cell over four batches.",
+    "commands": "26 independent pure-uniform coordinates, same absolute-target construction and native soft-limit clipping as old; 8-control bursts; freeze complete tapes before either method runs.",
+    "coverage_gate": {
+      "qualified_pairs_minimum": 128,
+      "qualified_pairs_per_factorial_cell_minimum": 4,
+      "qualified_highest_velocity_and_amplitude_pairs_minimum": 8,
+      "per_controlled_joint_attempted_initial_pose_span_fraction_of_soft_range_minimum": 0.6,
+      "per_controlled_joint_occupied_equal_soft_range_bins_minimum": 6,
+      "equal_soft_range_bin_count": 8,
+      "insufficient_coverage_verdict": "INCONCLUSIVE_COVERAGE; preserve all failures; do not rescue by shrinking the pose domain or silently resampling."
+    },
+    "excluded_foreign_campaigns": {
+      "gravity_long128": "Existing foreign campaign; reported hold0 risk, no effective movement and not yet a complete128-window result. Never reuse as independent sample or alter its files."
+    },
+    "hand_fixture_preregistration": {
+      "scope": "NEW banks/methods only; same fixture for every paired method. Preserve old archive and scores.",
+      "reason": "Parent reported native hard-limit breaches in old hand fixture U_L about0.00117rad and U_R about0.000447rad; provenance is user report, not independent measurements from this subtask.",
+      "native_hard_limit_inset_rad": 0.03,
+      "all_native_initial_target_equals_q": true,
+      "required_validation": "Verify every hand q within native [lower+0.03, upper-0.03], fail if inset interval invalid; bind all48 hand values/full74 target vector/limits to source SHA and save before any new pose acceptance. Re-evaluate all raw9021 initial geometry and all82 contacts, retain all rejected proposals.",
+      "no_physics_tuning": true,
+      "no_old_score_rewrite": true
+    }
+  },
+  "pairing": {
+    "methods": [
+      "raw_random_target",
+      "unchanged_multirow_response_v3",
+      "candidate_with_runtime_admission"
+    ],
+    "required_identical_before_method": "Same native q, qd, root poses/velocities, predeclared corrected48-hand-DOF fixture with0.03rad native hard-limit inset and initial full-target==q, scene, collider states, masses, inertias, armature, friction, gains, gravity, drive/solver settings, limits, dt, random tapes, FIFO6 contents and reset/probe schedule; save exact snapshots and SHA. Applies to NEW pairs only.",
+    "within_run_comparison": "After policies diverge, do not call their states identical. Candidate vs fallback vs hold admission must use one shared state/parameter/input/queue snapshot.",
+    "steps_per_method": 480,
+    "substeps_per_method": 960,
+    "substeps_per_control": 2,
+    "initial_qualification": "Initial all9021 raw gaps >=0, then six common queued-hold controls with all raw gaps >=0 and every owner-partner point scalar <=0.1 N for ALL methods. Eligibility is their intersection, fixed from this prefix before policy outcomes.",
+    "constructor": "Record constructor and explicit two-microstep probe events separately. Prefix qualification does not erase or certify them.",
+    "tail": "Record all 480 issued commands, 480 applied targets and six pending tail commands. Only 474 new issues reach actuation inside the window; no claim for the unactuated tail.",
+    "failed_or_incomplete_pair": "Failure/incomplete, never omit from denominator or call passed; resource reruns remain linked attempts."
+  },
+  "admission": {
+    "inequality": "Original unnormalized A @ (absolute_target-reference) >= b; positive residual is b-A@delta.",
+    "fixed_tolerances": {
+      "geometry": 0.0001,
+      "velocity": 0.001,
+      "effort": 0.001,
+      "box": 0.0
+    },
+    "coverage": "Check all supplied original rows. Full label requires each raw9021 geometry ID exactly once, both velocity bounds for ALL74 native DOF, and both effort bounds for ALL74 native DOF, plus exact26-coordinate delta box. No masking or omission.",
+    "fail_closed": "Reject nonfinite constraints/candidates/residuals, invalid box, malformed or duplicate IDs, missing limits, stale context/FIFO digest and unmodeled negative raw rows.",
+    "fallback_hold": "Explicit absolute-target candidates using the same full model, reference, limits, tolerances and queue binding; no unconditional safe fallback.",
+    "no_feasible_action": "Return NO_MODEL_FEASIBLE_ACTION with selected_target=null, every residual/rejection and untouched measurements. This is failure to find a feasible supplied candidate, not proof that the global feasible set is empty.",
+    "execution_after_rejection": "Caller preregisters how diagnostic execution continues, records the exact command actually executed as UNQUALIFIED if needed, and preserves the full window. No implied safe action, process abort, deletion or FIFO reset.",
+    "raw_rows": "Retain all9021 measured raw gaps and explicit modeled/unmodeled IDs. Admission residual pass is not a raw-geometry or physical-safety pass.",
+    "fifo": "Existing six entries never cleared, overwritten, reordered or shortened. Admission never calls push/pop. Normal control applies old head and appends new issue once; record before/after exact values and provenance. Future queue safety is unproven.",
+    "column_and_row_identity": "Bind ordered native names and selected raw indices to parameter/geometry SHA; dimensions alone cannot authenticate coefficients.",
+    "false_model_qualification_count_must_equal": 0,
+    "zero_reserve_scope": "If parent changes nominal reserve to zero, it is a preregistered model counterfactual, never a relaxation of raw9021>=0 or scalar<=0.1N; export complete A/b/bounds and bind new model SHA, with unchanged admission tolerances. A feasible critical row alone is insufficient.",
+    "labels": {
+      "MODEL_FULL_ROW_FEASIBLE": "All9021 geometry + full74 native velocity + full74 native effort + box + finite/context/FIFO checks pass.",
+      "MODEL_PARTIAL_ROW_FEASIBLE": "Supplied constraints pass but geometry and/or native velocity coverage incomplete; explicit missing IDs; cannot satisfy this new-policy full-admission gate.",
+      "NO_MODEL_FEASIBLE_ACTION": "No supplied candidate passed; preserve all measurements and explicit reasons; not a global infeasibility proof."
+    },
+    "runtime_default_velocity_scope": "full_native (148 velocity rows). Legacy controlled_only (52 rows) must be explicitly selected and can never receive FULL label.",
+    "new_policy_registered_model": {
+      "geometry_rows": 9021,
+      "chunking": "256 rows per GPU construction chunk is computational partitioning only; export and check every original row on CPU.",
+      "geometry_reserve_m": 0.0,
+      "target_delta_cap_rad": 0.02,
+      "target_center": "queued-endpoint",
+      "objective": "closest to same new frozen random request",
+      "limitation": "Proposed by parent, not validated as physically safe here; exact source/parameter/A/b/bounds SHA must be frozen before new independent evaluation."
+    }
+  },
+  "measurements": {
+    "geometry": "All9021 raw float32 gaps at initial state, qualification prefix and EVERY physics substep; primary failure any gap<0 with no epsilon or exemption filtering. Preserve exemption/dmin metadata only as diagnostics.",
+    "point_contacts": "ALL82 enabled collider owners, every own-environment partner, each of960 substeps: sum(abs(point normal force_N)) per owner-partner. Primary failure >0.1 N. Never use net/vector cancellation as substitute.",
+    "native_point_fields": [
+      "normal_force",
+      "point",
+      "normal",
+      "separation",
+      "counts",
+      "starts",
+      "point_indices",
+      "owner_identity",
+      "partner_identity",
+      "physics_dt",
+      "state_step"
+    ],
+    "contact_validity": "Bind all owner and partner identities; detect truncation, capacity saturation, missing/nonfinite values and mismatched event counters. Such evidence is incomplete, never zero-filled.",
+    "states": "Full74 q/qd/targets and relevant dynamics/limits each substep; candidate/reference/delta/A/b/IDs, FIFO before/after, applied/issued and all admission decisions per control.",
+    "secondary_limits": {
+      "hard_and_soft_position_breach_tolerance_rad": 1e-05,
+      "velocity_limit_ratio_threshold": 1.0001,
+      "not_a_relaxation_of_geometry_or_force_gates": true
+    },
+    "missing_evidence": "FAIL_OR_INCOMPLETE, never convert missing observations to zero alarms."
+  },
+  "images": {
+    "scheduled_slots": [
+      0,
+      16,
+      32,
+      48
+    ],
+    "per_environment_first_scalar_and_geometry_alarms": true,
+    "held_physical_microstep_image": true,
+    "mask_min_visible_hand_pixels": 200,
+    "frustum_plane_margin_m": 0.02,
+    "required_different_azimuths_per_arm": 2,
+    "raw_required": "Original camera images plus segmentation masks/metadata, calibrated camera state and exact held native microstep/state linkage; no plots/renders from a reconstructed pose as substitutes.",
+    "all_arms": [
+      "F_L",
+      "F_R",
+      "U_L",
+      "U_R"
+    ],
+    "qualification": "At least two distinct azimuth views per arm, each >=200 segmented visible hand pixels and >=0.02 m frustum margin; explicit failure if required views cannot be qualified.",
+    "events": "Preserve initial/scheduled captures, per-lane first raw-geometry and scalar-contact alarm captures with attempt metadata. Capture every method on the same registered schedule and preserve failed views.",
+    "read_policy_for_this_subtask": "No PNG loading required; no new images generated."
+  },
+  "motion_and_parameters": {
+    "invariants": "Do not lower command amplitudes, velocity fractions, burst rate, horizon, FIFO delay, gains, masses or limits; no joint/hand freezing, collider disabling, layout changes or exemptions to produce apparent safety.",
+    "paired_motion_metrics": [
+      "26-DOF native q path length",
+      "native qd RMS",
+      "fraction of post-prefix substeps with every controlled |qd| < 0.001 rad/s",
+      "issued-target variation"
+    ],
+    "per_qualified_factorial_cell_candidate_to_raw_path_length_ratio_minimum": 0.9,
+    "per_qualified_factorial_cell_candidate_to_raw_velocity_RMS_ratio_minimum": 0.9,
+    "per_qualified_factorial_cell_candidate_to_raw_target_variation_ratio_minimum": 0.9,
+    "candidate_stationary_fraction_increase_maximum": 0.05,
+    "zero_or_missing_reference_motion": "INCONCLUSIVE_MOTION; cannot divide by zero or claim effective control.",
+    "note": "These are prospective design gates, not measurements or guarantees. Motion reduction may be a real safety/control tradeoff but cannot be called effective under this unchanged-motion experiment.",
+    "tracking_gate": {
+      "targets": "Use the frozen random reference tape shifted by exactly FIFO6; report post-prefix q-to-delayed-reference RMSE per joint and factorial cell, plus q-to-actual-applied-target errors separately.",
+      "candidate_to_raw_reference_RMSE_ratio_maximum": 1.1,
+      "candidate_reference_RMSE_relative_to_static_initial_hold_ratio_maximum": 0.9,
+      "static_counterfactual": "Compute static-initial-q RMSE against the SAME delayed input, no separate hardware or simulator assumption.",
+      "minimum_post_prefix_fraction_of_steps_improving_reference_error_within_each_8_control_burst": 0.5,
+      "zero_or_missing_denominator": "INCONCLUSIVE_TRACKING, never all-hold success."
+    }
+  },
+  "resources": {
+    "all_owned_processes": "Real launcher/supervisor wait/waitpid/poll terminal return codes, PID/start identity, command/cwd/env, begin/end UTC and source SHA; never infer exit=0 from a report, vanished PID or data completeness.",
+    "required_actual_exit": 0,
+    "gpu_resource_limits": "Use original registered limits and reservation/lease policy; do not relax original failed resource gates.",
+    "closure": "All owned worker/recorder/renderer/supervisor processes terminal and reaped; child exit propagates; reserved GPU/resources released and evidenced. Unrelated sessions untouched.",
+    "this_subtask": "CPU only, specified safeduo Python with -B and PYTHONDONTWRITEBYTECODE=1; no Isaac/GPU start."
+  },
+  "verdict": {
+    "safety_trial_pass_requires_all": [
+      "All source/input/parameter/queue bindings verified",
+      "Independent seed/coverage gates satisfied",
+      "All scheduled complete480/960 method windows and all-attempt denominators present",
+      "All image/segmentation and raw9021/all82 per-substep measurement gates satisfied",
+      "Every candidate qualified window has ZERO primary raw-geometry failures and ZERO primary scalar-contact failures",
+      "ZERO newly introduced failures versus EACH paired baseline for every primary and secondary criterion at matched lane/control/substep; also report per-lane any-event indicators",
+      "ZERO secondary limit breaches in candidate qualified windows",
+      "ZERO falsely admitted model candidates; retain all NO_MODEL_FEASIBLE_ACTION records",
+      "Motion/intensity/unchanged-parameter gates satisfied",
+      "All owned actual wait exits and resource closure pass",
+      "Tracking and additional full480/960 pause/resume challenge requirements all satisfied; all-hold never task success.",
+      "Only MODEL_FULL_ROW_FEASIBLE counts as full runtime model admission for new all9021/full74-velocity policy; partial model passes never substituted."
+    ],
+    "primary_failures_allowed": 0,
+    "new_failures_allowed": 0,
+    "unqualified_windows": "Report full outcomes separately and all-attempt totals. No safety pass claim for rejected initial/prefix windows. If all or too many reject, coverage gate fails.",
+    "failure_rate_reduction_is_not_pass": true,
+    "permitted_claim": "Only: this preregistered simulation trial passed the specified safety gates on its qualified windows.",
+    "forbidden_claims": [
+      "hardware absolute safety",
+      "all-state or all-input guarantee",
+      "model feasibility implies physical safety",
+      "CPU negative tests prove a safe fallback",
+      "old reference resource failure has been repaired by reusing its data"
+    ],
+    "hardware_absolute_safety_certified": false
+  },
+  "subtask_delivery_gate": {
+    "module": "runtime_action_admission.py",
+    "negative_tests": "test_runtime_action_admission.py",
+    "test_actual_exit_required": 0,
+    "source_sha256_required": true,
+    "old_data_regression_is_not_independent_trial": true
+  },
+  "previous_contract": {
+    "path": "acceptance_contract_prior_v2.json",
+    "sha256": "41179123660fa28b70c1e438bf7e0fb72638d092b7e9dc217531e231aeec04d4",
+    "reason": "Explicit user full9021/full74-velocity requirement and predeclared native-hand fixture correction; no independent candidate simulation performed by this subtask."
+  },
+  "pause_resume": {
+    "scope": "Additional preregistered paired challenge windows; do not replace or shorten the full-strength random480/960 main windows.",
+    "distinct_challenge_states": 64,
+    "new_seed_base": 1044521896317,
+    "independence": "Disjoint states/seeds from main256, old64 and foreign gravity_long128; all64 retained. At least32 prefix-qualified pairs and every16 factorial cell represented.",
+    "window": {
+      "controls": 480,
+      "substeps": 960
+    },
+    "schedule": {
+      "controls_0_through_159": "Same frozen8-control random bursts.",
+      "controls_160_through_175": "Pause generation by repeating the last frozen raw requested target, IDENTICAL paired request for each method. Existing FIFO6 drains normally.",
+      "controls_176_through_479": "Resume fresh frozen random bursts at the same registered velocity fraction/amplitude; never reset state, gain, targets or FIFO."
+    },
+    "admission": "Repeated pause target and resumed candidates require ordinary full-model admission; hold is not safe by definition.",
+    "recovery_controls_after_resume_arrival_maximum": 16,
+    "recovery_definition": "Starting after the six-control actuation delay, recover at least90% of paired raw qd RMS and path length over the next16 controls, reference RMSE<=1.1x raw and <=0.9x static-hold counterfactual over remaining resumed window; record per-cell and per-lane distributions.",
+    "completion": "All qualified challenge windows must meet zero primary/secondary/new-failure gates, motion/tracking/recovery gates, image/point/geometry completeness and actual-wait resource closure.",
+    "failure": "Remaining paused, resuming at lower amplitudes/gains, missing steps, all-hold, or unfinished128 foreign campaign cannot satisfy task success."
+  }
+}
