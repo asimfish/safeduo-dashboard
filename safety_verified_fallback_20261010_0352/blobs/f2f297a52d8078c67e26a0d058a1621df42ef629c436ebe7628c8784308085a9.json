@@ -1,0 +1,41 @@
+{
+  "schema": "safeduo.astra.subjob_audit_summary.v1",
+  "scope": "SUBJOB_EVIDENCE_ONLY",
+  "status": "PASS_SUBJOB_DATA_ONLY",
+  "receipts": [
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch1_shard1_raw_20261009T214352557081Z_physical_actual_wait.json",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch1_shard1_raw_20261009T214352557081Z_state_actual_wait.json"
+  ],
+  "binding": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/subjob_batch1_shard1_raw_20261009T214352557081Z.binding.json",
+  "binding_sha256": "0e77c9c59937611a4dcd11761c3330020137acda999fa5e3dc3229eac522e99f",
+  "parent_after_audit": {
+    "status": "PARENT_SUPERVISOR_CLOSED_RECORDED_ACTUAL0",
+    "original_execution_status": "complete",
+    "original_execution_closed_utc": "2026-10-09T21:43:48.760905+00:00",
+    "supervisor_path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/shard_full_raw_supervisor_v1_execution.json",
+    "supervisor_actual_exit": 0,
+    "supervisor_receipt": {
+      "tag": "shard_full_raw_supervisor_v1",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/execute_bounded_plan_v6.py",
+        "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/SHARD_RAW_PLAN_V1.json"
+      ],
+      "pid": 2518365,
+      "actual_exit": 0,
+      "started_utc": "2026-10-09T20:45:56.621005+00:00",
+      "closed_utc": "2026-10-09T21:43:48.786821+00:00",
+      "log_sha256": "f106ac4f8b80ff2fc0f2fefed12eaab75c9eafc95c47695cd46783d839513c19"
+    },
+    "supervisor_receipt_sha256": "6b5d954a87046c2ca7f8c38c1c2d8594099884a3c3fac0f9944ec39070ce90a7",
+    "parent_actual_wait_verified": true
+  },
+  "physical_safety_certified": false,
+  "task_effectiveness_verified": false,
+  "independent_holdout_states": 0,
+  "data_role": "development",
+  "controls": 480,
+  "microsteps": 960,
+  "lanes": 32
+}
