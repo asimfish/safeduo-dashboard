@@ -1,0 +1,42 @@
+{
+  "schema": "safeduo.native_solver_prefix_diagnostic.v1",
+  "registered_utc": "2026-10-09T09:35:37.658699+00:00",
+  "hypothesis": "Finite articulation position iterations permit transient handjoint limit overshoot under arm inertia/drive coupling; isolate iteration count",
+  "alternative_hypotheses": [
+    "Intrinsic native joint integration/deferred-response mismatch persists despite increased solve count",
+    "Changing solve count shifts contact or clearance rather than solving completephysicalproblem"
+  ],
+  "same_initial_states": 64,
+  "source_batch": 0,
+  "complete_native74_initial_q_qd_targets_unchanged": true,
+  "hand_fixture_unchanged": true,
+  "position_iterations": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "velocity_iterations": 0,
+  "external_forces_every_iteration": false,
+  "all4native_roots_readback_required": true,
+  "controls": 6,
+  "physics_events": 12,
+  "raw_geometry_rows": 9021,
+  "raw_point_owners": 82,
+  "primary_geometry_gate_m": 0,
+  "primary_force_gate_N": 0.1,
+  "strict_supplementary_hard_gate_rad": 1e-05,
+  "score_no_initial_outcome_selection": true,
+  "score_all64includinginitialprefixrejections": true,
+  "metrics": [
+    "per64 transientall74hardlimit count/max and earliest event",
+    "pointnormalforce/geometry primary qualification count",
+    "actual default8 run reproductionq/qd/force/geometry correspondence",
+    "tradeoffs and regressions in all64"
+  ],
+  "safety_configuration_adoption": false,
+  "formal_holdout": false,
+  "controller_actions": 0,
+  "execution_after": "qualified_paired128_v8 all4complete actualexit0; no overlap on GPU1",
+  "next_adoption_boundary": "Do not adopt from onebatchdiagnostic; anynewsolver choice requires prospectively registered512initialqualificationandfreshmatchedpolicytrial"
+}
