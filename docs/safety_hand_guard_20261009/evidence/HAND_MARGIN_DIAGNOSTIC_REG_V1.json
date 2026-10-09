@@ -1,0 +1,31 @@
+{
+  "registered_utc": "2026-10-09T11:35:39.392840+00:00",
+  "reference_inputs": "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/hand_valid_v2/solver_prefix_iters64_v2/prefix_inputs.npz",
+  "reference_inputs_sha256": "ae9cb573292bc552f7e3e40d3106a1b7f0f0ff7b98a6575a6eec4d195dc05788",
+  "reference_outputs": "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/hand_valid_v2/solver_prefix_iters64_v2/prefix_result.npz",
+  "reference_outputs_sha256": "092a8dc1fae2d5be6aa134addf5d48607d1e1998d650e6d05d478e739113f69c",
+  "known_development_states": 64,
+  "original_geometric_bank_first64_all_retained": true,
+  "position_iterations_fixed": 64,
+  "velocity_iterations_fixed": 0,
+  "hand_margins_rad": [
+    0.0,
+    0.01,
+    0.03,
+    0.05
+  ],
+  "hand_intervention": "Clip hand initial positions AND existing held targets to lower+margin/upper-margin; armpositions, allvelocity, roots, gains and native hardbounds unchanged",
+  "initial_raw_geometry_changed_due_to_hand_intervention": true,
+  "initial_geometry_gate_m": 0.0001,
+  "all12_micro_geometry_gate_m": 0,
+  "point_scalar_gate_N": 0.1,
+  "joint_and_velocity_tolerance": 1e-05,
+  "initial_geometry_rejects_retained_and_simulated": true,
+  "controls_each": 6,
+  "physics_events_each": 12,
+  "baseline0_repeat_reason": "Required to verify new fullhand target setter reproduces earlier position64 native dynamics exactly",
+  "hypothesis": "Moving hand state/targets off exact hard boundaries may reduce stop overshoot; possible tradeoff is new overlap/force",
+  "formal_holdout": false,
+  "no_prod_parameter_adoption": true,
+  "no_fullSystem0_claim": true
+}

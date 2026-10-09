@@ -1,0 +1,48 @@
+{
+  "status": "PASS_ALL480_NATIVE_ISSUE_BRANCHES_EXACT",
+  "records": [
+    {
+      "method": "raw",
+      "issued_lane_controls": 30720,
+      "exact_issue_branch_verified": true,
+      "actual_semantics": "Every issued target equals the frozen raw random reference; no multirow/hold branch",
+      "copied_family_description": "existing nominal multirow_response_v3 plus initial-target hold on model-invalid lanes; unproven backup"
+    },
+    {
+      "method": "multirow",
+      "issued_lane_controls": 30720,
+      "exact_issue_branch_verified": true,
+      "actual_semantics": "Every issued target equals the nominal multirow proposal; no hold override",
+      "copied_family_description": "existing nominal multirow_response_v3 plus initial-target hold on model-invalid lanes; unproven backup",
+      "model_satisfied_lane_controls": 0,
+      "model_unsatisfied_lane_controls": 30720,
+      "fallback_lane_controls": 0,
+      "native_model_flag_recalculated_exact": true,
+      "bounded_impossible_lane_controls": 30720,
+      "max_nominal_geometry_velocity_residual": 3.6574525833129883,
+      "max_nominal_controlled_velocity_residual": 5.148310661315918,
+      "max_nominal_full_drive_effort_residual": 684.5001831054688,
+      "nominal_model_residual_is_not_native_force_measurement": true
+    },
+    {
+      "method": "multirow_hold_fallback",
+      "issued_lane_controls": 30720,
+      "exact_issue_branch_verified": true,
+      "actual_semantics": "Model-invalid lane holds all26 initial arm targets; valid lane issues nominal multirow proposal",
+      "copied_family_description": "existing nominal multirow_response_v3 plus initial-target hold on model-invalid lanes; unproven backup",
+      "model_satisfied_lane_controls": 0,
+      "model_unsatisfied_lane_controls": 30720,
+      "fallback_lane_controls": 30720,
+      "native_model_flag_recalculated_exact": true,
+      "bounded_impossible_lane_controls": 30720,
+      "max_nominal_geometry_velocity_residual": 1.535945177078247,
+      "max_nominal_controlled_velocity_residual": 1.4654090404510498,
+      "max_nominal_full_drive_effort_residual": 288.2675476074219,
+      "nominal_model_residual_is_not_native_force_measurement": true
+    }
+  ],
+  "metadata_defect": "paired_controller is a copied family-level description for all3 methods; use the method and verified native issue branch, not this description, to identify behavior",
+  "original_native_records_modified": false,
+  "frozen_sources_modified": false,
+  "no_result_reclassification": true
+}
