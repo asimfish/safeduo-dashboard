@@ -1,0 +1,133 @@
+{
+  "schema": "safeduo.astra_camera_v4.v1",
+  "status": "CPU_VERIFIED_READY_FOR_PARENT_ACTUAL_REPLAY_RENDER",
+  "ready_for_parent_integration": true,
+  "actual_exit": 0,
+  "tests": 39,
+  "seconds": 46.46465471596457,
+  "created_utc": "2026-10-09T16:48:53.748283+00:00",
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v4.py": "c86ce750e43d6a2f22d033a39887da6263eb0c5f9973f1b44b3989c1a7a79d25",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/test_qualified_views_v4.py": "82a8f87dfca7574a92f240a6f0c1be29828245674f6d3d5c600a3dbbf5dfaf25"
+  },
+  "frozen_sources_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v3.py": "520cdf077a0609893c62893a8202f9cc44e9fc6fcdff7c25d805fd63cea7a67a",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/test_qualified_views_v3.py": "313520716da647e1a5ac46142b296ccf8437f6a712a27b78fa1e08531167a226",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/hand_views.py": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_visible_random_v3.py": "6ae5f224cec5ebf362543eadfac54aab65bc74abfdaf62340c876a62a55c1b93",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_all_body_point_contacts.py": "20ce80a7608604e74741cc0902f4cf1bcbf3886bc7fa898d325976597f2b1cda",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/point_contact_data.py": "48d1f8d79378e777230edf76d4be952f90696ff1337a8aa36669487bbd79648c",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence.py": "bfb856bb698f7d8e7c16bc7b18f09f8ae5590f4ac6b2d6aebe93ffc4f5e649c0"
+  },
+  "source_stable_during_tests": true,
+  "frozen_v3_and_oracle_unchanged": true,
+  "gpu_used": false,
+  "isaac_app_started": false,
+  "published": false,
+  "original_failed_evidence_modified": false,
+  "changed_paths": [
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v4.py",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/test_qualified_views_v4.py",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_CAMERA_V4.json"
+  ],
+  "parent_API": {
+    "imports": "from qualified_views_v4 import qualified_camera_factory, configure_qualified_camera, QualifiedViews",
+    "preplay_setup": "with qualified_camera_factory(): super()._setup_scene(); then configure_qualified_camera(self) before play",
+    "capture": "QualifiedViews(env, separate_replay_root).capture(original_step, [source_env], separate_replay_kind, substep=original_substep)",
+    "source_identity": "Collector records qualified_views_v4.py and inherited hand_views.py source SHA; parent must freeze this manifest before GPU replay."
+  },
+  "failure_evidence": {
+    "root": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/raw",
+    "state": "qualified_views/first_scalar_alarm/step_0027_sub_0_capture_000023/env_034/state.json",
+    "state_sha256": "eb64a54d94f7e42012026f5de5f10a4037a1c28f89ef2dfccbc5ccf449dad6b5",
+    "arm": "U_R",
+    "original_qualified_views": 2,
+    "unrendered_table_proxy_rejections": [
+      1,
+      4,
+      6
+    ],
+    "actual_render_zero_hand_pixels_attempt": 5,
+    "original_status_retained": "failed"
+  },
+  "bounded_contract": {
+    "max_candidates_per_arm": 24,
+    "world_elevations_deg": [
+      55,
+      0,
+      -45
+    ],
+    "azimuths_deg": [
+      0,
+      120,
+      240,
+      60,
+      180,
+      300,
+      90,
+      270
+    ],
+    "required_images_per_arm": 3,
+    "required_azimuth_separation_deg": 30,
+    "renders_per_candidate": 3,
+    "max_held_renders_per_4arm_group": 288,
+    "native_hand_sphere_radius_m": 0.06,
+    "minimum_six_plane_clearance_m": 0.02,
+    "pixel_threshold_strictly_greater_than": 200,
+    "pixel_identity": "same exact native rigid link per instance/semantic pixel; unique SHA token; ambiguous same-arm multi-rigid labels rejected",
+    "unknown_ids_and_foreign_hand_pixels": "fail closed even when target has >200 pixels",
+    "table_proxy": "diagnostic only; actual render masks always decide visible hand pixels for framed candidates",
+    "native_hold": "every render all64 q/qd/root/rootvel/link/fulltargets/origin/nativeclock dtype+shape+C-order bytes; sensor refresh exactly +1 at dt=0",
+    "nested_deinstance": "owned anonymous layer, fresh traversal after each batch, max32 rounds, actual descendant paths retained, no instance/proxy left, mesh->native hand owner records",
+    "visibility": "Inherited clone-isolation/restoration only; no new hiding of target tables, arms or objects; no materials, ghosting, physics attributes or poses altered."
+  },
+  "validation": {
+    "command": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "test_qualified_views_v4"
+    ],
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONPATH": "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.usd.libs-1.0.1+69cbf6ad.lx64.r.cp311",
+      "LD_LIBRARY_PATH": "/home/liyufeng/miniforge3/envs/safeduo/lib:/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.usd.libs-1.0.1+69cbf6ad.lx64.r.cp311/bin:/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit"
+    },
+    "actual_exit": 0,
+    "stdout": "",
+    "stderr": "test_config_error_returns_all_slot_failure_receipts (test_qualified_views_v4.CaptureTests.test_config_error_returns_all_slot_failure_receipts) ... ok\ntest_duplicate_calls_are_exclusive_and_substep_preserved (test_qualified_views_v4.CaptureTests.test_duplicate_calls_are_exclusive_and_substep_preserved) ... ok\ntest_empty_masks_fail_complete_window_and_bound_attempts (test_qualified_views_v4.CaptureTests.test_empty_masks_fail_complete_window_and_bound_attempts) ... ok\ntest_initial_full_original_output_roundtrip_and_exact_frame (test_qualified_views_v4.CaptureTests.test_initial_full_original_output_roundtrip_and_exact_frame) ... ok\ntest_native_signed_zero_change_unrendered_slot_denies_without_losing_rgb (test_qualified_views_v4.CaptureTests.test_native_signed_zero_change_unrendered_slot_denies_without_losing_rgb) ... ok\ntest_prefinal_frame_mismatch_does_not_erase_original_attempts (test_qualified_views_v4.CaptureTests.test_prefinal_frame_mismatch_does_not_erase_original_attempts) ... ok\ntest_rejected_render_retained_and_next_candidate_succeeds (test_qualified_views_v4.CaptureTests.test_rejected_render_retained_and_next_candidate_succeeds) ... ok\ntest_table_proxy_is_diagnostic_and_actual_masks_decide (test_qualified_views_v4.CaptureTests.test_table_proxy_is_diagnostic_and_actual_masks_decide) ... ok\ntest_actual_world_six_planes_match_signed_sphere_distances (test_qualified_views_v4.GeometryTests.test_actual_world_six_planes_match_signed_sphere_distances) ... ok\ntest_legacy_table_occluded_despite_frustum_pass (test_qualified_views_v4.GeometryTests.test_legacy_table_occluded_despite_frustum_pass) ... ok\ntest_ray_parallel_inside_endpoint_and_nonfinite (test_qualified_views_v4.GeometryTests.test_ray_parallel_inside_endpoint_and_nonfinite) ... ok\ntest_world_above_directions_and_distinct_azimuth (test_qualified_views_v4.GeometryTests.test_world_above_directions_and_distinct_azimuth) ... ok\ntest_ambiguous_inherited_label_rejected (test_qualified_views_v4.MaskTests.test_ambiguous_inherited_label_rejected) ... ok\ntest_colorized_or_resized_masks_are_rejected (test_qualified_views_v4.MaskTests.test_colorized_or_resized_masks_are_rejected) ... ok\ntest_empty_and_exactly_200_hand_pixels_fail_201_passes (test_qualified_views_v4.MaskTests.test_empty_and_exactly_200_hand_pixels_fail_201_passes) ... ok\ntest_generic_class_and_arm_root_do_not_certify_hand (test_qualified_views_v4.MaskTests.test_generic_class_and_arm_root_do_not_certify_hand) ... ok\ntest_local_instance_path_and_semantic_dict_supported (test_qualified_views_v4.MaskTests.test_local_instance_path_and_semantic_dict_supported) ... ok\ntest_same_arm_different_rigid_300px_rejected (test_qualified_views_v4.MaskTests.test_same_arm_different_rigid_300px_rejected) ... ok\ntest_unknown_id_rejected_even_with_enough_hand_pixels (test_qualified_views_v4.MaskTests.test_unknown_id_rejected_even_with_enough_hand_pixels) ... ok\ntest_unsigned_id_bitpattern_and_string_map_keys (test_qualified_views_v4.MaskTests.test_unsigned_id_bitpattern_and_string_map_keys) ... ok\ntest_wrong_slot_wrong_arm_and_prefix_collision_do_not_count (test_qualified_views_v4.MaskTests.test_wrong_slot_wrong_arm_and_prefix_collision_do_not_count) ... ok\ntest_annotator_types_injected_before_attach_and_registry_restored (test_qualified_views_v4.NativeAndConfigTests.test_annotator_types_injected_before_attach_and_registry_restored) ... ok\ntest_configure_requires_constructor_factory (test_qualified_views_v4.NativeAndConfigTests.test_configure_requires_constructor_factory) ... ok\ntest_constructor_receives_segmentation_before_original_init (test_qualified_views_v4.NativeAndConfigTests.test_constructor_receives_segmentation_before_original_init) ... ok\ntest_exact_native_all_fields_and_detached_copies (test_qualified_views_v4.NativeAndConfigTests.test_exact_native_all_fields_and_detached_copies) ... ok\ntest_factory_patches_local_import_site_and_restores_on_exception (test_qualified_views_v4.NativeAndConfigTests.test_factory_patches_local_import_site_and_restores_on_exception) ... ok\ntest_native_inventory_exact_order_and_bad_path_reject (test_qualified_views_v4.NativeAndConfigTests.test_native_inventory_exact_order_and_bad_path_reject) ... ok\ntest_recorded_v1_background_only_mapping_never_qualifies (test_qualified_views_v4.NativeAndConfigTests.test_recorded_v1_background_only_mapping_never_qualifies) ... ok\ntest_nested_deinstance_bound_fails_and_removes_owned_layer (test_qualified_views_v4.RealUsdCloneTests.test_nested_deinstance_bound_fails_and_removes_owned_layer) ... ok\ntest_nested_instance_loop_retains_paths_physics_and_restores_layer (test_qualified_views_v4.RealUsdCloneTests.test_nested_instance_loop_retains_paths_physics_and_restores_layer) ... ok\ntest_preplay_config_authors_all64_and_uses_omni_stage_without_camera_stage (test_qualified_views_v4.RealUsdCloneTests.test_preplay_config_authors_all64_and_uses_omni_stage_without_camera_stage) ... ok\ntest_real_inherit_reproduces_env0_label_leak_then_all64_local_overrides (test_qualified_views_v4.RealUsdCloneTests.test_real_inherit_reproduces_env0_label_leak_then_all64_local_overrides) ... ok\ntest_wrong_clone_semantic_token_cannot_qualify (test_qualified_views_v4.RealUsdCloneTests.test_wrong_clone_semantic_token_cannot_qualify) ... ok\ntest_case_normalization_token_is_exact (test_qualified_views_v4.RendererTokenTests.test_case_normalization_token_is_exact) ... ok\ntest_hidden_clone_pixels_fail_even_if_target_hand_has_enough_pixels (test_qualified_views_v4.RendererTokenTests.test_hidden_clone_pixels_fail_even_if_target_hand_has_enough_pixels) ... ok\ntest_actual_v3_env34_failure_was_table_proxy_plus_zero_pixels (test_qualified_views_v4.V4BoundedEvidenceTests.test_actual_v3_env34_failure_was_table_proxy_plus_zero_pixels) ... ok\ntest_same_arm_multiple_native_semantic_paths_are_ambiguous (test_qualified_views_v4.V4BoundedEvidenceTests.test_same_arm_multiple_native_semantic_paths_are_ambiguous) ... ok\ntest_table_proxy_does_not_promote_empty_actual_masks (test_qualified_views_v4.V4BoundedEvidenceTests.test_table_proxy_does_not_promote_empty_actual_masks) ... ok\ntest_triplet_keeps_searching_until_azimuth_separated (test_qualified_views_v4.V4BoundedEvidenceTests.test_triplet_keeps_searching_until_azimuth_separated) ... ok\n\n----------------------------------------------------------------------\nRan 39 tests in 46.317s\n\nOK\n",
+    "red_regression_before_implementation": {
+      "actual_exit": 1,
+      "tests": 3,
+      "failures": [
+        "6 directions rather than24",
+        "same-arm different-rigid300pixels was qualified",
+        "table proxy prevented actual candidate renders"
+      ]
+    },
+    "focused_after_implementation": {
+      "actual_exit": 0,
+      "tests": 9,
+      "seconds": 2.824
+    },
+    "static_ast_parse": true,
+    "real_installed_USD_CPU_probe": "Nested instance/proxy deinstancing preserves composed paths, collision/rigid/xform attribute values, unrelated instances, and exact original root/session layers after close.",
+    "actual_v3_failed_buffers": "Original failed state SHA pinned; unrendered proxy failures remain unrendered; raw zero-mask candidate remains failed under in-memory v4 token spelling only."
+  },
+  "limitations": [
+    "CPU capture harness is not real renderer evidence; actual v4 GPU render remains pending parent.",
+    "Visual repair selected after observing v3 failures; it does not tune controller policy or certify safety.",
+    "Expanded directions and relaxed table proxy veto do not prove recovery, occlusion freedom or whole-hand visibility.",
+    "Deinstance metadata may change numerical physics footprint; no unchanged-physics claim, paired v3 source methods remain untouched.",
+    "Supplemental replay must live in a separate root/kind, retain original failed qualification, and record full64 original q/qd/root/rootvel/fulltargets equality plus preregistered link reconstruction tolerance.",
+    "A kinematic replay cannot restore original native clock or hidden solver/contact state. Collector takes zero physics steps and does not restore state itself; parent owns replay provenance and zero controller windows.",
+    "Frozen independent oracle bfb remains for original v3 full audits; v4 supplemental qualification is separate and cannot overwrite original v3 results."
+  ],
+  "physical_safety_certified": false
+}

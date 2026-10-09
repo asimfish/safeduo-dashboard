@@ -1,0 +1,44 @@
+{
+  "schema": "safeduo.astra_native_evidence.correction_history.v1",
+  "recorded_utc": "2026-10-09T16:38:46.851221+00:00",
+  "history_event": "same_name_sidecar_receipt_and_log_overwritten_during_clock_oracle_correction_before_append_only_rule_was_applied",
+  "original_failed_receipt": {
+    "status": "BLOCKED",
+    "parent_observed_time": "2026-10-09 16:28 UTC (minute precision supplied by parent)",
+    "only_failure_in_parent_observed_revision": "constructor_explicit_probe: native clock compared incorrectly to requested physics/force API dt .008333",
+    "oracle_source_sha256": "b57fbddb63353128311508c6d8653d6abf4764185886868c7a00a3823abaf11f",
+    "oracle_sha_corroborated_by_existing_selftest_receipt": "b57fbddb63353128311508c6d8653d6abf4764185886868c7a00a3823abaf11f",
+    "first_actual_exit_parent_reported": 1,
+    "first_actual_exit_provenance": "explicit parent message; original execution receipt/log not retained locally",
+    "sidecar_direct_clock_failure_run_exit_observed_in_tool_result": 2,
+    "original_json_bytes_preserved": false,
+    "original_json_sha256": null,
+    "original_log_bytes_preserved": false,
+    "original_log_sha256": null,
+    "unavailable_reason": "same-name reruns replaced these files; no byte-identical backup was found; current canonical log is a later PASS log, not the original failed log"
+  },
+  "correction": {
+    "native_indices": [
+      4,
+      5
+    ],
+    "observed_clock_delta_s": 0.008333333767950535,
+    "requested_force_api_dt_s": 0.008333,
+    "mask_gate_relaxed": false,
+    "valid_new_pass_receipt": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_integration_camera_v3_v2.json",
+    "physical_safety_certified": false
+  },
+  "current_existing_artifacts_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_SELFTEST.json": "7ecd353e10df2fb17799f22746679a11299c16bec3bb733bfe5876aa2c76dcec",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_SELFTEST_EMPTY_RED.log": "6f0f494102b487235a372635b0c22c3b345db42e0053a0011685456634aaa242",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_integration_camera_v3.json": "f20af801d243c755b9e86d76b14d6603f55b9817f28525515f26429dfa8f0db8",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_integration_camera_v3.log": "559ae9d6960be8f0d384b2fad882e64d84be0f7b4f14323be8084823e651d671",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_integration_camera_v3_v2.json": "438dd79cf263fa75cecf4da56e5273eb8864a74557ccbc65438676123b85448e",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_integration_camera_v3_v2.log": "4ab70f6db2f749a06393a2f054e31fc3c8f634c28639155b1c5075510040dc70",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_CLOCK_V2.json": "c261be6b2220c33dc77f0437cfd1752a628c1084103eb206665f5b809994b401"
+  },
+  "future_reports": "append-only exclusive-create with _v2/_v3 suffix; preserve code version in SOURCE JSON",
+  "full_audit_frozen_oracle_sha256": "bfb856bb698f7d8e7c16bc7b18f09f8ae5590f4ac6b2d6aebe93ffc4f5e649c0",
+  "full_audit_source_archive": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_SOURCE_bfb856bb698f7d8e.json",
+  "no_original_failure_json_or_log_fabricated": true
+}

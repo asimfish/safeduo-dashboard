@@ -1,0 +1,133 @@
+{
+  "status": "CPU_READY_FROZEN_NOT_DATA_VERDICT",
+  "finished_utc": "2026-10-09T18:05:30.887226+00:00",
+  "oracle": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+  "oracle_sha256": "37ef81ab81824196f552360ac46f5d9507ebdc8ca262fcdb49b965ee67acf8a3",
+  "source_archive": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_SOURCE_37ef81ab81824196.json",
+  "tests": 50,
+  "self_test_report": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_SELFTEST_v2.json",
+  "cli_cases": [
+    {
+      "name": "contracts",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+        "--self-test"
+      ],
+      "pid": 1834784,
+      "actual_wait_exit": 0,
+      "expected_exit": 0,
+      "log": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_CPU_contracts.log",
+      "log_sha256": "2dc424db0da2c6a11b276c8b7ad564d71e69436aa2a8d34069b11e9d217211cf"
+    },
+    {
+      "name": "raw_waits_candidate",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+        "--producer-root",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/full_v5/raw",
+        "--output",
+        "ASTRA_NATIVE_EVIDENCE_V6_CLI_RAW_WAIT_TEST.json"
+      ],
+      "pid": 1835095,
+      "actual_wait_exit": 3,
+      "expected_exit": 3,
+      "log": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_CPU_raw_waits_candidate.log",
+      "log_sha256": "78515ad3ecd9c45ec8c996f5f82cb3dfa16ccf217ddd1e0a4b26717ca15e880c"
+    },
+    {
+      "name": "candidate_pending",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+        "--producer-root",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/full_v6/multirow",
+        "--output",
+        "ASTRA_NATIVE_EVIDENCE_V6_CLI_CANDIDATE_WAIT_TEST.json"
+      ],
+      "pid": 1835174,
+      "actual_wait_exit": 3,
+      "expected_exit": 3,
+      "log": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_CPU_candidate_pending.log",
+      "log_sha256": "581696de2161d383b9263aad025e8551ce3c0c3a0140717743dce5f4cccda98e"
+    },
+    {
+      "name": "wrong_prefix",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+        "--producer-root",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/full_v5/raw",
+        "--token-prefix",
+        "qv3_hand_"
+      ],
+      "pid": 1835186,
+      "actual_wait_exit": 1,
+      "expected_exit": 1,
+      "log": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_CPU_wrong_prefix.log",
+      "log_sha256": "74658c49dc919dcedce0351507fb91ae34f405486bdecc50a75621c4fc40b5b2"
+    },
+    {
+      "name": "old_candidate_root",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+        "--producer-root",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_execution/full_v5/multirow"
+      ],
+      "pid": 1835195,
+      "actual_wait_exit": 1,
+      "expected_exit": 1,
+      "log": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_CPU_old_candidate_root.log",
+      "log_sha256": "3050722e5c7d3c46921832e3469cf33cbfad10948bdaabb250581f6026fd3bb5"
+    },
+    {
+      "name": "source_mismatch",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/check_native_visible_evidence_v6.py",
+        "--self-test",
+        "--expected-oracle-sha",
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "pid": 1835226,
+      "actual_wait_exit": 1,
+      "expected_exit": 1,
+      "log": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_NATIVE_EVIDENCE_V6_CPU_source_mismatch.log",
+      "log_sha256": "d345e723e445f6ee65a058d5f451a840ac8e9538a5b7e4961f049b11e5baeb79"
+    }
+  ],
+  "max_child_RSS_KiB": 70564,
+  "old_immutable_file_shas": {
+    "check_native_visible_evidence.py": "bfb856bb698f7d8e7c16bc7b18f09f8ae5590f4ac6b2d6aebe93ffc4f5e649c0",
+    "check_native_visible_evidence_v5.py": "b3e4ef13c64919c35c17ff3fff8e771f21f44e34ceb7e212d783c8ade19c1436",
+    "qualified_views_v4.py": "c86ce750e43d6a2f22d033a39887da6263eb0c5f9973f1b44b3989c1a7a79d25",
+    "visible_point_full_v5_execution.json": "f322350ea417eefe4c995668970873efe9f18c4d23ac4aba87ab5b40d5185256",
+    "ASTRA_NATIVE_EVIDENCE_V5_SUPERVISOR_ACTUAL_WAIT.json": "dd1f13d0e49039ffb63eac2c37ee4d1540f60be03088698e0e85098c16d14958"
+  },
+  "source_plan_counts": {
+    "raw": 418,
+    "multirow": 423
+  },
+  "both_plans_source_hashes_independently_verified": true,
+  "source_plan_sha256": {
+    "FULL_PLAN_V5.json": "d6fc2bf04d93e519e2fe6ddd35cdcb355be645c0b9bff0d55ffac9dabc0d32e5",
+    "CANDIDATE_PLAN_V6.json": "c3e060774848f32667264a3d9fd2ace873fe9fa3ee734a439bc1ae7ef338a96a"
+  },
+  "protocol": {
+    "phase": "FINAL_CLOSED_PRODUCER_AUDIT",
+    "data_integrity_verdict": "PASS or FAIL, only after original evidence audit",
+    "registered_resource_verdict": "raw FAILED immutable; candidate independently PASS required",
+    "final_verdict": "raw BLOCKED_RESOURCE_FAILURE even if data PASS",
+    "registered_full_run_acceptance": "BLOCKED"
+  },
+  "full_production_arrays_read": false,
+  "physical_safety_certified": false
+}

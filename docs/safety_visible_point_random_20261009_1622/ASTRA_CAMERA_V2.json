@@ -1,0 +1,103 @@
+{
+  "schema": "safeduo.astra_camera_v2.v1",
+  "status": "CPU_VERIFIED_PENDING_PARENT_RENDER_SMOKE",
+  "ready_for_parent_integration": true,
+  "actual_exit": 0,
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v2.py": "9eb92e123a187a0a0668da5fd2b06f764d9c128d44a2bb43450dc784b7a5d5b7",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/test_qualified_views_v2.py": "5b9b270013468c52f40b7bd23ee28b3226a1248c6d2616248c094560d79d89bb",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views.py": "814a5c54fdcc2df69299e0b11d10b9b241be932e70d4caedaab58ad1bd70fac5",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/test_qualified_views.py": "c2576141262243d1a2023df777cc996838e8db62c00322a47a563f13abc0e71c",
+    "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/hand_views.py": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af",
+    "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sensors/camera/camera.py": "a3689cffa01d046b510f7564f7adad972edf6316568b0e323abc2c4f0c4ec354",
+    "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sensors/camera/camera_cfg.py": "0f099b9ebf01aa6249060e910661bda35ee4e0d06236d94566786d682d8d55ba",
+    "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sensors/sensor_base.py": "4716a4b89ed1ac4f640f8744f1e2fcaac2e74d00c2193e0ce24e52c61e5659fc",
+    "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py": "d95f2eaa138b4fff845ac72439caa2eca5deab4f0d5609e06f163d20eef4df93",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.replicator.core-1.12.27+107.3.3.lx64.r.cp311/omni/replicator/core/scripts/annotators.py": "4b7b872029493d23e4bbb2a2c6c08ceb353aa1273cba167594421d2eeb3d9379",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.replicator.core-1.12.27+107.3.3.lx64.r.cp311/omni/replicator/core/scripts/annotators_default.py": "a9a8e105828c14731fe00f38d01c872611cec8364d4287c8da2bd73f1ca9dcba",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.replicator.core-1.12.27+107.3.3.lx64.r.cp311/omni/replicator/core/scripts/functional/modify.py": "f85f0d58fa2313243be1e0c26fac5b80cc639217bd718cd0a93c62af03b26275",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.replicator.core-1.12.27+107.3.3.lx64.r.cp311/omni/replicator/core/tests/test_annotator_registry.py": "b8a1f489764839d0b75f79819105bec85ead2caedbffa95df1560b3d50237a9f",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.usd.libs-1.0.1+69cbf6ad.lx64.r.cp311/pxr/UsdSemantics/_usdSemantics.so": "71c499fb8d8bc9fdacd99b1b08218096e00ed478be1b55c94769d70657c2c49f",
+    "/mnt/nas/data/lyf/double_hand/safety_visible_point_random_20261009_1622/integration_raw/qualified_camera_receipts.json": "720aa2da462c4a72b37cf14b2c25e0f43e8c0cc4509fb42db2a1e83efda1c3f4",
+    "qualified_views_v2.py": "9eb92e123a187a0a0668da5fd2b06f764d9c128d44a2bb43450dc784b7a5d5b7",
+    "test_qualified_views_v2.py": "5b9b270013468c52f40b7bd23ee28b3226a1248c6d2616248c094560d79d89bb"
+  },
+  "source_stable_during_tests": true,
+  "frozen_v1_source_and_tests_unchanged": true,
+  "gpu_used": false,
+  "isaac_app_started": false,
+  "published": false,
+  "old_or_failed_raw_written": false,
+  "installed_versions": {
+    "isaacsim": "5.1.0.0",
+    "isaaclab": "0.54.2"
+  },
+  "real_installed_UsdSemantics_CPU_probe": {
+    "pass": true,
+    "API": "UsdSemantics.LabelsAPI.Apply/CreateLabelsAttr/GetLabelsAttr",
+    "anonymous_stage_only": true,
+    "renderer_not_started": true
+  },
+  "parent_API": {
+    "imports": "from qualified_views_v2 import qualified_camera_factory, configure_qualified_camera, QualifiedViews, CAMERA_DATA_TYPES",
+    "setup_scene": "with qualified_camera_factory(): super()._setup_scene()\nconfigure_qualified_camera(self)",
+    "local_import_hook": "isaaclab.sensors.Camera temporarily patched, restored in finally; original library files unchanged.",
+    "after_create": "parent detaches scene.sensors[\"viz_cam\"], resets shared sensor, then QualifiedViews(env,out)",
+    "capture": "capture(step,slots,kind,substep=None); step=-1 initial supported; failed groups remain receipts.",
+    "close": "returns status=closed/errors=[] on success including repeated close; removes only owned semantic overlay."
+  },
+  "changes": {
+    "labels": "Modern UsdSemantics.LabelsAPI class labels encode exact native rigid path under qv2_hand/ prefix; configured before play for all64.",
+    "clones": "All original class labels read before env0 is changed; every cloned hand receives a local composed override in one dedicated anonymous session sublayer. Full native inventory is cross-checked after play. Removing layer restores original composition.",
+    "annotators": "Replicator get_annotator receives semanticTypes=[\"class\"], colorize=False BEFORE attach, via scoped hook inside owned camera subclass _initialize_impl. Camera cfg global semantic_filter remains *:*.",
+    "constructor": "Segmentation data_types already configured when original Camera.__init__ runs; preserves installed 4.5-specific instanceable workaround. This actual installation/smoke is 5.1.0.0; no manual instanceable edits.",
+    "warmup": "At most3 renders/candidate:2 warmups+final. Each render persists all64 native before/after and exact bitwise invariant. Final sensor update only once at dt=0 and exact frame+1 required. Warmup intermediate sensor buffers are not relabelled as new images.",
+    "limits": "3 qualified images per arm,6 attempts per arm; all actually fetched original RGB/segmentation buffers and rejected attempt records retained."
+  },
+  "checks": {
+    "native": "Unchanged all64 exact dtype/shape/bytes for q/qd/roots/rootvel/all links/full native targets/origins/clock; no physics step.",
+    "mask": "Original instance path AND class semantic path agree on arm/slot and actual hand inventory; intersection>200 pixels; unknown IDs and wrong-clone labels fail.",
+    "frustum": "Actual USD optics/pose six-plane .06m sphere framing minimum.02m; >=2 azimuths with >=30degrees separation,3images/arm.",
+    "scope": "observed_visible_hand only; no fullmesh, occlusion-free, or physics safety claim"
+  },
+  "regression_evidence": {
+    "actual_v1_failed_root": "/mnt/nas/data/lyf/double_hand/safety_visible_point_random_20261009_1622/integration_raw",
+    "actual_v1_groups": 35,
+    "background_only": "Real v1 info/output NPZ re-read in CPU test; IDs0/1 only still fail with zero observed hand pixels.",
+    "inheritance": "Real installed USD stages reproduce env0 namespace inheritance in env16;512 hand rigid prims across64 clones receive distinct local values and restore root/session text exactly on close.",
+    "annotator_contract": "CPU fake tests initialization parameters before attach and method restoration after raised construction error; installed Replicator own tests separately document semanticTypes for instance and semanticFilter for semantic."
+  },
+  "verification": {
+    "argv": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "test_qualified_views_v2"
+    ],
+    "cwd": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622",
+    "started_utc": "2026-10-09T08:49:37.372386+00:00",
+    "finished_utc": "2026-10-09T08:49:52.831260+00:00",
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.usd.libs-1.0.1+69cbf6ad.lx64.r.cp311",
+      "LD_LIBRARY_PATH": "/home/liyufeng/miniforge3/envs/safeduo/lib:/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.usd.libs-1.0.1+69cbf6ad.lx64.r.cp311/bin:/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit"
+    },
+    "actual_exit": 0,
+    "stdout": "",
+    "stderr": "test_config_error_returns_all_slot_failure_receipts (test_qualified_views_v2.CaptureTests.test_config_error_returns_all_slot_failure_receipts) ... ok\ntest_duplicate_calls_are_exclusive_and_substep_preserved (test_qualified_views_v2.CaptureTests.test_duplicate_calls_are_exclusive_and_substep_preserved) ... ok\ntest_empty_masks_fail_complete_window_and_bound_attempts (test_qualified_views_v2.CaptureTests.test_empty_masks_fail_complete_window_and_bound_attempts) ... ok\ntest_initial_full_original_output_roundtrip_and_exact_frame (test_qualified_views_v2.CaptureTests.test_initial_full_original_output_roundtrip_and_exact_frame) ... ok\ntest_native_signed_zero_change_unrendered_slot_denies_without_losing_rgb (test_qualified_views_v2.CaptureTests.test_native_signed_zero_change_unrendered_slot_denies_without_losing_rgb) ... ok\ntest_prefinal_frame_mismatch_does_not_erase_original_attempts (test_qualified_views_v2.CaptureTests.test_prefinal_frame_mismatch_does_not_erase_original_attempts) ... ok\ntest_rejected_render_retained_and_next_candidate_succeeds (test_qualified_views_v2.CaptureTests.test_rejected_render_retained_and_next_candidate_succeeds) ... ok\ntest_table_blocked_candidates_do_not_render_and_keep_failattempts (test_qualified_views_v2.CaptureTests.test_table_blocked_candidates_do_not_render_and_keep_failattempts) ... ok\ntest_actual_world_six_planes_match_signed_sphere_distances (test_qualified_views_v2.GeometryTests.test_actual_world_six_planes_match_signed_sphere_distances) ... ok\ntest_legacy_table_occluded_despite_frustum_pass (test_qualified_views_v2.GeometryTests.test_legacy_table_occluded_despite_frustum_pass) ... ok\ntest_ray_parallel_inside_endpoint_and_nonfinite (test_qualified_views_v2.GeometryTests.test_ray_parallel_inside_endpoint_and_nonfinite) ... ok\ntest_world_above_directions_and_distinct_azimuth (test_qualified_views_v2.GeometryTests.test_world_above_directions_and_distinct_azimuth) ... ok\ntest_ambiguous_inherited_label_rejected (test_qualified_views_v2.MaskTests.test_ambiguous_inherited_label_rejected) ... ok\ntest_colorized_or_resized_masks_are_rejected (test_qualified_views_v2.MaskTests.test_colorized_or_resized_masks_are_rejected) ... ok\ntest_empty_and_exactly_200_hand_pixels_fail_201_passes (test_qualified_views_v2.MaskTests.test_empty_and_exactly_200_hand_pixels_fail_201_passes) ... ok\ntest_generic_class_and_arm_root_do_not_certify_hand (test_qualified_views_v2.MaskTests.test_generic_class_and_arm_root_do_not_certify_hand) ... ok\ntest_local_instance_path_and_semantic_dict_supported (test_qualified_views_v2.MaskTests.test_local_instance_path_and_semantic_dict_supported) ... ok\ntest_unknown_id_rejected_even_with_enough_hand_pixels (test_qualified_views_v2.MaskTests.test_unknown_id_rejected_even_with_enough_hand_pixels) ... ok\ntest_unsigned_id_bitpattern_and_string_map_keys (test_qualified_views_v2.MaskTests.test_unsigned_id_bitpattern_and_string_map_keys) ... ok\ntest_wrong_slot_wrong_arm_and_prefix_collision_do_not_count (test_qualified_views_v2.MaskTests.test_wrong_slot_wrong_arm_and_prefix_collision_do_not_count) ... ok\ntest_annotator_types_injected_before_attach_and_registry_restored (test_qualified_views_v2.NativeAndConfigTests.test_annotator_types_injected_before_attach_and_registry_restored) ... ok\ntest_configure_requires_constructor_factory (test_qualified_views_v2.NativeAndConfigTests.test_configure_requires_constructor_factory) ... ok\ntest_constructor_receives_segmentation_before_original_init (test_qualified_views_v2.NativeAndConfigTests.test_constructor_receives_segmentation_before_original_init) ... ok\ntest_exact_native_all_fields_and_detached_copies (test_qualified_views_v2.NativeAndConfigTests.test_exact_native_all_fields_and_detached_copies) ... ok\ntest_factory_patches_local_import_site_and_restores_on_exception (test_qualified_views_v2.NativeAndConfigTests.test_factory_patches_local_import_site_and_restores_on_exception) ... ok\ntest_native_inventory_exact_order_and_bad_path_reject (test_qualified_views_v2.NativeAndConfigTests.test_native_inventory_exact_order_and_bad_path_reject) ... ok\ntest_recorded_v1_background_only_mapping_never_qualifies (test_qualified_views_v2.NativeAndConfigTests.test_recorded_v1_background_only_mapping_never_qualifies) ... ok\ntest_preplay_config_authors_all64_and_uses_omni_stage_without_camera_stage (test_qualified_views_v2.RealUsdCloneTests.test_preplay_config_authors_all64_and_uses_omni_stage_without_camera_stage) ... ok\ntest_real_inherit_reproduces_env0_label_leak_then_all64_local_overrides (test_qualified_views_v2.RealUsdCloneTests.test_real_inherit_reproduces_env0_label_leak_then_all64_local_overrides) ... ok\ntest_wrong_clone_semantic_token_cannot_qualify (test_qualified_views_v2.RealUsdCloneTests.test_wrong_clone_semantic_token_cannot_qualify) ... ok\n\n----------------------------------------------------------------------\nRan 30 tests in 15.217s\n\nOK\n",
+    "prior_run": {
+      "actual_exit": 0,
+      "tests": 30,
+      "seconds": 15.018
+    }
+  },
+  "limitations": [
+    "Actual RGB/segmentation renderer behavior is pending parent integration_raw_v2 GPU smoke; CPU tests do not prove rendered visibility or latency recovery.",
+    "Three held renders are a bounded latency mitigation, not a claim of renderer mesh/native pose identity. Native bitwise and real masks remain mandatory.",
+    "New v2 does not alter or reclassify the first failed integration, raw scalar measurements, random bank, physics setup, or scientific safety outcome.",
+    "Independent CPU evidence sidecar is paused per parent priority and remains subsequent work."
+  ]
+}
