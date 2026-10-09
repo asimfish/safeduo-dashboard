@@ -1,0 +1,661 @@
+{
+  "arm": "F_R",
+  "attempt": 3,
+  "status": "qualified",
+  "reasons": [],
+  "rendered": true,
+  "scope": "observed_visible_hand: >200 actual same-native-rigid instance/semantic pixels; six-plane .06m native-link spheres with .02m margin are framing only. Table ray/AABB is diagnostic only and never rejects a candidate. 24 bounded above/horizontal/below candidates, selected after v3 visual failures. No fullmesh, occlusion-free, contact, or safety certification; parent owns physical-event binding.",
+  "sensor_update_dt_s": 0.0,
+  "world_direction": [
+    -0.28678821817552336,
+    -0.496731764892154,
+    0.8191520442889918
+  ],
+  "native_before_all64": {
+    "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.before.npz",
+    "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+  },
+  "native_baseline_before": {
+    "status": "pass",
+    "all_64_bitwise_equal": false,
+    "environment_count": 32,
+    "all_registered_lanes": true,
+    "all_registered_bitwise_equal": true,
+    "comparison": "dtype+shape+C-order bytes",
+    "fields": [
+      "environment_origins",
+      "simulation_time_s",
+      "simulation_time_step_index",
+      "F_L_native_q",
+      "F_L_native_qd",
+      "F_L_native_root_xyzw",
+      "F_L_native_root_velocity",
+      "F_L_native_link_transforms_xyzw",
+      "F_L_native_position_targets",
+      "F_R_native_q",
+      "F_R_native_qd",
+      "F_R_native_root_xyzw",
+      "F_R_native_root_velocity",
+      "F_R_native_link_transforms_xyzw",
+      "F_R_native_position_targets",
+      "U_L_native_q",
+      "U_L_native_qd",
+      "U_L_native_root_xyzw",
+      "U_L_native_root_velocity",
+      "U_L_native_link_transforms_xyzw",
+      "U_L_native_position_targets",
+      "U_R_native_q",
+      "U_R_native_qd",
+      "U_R_native_root_xyzw",
+      "U_R_native_root_velocity",
+      "U_R_native_link_transforms_xyzw",
+      "U_R_native_position_targets"
+    ]
+  },
+  "camera": {
+    "prim_path": "/World/viz_cam",
+    "actual_pose_source": "USD ComputeLocalToWorldTransform after camera operation",
+    "actual_camera_to_world_row_matrix": [
+      [
+        0.8660255864139241,
+        -0.49999968367631864,
+        1.006147928861445e-08,
+        0.0
+      ],
+      [
+        0.4095757562635576,
+        0.7094066293444359,
+        0.5735764413949557,
+        0.0
+      ],
+      [
+        -0.2867880463993465,
+        -0.4967318698913402,
+        0.8191520407572082,
+        0.0
+      ],
+      [
+        5.126742362976074,
+        0.48812466859817505,
+        2.031233310699463,
+        1.0
+      ]
+    ],
+    "actual_usd_optics": {
+      "focal_length": 18.0,
+      "horizontal_aperture": 20.954999923706055,
+      "vertical_aperture": 11.787187576293945,
+      "horizontal_aperture_offset": 0.0,
+      "vertical_aperture_offset": 0.0
+    },
+    "actual_intrinsic_matrix": [
+      [
+        1099.498930273687,
+        0.0,
+        640.0
+      ],
+      [
+        0.0,
+        1099.4989191539448,
+        360.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "sdk_intrinsic_matrix": [
+      [
+        1099.4989013671875,
+        0.0,
+        640.0
+      ],
+      [
+        0.0,
+        1099.4989013671875,
+        360.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "actual_clipping_range_m": [
+      0.0010000000474974513,
+      100000.0
+    ],
+    "actual_clipping_source": "USD clippingRange",
+    "K_source": "actual centered USD focal length/apertures; SDK cross-check",
+    "image_size": [
+      1280,
+      720
+    ]
+  },
+  "geometry": {
+    "plane_names": [
+      "left",
+      "right",
+      "top",
+      "bottom",
+      "near",
+      "far"
+    ],
+    "sphere_radius_m": 0.06,
+    "plane_equation": "inward unit normal dot world_point + offset; subtract sphere radius",
+    "actual_world_planes": [
+      [
+        0.8927344607774729,
+        -0.18223577925400844,
+        -0.41208652404566587,
+        -3.6508219250694682
+      ],
+      [
+        -0.6041885357423372,
+        0.6820123867233635,
+        -0.41208654143690693,
+        3.601655801023112
+      ],
+      [
+        -0.3000034557698392,
+        -0.519621682254101,
+        -0.7999945211422216,
+        3.4166561069023094
+      ],
+      [
+        0.47848145930631203,
+        0.8287549029173295,
+        0.29020820800003244,
+        -3.4470674587879806
+      ],
+      [
+        0.2867880463993465,
+        0.4967318698913402,
+        -0.8191520407572082,
+        -0.049866594377552156
+      ],
+      [
+        -0.2867880463993465,
+        -0.4967318698913402,
+        0.8191520407572082,
+        100000.04886659433
+      ]
+    ],
+    "plane_margins_m": [
+      [
+        0.09674265149902417,
+        0.2505039995203944,
+        0.054602661437951755,
+        0.11440938897618683,
+        0.40340009229890905,
+        99999.47559990766
+      ],
+      [
+        0.23509532576508824,
+        0.16517076242967899,
+        0.0761754176200096,
+        0.12563142376035527,
+        0.45609652461504596,
+        99999.42290347534
+      ],
+      [
+        0.2289471842944526,
+        0.15560023938475995,
+        0.08077821395603454,
+        0.11130596070964985,
+        0.4404736213012191,
+        99999.43852637865
+      ],
+      [
+        0.2138016328166228,
+        0.13877819391711368,
+        0.08932474535342047,
+        0.08298610248398708,
+        0.4087007772558269,
+        99999.4702992227
+      ],
+      [
+        0.22179419435222847,
+        0.14665500559329556,
+        0.08522851854386077,
+        0.09689821578672847,
+        0.4244734711188106,
+        99999.45452652883
+      ],
+      [
+        0.17314730194093053,
+        0.2187429359041827,
+        0.0806621230042753,
+        0.11596389647349475,
+        0.44777170159625596,
+        99999.43122829836
+      ],
+      [
+        0.2655619475394888,
+        0.1448333827669033,
+        0.08992356057709613,
+        0.11814865055056362,
+        0.4661640573876718,
+        99999.41283594257
+      ],
+      [
+        0.2588907649375763,
+        0.13338841948945038,
+        0.09360100330494736,
+        0.10326559627948612,
+        0.448158278638947,
+        99999.43084172132
+      ],
+      [
+        0.2422308433664233,
+        0.11503674881916753,
+        0.10269470610322426,
+        0.07251572528849043,
+        0.41335998391678375,
+        99999.46564001603
+      ],
+      [
+        0.2509160036278197,
+        0.12415333540829776,
+        0.09909784270642233,
+        0.08712373097384413,
+        0.43105327901750845,
+        99999.44794672093
+      ],
+      [
+        0.17321752641097315,
+        0.23317635600626968,
+        0.0870850738543281,
+        0.11851207050389587,
+        0.46218698710758327,
+        99999.41681301285
+      ],
+      [
+        0.21612362341213043,
+        0.23541711506098162,
+        0.0923998734214577,
+        0.14112253355767793,
+        0.5070587996197808,
+        99999.37194120034
+      ],
+      [
+        0.22966327794056962,
+        0.23231055043953225,
+        0.09176216812160926,
+        0.148213551470031,
+        0.5174283290871264,
+        99999.36157167087
+      ]
+    ],
+    "minimum_by_plane_m": [
+      0.09674265149902417,
+      0.11503674881916753,
+      0.054602661437951755,
+      0.07251572528849043,
+      0.40340009229890905,
+      99999.36157167087
+    ],
+    "minimum_plane_margin_m": 0.054602661437951755,
+    "required_minimum_m": 0.02,
+    "framing_pass": true,
+    "visibility_claim": false
+  },
+  "fit_operations": 1,
+  "requested_eye_world_m": [
+    5.126742247265998,
+    0.48812466521093595,
+    2.031233393665492
+  ],
+  "target_world_m": [
+    5.27013635635376,
+    0.7364905476570129,
+    1.621657371520996
+  ],
+  "hand_link_positions_world_m": [
+    [
+      5.195775508880615,
+      0.785607099533081,
+      1.6688668727874756
+    ],
+    [
+      5.320730686187744,
+      0.7432146072387695,
+      1.6225769519805908
+    ],
+    [
+      5.3138861656188965,
+      0.7273995876312256,
+      1.6296625137329102
+    ],
+    [
+      5.297669887542725,
+      0.697372317314148,
+      1.644564151763916
+    ],
+    [
+      5.306131839752197,
+      0.7118949294090271,
+      1.6370782852172852
+    ],
+    [
+      5.2574143409729,
+      0.7672129273414612,
+      1.6251249313354492
+    ],
+    [
+      5.344497203826904,
+      0.7255954146385193,
+      1.6079232692718506
+    ],
+    [
+      5.337725639343262,
+      0.7083430886268616,
+      1.6170717477798462
+    ],
+    [
+      5.320007801055908,
+      0.675697386264801,
+      1.6335532665252686
+    ],
+    [
+      5.328788757324219,
+      0.6914056539535522,
+      1.6245534420013428
+    ],
+    [
+      5.253517150878906,
+      0.777082085609436,
+      1.612147331237793
+    ],
+    [
+      5.290487289428711,
+      0.7940634489059448,
+      1.5806097984313965
+    ],
+    [
+      5.303466796875,
+      0.7972837090492249,
+      1.5744478702545166
+    ]
+  ],
+  "distance_m": 0.5,
+  "azimuth_deg": 239.99999999999994,
+  "table_ray_aabb": [
+    {
+      "path": "/World/envs/env_12/TableF",
+      "blocked_link_indices": []
+    },
+    {
+      "path": "/World/envs/env_12/TableU",
+      "blocked_link_indices": []
+    }
+  ],
+  "table_aabb_use": "diagnostic_only",
+  "sensor_frame_before": [
+    445
+  ],
+  "held_renders": [
+    {
+      "index": 0,
+      "warmup": true,
+      "native_before_all64": {
+        "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.render0.before.npz",
+        "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+      },
+      "native_after_all64": {
+        "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.render0.after.npz",
+        "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+      },
+      "native_invariant": {
+        "status": "pass",
+        "all_64_bitwise_equal": false,
+        "environment_count": 32,
+        "all_registered_lanes": true,
+        "all_registered_bitwise_equal": true,
+        "comparison": "dtype+shape+C-order bytes",
+        "fields": [
+          "environment_origins",
+          "simulation_time_s",
+          "simulation_time_step_index",
+          "F_L_native_q",
+          "F_L_native_qd",
+          "F_L_native_root_xyzw",
+          "F_L_native_root_velocity",
+          "F_L_native_link_transforms_xyzw",
+          "F_L_native_position_targets",
+          "F_R_native_q",
+          "F_R_native_qd",
+          "F_R_native_root_xyzw",
+          "F_R_native_root_velocity",
+          "F_R_native_link_transforms_xyzw",
+          "F_R_native_position_targets",
+          "U_L_native_q",
+          "U_L_native_qd",
+          "U_L_native_root_xyzw",
+          "U_L_native_root_velocity",
+          "U_L_native_link_transforms_xyzw",
+          "U_L_native_position_targets",
+          "U_R_native_q",
+          "U_R_native_qd",
+          "U_R_native_root_xyzw",
+          "U_R_native_root_velocity",
+          "U_R_native_link_transforms_xyzw",
+          "U_R_native_position_targets"
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "warmup": true,
+      "native_before_all64": {
+        "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.render1.before.npz",
+        "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+      },
+      "native_after_all64": {
+        "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.render1.after.npz",
+        "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+      },
+      "native_invariant": {
+        "status": "pass",
+        "all_64_bitwise_equal": false,
+        "environment_count": 32,
+        "all_registered_lanes": true,
+        "all_registered_bitwise_equal": true,
+        "comparison": "dtype+shape+C-order bytes",
+        "fields": [
+          "environment_origins",
+          "simulation_time_s",
+          "simulation_time_step_index",
+          "F_L_native_q",
+          "F_L_native_qd",
+          "F_L_native_root_xyzw",
+          "F_L_native_root_velocity",
+          "F_L_native_link_transforms_xyzw",
+          "F_L_native_position_targets",
+          "F_R_native_q",
+          "F_R_native_qd",
+          "F_R_native_root_xyzw",
+          "F_R_native_root_velocity",
+          "F_R_native_link_transforms_xyzw",
+          "F_R_native_position_targets",
+          "U_L_native_q",
+          "U_L_native_qd",
+          "U_L_native_root_xyzw",
+          "U_L_native_root_velocity",
+          "U_L_native_link_transforms_xyzw",
+          "U_L_native_position_targets",
+          "U_R_native_q",
+          "U_R_native_qd",
+          "U_R_native_root_xyzw",
+          "U_R_native_root_velocity",
+          "U_R_native_link_transforms_xyzw",
+          "U_R_native_position_targets"
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "warmup": false,
+      "native_before_all64": {
+        "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.render2.before.npz",
+        "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+      },
+      "native_after_all64": {
+        "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.render2.after.npz",
+        "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+      },
+      "native_invariant": {
+        "status": "pass",
+        "all_64_bitwise_equal": false,
+        "environment_count": 32,
+        "all_registered_lanes": true,
+        "all_registered_bitwise_equal": true,
+        "comparison": "dtype+shape+C-order bytes",
+        "fields": [
+          "environment_origins",
+          "simulation_time_s",
+          "simulation_time_step_index",
+          "F_L_native_q",
+          "F_L_native_qd",
+          "F_L_native_root_xyzw",
+          "F_L_native_root_velocity",
+          "F_L_native_link_transforms_xyzw",
+          "F_L_native_position_targets",
+          "F_R_native_q",
+          "F_R_native_qd",
+          "F_R_native_root_xyzw",
+          "F_R_native_root_velocity",
+          "F_R_native_link_transforms_xyzw",
+          "F_R_native_position_targets",
+          "U_L_native_q",
+          "U_L_native_qd",
+          "U_L_native_root_xyzw",
+          "U_L_native_root_velocity",
+          "U_L_native_link_transforms_xyzw",
+          "U_L_native_position_targets",
+          "U_R_native_q",
+          "U_R_native_qd",
+          "U_R_native_root_xyzw",
+          "U_R_native_root_velocity",
+          "U_R_native_link_transforms_xyzw",
+          "U_R_native_position_targets"
+        ]
+      }
+    }
+  ],
+  "render_calls": 3,
+  "sensor_frame_after": [
+    446
+  ],
+  "original_outputs": {
+    "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.outputs.npz",
+    "sha256": "8fb1752b5f51e3c97246c605abdb76f15fe018b9f0c08848b2619e8909a048a2"
+  },
+  "original_info": {
+    "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.info.json",
+    "sha256": "755ae29f11e9bd4dde8fb49e3b35da482bcd2c9f6fb677b02fdbd63933bf1b7c"
+  },
+  "rgb": {
+    "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.png",
+    "sha256": "088701297ec7e8c3cfc21ff040b289ea727aed10f6ada490ef9b11cd473dba2a"
+  },
+  "resolution": [
+    1280,
+    720
+  ],
+  "channels": 3,
+  "raw_rgb_sha256": "c1a315dab2d625f1bfe94783bcd018beaaf09898988d16f66703515ca5b4306d",
+  "mask_evidence": {
+    "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.mask.json",
+    "sha256": "96280cb965d2cdb642186250deae97510b97b64f454b3af1d0b020c1ac8fb52f"
+  },
+  "mask": {
+    "status": "qualified",
+    "reasons": [],
+    "observed_hand_pixels": 55564,
+    "same_arm_intersection_pixels": 55564,
+    "pixel_identity_contract": "instance native rigid ancestor equals unique semantic native rigid path",
+    "required_pixels_strictly_greater_than": 200,
+    "scope": "observed_visible_hand"
+  },
+  "sensor_refresh_exactly_one": true,
+  "native_after_all64": {
+    "path": "qualified_views/first_raw_geometry_alarm/step_0314_sub_1_capture_000021/env_012/F_R_attempt_03.after.npz",
+    "sha256": "14f385bf7154c51b2669dd6dc48db8ffc910f994e646ce38dc6ec646d8a431fa"
+  },
+  "native_invariant": {
+    "status": "pass",
+    "all_64_bitwise_equal": false,
+    "environment_count": 32,
+    "all_registered_lanes": true,
+    "all_registered_bitwise_equal": true,
+    "comparison": "dtype+shape+C-order bytes",
+    "fields": [
+      "environment_origins",
+      "simulation_time_s",
+      "simulation_time_step_index",
+      "F_L_native_q",
+      "F_L_native_qd",
+      "F_L_native_root_xyzw",
+      "F_L_native_root_velocity",
+      "F_L_native_link_transforms_xyzw",
+      "F_L_native_position_targets",
+      "F_R_native_q",
+      "F_R_native_qd",
+      "F_R_native_root_xyzw",
+      "F_R_native_root_velocity",
+      "F_R_native_link_transforms_xyzw",
+      "F_R_native_position_targets",
+      "U_L_native_q",
+      "U_L_native_qd",
+      "U_L_native_root_xyzw",
+      "U_L_native_root_velocity",
+      "U_L_native_link_transforms_xyzw",
+      "U_L_native_position_targets",
+      "U_R_native_q",
+      "U_R_native_qd",
+      "U_R_native_root_xyzw",
+      "U_R_native_root_velocity",
+      "U_R_native_link_transforms_xyzw",
+      "U_R_native_position_targets"
+    ]
+  },
+  "native_baseline_after": {
+    "status": "pass",
+    "all_64_bitwise_equal": false,
+    "environment_count": 32,
+    "all_registered_lanes": true,
+    "all_registered_bitwise_equal": true,
+    "comparison": "dtype+shape+C-order bytes",
+    "fields": [
+      "environment_origins",
+      "simulation_time_s",
+      "simulation_time_step_index",
+      "F_L_native_q",
+      "F_L_native_qd",
+      "F_L_native_root_xyzw",
+      "F_L_native_root_velocity",
+      "F_L_native_link_transforms_xyzw",
+      "F_L_native_position_targets",
+      "F_R_native_q",
+      "F_R_native_qd",
+      "F_R_native_root_xyzw",
+      "F_R_native_root_velocity",
+      "F_R_native_link_transforms_xyzw",
+      "F_R_native_position_targets",
+      "U_L_native_q",
+      "U_L_native_qd",
+      "U_L_native_root_xyzw",
+      "U_L_native_root_velocity",
+      "U_L_native_link_transforms_xyzw",
+      "U_L_native_position_targets",
+      "U_R_native_q",
+      "U_R_native_qd",
+      "U_R_native_root_xyzw",
+      "U_R_native_root_velocity",
+      "U_R_native_link_transforms_xyzw",
+      "U_R_native_position_targets"
+    ]
+  }
+}
