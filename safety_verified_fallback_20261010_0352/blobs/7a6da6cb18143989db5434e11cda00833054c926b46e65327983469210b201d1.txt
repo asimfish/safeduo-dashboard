@@ -1,0 +1,70 @@
+Closed native calibration handoff v2
+
+Completed scope: two known integration witnesses first, then first CLOSED original
+candidate480x32 (15360 macros,30720 micro-lane samples), eight variants, DEVELOPMENT.
+All computations are teacher-forced at each native control start, followed by two
+model micros using that control's actual applied full74 target. Nothing is fitted.
+Source state/target/clock arrays and all74 response fields are preserved by SHA.
+
+Callable helper: native_teacherforced_cpu_v1.teacher_forced_two_micro(Macro74, Variant).
+Reference frozen saturated implicit numerical solver is imported by checked SHA.
+Tests:40pass. Real wait4: minimal calibration0, initial tests0, full480 calibration0,
+full tests0. Full run96.8438s, child maximumRSS409.40MiB; conservative sum of parent
+and child recorded peakRSS878.63MiB, below1GiB. OMP/MKL/OpenBLAS1; Python -B and
+PYTHONDONTWRITEBYTECODE=1; child address space capped1GiB. No GPU/Isaac/AppLauncher
+execution, no runtime policy edit, no other process stopped. Large temporary NPY
+files were under R/native_calibration_cpu_tmp and cleaned after compression.
+
+Observed baseline empirical maxima, NOT certified bounds:
+  recorded contact-free proxy:18224 micro-lane samples; q0.08129041rad, qd5.24526333rad/s.
+  contact-linked macro/preboundary:12496 samples; q0.19354775rad, qd24.89268723rad/s.
+Proxy requires zero scalar in both macro micros and prior boundary. Initial prior
+boundary is unmeasured. Zero scalar is not proof of no contacts/limit constraints;
+the contact strata are associations, not unique causal explanations.
+
+Lane18 micro12 (control6 sub0): recorded scalar0, actual index_1 q=-0.001607122rad,
+baseline model q=+0.007796023rad, signed q error+0.009403145rad. ALL7 implicit
+variants still miss this lower-limit failure. Explicit PD predicts+1.851258rad
+above the upper limit and has huge errors; it does not repair the model.
+Lane19 micro13: scalar9.281611443N, known omitted self-contact; CONTACT staysUNKNOWN.
+Original36micro repeated-plan targets diverge from actual targets atmicro14 in
+both witnesses; full36 direct-error comparison is disabled. Full480 results use
+actual-target macro2micro only, never those repeated-plan36micro states.
+
+M/C/gravity/armature/drive assumptions remain distinct. Recorded armature comes
+from get_dof_armatures, with per74/per32 values exported in getter provenance.
+M's inclusion of armature remains unresolved. Native get_dof_actuation_forces
+is a retained actuation command getter; projected joint forces mix incoming link
+forces. IsaacLab ImplicitActuator computed/applied effort is expressly approximate.
+No retained getter isolates actual implicit motor torque. Full baseline model
+reports5637 saturated coordinate-micro cases; these are MODEL saturation flags,
+not observations establishing that native saturation occurred.
+
+TASK_ACCEPTANCE_PROTOCOL_V1.json and prospective_task_gate_v2.py were hash checked
+and left unchanged. Task reference remains original request26 delayed6controls,
+distinct from actual applied74 calibration targets. This historical candidate tape
+has NO requested pause240:272. Time bins246:278/278:310 are reported only as windows;
+no new active/pause/resume acceptance is claimed. Future task evaluation must use
+the frozen protocol and original requests, not fallback/issued targets.
+
+CONTACT / ACTUAL_DRIVE_TORQUE / TERMINAL_SET / GLOBAL_MODEL_ERROR_BOUND = UNKNOWN.
+All493 frozen sources (including original479) remain unchanged. See delivery JSON
+for all material inputs, sources, outputSHA, actualwait paths and scoped code review.
+The review is an implementing-agent code/evidence self-review; extra independent
+GPT6 Astra xhigh was unavailable because collaboration APIs lacked session binding.
+
+Primary artifacts:
+  NATIVE_CALIBRATION_DELIVERY_V2.json
+  SCOPED_CODE_REVIEW_V2.json
+  NATIVE_GETTER_PROVENANCE_V2.json
+  first_candidate480x32_v2/FULL480_NATIVE_CALIBRATION_REPORT_V2.json
+  first_candidate480x32_v2/known_witness_stratification_v2.json
+  first_candidate480x32_v2/per74_stratified_error_summary.csv
+  first_candidate480x32_v2/*_errors74.npz and actual_native_shared_arrays.npz
+  first_candidate480x32_v2/input_source_sha256.json
+  first_candidate480_attempt01_actual_wait.json
+  full480_tests_attempt01_actual_wait.json
+  reviewed_delivery_v2_attempt01_actual_wait.json (written by supervisor after close)
+
+Version1 files remain historical minimal results; v2 expands scope without editing
+their bytes. No run was repeated for this review.

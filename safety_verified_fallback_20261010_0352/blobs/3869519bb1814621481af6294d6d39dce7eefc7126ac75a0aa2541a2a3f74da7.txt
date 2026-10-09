@@ -1,0 +1,79 @@
+Native dynamics CPU calibration, version1
+
+Entry point: native_teacherforced_cpu_v1.teacher_forced_two_micro(Macro74, Variant).
+Inputs are NumPy full74 arrays in canonical F_L19,F_R19,U_L18,U_R18 order.
+Provide actual pre-control q/qd, two actual applied float32 targets, two native
+post-physics q/qd observations, recorded M/C/gravity/armature/drive parameters,
+and exact native clocks. Both applied targets must match bit for bit. All74
+coordinates are checked, including the48 hand coordinates. Prediction advances
+twice from the actual macro pre-state; it does not reset at the second micro.
+Returns q/qd predictions, signed model-minus-native errors and MODEL torque.
+Solver nonconvergence, invalid state, clock mismatch or target mismatch raises.
+
+Completed measurement: two preserved integration witnesses, lanes18 and19,
+8 controls/16 microsteps EACH,16 unique macros/32 unique microsteps total.
+Eight variants reuse these SAME samples; they are not256 independent samples.
+No data fitting, no fresh validation/holdout, no full480/960 evaluation here.
+
+Main evidence in two_witness_v1/:
+  calibration_report.json: all variants, assumptions, error summaries, unknowns.
+  known_witness_report.json: lane18 micro12 hard limit; lane19 micro13 contact.
+  per74_error_summary.csv: each joint, variant, lane, substep0/1/both;
+    signed mean, MAE, RMSE, empirical p95 and maximum absolute errors.
+  per74_micro_errors.csv: each native micro/joint prediction, target and error.
+  two_witness_arrays.npz: numerical arrays for reproducible analysis.
+  input_source_sha256.json: material input/source SHA with post-run rechecks.
+  frozen493_before_after.json: every493 expected/before/after SHA, all unchanged.
+  output_sha256.json: hashes of the measurement artifacts.
+
+two_witness_attempt01_actual_wait.json and positive_negative_attempt01_actual_wait.json
+are actual os.wait4 receipts, both exit0. Tests:28 passed. Parent+child reported
+RSS peak upper sum is below1GiB; child RLIMIT_AS=1GiB, OMP/MKL/OpenBLAS threads1.
+Every Python invocation used -B and PYTHONDONTWRITEBYTECODE=1.
+No GPU/Isaac/AppLauncher import or execution. No existing frozen/sealed data was
+written; no other process was signaled. New files are confined to this directory;
+TMPDIR is /mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/native_calibration_cpu_tmp/.
+
+Important measured distinction:
+Lane18 micro12 column62 U_R/right_index_1_joint native q=-0.001607122365385294 rad,
+baseline implicit-add-armature predicts +0.007796022547875052 rad. The model
+misses this hard-limit violation even after resetting at the same macro boundary.
+Lane19 micro13 observed owner scalar peak is9.281611442565918 N; its omitted
+self-contact identity is inherited from the existing frontier. This work only
+rechecks recorded owner scalars; it does not repeat pair geometry/GJK/camera work.
+
+Both known36micro repeated plans diverge from ACTUAL future targets at micro14.
+There are only16 observed microsteps. The full36 direct comparison is disabled;
+the prefix pairing mask permits only micro0..13. Teacher-forced macro7 results
+remain legitimate because they reset to actual q/qd and use actual macro7 targets.
+No invalid future36 state error is computed or substituted into the calibration.
+
+M/C/gravity are held within each2micro; no second-micro native dynamics sample
+exists. Per-control refresh and control0-stale M/bias are separate variants.
+Armature-as-recorded versus add-diagonal is an unresolved interpretation, not
+a discovered native truth. Gravity respects recorded flags (F disabled, U enabled).
+The baseline uses dt=.008333; a separate variant uses the actual native tick.
+Explicit saturated PD is a diagnostic alternative and is numerically unstable
+on these stiff hand inputs (large errors are retained, not filtered out).
+No implicit-model saturation occurred on these32 native micro samples. Saturated
+solver behavior is covered by positive/negative analytical tests, NOT calibrated
+against observed saturated native drive torque. Native friction/drive semantics,
+contact and limit impulses, velocity constraints and hidden solver state remain
+unidentified. Explicit actuation commands/projected forces are not motor torques.
+
+CONTACT=UNKNOWN; ACTUAL_DRIVE_TORQUE=UNKNOWN; TERMINAL_SET=UNKNOWN.
+GLOBAL_MODEL_ERROR_BOUND=UNKNOWN. Empirical maxima are not global bounds.
+Numerical convergence tolerance is not a physical error or safety tolerance.
+These results do not establish physical safety, backup safety or tracking success.
+An additional GPT6 Astra xhigh review was not obtained: collaboration APIs
+returned missing-session/teamspace binding errors. No review is claimed.
+
+Re-run measurement with a NEW label and NEW tag (existing outputs are never overwritten):
+  ulimit -v 1048576
+  export PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=''
+  /home/liyufeng/miniforge3/envs/safeduo/bin/python -B run_owned_cpu_wait_v1.py two_witness_attempt02 run_native_calibration_v1.py --tag two_witness_v2
+
+Run focused tests again without overwriting the recorded test report:
+  /home/liyufeng/miniforge3/envs/safeduo/bin/python -B -m unittest -v test_native_teacherforced_cpu_v1
+
+No edits to the live controller or admission rules are made by this helper.
