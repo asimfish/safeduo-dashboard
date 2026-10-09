@@ -1,0 +1,312 @@
+{
+ "theta_hi": 0.5,
+ "theta_lo": 0.2,
+ "clutch": true,
+ "ckpt": "/home/batchcom/safeduo/artifacts/runs/st_E1_base_paper_retry_20260910/model_4000.pt",
+ "env_yaml": "duo_env_v7_r18_stack_fix2_v8_la06_dw30.yaml",
+ "geometry": "v7",
+ "num_envs": 4,
+ "duration_s": 10.0,
+ "steps_per_window": 600,
+ "dt": 0.016666,
+ "seed": 20260820,
+ "regular_amps": [
+  0.015,
+  0.03
+ ],
+ "directed_amps": [
+  0.03,
+  0.06
+ ],
+ "bypass_mm": null,
+ "hazard_source": "beta",
+ "hazard_temp": null,
+ "date": "2026-09-29 19:38:55",
+ "fidelity": {
+  "fidelity_at_tol": {
+   "1e-06": 0.22082243859767914,
+   "1e-04": 0.22296172380447388,
+   "1e-03": 0.23413358628749847
+  },
+  "imperfect_dev_linf_quantiles": {
+   "p50": 0.009312,
+   "p90": 0.015,
+   "p99": 0.02014,
+   "max": 0.028615
+  },
+  "clutch_engaged_frac_safe": 0.4304730296134949,
+  "n_steps": 4800,
+  "n_safe_steps": 4207,
+  "safe_step_frac": 0.8764583468437195,
+  "safe_frac_by_class": {
+   "cross": 0.9627083539962769,
+   "self_F": 0.9910416603088379,
+   "self_U": 0.9270833134651184,
+   "table": 0.9791666865348816
+  },
+  "safe_frac_blanket_30mm": 0.0,
+  "fidelity_bitwise": 0.22082243859767914,
+  "fidelity_per_arm": {
+   "F_L": 0.5300689339637756,
+   "F_R": 0.6249108910560608,
+   "U_L": 0.5959115624427795,
+   "U_R": 0.6161159873008728
+  },
+  "mean_attenuation_safe": 0.30231824928829554,
+  "imperfect_arm_steps": 6870,
+  "imperfect_alpha_source": 4102,
+  "imperfect_stack_source": 5107,
+  "imperfect_both_sources": 2339,
+  "tol": 1e-06,
+  "safe_lines": {
+   "cross": 0.03,
+   "self_F": 0.01,
+   "self_U": 0.03
+  }
+ },
+ "false_brake": {
+  "n_safe_steps": 4207,
+  "false_brake_arm_rate": 0.24756358563899994,
+  "false_brake_any_rate": 0.5723793506622314,
+  "false_brake_per_arm": {
+   "F_L": 0.3622533977031708,
+   "F_R": 0.23722366988658905,
+   "U_L": 0.2127406746149063,
+   "U_R": 0.17803660035133362
+  },
+  "safe_lines": {
+   "cross": 0.03,
+   "self_F": 0.01,
+   "self_U": 0.03
+  }
+ },
+ "diag_regular": {
+  "margin_quantiles": {
+   "cross": {
+    "p1": 0.02294,
+    "p5": 0.03127,
+    "p50": 0.08258
+   },
+   "self_F": {
+    "p1": 0.01077,
+    "p5": 0.02308,
+    "p50": 0.02308
+   },
+   "self_U": {
+    "p1": 0.01583,
+    "p5": 0.01971,
+    "p50": 0.06202
+   },
+   "table": {
+    "p1": -0.00173,
+    "p5": 0.00164,
+    "p50": 0.00178
+   }
+  },
+  "margin_frac_above_line": {
+   "cross": 0.9627,
+   "self_F": 0.991,
+   "self_U": 0.9271,
+   "table": 0.9792
+  },
+  "alpha_policy_quantiles": {
+   "F_L": {
+    "p10": 0.1788,
+    "p50": 0.7028,
+    "p90": 0.8313
+   },
+   "F_R": {
+    "p10": 0.1934,
+    "p50": 0.7188,
+    "p90": 0.8282
+   },
+   "U_L": {
+    "p10": 0.2003,
+    "p50": 0.7607,
+    "p90": 0.816
+   },
+   "U_R": {
+    "p10": 0.2001,
+    "p50": 0.7435,
+    "p90": 0.8096
+   }
+  },
+  "locked_frac_per_arm": {
+   "F_L": 0.3635,
+   "F_R": 0.2621,
+   "U_L": 0.2569,
+   "U_R": 0.2087
+  }
+ },
+ "bypass_attr": {
+  "n_safe_steps": 4207,
+  "bypass_arm_duty_safe": 0.0,
+  "all_bypassed_step_frac_safe": 0.0,
+  "fidelity_when_all_bypassed": -1.0,
+  "imperfect_split": {
+   "locked": 4102,
+   "bypassed": 0,
+   "engaged_blocked": 2768
+  },
+  "blocked_step_cross_band": {
+   "(30,38]mm": 414,
+   "(38,40]mm": 170,
+   "(40,43]mm": 75,
+   "(43,50]mm": 130,
+   "(50,80]mm": 275,
+   ">80mm": 978
+  },
+  "blocked_step_coflags": {
+   "self_F<=18mm": 0.0637,
+   "self_U<=18mm": 0.0,
+   "table<=25mm": 1.0
+  },
+  "blocked_by_class": {
+   "cross_hazard": 0,
+   "cross_gray": 0,
+   "self_hazard": 0,
+   "self_gray": 0,
+   "table_hazard": 0,
+   "table_gray": 0,
+   "n_blocked_imperfect": 2768,
+   "n_safe_table_clear": 4207
+  },
+  "fidelity_safe_table_clear": 0.22082243859767914
+ },
+ "lock_lookahead": {
+  "n_locked_safe_steps": 2408,
+  "lookahead_consistent_frac": 0.5490033030509949,
+  "horizon_steps": 30
+ },
+ "calibration_regular": {
+  "bins": [
+   {
+    "band_mm": "(0,30]",
+    "n": 179,
+    "alpha_min_p10": 0.1503,
+    "alpha_min_p50": 0.1708,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.095,
+    "P(a<0.2)": 0.9218,
+    "P(a<0.3)": 1.0,
+    "P(a<0.4)": 1.0,
+    "P(a<0.5)": 1.0
+   },
+   {
+    "band_mm": "(30,38]",
+    "n": 823,
+    "alpha_min_p10": 0.1584,
+    "alpha_min_p50": 0.1791,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.0437,
+    "P(a<0.2)": 0.7922,
+    "P(a<0.3)": 0.9745,
+    "P(a<0.4)": 0.9988,
+    "P(a<0.5)": 1.0
+   },
+   {
+    "band_mm": "(38,43]",
+    "n": 550,
+    "alpha_min_p10": 0.1629,
+    "alpha_min_p50": 0.2869,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.0418,
+    "P(a<0.2)": 0.2364,
+    "P(a<0.3)": 0.5436,
+    "P(a<0.4)": 0.9145,
+    "P(a<0.5)": 0.9945
+   },
+   {
+    "band_mm": "(43,50]",
+    "n": 233,
+    "alpha_min_p10": 0.1849,
+    "alpha_min_p50": 0.3194,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.0343,
+    "P(a<0.2)": 0.1502,
+    "P(a<0.3)": 0.4292,
+    "P(a<0.4)": 0.721,
+    "P(a<0.5)": 0.9013
+   },
+   {
+    "band_mm": "(50,65]",
+    "n": 291,
+    "alpha_min_p10": 0.1741,
+    "alpha_min_p50": 0.3301,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0034,
+    "P(a<0.15)": 0.0515,
+    "P(a<0.2)": 0.2062,
+    "P(a<0.3)": 0.4811,
+    "P(a<0.4)": 0.5326,
+    "P(a<0.5)": 0.5739
+   },
+   {
+    "band_mm": "(65,80]",
+    "n": 271,
+    "alpha_min_p10": 0.1439,
+    "alpha_min_p50": 0.212,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.1292,
+    "P(a<0.2)": 0.3727,
+    "P(a<0.3)": 0.7306,
+    "P(a<0.4)": 0.7712,
+    "P(a<0.5)": 0.8007
+   },
+   {
+    "band_mm": "(80,120]",
+    "n": 747,
+    "alpha_min_p10": 0.1507,
+    "alpha_min_p50": 0.2784,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.0991,
+    "P(a<0.2)": 0.2784,
+    "P(a<0.3)": 0.5194,
+    "P(a<0.4)": 0.5382,
+    "P(a<0.5)": 0.5622
+   },
+   {
+    "band_mm": "(120,200]",
+    "n": 973,
+    "alpha_min_p10": 0.1555,
+    "alpha_min_p50": 0.5922,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.0832,
+    "P(a<0.2)": 0.1891,
+    "P(a<0.3)": 0.4275,
+    "P(a<0.4)": 0.4584,
+    "P(a<0.5)": 0.4779
+   },
+   {
+    "band_mm": ">200",
+    "n": 733,
+    "alpha_min_p10": 0.1469,
+    "alpha_min_p50": 0.7699,
+    "P(a<0.02)": 0.0,
+    "P(a<0.05)": 0.0,
+    "P(a<0.1)": 0.0,
+    "P(a<0.15)": 0.105,
+    "P(a<0.2)": 0.2074,
+    "P(a<0.3)": 0.3097,
+    "P(a<0.4)": 0.3342,
+    "P(a<0.5)": 0.3533
+   }
+  ],
+  "note": "min-over-arms detector alpha vs env cross-margin band"
+ }
+}
