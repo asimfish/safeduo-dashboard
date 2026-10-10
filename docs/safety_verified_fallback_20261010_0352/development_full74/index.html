@@ -6,6 +6,112 @@
 <body><a class="skip" href="#main">跳到内容</a><div class="shell">
 <header class="masthead"><a href="../">安全机制实验记录</a><span>V8正常闭合、覆盖仍失败 / 独立负例审核已闭合</span></header>
 <main id="main">
+<section id="fixed128ActualSnapshot" class="full74-update">
+<style>
+#fixed128ActualSnapshot{min-width:0}#fixed128ActualSnapshot .table-scroll{max-width:100%;overflow-x:auto}
+#fixed128ActualSnapshot table{min-width:960px}#fixed128ActualSnapshot a,#fixed128ActualSnapshot code{overflow-wrap:anywhere}
+#fixed128ActualSnapshot .pilot-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#fixed128ActualSnapshot .pilot-view{min-width:0;margin:0;border:1px solid #cad4d0;border-radius:8px;overflow:hidden;background:#fff}
+#fixed128ActualSnapshot .pilot-view img{display:block;width:100%;height:auto;object-fit:contain}
+#fixed128ActualSnapshot figcaption{padding:10px;font-size:13px;line-height:1.65}#fixed128ActualSnapshot h4{margin:20px 0 10px}
+#fixed128ActualSnapshot details code{font-size:11px}#fixed128ActualSnapshot .pilot-status{padding:14px;border-left:4px solid #ab572b;background:#fff4e9}
+@media(max-width:640px){#fixed128ActualSnapshot .pilot-gallery{grid-template-columns:minmax(0,1fr)}}
+</style>
+<div class="eyebrow">固定128 · 已闭合的原生失败与初始相机进展</div>
+<h2>一个初始状态的15视图通过独立核查，12步窗口仍未完成</h2>
+<p id="pilotActualAsOf">快照时点：<time datetime="2026-10-10T09:44:00+00:00">2026-10-10T09:44:00+00:00</time>（UTC）。原生失败和相机审核均已闭合；后续状态只按这个时点记录。</p>
+<div class="pilot-status" id="pilotNotSafetyPass"><strong>bank 0 · formal 0 · 安全/任务未验收。</strong>
+seed0 native实际退出0，产品因共享时钟检查失败，outer实际退出1。独立camera-only审核实际退出0，仅确认proposal92的初始相机证据；不代表完整轨迹、物理安全或bank资格。</div>
+<p id="pilotFrozenIdentity">原8192提案保持冻结；本轮沿用同一4 seeds × 32 = 128个IDs，不重采样。
+本次实际涉及seed0的32个初始状态：31个数值拒绝，1个进入初始相机。seed1–3没有启动。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="固定128实际处置"><table id="pilotActualTable"><thead><tr>
+<th>冻结身份</th><th>native exit</th><th>outer exit</th><th>产品状态</th><th>已提交采样点×lanes</th><th>已提交物理推进步 / 目标</th><th>producer微步计数</th><th>数值拒绝states</th><th>初始相机状态</th>
+</tr></thead><tbody><tr data-seed="0"><th>seed 0<br>IDs 64–95</th><td>0</td><td>1</td><td>FAILED_SHARED_BATCH</td><td>2 × 32 = 64</td><td>1 / 12</td><td>0</td><td>31 / 32</td><td>1 / 32（INITIAL_ONLY）</td></tr><tr data-seed="1"><th>seed 1<br>IDs 512–543</th><td>NOT_STARTED</td><td>—</td><td>未启动</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr data-seed="2"><th>seed 2<br>IDs 672–703</th><td>NOT_STARTED</td><td>—</td><td>未启动</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr data-seed="3"><th>seed 3<br>IDs 1120–1151</th><td>NOT_STARTED</td><td>—</td><td>未启动</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div>
+<p id="pilotCommittedSteps"><strong>2个已提交采样点 ≠ 2个物理推进步。</strong>实际绝对step是3、4，相隔1步；已提交lane-point行是64/416。
+producer只接受micro0，microsteps计数仍为0；完整12步窗口为0。未提交的13行预分配尾部未用于图表或完成计数。</p>
+<p id="pilotClockFailure">原始float64时间：<code>[0.025000001303851604, 0.03333333507180214]</code>；间隔<code>0.008333333767950535</code>秒；配置dt<code>0.008333</code>秒；原门槛<code>1e-08</code>秒。
+误差<code>3.3376795053469133e-07</code>秒触发原检查。本页保留该失败，不修改容差。</p>
+<p id="pilotCameraNotTested">31个初始数值拒绝状态的相机为<strong>NOT_TESTED</strong>，不是camera PASS；后续窗口相机也未完成。</p>
+<h3 id="pilotInitialCamera">proposal92 / env028：INITIAL_ONLY · 全15张选中原图</h3>
+<p id="pilotCameraAudit">独立核查29次尝试（手部20 + wide9）、29张PNG；选中四只手各3张，共12张手部图，加3张wide。
+reader worker actual0、wrapper actual0，全部owned已回收；errors=[]。实际角度身份最大误差0°，234次held快照检查。
+<strong>registered32 / all27</strong>只覆盖本次初始事件的32 lanes；参数和geometry前后不变。它不是全表面可见性或完整窗口证明。</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="初始相机独立覆盖核查"><table id="pilotCameraCoverage"><thead><tr>
+<th>手臂</th><th>实际尝试</th><th>选中图</th><th>palm峰值像素</th><th>thumb/index/middle/ring/little峰值像素</th><th>各native body峰值的最小值</th><th>独立结论</th></tr></thead><tbody><tr><th>F_L</th><td>4</td><td>3</td><td>28419</td><td>8939 / 4239 / 2567 / 2978 / 3960</td><td>809</td><td>通过 · INITIAL_ONLY</td></tr><tr><th>F_R</th><td>4</td><td>3</td><td>24441</td><td>10302 / 3992 / 4213 / 3064 / 3989</td><td>690</td><td>通过 · INITIAL_ONLY</td></tr><tr><th>U_L</th><td>4</td><td>3</td><td>7480</td><td>7913 / 3541 / 2363 / 2450 / 2752</td><td>458</td><td>通过 · INITIAL_ONLY</td></tr><tr><th>U_R</th><td>8</td><td>3</td><td>5844</td><td>9068 / 4232 / 2961 / 2873 / 3188</td><td>513</td><td>通过 · INITIAL_ONLY</td></tr></tbody></table></div>
+<p>下图全部为本次seed0 attempt2的原始1280×720 RGB，保留完整画面；点击可查看原件。每张的mask、attempt元数据和原始NPZ引用SHA见证据归档；不把旧图作为新结果。</p>
+<div id="pilotSelectedViews" data-selected-count="15"><div class="pilot-view-group" id="pilotViews_F_L"><h4>F_L · 3张选中原图</h4><div class="pilot-gallery"><figure class="pilot-view" data-group="F_L" data-sha256="0ef02953931bd9b0608cdb2e5c1df20b80abc05dbf5bd58e593326eec1574758">
+<a href="pilot_actual_v2/F_L_attempt_04.png"><img src="pilot_actual_v2/F_L_attempt_04.png" width="1280" height="720" loading="eager" alt="F_L · attempt 04 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>F_L · attempt 04 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/F_L_attempt_04.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>0ef02953931bd9b0608cdb2e5c1df20b80abc05dbf5bd58e593326eec1574758</code></details></figcaption></figure><figure class="pilot-view" data-group="F_L" data-sha256="bdb4a1a856e92aa54de1c7deb8d8bec9f986dc9a0c00f23eb96d02ffb2a014e1">
+<a href="pilot_actual_v2/F_L_attempt_01.png"><img src="pilot_actual_v2/F_L_attempt_01.png" width="1280" height="720" loading="eager" alt="F_L · attempt 01 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>F_L · attempt 01 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/F_L_attempt_01.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>bdb4a1a856e92aa54de1c7deb8d8bec9f986dc9a0c00f23eb96d02ffb2a014e1</code></details></figcaption></figure><figure class="pilot-view" data-group="F_L" data-sha256="857764200ccbabada6b793446a17ca4100d11810b95cba968c749e3cc7580b3a">
+<a href="pilot_actual_v2/F_L_attempt_03.png"><img src="pilot_actual_v2/F_L_attempt_03.png" width="1280" height="720" loading="eager" alt="F_L · attempt 03 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>F_L · attempt 03 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/F_L_attempt_03.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>857764200ccbabada6b793446a17ca4100d11810b95cba968c749e3cc7580b3a</code></details></figcaption></figure></div></div><div class="pilot-view-group" id="pilotViews_F_R"><h4>F_R · 3张选中原图</h4><div class="pilot-gallery"><figure class="pilot-view" data-group="F_R" data-sha256="5abc035642d7ff0d29775346f07ac57c0eb10fc14e625d1c1763af3d4f55aaf7">
+<a href="pilot_actual_v2/F_R_attempt_03.png"><img src="pilot_actual_v2/F_R_attempt_03.png" width="1280" height="720" loading="eager" alt="F_R · attempt 03 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>F_R · attempt 03 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/F_R_attempt_03.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>5abc035642d7ff0d29775346f07ac57c0eb10fc14e625d1c1763af3d4f55aaf7</code></details></figcaption></figure><figure class="pilot-view" data-group="F_R" data-sha256="b2ffdc21cee6e6a4602c0bba696c9febed1bfdb9d7050c8f4f641a45574b6797">
+<a href="pilot_actual_v2/F_R_attempt_02.png"><img src="pilot_actual_v2/F_R_attempt_02.png" width="1280" height="720" loading="eager" alt="F_R · attempt 02 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>F_R · attempt 02 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/F_R_attempt_02.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>b2ffdc21cee6e6a4602c0bba696c9febed1bfdb9d7050c8f4f641a45574b6797</code></details></figcaption></figure><figure class="pilot-view" data-group="F_R" data-sha256="d2be7b6327ddf8c4804766e1d00af264dc60c9ac1c0cf0dcc952869c4ddfac6e">
+<a href="pilot_actual_v2/F_R_attempt_04.png"><img src="pilot_actual_v2/F_R_attempt_04.png" width="1280" height="720" loading="eager" alt="F_R · attempt 04 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>F_R · attempt 04 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/F_R_attempt_04.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>d2be7b6327ddf8c4804766e1d00af264dc60c9ac1c0cf0dcc952869c4ddfac6e</code></details></figcaption></figure></div></div><div class="pilot-view-group" id="pilotViews_U_L"><h4>U_L · 3张选中原图</h4><div class="pilot-gallery"><figure class="pilot-view" data-group="U_L" data-sha256="c5d854a6dce3dd92ebd106dd8090f8e47c1f3c1d5f788633853ebd083ed36471">
+<a href="pilot_actual_v2/U_L_attempt_04.png"><img src="pilot_actual_v2/U_L_attempt_04.png" width="1280" height="720" loading="eager" alt="U_L · attempt 04 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>U_L · attempt 04 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/U_L_attempt_04.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>c5d854a6dce3dd92ebd106dd8090f8e47c1f3c1d5f788633853ebd083ed36471</code></details></figcaption></figure><figure class="pilot-view" data-group="U_L" data-sha256="bfc95d42e181458380a7aeefa2ab4e3bfd4f8583d8ba5a68b935508fdf9df0a0">
+<a href="pilot_actual_v2/U_L_attempt_03.png"><img src="pilot_actual_v2/U_L_attempt_03.png" width="1280" height="720" loading="eager" alt="U_L · attempt 03 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>U_L · attempt 03 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/U_L_attempt_03.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>bfc95d42e181458380a7aeefa2ab4e3bfd4f8583d8ba5a68b935508fdf9df0a0</code></details></figcaption></figure><figure class="pilot-view" data-group="U_L" data-sha256="4bf6950b98d6dd06dbcef50febd2e9933a7fd9b603e7435def47d23419101e69">
+<a href="pilot_actual_v2/U_L_attempt_01.png"><img src="pilot_actual_v2/U_L_attempt_01.png" width="1280" height="720" loading="eager" alt="U_L · attempt 01 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>U_L · attempt 01 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/U_L_attempt_01.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>4bf6950b98d6dd06dbcef50febd2e9933a7fd9b603e7435def47d23419101e69</code></details></figcaption></figure></div></div><div class="pilot-view-group" id="pilotViews_U_R"><h4>U_R · 3张选中原图</h4><div class="pilot-gallery"><figure class="pilot-view" data-group="U_R" data-sha256="323fe623483e7d89b2285d4cc2d3ff00d5e21fc762b2cc642803efbc9920efb1">
+<a href="pilot_actual_v2/U_R_attempt_06.png"><img src="pilot_actual_v2/U_R_attempt_06.png" width="1280" height="720" loading="eager" alt="U_R · attempt 06 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>U_R · attempt 06 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/U_R_attempt_06.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>323fe623483e7d89b2285d4cc2d3ff00d5e21fc762b2cc642803efbc9920efb1</code></details></figcaption></figure><figure class="pilot-view" data-group="U_R" data-sha256="19512df651304c606347232e75ee916201e250226e2f33baab48417cc02a00aa">
+<a href="pilot_actual_v2/U_R_attempt_08.png"><img src="pilot_actual_v2/U_R_attempt_08.png" width="1280" height="720" loading="eager" alt="U_R · attempt 08 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>U_R · attempt 08 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/U_R_attempt_08.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>19512df651304c606347232e75ee916201e250226e2f33baab48417cc02a00aa</code></details></figcaption></figure><figure class="pilot-view" data-group="U_R" data-sha256="f756b417d3a9869342f90238f3ffac8b94587fda92f110472e252458e1471d65">
+<a href="pilot_actual_v2/U_R_attempt_07.png"><img src="pilot_actual_v2/U_R_attempt_07.png" width="1280" height="720" loading="eager" alt="U_R · attempt 07 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>U_R · attempt 07 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/U_R_attempt_07.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>f756b417d3a9869342f90238f3ffac8b94587fda92f110472e252458e1471d65</code></details></figcaption></figure></div></div><div class="pilot-view-group" id="pilotViews_wide"><h4>全景 wide · 3张选中原图</h4><div class="pilot-gallery"><figure class="pilot-view" data-group="wide" data-sha256="af2b06fbaf2796072e181e97a3039c800c002ca6d452c8a721ca8d7527d4d8fa">
+<a href="pilot_actual_v2/wide_attempt_06.png"><img src="pilot_actual_v2/wide_attempt_06.png" width="1280" height="720" loading="eager" alt="wide · attempt 06 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>wide · attempt 06 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/wide_attempt_06.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>af2b06fbaf2796072e181e97a3039c800c002ca6d452c8a721ca8d7527d4d8fa</code></details></figcaption></figure><figure class="pilot-view" data-group="wide" data-sha256="e84c73a86b2404051d693f6f6388d1f6bd7ed2a488d63a8fc8eec95f3a3df58d">
+<a href="pilot_actual_v2/wide_attempt_07.png"><img src="pilot_actual_v2/wide_attempt_07.png" width="1280" height="720" loading="eager" alt="wide · attempt 07 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>wide · attempt 07 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/wide_attempt_07.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>e84c73a86b2404051d693f6f6388d1f6bd7ed2a488d63a8fc8eec95f3a3df58d</code></details></figcaption></figure><figure class="pilot-view" data-group="wide" data-sha256="690302cb978359924a4d1c444120ed05ade39cc5dc3bc70de1aa93c14c5d91cd">
+<a href="pilot_actual_v2/wide_attempt_09.png"><img src="pilot_actual_v2/wide_attempt_09.png" width="1280" height="720" loading="eager" alt="wide · attempt 09 · 选中原图；seed0 proposal92 env028；INITIAL_ONLY"></a>
+<figcaption><strong>wide · attempt 09 · 选中原图</strong><br>proposal92 · env028 · INITIAL_ONLY<br>
+<a href="pilot_actual_v2/wide_attempt_09.png" download>下载原始PNG</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">原始mask/attempt证据</a>
+<details><summary>原图SHA256</summary><code>690302cb978359924a4d1c444120ed05ade39cc5dc3bc70de1aa93c14c5d91cd</code></details></figcaption></figure></div></div></div>
+<h3 id="pilotV1BeforeAppFailure">第一次尝试保留：before-App失败</h3>
+<p>pilot V1 native actual1 / outer actual1 / CPU actual0。PhaseTrace命名空间检查在App前拒绝，App启动0、原生状态0。
+该失败的原始闭合记录保留（SHA5865f409…），未被第二次尝试重分类。</p>
+<h3 id="pilotBankQuota">bank目标32，当前0</h3>
+<p>4 seeds × 4 families × 每单元2个；16个单元必须分别满足，不允许借用其他单元的名额。初始相机通过不等于bank资格；本轮完整12步窗口0，formal0。</p>
+<h3 id="pilotClock3Snapshot">clock3：截至09:44 UTC尚未原生启动</h3>
+<p>父侧报告CPU/source候选已准备，独立review当时仍在进行。此处为<strong>NOT_STARTED / 后续结果待闭合</strong>的历史快照，不显示实时运行状态，也不计入新的原生状态或相机数。</p>
+<p id="pilotEvidenceLinks"><a href="pilot_actual_v2/RESULT_SNAPSHOT.json">结构化结果与15图SHA</a> · <a href="pilot_actual_v2/CLOSED_PROOFS.tar.gz">闭合证明及原始mask元数据</a> · <a href="pilot_actual_v2/SOURCE_PROVENANCE.json">来源绑定</a> · <a href="pilot_actual_v2/PREVIOUS_SNAPSHOT.tar.gz">此前2336b996原始快照</a></p>
+<div class="notice" id="pilotPreviousSnapshotNotice">以下为此前公开快照及旧图表/失败记录；旧“fixed128未启动”等状态属于原快照时点。
+最新结果见本节。旧V5 timeout、首次stress原生−11且outer UNKNOWN等原始记录保持。</div>
+</section>
+
 <section class="hero"><div class="eyebrow">DEVELOPMENT · FULL 74 JOINTS</div>
 <h1>74关节开发进展</h1><p class="lead">先看分布，再看真实初始状态。<br>生成提案已覆盖四臂，原生验证停在相机初始检查。</p>
 <div class="status-line"><span class="badge failed">物理安全验收 FAILED</span><span class="badge failed">任务验收 FAILED</span><span class="badge neutral">正式留出 0</span></div>
@@ -13,7 +119,7 @@
 <div class="notice" id="snapshotTimestamp"><strong>快照更新时间：<time datetime="2026-10-10T06:26:50.217167+00:00">2026-10-10 14:26:50 UTC+08:00</time></strong><br>
 V6外层终止记录：2026-10-10T05:09:31.096362+00:00；独立失败诊断闭合：2026-10-10T05:19:03.928602+00:00。更新时间不代表新实采时间。<br>
 <strong>旧32个原生初始状态；V6重放同一批32个lane；新增fresh状态0，独立初始状态仍32。</strong>
-V6只对env002/F_R进行1个相机诊断case的96次尝试；选中3张公开原图。已完成原生实验0、正式留出0。</div><nav class="section-nav" aria-label="本页目录"><a href="#newFull74Coverage">新队列覆盖审计</a><a href="#failedPartialRawV2">失败raw独立读取</a><a href="#ownedDebugSnapshot">OBS_ONLY重放</a><a href="#ongoingFull74">新四种子失败快照</a><a href="#v8ActualCase">V8闭合结果</a><a href="#v6ActualCase">V6真实结果</a><a href="#distribution">74关节分布</a><a href="#native">原生初始状态</a><a href="#independentAuditV2">独立审计V2</a><a href="#failures">失败原图</a><a href="#cameraStartupV3">V3启动失败</a><a href="#nextSnapshot">运行历史</a><a href="#storageProvenance">资源凭据</a><a href="#cases">全部32例</a><a href="#downloads">证据下载</a></nav></section>
+V6只对env002/F_R进行1个相机诊断case的96次尝试；选中3张公开原图。已完成原生实验0、正式留出0。</div><nav class="section-nav" aria-label="本页目录"><a href="#fixed128ActualSnapshot">固定128 · 15图与实际失败</a><a href="#newFull74Coverage">新队列覆盖审计</a><a href="#failedPartialRawV2">失败raw独立读取</a><a href="#ownedDebugSnapshot">OBS_ONLY重放</a><a href="#ongoingFull74">新四种子失败快照</a><a href="#v8ActualCase">V8闭合结果</a><a href="#v6ActualCase">V6真实结果</a><a href="#distribution">74关节分布</a><a href="#native">原生初始状态</a><a href="#independentAuditV2">独立审计V2</a><a href="#failures">失败原图</a><a href="#cameraStartupV3">V3启动失败</a><a href="#nextSnapshot">运行历史</a><a href="#storageProvenance">资源凭据</a><a href="#cases">全部32例</a><a href="#downloads">证据下载</a></nav></section>
 <div class="metrics" aria-label="实验分母"><article><strong>8,192</strong><span>生成提案</span><small>4 个开发种子 × 2048</small></article><article><strong>74</strong><span>每条提案的 q + qd</span><small>26 控制关节 + 48 手部关节</small></article><article><strong>32</strong><span>旧 native 初始状态</span><small>seed index 0 · V6重放同一批32，fresh新增0</small></article><article><strong>0</strong><span>原生任务验收完成</span><small>前缀微步 0 · 正式留出 0</small></article></div>
 
 <!-- FULL74_COVERAGE_RAW_UPDATE_V1_BEGIN -->
