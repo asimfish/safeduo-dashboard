@@ -1,0 +1,127 @@
+#usda 1.0
+(
+    defaultPrim = "ur5"
+    subLayers = [
+        @/home/liyufeng/safeduo/assets_real/usd/ur5_dfx_right_v7.usd@
+    ]
+)
+
+over "ur5"
+{
+    over "joints"
+    {
+        over "right_thumb_3_joint" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular"]
+            prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxMimicJoint:rotZ:dampingRatio = 0
+            float physxMimicJoint:rotZ:gearing = -1.1425
+            float physxMimicJoint:rotZ:naturalFrequency = 0
+            float physxMimicJoint:rotZ:offset = -0
+            rel physxMimicJoint:rotZ:referenceJoint = </ur5/joints/right_thumb_2_joint>
+            uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+        }
+
+        over "right_thumb_4_joint" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular"]
+            prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxMimicJoint:rotZ:dampingRatio = 0
+            float physxMimicJoint:rotZ:gearing = -0.7508
+            float physxMimicJoint:rotZ:naturalFrequency = 0
+            float physxMimicJoint:rotZ:offset = -5.729578
+            rel physxMimicJoint:rotZ:referenceJoint = </ur5/joints/right_thumb_3_joint>
+            uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+        }
+
+        over "right_index_2_joint" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular"]
+            prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxMimicJoint:rotZ:dampingRatio = 0
+            float physxMimicJoint:rotZ:gearing = -1.1169
+            float physxMimicJoint:rotZ:naturalFrequency = 0
+            float physxMimicJoint:rotZ:offset = 8.594367
+            rel physxMimicJoint:rotZ:referenceJoint = </ur5/joints/right_index_1_joint>
+            uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+        }
+
+        over "right_middle_2_joint" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular"]
+            prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxMimicJoint:rotZ:dampingRatio = 0
+            float physxMimicJoint:rotZ:gearing = -1.1169
+            float physxMimicJoint:rotZ:naturalFrequency = 0
+            float physxMimicJoint:rotZ:offset = 8.594367
+            rel physxMimicJoint:rotZ:referenceJoint = </ur5/joints/right_middle_1_joint>
+            uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+        }
+
+        over "right_ring_2_joint" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular"]
+            prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxMimicJoint:rotZ:dampingRatio = 0
+            float physxMimicJoint:rotZ:gearing = -1.1169
+            float physxMimicJoint:rotZ:naturalFrequency = 0
+            float physxMimicJoint:rotZ:offset = 8.594367
+            rel physxMimicJoint:rotZ:referenceJoint = </ur5/joints/right_ring_1_joint>
+            uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+        }
+
+        over "right_little_2_joint" (
+            delete apiSchemas = ["PhysicsDriveAPI:angular"]
+            prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+        )
+        {
+            float drive:angular:physics:damping = 0
+            float drive:angular:physics:maxForce = 0
+            float drive:angular:physics:stiffness = 0
+            float drive:angular:physics:targetPosition = 0
+            float drive:angular:physics:targetVelocity = 0
+            uniform token drive:angular:physics:type = "force"
+            float physxMimicJoint:rotZ:dampingRatio = 0
+            float physxMimicJoint:rotZ:gearing = -1.1169
+            float physxMimicJoint:rotZ:naturalFrequency = 0
+            float physxMimicJoint:rotZ:offset = 8.594367
+            rel physxMimicJoint:rotZ:referenceJoint = </ur5/joints/right_little_1_joint>
+            uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+        }
+    }
+}

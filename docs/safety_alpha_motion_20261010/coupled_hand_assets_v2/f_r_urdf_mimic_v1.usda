@@ -1,0 +1,130 @@
+#usda 1.0
+(
+    defaultPrim = "Robot"
+    subLayers = [
+        @/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v14/fr3_f2_right_explicit_axes_v1.usda@
+    ]
+)
+
+over "Robot"
+{
+    over "f2_hand"
+    {
+        over "joints"
+        {
+            over "right_thumb_3_joint" (
+                delete apiSchemas = ["PhysicsDriveAPI:angular"]
+                prepend apiSchemas = ["PhysxMimicJointAPI:rotX"]
+            )
+            {
+                float drive:angular:physics:damping = 0
+                float drive:angular:physics:maxForce = 0
+                float drive:angular:physics:stiffness = 0
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+                float physxMimicJoint:rotX:dampingRatio = 0
+                float physxMimicJoint:rotX:gearing = -0.7222
+                float physxMimicJoint:rotX:naturalFrequency = 0
+                float physxMimicJoint:rotX:offset = -0
+                rel physxMimicJoint:rotX:referenceJoint = </Robot/f2_hand/joints/right_thumb_2_joint>
+                uniform token physxMimicJoint:rotX:referenceJointAxis = "rotZ"
+            }
+
+            over "right_thumb_4_joint" (
+                delete apiSchemas = ["PhysicsDriveAPI:angular"]
+                prepend apiSchemas = ["PhysxMimicJointAPI:rotX"]
+            )
+            {
+                float drive:angular:physics:damping = 0
+                float drive:angular:physics:maxForce = 0
+                float drive:angular:physics:stiffness = 0
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+                float physxMimicJoint:rotX:dampingRatio = 0
+                float physxMimicJoint:rotX:gearing = -0.69754
+                float physxMimicJoint:rotX:naturalFrequency = 0
+                float physxMimicJoint:rotX:offset = -0
+                rel physxMimicJoint:rotX:referenceJoint = </Robot/f2_hand/joints/right_thumb_3_joint>
+                uniform token physxMimicJoint:rotX:referenceJointAxis = "rotX"
+            }
+
+            over "right_index_2_joint" (
+                delete apiSchemas = ["PhysicsDriveAPI:angular"]
+                prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+            )
+            {
+                float drive:angular:physics:damping = 0
+                float drive:angular:physics:maxForce = 0
+                float drive:angular:physics:stiffness = 0
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+                float physxMimicJoint:rotZ:dampingRatio = 0
+                float physxMimicJoint:rotZ:gearing = -1.1545
+                float physxMimicJoint:rotZ:naturalFrequency = 0
+                float physxMimicJoint:rotZ:offset = -0
+                rel physxMimicJoint:rotZ:referenceJoint = </Robot/f2_hand/joints/right_index_1_joint>
+                uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+            }
+
+            over "right_middle_2_joint" (
+                delete apiSchemas = ["PhysicsDriveAPI:angular"]
+                prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+            )
+            {
+                float drive:angular:physics:damping = 0
+                float drive:angular:physics:maxForce = 0
+                float drive:angular:physics:stiffness = 0
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+                float physxMimicJoint:rotZ:dampingRatio = 0
+                float physxMimicJoint:rotZ:gearing = -1.1545
+                float physxMimicJoint:rotZ:naturalFrequency = 0
+                float physxMimicJoint:rotZ:offset = -0
+                rel physxMimicJoint:rotZ:referenceJoint = </Robot/f2_hand/joints/right_middle_1_joint>
+                uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+            }
+
+            over "right_ring_2_joint" (
+                delete apiSchemas = ["PhysicsDriveAPI:angular"]
+                prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+            )
+            {
+                float drive:angular:physics:damping = 0
+                float drive:angular:physics:maxForce = 0
+                float drive:angular:physics:stiffness = 0
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+                float physxMimicJoint:rotZ:dampingRatio = 0
+                float physxMimicJoint:rotZ:gearing = -1.1545
+                float physxMimicJoint:rotZ:naturalFrequency = 0
+                float physxMimicJoint:rotZ:offset = -0
+                rel physxMimicJoint:rotZ:referenceJoint = </Robot/f2_hand/joints/right_ring_1_joint>
+                uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+            }
+
+            over "right_pinky_2_joint" (
+                delete apiSchemas = ["PhysicsDriveAPI:angular"]
+                prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]
+            )
+            {
+                float drive:angular:physics:damping = 0
+                float drive:angular:physics:maxForce = 0
+                float drive:angular:physics:stiffness = 0
+                float drive:angular:physics:targetPosition = 0
+                float drive:angular:physics:targetVelocity = 0
+                uniform token drive:angular:physics:type = "force"
+                float physxMimicJoint:rotZ:dampingRatio = 0
+                float physxMimicJoint:rotZ:gearing = -1.1545
+                float physxMimicJoint:rotZ:naturalFrequency = 0
+                float physxMimicJoint:rotZ:offset = -0
+                rel physxMimicJoint:rotZ:referenceJoint = </Robot/f2_hand/joints/right_pinky_1_joint>
+                uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+            }
+        }
+    }
+}
