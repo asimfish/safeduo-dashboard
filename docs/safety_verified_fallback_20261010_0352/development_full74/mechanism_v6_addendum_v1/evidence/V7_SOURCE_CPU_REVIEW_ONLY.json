@@ -1,0 +1,282 @@
+{
+  "schema": "independent.mechanism.v7.release2.source_cpu_review.v1",
+  "status": "COND_PASS",
+  "manual_semantic_verdict": "COND_PASS_SOURCE_CPU_ONLY",
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/SOURCE_GRAPH_V7.json",
+    "sha256": "74e7051243aa588d394f84dab351761b55263e71c29045b222d0bd3d149e205f"
+  },
+  "exact_source_graph_sha256": "74e7051243aa588d394f84dab351761b55263e71c29045b222d0bd3d149e205f",
+  "closed_CPU_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/CLOSED_SOURCE_CPU_HANDOFF_V7_REPAIR2.json",
+    "sha256": "56de4976722ec5673f974e5ac92f309b2bc5ba7547baf389c8710c6d9a9a10b9"
+  },
+  "exact_closed_CPU_handoff_sha256": "56de4976722ec5673f974e5ac92f309b2bc5ba7547baf389c8710c6d9a9a10b9",
+  "release_parent_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/RELEASE2_PARENT_HANDOFF_V1.json",
+    "sha256": "37a67e83881db66aa3c50e93567fc29c8619befd7349fcd1fdc048c0d7c23c24"
+  },
+  "validation_source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/CPU_VALIDATION_SOURCE_GRAPH_V7_REPAIR2.json",
+    "sha256": "13f5ba6380d58ba702f0922b8e4521c780b0170549e51ca7fb1f45eff318c485"
+  },
+  "repair_delta": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/LOCAL_GRAPH_REPAIR_DELTA_V7.json",
+    "sha256": "1fe2f94b00351d37059c16f98fb6efb7358742ddbb1133656f1bb876a1ab80c6"
+  },
+  "parent_commands": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/PARENT_COMMANDS_V7_REPAIR2.json",
+    "sha256": "18d91fea76764943ffb87e64ea2c6b2a36f9a9f9079f85bc50320d23625181d7"
+  },
+  "request_draft": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/REQUEST_DRAFT_V7.json",
+    "sha256": "0b1c9194b762f2eb4c54e5a026dd4c121fa2bd75b79f1ce07d91b074e4b0bd32"
+  },
+  "blocking_findings": [],
+  "findings": [
+    {
+      "id": "V7-MINOR-002",
+      "severity": "minor",
+      "status": "INHERITED_NONBLOCKING",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/compiled_observation_v7.py",
+        "sha256": "02f15a2b69e4c53729ceec1ec532b1027c78bdd1c0505d9ae626d3939904a891"
+      },
+      "line": 107,
+      "description": "AFTER_ORIGINAL_MICRO12 nested raw registry/metatype still carry inherited BEFORE_EXPERIMENT_STATE_WRITE capture_stage. Main observation receipt phase, directory and committed step/time correctly identify actual final seam.",
+      "condition": "Future DATA/derived peer must bind the main wrapper phase and actual committed clocks; do not treat inherited nested stage string as actual prewrite provenance."
+    },
+    {
+      "id": "V7-MINOR-003",
+      "severity": "minor",
+      "status": "INHERITED_NONBLOCKING",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/compiled_observation_v7.py",
+        "sha256": "02f15a2b69e4c53729ceec1ec532b1027c78bdd1c0505d9ae626d3939904a891"
+      },
+      "line": 162,
+      "description": "all27_bitwise_held is equality-only; a deliberately incomplete identical snapshot can return true. Frozen real provider returns all27 or raises, and observation errors/status are retained; no actual incomplete snapshot was observed.",
+      "condition": "Future DATA/derived peer must require the exact complete27 schema, all32 shapes, no capture errors and other complete hold proofs; the boolean alone is insufficient."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "id": "V7-BLOCK-001",
+      "status": "RESOLVED_IN_THIS_NEW_GRAPH_ONLY",
+      "prior_NEEDS_FIX_review": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v1/REVIEW_V1.json",
+        "sha256": "4f6bf9e84e262ad62cf7a4af4ee927b9a5bab3bb39b0edddcdc3b6b88221579a"
+      },
+      "exact_local_replacements": {
+        "native_frame_export_v4.py": 1,
+        "frame_reader_interface_v4.py": 1,
+        "final_frame_evidence_v5.py": 3
+      },
+      "proof": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_mechanism_v7_independent_review_v2/BOUNDED_CPU_RESULT_V1.json",
+        "sha256": "840a378c9e089ae5f5e59826ec04b3f8409929e9437b6704d267f9be9077bf2f"
+      }
+    }
+  ],
+  "prior_d206_and_CPU940b_status": "BLOCKED_PRESERVED_NOT_RECLASSIFIED",
+  "scope": "Minimum distinct NEW release2 SOURCE/CPU peer. Actual native acquisition is separately owned by parent. Existing11 mapping/observer checks and new5 integration seam proofs reused without rerunning old fixtures.",
+  "reviewer_configuration": {
+    "author_requested_configuration": "Hooke / gpt-6-astra xhigh (user supplied)",
+    "reviewer_requested_model": "parent-default",
+    "thread_override": null,
+    "actual_serving_model": "hidden/UNKNOWN",
+    "verified_distinct_serving_backend": false,
+    "new_agents": 0
+  },
+  "manual_checks": [
+    {
+      "area": "Exact source authority and local graph resolution",
+      "verdict": "PASS_SOURCE_CPU",
+      "evidence": "5 local literals rerooted across exporter1/reader1/finalizer3; bootstrap/phase namespace only; repaired b.ref resolves exactgraph74e705;1087 inherited entries exactmetadata; no old upstream path rewrite."
+    },
+    {
+      "area": "Readonly getter/noninterference",
+      "verdict": "PASS_SOURCE_WITH_ACTUAL_DATA_GATE",
+      "evidence": "Frozen actual native27 provider uses dynamic registered count, 4arms*6 native getter fields plus3 origin/clock fields and detached copies. No body cache/kinematic refresh. Static geometry reads original tensors. Observer persists native27/parameters/geometry/additional target+velocity/clock before and after, with mutation denial. All27 are registered state fields, not cameras. PREWRITE and only committed originalmicro12 seam; no added steps/setters/render/forward or new observer guardian."
+    },
+    {
+      "area": "Native Jacobian layout/dtypes/identity mapping",
+      "verdict": "PASS_SOURCE_REUSED_CPU",
+      "evidence": "Pinned installed107.3 tensor implementation uses float32 actual4D J: fixed(N,L-1,6,D), floating(N,L,6,D+6); uint8 DOF types with0 Rotation; COM host allocationdevice-1. Exactlane/arm/dof/link paths, joint DOF partitions and liveenum.name/value type checked; unsupported enum remains raw/UNKNOWN without repr-parser runtime fallback. root missing row gets explicitly derived fixed-root zero; no -1 rawrow. Signed child-parent angular columns retained, including nonunit/zero/nonfinite values without normalization. Actor XYZW, COM-relative and global/subspace semantics remain distinct."
+    },
+    {
+      "area": "Durable capture and denial boundaries",
+      "verdict": "PASS_SOURCE_WITH_LIMITS",
+      "evidence": "All32 per-arm getters, metatypes/registry and scalar enums saved before row interpretation; original74/82 and all64 target records, including mapping/getter errors retained. Initial freshness UNKNOWN_NO_REFRESH; no subspace roots setter or body-axis/wrench certification. ModelNotReady is retained and original AB continues when original state/resource guards pass."
+    },
+    {
+      "area": "Science and actual CPU closure",
+      "verdict": "PASS_REUSED_BOUNDED_CPU",
+      "evidence": "Observer/mapping/collector byteexact; frozen original request fields unchanged except authority/output namespace.16IDs92..107,32AB,12originalsteps/core/floors/gains/math retained. Closed author build+seam+entryCLI+harnessCLI4workers0 and prior3workers0 verified with wait4 ownership/absence/log SHA.2 failed repairworkers1 and oldRED retained. New GREEN is CPUfixture only; exporterModelNotReady still reaches2368 related DOFinstances and64targets."
+    }
+  ],
+  "CPU_evidence": {
+    "existing11_checks_reused": true,
+    "new5_seam_checks_reused": true,
+    "own_suite_reruns": 0,
+    "actual_author_successful_workers": [
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt2/build/ACTUAL_WAIT.json",
+          "sha256": "82fede3cb63bc3b9b9d035d2d5b26668aeba4a6dd30d9329ec57eb0ba1a7d666"
+        },
+        "pid": 128125,
+        "wait0": true,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/export_observer_seam/ACTUAL_WAIT.json",
+          "sha256": "51384c3c9f98cc422125e7e2a18ca0a9de13166ec5dfb7c7d4e750036df66b1f"
+        },
+        "pid": 133564,
+        "wait0": true,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/entry_CLI/ACTUAL_WAIT.json",
+          "sha256": "b02beaed4f8d1959f99667f961f392ba9c06cbc5a289ffcb9c1a44dc16b5745d"
+        },
+        "pid": 133784,
+        "wait0": true,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/harness_CLI/ACTUAL_WAIT.json",
+          "sha256": "f7d14a93c29f76e627936ac47a93482a3069a786e01893f3dfbc7d3f4e52e221"
+        },
+        "pid": 133786,
+        "wait0": true,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation/cpu_attempt1/mapping_IO/ACTUAL_WAIT.json",
+          "sha256": "8fc35c78f6c5efbd0b23d3dde8e1b99eb0ba3fa12926bc375d01af0894facd46"
+        },
+        "pid": 95067,
+        "wait0": true,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation/cpu_attempt1/entry_CLI/ACTUAL_WAIT.json",
+          "sha256": "7d1e539f2b57237f326cdf0e9ba832e9424f15f1229a49665515625a3ded6c25"
+        },
+        "pid": 95270,
+        "wait0": true,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation/cpu_attempt1/harness_CLI/ACTUAL_WAIT.json",
+          "sha256": "256ed68b149ea167f810321462c4adf6de2a07cdbcf0c5ad9d866550d57418ef"
+        },
+        "pid": 95281,
+        "wait0": true,
+        "all_owned_absent": true
+      }
+    ],
+    "preserved_author_failed_workers": [
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt1/build/ACTUAL_WAIT.json",
+          "sha256": "4e1d719491d0365ba08319bb25803ba1f0d2f62474be6a924375cea7cf07931a"
+        },
+        "pid": 126110,
+        "actual_wait_exit": 1,
+        "all_owned_absent": true
+      },
+      {
+        "ref": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt2/export_observer_seam/ACTUAL_WAIT.json",
+          "sha256": "634e322a5e8fe595ad2e37a0d900c3025c208f5ad99ab2a7e9c5e02155f8cb06"
+        },
+        "pid": 128152,
+        "actual_wait_exit": 1,
+        "all_owned_absent": true
+      }
+    ],
+    "author_tool_reap_closure": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/cpu_attempt3/CPU_TOOL_SESSION_REAP_CLOSURE_V7_RELEASE2.json",
+      "sha256": "683187da5c9b829ad7a10d962164457f522f59f0f83d61bb8fef3df7839f6659"
+    },
+    "author_tool_sessions": [
+      {
+        "session_id": 95688,
+        "actual_tool_exit": 0,
+        "reaped": true,
+        "initial_chunk": "0ce981",
+        "terminal_chunk": "57960d"
+      },
+      {
+        "session_id": 21229,
+        "actual_tool_exit": 1,
+        "reaped": true,
+        "initial_chunk": "2f4e8b",
+        "terminal_chunk": "04fa16"
+      },
+      {
+        "session_id": 91409,
+        "actual_tool_exit": 0,
+        "reaped": true,
+        "terminal_chunk": "93ee7e"
+      },
+      {
+        "session_id": 78193,
+        "actual_tool_exit": 0,
+        "reaped": true,
+        "terminal_chunk": "1f0f87"
+      }
+    ],
+    "author_tool_receipt_domain": "Observed tool-session closure; not an independent wait4 substitute",
+    "own_bounded_result": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_mechanism_v7_independent_review_v2/BOUNDED_CPU_RESULT_V1.json",
+      "sha256": "840a378c9e089ae5f5e59826ec04b3f8409929e9437b6704d267f9be9077bf2f"
+    }
+  },
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_mechanism_v7_independent_review_v2/worker/ACTUAL_WAIT.json",
+    "sha256": "ca0285c4da11936c453971c867b164cbf552a48e9828ef580f5a9a48016f095c"
+  },
+  "actual_tool_wait": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/ACTUAL_TOOL_WAIT_V1.json",
+    "sha256": "7ecfb50e1912d3b5b2197fa35cccb86dcd0e96607b77b4fb18c5f266f62cfa18"
+  },
+  "actual_worker_exit": 0,
+  "actual_tool_exit": 0,
+  "all_owned_closed": true,
+  "no_pending_worker_or_tool_wait": true,
+  "source_preservation": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/SOURCE_UNCHANGED_V1.json",
+    "sha256": "6d8e79d7c15bbbd38e0ba3e380f98a057034e4e686b316b0a86245a8267b9ef6"
+  },
+  "selected_unchanged_count": 84,
+  "source_admission": "Parent may use this exact NEW graph and independent review for its separate freeze/run authority; no blocking source finding remains.",
+  "conditions": [
+    "Future DATA/derived peer must bind the main wrapper phase and actual committed clocks; do not treat inherited nested stage string as actual prewrite provenance.",
+    "Future DATA/derived peer must require the exact complete27 schema, all32 shapes, no capture errors and other complete hold proofs; the boolean alone is insufficient.",
+    "Actual getters/typedstate/raw byte preservation and original native/resource/clock guards must pass in the separately owned native run. Initial Jacobian freshness remains UNKNOWN until observed without observer refresh.",
+    "Postclose native DATA peer must use real actual waits and ENTRY/retained prewrite/final receipts; no prospective wait is evidence of completion."
+  ],
+  "limitations": [
+    "SOURCE/CPU only; reviewer launched no native/GPU and read no old NPZ/RAW/whole500 data.",
+    "CPU seam patches live getters with explicit fixtures. Its exporter receipt inherits native-looking labels; CPU-only marker, path and enclosing report govern its synthetic interpretation. It cannot be consumed as actual native frame evidence.",
+    "Wrapped final raw capture_stage and equality-only held flag retain the two documented nonblocking conditions.",
+    "No full74 geometry model, joint-local wrench frame,64+64 replay,8192 evaluation, bank or production-safety certification; global model bound UNKNOWN.",
+    "Parent external thin observer/helper, actual serial ledger, native resources, deployment/report delivery and actual V6 outcomes are outside this source delta peer."
+  ],
+  "native_admission": false,
+  "full74_model": null,
+  "wrench_frame": "UNKNOWN",
+  "bank_count": 0,
+  "safety_pass": false,
+  "created_utc": "2026-10-10T17:33:58.336039+00:00"
+}

@@ -1,7 +1,7 @@
 {
   "schema": "safeduo.normalized_report_summary.v1",
-  "asof_utc": "2026-10-10T16:21:30+00:00",
-  "asof_AsiaShanghai": "2026-10-11 00:21:30 Asia/Shanghai",
+  "asof_utc": "2026-10-10T17:53:40.065191+00:00",
+  "asof_AsiaShanghai": "2026-10-11 01:53:40 Asia/Shanghai",
   "historical_restricted128": {
     "cases": 128,
     "method_windows": 256,
@@ -737,16 +737,21 @@
     "scope": "REFERENCE_DERIVED marginal coverage, not 148-dimensional joint coverage, independent samples, or safety qualification"
   },
   "mechanism": {
-    "actual_status": "CLOSED_NATIVE_INSPECTION_DATA_ORIGINAL_AB_REFUSED_BEFORE_STATE_WRITE",
-    "native_wait": 0,
-    "outer_wait": 1,
-    "physics_steps": 0,
-    "AB_windows": 0,
-    "actual_metadata_lanes": 32,
-    "arms_per_lane": 4,
+    "latest": "V7_CLOSED_ACTUAL_COLLECTION_PENDING_INDEPENDENT_DATA_AUDIT",
+    "native_actual_exit": 0,
+    "outer_actual_exit": 0,
+    "tool_actual_exit": 0,
+    "same_frozen_16_latent_repeat": true,
+    "AB_windows": 32,
+    "states_per_window": 13,
+    "physics_steps": 12,
+    "new_independent_proposals": 0,
+    "independent_RAW": "PENDING",
+    "distinct_DATA_peer": "PENDING",
     "frame_model": "MODEL_NOT_READY",
-    "mimic_relations": 0,
-    "unsupported_state_API_records": 74
+    "bank_count": 0,
+    "safety_acceptance": false,
+    "task_acceptance": false
   },
   "acceptance": {
     "bank_selected": 0,
@@ -763,6 +768,767 @@
   "temporal_rows_correlated": true,
   "historical_images_INITIAL_ONLY": true,
   "report_refresh": {
+    "schema": "safeduo.report_refresh.closed_facts.v1",
+    "asof_utc": "2026-10-10T17:53:40.065191+00:00",
+    "asof_AsiaShanghai": "2026-10-11 01:53:40 Asia/Shanghai",
+    "calibration": {
+      "cases": 19,
+      "steps_per_case": 4,
+      "correlated_rows": 76,
+      "zero_drive_rows": 44,
+      "zero_drive_controls": 11,
+      "counterexample_rows": 18,
+      "counterexample_controls": 6,
+      "clean_fixture_rows": 44,
+      "passive_or_load_rows": 20,
+      "data_valid": true,
+      "production_drive_peak": "UNKNOWN",
+      "within_micro_peak": "UNKNOWN",
+      "global_certified_error_bound": "UNKNOWN",
+      "distinct_semantic_review": "PASS_DATA_ONLY",
+      "distinct_semantic_review_ref": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/implicit_drive_raw_v8_actual_data_semantic_review_v1/RAW_ACTUAL_DATA_SEMANTIC_REVIEW_V1.json",
+        "sha256": "23ff35e8011c1f6aa54de9b8712939ecba30d3a6e2358b0efd49e1913a3f8d9d"
+      },
+      "distinct_semantic_closure_ref": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/implicit_drive_raw_v8_actual_data_semantic_review_v1/CLOSED_ACTUAL_DATA_REVIEW_V1.json",
+        "sha256": "c66e6d345835e352043e06a1241ab3a939174ae6fe6ffa0a6ca929c63ab6d1f8"
+      }
+    },
+    "point0": {
+      "existing_states": 128,
+      "new_native_states": 0,
+      "model_evaluations": 0,
+      "lossless_DATA_review": "PASS",
+      "actual_frame_binding": "PENDING"
+    },
+    "mechanism5": {
+      "actual_status": "CLOSED_NATIVE_INSPECTION_DATA_ORIGINAL_AB_REFUSED_BEFORE_STATE_WRITE",
+      "native_wait": 0,
+      "outer_wait": 1,
+      "physics_steps": 0,
+      "AB_windows": 0,
+      "actual_metadata_lanes": 32,
+      "arms_per_lane": 4,
+      "frame_model": "MODEL_NOT_READY",
+      "mimic_relations": 0,
+      "unsupported_state_API_records": 74
+    },
+    "acceptance": {
+      "bank_selected": 0,
+      "required_bank": 32,
+      "policy_actions": 0,
+      "formal_holdout": 0,
+      "task": false,
+      "safety": false,
+      "all_requirements": false
+    },
+    "evidence_sources": {
+      "CALIBRATION_ENTRY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_implicit_drive_isolated_calibration_v8_gpu0/calibration_native_attempt1/entry/ENTRY_RECEIPT_V1.json",
+        "sha256": "ed0f861dc6dfc5e90f6f57b9416f131f981e90e442a866d218400df5fbd33e7a"
+      },
+      "CALIBRATION_NATIVE_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_gpu0_intake_v1/PARENT_NATIVE_MEASURED_CLOSED_V8_GPU0.json",
+        "sha256": "3ed31444eac08a6399154781f92cfe2c60ca7213fe513e216d27b22bfca89743"
+      },
+      "CALIBRATION_NATIVE_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_implicit_drive_isolated_calibration_v8_gpu0/calibration_native_attempt1/native_process/ACTUAL_WAIT.json",
+        "sha256": "32aa9d60c83c2e0a7ea51223ba3bb7dff5500e5c5a8a5ed5a5573d5b80b6f853"
+      },
+      "CALIBRATION_OUTER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_gpu0_intake_v1/external_native01/ACTUAL_WRAPPER_WAIT_V1.json",
+        "sha256": "2d6475436c4e843663048765645b76d2d9d24df40a5c4442eb7c34432eae3f9c"
+      },
+      "CALIBRATION_PIPELINE_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_isolated_calibration_v8_gpu0/parent_direct_execution_attempt1/ACTUAL_WRAPPER_WAIT_V4.json",
+        "sha256": "477862e61b520cc823d9b31c2aeabd916703c581859da8f78f9d0e85e45bf070"
+      },
+      "POINT0_DATA_REVIEW.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/REVIEW_V1.json",
+        "sha256": "1890fa074484ae129e1c976b29a764f0cac25c99e9f5268940c5c5f9889c056b"
+      },
+      "POINT0_DATA_REVIEW_TOOL_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/ACTUAL_TOOL_WAIT_V1.json",
+        "sha256": "6e2fc6daafc716d5e7d95f25ea75376256f6fa8b5b0e6aeaeca3ec1c027c0f40"
+      },
+      "POINT0_DATA_REVIEW_WORKER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/worker/ACTUAL_WAIT.json",
+        "sha256": "abb9642719c6c0e0c2b2b5cfc3d99f5a65ddc87a5fa0109732567f0bec13f974"
+      },
+      "POINT0_EXPORT_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/PARENT_ACTUAL_EXPORT_CLOSED_V1.json",
+        "sha256": "d2d55b70d2fd4f4bb6a86676ba0471dfe92069023df092dd04ed9ec2433fe250"
+      },
+      "POINT0_EXPORT_MANIFEST.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export1/EXPORT_MANIFEST_V1.json",
+        "sha256": "2ac5d1d80225c12656b79529561dda0d2268c0f8bc3de66a46de90874181ef08"
+      },
+      "POINT0_EXPORT_WORKER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/worker/ACTUAL_WAIT.json",
+        "sha256": "0ec7e7132cec7a6ba3ea9bc888ca951c60f2dfdc97811ed0ff6ccf7bc53f3795"
+      },
+      "POINT0_EXPORT_WRAPPER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/wrapper/ACTUAL_WAIT.json",
+        "sha256": "d9d4bd635b5db396eb4500999fbccc6c93ef07597bd2e8b5ad619f5a104044aa"
+      },
+      "CALIBRATION_RAW_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_raw_intake_v1/PARENT_ACTUAL_RAW_CLOSED_V1.json",
+        "sha256": "7926d88c7935c9824a80a88fbe62d4d85ebadfd25d32ae912d59cd0f1fa3f921"
+      },
+      "CALIBRATION_RAW_AUDIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_raw_audit_v8_gpu0/actual_raw_attempt1/INDEPENDENT_RAW_AUDIT_V8_GPU0.json",
+        "sha256": "3c42f4d4713e32835debe9355c2a73618d6f96111d450c00fa4ed068295a5009"
+      },
+      "CALIBRATION_RAW_DELIVERY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_raw_audit_v8_gpu0/actual_raw_attempt1/CLOSED_DELIVERY_V8_GPU0.json",
+        "sha256": "ee4463059e35b05df63cbad09270f1c1622f2b16401e4d0b41695af12ad2a65b"
+      },
+      "CALIBRATION_RAW_WORKER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_raw_audit_v8_gpu0/actual_raw_attempt1/ACTUAL_WAIT.json",
+        "sha256": "4ae6ce7de629e030c5cbec826f521c9a5d4b9163501a28b405ff9d61e55d1d6b"
+      },
+      "CALIBRATION_RAW_SOURCE_BOUND_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_raw_audit_v8_gpu0/actual_raw_attempt1/SOURCE_BOUND_CPU_WAIT_V8_GPU0.json",
+        "sha256": "e417072647c97f7f1a729b82dbb9b51d057bb35cfa4c6691e685df232599b21d"
+      },
+      "CALIBRATION_RAW_TOOL_CLOSURE.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_raw_intake_v1/PARENT_RAW_TOOL_CLOSURE_V1.json",
+        "sha256": "ec1e1828d276a9eec45780b10e3e343735833cee3d07eede2ee97469f96cb6ba"
+      },
+      "MECHANISM5_ENTRY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/entry/ENTRY_RECEIPT_V4.json",
+        "sha256": "42a8fd68b639d619596a265deb4f2d7dede8f88538c05b5ea793f5df77691e69"
+      },
+      "MECHANISM5_NATIVE_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/native_process/ACTUAL_WAIT.json",
+        "sha256": "f6c680f6e4498bdf0f3403bdb52888198ddd299a0e4dc9ae9c2c4f04ef02438a"
+      }
+    },
+    "failed_attempt_sources": {
+      "calibration5": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v5_gpu0_intake_v1/PARENT_FAILED_NATIVE_CLOSED_V5_GPU0.json",
+        "sha256": "cca5c167a193b862547e29d5107786f8def0a713728c475e42a09370cd7d3317"
+      },
+      "calibration6_resource": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v6_gpu0_intake_v1/PARENT_PRELAUNCH_FAILED_CLOSED_V6_GPU0.json",
+        "sha256": "5d031888e310aba900bbe8d0500be7ec852625b138c0fab3786931eab7f997b6"
+      },
+      "calibration6_retry": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v6_gpu0_intake_v1/PARENT_NATIVE_RETRY_FAILED_CLOSED_V6_GPU0.json",
+        "sha256": "8ef6e6741c02cbd32420d26e560a6a776c69c36cdb49820b5188508784e84b2a"
+      },
+      "calibration7": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v7_gpu0_intake_v1/PARENT_NATIVE_FAILED_CLOSED_V7_GPU0.json",
+        "sha256": "f6863bc0860e04b06fcdbccfe47040ffbaadbcbbf5101846fe9cf48c466c9f5c"
+      },
+      "mechanism4": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v4/PARENT_NATIVE_FAILED_CLOSED_V4.json",
+        "sha256": "8a1d1636e0f17640d23db0b28df3bff3e5b0038d52412904c5d36d6783b6eb67"
+      },
+      "mechanism5": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v5/PARENT_NATIVE_FAILED_CLOSED_V5.json",
+        "sha256": "2d00c11bf87d55df1aa6e53162116d40f0f45644dd9fe91483bfc4f6cf824738"
+      }
+    },
+    "mechanism6": {
+      "schema": "astra.constraint.mechanism.closed_raw_findings.v6",
+      "status": "PASS_DATA_ONLY",
+      "derived_from": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/raw/INDEPENDENT_MECHANISM_RAW_V1.json",
+        "sha256": "286eaf6744c5ffc491d8e4c39c71c13bc26ea91178eda933b27b1e08dcefcfaa"
+      },
+      "derivation": "METADATA_ONLY_SUMMARIZATION; no new raw decode or new independent audit",
+      "created_utc": "2026-10-10T17:18:38.693873+00:00",
+      "denominators": {
+        "latent_proposals": 16,
+        "AB_windows": 32,
+        "states_per_window": 13,
+        "real_physics_steps": 12,
+        "related_temporal_observations": 416,
+        "independent_IID_trial_count": null
+      },
+      "all_16_ids_retained": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "sentinel_ids": [
+        92,
+        93,
+        94,
+        95
+      ],
+      "prospective_ids": [
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "constructible_B": 1,
+      "constructible_IDs": [
+        102
+      ],
+      "nonconstructible_B_retained_as_A_duplicate": 15,
+      "nonconstructible_IDs": [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "comparison_scope": "One constructible prospective pair only. Other15 are retained duplicate-baseline observations, not intervention-effect evidence.",
+      "actual_source_files_consumed": 1047,
+      "all74_q_qd_targets_interventions_exact": true,
+      "actual_angular_state_API_instances": 2368,
+      "actual_native_mimic_schema_count": 0,
+      "parameters_geometry_before_after_exact": true,
+      "clock": {
+        "status": "EXACT_CLOCK_INTERVALS_VERIFIED",
+        "micro_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "actual_dt_s": 0.008333333333333333,
+        "native_pass": false,
+        "scope": "CLOCK_ONLY_WITH_NATIVE_CLOSURE_REQUIRED",
+        "tolerance_increased": false,
+        "actual_dt_before_s": 0.008333333333333333,
+        "actual_dt_after_s": 0.008333333333333333,
+        "raw_clock_callback_steps_s": [
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535,
+          0.008333333767950535
+        ],
+        "source_files": {
+          "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py": "ebafc6bcb30a454925fe21b96dcdbd4637c922a3fa9d5a6947308c9796ba5028",
+          "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py": "7486ec315d2525bdef6e1cef294d67d419511e3367e7f40001a8324e2b6a7751",
+          "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py": "9f608b061c7aa4285a4a722806d3858e7e44ab82d907309635c6295a272dd659"
+        }
+      },
+      "inventory": {
+        "actual_recorded_lanes": 32,
+        "actual_recorded_DOFs": 74,
+        "fixed_tendons": 0,
+        "spatial_tendons": 0,
+        "mimic_schema_count": 0,
+        "before_after_equal": true,
+        "angular_state_APIs_per_lane": 74,
+        "angular_state_types_per_lane": 148,
+        "USD_state_attribute_values_finite": "UNKNOWN_NOT_RETAINED_IN_V6_VALID_REGISTRY",
+        "native_q_qd_finiteness": "AUDITED_SEPARATELY_IN_FROZEN_NUMERIC_KERNEL",
+        "model_ready": false,
+        "compiled_impulses": "UNKNOWN",
+        "force_limit_interpretation": "UNKNOWN",
+        "independent_USD_reopen": false
+      },
+      "geometry": {
+        "all9021_rows_checked": true,
+        "reconstruction_tolerance_m": 5e-05,
+        "max_abs_reconstruction_error_m": 1.3167757511034495e-06,
+        "raw_sign_disagreement_count": 0,
+        "raw_gap_predicate_epsilon": 0
+      },
+      "all82_point_scalar_recomputed": true,
+      "initial_point_freshness": "UNKNOWN",
+      "sides": {
+        "A": {
+          "latent_denominator": 16,
+          "actual_windows": 16,
+          "initial_denied_windows": 15,
+          "initial_denied_by_reason": {
+            "nonfinite": 0,
+            "hard74": 0,
+            "velocity74": 0,
+            "soft26": 0,
+            "raw9021": 15,
+            "point_scalar82": 0,
+            "held_target74": 0
+          },
+          "any_observed_numeric_denial_windows": 16,
+          "prefix_denied_windows_by_reason": {
+            "nonfinite": 0,
+            "hard74": 16,
+            "velocity74": 16,
+            "soft26": 7,
+            "raw9021": 15,
+            "point_scalar82": 16,
+            "held_target74": 0
+          },
+          "prefix_denied_related_rows_by_reason": {
+            "nonfinite": 0,
+            "hard74": 171,
+            "velocity74": 150,
+            "soft26": 43,
+            "raw9021": 180,
+            "point_scalar82": 192,
+            "held_target74": 0
+          }
+        },
+        "B": {
+          "latent_denominator": 16,
+          "actual_windows": 16,
+          "initial_denied_windows": 15,
+          "initial_denied_by_reason": {
+            "nonfinite": 0,
+            "hard74": 0,
+            "velocity74": 0,
+            "soft26": 0,
+            "raw9021": 15,
+            "point_scalar82": 0,
+            "held_target74": 0
+          },
+          "any_observed_numeric_denial_windows": 16,
+          "prefix_denied_windows_by_reason": {
+            "nonfinite": 0,
+            "hard74": 16,
+            "velocity74": 16,
+            "soft26": 7,
+            "raw9021": 15,
+            "point_scalar82": 16,
+            "held_target74": 0
+          },
+          "prefix_denied_related_rows_by_reason": {
+            "nonfinite": 0,
+            "hard74": 171,
+            "velocity74": 152,
+            "soft26": 44,
+            "raw9021": 180,
+            "point_scalar82": 192,
+            "held_target74": 0
+          }
+        }
+      },
+      "single_constructible_pair": {
+        "proposal_id": 102,
+        "family": 2,
+        "A_lane": 20,
+        "B_lane": 21,
+        "A": {
+          "initial_denial": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "prefix_denial_counts": [
+            0,
+            11,
+            10,
+            0,
+            12,
+            12,
+            0
+          ],
+          "peak_sampled_abs_velocity_ratio": 17.084341049194336,
+          "max_sampled_delta_qd": 149.69692993164062
+        },
+        "B": {
+          "initial_denial": [
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "prefix_denial_counts": [
+            0,
+            11,
+            12,
+            0,
+            12,
+            12,
+            0
+          ],
+          "peak_sampled_abs_velocity_ratio": 55.85895919799805,
+          "max_sampled_delta_qd": 358.7362060546875
+        },
+        "initial_abs_URDF_position_residual_max": {
+          "A": 0.5392301386415959,
+          "B": 2.4777650792229267e-08
+        },
+        "initial_abs_URDF_velocity_residual_max": {
+          "A": 9.599491852474213,
+          "B": 2.2058486948139944e-07
+        },
+        "final_abs_URDF_position_residual_max": {
+          "A": 1.5533390159130098,
+          "B": 1.0619897142099217
+        },
+        "final_abs_URDF_velocity_residual_max": {
+          "A": 17.449161167740822,
+          "B": 19.992098515224455
+        }
+      },
+      "falsifiable_observed_conclusion": "For fixed proposal102, the frozen URDF-coherent q/qd constructor and corresponding held target did not remove original geometry/contact/speed denials across these12 actual steps. This one observed pair does not identify drive/constraint causes or establish general efficacy.",
+      "sampled_velocity_is_not_motor_torque": true,
+      "within_micro_peak": "UNKNOWN",
+      "compiled_constraint_impulses": "UNKNOWN",
+      "actual_drive_torque": "UNKNOWN",
+      "global_error_bound": "UNKNOWN",
+      "frame_model_status": "MODEL_NOT_READY",
+      "camera": "NOT_TESTED",
+      "bank_count": 0,
+      "formal_holdout_opened": false,
+      "native_pass": false,
+      "safety_acceptance": false,
+      "task_acceptance": false,
+      "distinct_DATA_peer": "PASS_DATA_ONLY",
+      "report_asof_utc": "2026-10-10T17:53:40.065191+00:00",
+      "report_asof_AsiaShanghai": "2026-10-11 01:53:40 Asia/Shanghai",
+      "science_native_closed_utc": "2026-10-10T17:10:18.937577+00:00",
+      "RAW_closed_utc": "2026-10-10T17:19:44.269068+00:00",
+      "final_DATA_adopted_utc": "2026-10-10T17:33:01.207083+00:00",
+      "distinct_DATA_peer_ref": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/PARENT_ACTUAL_DATA_HANDOFF_V1.json",
+        "sha256": "5df1fccf6def6e60d2b858583ffbdf33ce073dac4f2029298a944fc87c09be93"
+      },
+      "parent_final_DATA_adoption": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v6/PARENT_ACTUAL_DATA_CLOSED_V1.json",
+        "sha256": "7069734de579556e4cd0d6118e8ec67d43a730d811197a7ad291907e6035d4cb"
+      },
+      "original_compact_receipt_status": "Historical metadata receipt; its original PENDING is preserved, current review status is above",
+      "source_reports": {
+        "NATIVE_ACTUAL_CLOSED.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v6/PARENT_ACTUAL_NATIVE_CLOSED_V6.json",
+          "sha256": "4495e829ccc2a50656cfcd286b3135f1f7b9aa08923dde75044c28af1a5caf5f"
+        },
+        "RAW_ACTUAL_CLOSED.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/CLOSED_ACTUAL_RAW_AUDIT_V6.json",
+          "sha256": "60ecfeeb1cba7cd04cac88cb4c6d33a8c059cd03a6e8f3c0a422b5e2c0b395af"
+        },
+        "INDEPENDENT_RAW_REPORT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/raw/INDEPENDENT_MECHANISM_RAW_V1.json",
+          "sha256": "286eaf6744c5ffc491d8e4c39c71c13bc26ea91178eda933b27b1e08dcefcfaa"
+        },
+        "READER_HANDOFF.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/CLOSED_ACTUAL_READER_HANDOFF_V6.json",
+          "sha256": "33cc1e3a7ab5c4fad956593245e6a1f0ad93f27d94775fc3aefc9ba59e3c8067"
+        },
+        "READER_SOURCE_GRAPH.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/PACKAGE_SOURCE_GRAPH_V1.json",
+          "sha256": "52c7c103c032e104d4175234b19057d06d7c0de6adfd155d1f830094be5e56c6"
+        },
+        "READER_CPU_CLOSED.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/CLOSED_CPU_READER_CANDIDATE_V6.json",
+          "sha256": "6083461d9796f1b6baf241e764a6a1584c932d9f2d127fbed795465957d44cfc"
+        },
+        "RAW_WORKER_ACTUAL_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/worker/ACTUAL_WAIT.json",
+          "sha256": "a999e79fd673faa2c0fcfb64a445841abe3846cea53f7476262f86c3e5a51e81"
+        },
+        "RAW_OUTER_ACTUAL_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/external/raw01/ACTUAL_WAIT.json",
+          "sha256": "9f43348f2bb62174fa46fb77fdb983b905e6d170af4fbf4aeb00472a8fd7a4ad"
+        },
+        "NATIVE_ACTUAL_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_attempt1/native_process/ACTUAL_WAIT.json",
+          "sha256": "29f1587092f5976ae01b4c4082a81b8087f5185aac53f9d95b6f506a0d3c3066"
+        },
+        "NATIVE_OUTER_ACTUAL_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_external/parent_native01/ACTUAL_WAIT.json",
+          "sha256": "379563926e82884b1dc9c0323f9945e9348d4d226fc56e7b3776d04615e742b0"
+        },
+        "NATIVE_ENTRY.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_attempt1/entry/ENTRY_RECEIPT_V4.json",
+          "sha256": "9af81f161ad69728926e052adf481c7de603d64e4c6501d083da34c20c34ae47"
+        },
+        "FRAME_MODEL_NOT_READY.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_attempt1/native/native_frame_export_v4/FRAME_EXPORT_RECEIPT_V4.json",
+          "sha256": "43e52673c23b95f51e5bc76dd1ab86a7fe060f7fc95534c0511fdab2bf7add62"
+        },
+        "RAW_SOURCE_BEFORE_AFTER.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/DELIVERY_V1.json",
+          "sha256": "742d73b425d12637a8dc5d55b4f9b5b4e3ed61490f8bb9ab713dd8ab62e9f317"
+        },
+        "PARENT_FINAL_DATA_ADOPTION.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v6/PARENT_ACTUAL_DATA_CLOSED_V1.json",
+          "sha256": "7069734de579556e4cd0d6118e8ec67d43a730d811197a7ad291907e6035d4cb"
+        },
+        "DISTINCT_DATA_PEER.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/PARENT_ACTUAL_DATA_HANDOFF_V1.json",
+          "sha256": "5df1fccf6def6e60d2b858583ffbdf33ce073dac4f2029298a944fc87c09be93"
+        },
+        "DISTINCT_DATA_REVIEW.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/ACTUAL_DATA_SEMANTIC_REVIEW_V1.json",
+          "sha256": "e515390f8deeec7e93ee038a55f4cafca178dcd13e0665ba628a051870f43f22"
+        },
+        "DISTINCT_DATA_CLOSED.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/CLOSED_ACTUAL_DATA_SEMANTIC_PEER_V1.json",
+          "sha256": "1014049d4c46f24b8d3f127b32ee007ad8d4b2a21b54460f5842d964d224b380"
+        },
+        "DISTINCT_DATA_WORKER_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_mechanism_v6_actual_data_semantic_peer_v2/worker/ACTUAL_WAIT.json",
+          "sha256": "4c94deb21dcfa82aaa919373b07852f6fa697e5e73742b7d34ffd1d18855ba43"
+        },
+        "DISTINCT_DATA_TOOL_WAIT.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/ACTUAL_TOOL_WAIT_V1.json",
+          "sha256": "0d5656ff6080588a76415c45c94d6690f983fb57c51d7a7d9ed22ef453a57c8b"
+        },
+        "V7_SOURCE_CPU_REVIEW_ONLY.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+          "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+        },
+        "V7_PREAPP_REFUSAL_CLOSED.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+          "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+        },
+        "V7_PREAPP_OUTER_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_external/parent_native01/ACTUAL_WAIT.json",
+          "sha256": "da283c0ff136d1999eddd62a6099bab0b1893d64594a608178299734e8281c38"
+        },
+        "V7_PREAPP_TOOL_CLOSED.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_FIRST_PRELAUNCH_TOOL_CLOSED_V7.json",
+          "sha256": "6043f4d16457a33c2545debbb4139e4a0ed01ac362198396e7da44f70ad7163d"
+        },
+        "V7_ACTUAL_NATIVE_CLOSED.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+          "sha256": "31d56d1dadeed84a0dc595d06a9308f46bc29b2f8fd7a13cfd9d07df10d67a6d"
+        },
+        "V7_ACTUAL_NATIVE_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native_process/ACTUAL_WAIT.json",
+          "sha256": "07b9ca30c3272467fcb9aae9db31d8de301c81addc33fbf88441d5308c9ae9fb"
+        },
+        "V7_ACTUAL_OUTER_WAIT.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_external/parent_native02/ACTUAL_WAIT.json",
+          "sha256": "c8eda02c2e73797ced89e8dffe8b688c462673ecb512f7a111bc749bd663edb1"
+        },
+        "V7_ACTUAL_TOOL_CLOSED.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_TOOL_CLOSED_V7_RETRY2.json",
+          "sha256": "5ffc3e99c5b14cef907b426f56c949cd7b6e1dc4912f5637fe08d08c51cae22c"
+        },
+        "V7_ACTUAL_ENTRY.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/entry/ENTRY_RECEIPT_V4.json",
+          "sha256": "c868f43645aaba555d53a0247b8bd2c468d04146969fc12a13b0e6003a77fc13"
+        },
+        "V7_ACTUAL_SOURCE_GRAPH.json": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/SOURCE_GRAPH_V7.json",
+          "sha256": "74e7051243aa588d394f84dab351761b55263e71c29045b222d0bd3d149e205f"
+        },
+        "V7_PREWRITE_COLLECTION.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native/compiled_observation_v7/PREWRITE/COMPILED_OBSERVATION_RECEIPT_V7.json",
+          "sha256": "1ec50ddbe52bfb0b4b1e67124e8f1beb8f04c9433003e8379566381ece4d3964"
+        },
+        "V7_AFTER_MICRO12_COLLECTION.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native/compiled_observation_v7/AFTER_ORIGINAL_MICRO12/COMPILED_OBSERVATION_RECEIPT_V7.json",
+          "sha256": "06b7a9efc8f03ce18524eab54f6c315da0e1aa5aa3b7055abd17c149ffe81451"
+        },
+        "V7_ACTUAL_FRAME_MODEL_NOT_READY.json": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native/native_frame_export_v4/FRAME_EXPORT_RECEIPT_V4.json",
+          "sha256": "eff4e9e92f0799c24e54d97f1a3b104502e4121748167a7c30f4a8a19e5b9e29"
+        }
+      },
+      "V7": {
+        "status": "CLOSED_ACTUAL_COLLECTION_PENDING_INDEPENDENT_DATA_AUDIT",
+        "source_CPU_review": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+          "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+        },
+        "snapshot_utc": "2026-10-10T17:53:40.065191+00:00",
+        "model_ready": false,
+        "actual_native_result": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+          "sha256": "31d56d1dadeed84a0dc595d06a9308f46bc29b2f8fd7a13cfd9d07df10d67a6d"
+        },
+        "actual_prelaunch_refusal": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+          "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+        },
+        "independent_RAW": "PENDING",
+        "distinct_DATA_peer": "PENDING",
+        "same_frozen_16_latent_repeat": true,
+        "new_independent_proposals": 0,
+        "new_bank_states": 0,
+        "producer_reported_phase_scope": {
+          "PREWRITE": {
+            "phase": "PREWRITE",
+            "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+            "mapped_DOF_instances": 2368,
+            "requested_DOF_instances": 2368,
+            "target_instances": 64,
+            "all27_bitwise_held": true,
+            "parameters_bitwise_held": true,
+            "geometry_held": true,
+            "clock_bitwise_held": true,
+            "additional_bitwise_held": true,
+            "additional_physics_steps": 0,
+            "render_calls": 0,
+            "setters": 0,
+            "forward_calls": 0,
+            "kinematic_refresh_calls": 0,
+            "kinematic_freshness": "UNKNOWN_INITIALIZATION_NO_REFRESH",
+            "errors": []
+          },
+          "AFTER_ORIGINAL_MICRO12": {
+            "phase": "AFTER_ORIGINAL_MICRO12",
+            "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+            "mapped_DOF_instances": 2368,
+            "requested_DOF_instances": 2368,
+            "target_instances": 64,
+            "all27_bitwise_held": true,
+            "parameters_bitwise_held": true,
+            "geometry_held": true,
+            "clock_bitwise_held": true,
+            "additional_bitwise_held": true,
+            "additional_physics_steps": 0,
+            "render_calls": 0,
+            "setters": 0,
+            "forward_calls": 0,
+            "kinematic_refresh_calls": 0,
+            "kinematic_freshness": "ORIGINAL_STEP12_PHASE_NOT_ADDITIONAL_STEP",
+            "errors": []
+          }
+        },
+        "holding_verified_by_independent_RAW": false,
+        "holding_independent_RAW_status": "PENDING"
+      },
+      "base_public_commit": "5e8c35c21c83c590833a5efe1538938e203a19b5",
+      "no_new_proposals_generated": true,
+      "historical_V7_candidate03_snapshot": {
+        "status": "NOT_STARTED_RESOURCE_REFUSED_RETRY_PENDING",
+        "source_CPU_review": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+          "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+        },
+        "snapshot_utc": "2026-10-10T17:43:13.586106+00:00",
+        "model_ready": false,
+        "actual_native_result": null,
+        "actual_prelaunch_refusal": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+          "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+        }
+      }
+    },
+    "mechanism7_collection": {
+      "status": "CLOSED_ACTUAL_COLLECTION_PENDING_INDEPENDENT_DATA_AUDIT",
+      "source_CPU_review": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+        "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+      },
+      "snapshot_utc": "2026-10-10T17:53:40.065191+00:00",
+      "model_ready": false,
+      "actual_native_result": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+        "sha256": "31d56d1dadeed84a0dc595d06a9308f46bc29b2f8fd7a13cfd9d07df10d67a6d"
+      },
+      "actual_prelaunch_refusal": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+        "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+      },
+      "independent_RAW": "PENDING",
+      "distinct_DATA_peer": "PENDING",
+      "same_frozen_16_latent_repeat": true,
+      "new_independent_proposals": 0,
+      "new_bank_states": 0,
+      "producer_reported_phase_scope": {
+        "PREWRITE": {
+          "phase": "PREWRITE",
+          "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+          "mapped_DOF_instances": 2368,
+          "requested_DOF_instances": 2368,
+          "target_instances": 64,
+          "all27_bitwise_held": true,
+          "parameters_bitwise_held": true,
+          "geometry_held": true,
+          "clock_bitwise_held": true,
+          "additional_bitwise_held": true,
+          "additional_physics_steps": 0,
+          "render_calls": 0,
+          "setters": 0,
+          "forward_calls": 0,
+          "kinematic_refresh_calls": 0,
+          "kinematic_freshness": "UNKNOWN_INITIALIZATION_NO_REFRESH",
+          "errors": []
+        },
+        "AFTER_ORIGINAL_MICRO12": {
+          "phase": "AFTER_ORIGINAL_MICRO12",
+          "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+          "mapped_DOF_instances": 2368,
+          "requested_DOF_instances": 2368,
+          "target_instances": 64,
+          "all27_bitwise_held": true,
+          "parameters_bitwise_held": true,
+          "geometry_held": true,
+          "clock_bitwise_held": true,
+          "additional_bitwise_held": true,
+          "additional_physics_steps": 0,
+          "render_calls": 0,
+          "setters": 0,
+          "forward_calls": 0,
+          "kinematic_refresh_calls": 0,
+          "kinematic_freshness": "ORIGINAL_STEP12_PHASE_NOT_ADDITIONAL_STEP",
+          "errors": []
+        }
+      },
+      "holding_verified_by_independent_RAW": false,
+      "holding_independent_RAW_status": "PENDING"
+    }
+  },
+  "historical_mechanism_snapshot": {
+    "actual_status": "CLOSED_FAILED_PRELAUNCH_RESOURCE_GATE_NO_NATIVE",
+    "native_launched": false,
+    "native_wait": "NOT_STARTED",
+    "reason": "GPU_global_free below original11000MiB initial floor",
+    "resource_gate": "physical GPU1 free >=11000 MiB",
+    "scientific_result": "NOT_TESTED"
+  },
+  "historical_report_refresh_snapshot": {
     "schema": "safeduo.report_refresh.closed_facts.v1",
     "asof_utc": "2026-10-10T16:21:30+00:00",
     "asof_AsiaShanghai": "2026-10-11 00:21:30 Asia/Shanghai",
@@ -927,12 +1693,618 @@
       }
     }
   },
-  "historical_mechanism_snapshot": {
-    "actual_status": "CLOSED_FAILED_PRELAUNCH_RESOURCE_GATE_NO_NATIVE",
-    "native_launched": false,
-    "native_wait": "NOT_STARTED",
-    "reason": "GPU_global_free below original11000MiB initial floor",
-    "resource_gate": "physical GPU1 free >=11000 MiB",
-    "scientific_result": "NOT_TESTED"
+  "mechanism_v6": {
+    "schema": "astra.constraint.mechanism.closed_raw_findings.v6",
+    "status": "PASS_DATA_ONLY",
+    "derived_from": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/raw/INDEPENDENT_MECHANISM_RAW_V1.json",
+      "sha256": "286eaf6744c5ffc491d8e4c39c71c13bc26ea91178eda933b27b1e08dcefcfaa"
+    },
+    "derivation": "METADATA_ONLY_SUMMARIZATION; no new raw decode or new independent audit",
+    "created_utc": "2026-10-10T17:18:38.693873+00:00",
+    "denominators": {
+      "latent_proposals": 16,
+      "AB_windows": 32,
+      "states_per_window": 13,
+      "real_physics_steps": 12,
+      "related_temporal_observations": 416,
+      "independent_IID_trial_count": null
+    },
+    "all_16_ids_retained": [
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107
+    ],
+    "sentinel_ids": [
+      92,
+      93,
+      94,
+      95
+    ],
+    "prospective_ids": [
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107
+    ],
+    "constructible_B": 1,
+    "constructible_IDs": [
+      102
+    ],
+    "nonconstructible_B_retained_as_A_duplicate": 15,
+    "nonconstructible_IDs": [
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      103,
+      104,
+      105,
+      106,
+      107
+    ],
+    "comparison_scope": "One constructible prospective pair only. Other15 are retained duplicate-baseline observations, not intervention-effect evidence.",
+    "actual_source_files_consumed": 1047,
+    "all74_q_qd_targets_interventions_exact": true,
+    "actual_angular_state_API_instances": 2368,
+    "actual_native_mimic_schema_count": 0,
+    "parameters_geometry_before_after_exact": true,
+    "clock": {
+      "status": "EXACT_CLOCK_INTERVALS_VERIFIED",
+      "micro_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "actual_dt_s": 0.008333333333333333,
+      "native_pass": false,
+      "scope": "CLOCK_ONLY_WITH_NATIVE_CLOSURE_REQUIRED",
+      "tolerance_increased": false,
+      "actual_dt_before_s": 0.008333333333333333,
+      "actual_dt_after_s": 0.008333333333333333,
+      "raw_clock_callback_steps_s": [
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535,
+        0.008333333767950535
+      ],
+      "source_files": {
+        "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/simulation_context/simulation_context.py": "ebafc6bcb30a454925fe21b96dcdbd4637c922a3fa9d5a6947308c9796ba5028",
+        "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/physics_context/physics_context.py": "7486ec315d2525bdef6e1cef294d67d419511e3367e7f40001a8324e2b6a7751",
+        "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.simulation_manager/isaacsim/core/simulation_manager/impl/simulation_manager.py": "9f608b061c7aa4285a4a722806d3858e7e44ab82d907309635c6295a272dd659"
+      }
+    },
+    "inventory": {
+      "actual_recorded_lanes": 32,
+      "actual_recorded_DOFs": 74,
+      "fixed_tendons": 0,
+      "spatial_tendons": 0,
+      "mimic_schema_count": 0,
+      "before_after_equal": true,
+      "angular_state_APIs_per_lane": 74,
+      "angular_state_types_per_lane": 148,
+      "USD_state_attribute_values_finite": "UNKNOWN_NOT_RETAINED_IN_V6_VALID_REGISTRY",
+      "native_q_qd_finiteness": "AUDITED_SEPARATELY_IN_FROZEN_NUMERIC_KERNEL",
+      "model_ready": false,
+      "compiled_impulses": "UNKNOWN",
+      "force_limit_interpretation": "UNKNOWN",
+      "independent_USD_reopen": false
+    },
+    "geometry": {
+      "all9021_rows_checked": true,
+      "reconstruction_tolerance_m": 5e-05,
+      "max_abs_reconstruction_error_m": 1.3167757511034495e-06,
+      "raw_sign_disagreement_count": 0,
+      "raw_gap_predicate_epsilon": 0
+    },
+    "all82_point_scalar_recomputed": true,
+    "initial_point_freshness": "UNKNOWN",
+    "sides": {
+      "A": {
+        "latent_denominator": 16,
+        "actual_windows": 16,
+        "initial_denied_windows": 15,
+        "initial_denied_by_reason": {
+          "nonfinite": 0,
+          "hard74": 0,
+          "velocity74": 0,
+          "soft26": 0,
+          "raw9021": 15,
+          "point_scalar82": 0,
+          "held_target74": 0
+        },
+        "any_observed_numeric_denial_windows": 16,
+        "prefix_denied_windows_by_reason": {
+          "nonfinite": 0,
+          "hard74": 16,
+          "velocity74": 16,
+          "soft26": 7,
+          "raw9021": 15,
+          "point_scalar82": 16,
+          "held_target74": 0
+        },
+        "prefix_denied_related_rows_by_reason": {
+          "nonfinite": 0,
+          "hard74": 171,
+          "velocity74": 150,
+          "soft26": 43,
+          "raw9021": 180,
+          "point_scalar82": 192,
+          "held_target74": 0
+        }
+      },
+      "B": {
+        "latent_denominator": 16,
+        "actual_windows": 16,
+        "initial_denied_windows": 15,
+        "initial_denied_by_reason": {
+          "nonfinite": 0,
+          "hard74": 0,
+          "velocity74": 0,
+          "soft26": 0,
+          "raw9021": 15,
+          "point_scalar82": 0,
+          "held_target74": 0
+        },
+        "any_observed_numeric_denial_windows": 16,
+        "prefix_denied_windows_by_reason": {
+          "nonfinite": 0,
+          "hard74": 16,
+          "velocity74": 16,
+          "soft26": 7,
+          "raw9021": 15,
+          "point_scalar82": 16,
+          "held_target74": 0
+        },
+        "prefix_denied_related_rows_by_reason": {
+          "nonfinite": 0,
+          "hard74": 171,
+          "velocity74": 152,
+          "soft26": 44,
+          "raw9021": 180,
+          "point_scalar82": 192,
+          "held_target74": 0
+        }
+      }
+    },
+    "single_constructible_pair": {
+      "proposal_id": 102,
+      "family": 2,
+      "A_lane": 20,
+      "B_lane": 21,
+      "A": {
+        "initial_denial": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "prefix_denial_counts": [
+          0,
+          11,
+          10,
+          0,
+          12,
+          12,
+          0
+        ],
+        "peak_sampled_abs_velocity_ratio": 17.084341049194336,
+        "max_sampled_delta_qd": 149.69692993164062
+      },
+      "B": {
+        "initial_denial": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "prefix_denial_counts": [
+          0,
+          11,
+          12,
+          0,
+          12,
+          12,
+          0
+        ],
+        "peak_sampled_abs_velocity_ratio": 55.85895919799805,
+        "max_sampled_delta_qd": 358.7362060546875
+      },
+      "initial_abs_URDF_position_residual_max": {
+        "A": 0.5392301386415959,
+        "B": 2.4777650792229267e-08
+      },
+      "initial_abs_URDF_velocity_residual_max": {
+        "A": 9.599491852474213,
+        "B": 2.2058486948139944e-07
+      },
+      "final_abs_URDF_position_residual_max": {
+        "A": 1.5533390159130098,
+        "B": 1.0619897142099217
+      },
+      "final_abs_URDF_velocity_residual_max": {
+        "A": 17.449161167740822,
+        "B": 19.992098515224455
+      }
+    },
+    "falsifiable_observed_conclusion": "For fixed proposal102, the frozen URDF-coherent q/qd constructor and corresponding held target did not remove original geometry/contact/speed denials across these12 actual steps. This one observed pair does not identify drive/constraint causes or establish general efficacy.",
+    "sampled_velocity_is_not_motor_torque": true,
+    "within_micro_peak": "UNKNOWN",
+    "compiled_constraint_impulses": "UNKNOWN",
+    "actual_drive_torque": "UNKNOWN",
+    "global_error_bound": "UNKNOWN",
+    "frame_model_status": "MODEL_NOT_READY",
+    "camera": "NOT_TESTED",
+    "bank_count": 0,
+    "formal_holdout_opened": false,
+    "native_pass": false,
+    "safety_acceptance": false,
+    "task_acceptance": false,
+    "distinct_DATA_peer": "PASS_DATA_ONLY",
+    "report_asof_utc": "2026-10-10T17:53:40.065191+00:00",
+    "report_asof_AsiaShanghai": "2026-10-11 01:53:40 Asia/Shanghai",
+    "science_native_closed_utc": "2026-10-10T17:10:18.937577+00:00",
+    "RAW_closed_utc": "2026-10-10T17:19:44.269068+00:00",
+    "final_DATA_adopted_utc": "2026-10-10T17:33:01.207083+00:00",
+    "distinct_DATA_peer_ref": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/PARENT_ACTUAL_DATA_HANDOFF_V1.json",
+      "sha256": "5df1fccf6def6e60d2b858583ffbdf33ce073dac4f2029298a944fc87c09be93"
+    },
+    "parent_final_DATA_adoption": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v6/PARENT_ACTUAL_DATA_CLOSED_V1.json",
+      "sha256": "7069734de579556e4cd0d6118e8ec67d43a730d811197a7ad291907e6035d4cb"
+    },
+    "original_compact_receipt_status": "Historical metadata receipt; its original PENDING is preserved, current review status is above",
+    "source_reports": {
+      "NATIVE_ACTUAL_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v6/PARENT_ACTUAL_NATIVE_CLOSED_V6.json",
+        "sha256": "4495e829ccc2a50656cfcd286b3135f1f7b9aa08923dde75044c28af1a5caf5f"
+      },
+      "RAW_ACTUAL_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/CLOSED_ACTUAL_RAW_AUDIT_V6.json",
+        "sha256": "60ecfeeb1cba7cd04cac88cb4c6d33a8c059cd03a6e8f3c0a422b5e2c0b395af"
+      },
+      "INDEPENDENT_RAW_REPORT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/raw/INDEPENDENT_MECHANISM_RAW_V1.json",
+        "sha256": "286eaf6744c5ffc491d8e4c39c71c13bc26ea91178eda933b27b1e08dcefcfaa"
+      },
+      "READER_HANDOFF.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/CLOSED_ACTUAL_READER_HANDOFF_V6.json",
+        "sha256": "33cc1e3a7ab5c4fad956593245e6a1f0ad93f27d94775fc3aefc9ba59e3c8067"
+      },
+      "READER_SOURCE_GRAPH.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/PACKAGE_SOURCE_GRAPH_V1.json",
+        "sha256": "52c7c103c032e104d4175234b19057d06d7c0de6adfd155d1f830094be5e56c6"
+      },
+      "READER_CPU_CLOSED.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/CLOSED_CPU_READER_CANDIDATE_V6.json",
+        "sha256": "6083461d9796f1b6baf241e764a6a1584c932d9f2d127fbed795465957d44cfc"
+      },
+      "RAW_WORKER_ACTUAL_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/worker/ACTUAL_WAIT.json",
+        "sha256": "a999e79fd673faa2c0fcfb64a445841abe3846cea53f7476262f86c3e5a51e81"
+      },
+      "RAW_OUTER_ACTUAL_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/external/raw01/ACTUAL_WAIT.json",
+        "sha256": "9f43348f2bb62174fa46fb77fdb983b905e6d170af4fbf4aeb00472a8fd7a4ad"
+      },
+      "NATIVE_ACTUAL_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_attempt1/native_process/ACTUAL_WAIT.json",
+        "sha256": "29f1587092f5976ae01b4c4082a81b8087f5185aac53f9d95b6f506a0d3c3066"
+      },
+      "NATIVE_OUTER_ACTUAL_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_external/parent_native01/ACTUAL_WAIT.json",
+        "sha256": "379563926e82884b1dc9c0323f9945e9348d4d226fc56e7b3776d04615e742b0"
+      },
+      "NATIVE_ENTRY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_attempt1/entry/ENTRY_RECEIPT_V4.json",
+        "sha256": "9af81f161ad69728926e052adf481c7de603d64e4c6501d083da34c20c34ae47"
+      },
+      "FRAME_MODEL_NOT_READY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v6_stateapi/native_attempt1/native/native_frame_export_v4/FRAME_EXPORT_RECEIPT_V4.json",
+        "sha256": "43e52673c23b95f51e5bc76dd1ab86a7fe060f7fc95534c0511fdab2bf7add62"
+      },
+      "RAW_SOURCE_BEFORE_AFTER.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/DELIVERY_V1.json",
+        "sha256": "742d73b425d12637a8dc5d55b4f9b5b4e3ed61490f8bb9ab713dd8ab62e9f317"
+      },
+      "PARENT_FINAL_DATA_ADOPTION.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v6/PARENT_ACTUAL_DATA_CLOSED_V1.json",
+        "sha256": "7069734de579556e4cd0d6118e8ec67d43a730d811197a7ad291907e6035d4cb"
+      },
+      "DISTINCT_DATA_PEER.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/PARENT_ACTUAL_DATA_HANDOFF_V1.json",
+        "sha256": "5df1fccf6def6e60d2b858583ffbdf33ce073dac4f2029298a944fc87c09be93"
+      },
+      "DISTINCT_DATA_REVIEW.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/ACTUAL_DATA_SEMANTIC_REVIEW_V1.json",
+        "sha256": "e515390f8deeec7e93ee038a55f4cafca178dcd13e0665ba628a051870f43f22"
+      },
+      "DISTINCT_DATA_CLOSED.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/CLOSED_ACTUAL_DATA_SEMANTIC_PEER_V1.json",
+        "sha256": "1014049d4c46f24b8d3f127b32ee007ad8d4b2a21b54460f5842d964d224b380"
+      },
+      "DISTINCT_DATA_WORKER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_mechanism_v6_actual_data_semantic_peer_v2/worker/ACTUAL_WAIT.json",
+        "sha256": "4c94deb21dcfa82aaa919373b07852f6fa697e5e73742b7d34ffd1d18855ba43"
+      },
+      "DISTINCT_DATA_TOOL_WAIT.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v6_actual_data_semantic_review_v1/actual_data_review_v2/ACTUAL_TOOL_WAIT_V1.json",
+        "sha256": "0d5656ff6080588a76415c45c94d6690f983fb57c51d7a7d9ed22ef453a57c8b"
+      },
+      "V7_SOURCE_CPU_REVIEW_ONLY.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+        "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+      },
+      "V7_PREAPP_REFUSAL_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+        "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+      },
+      "V7_PREAPP_OUTER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_external/parent_native01/ACTUAL_WAIT.json",
+        "sha256": "da283c0ff136d1999eddd62a6099bab0b1893d64594a608178299734e8281c38"
+      },
+      "V7_PREAPP_TOOL_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_FIRST_PRELAUNCH_TOOL_CLOSED_V7.json",
+        "sha256": "6043f4d16457a33c2545debbb4139e4a0ed01ac362198396e7da44f70ad7163d"
+      },
+      "V7_ACTUAL_NATIVE_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+        "sha256": "31d56d1dadeed84a0dc595d06a9308f46bc29b2f8fd7a13cfd9d07df10d67a6d"
+      },
+      "V7_ACTUAL_NATIVE_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native_process/ACTUAL_WAIT.json",
+        "sha256": "07b9ca30c3272467fcb9aae9db31d8de301c81addc33fbf88441d5308c9ae9fb"
+      },
+      "V7_ACTUAL_OUTER_WAIT.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_external/parent_native02/ACTUAL_WAIT.json",
+        "sha256": "c8eda02c2e73797ced89e8dffe8b688c462673ecb512f7a111bc749bd663edb1"
+      },
+      "V7_ACTUAL_TOOL_CLOSED.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_TOOL_CLOSED_V7_RETRY2.json",
+        "sha256": "5ffc3e99c5b14cef907b426f56c949cd7b6e1dc4912f5637fe08d08c51cae22c"
+      },
+      "V7_ACTUAL_ENTRY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/entry/ENTRY_RECEIPT_V4.json",
+        "sha256": "c868f43645aaba555d53a0247b8bd2c468d04146969fc12a13b0e6003a77fc13"
+      },
+      "V7_ACTUAL_SOURCE_GRAPH.json": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v7_compiled_observation_v2/SOURCE_GRAPH_V7.json",
+        "sha256": "74e7051243aa588d394f84dab351761b55263e71c29045b222d0bd3d149e205f"
+      },
+      "V7_PREWRITE_COLLECTION.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native/compiled_observation_v7/PREWRITE/COMPILED_OBSERVATION_RECEIPT_V7.json",
+        "sha256": "1ec50ddbe52bfb0b4b1e67124e8f1beb8f04c9433003e8379566381ece4d3964"
+      },
+      "V7_AFTER_MICRO12_COLLECTION.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native/compiled_observation_v7/AFTER_ORIGINAL_MICRO12/COMPILED_OBSERVATION_RECEIPT_V7.json",
+        "sha256": "06b7a9efc8f03ce18524eab54f6c315da0e1aa5aa3b7055abd17c149ffe81451"
+      },
+      "V7_ACTUAL_FRAME_MODEL_NOT_READY.json": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v7_compiled_observation_v2/native_attempt1/native/native_frame_export_v4/FRAME_EXPORT_RECEIPT_V4.json",
+        "sha256": "eff4e9e92f0799c24e54d97f1a3b104502e4121748167a7c30f4a8a19e5b9e29"
+      }
+    },
+    "V7": {
+      "status": "CLOSED_ACTUAL_COLLECTION_PENDING_INDEPENDENT_DATA_AUDIT",
+      "source_CPU_review": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+        "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+      },
+      "snapshot_utc": "2026-10-10T17:53:40.065191+00:00",
+      "model_ready": false,
+      "actual_native_result": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+        "sha256": "31d56d1dadeed84a0dc595d06a9308f46bc29b2f8fd7a13cfd9d07df10d67a6d"
+      },
+      "actual_prelaunch_refusal": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+        "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+      },
+      "independent_RAW": "PENDING",
+      "distinct_DATA_peer": "PENDING",
+      "same_frozen_16_latent_repeat": true,
+      "new_independent_proposals": 0,
+      "new_bank_states": 0,
+      "producer_reported_phase_scope": {
+        "PREWRITE": {
+          "phase": "PREWRITE",
+          "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+          "mapped_DOF_instances": 2368,
+          "requested_DOF_instances": 2368,
+          "target_instances": 64,
+          "all27_bitwise_held": true,
+          "parameters_bitwise_held": true,
+          "geometry_held": true,
+          "clock_bitwise_held": true,
+          "additional_bitwise_held": true,
+          "additional_physics_steps": 0,
+          "render_calls": 0,
+          "setters": 0,
+          "forward_calls": 0,
+          "kinematic_refresh_calls": 0,
+          "kinematic_freshness": "UNKNOWN_INITIALIZATION_NO_REFRESH",
+          "errors": []
+        },
+        "AFTER_ORIGINAL_MICRO12": {
+          "phase": "AFTER_ORIGINAL_MICRO12",
+          "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+          "mapped_DOF_instances": 2368,
+          "requested_DOF_instances": 2368,
+          "target_instances": 64,
+          "all27_bitwise_held": true,
+          "parameters_bitwise_held": true,
+          "geometry_held": true,
+          "clock_bitwise_held": true,
+          "additional_bitwise_held": true,
+          "additional_physics_steps": 0,
+          "render_calls": 0,
+          "setters": 0,
+          "forward_calls": 0,
+          "kinematic_refresh_calls": 0,
+          "kinematic_freshness": "ORIGINAL_STEP12_PHASE_NOT_ADDITIONAL_STEP",
+          "errors": []
+        }
+      },
+      "holding_verified_by_independent_RAW": false,
+      "holding_independent_RAW_status": "PENDING"
+    },
+    "base_public_commit": "5e8c35c21c83c590833a5efe1538938e203a19b5",
+    "no_new_proposals_generated": true,
+    "historical_V7_candidate03_snapshot": {
+      "status": "NOT_STARTED_RESOURCE_REFUSED_RETRY_PENDING",
+      "source_CPU_review": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+        "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+      },
+      "snapshot_utc": "2026-10-10T17:43:13.586106+00:00",
+      "model_ready": false,
+      "actual_native_result": null,
+      "actual_prelaunch_refusal": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+        "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+      }
+    }
+  },
+  "historical_mechanism_field_before_V6": {
+    "actual_status": "CLOSED_NATIVE_INSPECTION_DATA_ORIGINAL_AB_REFUSED_BEFORE_STATE_WRITE",
+    "native_wait": 0,
+    "outer_wait": 1,
+    "physics_steps": 0,
+    "AB_windows": 0,
+    "actual_metadata_lanes": 32,
+    "arms_per_lane": 4,
+    "frame_model": "MODEL_NOT_READY",
+    "mimic_relations": 0,
+    "unsupported_state_API_records": 74
+  },
+  "mechanism_v7_collection": {
+    "status": "CLOSED_ACTUAL_COLLECTION_PENDING_INDEPENDENT_DATA_AUDIT",
+    "source_CPU_review": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_mechanism_v7_independent_review_v2/REVIEW_V1.json",
+      "sha256": "f5fb817f2d4e376e69d2893127d1dfaae1d8038a2dfef62755b160184ceff647"
+    },
+    "snapshot_utc": "2026-10-10T17:53:40.065191+00:00",
+    "model_ready": false,
+    "actual_native_result": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7_retry2/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+      "sha256": "31d56d1dadeed84a0dc595d06a9308f46bc29b2f8fd7a13cfd9d07df10d67a6d"
+    },
+    "actual_prelaunch_refusal": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v7/PARENT_PRELAUNCH_REFUSAL_CLOSED_V1.json",
+      "sha256": "47f7a3357f9fda23636f297068ad87119e94a3ea74f73707f3e73e1b59ced17b"
+    },
+    "independent_RAW": "PENDING",
+    "distinct_DATA_peer": "PENDING",
+    "same_frozen_16_latent_repeat": true,
+    "new_independent_proposals": 0,
+    "new_bank_states": 0,
+    "producer_reported_phase_scope": {
+      "PREWRITE": {
+        "phase": "PREWRITE",
+        "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+        "mapped_DOF_instances": 2368,
+        "requested_DOF_instances": 2368,
+        "target_instances": 64,
+        "all27_bitwise_held": true,
+        "parameters_bitwise_held": true,
+        "geometry_held": true,
+        "clock_bitwise_held": true,
+        "additional_bitwise_held": true,
+        "additional_physics_steps": 0,
+        "render_calls": 0,
+        "setters": 0,
+        "forward_calls": 0,
+        "kinematic_refresh_calls": 0,
+        "kinematic_freshness": "UNKNOWN_INITIALIZATION_NO_REFRESH",
+        "errors": []
+      },
+      "AFTER_ORIGINAL_MICRO12": {
+        "phase": "AFTER_ORIGINAL_MICRO12",
+        "status": "RAW_CAPTURE_COMPLETE_PENDING_ACTUAL_WAIT_AND_PEER",
+        "mapped_DOF_instances": 2368,
+        "requested_DOF_instances": 2368,
+        "target_instances": 64,
+        "all27_bitwise_held": true,
+        "parameters_bitwise_held": true,
+        "geometry_held": true,
+        "clock_bitwise_held": true,
+        "additional_bitwise_held": true,
+        "additional_physics_steps": 0,
+        "render_calls": 0,
+        "setters": 0,
+        "forward_calls": 0,
+        "kinematic_refresh_calls": 0,
+        "kinematic_freshness": "ORIGINAL_STEP12_PHASE_NOT_ADDITIONAL_STEP",
+        "errors": []
+      }
+    },
+    "holding_verified_by_independent_RAW": false,
+    "holding_independent_RAW_status": "PENDING"
+  },
+  "mechanism_V6_independently_audited": {
+    "latest": "V6_ACTUAL_CLOSED_DATA_ONLY_NUMERIC_DENIALS",
+    "native_actual_exit": 0,
+    "outer_actual_exit": 0,
+    "AB_windows": 32,
+    "states_per_window": 13,
+    "physics_steps": 12,
+    "constructible_B": 1,
+    "retained_noncomparable": 15,
+    "all_windows_denied": 32,
+    "frame_model": "MODEL_NOT_READY",
+    "bank_count": 0,
+    "distinct_DATA_peer": "PASS_DATA_ONLY"
   }
 }

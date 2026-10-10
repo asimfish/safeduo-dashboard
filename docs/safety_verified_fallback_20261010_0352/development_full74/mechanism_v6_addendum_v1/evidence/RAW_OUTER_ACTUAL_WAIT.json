@@ -1,0 +1,52 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "EXTERNAL_WRAPPER_OBSERVER_NOT_NATIVE_OR_CPU_ONLY_WORKLOAD",
+  "child_pid": 96756,
+  "waited_pid": 96756,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T17:15:55.236257+00:00",
+  "closed_utc": "2026-10-10T17:16:16.565058+00:00",
+  "elapsed_seconds": 21.328790097963065,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 96756,
+      "ppid": 96754,
+      "pgid": 96756,
+      "sid": 96756,
+      "startticks": 177544167,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 96754
+      },
+      "live": false
+    }
+  ],
+  "signals": [],
+  "child_max_rss_KiB": 132336,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/external/raw01/child.log",
+  "log_sha256": "f6cbe1645c97bf8def4729bba92444030c983928613bea580e60591e1c14720d",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/external/raw01/resources.jsonl",
+  "outer_monitor_sha256": "ff2621598fac3e010278a4e60cb3cface0534f920661d0b50211b0c0ddf1c2b6",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/cpu_guard_v6.py",
+    "--name",
+    "raw01",
+    "--source-graph-sha256",
+    "52c7c103c032e104d4175234b19057d06d7c0de6adfd155d1f830094be5e56c6",
+    "--audit-closed",
+    "--binding",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/authorized_raw_inputs01/ACTUAL_INPUT_BINDING_V6.json",
+    "--binding-sha256",
+    "eda74223ee6d901d519bf8fd428fa6929e8e119cff9dfd5a0166c5d2515cd565"
+  ],
+  "observer_scope": "DIRECT_WRAPPER_ROOT_ONLY; native exact ownership/deadline/resources belong to reviewed harness",
+  "native_acceptance": false
+}

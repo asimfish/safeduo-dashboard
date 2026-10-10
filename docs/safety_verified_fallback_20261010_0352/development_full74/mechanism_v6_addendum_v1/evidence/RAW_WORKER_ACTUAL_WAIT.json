@@ -1,0 +1,55 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "CPU_ONLY_MECHANISM_V6_INDEPENDENT_READER",
+  "child_pid": 96758,
+  "waited_pid": 96758,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T17:15:55.363331+00:00",
+  "closed_utc": "2026-10-10T17:16:16.459984+00:00",
+  "elapsed_seconds": 21.09667968400754,
+  "max_wall_seconds": 1200,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 96758,
+      "ppid": 96756,
+      "pgid": 96758,
+      "sid": 96758,
+      "startticks": 177544179,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 96756
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 132336,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/worker/child.log",
+  "log_sha256": "98d23d02f210bcc6615c5afb2c40272749f63606151a3aca63770dd7fb037deb",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/worker/resources.jsonl",
+  "outer_monitor_sha256": "d1fa34df897c57f1c366f17c767f2cca18a1076f4a0ac81721df6dc1a7858b4b",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_reader_v6_release2/reader/read_mechanism_v1.py",
+    "--audit-closed",
+    "--binding",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/authorized_raw_inputs01/ACTUAL_INPUT_BINDING_V6.json",
+    "--binding-sha256",
+    "eda74223ee6d901d519bf8fd428fa6929e8e119cff9dfd5a0166c5d2515cd565",
+    "--out",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_reader_v6_release2/raw01/raw"
+  ]
+}
