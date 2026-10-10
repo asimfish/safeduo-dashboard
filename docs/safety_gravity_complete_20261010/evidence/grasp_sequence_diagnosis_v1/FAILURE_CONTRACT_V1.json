@@ -1,0 +1,21 @@
+{
+  "recorded_utc": "2026-10-10T09:13:15.530825+00:00",
+  "observed": "6/8 original tasks fail; two old passing cases lifted U only during retreat without dual-hand contact. No certified100mm/2s or four-hand common-object acceptance.",
+  "expected": "True planned-phase friction-only lift>=100mm continuously>=2s, physical carry, supported placement, detached release; original complete System0 gates retained.",
+  "hypotheses": [
+    {
+      "cause": "UR actuator gravity tracking bias",
+      "prediction": "UR target-to-actual errors exceed FR tracking through lift/place; need subsequent native same-task on/off compensation intervention to prove causality."
+    },
+    {
+      "cause": "Release occurs before stable tabletop support",
+      "prediction": "Pre-open tabletop support/rest absent, object retains hand contact during clearance; discriminate with native support-gated release at same gains/physics."
+    },
+    {
+      "cause": "Nominal fingertip grasp/layout misalignment",
+      "prediction": "U under-lift/slip varies by paired pose binding; separate from tracking using native body/object transforms and per-substep contacts."
+    }
+  ],
+  "analysis_scope": "Retrospective description only. Thresholds are explanatory, no alteration of original gates or new formal trials. Original normal sensor last substep prevents friction/full-scene proof.",
+  "run": "/home/liyufeng/miniforge3/envs/safeduo/bin/python -B diagnose_recorded_tasks_v1.py"
+}
