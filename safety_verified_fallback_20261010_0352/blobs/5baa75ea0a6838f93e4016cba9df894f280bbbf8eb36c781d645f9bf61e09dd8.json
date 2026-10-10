@@ -1,0 +1,2085 @@
+{
+  "schema": "safeduo.astra.state_input_resource.subjob.v3",
+  "closure": {
+    "scope": "SUBJOB_EVIDENCE_ONLY",
+    "parent_status": "PARENT_SUPERVISOR_PENDING",
+    "parent_at_capture": {
+      "status": "PARENT_SUPERVISOR_PENDING",
+      "original_execution_status": "running",
+      "original_execution_closed_utc": null,
+      "supervisor_path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/shard_full_verified_retry_supervisor_v1_execution.json",
+      "supervisor_actual_exit": null,
+      "supervisor_receipt": null,
+      "supervisor_receipt_sha256": null,
+      "parent_actual_wait_verified": false
+    },
+    "parent_supervisor_actual_exit": null,
+    "parent_actual_wait_verified": false,
+    "actual_exit": 0,
+    "job_status": "complete",
+    "resource_abort": null,
+    "resource_verdict": "UNVERIFIED_LIMITS",
+    "actual_wait_receipt_present": true,
+    "original_execution": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/verified_shard_verified_retry_v1_execution.json",
+    "original_execution_sha256": "2a1a33bb37518e8fca2e42e0d19998f28bc54fe6ee0afe6ba055f14af6061cbc",
+    "execution_snapshot": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/retry_subjob_batch1_shard0_verified_20261009T233136644965Z.execution.snapshot.json",
+    "execution_snapshot_sha256": "2a1a33bb37518e8fca2e42e0d19998f28bc54fe6ee0afe6ba055f14af6061cbc",
+    "binding": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/retry_subjob_batch1_shard0_verified_20261009T233136644965Z.binding.json",
+    "binding_sha256": "ef7f3f1ad556ceb1ce62d52c546ca2c9acaa9008347001355a717b384e638111",
+    "selected_job_id": "batch1_shard0_verified",
+    "selected_job_sha256": "b363a016598a742369e2e57c85fce9a64ee734635eb35387b600bfd1502dc483",
+    "producer_root": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_verified_retry_v1/batch1_shard0_verified",
+    "pid": 3047269,
+    "closed_utc": "2026-10-09T23:31:21.790584+00:00"
+  },
+  "physical_safety_certified": false,
+  "data_role": "development",
+  "independent_holdout_states": 0,
+  "oracle_sha256": "bca768e047507ab16d0ec9bb8974bf579064c94f50ac4cde2428af1f35c17a58",
+  "errors": [],
+  "registered_inputs": {
+    "lanes": 32,
+    "requested_controls": 480,
+    "actual_input_checks": 28,
+    "all74_initial_targets_equal_q": true,
+    "initial_hard_position_observations": {
+      "F_L": {
+        "native_hard_breach_count": 0,
+        "maximum_rad": 0.0
+      },
+      "F_R": {
+        "native_hard_breach_count": 0,
+        "maximum_rad": 0.0
+      },
+      "U_L": {
+        "native_hard_breach_count": 0,
+        "maximum_rad": 0.0
+      },
+      "U_R": {
+        "native_hard_breach_count": 0,
+        "maximum_rad": 0.0
+      }
+    },
+    "development_only": true,
+    "independent_holdout_states": 0
+  },
+  "input_ledgers": [
+    {
+      "directory": "response_fields",
+      "count": 480,
+      "closed_sha256": "d528ac15e648a14eb10467850500259f748f683b5cfd807a9c0f3adcc20734d8",
+      "export": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_verified_retry_v1/batch1_shard0_verified/response_stream.npz",
+      "export_sha256": "1f267f18052fefb2355a7779ffef0243dc8907e04a0993c9c3f51085d3dd33ff",
+      "export_payload_verified": true,
+      "original_sha256": {
+        "pre_d": "3edf5053467d4e6fbb12f10a0be61532c40ac2dd38cbb88a8f5eb0ae281ca562",
+        "pre_exempt": "7adeba8ea2df60fe4eb1d64a65c676449cf72cd931d36fae6dc1617b1fc1ed22",
+        "pre_sim_time_s": "f5edd245917cd1135040f3b311a68f83cda654e1d47e6b3efab457f71d004bfe",
+        "pre_sim_step_index": "a5be784ad0eb01106f52d8b02ec2462fbe3bbe934c7b85173687db8926473113",
+        "pre_critical_velocity": "ce74c86df1bc969daf70602411b0d1e6e90c6875a8c07efd8150432bab8109a3",
+        "J_F": "8b8990566a9bd2d49b55a74434af6a866d40402be7ca83d0f3979d7080aab53c",
+        "J_U": "2cd6858caf831ecaee910749301f854ac098c2f06fabd00e5ab2c60cd50e5af6",
+        "full_J_F": "20e301529a61bdf8fe16249663742c56a8bcbbbb987ae6a3b25b45d00de88b2a",
+        "full_J_U": "d17d048530e8b3a3d2decb623460ca1c1e1167fe049ba46932d546a408265119",
+        "pre_full_critical_velocity": "5550a088b6a1712cde493f9e4008ced7d7c27f1ef4d31cf4eaf4499df501a3a8",
+        "pre_native_critical_closing": "ad6942c17b0e932f59b5aa3789e83fbada710904153991c457eaee3635459218",
+        "pre_pending": "c8548e59d189e85993d5fc05bd765ce72f2cc97e4279e2df1820ce4e47bb5635",
+        "pre_F_L_q": "67edf921544861111c7fcc31bf6328dbf7a0062dac074887c8d4655dca9d8677",
+        "pre_F_L_qd": "12c8e0ffe83fc649f516d77102b7acbee09964064660e723d66ffbf53e4d62ff",
+        "pre_F_R_q": "12659976467f3a5954655a2828f634dc6a438b58c8b4005080f242305d3da8a8",
+        "pre_F_R_qd": "88834c3486206ebecf3ee15beef76b43fe2706454353675e0a6deb891b28dbde",
+        "pre_U_L_q": "794ad145c81bde52ae3d595937f4072c4d58893c3a9d2af98540439f10cd6964",
+        "pre_U_L_qd": "7009a41a5983b8bc89b0b8fa530164def0e5ac2f6fd01a3a26680f6687d5baf9",
+        "pre_U_R_q": "6bb3b211745e6fa893bb6d2833dd4396b84fe7912150bbb8250e12f81f0efc65",
+        "pre_U_R_qd": "418f78b9bd3d46c08b711fe7a1cb205138fbb5853025b56cb069aa46253a865e",
+        "multi_model_constraints_satisfied": "b9504a67c09ec381b927119ce0b3e63fe5b2790d826c3d953d4d35c3e812a8a4",
+        "multi_geometry_velocity_residual": "cb703128fe0c17f046bbad0575ac46b0a46be168e0b1caf56477da7f0244564c",
+        "multi_full_native_velocity_limit_residual": "2830a32e04f76f3526ed938c99e729f4dca84d249b12ac22dd4c41fb831d0e3a",
+        "multi_full_drive_effort_residual": "8a7c93c10442cc401d520351aee4959b91a4da2147d5e3417bccdb754c388195",
+        "multi_no_model_feasible_action": "2dbac0f6b44eda75586d787ccef73f2115c7cf6524fbae02aaa949724e1aeb1a",
+        "multi_decision_code": "5a7e9c3572e2c534b9377da5198b43da24757e4150082ec4246c0a57989f9551",
+        "multi_candidate_pass": "e46dbc2bee8d976311a462eea4c64b3b8b3872fd448b510822eb5b0ffd4bd038",
+        "multi_lp_attempted": "451c2ac023943e539bf09b140bc6c18e37f6090a2eb6a42608ade3fcadd26282",
+        "guard_triggered": "f31212eeb6556bab546f981b707be1e0d9b2f770956075d9223ab9f4ea7598b4",
+        "guard_current_gap": "d930d5574a829aa7c1e62f298c83c4f134c18941ea43ae2a42184512338b02f6",
+        "guard_current_full_rate": "5550a088b6a1712cde493f9e4008ced7d7c27f1ef4d31cf4eaf4499df501a3a8",
+        "unmodified_pre_pending": "c8548e59d189e85993d5fc05bd765ce72f2cc97e4279e2df1820ce4e47bb5635",
+        "applied_target": "162f6e79826b053fc516056d48df01321b0f2833c5c9cccdd44fbdb9466decee",
+        "issued_target": "fe88654c0a39cf1b132438f2c0fa6ed77e76dd566d28889eead697382dac12f5",
+        "post_d": "2c1d094a701618e5a25979169a8633964613c042c5542ad4f04a8c9dadaa5bb6",
+        "post_exempt": "61d7f52650a857782cb9242f5e6993ad53f3f1974cb6155da2cb8dee48c4e8f4",
+        "post_critical_velocity": "61ade0f0cb682e81b97fecc95424c243f80a48380966aa048822cfedf7ff9f90",
+        "post_full_critical_velocity": "74c4f86c0aa2848cae3860c14e543691cb244896fa533eb3229665ca8c32db84",
+        "post_native_critical_closing": "4fc7b9a6dcac31e16c7aca8f2f1f8512f5016a6c51c9b7b24810976efb938984",
+        "scalar_normal_max_N": "2487d56ff79d3bc5ef9e82e75ca23cd1f0e364b2b1522853c5a782662d80a23c",
+        "vector_normal_max_N": "923d5cd37cc4f7350fb82f47331e011d26568b1aee82dab84498bd484e17bdb9",
+        "post_F_L_q": "9421f6079d24e7565da412979f959e35000265d7555d28f23c83f8ee01e152fd",
+        "post_F_L_qd": "04af6442b754e83bdb2fc375a1fba2024ed5228b1e6bf7b4053cfeaf7616a739",
+        "post_F_L_body_pos_local": "e2486800eee08231d8de1463e666bb1e758c7dc7d67c3bcaf222ad917d6013e5",
+        "post_F_R_q": "e69ca30fe2fbbb51112f8965c078146db6faa45c277ef916db854df9209bfde3",
+        "post_F_R_qd": "e40d4f94f5af7199ed1bc8647d6422ab6c8083bb49154e2bbcc0c51e1427b66e",
+        "post_F_R_body_pos_local": "f2174069f93091596cabb856b6af3921334572af91bc6d796900cfcdcb35c101",
+        "post_U_L_q": "0f54a4f859c851c5d21a313ab94c75ad0a4b85ad0f8f0738489f4f1b0595a5a9",
+        "post_U_L_qd": "fbf63ba558a8be5f2fa4cda39f7a3293af590683bfd14100294d5ffd71418634",
+        "post_U_L_body_pos_local": "4dbdd18ab665ef9a8dbebbec75244af6e1a3177e68bfc90d666911fc88b2179a",
+        "post_U_R_q": "b064dbeed45755ffc2ee8ebfb1477e39732932c1123682c3882c8848b7a6519f",
+        "post_U_R_qd": "ab86e4c868d886a7784ab638154ca912f982ff6bee1afeb2e8e5d075222ab5ca",
+        "post_U_R_body_pos_local": "b82cbcf203b0b14d1043c9258d611b0aec5aae635275d9af010978d9e5f189b8"
+      }
+    },
+    {
+      "directory": "dynamics_fields",
+      "count": 480,
+      "closed_sha256": "76f784cbed455da7c5881e0f7f4670a73ed68ae2ed2a6ff46c01e69119649657",
+      "export": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_verified_retry_v1/batch1_shard0_verified/dynamics_stream.npz",
+      "export_sha256": "4d7c4fb6f7160e17fe57b2a18b165164eab21ce3a5a75b7dc1fac2c8958cbfc4",
+      "export_payload_verified": true,
+      "original_sha256": {
+        "step": "495d2687f52dec0a8571a6f27545bc0a4cc3ba6639bbd4e3edf8d81959c43f0d",
+        "sph_centers": "a2e3fdc9e6772bc56a45107ce260f37d42cc863d837ef5506cf48bfc5cebf188",
+        "sph_table_grad": "500bbdf1a3dcf8bb2b88daa95ad59c00c2c96d9384953175a798cdaf266554b8",
+        "F_L_native_jacobians": "6997dd03bdb0fee2b8d1c49eeb267d202381b8c8d6365dc5f81d2066cc4fce83",
+        "F_L_native_body_com_pos_w": "be231cd99938a0c72b885da9720beb8adcf8af7f64dec3afb31f2d016f85ae8b",
+        "F_L_q": "67edf921544861111c7fcc31bf6328dbf7a0062dac074887c8d4655dca9d8677",
+        "F_L_qd": "12c8e0ffe83fc649f516d77102b7acbee09964064660e723d66ffbf53e4d62ff",
+        "F_L_mass_matrix": "828f0a81bab4f052de0703ffab94462f601e0b306d59afd8d7730fa14ce4da99",
+        "F_L_actual_velocity_target": "07e1c391b85434ef0c59cb72d6400133bbba69d468543a5ce70a86f1d7d7e439",
+        "F_L_actuation_force": "07e1c391b85434ef0c59cb72d6400133bbba69d468543a5ce70a86f1d7d7e439",
+        "F_L_projected_joint_force": "fcd51b023dc387c671e8861956db81c281ec2510a7529cbcef0db7d608626820",
+        "F_L_gravity": "581a2ffa9412f8ff10fd693f95fb41c0772f58cc55ac7db0328d79bb4e916453",
+        "F_L_coriolis": "1f513bcbb488a90f94a1308643a65f8f195b47408eb943db5e61e6d00dacea10",
+        "F_R_native_jacobians": "9c9e082ec25294fb4368a3a3ed695ff341300c7923a1a79103fa0dc05cfe4b77",
+        "F_R_native_body_com_pos_w": "5b0026526adb8dd23bb65ec2d13c1e12664fc99051ec72d066d710b6e3f0a4d6",
+        "F_R_q": "12659976467f3a5954655a2828f634dc6a438b58c8b4005080f242305d3da8a8",
+        "F_R_qd": "88834c3486206ebecf3ee15beef76b43fe2706454353675e0a6deb891b28dbde",
+        "F_R_mass_matrix": "aa2c3550f979072a9a19001ad1f8ef3a5b8bbda3a8828a5c96a78a0992e754d6",
+        "F_R_actual_velocity_target": "07e1c391b85434ef0c59cb72d6400133bbba69d468543a5ce70a86f1d7d7e439",
+        "F_R_actuation_force": "07e1c391b85434ef0c59cb72d6400133bbba69d468543a5ce70a86f1d7d7e439",
+        "F_R_projected_joint_force": "b0a7a087e14975dcfab44993a024eaddfec233d357d249cc4f2bbc87ff8c1e13",
+        "F_R_gravity": "1678d7abb2905a044381080d0f0aec516884b838bc687a99f96b25867cccc383",
+        "F_R_coriolis": "4f4cad4f98b8ed9bb85ee69ec54bddd08b8b69ef41ba707f6b3140b6a611090a",
+        "U_L_native_jacobians": "c6924b03347d8f5b12d997db67fa9c0c95d70cbcf9f57006ff909e28abae25f5",
+        "U_L_native_body_com_pos_w": "b59da2eb93ff06d657527298081c53e2ff409376ba1a378b9eb87c6e0de8815a",
+        "U_L_q": "794ad145c81bde52ae3d595937f4072c4d58893c3a9d2af98540439f10cd6964",
+        "U_L_qd": "7009a41a5983b8bc89b0b8fa530164def0e5ac2f6fd01a3a26680f6687d5baf9",
+        "U_L_mass_matrix": "dee385e54d4f32c055eb929274e6c35b60e9fc6dc7e1ae338b6ca2c041270730",
+        "U_L_actual_velocity_target": "bec43d6bf2cb83348c8ac08068edc2e141ab368695f64263574c508cc24b73e9",
+        "U_L_actuation_force": "bec43d6bf2cb83348c8ac08068edc2e141ab368695f64263574c508cc24b73e9",
+        "U_L_projected_joint_force": "b2ae0a7bc28ec2bd88a68880dbb8951ab30cc4b9825ebea77f4f8b9fc7f35ce2",
+        "U_L_gravity": "0fb02b22e3590f5d4ec92462091dcb19e8c1a4a23f6fe82ebade31f0921012ca",
+        "U_L_coriolis": "7819ebf8db15bebdd407edf773e8495eb8278b1e262ab70aeaa0218fc868e6a5",
+        "U_R_native_jacobians": "28247198022b7f03b1083df5b52bba361fd84cf9313e866934fb3541e79b2c3d",
+        "U_R_native_body_com_pos_w": "ada46c43af90e5e3909ec82121176befff1f2338b1791e1ba7de5b73b7eaaa13",
+        "U_R_q": "6bb3b211745e6fa893bb6d2833dd4396b84fe7912150bbb8250e12f81f0efc65",
+        "U_R_qd": "418f78b9bd3d46c08b711fe7a1cb205138fbb5853025b56cb069aa46253a865e",
+        "U_R_mass_matrix": "fb0084e590b6e331c89def8a91d4e7e0e3a16770518c3cdd88dda82c947d43c2",
+        "U_R_actual_velocity_target": "bec43d6bf2cb83348c8ac08068edc2e141ab368695f64263574c508cc24b73e9",
+        "U_R_actuation_force": "bec43d6bf2cb83348c8ac08068edc2e141ab368695f64263574c508cc24b73e9",
+        "U_R_projected_joint_force": "8f46f6b2914f8e7057cc6df2aed5a46fe90cc351c8ba80c92ec422dbe482bbc7",
+        "U_R_gravity": "5293552155ef0598589254e8d9992c79929435ae14ccb322fe853ad15a4cffca",
+        "U_R_coriolis": "3d879ba4beac3f3739f11af02fe2433a955f0d9f5f1315a7dbbed6dbdcd1c52b",
+        "F_L_actual_position_target": "24785ed58a2fbd5e0d2516c586a0150465581844bf3e67c0b5d360f76ba01fd5",
+        "F_R_actual_position_target": "7390562323af8d7ab9bf54bcf023e76e323134779f63d52315935eae8098260a",
+        "U_L_actual_position_target": "3fff670c0a6648133b9dac5adb62ea3cf5241bf9428c15247fd52c77c2c6193b",
+        "U_R_actual_position_target": "5f35e374b7e6effab3be90273a483684e7a337215b99d6eb6fc4d87b182705ca"
+      }
+    }
+  ],
+  "native_state_chain": {
+    "native_chain_checks": 36,
+    "all64": false,
+    "all_registered_lanes": true,
+    "environment_count": 32,
+    "controls": 480,
+    "microsteps": 960,
+    "byte_exact": true
+  },
+  "frozen_source_checks": [
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/__init__.py",
+      "sha256": "157b2cdeb552be2d22ea39580fc18c15a559f15a9980ce0ab25d7e337800323b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/__init__.py",
+      "sha256": "7e49c38b87e6a232226b10247a8674a30029ca79781b5ad1e355b4ba167901d7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/adversary.py",
+      "sha256": "82eeed802ab14bab9f377451a2b4420c4d4a61103e00dde59ce59438a5049c68"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/bc_pretrain_v2.py",
+      "sha256": "5080e02e2ffc6bb060b5834f152e06a8f5739d5a92fc31e35a13894e798df38d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/bc_smoke_check.py",
+      "sha256": "a74f7c4f67309891fcd545639dbd80572440f27570106c5b8920c59871c7dc96"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/bc_warmstart_run.py",
+      "sha256": "ee8fc06fd77f1828cd3bdc5d79f9c98eb9b519e45cf550009f37c1bf4e41902c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/beta_actor.py",
+      "sha256": "f444039e01cb69108e05da06e207c4516e798f7e5f3e90f8403e23cd72226efd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/freeze_sentinel.py",
+      "sha256": "60acfd95ef30bc99b23aed35819b48259c9bc28cea47ab28382eed88802de88e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/kinematic_env.py",
+      "sha256": "38b7059deb98a7b31e273613c1a6db85f0cb7eda654790a06f0b3baba8ff6084"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/lagrangian.py",
+      "sha256": "ef80271e2275c4250e7313d49bdff7513dc4c3b4c90281a0a6a4b80fe9adcaf0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/lagrangian_ppo.py",
+      "sha256": "8f7110b93086b770bbbf22b6e0b46fc78a48ee26e878be55838250bc265f7f46"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/reward_shaping.py",
+      "sha256": "d2bfc9b3c56692aa9cac766215d289a93459c41ddaaab9590ab9de4fc50ff538"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/sac_lagrangian.py",
+      "sha256": "fd6cd8df1a79cc14a77dcbf40892c523c5ae6dfe73a78de562a31c7986c792cd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/train_lagrangian.py",
+      "sha256": "18db98dd76fb0b72b61636e12b66b108d2818e12c28398e61e335d610918d23d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/train_sac_lagrangian.py",
+      "sha256": "e7f2865f554d21d01c8ae7f70d8398ffe487d59f6e1759fee67eff6adfab3888"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/warmstart_oracle.py",
+      "sha256": "b2bea8eb18d9d688aaa824cdda2863df9693c5dd43bebe1c94e5abc7f41d1990"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/algo/warmstart_protection.py",
+      "sha256": "e9128e774b1e14a2daa607b971391aab77c0696fbe9814c1b9dbb26b7411f1e1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/__init__.py",
+      "sha256": "a71abdfe4c7c7f1f9556f9a029ddd2197f5a3e5d61191eb36aecbb7728767638"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/base.py",
+      "sha256": "ff9852fa8363927dd591541b0b65640b65d2d1cbb2a787adab4e2a4a3e21cb47"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/estop.py",
+      "sha256": "eda10e0d2e2b715a1bd3333bed444379360d802857a77334ec716cf2100e049b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/qp_solvers.py",
+      "sha256": "f4f4abda5cc18ed495ea6e445153c6d94884535e5dea4f1ef9d6a67a48522b69"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/real_geometry.py",
+      "sha256": "3665ace273486ea2451302760b32fbac91f6406270080f73cf7dfe1e60ba2505"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/real_geometry_v7.py",
+      "sha256": "e704a0abbd12902846c89f277002c349f7ed62ac3c806fb6439a53f798e55ff3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/scene_layout_v8.py",
+      "sha256": "1f732462f3b2e6063dec5b7c4286943531fc637a98c14669e7343b5211fd8249"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/speed_scaling.py",
+      "sha256": "e8639ec0148aa4d71f4fc89817798c91d31a7857f848923f0331aed02afebeba"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/baselines/strong_cbf_qp.py",
+      "sha256": "218c5a1894080910f3f2de30bb0561941dab48ecbcf4af575c8707468a2ab8b1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/__init__.py",
+      "sha256": "1238cf90e72490cbce48de04b8ee9b9491e0fbc1aec9e79efa4961708e6d2725"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/__init__.py",
+      "sha256": "3e47c23a94d5ffe432c4308dfad247407ab078f4826d20a968316bbac0d2396a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/_contract_stub.py",
+      "sha256": "92572cbe14252faed0b5970c56203155c50bd382b7fc0ca7e80809c46ad9c93f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/a31_replay_mix.py",
+      "sha256": "3d4bc01a0d51bfffffecaa8fb26bf80a9bfba801eec64a91a07582d625afca46"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/d032_plank_plan.py",
+      "sha256": "b8672b6c4d127d5a71d533066a3fa3b77bc50ba72021e1c0d254b33e3ba4ec39"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/grasp_gen.py",
+      "sha256": "c14708abcdc74822d3b2d3a5d85e9c52a046ba25f38d1ebd9c9389df0f3bd4f5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/hand_grasp_frame.py",
+      "sha256": "74f7d3ccb4b16cac66542ad8bc92e4c48f9d7c3967d7bfcabd84497f08c622c1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l1_coverage.py",
+      "sha256": "349ba44cc663d327e14b314c8f705a50fb0e7b71c454ae402c9af9777382d95c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l1_random.py",
+      "sha256": "55d311cf3677031fab38b2ee8bf06b76f8c7f6492b4bf87ef0093eab1b33de0c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l1_reach_calib_v7.py",
+      "sha256": "487a73095c9614368c6b7d1cead2fe8ff381b602c4453f85e32f6602e4a8e246"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l1_workspace.py",
+      "sha256": "e3d3e6390fc8f8691e6d22f5d364edb7ad6256e2f8772484a295db56e7ac4168"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l1_workspace_v7.py",
+      "sha256": "7feaccb149d49100354dcd9976fc5b3b21dcab96e1829619497094967f666b41"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l2_env_source.py",
+      "sha256": "a834c5643b6fb2b7153e8b3158e8ea3bd94c20d5d9b48a6df1148fa6ed1d35d4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/l2_scenarios.py",
+      "sha256": "a14e57915586050c66d62c3bd27dd293eedf2da564e27cd60858134d50287442"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/make_previews.py",
+      "sha256": "0b19a736d0757a2c4310f8f07dc04fc207299e064b4f45b8a54c3ca4a101e027"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/skill_plan_server.py",
+      "sha256": "bc1562838e0aa962117e336e18e69fc062691489b9f54c9f36bf126a505384c6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/skill_plan_server_v7.py",
+      "sha256": "455c1a14ddc0e80e63ce9711d41141ac11a331f4b406b2aa3ee2029153295f81"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/skill_record.py",
+      "sha256": "5abf0359b96c53b7a17c106e9862d160b9cc07490b9796ad9b2070713e2b2e78"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/skill_record_v7.py",
+      "sha256": "a496abc5b7373338cae77053a0a3a05180695fe692a1c5eb63c0352d74495daa"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/skill_replay.py",
+      "sha256": "ce4ce2100db2a255eb6e9d4b4f1e651acecd8f2c29caf8742af4ec9fc5652c5a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/smoke_noise.py",
+      "sha256": "5729fd8b10d46d76423ebf24ef9cc4dcbb5d2a0a51a023992f9e0cd9df54a0b4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r24.py",
+      "sha256": "de9c58c007e5e9d85266c61117baf3b3f1b88480edcb5558c38c613a0e411734"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r26.py",
+      "sha256": "c9d09317c89405d486e423cb7c9bf2d61b233119370ed0fb72281cc186d783be"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r34.py",
+      "sha256": "45321e527a9306612b148ff5dbe529838ae8320d10605de5d19898facdad3ded"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/task_library_r35.py",
+      "sha256": "7aef3461e46ed2960192d14f38ae8c2f40e437e1426a52e07b3b5b90c17237c2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/task_record_s9.py",
+      "sha256": "0d878dd30d699efccc001c0a13051938934146173308b1facf95831a72bdf890"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/traj_planner.py",
+      "sha256": "ae63d97da3e7ffe6714d196a51cd0c0c4fd0f34b567c7b7e2741361477e35531"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/delta/trajectory_task_replay.py",
+      "sha256": "af9ab42be55da9bcfb7ac94376daba4c7988500880f5ddbf297f26e53f0edd62"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/__init__.py",
+      "sha256": "1cee72f5248200ccebd839813a461dc4d0fb8f43caedd7161e9d0fee717ef787"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/birth_pose_search.py",
+      "sha256": "395f4d16f0f81a505663ec313713189181bf01f8561edc6c438e6fc67d691a89"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/birth_pose_search_v7.py",
+      "sha256": "d6a6973cfde5f1f5e796f4fa317a0e0fffbb56a9181d53b11f2b394db8adad8c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/compose_robot_usd.py",
+      "sha256": "47fd59c48a9413957ab802d7753db169263972331803d4a9469d90a908dcaf89"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/contact_gated_grasp.py",
+      "sha256": "deaee8cc125ab8e30f678b1225d082578cae11b64fbc8dcd281294d474e9646b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/duo_env.py",
+      "sha256": "cd5d3b8b473a7d713da7a4dbc400dcbe231a2dd9563732671c4e3b7047e3fe0c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/partner_contact_view.py",
+      "sha256": "3508f5296d3462338a3afeabf8383d16cfeb22d82505589b85fd7f89f435f1e5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/task_objects.py",
+      "sha256": "7bdf386a8041517a7ef645e0280dc923892cdca77b617dda7e72c522c228d5e5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/v4_scene_smoke.py",
+      "sha256": "8fd7bc1108a439df9beac9764d44e834ffd7ca09958f0962ea12a8635a57ca73"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/v7_l1_roam_smoke.py",
+      "sha256": "95babe3a7749908ad36cfff648bb44b4599c7f05cf009de06b2e4ae568811914"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/envs/v7_offline_geometry.py",
+      "sha256": "2b60d2f9a91474ecb06b6ae42c8801f186d248888bf9f974a29538d4dd69ccf4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/__init__.py",
+      "sha256": "2e7440fd7b7d2009800eae38ce71fcc2ddecb93857f268d8dae00adf7daa736d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/anticipation_material.py",
+      "sha256": "b9b71709ae22c81f065b330812ed2cf51f68ab2afbcede46697a50f7cf110f70"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/block1_harness.py",
+      "sha256": "2900dda6d5d0233c35d3f1cad1abe0ec4255cfaff681230f80c68ceacb1e8d7a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/classwise_recut.py",
+      "sha256": "215d483bf4a678bb00ea8f90b957b812a602f60e23b8eb190bf554e57a430859"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/clutch.py",
+      "sha256": "ed5c2de7c8663af421d2f7339dbd218f0e8d17f7aae4e5f3d3d679fbe4c68ec3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/clutch_eval.py",
+      "sha256": "09658d68b66434eec9bb7c25c342c7933b9964337176b9c73a86e432ff10a2be"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/collision_recut.py",
+      "sha256": "a101e87c9eb2cae54dd8fb971846afa7bba73ade88a1660aaaaf9947e978c8bd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/coverage_design.py",
+      "sha256": "caeed8055f8a2112d528ae16768adb7d4d1ce59403e13a93a8059cb9e70c3980"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/coverage_matrix.py",
+      "sha256": "8965694f433ce94ddb6e49169906cb99f43206c2ede10262ec892f6705b307b1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/coverage_source.py",
+      "sha256": "c1fbfee9d6ca442effdc3b0151f44562056536b040374f3498306b30cbbaa2f1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/d032_plank_bundle.py",
+      "sha256": "18d16ec1e38e93ae9198d979ede8a9b12550e2cf2060bc06da6aa381605a06ef"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/endurance_eval.py",
+      "sha256": "0b43071f1b7b167c4468d0402346f2654a98d3c13babaeae25eb7ca2a7aef4b3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/formal_capture_bundle.py",
+      "sha256": "8941ca1be2ef6f5253849faa2320d62640e1afb76fe945199d6b9a960427d865"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/four_arm_workspace.py",
+      "sha256": "25df040a3dad27820be1bb2a8980d7040a206396f72c7db07cd87274c5e22e4d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/glove_episode_recorder.py",
+      "sha256": "0fba5edefde03fec2025fb6b96406b58c82a5dcc28f045a51aaaa31473f80bc4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/manus_glove_adapter.py",
+      "sha256": "239aa8f31d8318ead8ffb9909d245ebf1d1c35c979e7dc1364c29d18ed9e31ef"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/manus_shm_v1.py",
+      "sha256": "bf3d1ef125e231eecaa0d0b5bccfa94c18a8bfb0133ce0e704a554e1c7f483b4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/metrics.py",
+      "sha256": "3e962e68df8e1e6b17e0b44df906de7198955c37030770cc4a3e3f953d6f47b6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/object_task_success.py",
+      "sha256": "dfcb19a8ba29fc3669a7bd0d084df5eccfe4b5c11a19cc3b4a19bc4fdd1d7888"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/p_head_diagnosis.py",
+      "sha256": "89dc6556dad4d34078146d7f47558a232700b929e5242b3275db83cfe014210e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/paired_report.py",
+      "sha256": "1c3a41473e90247bd7853260727d89afed0215f9d29710765ec835a08b79d031"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/parity.py",
+      "sha256": "1922b807ac478b20f85911442f761cf175f2da7c1942895185a09b0cea0ea21a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/parity_attribution.py",
+      "sha256": "1c911ea9467e8d11b4bf9e87ef065cae7449bfe66870072d4b477faac98f6942"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/perturbations.py",
+      "sha256": "5c7ade79753a557474a6e4778ecf90b4ca9f80df9b8b6d123247e1ad513bd59e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/random_battery.py",
+      "sha256": "236226053a118c293b18598f4a519f43e4fc314cc768d5d1ea130e3fe0769bd2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/report_html.py",
+      "sha256": "347110a0f99df5161835151c5865d8de918ce5f2aeca5fb22ed0f2f04e0836b0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/research_battery.py",
+      "sha256": "4113b362da98b73a30cd6adc7bd260a8083f3c106910eab4a4319c9be0fb4963"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/run_baseline_grid.py",
+      "sha256": "f15ffb0e2874a7d85a10c3156c4e73eba00186c1446deb38f3de7300e2bf7854"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/runner.py",
+      "sha256": "0ca96ba287841b203cdc61569badc788edcf150e7a116ed2a095e5deec617597"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/scientific_matrix.py",
+      "sha256": "8f5902b0628276c20614a25b279f7251873bc2eac639ef36e31bd2377c0d1a6b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/skill_success.py",
+      "sha256": "54dac32270e97b428f9cd005fd788e60b43079e661b40fed764b1e63ea31ca4d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/skill_success_v7.py",
+      "sha256": "2cb911db2fa1003c699f4abe0e8f65b6a84483d6b8918f5cc9ffd2485d8c88ee"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/success_report.py",
+      "sha256": "6c1c20ae4243980a009a7ee5ca5fe278b6a4a4cae9548b9667519bc8026b6781"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/target_guard_trace.py",
+      "sha256": "47d80555c1f2894a4bc03da21751a7093adb5f9ee60a8eac81491748aee6bfd4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/train_events_analysis.py",
+      "sha256": "d3cfb2aedce06833efbb260ccd2d16806747124615eaf721557616d8c2af1962"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/eval/trajectory_task_bundle.py",
+      "sha256": "856406ef2dc28504ec8370bbd7545974a4ee74e07ff4d9bcdc9b763297f37140"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/__init__.py",
+      "sha256": "a696d8df23f71a4df275eac54eb0fbbf1d987bc36fdbe33ef9596b7a5ed9ed5b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/backstop.py",
+      "sha256": "82a0f0e5ddbbe1b9eecbdbbd249a9354b50d78ab6e121473286e8dbb28f19afa"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/consistency_parity.py",
+      "sha256": "0fd1332a26c5ef10040049c11c242b9a05b490e396af6128880a0e6b8b9e46d2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/contact_parity.py",
+      "sha256": "994608427693bbe2c013e2f71241e058d4af2ed4146f2ab1c87a279b0033b683"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/coupling.py",
+      "sha256": "9942fb7abcfc89cdd1da5477d55f8002b7db7db3d3a093c10cf12012eddd01f0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/damper_audit.py",
+      "sha256": "5b891af463a450bbf1b7e7a1f651d52c97b0e89d0283e113a0e7ba68c7255fdb"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/geometry.py",
+      "sha256": "86ca63288973161dd3a7d2c41539c7f3d26a0e30dc26ef7568e7eebe3299375d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/object_context.py",
+      "sha256": "6b69e3641a013e8220bf3c719971ae0a17ab01476bbb98ab39874b4a1a1ec9eb"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/parity_probe.py",
+      "sha256": "3b85a909ba92b9b1cbbee503f20b59844ce479040c12cd508de82d77bdcd3aa7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/parity_runner.py",
+      "sha256": "ac23dd0ee79bab5f992c902cf599cb4f14ad3fda490bb1777e7b2f8b32fe8dac"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/release_evidence.py",
+      "sha256": "8c9ceea38bbda86285092b46db46da500d2c292f474b6948e03427c7c36416bf"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/release_schedule.py",
+      "sha256": "a0256fe3a7c67d83d66d5b155579398129452d27ca6673d584a4a7a199ee8697"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/retreat.py",
+      "sha256": "a2a95ccd7b3588fa200e9911ce202099b9a5a54e4156e4ad1e48fc9c4a7af0ef"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/semantics.py",
+      "sha256": "10ef2fba44d02d22d5d4b502a8b2657435dbe6dce189922084c619472194bfda"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/sphere_audit.py",
+      "sha256": "aaff3f1ebd907f8458572188fb14d446cc0b816c309497bb3aefb55cfdf55fb5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/sphere_distance.py",
+      "sha256": "c4a57526f7f66bf57e224a70977a2534e21ca4e247348500846149444325296f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/sphere_specs.py",
+      "sha256": "bc3f35d374117c39eef2d05230616a959ba3d76052b4806b352569b6148fcf7c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/target_guard.py",
+      "sha256": "81349e7097c58779ffc43531fa6e25cb73dd68203245264b33f5819a91cdf971"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/target_history.py",
+      "sha256": "e58dcf8273dd684e04ec5388c1451247981633f291c0460c647ee5a2df60f41d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/safety/types.py",
+      "sha256": "7ed46347ff0264d4b15d016dfab3329a31be53a2c64a63027b250c93873774a2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/skills/__init__.py",
+      "sha256": "540bd2d6a7a6777413d47420c9c62458b6658e0a5338905b6369f8aaf67948e2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/skills/build.py",
+      "sha256": "4da296648747364c0e8e7cf388bb201c6103fcf909e58bdf0ca5884b0f1a1443"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/skills/compile.py",
+      "sha256": "4d89cc5e6016ddf75c53dc3229381d10b25fdde2a22a6820dd198df0da8cfe43"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/skills/spec.py",
+      "sha256": "c8139089929eef582db9a2749f7c02d73fa96e972200ff971efd695d444cc140"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/skills/taxonomy.py",
+      "sha256": "014e5aefc30dbea98c2b73405bd2960b55b538022498b0bf30551e23cbd6360f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_backstop.py",
+      "sha256": "6cc33cfd9db36122ebc1dbf68143e894127fb6b38bc03b8a50d9ff657430be5d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_colift_axial_clear.py",
+      "sha256": "f83ae3e27de13b085b3097781ec8181c21b9d66738c798dfce2e118a59696c7c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_multi_object_check.py",
+      "sha256": "b15f2de3da440de94619653f472320cf1b7c19f8aaba90063ab727dbc8c5abf4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_p0_regression.py",
+      "sha256": "2c8920cc52ce5ff83925d73057a4fbaffdc84a6387fca2245a813a90cddf1189"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_random_battery.py",
+      "sha256": "038b75517b4f5d4dfe1b29a1163ea0f280ff9435413c3f05a87b076314ef13cd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_skills_spec.py",
+      "sha256": "637848f811855f7ff8794378442ef8a892f2724ee91930e902d92e94fc7cfc58"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_sphere_distance.py",
+      "sha256": "68ca4b41cbcb847aea3a98dc68b73b39ab7b1c2291e5aba335245a16e183b3dc"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_types.py",
+      "sha256": "413c455094247a54c7c8b97873ecc2492c334a873838c2da39a76424cc2701b6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_v3_obs_reward.py",
+      "sha256": "c183fcdec11daa1ea3dbf6eaad136cfa3237089d5909b1726af85dc35190d688"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_v4_swap.py",
+      "sha256": "ce7654592a60eb7b92200bdbd4d920903a21dbae6f03c13f71870f8bb6fdf347"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_v5_swap.py",
+      "sha256": "2fa6645dea1b05d9f254ee7ed518b8aafc140537c615ed24322edc8b09d72553"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/tests/test_wandb_logger.py",
+      "sha256": "7b5d8a449e93f8dd2c766e5b7bba1d54e1b7a162085716c0b98161f13eda89cd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/__init__.py",
+      "sha256": "c104f298425555256228e5416d01bdd504df1c3e84c6bd417a4cf47ef0e9604d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/bc_init.py",
+      "sha256": "c2094bc1f7e0fd98c2460d5d0c728b80cc3cebed7c676f14f671b427697d5a45"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/benchmark.py",
+      "sha256": "afee5579e59a50ad536ac9370099268b8505eb2f27accdbbaa05b4ba1e4734f8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/events.py",
+      "sha256": "e13ed8fd6e6873ad468259b0c9186667d399a4dbf6a6b3ad5363af75cf1ed171"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/tb_summary.py",
+      "sha256": "ed186c7be665ee877e3db53d00b6c63cf6313eaed1ca0dedcf497c97568731b9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/train_ppo.py",
+      "sha256": "ad1fb520bdcfcca1cd91f4f12d4c299cbd88bfc2ac51567fc29190dfab5735ac"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/train/wandb_logger.py",
+      "sha256": "b0ecfb487d318d5c004f1af2cc2dcaf279ff4695ea94c053d0374d678d4f742b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/viz/__init__.py",
+      "sha256": "bd73173125ffd72097ad97d826e49e76c1edb355e0b5c4871b2ab196a85be061"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/viz/record_video.py",
+      "sha256": "5f50bc1e0714157e22e9674c68b09a4ec12846e01f443408fa2e6f3079e46955"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/viz/replica_visuals.py",
+      "sha256": "2992e2403d091c6396089c5aca1147267e2df372d2a1301d792ddb3fdc02aeca"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v3.yaml",
+      "sha256": "8406d691f805fca926f520f7f417ad28d9fbbf6c4e66d817dc5cd64388f38aea"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v7.yaml",
+      "sha256": "5f208701688d144ade0f73856f0b51747dc4241fdad6c923c59ca69cac2fc303"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/contact_semantics_v7r16.yaml",
+      "sha256": "f66efc90ed57d460e3fb782f745925b006d36f8d22f15a768381b2d54d2f02fd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum.yaml",
+      "sha256": "51c93dd209f040ba622e50bffebf2e70cbdf5e80474cd6b094bc6222cde2b178"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_t3.yaml",
+      "sha256": "acb812adf7443c731329afde59917e7a4293f425915151ac117bd30ccc63ef88"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v62.yaml",
+      "sha256": "df5a87a5e9f92f6ded8f007e34f1115ae9cc950281040b8ce6be23218a0384e0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v62_challenge.yaml",
+      "sha256": "3bec8bc1386a7cc322c49671e1f8146939723a9e8dc8103efc9edae5e8119cad"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v7.yaml",
+      "sha256": "84d1ababbc870f74a37b9fe636aa9574568f5b072903567340d550ca7b63a852"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/delta_curriculum_v7_cov.yaml",
+      "sha256": "863758434deba06ac1f80521e6a0947512390571aa49b31a13a6674b7affcaf6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/dressing_r35_factory_cell.yaml",
+      "sha256": "176897c4986a4232c5b91b4c3939b557847f1693ae490af8e2d40a2ea7363cee"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/dressing_r35_factory_cell_lite.yaml",
+      "sha256": "99538ec8f4ed12143c026f894e7feb5931ccf8a9eeb5b8b4d729bacc5dc4b0fe"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env.yaml",
+      "sha256": "ff1614e0591800733eaf7c5a3dccbed4576f0e76d808a00e7427056b8b81876a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31.yaml",
+      "sha256": "f22ff80002b2e0b23afab6b00ac83ec1dd4a9963eed37e41db194d9bcaa2b63b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_beaker_relay.yaml",
+      "sha256": "5fff1ad85b242a2bde04ac590ad3132e6b8a75101779ab52bc00c69db940c440"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_bin_packing.yaml",
+      "sha256": "01038338996c24b93ed1ef39f65aee82fe57d40132199f92016c804b5621ff05"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_bounded_guard.yaml",
+      "sha256": "07557f2e40e84eb545ef4f949c597ce401a60e0bac64849bf6e150b524645c80"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_carton_packing.yaml",
+      "sha256": "0cb3c62d1e97b21221e9a54a71f6d514ef196cd968a092c94d9274ad5fff285a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_com_guard.yaml",
+      "sha256": "abdfaa79090e269893284d6006ca7d6f335ab55fa0e27e98ef5776aad291c016"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_converge.yaml",
+      "sha256": "e744e60b592f4519b24381f7423635c4d44eb4002df41f446a01767b87ca9fb4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_crossrow.yaml",
+      "sha256": "c772b6af3ba41d543da28184a6eae43285ae057f66c79f9653bdf6c6bdaa4345"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_la15_bl.yaml",
+      "sha256": "8f786bdc2deab35230c007a90af65c9befd03308430166221c96ec8705a6fa32"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_lag_guard.yaml",
+      "sha256": "8fb5ae20bf427bcec70d5ff04ca2448315eb94186d3fb1c5d1bd371eb04970d7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_latency_guard.yaml",
+      "sha256": "0c881ddecb43fc38e8b0188aa5d01222a4bd8b0d3c8ee5fba7eb6301c4e9d8cf"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pending_debit_guard.yaml",
+      "sha256": "b7d29fc3e9aec25c84ad85c72b868a8f0e9c3452375612d8365c487f572aa7e5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pending_guard.yaml",
+      "sha256": "4bc35454cf781f01547f9c1cc794360ebbaf67aaee091ee3a4adf37886e09c08"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_pipe_sorting.yaml",
+      "sha256": "7fc64b6159ed5663e7258b1ffd03dbf3b06cb7e5b52e4bca0cd15f314fc7cbba"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_priority_guard.yaml",
+      "sha256": "35ea2cd8f46a064e36c0668ef4bbc24bc2f2e93029602ac562050b7e4bc90c0a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_profile_colift.yaml",
+      "sha256": "9667f02beef26ad8d39c73d56de03ff22fd51fb86f10caa4e7ff0c91fc3fc86a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_rack_colift.yaml",
+      "sha256": "10cc18a410fcd71f82b07ec9896578b7626c9a5a8fcbf0d317ddce5199758f85"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_reagent_pick.yaml",
+      "sha256": "f6723f65f80a426d2e75bbcd9a5166b254e939f8649e6ba9e104675ab57b124a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_rebase.yaml",
+      "sha256": "51d49f78111000543bb9d208e2b121b6c0ee418cc7fe73ed33eb3e8335dca3b4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_safe_low_speed.yaml",
+      "sha256": "026834a45c53794a27f659976d3a84dfcd4ecfc84095a55796d7b868b8e10778"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_self_la15.yaml",
+      "sha256": "9b37d22d136d2ed92bf276b2776a0c8fb9de2391daef02b08f9e7660982771ca"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_stored_guard.yaml",
+      "sha256": "791e3d9b0b76f17d8ae7beaf801835ffe06f51097554de1642c207dcea8c5481"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_a31_tube_racking.yaml",
+      "sha256": "7587eab649bcaf7ff8fa997856e8b72d6af7774d435fd0a844f4487fb379ea74"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_camera_crossrow.yaml",
+      "sha256": "4825db8914ca44cc4969d4077fc1fce1d52d1b52ed77a1d2ed50596c9416a18e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_object_obstacle_review.yaml",
+      "sha256": "de84859f07273fedf9a27ca4998699008058f4f39a491f73c01a6df02a5c784f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v4.yaml",
+      "sha256": "e9755ca173218326ede0aa4987ed5bfbb9a18644f40b1a0f1d357a97fd91cf96"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v5.yaml",
+      "sha256": "d3437011ea007a34c5448b3ea51e107ba154b9b0cfe1f51f2ba0329158455856"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v6.yaml",
+      "sha256": "05672718e8240f43bf7d40ef5ea539ff132b0c70c3e39256e542363b28fc0ea6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7.yaml",
+      "sha256": "7c1b58034a1ab07889b632acdc4ff84ece28afc22f6587baacdd7cff98551e0e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_objects.yaml",
+      "sha256": "8e66eb223f789d47f5c14d3e84f1b0bb57146cd4c305f445a0a95749688fb772"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r16.yaml",
+      "sha256": "10a7a441f9d46511791a155d9338797c51f49c34269735832f1e183f8b1ec8c3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18.yaml",
+      "sha256": "3f80641437ea9b80a60776fcc403ef1635882a3fc638e8bdca01a50d5a8d370d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_fix.yaml",
+      "sha256": "52bc76dd3979e1d0972c9bf7b9ae207c7e6884d1ac4181567b61e3816a01792c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects.yaml",
+      "sha256": "0e15af9b5ce87860157310279c78bea5bfec5034399e6899706a5e84854595d7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_dw1.yaml",
+      "sha256": "82a12d9c79437ca635302f0d75b8a4a18273bf77b43f0d2847b8f82ff4ecea39"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_dw10.yaml",
+      "sha256": "391e2aed1531c95cec19d0a9b51d7b6410f480521b578ea24e86cd4fda75acad"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_dw3.yaml",
+      "sha256": "1c5079cfb36589efb9e2efd87638ee80040ff6c8ae5615f19e977570b81371bf"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_nostruct.yaml",
+      "sha256": "6542c5161d2096575c7538b9c3a1f63b8078e92038e3b8a0f9fc129fdebd6387"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_abl_vmax10.yaml",
+      "sha256": "f3851c70b164d53092972ab3b34f0561f3760a13d41dc3c4266886e5444a72e7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r27.yaml",
+      "sha256": "23b0f7804238cd62b4c59f890d3c2cfc3bd40b284a79dbe9efca16d49f512f03"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r27r16.yaml",
+      "sha256": "70d6be0823c649c9d20ffb62e56fd5695b98f47bcf6f7285d99d999633888c9c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r29.yaml",
+      "sha256": "e268bd6063081324668ead0ba3f2702decd64a1c22ba9138706a75ab60eacb41"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_r29b.yaml",
+      "sha256": "9ba0b6e1d518393698f7be0342c0858b6b5a8bb27efc45f6865d999871e35b3f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_objects_stack.yaml",
+      "sha256": "ada6bf5ff1905fa8dfc5f605d1261765165cc018bc7a4854f8702a2d5ff513ff"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_r29.yaml",
+      "sha256": "13ea0be1ec62d16ccc5a8b4b6f5522ebbfd93515b232502c2b518412d5b33566"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_r29b.yaml",
+      "sha256": "58c2bdd670875dc7c64047dfd9cba6a943ab79acc574c99977a15cfc6daefb39"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack.yaml",
+      "sha256": "767b1c06e006c9851d243e13bf0ff029977687cd798dd5a404ccdcea9158e0a8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix.yaml",
+      "sha256": "5d41c3e100fa76ded6e24f8cba171f9ccf7b5463172ea0b26bcb82720da0b45a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix2_bl.yaml",
+      "sha256": "dd56e4bcb06bfb2131b5e1cc1e6a94ca48f62ae630295b23c361ad704a23e915"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_bl.yaml",
+      "sha256": "62639a30636b555ac73322bf8785874c091cdf5621b91a7c5412df4c8bd6fadd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_la.yaml",
+      "sha256": "b361efc9244006b38066fb7275dba1093df57add80685d10de019a9d147a74f2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_la06.yaml",
+      "sha256": "cadd5916504b976cb8bee3554d19b3fa53a9fedd463a4b8112cec19846690886"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_fix_v8.yaml",
+      "sha256": "865f7ebf81120cb755255cb0b8abada62959e936b92cd579bdec286b9ebc7d59"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_r16.yaml",
+      "sha256": "624661d02bf9f62d104f3e5278cf06708e18688c70f16715fdde254dfd64ce87"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r18_stack_r16a.yaml",
+      "sha256": "796b38ebc66a77256172a670d3d1462c3f6fd3dd0846de045861606c85d16e6b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_bar.yaml",
+      "sha256": "1cad2adfb822cc6b5e6dae4642fc005a67ef475d35c33d6ebcb8820106d40e01"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_bar_r29.yaml",
+      "sha256": "44fc8789cd4d15aaffbf8e7fdd338527e3f25a15e40c3dbcbe7cdddb15a71576"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_bar_stack.yaml",
+      "sha256": "529c9df7f7a1803d2f05ff5675d2e9ad0a591a4bd2cc22927afad4fabdcb273d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_pillow.yaml",
+      "sha256": "e7912d5c44f54688c2779e7ed21cf7bc920c20a420576571c34fdfa96b71dbba"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_pillow_r29.yaml",
+      "sha256": "12bf913ddbb37bb5f996577745c39de3c88d864c1d13defdb73e56c6bd4ed90a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r24_pillow_stack.yaml",
+      "sha256": "ee89eae6fcf071f9936eedf617dc52f897a24cb39624cef5c9becd8a0940ad05"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox.yaml",
+      "sha256": "3cf03c9d0456936a81d7012a75c7079b5ef72fa408555c3953411cb985dff4fe"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox_r27r16.yaml",
+      "sha256": "83c978afcc3bda983617b9d6da0122ca6860f871ad4863d6301562926135ddb6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox_r29.yaml",
+      "sha256": "52524082c4cc1f4d30de3da7269eaf38f6cb308b51e3180ca07fde33c9911a31"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bigbox_stack.yaml",
+      "sha256": "074e75254f2649c34045e7552734e4bf74394eb0ea68dfa36d2762e40c3302ab"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle.yaml",
+      "sha256": "1b8a914f1d3321550d441deed864134268a1d2f383673d24cf795b0797c2d5dd"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle_r27r16.yaml",
+      "sha256": "f5719b16d00349d0ae31a336f9aa6efe5cdcdd53247df6a8ea9f63a45e4ad16b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle_r29.yaml",
+      "sha256": "f56cb65e8f2dbcafcbbad46a893014deca63569455f2ff8b2c5e1309febd35d8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_bottle_stack.yaml",
+      "sha256": "3762595741fd7266f8afafca5bb3588629079c452b1e7bbd969e2651d399cffa"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod.yaml",
+      "sha256": "7b1ac2909ed82485af73dca3f804b72da3c8e12ded516e2dfe055fd29a3df667"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod_r27r16.yaml",
+      "sha256": "085169b4c2af5d0d1c469ff92bba12107eadf521ba0cc1a2abefe6221bb94d5f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod_r29.yaml",
+      "sha256": "a298008dad70a9afa6e4983d58b7f05ff7b4ea0a510c197597f1a207b8f8e1c1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_rod_stack.yaml",
+      "sha256": "51fea454129c5ff2cf82e565ebebce8c6042708b61a78028b371ccf90285715a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray.yaml",
+      "sha256": "8868c3de6db7ea5a3865de6741c12b7a7e9bf013b7dc269f3d97ca3642d0f857"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray_r27r16.yaml",
+      "sha256": "c887a7ff63a3c15c67b7fa7adc0325db0e80cc07b22cb7a79957c2e6a2466aa3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray_r29.yaml",
+      "sha256": "799a16abd83f515d963456df9c96ae809daa88a09532771289ec31d2d947c57e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r26_tray_stack.yaml",
+      "sha256": "5e239defe08775dfe4e885734b7f968e97da45c5b1b2f0fbc6ab681057982a68"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beaker_relay.yaml",
+      "sha256": "68a5b216f996567b9a49b996eee2acaf77a4e3f608373f0c7be3f3d6edfd3589"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m039_r27r16.yaml",
+      "sha256": "bce9be0dbcc84fe64e698d8ee749b5288c7fc4e0fb6fdcc516caba03643dc021"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_h200_r27r16.yaml",
+      "sha256": "1bb0b0a1a7393f73c0fd952521cf254d4bc3cd88b95740222d60db6c988ea246"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_mu09_h100_r27r16.yaml",
+      "sha256": "49620d04bd17233ebcc5972b76ab5366137cf614ff018f2587a3cdfaf28e5180"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_mu09_h200_r27r16.yaml",
+      "sha256": "1d56499f40380a9e4deb37d3852565e9c88b3cbfdabd9d7c3db177a0cf079a7b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_m078_r27r16.yaml",
+      "sha256": "c7dcf902edf1f2d7b8b677a314509775599d142573b563ce35f8090871940653"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_beam_r27r16.yaml",
+      "sha256": "d975aa01d84e1484c013fbf6520f30ada9f7182ddcb0879e02fdbce1a2d3c968"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_bin_packing.yaml",
+      "sha256": "39d97b863432dd33be865985f1c3b021654065f534fc594a9a319b8ca5e9ef8e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_frame_r27r16.yaml",
+      "sha256": "a9fdfd05a9281c092de2fedb2beaf7d22b838effe7ec7d22cbafb25dc114c80a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_lab_probe.yaml",
+      "sha256": "ff0719253e8a6f440977a7c34f6b4d3f00a447b33ad110351a4fda98d217a9ff"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_profile_rail.yaml",
+      "sha256": "cc0a24de3b96cff3916de372589f433a74974583879b19e9815826a08fbe7240"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_rack_colift.yaml",
+      "sha256": "ccaea8313b2a76fc18d3a3c6cb3cc396036593a6f9534d123e3a5b90d2e999a8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_reagent_pick.yaml",
+      "sha256": "648fe400b03637839928558b1f5a7368c30b869d677955c28cc55f57d68bd931"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r34_tube_racking.yaml",
+      "sha256": "8e9abc26cb4d6c73ef39150ae45c714778d8c865294d920b059d06ce05e29fb7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_carton_packing.yaml",
+      "sha256": "b888f9d08d6b47b6bf124552ec3d6a9658309fd4321f47d29f607fde279af648"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_pipe_sorting.yaml",
+      "sha256": "1673e75926a60b63e7113139c5558bdf4896cb4b9e910535f5ab9a452fe0cfab"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_profile_colift.yaml",
+      "sha256": "cc14bef489f6ef706989833958578301f6e15dac05e73b9facb1e5513dc5d620"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r35_profile_rail.yaml",
+      "sha256": "cf1e79be1f04a19143144606d9dd065e5ef57badd6b887bceba07e745d035c38"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r38_f_x_minus5.yaml",
+      "sha256": "b2fe50008665094b29e0e487dd1c89e030609333759d1f7384592884167abc20"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_r38_f_x_plus5.yaml",
+      "sha256": "f32260e3cdccb8e1604131d155849f3c6389084ef88a5ebf23039ecd7b177147"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_converge_center.yaml",
+      "sha256": "428626ac80e4d21f416aaad2aa3b55d70718e19bb6cc25731427974d2fc39bac"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_converge_depth078.yaml",
+      "sha256": "7a59004031f83b6179b809428e35d5f15c3a7cdea5e9885ca14317e825605a0b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_colift_pair.yaml",
+      "sha256": "f9a15fbd5fa4f2cac36e10fa9d27b6be4a9b6c6b35d7df72178dd77654eaee20"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_depth015.yaml",
+      "sha256": "9e00aaabe5d64f8428d1b604f153913fc48bf258413a29df8d9045d0374a3ea9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_depth015_carry09.yaml",
+      "sha256": "96e9173f3dddf234b6f11c82abb9e0420aa4f1380624e9c5b4e02cb5c196fc7c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_crossrow_neg_flange.yaml",
+      "sha256": "1af077c99e0f1a958833bb622e8d0f4c870f962a38ed84d2a3fc7d913c8dab09"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_mix_pick_center.yaml",
+      "sha256": "224e97b8813c0e26668912bd2ca91bbeb0f6373cfd957065a6b78d110443069f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_profile_stage_blocks.yaml",
+      "sha256": "4f32d54b493bec1ced7f9ec444175c8f612e1e2d2109a3ee625135534f1b97f2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_colift.yaml",
+      "sha256": "31a58f0171cc634c914e5f89af80ea3830ca3d871e7b811e10083c9faebce70c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_pdz_uax07.yaml",
+      "sha256": "c2d9be0763d217aa9b45da5b186ebbc9cf6b68904cf43f2e57dc9a3a126e6e19"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_pdz_usq06.yaml",
+      "sha256": "516a9b75b7f78f02b6d40bdb039d72dee03894d0e3f36f8453287f5408545341"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles.yaml",
+      "sha256": "e89e3099b9a64ba6607c680f72f18c140759fe769649394cd32883c8e19f5311"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_jig.yaml",
+      "sha256": "0a73299ceb51cffe0f72dd5a883bc2ed814f207d9b46e1e3b2da71cc8c353b99"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_jig2.yaml",
+      "sha256": "f9379be790f5720f71d0e06b7320732dd13600032679561d253ac902596ff0ec"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_pdz.yaml",
+      "sha256": "125ac394d8836ccc5aecea63318de821a9a0873ba7d59e815c22cea0f569c1b1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_profiles_pdz2.yaml",
+      "sha256": "db0ee9dedf3847f2c092003b522047d420502a71f2fef65334f2106d0015406e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_two_pair_u_profile.yaml",
+      "sha256": "c9ba667d17dee8674ae3e125c28651b850505748004b2cf875284652fc1cc7af"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/duo_env_v7_spec_u_colift_profile300.yaml",
+      "sha256": "2b70027df38866f8a295299f9c54e730b559f8102f7a9cb9c828ba388773419c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/object_catalog_lab.yaml",
+      "sha256": "5e12e1eeb1e188dbddab222488190254fd05d8de0ff8dddcac954e625028ab8b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/object_catalog_r34_industrial.yaml",
+      "sha256": "0f852afc7683cb3bd796f1ff60bdb1d8b953d1724a4f3dc3630d286767e084f6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/skill_success.yaml",
+      "sha256": "588bd1ced15f1734ea1d809536a63e9d14fca7d4cba929020aabd0835b89f89c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/src/safeduo/configs/skill_success_v7.yaml",
+      "sha256": "7e844cb3f0765d399ba78576d95ced09adb3a3695867034ba4db92081236b642"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/runs/a31b_refine_cross_20260912/model_last.pt",
+      "sha256": "4dc303940d9fa6de2dbdf1e38599e7219ec3e816179a0884920826be46abd0d6"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/banks/1052656817/bank.npz",
+      "sha256": "26e1c5814057e10adff19efc0d9ffd59bcaccac84eac90e96724585edcb99804"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/banks/1052656817/metadata.json",
+      "sha256": "1ce9f221f8553ed23cb6822614b094bf031d66710a15b881e8b035dac57e45d2"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/banks/514644998/bank.npz",
+      "sha256": "681f2e11f662ae7e74184682a76acf23d8fbb66ab831aa1af9ad76e4ffd185e3"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_zero_intent_20261006_2225/banks/514644998/metadata.json",
+      "sha256": "7e9c18e4981679d22cde5142d67a3782d7814f8f77f73fbb7db640b8a73a22f1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/jaka_zu7.usd",
+      "sha256": "0daec85251d60244823bbc047a173b33de2de053574499c7fb2320341f7f392f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/config.yaml",
+      "sha256": "6dacdc3f65b6b3a287e9dd906b52aa666a265b9829ac227deb18ec18ffc954f5"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/.asset_hash",
+      "sha256": "415a7cc2c92c6f3cd6e0dc896352458575008a77f7ba6bca561d87d628736b01"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/rh56f2_right_v5.usd",
+      "sha256": "4c6a24c5ccbfe4b07d81ba8e7589e7b08781ec56d1f6f92e74c081bec3c7c9d0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/rh56f2_left.usd",
+      "sha256": "bbcefa9131c7b1b012a8927fc7c24143729e20845880c906d2c9318a2f22df67"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/jaka_zu7_v5.usd",
+      "sha256": "cc328aa60bbf4ff044a078fedc1c997132115b3488b71e8c04d784c4d55790ec"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/ur5_dfx_left_v7.usd",
+      "sha256": "77cd93689f10fa34e048eda73fa3f3131908f3319ddbaeef08c1c842582cdde7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/rh56f2_right.usd",
+      "sha256": "73c4e16bab94b2579810074cfad2b4d37861482d7e477a6fca7b3fa61d1603b2"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/rh56f2_left_v5.usd",
+      "sha256": "1387f81209d25e74cd4c95ed90a006cdf1e99cc9fcea08f73a55ebe684a3d216"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/ur5_dfx_right_v7.usd",
+      "sha256": "63e063dc8db2542c01586098645bc0b792a3b6e2facd7f6fa5ed6764ee084d1f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_v5.usd",
+      "sha256": "f97e1e24d1c99cd87a0061fe42e0a675d7d675d1a65fd1f743aca88a3b2ebedb"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_right.usd.a6bak",
+      "sha256": "43be17f4e857f8280faea2feb1b50783278bff568373d3c5b690f5a40abffcb0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_display.usda",
+      "sha256": "7bf9f61a9b5346dd8e305d74a4c7d9f25c1423655fc86251e49777e402523e90"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_right_v5_display.usda",
+      "sha256": "094e8c4df1bee0047b21b156731f002bfeb2014d4b777764961dc006990fca59"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_right_v5.usd",
+      "sha256": "535998ec046f55e1bb9f769a341a4988f6bdcf88041dd4f777072640e5d54529"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right.usd",
+      "sha256": "8e52d5b1f0727242da0d1a09ef8aee7a72d6d8b1bb942a0e2312508e95e5e778"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_left_display.usda",
+      "sha256": "a2a08e863a25ebea3af9b78b00ffe7371d4bfe5bd8bdeb791d9b03e4d496f360"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_left.usd.a6bak",
+      "sha256": "2fca81ccf7731b88739412cb8cfff96244808d09c97a35109fbc18b3a271c08b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_right_display.usda",
+      "sha256": "23b7c6b930e8c57682d6b7bc8183df81309c82c55ee051396fff33b37d6c0964"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5_display.usda",
+      "sha256": "b824c2a2f1904c29ec95e51b1baf3ceec1e29c2575b8aa16cedf01dacd42df53"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_left_v5.usd",
+      "sha256": "07fc75b3da410662905adb1d02671562a971420655c8838ee46cfeba2083cfb3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_right.usd",
+      "sha256": "9f062ab5e3d364454d2725341f99a5f4ed64e6e5d7f2f793f0b562737d43562e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_left_v5_display.usda",
+      "sha256": "aed12d168b16cb5236ebbc92a9487a8d1f6ef6395f420fb9438408e3106cfb8b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left_v5_display.usda",
+      "sha256": "51e335b85784fd435dd2c2c62fdc8e974d913df2357c4f1b53ffcb8f1e0b30b9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/jaka_f2_left.usd",
+      "sha256": "fca1b2f18e2ff783fe888a2d7cb659119266af182d9d3b1d135680fa9125dbf4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5.usd",
+      "sha256": "b5c24e25f71736cd51024d3d2314ed5e8a85802aeba46354d44d66b2e389838b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_display.usda",
+      "sha256": "1ddf72864e393c24e63c2ec6038a7c9bde178ce4f5f74ea23ad6742feecda203"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_left.usd",
+      "sha256": "f2f1e83f5a2fc0628cf0f28a6ea8985d234aafa7fb23ee6fb8f01a839a606230"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/.b5bak_20260814/fr3_f2_left_display.usda",
+      "sha256": "7bf9f61a9b5346dd8e305d74a4c7d9f25c1423655fc86251e49777e402523e90"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/.b5bak_20260814/jaka_f2_left_display.usda",
+      "sha256": "a2a08e863a25ebea3af9b78b00ffe7371d4bfe5bd8bdeb791d9b03e4d496f360"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/.b5bak_20260814/md5_before.txt",
+      "sha256": "bad7f35a676e0f046d161a732872be8142d2b2f4d67965f919e5c4385799bf8b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/.b5bak_20260814/jaka_f2_right_display.usda",
+      "sha256": "23b7c6b930e8c57682d6b7bc8183df81309c82c55ee051396fff33b37d6c0964"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/combined/.b5bak_20260814/fr3_f2_right_display.usda",
+      "sha256": "1ddf72864e393c24e63c2ec6038a7c9bde178ce4f5f74ea23ad6742feecda203"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_v5_sensor.usd",
+      "sha256": "13492183047e587b4d0efd3bf7a544b085a938ac8951823444eddaea635e1af9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_base.usd",
+      "sha256": "3821cfa45c0517e24c43b195657fdc4327c639c23956efba032b17ac60722c4d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_right_v7_robot.usd",
+      "sha256": "bdd17dfe0d5e33bd6e7b0674fbc7f122778062f56e7231562cb2d25224457fcb"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_v5_base.usd",
+      "sha256": "32c07c14a6b9795c37d4fafd43012b16d50a894a7c95127dd9e97f95dc569048"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_right_v7_physics.usd",
+      "sha256": "70874c298d8b69f7f5484f721bf98bf3addf078e6eb313fed57a92840cfb101c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_physics.usd",
+      "sha256": "0c1c184217412fdb428dc0550cb8bceabb8fba7f628654092b16ff6f718f0007"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_right_v7_sensor.usd",
+      "sha256": "3beff4e9b3cdc0d6f61d23a1f7e8dd48edf75cca5416646034c2312564d16369"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_v5_base.usd",
+      "sha256": "cff7a6d166afdd077e3c9b78d20eb89d53bc608a1bceb313c76d609f519134a4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_sensor.usd",
+      "sha256": "72d258e63563bacfe22ea23c126dcbd2c3d5fdc25995c7339f0168112584bd18"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_v5_robot.usd",
+      "sha256": "59ce0b23e77678066ec798646c0ba531aaa94daed7b6326133e2c3ee34243ac8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_physics.usd",
+      "sha256": "c445a70844420d67b85dfa3013e444cb0defc4ff6988f2e14e7e1ab2234b878b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_v5_physics.usd",
+      "sha256": "99dfad35fa22f5e35f8a20de2c51a7cff5bf32278c6150ba593bab1604327792"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_sensor.usd",
+      "sha256": "5bf99fbf06dab703e1c4a27c8ef72890648e7c57fb469b6f103f760a5b61af24"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_physics.usd",
+      "sha256": "2fd57744aab999de047f4fc903f33ab44b129c4a7cfc94ab657dd16e12deee5b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_base.usd",
+      "sha256": "7e0d9ca7f0f8c6445cd13c637735e01c5ffe66c95085fec1bc4cc4a5aa10eeeb"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_robot.usd",
+      "sha256": "0cad644efc7bb663ddb3269f8d8dcac1f62bf63849fcdfc86cb3effb7dfc3081"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_left_v7_sensor.usd",
+      "sha256": "3beff4e9b3cdc0d6f61d23a1f7e8dd48edf75cca5416646034c2312564d16369"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_v5_robot.usd",
+      "sha256": "e364f747ee129b90a9db03a76d7e60998731c57c6b352d1ff4da62584d6fec84"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_sensor.usd",
+      "sha256": "13492183047e587b4d0efd3bf7a544b085a938ac8951823444eddaea635e1af9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_robot.usd",
+      "sha256": "e364f747ee129b90a9db03a76d7e60998731c57c6b352d1ff4da62584d6fec84"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_v5_physics.usd",
+      "sha256": "ebb4b2cd84e72016549349b4a49cc525be3f84dcae006bb383ec29e41cf4bbb1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_right_v5_robot.usd",
+      "sha256": "0cad644efc7bb663ddb3269f8d8dcac1f62bf63849fcdfc86cb3effb7dfc3081"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_left_v7_base.usd",
+      "sha256": "e542aa3b303f62e4458ad28fc3f2def5e20ab62ff69246db6df90b88ba6aa05b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_right_v7_base.usd",
+      "sha256": "3cd6646b2f2ca7382b296440dd9e839d84309fb3e7d13554d3fa1531bd109641"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_robot.usd",
+      "sha256": "59ce0b23e77678066ec798646c0ba531aaa94daed7b6326133e2c3ee34243ac8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_left_v7_robot.usd",
+      "sha256": "6d544d0e1894575d9e80ea3ebbf69ac6f383c0d9ed4a031033b6de9993d0a52a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/ur5_dfx_left_v7_physics.usd",
+      "sha256": "f1e775e2597d2c31bcdd0615ab65c0b1d03bd40b53a6f49442e3125f8eec6d13"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_v5_sensor.usd",
+      "sha256": "5bf99fbf06dab703e1c4a27c8ef72890648e7c57fb469b6f103f760a5b61af24"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_v5_sensor.usd",
+      "sha256": "72d258e63563bacfe22ea23c126dcbd2c3d5fdc25995c7339f0168112584bd18"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_v5_base.usd",
+      "sha256": "bcac373655d7f1217a940ba21b0a9a6d197ba701c924bc0fb4f656dff249c8f0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/jaka_zu7_base.usd",
+      "sha256": "4ceb839ab689c746b1b22d8df5965353675055327f2ae8b9c962494e34774cf3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_real/usd/configuration/rh56f2_left_v5_physics.usd",
+      "sha256": "802b1cc3dd3cc4d3d50028457e7b73bfd81a375fb748f9e2d38d959eab6cfd97"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/v5_bundle_manifest.yaml",
+      "sha256": "32abc29b59755c555d01ac47340d8bc0913623093930a405e30f1566ea43bdf8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/inspire_rh56f2_right.yaml",
+      "sha256": "cbdf1cd62f84f3946887400fcc5e4507cc1698dac39dd5865203aae18de7dd99"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/scene_layout_v3.yaml",
+      "sha256": "7872793af00897c5e511a104d23f7459bdc2ff76e7f3bfc4ef3a8b545bc40280"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/ur5_v7.yaml",
+      "sha256": "7e094dd4c1b39b97541d6375c23447a06eb256343c5f39a89fa8a14ada9defea"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/scene_layout_v8.yaml",
+      "sha256": "a36f763ac2be08b1793c7b6df7009a4e939665fc0e4c0e1fdb5ce8f09250feab"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/inspire_rh56f2_left_v7fix.yaml",
+      "sha256": "b73cac0479e217743f7555100ccbed6b337382814117743b2b9744894570330f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/jaka_zu7.yaml",
+      "sha256": "a6b4f684e7fcf6223b9df668e9f71157c32a3499c944a488e6a41fae30f9dadc"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/inspire_rh56f2_left_v5.yaml",
+      "sha256": "61226d690114c4bab2596b48742af56e4c01bf360a88755047355acd571ac308"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/inspire_rh56f2_right_v7fix.yaml",
+      "sha256": "7e3ca90f88ce543c10de8db0d92960567d1ad39bde4b070b034484411e084377"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/inspire_rh56f2_left.yaml",
+      "sha256": "de94f4c310389ba0122f2c655bb22505493751272dfcf19c6665b2cbd64bb3e8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/jaka_zu7_v5.yaml",
+      "sha256": "13f81116f56733e28884fb15366c61ad70940588d2760559266630dd840098c9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/inspire_rh56f2_right_v5.yaml",
+      "sha256": "4b7553c0199a372a51a77b11e950dac7d2346859290801c0c1e8ef65b2ebb530"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/scene_layout_v7.yaml",
+      "sha256": "283b931e05fec5890df0bbd5899dc1290e8cc7068cce3a04891bf774753e7503"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/scene_layout_v5.yaml",
+      "sha256": "936bb0eaf7d6efec4fc601802a0a99cbb995de070e5065feaac35360ddb6209a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/rh56dfx_right_v7.yaml",
+      "sha256": "1c323d0cdee8113d5530186d9777bffad9763412ee77a74a36af45a99cf45c70"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/contact_semantics_v3_patch.yaml",
+      "sha256": "3e3cdbaad2e444502982c548a1c960c25f1159f9513996c4e6621fae03fdf663"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/rh56dfx_left_v7.yaml",
+      "sha256": "181d30e527078417761990051adf2c3205efce9626e6197440161b495c6cf06b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/spheres_r16/fr3_r16.yaml",
+      "sha256": "489ed522cd0fd4df09ef48c5fda5496d576cae29fb251c63acd5e8728880ec0e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/spheres_r16/inspire_rh56f2_left_r16.yaml",
+      "sha256": "64dd056c954234d208107b0b841369a0538059624d557ea812ca03f72aa175f0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/assets_src/real/spheres_r16/inspire_rh56f2_right_r16.yaml",
+      "sha256": "a1e6d28af3a3f03cce7f1101c56c407ba1c0f23f6e1c7eb11b45a7087d9bcb7b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_full_view_runner.py",
+      "sha256": "bbd52b6e6af59530b0e4959ebcc81ed4d90b873f118b983dddb6d5fe238e1d9c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/guard_native.py",
+      "sha256": "9221dc3d15063c541000ba8b8a71bd9f4a582e8e58fef7cf8dab31e643ec79c0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/risk_source.py",
+      "sha256": "5d21fa4aae411563ad7d2bbcd4927bfa419dbbf37c7e7706c311d8b115009cf6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_state_capture.py",
+      "sha256": "eb9516ede6c0ff389ecf7a01bdb0afd6d7ea27fd33be77b15cc33ba3728ba671"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_contacts.py",
+      "sha256": "b090805278036df093cd8d431ffb96d697046fc18541daee132006da8a291248"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/hand_views.py",
+      "sha256": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/safe_hand_opening.py",
+      "sha256": "140dbb17a7313a0dc09a946cbc715c619e37cd501207f36c0362ac1539739ee6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/reference_envelope.py",
+      "sha256": "f6c2f0743b3a07ecfb431366d0c762143b8c6667656d039059196f028bbd0974"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/target_forecast.py",
+      "sha256": "e4644512a380e22d06984401d7ad5081219c3b60b4172f1ea01eb5d3902373d6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/tracking_reserve.py",
+      "sha256": "c7c0190c4c3455ce85a9429863826983c4a6acc6cf144e5bf79464f9ce191b7c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/box_support.py",
+      "sha256": "dbc8a52dbe741c6c412510704bc01d7104421333aeb9fc15be20045fd9be7247"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/adaptive_reference.py",
+      "sha256": "562da73abffb124e8e39908ec973a2de6f2712ad5ee1d1f191ccec7f4754868e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/projection_diagnostics.py",
+      "sha256": "1e2c371d7a8d4a1e7c5c943e585225141412e63b0a70ea98989534bc600a1869"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/zero_intent_native.py",
+      "sha256": "2d38405645b397de437587f2e3d128ab7f0c66b4761db18a4edc0889c4fa64bc"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/camera_event_selection.py",
+      "sha256": "6bac6c41f70552181a0fe991b913ec023c2cb079a2513d1c6c229a2652a5f8c3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/initial_qualification.py",
+      "sha256": "41965432071b4b175e5598c5878c408ba4dc99d988ff5d7569e9a3db68c6a242"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/arrival_budget.py",
+      "sha256": "6cd8cafa2b762b851df179ae98b951d58ca76a7777a028331ca766ccecb48d27"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/RANDOM_EXPERIMENT_DESIGN.json",
+      "sha256": "7b4e4c0157df441c2f959d3bfa32b25816895a00a039bb2d9791c0417d9f0ab6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/execute_bounded_plan.py",
+      "sha256": "a10317d9f7b469732c086d70b33df3893dfc8aeb8dafa7afdb3aa8a073e9f85a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_point_pilot.py",
+      "sha256": "6f4a42a286dbb98511f1672f4433249347003a43a1cf65dd22b7c04a815b2207"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_point_contacts.py",
+      "sha256": "db7b0d86c634a3f02d1a59662f860354086e308e0f8b9f13e2af35ecc3915d6e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/point_contact_data.py",
+      "sha256": "48d1f8d79378e777230edf76d4be952f90696ff1337a8aa36669487bbd79648c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/execute_point_plan.py",
+      "sha256": "35fa49d01c038b741e86641e3c84dbdf36d3cb2caeabd0316cd414e2a202840e"
+    },
+    {
+      "path": "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py",
+      "sha256": "5dd16f8a37eccc94ac82338d6c1127e785cccf761cae1f6f18ef03d55b0f325f"
+    },
+    {
+      "path": "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/exts/isaacsim.core.api/isaacsim/core/api/sensors/rigid_contact_view.py",
+      "sha256": "6b48c4c48633a742b794b391275bc8a2274004a1177c882c2b1d057a76004b1b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_velocity_arrival_20261008_1519/native_point_pilot_v2.py",
+      "sha256": "51a98de8581d081b55656303fc42b545843e95c314ec1fcae2ef6432eb0d3376"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_visible_random_v3.py",
+      "sha256": "6ae5f224cec5ebf362543eadfac54aab65bc74abfdaf62340c876a62a55c1b93"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_state_capture.py",
+      "sha256": "eb9516ede6c0ff389ecf7a01bdb0afd6d7ea27fd33be77b15cc33ba3728ba671"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/hand_views.py",
+      "sha256": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/safe_hand_opening.py",
+      "sha256": "140dbb17a7313a0dc09a946cbc715c619e37cd501207f36c0362ac1539739ee6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_all_body_contacts.py",
+      "sha256": "052e3871a172d686bb693151e726d057c9a318283a65cec16b6d489732e60bad"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_all_body_point_contacts.py",
+      "sha256": "20ce80a7608604e74741cc0902f4cf1bcbf3886bc7fa898d325976597f2b1cda"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/point_contact_data.py",
+      "sha256": "48d1f8d79378e777230edf76d4be952f90696ff1337a8aa36669487bbd79648c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/multirow_response_v3.py",
+      "sha256": "14fa383f2642c19cab2d469032d3d32478a4c0bda27b2a66d8f328b841305edc"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v3.py",
+      "sha256": "520cdf077a0609893c62893a8202f9cc44e9fc6fcdff7c25d805fd63cea7a67a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/validate_closed_native.py",
+      "sha256": "5949bfe84cf3fb8754e0221b4ff972fe499c277c75023f5ffef90bdb2f22df45"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/execute_bounded_plan_v3.py",
+      "sha256": "3c683b16f00f0f23856b6a34728d24acee481ee98c44cc4b0196a5a631fbe244"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/DYNAMIC_REGISTRATION.json",
+      "sha256": "743b7a92eece920a738993bfd20896f163e8584656d6005275c97f633484e5db"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/INPUT_MANIFEST.json",
+      "sha256": "cc53a30235d2cdffff6ee7e8abf90c366c85596cc0447ed57deb0334b79e4243"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_visible_point_random_20261009_1622/hand_root_fixture.npz",
+      "sha256": "ae4f3e898e80142051d913526c2c4c9399fd7486bfa07bd0017ca80e11cb4300"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_visible_point_random_20261009_1622/captured_inputs.npz",
+      "sha256": "78fed299caacb9cec69073eb6a8993284c68fdf535be338d862123f09f46442f"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_visible_point_random_20261009_1622/random_recipe.npz",
+      "sha256": "730276c97aecd0aac8c524decaaab5809de4dac35bc142b0619d871922f24b5b"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_visible_point_random_20261009_1622/geometry_bank/bank.npz",
+      "sha256": "4ff7fd55d54733fef7ec7af9abb822d7c5735940e960b2ff86681f16edd8840a"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/qualified_views_v4.py",
+      "sha256": "c86ce750e43d6a2f22d033a39887da6263eb0c5f9973f1b44b3989c1a7a79d25"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/ASTRA_CAMERA_V4.json",
+      "sha256": "e35a025050efe1e872d88659e4d3c6f74937d23779ff43a60c14583d0546d931"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/stream_records_v5.py",
+      "sha256": "b36a9dfbc16532169a4217a3af74a5bda104f6c938a84a1893ceedc8902e3e44"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_visible_random_v5.py",
+      "sha256": "174774c04901783056f2275ce6091b2c011ede823b9b869f8bb1cb616cbfa83d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/execute_bounded_plan_v5.py",
+      "sha256": "564b0c39de55d241d63cc2e62eb5701b0610ef165db1e9cb4f0be60ef9464bf1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/stream_records_v5_cpu_execution.json",
+      "sha256": "d401756339c93f4aa200fd25058035c8ce97ac8147b8e9d9c0e83cd6969f3db9"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/stream_records_v6.py",
+      "sha256": "102f7fbc6b00b2e82f1cb20401c5bd5e6041c6aab1e86185af1a9d362e8fbc93"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/native_visible_random_v6.py",
+      "sha256": "7adbbcd05ef34ef5c4d5d293a5c02a67c70e1d6c2f37142d2aed576ce8622e24"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/test_stream_records_v6.py",
+      "sha256": "172e3f747c1179f3257f2dba0690aca495bf70c192fede2b5ddd907b4f853ae8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/stream_records_v6_cpu_execution.json",
+      "sha256": "fab972114a65d0fe3d6505271024febd24178a722c5016fd97da79b3db9138e8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_visible_point_random_20261009_1622/NATIVE_COMPLETE_RESOURCE_FAILURE_V5.json",
+      "sha256": "c49bec17f448103fe77292b03abd18cb79de0614cc5fc971e4f9aa8892d3aa40"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/full_row_model_v1.py",
+      "sha256": "ee3d907031d231dad5730fc4df47fe1ea3e64d84573126bfcc0c2ea19b05847d"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/verified_issue_v1.py",
+      "sha256": "60486bda9fe223458e30ad6b51c9f2c37c06e4c69843a8939804ae3c65f854f3"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_state_capture.py",
+      "sha256": "eb9516ede6c0ff389ecf7a01bdb0afd6d7ea27fd33be77b15cc33ba3728ba671"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_all_body_contacts.py",
+      "sha256": "052e3871a172d686bb693151e726d057c9a318283a65cec16b6d489732e60bad"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_all_body_point_contacts.py",
+      "sha256": "20ce80a7608604e74741cc0902f4cf1bcbf3886bc7fa898d325976597f2b1cda"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/point_contact_data.py",
+      "sha256": "48d1f8d79378e777230edf76d4be952f90696ff1337a8aa36669487bbd79648c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/hand_views.py",
+      "sha256": "f80a6a8b76fa67ac8236ff4dbdcfe841edc198c26b42fc1a42ad435c77e488af"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/qualified_views_v4.py",
+      "sha256": "c86ce750e43d6a2f22d033a39887da6263eb0c5f9973f1b44b3989c1a7a79d25"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/safe_hand_opening.py",
+      "sha256": "140dbb17a7313a0dc09a946cbc715c619e37cd501207f36c0362ac1539739ee6"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/stream_records_v6.py",
+      "sha256": "102f7fbc6b00b2e82f1cb20401c5bd5e6041c6aab1e86185af1a9d362e8fbc93"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/DYNAMIC_REGISTRATION_V1.json",
+      "sha256": "3e352b84dc5d83ad5f4c5a2f27db03f6a0eab84bdb1932e1f51855300a3a7910"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/INPUT_MANIFEST_V1.json",
+      "sha256": "061f85a5234169b28852da8ab949a52af47bc64ebba25bfd317288f848d64392"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/validate_closed_native.py",
+      "sha256": "5949bfe84cf3fb8754e0221b4ff972fe499c277c75023f5ffef90bdb2f22df45"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/runtime_action_admission.py",
+      "sha256": "73fb43d9f15ec632761f50996402806812641093b39b9c9e3182e399be6f397d"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/input_batch_0/captured_inputs.npz",
+      "sha256": "fc05387aba5c942466b6666bb2023583a501240750edc9a93916d1c8f2f8a6c0"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/input_batch_0/random_recipe.npz",
+      "sha256": "45ee6eadb5c1523157c3f05d8e6876e0460deca0ee56c8f132b382b5154074da"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/input_batch_1/captured_inputs.npz",
+      "sha256": "1e8df839d6d4ec82cf6912117d5713c1bea6ec2fed34637d0de226360e90b839"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/input_batch_1/random_recipe.npz",
+      "sha256": "c7b727109b56aff889583ed4c08a03d777fc9e8ba8a2b4a1696f30c033264459"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_verified_v3.py",
+      "sha256": "048d4de8e7f8fa2eec883224f999cc47efff7aa367ffa8ace5785f36a0c81be7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_verified_v4.py",
+      "sha256": "dacac057e7a74ff38f17ce62ae4cf0371f79256250542f3bde180818d0ecb2a0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/full_row_model_v2.py",
+      "sha256": "fb8dcad47848b9a41e9d1d8442bb6d6060c6e83f613bf30e45f2de85b3aea7fc"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/verified_issue_v2.py",
+      "sha256": "8d09f3869c82b36b1a8117fe1385130c4414a490abfc688b6ad2cc69e15efac0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/DYNAMIC_REGISTRATION_V2.json",
+      "sha256": "53a55f6dd730bf26dac2988b293f5a53c89a8d5b4b490440060fabb3670b5b29"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/validate_closed_native_v2.py",
+      "sha256": "b8a8e75c59515ed777242e3410112eaad6f1caf81899a64970898b50038677ec"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/execute_bounded_plan_v6.py",
+      "sha256": "25a760212bd5667a03bde4b2a88fb4346cb4c9ca4fad0f57767dcc1161f0ef95"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/test_adaptation32_v1.py",
+      "sha256": "d656572d622fff0bb89a716d45dc35bc90ac1d67c2705e19708902798c3dafd8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/test_adaptation32_v2.py",
+      "sha256": "a4c0be4e1c1cb107c090fc034f7480cd09c25ba02bb1ea1cf5df60fb14185e37"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/register_shard_plans_v1.py",
+      "sha256": "37e361e057f8c4e44df29558faca25563060443dda07bb2365dcd12c396b3cd7"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/adaptation32_cpu_source_v3_execution.json",
+      "sha256": "7425d5ce382d8839f0b2557dbf83096610339404e52624d1822da80d92c4a39f"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/PARENT_ADAPTATION32_V1.json",
+      "sha256": "9bfacebb508d5a12e43b15d84ce66a54fc8d6feadd6d8ca6f097d37e105af650"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/RAW_RESOURCE_FAILURE_V1.json",
+      "sha256": "c708a73538c81ab9379010c53cbaa9166c4b7fe3ce097a71c7f6e7ed057884e4"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/hand_views_v2.py",
+      "sha256": "0b8d75466297fc93768dca85b6118ecc919d8c67de0e08fd442e245f9605e1f8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/qualified_views_v5.py",
+      "sha256": "93cf91c0d513b9c9d00b32c9b161059e8c240adfb8cfc8ef29af3e14c485c6ff"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/native_all_body_contacts_v2.py",
+      "sha256": "5f2328755474a83964b07c179dae33d819df67c476c0794a059fa87f4d4e80d0"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/native_all_body_point_contacts_v2.py",
+      "sha256": "86e8aaae46ee57760ed9409970f37f4fc5d43d3e5792c159f8286436c012f089"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/helper_cpu_tests_v2_20261009T203928339197Z.json",
+      "sha256": "9ddd4ed949a52ccd7f3aca52367218b1bcb3b94a3f5a87e21d8c0541740203c1"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/execute_bounded_plan_v7.py",
+      "sha256": "833b613ddea5998aa04a6e3e114dccd382755ac95a6b708fbca24dc120546238"
+    }
+  ],
+  "resource": {
+    "verdict": "PASS_RECORDED_SUBJOB_LIMITS_ONLY",
+    "violations": [],
+    "original_resource_abort": null,
+    "observed_samples": 1813,
+    "observed_metrics": {
+      "max_owned_host_RSS_MiB": 38647,
+      "min_host_available_MiB": 51153,
+      "max_owned_GPU_MiB": 8959,
+      "min_GPU_free_MiB": 5744,
+      "first_host_available_MiB": 81395,
+      "min_SSD_free_bytes": 17771302912
+    },
+    "registered_limits": {
+      "min_initial_free_MiB": 11000,
+      "max_owned_process_MiB": 12500,
+      "min_runtime_free_MiB": 2500,
+      "min_initial_host_available_MiB": 35000,
+      "min_runtime_host_available_MiB": 12000,
+      "max_owned_host_RSS_MiB": 46000,
+      "min_SSD_free_bytes": 16106127360
+    },
+    "parent_status": "PARENT_SUPERVISOR_PENDING",
+    "scope": "Recorded selected-job GPU/host/runtime-SSD thresholds only; parent actual wait remains a separate requirement.",
+    "limitations": [
+      "Runtime SSD numeric samples replayed under original15GiB floor. Prelaunch SSD numeric measurement is not persisted; no numeric initial-SSD reconstruction claim."
+    ]
+  },
+  "parent_supervisor": {
+    "status": "PARENT_SUPERVISOR_PENDING",
+    "original_execution_status": "running",
+    "original_execution_closed_utc": null,
+    "supervisor_path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/shard_full_verified_retry_supervisor_v1_execution.json",
+    "supervisor_actual_exit": null,
+    "supervisor_receipt": null,
+    "supervisor_receipt_sha256": null,
+    "parent_actual_wait_verified": false
+  },
+  "supervisor_actual_exit": null,
+  "supervisor_receipt_sha256": null,
+  "status": "PASS_SUBJOB_STATE_INPUT_RECORDED_RESOURCE_ONLY",
+  "limitations": [
+    "Raw/verified paired byte comparison is a separate API. This single-job result leaves parent supervisor closure pending when not actually reaped.",
+    "Executor v7 raw runtime SSD numeric samples replayed; initial SSD numeric measurement remains unavailable.",
+    "Initial hand targets are fixed inputs, not proof of effective movement or task completion."
+  ]
+}
