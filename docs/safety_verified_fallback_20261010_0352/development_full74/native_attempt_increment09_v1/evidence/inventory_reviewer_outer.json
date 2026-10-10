@@ -1,0 +1,87 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "PARTIAL32_DISTINCT_INVENTORY_DATA_CPU_OUTER",
+  "child_pid": 1698346,
+  "waited_pid": 1698346,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T22:57:08.999602+00:00",
+  "closed_utc": "2026-10-10T22:58:16.710593+00:00",
+  "elapsed_seconds": 67.71100756293163,
+  "max_wall_seconds": 1200,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 1698346,
+      "ppid": 1698345,
+      "pgid": 1698346,
+      "sid": 1698346,
+      "startticks": 179591543,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 1698345
+      },
+      "live": false
+    },
+    {
+      "pid": 1698348,
+      "ppid": 1698346,
+      "pgid": 1698348,
+      "sid": 1698348,
+      "startticks": 179591550,
+      "state": "D",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 1698346,
+          "ppid": 1698345,
+          "pgid": 1698346,
+          "sid": 1698346,
+          "startticks": 179591543,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 1698348,
+          "ppid": 1698346,
+          "pgid": 1698348,
+          "sid": 1698348,
+          "startticks": 179591550,
+          "state": "D"
+        },
+        "candidate_final": {
+          "pid": 1698348,
+          "ppid": 1698346,
+          "pgid": 1698348,
+          "sid": 1698348,
+          "startticks": 179591550,
+          "state": "D"
+        },
+        "observed_utc": "2026-10-10T22:57:09.268639+00:00",
+        "task_children_path": "/proc/1698346/task/1698346/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 53956,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_partial_supplement32_actual_inventory_data_peer_v1/actual01/external/child.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_partial_supplement32_actual_inventory_data_peer_v1/actual01/external/resources.jsonl",
+  "outer_monitor_sha256": "11ac5df447dafbbe9cc853e1d42372338e258b2366e698ddc4863f4763bc1347",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/partial_supplement32_actual_inventory_data_peer_v1/review_v1.py",
+    "--run-worker"
+  ]
+}

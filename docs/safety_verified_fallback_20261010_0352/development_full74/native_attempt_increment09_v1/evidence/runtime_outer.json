@@ -1,0 +1,86 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "CPU_ONLY_ASTRA_XHIGH_NVIDIA570_REVIEW_DRIVER",
+  "child_pid": 1724851,
+  "waited_pid": 1724851,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T23:02:42.984866+00:00",
+  "closed_utc": "2026-10-10T23:02:43.661932+00:00",
+  "elapsed_seconds": 0.6770843730773777,
+  "max_wall_seconds": 120,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 1724851,
+      "ppid": 1724768,
+      "pgid": 1724851,
+      "sid": 1724851,
+      "startticks": 179624941,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 1724768
+      },
+      "live": false
+    },
+    {
+      "pid": 1724858,
+      "ppid": 1724851,
+      "pgid": 1724858,
+      "sid": 1724858,
+      "startticks": 179624949,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 1724851,
+          "ppid": 1724768,
+          "pgid": 1724851,
+          "sid": 1724851,
+          "startticks": 179624941,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 1724858,
+          "ppid": 1724851,
+          "pgid": 1724858,
+          "sid": 1724858,
+          "startticks": 179624949,
+          "state": "R"
+        },
+        "candidate_final": {
+          "pid": 1724858,
+          "ppid": 1724851,
+          "pgid": 1724858,
+          "sid": 1724858,
+          "startticks": 179624949,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-10T23:02:43.260653+00:00",
+        "task_children_path": "/proc/1724851/task/1724851/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 79512,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_runtime_nvidia570_binding_review_v1/external01/child.log",
+  "log_sha256": "0cbe41595669628a3d0661f7d7d9bf99d5b1370293f8ab94e0998b73be5daca4",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_runtime_nvidia570_binding_review_v1/external01/resources.jsonl",
+  "outer_monitor_sha256": "1546c313fd30f310fd8cf5c89d7a4d097a9c645d2d6973249d2a30fd20781e87",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/runtime_nvidia570_binding_review_v1/run_v1.py"
+  ]
+}
