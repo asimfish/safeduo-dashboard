@@ -1,0 +1,45 @@
+{
+  "status": "REGISTERED_RESOURCE_ONLY_POLICY_AFTER_OWNED_REAP",
+  "utc": "2026-10-10T19:25:17.386768+00:00",
+  "observations": [
+    {
+      "version": 16,
+      "actual_native_exit": 0,
+      "peak_owned_GPU_MiB": 7324,
+      "minimum_free_GPU_MiB": 9690
+    },
+    {
+      "version": 21,
+      "actual_native_exit": 0,
+      "peak_owned_GPU_MiB": 7196,
+      "minimum_free_GPU_MiB": 10089
+    },
+    {
+      "version": 22,
+      "actual_native_exit": 0,
+      "peak_owned_GPU_MiB": 7228,
+      "minimum_free_GPU_MiB": 9542
+    },
+    {
+      "version": 23,
+      "actual_native_exit": 0,
+      "peak_owned_GPU_MiB": 7196,
+      "minimum_free_GPU_MiB": 9102
+    }
+  ],
+  "old_initial_free_MiB": 14080,
+  "old_runtime_free_floor_MiB": 6144,
+  "new_initial_free_MiB": 12288,
+  "new_runtime_free_floor_MiB": 4096,
+  "max_owned_GPU_MiB": 7680,
+  "initial_budget_margin_MiB": 512,
+  "rationale": "Four completed captures peak <=7324MiB. Retain7680MiB owned cap; 12288MiB initial free leaves>=4608MiB at cap, >=4096MiB floor plus512MiB margin. Monitor eachsecond and reap only exact owned PID on breach. This calibrates execution scheduling, not any physical/model/task gate; external growth may still abort and is retained.",
+  "physical_model_task_threshold_changes": false,
+  "hardware_safety_acceptance": false,
+  "source_SHA256": {
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v16_execution.json": "32ccb93dc63c586f08bb79ff1b8cda7f5aca20d2a52a67e8af084467f1c55cad",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v21_execution.json": "b334e5c92829315d5072c8895b2dc57ff445d5e19f6286762920f749cf0bbb97",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v22_execution.json": "f6b124d6005a51451d79dfdb0068291a1bfd53d9f54fed335f21c3d04f2e3671",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v23_execution.json": "9deabd884d545ec2fbbe4924c269eb155b8e51e2d7a2098cf4effa4d2bee376b"
+  }
+}
