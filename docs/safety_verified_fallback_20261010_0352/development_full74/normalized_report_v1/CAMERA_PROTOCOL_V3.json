@@ -1,0 +1,38 @@
+{
+  "schema": "safeduo.prospective_camera_sufficiency_supplement.v1",
+  "status": "FROZEN_BEFORE_NEW_FULL_NATIVE_FOR_INDEPENDENT_ACCEPTANCE",
+  "created_utc": "2026-10-10T01:17:23.777751+00:00",
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/QUEUE74_FULL_PLAN_V4.json": "af740f9cf224720627af22c1f18367e344f05f6a155d3d7d3520d88f2ceadcfc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/TASK_ACCEPTANCE_PROTOCOL_V4.json": "399fa6795d1f28d588b406aea97c38340ef8c0181aa4ecf101857d03eb94fd03",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/qualified_views_v7.py": "598f7bf5332dc56452f0cf2a4c40becdf1015bc0189cbc95fc09bbdc8b898dd9"
+  },
+  "full_launch_state_at_freeze": "V3 failed and full0; V4 not launched",
+  "new_full_native_at_freeze": 0,
+  "user_requirement": "相机视角足够且充分，state和图像都充分",
+  "criteria": {
+    "all_registered_lanes_initial_and_final_required": true,
+    "all_alarm_groups_required": true,
+    "four_hands_three_pairwise_30deg_views_each": true,
+    "explicit_palm_peak_pixels_min": 2048,
+    "each_of_five_finger_families_peak_pixels_min": 512,
+    "each_native_hand_body_peak_pixels_min": 64,
+    "all_native_hand_body_visibility_gaps_required_zero": true,
+    "three_wide_views_required": true,
+    "each_of_four_arms_peak_pixels_min": 1024,
+    "each_of_two_tables_peak_pixels_min": 1024,
+    "critical_native_forearm_and_wrist2_peak_pixels_min": 128,
+    "critical_body_visibility_gaps_required_zero": true,
+    "native27_all_registered_before_after_bitwise_equal": true,
+    "simulation_time_unchanged": true,
+    "original_rgb_and_raw_masks_sha_and_native_path_inventory_required": true,
+    "independent_raw_mask_pixel_reconstruction_required": true
+  },
+  "scope": "Strengthens documented V7 body-gap reporting to required observed coverage for future full acceptance. Original V7 producer,500 sources and preflight data unchanged. Every failure retained. Group per-view maxima do not certify full surface, absence of occlusion, visibility of contact patches or physical safety.",
+  "full_mesh_coverage_certified": false,
+  "contact_patch_visibility_certified": false,
+  "physical_safety_certified": false,
+  "all_requirements_completed": false,
+  "supersedes_supplement_sha256": "46cc1f9ff330f5533783075222077020c4bc6875cc3cbb07bdbb26c0840acce8",
+  "criteria_unchanged": true
+}

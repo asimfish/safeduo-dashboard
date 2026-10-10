@@ -1,8 +1,9 @@
 {
-  "schema": "safeduo.normalized_report_summary.v1",
-  "asof_utc": "2026-10-10T13:01:53.962533+00:00",
-  "asof_AsiaShanghai": "2026-10-10 21:01:53 Asia/Shanghai / 2026-10-10 13:01:53 UTC",
-  "historical_restricted128": {
+  "schema": "safeduo.report.normalized_facts.v1",
+  "utc": "2026-10-10T13:01:53.962533+00:00",
+  "status": "DESCRIPTIVE_CLOSED_EVIDENCE_COMPLETE_ACCEPTANCE_NOT_ACHIEVED",
+  "anchor": "完整安全验收尚未通过",
+  "historical": {
     "cases": 128,
     "method_windows": 256,
     "controls_per_window": 480,
@@ -381,7 +382,7 @@
     "critical_population_note": "70为共同primary前缀合格案例；54为共同all-observed前缀合格案例。它们不是raw和candidate违规数。",
     "inference": "固定开发案例与相关臂窗口的描述统计；失败前缀全部保留；不构成无偏独立留出或任务/物理安全验收。"
   },
-  "frozen_full74_A128": {
+  "current": {
     "cases": 128,
     "seeds": 4,
     "families": 4,
@@ -672,7 +673,7 @@
     ],
     "causal_attribution": "UNKNOWN"
   },
-  "coverage_reference_derived": {
+  "coverage": {
     "generated": 8192,
     "unique_native_initials": 160,
     "complete_fixed_A128": 128,
@@ -753,9 +754,66 @@
     "safety": false,
     "all_requirements": false
   },
-  "source_fact_sheet_sha256": "3560722ab21db5cf3b9bd46f945da1be24c131c3eb56c70b98f7887bff4aefc2",
-  "prior_summary_sha256": "212f1a110854c2e95407d1fdacd0f9c545fc53f5dea4a4b70b8dcb3ba79667eb",
-  "independent_task_trials": false,
-  "temporal_rows_correlated": true,
-  "historical_images_INITIAL_ONLY": true
+  "sources": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/FULL128_PAIRED_DEVELOPMENT_AGGREGATE_V1.json": "29e01d1baadc4806aefdddd78ca8058f3910c0b100631725d7fcfe77ee5c2088",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/four_seed_report_diagnostics_v1/cpu_attempt1/MECHANISM_DIAGNOSTIC_V1.json": "429abd99242f98218555a6f247795d9397ef0973bee45e4d7f54398fc34a1be6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/production_lane28_late_contact_v1/cpu_attempt1/REPORT.json": "0706a6ea89df2b64ef7f2ed55180bc3fd972c375cbc5a79fad120adde096dffe",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_current_initial_coverage_v1/products01/CURRENT_INITIAL_COVERAGE_V1.json": "dd5107950608d17bd26679cb66827ae9f8c24b6439b359436eb6dde07531bf70",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full74_compound_reader_serial_v3/actual_a128_audit01/AUTHENTICATED_QUOTA_CANDIDATE_V1.json": "5b3c8e03957667525a2474716e355065a6fbe2a9d1d2eb36e00f26c42d411d11",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v2/PARENT_FAILED_PRELAUNCH_CLOSED_V1.json": "ef3006cfb4560c10877ddf62111444f8850ec5e89aa827bf10a1f2daf83de375"
+  },
+  "figures": [
+    {
+      "stem": "historical_paired_counts",
+      "caption": "历史开发配对实验：每种方法均为128个案例、每窗480控制步/960微步。违规类别重叠，不可相加；最后一行是通过数，其余是违规数。开发描述统计，不是独立留出任务成功率。",
+      "source_keys": [
+        "historical.methods"
+      ],
+      "files": [
+        {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_report_facts_figures_v1/products01/historical_paired_counts.svg",
+          "sha256": "f2f88b67a910203873a6106ac29d6d8737665dd0f23f0d4247799e324eb0df4e"
+        },
+        {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_report_facts_figures_v1/products01/historical_paired_counts.png",
+          "sha256": "b73e83c200208222b5cf596eff8cf1f93b85f3989a8aa97e03ad524513313cbe"
+        }
+      ]
+    },
+    {
+      "stem": "rescued_tracking_rawpoints",
+      "caption": "13个primary救回案例的4臂原始跟踪误差比，共52个相关窗口。每个点都保留；所有点均大于1，表示误差变大。52个窗口不是52次独立试验；没有独立留出推断或显著性检验。",
+      "source_keys": [
+        "historical.lanes.primary_rescue"
+      ],
+      "files": [
+        {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_report_facts_figures_v1/products01/rescued_tracking_rawpoints.svg",
+          "sha256": "c403ad9d96216ef17e704f2667b7921521c2a2555ee51a7a3e8a1490747dfdff"
+        },
+        {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_report_facts_figures_v1/products01/rescued_tracking_rawpoints.png",
+          "sha256": "857632686290fc99cd12e982c447bd2767dd0efc3dd9804b5830301df6fb19e4"
+        }
+      ]
+    },
+    {
+      "stem": "fixed_a128_numeric_trajectory",
+      "caption": "最新全范围固定A128：128个不同状态、每状态13行（初始+12实际微步），共1664个相关state-time行。曲线是每步触发数，类别重叠；不是1664次独立试验。micro0接触值不用于新鲜动力学接触结论；micro1–12接触判据为新鲜标量>0.1 N。",
+      "source_keys": [
+        "current.totals_by_micro"
+      ],
+      "files": [
+        {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_report_facts_figures_v1/products01/fixed_a128_numeric_trajectory.svg",
+          "sha256": "b0a5683d863af15632c91e1e6ad84aadb5baeedde74df8c66720049545809d73"
+        },
+        {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_report_facts_figures_v1/products01/fixed_a128_numeric_trajectory.png",
+          "sha256": "d4fa3bed12c3b9e1c526653550595aba38f03542c1c7b15e2c1aad8a44a72b47"
+        }
+      ]
+    }
+  ],
+  "source_figure_policy": "Original native RGB/masks are not read or edited; exports derive solely from closed summary JSON."
 }

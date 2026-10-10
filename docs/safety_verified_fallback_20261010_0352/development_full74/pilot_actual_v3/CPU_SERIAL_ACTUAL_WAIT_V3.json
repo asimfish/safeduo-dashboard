@@ -1,0 +1,171 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "CPU_ONLY_COMPOUND_SERIAL_WRAPPER_V3",
+  "child_pid": 2682201,
+  "waited_pid": 2682201,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T11:51:18.828522+00:00",
+  "closed_utc": "2026-10-10T11:56:26.178166+00:00",
+  "elapsed_seconds": 307.3496648510918,
+  "max_wall_seconds": 3600,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 2682201,
+      "ppid": 2681884,
+      "pgid": 2682201,
+      "sid": 2682201,
+      "startticks": 175596596,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 2681884
+      },
+      "live": false
+    },
+    {
+      "pid": 2684114,
+      "ppid": 2682201,
+      "pgid": 2684114,
+      "sid": 2684114,
+      "startticks": 175599082,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 2682201,
+          "ppid": 2681884,
+          "pgid": 2682201,
+          "sid": 2682201,
+          "startticks": 175596596,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 2684114,
+          "ppid": 2682201,
+          "pgid": 2684114,
+          "sid": 2684114,
+          "startticks": 175599082,
+          "state": "R"
+        },
+        "candidate_final": {
+          "pid": 2684114,
+          "ppid": 2682201,
+          "pgid": 2684114,
+          "sid": 2684114,
+          "startticks": 175599082,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-10T11:51:44.562792+00:00",
+        "task_children_path": "/proc/2682201/task/2682201/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 2704517,
+      "ppid": 2682201,
+      "pgid": 2704517,
+      "sid": 2704517,
+      "startticks": 175622112,
+      "state": "D",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 2682201,
+          "ppid": 2681884,
+          "pgid": 2682201,
+          "sid": 2682201,
+          "startticks": 175596596,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 2704517,
+          "ppid": 2682201,
+          "pgid": 2704517,
+          "sid": 2704517,
+          "startticks": 175622112,
+          "state": "D"
+        },
+        "candidate_final": {
+          "pid": 2704517,
+          "ppid": 2682201,
+          "pgid": 2704517,
+          "sid": 2704517,
+          "startticks": 175622112,
+          "state": "D"
+        },
+        "observed_utc": "2026-10-10T11:55:34.746478+00:00",
+        "task_children_path": "/proc/2682201/task/2682201/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 2710206,
+      "ppid": 2682201,
+      "pgid": 2710206,
+      "sid": 2710206,
+      "startticks": 175624947,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 2682201,
+          "ppid": 2681884,
+          "pgid": 2682201,
+          "sid": 2682201,
+          "startticks": 175596596,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 2710206,
+          "ppid": 2682201,
+          "pgid": 2710206,
+          "sid": 2710206,
+          "startticks": 175624947,
+          "state": "R"
+        },
+        "candidate_final": {
+          "pid": 2710206,
+          "ppid": 2682201,
+          "pgid": 2710206,
+          "sid": 2710206,
+          "startticks": 175624947,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-10T11:56:03.060705+00:00",
+        "task_children_path": "/proc/2682201/task/2682201/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 135992,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full74_compound_reader_serial_v3/external/actual_raw01/child.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full74_compound_reader_serial_v3/external/actual_raw01/resources.jsonl",
+  "outer_monitor_sha256": "a0afd10ba400660c573e21507edf6a728c50b48cdd25845932aab5648bb64066",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_compound_reader_operations_v3/operations.py",
+    "--run-parent-reviewed",
+    "--plan",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full74_compound_reader_serial_v3/actual_a128_audit01/PLAN_V1.json",
+    "--plan-sha256",
+    "4de36082d5191ae75af8f256c10247f6148f591557ae483a4cd6d3a1fc1c0873",
+    "--review",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full74_compound_reader_serial_v3/actual_a128_audit01/PARENT_ACTUAL_REVIEW_V3.json",
+    "--review-sha256",
+    "f6e21387ba5fa339fd157fcfac37c386c490df826d06d386db362336c815a268"
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "schema": "safeduo.report.method_definitions.v1",
+  "source_report_plan": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_benchmark_report_restructure_v1/candidate01/products/REPORT_OVERLAY_PLAN_V1.json",
+    "sha256": "91b98247ab395d8450a6970b2901ab9e5d407e77cb8d2a18e87c668be5d9d864"
+  },
+  "primary": "Any registered raw9021 gap<0 OR own-partner point-sum scalar>0.1N OR nonfinite observation",
+  "all_observed": "primary plus native74 hard/velocity and controlled26 soft-limit observations",
+  "prefix": "First6 applied controls/12 micros; historical paired suffix comparison only among jointly qualified prefixes, all128 retained",
+  "physical_thresholds": {
+    "original9021_raw_gap_min_m": 0.0,
+    "all82_ownpartner_scalar_max_N": 0.1,
+    "native74_hard_and_controlled26_soft_tolerance_rad": 1e-05,
+    "native74_velocity_ratio_max": 1.0001,
+    "nonfinite_observation_allowed": false,
+    "actual_drive_effort": "UNKNOWN_UNMEASURED: no complete physical acceptance until independently resolved"
+  },
+  "task_thresholds": {
+    "active_RMSE_vs_static_initial_max": 0.95,
+    "active_RMSE_vs_paired_raw_max": 1.1,
+    "resume_RMSE_vs_frozen_pause_max": 0.95,
+    "pause_final12_velocity_ratio_max": 0.1,
+    "pause_velocity_absolute_floor_rad_s": 1e-05
+  },
+  "issued_pause": [
+    240,
+    272
+  ],
+  "applied_pause": [
+    246,
+    278
+  ],
+  "short": {
+    "method_windows": 64,
+    "controls_per_window": 8,
+    "microsteps_per_window": 16,
+    "cases": 32,
+    "source_sha256": "2542ebce705ba12fcc8092eca3bd095a5356be490d78b11b31b1288199b3f868"
+  },
+  "long": {
+    "method_windows": 128,
+    "controls_per_window": 480,
+    "microsteps_per_window": 960,
+    "cases": 32,
+    "source_sha256": "af740f9cf224720627af22c1f18367e344f05f6a155d3d7d3520d88f2ceadcfc"
+  },
+  "complete_user_acceptance": "All original campaign retry/native/resource closures, independent all-input/nativeJ/36model/allpoints74state/cameras and task audits, fullhand range screening, final strategy freeze then independent256states+64 pause/resume, allrequired physical measurements and reproducible panel/public/NAS evidence. No checklist/model-only PASS substitutes for outcomes.",
+  "formal_actual": 0,
+  "all_requirements": false,
+  "caveat": "Criteria and planned windows do not imply native execution or safety certification. Historical and current populations remain separate.",
+  "historical_control_methods": {
+    "schema": "safeduo.report.historical_control_methods.v1",
+    "status": "PARENT_SOURCE_READ_AND_SHA_BOUND",
+    "methods": {
+      "raw": "26 controlled absolute targets, initial q + registered command amplitude times shared command_unit, clipped to native controlled soft limits; inserted unchanged into FIFO6; hand48 initial-position target hold",
+      "fallback": "newly enqueued target only, queue-tail centre and controlled soft limits intersect per-coordinate +/-0.02 rad; iterative projection then L1 LP if projection not admitted; float32 all-row nominal admission ordered projected/LP/queue-tail hold; no feasible result repeats tail while recording UNQUALIFIED; existing FIFO untouched",
+      "shared": "same original request tape/initial native state, FIFO six-control delay, first six full74 applied targets and prefix q/qd; same configuration/gains/physics parameter settings; tracking against original six-control delayed request",
+      "unknown": [
+        "hidden PhysX solver state not restored or proven equal",
+        "actual production drive effort UNKNOWN_UNMEASURED",
+        "nominal one-microstep model and passive delayed extrapolation not full FIFO physical certification",
+        "queue-tail hold is not a verified safe hold"
+      ],
+      "scope": "Historical restricted128 only; not current A128 or future policy execution"
+    },
+    "source_evidence": [
+      {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_verified_v4.py",
+        "sha256": "dacac057e7a74ff38f17ce62ae4cf0371f79256250542f3bde180818d0ecb2a0",
+        "excerpts": [
+          {
+            "first_line": 137,
+            "last_line": 141,
+            "text": "            current = q[:, idx].clone()\n            issued = current.clone()\n            noise = torch.as_tensor(recipe['command_unit'][:, :, controlled_offset:controlled_offset+width], device=env.device)\n            amp = torch.as_tensor(recipe['strata'][:, 2], device=env.device)[None, :, None]\n            sampled_tape[arm] = (current[None] + amp * noise).clamp(limits[None, ..., 0], limits[None, ..., 1])"
+          },
+          {
+            "first_line": 281,
+            "last_line": 308,
+            "text": "            reference = {a: sampled_tape[a][step] for a in ARMS}\n            if args.method == 'verified':\n                multi, multi_info, constraint_record = make_issue(env, full_provider, pre, queue, reference, reg['multirow_settings'], step)\n                constraints.append(constraint_record)\n                target = multi\n                record.update({'multi_' + k: array(v) for k, v in multi_info.items()})\n            else:\n                target = reference\n            guard_info = dict(triggered=torch.full((n,), args.method == 'verified', device=env.device),\n                current_gap=pre.dists[lanes, critical], current_full_rate=full_rate)\n            record.update({'guard_' + k: array(v) for k, v in guard_info.items()})\n            record['unmodified_pre_pending'] = record['pre_pending'].copy()\n            oracle_mask = torch.zeros_like(profile_tensor, dtype=torch.bool)\n            for slot in queue.pending:\n                for a in ARMS: slot[a][oracle_mask] = target[a][oracle_mask]\n            record['pre_pending'] = np.stack([np.concatenate([array(v[a]) for a in ARMS], -1) for v in queue.pending])\n            applied = queue.push(target)\n            record['applied_target'] = np.concatenate([array(applied[a]) for a in ARMS], -1)\n            record['issued_target'] = np.concatenate([array(target[a]) for a in ARMS], -1)\n            for arm in ARMS:\n                env._arms[arm].set_joint_position_target(applied[arm], joint_ids=env._joint_idx[arm])\n            scalar, vector = np.zeros(n), np.zeros(n)\n            for sub in range(cfg.decimation):\n                env.scene.write_data_to_sim()\n                for arm in ARMS:\n                    model[arm + '_actual_position_target'] = array(env._arms[arm].root_physx_view.get_dof_position_targets())\n                env.sim.step(render=False)\n                env.scene.update(cfg.sim.dt)"
+          }
+        ]
+      },
+      {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/verified_issue_v2.py",
+        "sha256": "8d09f3869c82b36b1a8117fe1385130c4414a490abfc688b6ad2cc69e15efac0",
+        "excerpts": [
+          {
+            "first_line": 20,
+            "last_line": 40,
+            "text": "def project_goal(A,b,lower,upper,goal,iterations):\n    norm=A.square().sum(-1).sqrt();unit=A/norm.clamp_min(1e-12)[...,None];rhs=b/norm.clamp_min(1e-12)\n    delta=goal.clamp(lower,upper);lanes=torch.arange(len(A),device=A.device)\n    for _ in range(iterations):\n        violation=rhs-torch.einsum('nmd,nd->nm',unit,delta)\n        worst=violation.argmax(-1);amount=violation[lanes,worst].clamp_min(0)\n        delta=(delta+unit[lanes,worst]*amount[:,None]).clamp(lower,upper)\n    return delta\ndef lp_l1(A,b,lower,upper,goal,tol):\n    if not all(np.isfinite(v).all() for v in [A,b,lower,upper,goal,tol]) or (lower>upper).any():return None\n    # Rows omitted from search are algebraically satisfied throughout the box.\n    # ALL original rows still reach the independent admission gate afterward.\n    minimum=np.sum(A*np.where(A>=0,lower,upper),-1)\n    keep=b-minimum>tol*.5\n    margin=np.minimum(1e-6,(upper-lower)/4);lo=lower+margin;hi=upper-margin\n    G=A[keep];rhs=b[keep]-tol[keep]*.5\n    if len(G) and (rhs-np.sum(G*np.where(G>=0,hi,lo),-1)>0).any():return None\n    I=np.eye(26);constraint=np.r_[np.c_[-G,np.zeros((len(G),26))],np.c_[I,-I],np.c_[-I,-I]]\n    bounds=np.r_[-rhs,goal,-goal]\n    result=linprog(np.r_[np.zeros(26),np.ones(26)],A_ub=constraint,b_ub=bounds,bounds=list(zip(lo,hi))+[(0,None)]*26,method='highs')\n    return result.x[:26] if result.success else None"
+          },
+          {
+            "first_line": 41,
+            "last_line": 78,
+            "text": "def make_issue(env,provider,data,queue,requested,settings,step):\n    centre={a:queue.pending[-1][a].clone() for a in ARMS}\n    m=construct(env,provider,data,centre,settings)\n    goal=torch.cat([requested[a]-centre[a] for a in ARMS],-1)\n    delta=project_goal(m['A'],m['b'],m['lower'],m['upper'],goal,settings['projection_passes'])\n    cpu={k:m[k].detach().cpu().numpy() for k in ['A','b','lower','upper','tol','reference']}\n    proposed=quantize_inside(cpu['reference'],delta.cpu().numpy(),cpu['lower'],cpu['upper'])\n    hold=cpu['reference'].astype(np.float32)\n    fifo=np.stack([np.concatenate([v[a].cpu().numpy() for a in ARMS],-1) for v in queue.pending])\n    n=len(cpu['A']);assert fifo.shape==(6,n,26) and data.dists.shape==(n,9021)\n    raw=data.dists.cpu().numpy();chosen=hold.copy();code=np.zeros(n,np.int8);model_pass=np.zeros(n,bool);lp_attempted=np.zeros(n,bool);no_action=np.zeros(n,bool)\n    residual=np.zeros((n,3),np.float64);candidate_pass=np.zeros((n,3),bool)\n    for lane in range(n):\n        ctxhash=hashlib.sha256((settings['context_id']+':'+str(step)+':'+str(lane)+':'+fifo_digest(fifo[:,lane])).encode())\n        for key in ['A','b','reference','lower','upper']:ctxhash.update(cpu[key][lane].tobytes(order='C'))\n        ctx=ctxhash.hexdigest()\n        model=ModelConstraints(ctx,fifo_digest(fifo[:,lane]),cpu['reference'][lane],cpu['lower'][lane],cpu['upper'][lane],\n            LinearRows(cpu['A'][lane,:9021],cpu['b'][lane,:9021],tuple(range(9021))),\n            LinearRows(cpu['A'][lane,9021:9169],cpu['b'][lane,9021:9169],m['velocity_ids']),\n            LinearRows(cpu['A'][lane,9169:],cpu['b'][lane,9169:],m['effort_ids']),m['controlled_ids'],m['native_ids'])\n        candidates=[Candidate('projected_goal',proposed[lane],ctx),Candidate('queue_tail_hold',hold[lane],ctx)]\n        result=admit_action(model,candidates,context_id=ctx,fifo6=fifo[:,lane],raw_geometry_gaps=raw[lane],measurements={})\n        if not result['evaluations'][0]['full_model_constraints_satisfied']:\n            lp_attempted[lane]=True\n            answer=lp_l1(cpu['A'][lane].astype(float),cpu['b'][lane].astype(float),cpu['lower'][lane].astype(float),cpu['upper'][lane].astype(float),goal[lane].cpu().numpy().astype(float),cpu['tol'].astype(float))\n            if answer is not None:\n                target=quantize_inside(cpu['reference'][lane],answer,cpu['lower'][lane],cpu['upper'][lane])\n                candidates=[candidates[0],Candidate('lp_goal',target,ctx),candidates[1]]\n                result=admit_action(model,candidates,context_id=ctx,fifo6=fifo[:,lane],raw_geometry_gaps=raw[lane],measurements={})\n        if result['status']=='MODEL_FULL_ROW_FEASIBLE' and result['full_model_constraints_satisfied']:\n            chosen[lane]=result['selected_target'];model_pass[lane]=True;code[lane]={'projected_goal':1,'lp_goal':2,'queue_tail_hold':3}[result['selected_name']]\n        else:no_action[lane]=True\n        for ev in result['evaluations']:\n            slot={'projected_goal':0,'lp_goal':1,'queue_tail_hold':2}[ev['name']];candidate_pass[lane,slot]=ev['full_model_constraints_satisfied']\n        actual_delta=chosen[lane].astype(float)-cpu['reference'][lane].astype(float)\n        rr=cpu['b'][lane].astype(float)-cpu['A'][lane].astype(float)@actual_delta\n        residual[lane]=[max(0,float(rr[:9021].max())),max(0,float(rr[9021:9169].max())),max(0,float(rr[9169:].max()))]\n    assert np.array_equal(fifo,np.stack([np.concatenate([v[a].cpu().numpy() for a in ARMS],-1) for v in queue.pending]))"
+          }
+        ]
+      },
+      {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/full_row_model_v2.py",
+        "sha256": "fb8dcad47848b9a41e9d1d8442bb6d6060c6e83f613bf30e45f2de85b3aea7fc",
+        "excerpts": [
+          {
+            "first_line": 18,
+            "last_line": 54,
+            "text": "        dt=float(env.cfg.sim.dt);C=mass.clone();C[:,di,di]+=dt*kd+dt*dt*kp\n        rhs=torch.einsum('nij,nj->ni',mass,v)+dt*kp*(target-q)-dt*bias\n        vn=torch.linalg.solve(C,rhs[...,None])[...,0]\n        basis=torch.eye(dof,device=device)[:,idx][None].expand(n,-1,-1)\n        S=torch.linalg.solve(C,dt*kp[...,None]*basis)\n        V=torch.zeros(n,dof,D,device=device);V[:,:,offset:offset+width]=S\n        vmax=get('get_dof_max_velocities');va.extend([V,-V]);vb.extend([-vmax-vn,vn-vmax])\n        tau=kp*(target-q)-(dt*kp+kd)*vn\n        T=torch.zeros_like(V);T[:,:,offset:offset+width]=kp[...,None]*basis-(dt*kp+kd)[...,None]*S\n        effort=get('get_dof_max_forces');ta.extend([T,-T]);tb.extend([-effort-tau,tau-effort])\n        limits=art.data.soft_joint_pos_limits[:,idx];cap=settings['queued_target_step_cap_rad']\n        lower.append(torch.maximum(limits[...,0]-centre[a],torch.full_like(centre[a],-cap)))\n        upper.append(torch.minimum(limits[...,1]-centre[a],torch.full_like(centre[a],cap)))\n        velocities[a]=(v,vn);sensitivities[a]=S;offsets[a]=(offset,width);offset+=width\n    assert offset==26 and data.dists.shape==(n,9021)\n    geometry_A=[];geometry_b=[];measured=[];predicted=[];arrivals=[]\n    # Same complete scoring rows. Chunking only bounds temporary GPU storage.\n    for start in range(0,9021,settings['geometry_chunk_rows']):\n        end=min(9021,start+settings['geometry_chunk_rows'])\n        selected=torch.arange(start,end,device=device)[None].expand(n,-1)\n        one=replace(data,active_idx=selected,active_mask=torch.ones_like(selected,dtype=torch.bool),\n            active_pairs=torch.stack([data.dists.gather(1,selected),data.closing.gather(1,selected),env._sph.class_id[selected],env._sph.pair_id[selected]],-1),\n            active_dmin=data.full_dmin.gather(1,selected),viol_exempt=data.full_viol_exempt.gather(1,selected))\n        rows=provider.rows_from(one,env._body_pos_cache)\n        m=torch.zeros(n,end-start,device=device);p=torch.zeros_like(m);coeff=torch.zeros(n,end-start,D,device=device)\n        for robot,aa in [('F',ARMS[:2]),('U',ARMS[2:])]:\n            native_offset=0\n            for a in aa:\n                v,vn=velocities[a];dof=v.shape[-1];J=rows.J[robot][:,:,native_offset:native_offset+dof];native_offset+=dof\n                m+=torch.einsum('nmd,nd->nm',J,v);p+=torch.einsum('nmd,nd->nm',J,vn)\n                off,width=offsets[a];coeff[:,:,off:off+width]=torch.einsum('nmd,ndk->nmk',J,sensitivities[a])\n        arrival=rows.d+m.clamp_max(0)*settings['arrival_delay_s']\n        desired=(-arrival/settings['response_timescale_s']).clamp(-settings['inward_velocity_cap_m_s'],settings['outward_velocity_cap_m_s'])\n        geometry_A.append(coeff);geometry_b.append(desired-p);measured.append(m);predicted.append(p);arrivals.append(arrival)\n    A=torch.cat([torch.cat(geometry_A,1),*va,*ta],1);b=torch.cat([torch.cat(geometry_b,1),*vb,*tb],1)\n    tol=torch.cat([torch.full((9021,),1e-4,device=device),torch.full((148,),1e-3,device=device),torch.full((148,),1e-3,device=device)])\n    assert A.shape==(n,9317,26) and b.shape==(n,9317) and tol.shape==(9317,)"
+          }
+        ]
+      },
+      {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/runtime_action_admission.py",
+        "sha256": "73fb43d9f15ec632761f50996402806812641093b39b9c9e3182e399be6f397d",
+        "excerpts": [
+          {
+            "first_line": 103,
+            "last_line": 145,
+            "text": "def admit_action(\n    model: ModelConstraints,\n    candidates: Sequence[Candidate],\n    *,\n    context_id: str,\n    fifo6: Any,\n    raw_geometry_gaps: Any,\n    measurements: Mapping[str, Any],\n) -> dict[str, Any]:\n    \"\"\"Recompute all candidates, select first passing one, retain every rejection.\n\n    Does not mutate inputs, queue, simulator or files. Invalid numeric/schema input\n    produces NO_MODEL_FEASIBLE_ACTION with errors rather than dropping the event.\n    Measurements (including NaN/failure samples) are deep-copied without cleaning.\n    Raw negative gaps and contacts are observations, NOT relaxed by model tolerances.\n    An unmodeled raw negative row blocks admission; any model success still says\n    nothing about physical safety, FIFO rollout or future unmodeled rows.\n    \"\"\"\n    result: dict[str, Any] = {\n        'schema': 'safeduo.runtime_action_admission.v2',\n        'status': 'NO_MODEL_FEASIBLE_ACTION',\n        'context_id': context_id,\n        'model_constraints_satisfied': False,\n        'full_model_constraints_satisfied': False,\n        'selected_name': None, 'selected_target': None, 'selected_delta': None,\n        'evaluations': [], 'input_errors': [],\n        'measurements': deepcopy(measurements),\n        'raw_geometry_gaps': deepcopy(raw_geometry_gaps),\n        'fifo6_before': deepcopy(fifo6), 'fifo6_sha256': None,\n        'due_target': None,\n        'fifo_rollout_certified': False,\n        'physical_safety_certified': False,\n        'continue_measurement_required': True,\n        'discard_sample_allowed': False,\n        'tolerances': {'box': BOX_TOL, 'geometry': GEOMETRY_TOL,\n                       'velocity': VELOCITY_TOL, 'effort': EFFORT_TOL},\n        'raw_coverage': {'modeled_ids': [], 'unmodeled_ids': list(range(RAW_ROWS)),\n                         'all_raw_rows_modeled': False, 'negative_ids': None,\n                         'unmodeled_negative_ids': None},\n        'constraint_coverage': {'geometry_rows': 0, 'velocity_dof_ids': [],\n                                'unmodeled_velocity_dof_ids': [],\n                                'velocity_full_native': False,\n                                'effort_full_native': False,"
+          }
+        ]
+      },
+      {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/DYNAMIC_REGISTRATION_V2.json",
+        "sha256": "53a55f6dd730bf26dac2988b293f5a53c89a8d5b4b490440060fabb3670b5b29",
+        "excerpts": [
+          {
+            "first_line": 38,
+            "last_line": 45,
+            "text": "  \"delay_slots\": 6,\n  \"control_dt_s\": 0.016666,\n  \"force_api_dt_s\": 0.008333,\n  \"init\": \"Uniform full26 arm soft-limit proposals,48 hand DOF random opening-family support; initial raw geometry screening only; full native velocities and FIFO6 exact initial-q targets; every prefix failure retained\",\n  \"qualification\": \"Initial9021 rawgap>=0 plus six common queued-hold controls with rawgap>=0 and every all-arm partner scalar<=0.1N in both methods. Does not certify internal constructor events. Report all request and all64 attempt denominators.\",\n  \"command\": \"Pure-uniform26 coordinate absolute-target bursts every8 controls clipped at native soft limits, same pre-generated tape both methods; no actor or object task\",\n  \"geometry\": \"All9021 raw float32 gap<0 primary; noepsilon/noexemption filtering; existingexemptions also retained diagnostic\",\n  \"contact\": \"All82 enabledarmcollider owners and ownenvpartners scalarabs point sums everymicrostep; raw force/points/normals/separations/counts/starts and full nativeq/qd/targets\","
+          },
+          {
+            "first_line": 743,
+            "last_line": 744,
+            "text": "  \"nominal_model\": \"Same unsaturated one-step dynamic assumption, all9021 raw geometry rows, full74 velocity/effort, queue-tail reference +/-0.02; zero reserve addresses proven infeasibility; passive delay extrapolation is NOT a FIFO dynamics certificate\",\n  \"no_model_action_execution\": \"Continue with unchanged queue-tail duplicate target labelled UNQUALIFIED; NEVER model acceptance, never discard window or clear/rewrite FIFO6\","
+          }
+        ]
+      },
+      {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/closed_full_observations_v1.py",
+        "sha256": "58405acaacca18d822d380577650b5534afd2132a3431364807288e0a5a55e68",
+        "excerpts": [
+          {
+            "first_line": 20,
+            "last_line": 45,
+            "text": "def requested_applied(initial, tape):\n    \"\"\"Requests arrive after exactly six controls; no current-command oracle.\"\"\"\n    require(initial.shape==tape.shape[1:] and tape.ndim==3, 'initial/request dimensions')\n    return np.concatenate([np.repeat(initial[None],6,axis=0),tape],axis=0)[:len(tape)]\n\ndef trajectory_metrics(q,qd,request,initial):\n    require(q.shape==qd.shape==request.shape and initial.shape==q.shape[1:], 'trajectory dimensions')\n    dq=np.diff(np.concatenate([initial[None],q]),axis=0)\n    return dict(path_l1_rad=np.abs(dq).sum((0,2)),velocity_rms_rad_s=np.sqrt(np.mean(qd.astype(float)**2,(0,2))),\n                request_tracking_rmse_rad=np.sqrt(np.mean((q.astype(float)-request)**2,(0,2))),\n                static_initial_reference_rmse_rad=np.sqrt(np.mean((initial[None]-request)**2,(0,2))),\n                position_range_max_rad=np.ptp(np.concatenate([initial[None],q]),axis=0).max(-1))\n\ndef resource_closure(row, plan):\n    require(row['status']=='complete' and row['actual_exit']==0 and row['resource_abort'] is None,'native subjob incomplete/resource-aborted')\n    samples=row['resource_samples']; require(len(samples)>0,'empty resource samples')\n    limits=plan['resource']\n    require(all(s['probe_actual_exit']==s['free_probe_actual_exit']==0 for s in samples),'resource probe failed')\n    result={name:op(s[key] for s in samples) for name,key,op in [\n       ('max_owned_GPU_MiB','owned_GPU_MiB',max),('min_GPU_free_MiB','GPU_free_MiB',min),\n       ('min_host_available_MiB','host_available_MiB',min),('max_owned_RSS_MiB','owned_host_RSS_MiB',max)]}\n    require(result['max_owned_GPU_MiB']<=limits['max_owned_process_MiB'] and result['min_GPU_free_MiB']>=limits['min_runtime_free_MiB'] and\n            result['min_host_available_MiB']>=limits['min_runtime_host_available_MiB'] and result['max_owned_RSS_MiB']<=limits['max_owned_host_RSS_MiB'],'resource floor/ceiling breach')\n    result.update(status='PASS_RECORDED_SUBJOB_RESOURCE_LIMITS',sample_count=len(samples),registered_limits=limits)\n    return result\n"
+          }
+        ]
+      }
+    ],
+    "old_RAW_or_arrays_read": false,
+    "scientific_numbers_modified": false
+  }
+}
