@@ -1,0 +1,49 @@
+{
+  "schema": "safeduo.prospective_camera_sufficiency_supplement.v1",
+  "status": "FROZEN_BEFORE_NEW_FULL_NATIVE_FOR_INDEPENDENT_ACCEPTANCE",
+  "created_utc": "2026-10-10T00:26:30.464443+00:00",
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/QUEUE74_FULL_PLAN_V3.json": "3df1883af605b04a1c87c9b34523bee2368ed9ace74a3340c53293de16100edb",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/TASK_ACCEPTANCE_PROTOCOL_V2.json": "a24c26e90b529e6c359ab84b35276d108ebfb44baa741fb57b279baa69fd11d5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/qualified_views_v7.py": "598f7bf5332dc56452f0cf2a4c40becdf1015bc0189cbc95fc09bbdc8b898dd9"
+  },
+  "full_launch_state_at_freeze": {
+    "stage": "WAIT_NATIVE_SHORT_AND_INDEPENDENT_RECEIPT_GRAPH",
+    "started_utc": "2026-10-09T23:43:45.920355+00:00",
+    "plan_sha256": "3df1883af605b04a1c87c9b34523bee2368ed9ace74a3340c53293de16100edb",
+    "task_protocol_sha256": "a24c26e90b529e6c359ab84b35276d108ebfb44baa741fb57b279baa69fd11d5",
+    "independent_gate": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/next_mechanism/QUEUE74_PREFLIGHT_V3_INDEPENDENT_GATE_V1.json",
+    "new_full_method_windows": 0,
+    "independent_holdout_states": 0,
+    "physical_safety_certified": false,
+    "all_requirements_completed": false,
+    "last_poll_utc": "2026-10-10T00:26:26.167770+00:00",
+    "native_short_stage": "RUN_QUEUE26_QUEUE74_NATIVE8_16_PREFLIGHT",
+    "independent_audit_stage": "WAIT_NEW500_NATIVE_ACTUAL_WAIT_AND_CLOSED_PRODUCTS"
+  },
+  "new_full_native_at_freeze": 0,
+  "user_requirement": "相机视角足够且充分，state和图像都充分",
+  "criteria": {
+    "all_registered_lanes_initial_and_final_required": true,
+    "all_alarm_groups_required": true,
+    "four_hands_three_pairwise_30deg_views_each": true,
+    "explicit_palm_peak_pixels_min": 2048,
+    "each_of_five_finger_families_peak_pixels_min": 512,
+    "each_native_hand_body_peak_pixels_min": 64,
+    "all_native_hand_body_visibility_gaps_required_zero": true,
+    "three_wide_views_required": true,
+    "each_of_four_arms_peak_pixels_min": 1024,
+    "each_of_two_tables_peak_pixels_min": 1024,
+    "critical_native_forearm_and_wrist2_peak_pixels_min": 128,
+    "critical_body_visibility_gaps_required_zero": true,
+    "native27_all_registered_before_after_bitwise_equal": true,
+    "simulation_time_unchanged": true,
+    "original_rgb_and_raw_masks_sha_and_native_path_inventory_required": true,
+    "independent_raw_mask_pixel_reconstruction_required": true
+  },
+  "scope": "Strengthens documented V7 body-gap reporting to required observed coverage for future full acceptance. Original V7 producer,500 sources and preflight data unchanged. Every failure retained. Group per-view maxima do not certify full surface, absence of occlusion, visibility of contact patches or physical safety.",
+  "full_mesh_coverage_certified": false,
+  "contact_patch_visibility_certified": false,
+  "physical_safety_certified": false,
+  "all_requirements_completed": false
+}
