@@ -1,0 +1,179 @@
+{
+  "schema": "astra.full74.fixed_supplemental_development_protocol.v1",
+  "status": "FROZEN_PROSPECTIVE_INPUT_RULES_NO_MODEL_EXECUTION",
+  "purpose": "DEVELOPMENT_SUPPLEMENT_ONLY",
+  "original_cohort": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_state_development_v4/cohort_v1/PROPOSALS.json",
+    "sha256": "bdc14bb135aa5b4801cae941110284aebecdad1f0a4b39d71f40e05622d47d8c"
+  },
+  "original_denominator": 8192,
+  "supplemental_denominator": 32768,
+  "combined_denominator_if_explicitly_described": 40960,
+  "per_original_seed": 8192,
+  "per_seed_family": 2048,
+  "seed_integers": [
+    184338193042594902455074254679771687128,
+    303703893251727812656824808438381575467,
+    116845173107327662314863910461945883848,
+    164745544146155286094240798832443180548
+  ],
+  "seed_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "proposal_id_inclusive": [
+    2048,
+    10239
+  ],
+  "global_id_inclusive": [
+    8192,
+    40959
+  ],
+  "global_id_rule": "8192 + seed_index*8192 + (proposal_id-2048)",
+  "supplemental_storage_row_rule": "seed_index*8192 + (proposal_id-2048)",
+  "old_global_id_rule": "seed_index*2048 + proposal_id, ONLY original local IDs0..2047; never renumbered",
+  "family_rule": "proposal_id % 4",
+  "families": [
+    "independent_uniform74",
+    "beta_0p35_position74",
+    "single_coordinate_position_exact_and_adjacent_faces",
+    "single_coordinate_velocity_exact_and_adjacent_faces"
+  ],
+  "rng": {
+    "method": "ORIGINAL_PER_PROPOSAL_ADDRESSED_PCG64_EXTENSION",
+    "algorithm": "PCG64(SeedSequence([original_seed_integer, proposal_id]))",
+    "sequential_four_stream_state_does_not_exist": true,
+    "not_claimed_as_persisted_PCG_state_continuation": true,
+    "original_source_supports_all_nonnegative_32_aligned_starts": true,
+    "exact_original_reproduction_required_before_new_draws": true,
+    "old_ids_regenerated": [
+      0,
+      2047
+    ],
+    "new_ids_once_only": [
+      2048,
+      10239
+    ],
+    "no_extra_seed_no_redraw_no_loop_until_pass": true,
+    "face_schedule": "face=proposal_id//4; joint=face%74; kind=(face//74)%4; continue source schedule without reset"
+  },
+  "dimensions": {
+    "q": 74,
+    "qd": 74,
+    "full_coordinates": 148,
+    "controlled": 26,
+    "hand": 48
+  },
+  "position_support": "controlled26 native hard\u2229soft; hand48 native hard unchanged",
+  "velocity_support": "all74 [-original native_vmax,+original native_vmax], source float32 arithmetic unchanged",
+  "no_zero_qd": true,
+  "no_clip": true,
+  "no_fit": true,
+  "no_outcome_conditional_sampling": true,
+  "no_ranges_or_family_changes": true,
+  "original_sampler": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/sampler_v1.py",
+    "sha256": "09c7b619685c679032374c16e067673106b0d37b7b270c06288807adb6606c21"
+  },
+  "original_layout": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/screen_core_v1.py",
+    "sha256": "1d2e7fb3e7c1569efd1751a73a5f71349df54ca84ca1f505d4203a45aac0e352"
+  },
+  "original_identity": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/DEVELOPMENT_IDENTITY_DRAFT_V2.json",
+    "sha256": "2cf35747ed02159991971ea534e7be58f762e0a124b86fa034ea07191d0ed131"
+  },
+  "original_prepare": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/prepare_plan_v1.py",
+    "sha256": "62e7da6a8fa037b8b93acd07b30495737ce5d0da96a89d31b3c73d5154ecb733"
+  },
+  "sampler_lines": {
+    "function": [
+      6,
+      29
+    ],
+    "addressed_rng": 15,
+    "family_face": 16,
+    "full_q_qd": [
+      17,
+      19
+    ],
+    "endpoint_schedule": [
+      20,
+      26
+    ]
+  },
+  "original_original_model_closure": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full8192_actual_pipeline_v1/parent_actual_model_screen01/PARENT_ACTUAL_MODEL_SCREEN_CLOSED_V1.json",
+    "sha256": "832791618a0b8c99eb616d71ffc1e1ee5ce36d3f089bb06c028eefd9082478bf"
+  },
+  "preserved_old_result": {
+    "MODEL_NEGATIVE": 8018,
+    "MODEL_PREDICTED_INITIAL_CLEAR": 174,
+    "MODEL_UNKNOWN": 0,
+    "native_schedule": "EMPTY_HELD_16CELL_SHORTFALL_NO_BORROWING",
+    "seed3_family1_clear": 1,
+    "required_each_cell": 2,
+    "old_results_never_deleted_or_reclassified": true
+  },
+  "model_source_dependency": {
+    "validated_model": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_compiled_axis_geometry_candidate_v2/actual_cpu_attempt1/data/FK_FRAME_MODEL_CANDIDATE_V2.json",
+      "sha256": "fc4cab66c365d37d3c19f0b161e957ff5a5bb1d65795a1066b6af5f5864e0789"
+    },
+    "frame_binding": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_compiled_axis_frame_finalize_v3/reviewed_binding_attempt1/NATIVE_FRAME_BINDING_V2.json",
+      "sha256": "76f6430923c273681f42912050425c37d4e26573ce500c6d8ccbb565f56f1291"
+    },
+    "cal128": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_model_geometry_runner_v2/parent_actual_model_calibrate01/data/MODEL_DEVELOPMENT_REPLAY_V2.json",
+      "sha256": "834804902d2c8f44904bf085c8f3b7972b6493d0ba06cac30610a86a3ad872ce"
+    },
+    "cal128_peer": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_formal_model_semantic_peer_v2/actual01/PARENT_SCREEN_MODEL_ONLY_PEER_HANDOFF_V1.json",
+      "sha256": "32f627fc2738c32ff6ac34d56909ccc8f30cdb31e65e27560b8836d83b76bbb8"
+    },
+    "old_model_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full8192_model_geometry_runner_v2/SOURCE_GRAPH_CANDIDATE_V2.json",
+      "sha256": "a8f1bc65ae6f0db715a601d7356b5e48f312f6526f7fd8be49707d705ae6ab59"
+    }
+  },
+  "model_unchanged": {
+    "geometry": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_raw_v1/batch0_shard0_raw/full_row_identity.json",
+      "sha256": "5bcc551590ce7a6696ce0d23e2d09e4d15ccdfe50f3ca7a106b2be8130633d4b"
+    },
+    "parameter": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_raw_v1/batch0_shard0_raw/resolved_native_parameters.npz",
+      "sha256": "13ef2ceee82aa9aa8a435be85124e7dc8559ba7189c167eb1e0d5eda966e9273"
+    },
+    "body_identity": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_raw_v1/batch0_shard0_raw/body_identity.npz",
+      "sha256": "3770ceb1e4e5cc23a8f56cf6a48ffeb7e03f98a90ef923f0e6848df39d1f2b5a"
+    },
+    "original9021_rows_kept": true,
+    "new_tolerance_or_error_margin": false
+  },
+  "execution": {
+    "input_CPU_max_wall_seconds": 600,
+    "CPU_AS_bytes": 1073741824,
+    "threads": 1,
+    "future_MODEL_ONLY_max_wall_seconds": 3600,
+    "future_MODEL_ONLY_requires_distinct_source_peer_and_parent_authority": true,
+    "native_launches_authorized": false,
+    "native_original_ceiling_if_later_separately_authorized": 1200
+  },
+  "acceptance": {
+    "formal_holdout_opened": false,
+    "native_tested": 0,
+    "camera_tested": 0,
+    "eligible": 0,
+    "bank_count": 0,
+    "safety_acceptance": false,
+    "task_acceptance": false,
+    "global_error_bound": "UNKNOWN"
+  },
+  "preservation": "All old8192 and failed native/model attempts retain separate immutable namespaces; new input provenance sealed before any new model outcome."
+}
