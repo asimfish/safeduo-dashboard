@@ -1,0 +1,162 @@
+{
+  "schema": "astra.full74.native_short_entry.v1",
+  "status": "failed",
+  "native_started": true,
+  "native_launch_attempted": true,
+  "request": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_screen_native_v2/parent_supervision_failure_v2_runtime_v9_attempt1/FROZEN_NATIVE_SHORT_REQUEST_V3.json",
+  "request_sha256": "08e0fa9af7e95a2b810702918972b53de13b543977c141b03b406048fe9aac4c",
+  "subset": {
+    "start": 0,
+    "count": 32,
+    "proposal_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "seed_index": 0,
+    "rule": "fixed_first32_registered_development_before_native_outcomes",
+    "outcome_selection": false
+  },
+  "prefix_microsteps": 12,
+  "maximum_batches": 1,
+  "no_outcome_selection": true,
+  "live_prelaunch": {
+    "schema": "astra.full74.resource_observation.v2",
+    "gpu_index": 0,
+    "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+    "GPU_free_MiB": 18212,
+    "owned_GPU_MiB": 0,
+    "host_available_MiB": 81477,
+    "owned_RSS_MiB": 39,
+    "SSD_free_bytes": 21103046656,
+    "NAS_free_bytes": 6230317596672,
+    "ownership_scope": "SELF_PID_ONLY",
+    "owned_identity": {
+      "pid": 3851194,
+      "startticks": 172133545,
+      "provenance": "/proc/self/stat field22"
+    },
+    "process_observations": [
+      {
+        "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+        "pid": 3546824,
+        "used_memory_raw": "9754",
+        "used_memory_MiB": 9754,
+        "selected_gpu": true,
+        "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+        "counted_in_owned_GPU_MiB": false
+      },
+      {
+        "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+        "pid": 3776308,
+        "used_memory_raw": "3662",
+        "used_memory_MiB": 3662,
+        "selected_gpu": true,
+        "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+        "counted_in_owned_GPU_MiB": false
+      },
+      {
+        "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+        "pid": 3546824,
+        "used_memory_raw": "504",
+        "used_memory_MiB": 504,
+        "selected_gpu": false,
+        "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+        "counted_in_owned_GPU_MiB": false
+      },
+      {
+        "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+        "pid": 3776308,
+        "used_memory_raw": "6598",
+        "used_memory_MiB": 6598,
+        "selected_gpu": false,
+        "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+        "counted_in_owned_GPU_MiB": false
+      }
+    ],
+    "raw_queries": [
+      {
+        "argv": [
+          "nvidia-smi",
+          "--query-gpu=index,uuid,memory.free",
+          "--format=csv,noheader,nounits"
+        ],
+        "returncode": 0,
+        "stdout": "0, GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 18212\n1, GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 24947\n",
+        "stderr": "",
+        "observed_unix_s": 1791598449.3219151
+      },
+      {
+        "argv": [
+          "nvidia-smi",
+          "--query-compute-apps=gpu_uuid,pid,used_memory",
+          "--format=csv,noheader,nounits"
+        ],
+        "returncode": 0,
+        "stdout": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3546824, 9754\nGPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3776308, 3662\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3546824, 504\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3776308, 6598\n",
+        "stderr": "",
+        "observed_unix_s": 1791598449.3511076
+      }
+    ],
+    "observation_time_unix_s": 1791598449.352415,
+    "process_group_accounting": "NOT_IMPLEMENTED_NO_DESCENDANT_CLAIM",
+    "serial_scope": "PARENT_OWNED_NATIVE_JOBS_ONLY",
+    "serial_enforcement": "parent serial queue; this observation is not proof of queue state",
+    "nonself_process_policy": "observe only; their effect enters the measured global free; no signals or registry access",
+    "phase": "prelaunch",
+    "threshold_checks": {
+      "GPU_global_free": true,
+      "owned_GPU_footprint": true,
+      "host_available": true,
+      "owned_host_RSS": true,
+      "SSD_free": true,
+      "NAS_free": true
+    },
+    "single_Kit_process_at_a_time": true,
+    "single_Kit_declaration_provenance": "parent scheduling contract; NOT inferred from foreign PIDs or process names"
+  },
+  "entry_sha256": "d0afc0540c7307c5e4788bb55efc2000e203f0bff263903e14ae6219e986ab3e",
+  "parent_owns_actual_wait": true,
+  "CPU_thread_settings_after_app_launch": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PXR_WORK_THREAD_LIMIT": "1"
+  },
+  "error": "ValueError: V7 short/initial views insufficient; preserve attempt, stop without selecting",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_lifecycle_repair_v1/native_short_entry_v6.py\", line 158, in main\n    native_receipt = screen_in_existing_native_env(env, args.request, expected)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_root_restore_equivalence_v1/native_full74_screen_v3.py\", line 382, in screen_in_existing_native_env\n    require(initial_camera, 'V7 short/initial views insufficient; preserve attempt, stop without selecting')\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/screen_core_v1.py\", line 32, in require\n    raise ValueError(message)\nValueError: V7 short/initial views insufficient; preserve attempt, stop without selecting\n",
+  "parameter_readbacks": {},
+  "receipt_phase": "BEFORE_ENV_AND_APP_CLOSE_REQUIRES_PARENT_ACTUAL_WAIT",
+  "cleanup_errors": [
+    "parameter readback: AttributeError: 'NoneType' object has no attribute 'dof_names'"
+  ]
+}
