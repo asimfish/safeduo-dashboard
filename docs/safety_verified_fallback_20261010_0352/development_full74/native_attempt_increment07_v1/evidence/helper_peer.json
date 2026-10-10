@@ -1,0 +1,302 @@
+{
+  "schema": "independent.retry32.helper_source_review.v1",
+  "status": "COND_PASS",
+  "verdict": "COND_PASS_SOURCE_CPU_ONLY",
+  "blocking_findings": [],
+  "findings": [
+    {
+      "id": "RETRY32-HELPER-MINOR-001",
+      "severity": "minor",
+      "blocking": false,
+      "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/release2/SOURCE_GRAPH_V1.json",
+      "field": "owned_roots[1]",
+      "actual": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/release2",
+      "runtime_expected": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1",
+      "evidence": [
+        {
+          "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/release2/configure_source_v1.py",
+          "line": 31,
+          "expression": "str(R/HERE.name) yields R/release2"
+        },
+        {
+          "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/release2/intake_common_v1.py",
+          "line": 7,
+          "expression": "OUT=R/'parent_supplement_native32_retry_intake_v1'"
+        },
+        {
+          "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/release2/prepare_v1.py",
+          "line": 56,
+          "expression": "out=c.OUT/'campaign_v1'"
+        }
+      ],
+      "impact": "Descriptive graph ownership metadata has wrong NAS root. Runtime OUT, write fence, CLI and actual receipts use the correct new helper namespace. No unsafe write or SOURCE gate bypass observed.",
+      "recommendation": "Parent should record the actual OUT explicitly; correct the descriptive field only in a future NEW version. Frozen release2 bytes stay unchanged."
+    }
+  ],
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/release2/SOURCE_GRAPH_V1.json",
+    "sha256": "e2b89fee728e9292a57fc5c94faa6a5372593a1584a4d3518c521ce03d27aad9"
+  },
+  "helper_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CLOSED_HELPER_HANDOFF_V1.json",
+    "sha256": "3bcb15a24dc365a2cb20fcc27e29ce19b52d8918b8ebe150e200eae11311e205"
+  },
+  "author_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CLOSED_HELPER_HANDOFF_V1.json",
+    "sha256": "3bcb15a24dc365a2cb20fcc27e29ce19b52d8918b8ebe150e200eae11311e205"
+  },
+  "producer_handoff": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/FINAL_HANDOFF_V4.json",
+    "sha256": "bb16c1d06e58036bebdeaa008bf7bc826a1a12bb331b2761c7a948ab845fc2e1"
+  },
+  "producer_source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/SOURCE_GRAPH_V1.json",
+    "sha256": "284923f1c5cce317bf398a4cf141f94a9f3cc1b6f4aa2aa7b2a408ba44574847"
+  },
+  "producer_closed_CPU_release": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/CLOSED_SOURCE_CPU_RELEASE_V4.json",
+    "sha256": "8e8f535ca8bd983b09e68ebf342e8e94599bed7f6cfee72d468d7cdfea0ad7dd"
+  },
+  "producer_source_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4_independent_review_v1/REVIEW_V2.json",
+    "sha256": "04ee57398debcfd088836484e7a04e59df3751f3136428eba06fdcf6103211e9"
+  },
+  "producer_source_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4_independent_review_v1/ACTUAL_CLOSED_HANDOFF_V1.json",
+    "sha256": "90213e566c743110ec889cbbb886b32f29032df1ee06246af6cf4fe993a4a93e"
+  },
+  "request_contract": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/REQUEST_CONTRACT_V1.json",
+    "sha256": "cd58009679194be067843358e6f2dd187fa2471407c08317097f443695fe2455"
+  },
+  "all_post_app_paths_use_lifecycle_v2": true,
+  "actual_SCREEN_DATA_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplement_screen_data_review_v1/REVIEW_V1.json",
+    "sha256": "1995c49905570b65c99af93a7b55e174d69a0eecac8c2eddfce3a6a9d2b4e08e"
+  },
+  "actual_derived32": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplement_screen_data_review_v1/actual_screen_data01/data/PROSPECTIVE32_NOT_ADOPTED_V1.json",
+    "sha256": "8a0d768d996db046d19013b6d07cdc33d09ef6fa37f718746675d7eb19d95ec5"
+  },
+  "reviewer_configuration": {
+    "requested_model": "parent-default",
+    "model_override": false,
+    "actual_serving_model": "HIDDEN_UNVERIFIABLE",
+    "distinct_source_reviewer": true,
+    "new_agent_spawned": false,
+    "author_configuration": "Astra xhigh as declared by parent; backend not independently observable"
+  },
+  "manual_source_verdict": "Selected release2 code manually reviewed. Same-buffer cohort loader fix and final argv/source graph are genuine. Exact producer SOURCE04ee, helper peer interface, closed author receipts, usage/history and no-execute prepare boundary verified. No blocking source finding.",
+  "selected_files_verified": 16,
+  "source_delta": [
+    {
+      "file": "INPUT_BINDINGS_V1.json",
+      "final_sha256": "3f7c551ea528676bffca9687f7dec998317e7a00a22f3062a654002bc0e0aeed",
+      "previous_sha256": "c422b10f7fd3be3657917e2be9528e40f13a9dc4b198637fb2286c61a5643b72",
+      "changed": true
+    },
+    {
+      "file": "REVIEW_INTERFACE_V1.json",
+      "final_sha256": "bdda23ca09c2f963844d740c8c8357d3fe6a2cd55f7e04a2f4959e35725ccddc",
+      "previous_sha256": "bdda23ca09c2f963844d740c8c8357d3fe6a2cd55f7e04a2f4959e35725ccddc",
+      "changed": false
+    },
+    {
+      "file": "close_cpu_v1.py",
+      "final_sha256": "9233c318882137571df7e65aeb218f9d0607e2cd16ec35b2f5a620f8e547d952",
+      "previous_sha256": "6892fe56c705ae67750221d4ac6437c70f20d9a201b52ba9eb0e3a6a8897c70a",
+      "changed": true
+    },
+    {
+      "file": "configure_source_v1.py",
+      "final_sha256": "c2a2b29c4fa8758cf6561548da77b871f02388b6bee465c39882b921840d854b",
+      "previous_sha256": "2cfb9f06d4493563144928ba190d5b95240f49198693b4d65ae07970267f2977",
+      "changed": true
+    },
+    {
+      "file": "intake_common_v1.py",
+      "final_sha256": "d96669f2afa3a1802b930157dae9774378394f75c18e91033e0573e58ee4ba6d",
+      "previous_sha256": "d96669f2afa3a1802b930157dae9774378394f75c18e91033e0573e58ee4ba6d",
+      "changed": false
+    },
+    {
+      "file": "observe_cpu_v1.py",
+      "final_sha256": "73f9c31e097e598fdd59ff66d8b671eff52ad0ff10fee512f4d38df6ace75b92",
+      "previous_sha256": "73f9c31e097e598fdd59ff66d8b671eff52ad0ff10fee512f4d38df6ace75b92",
+      "changed": false
+    },
+    {
+      "file": "prepare_v1.py",
+      "final_sha256": "0d2daec8fb4a00d952f516a40e488233500e6f698675414f0599cab23a51ca6d",
+      "previous_sha256": "0d2daec8fb4a00d952f516a40e488233500e6f698675414f0599cab23a51ca6d",
+      "changed": false
+    },
+    {
+      "file": "run_cpu_v1.py",
+      "final_sha256": "b7e4920b55a54c348f964103936173fb3e548ff738827a1a94f093a108bea0cf",
+      "previous_sha256": "b7e4920b55a54c348f964103936173fb3e548ff738827a1a94f093a108bea0cf",
+      "changed": false
+    },
+    {
+      "file": "serial_inventory_v1.py",
+      "final_sha256": "819ded27ab1d74fcc1008f954f9dab271cee8d1ff0eb3ba71c03198bef74bcc3",
+      "previous_sha256": "819ded27ab1d74fcc1008f954f9dab271cee8d1ff0eb3ba71c03198bef74bcc3",
+      "changed": false
+    },
+    {
+      "file": "source_gate_v1.py",
+      "final_sha256": "e680f4821794e533e8c2e832d9b8f2d2627df13019c4c4d9747aa1b4a50bfead",
+      "previous_sha256": "5d8cedc26eb8242fb43252529fd4375bea4facd7ef89b6785a73e0f5299014e3",
+      "changed": true
+    },
+    {
+      "file": "test_contract_v1.py",
+      "final_sha256": "f07a93c59df15bda386629a6d9784b39b0f5410d47113f1c59b537a76df573c3",
+      "previous_sha256": "f07a93c59df15bda386629a6d9784b39b0f5410d47113f1c59b537a76df573c3",
+      "changed": false
+    },
+    {
+      "file": "usage_v1.py",
+      "final_sha256": "dfa7414d11c6de62acc30eb15d3c5a1fd2ae9a71b14ea881ab8aa36cff37236f",
+      "previous_sha256": "dfa7414d11c6de62acc30eb15d3c5a1fd2ae9a71b14ea881ab8aa36cff37236f",
+      "changed": false
+    }
+  ],
+  "independent_CPU_audit": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_parent_supplement_native32_retry_intake_independent_review_v1/CPU_AUDIT_V1.json",
+    "sha256": "4e90c129634d9d315cf6c592d43506e7aa812a9603629aa8cc4fb2cba0b7b196"
+  },
+  "independent_CPU_checks": 42,
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_parent_supplement_native32_retry_intake_independent_review_v1/worker/ACTUAL_WAIT.json",
+    "sha256": "3efe66770b3eb0f676672307fab36aad33812b32ebfd84a9a07fbf3c96192b2a"
+  },
+  "actual_worker_exit": 0,
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_parent_supplement_native32_retry_intake_independent_review_v1/ACTUAL_TOOL_WAIT_V1.json",
+    "sha256": "20f1fd7d38267be0708db40b781da059bb73ec1aca610511680800bdc7d15afe"
+  },
+  "actual_tool_exit": 0,
+  "all_owned_closed": true,
+  "wrapper_identity": {
+    "pid": 1214192,
+    "ppid": 3874395,
+    "pgid": 1214192,
+    "sid": 1214192,
+    "startticks": 179022300,
+    "state": "R"
+  },
+  "wrapper_exact_identity_absent": true,
+  "author_actual_worker_waits": [
+    {
+      "name": "contract",
+      "wait": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu02_driver/contract/ACTUAL_WAIT.json",
+        "sha256": "5860ec1a4ba69af32562814d9bd52376c8b8f70ec6ab374ae0c0bb1de155f62a"
+      },
+      "actual_exit": 0
+    },
+    {
+      "name": "prepare_CLI",
+      "wait": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu02_driver/prepare_CLI/ACTUAL_WAIT.json",
+        "sha256": "8461263b9f7a38c253cc0143f9f9646d0c9dbd2c4c4f05a178bc3f480b287391"
+      },
+      "actual_exit": 0
+    },
+    {
+      "name": "serial_CLI",
+      "wait": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu02_driver/serial_CLI/ACTUAL_WAIT.json",
+        "sha256": "03821af557304a7f0fb75b6283211750fc9689514a99fc0657a527dc99e4c09f"
+      },
+      "actual_exit": 0
+    }
+  ],
+  "author_actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu02/external/ACTUAL_WAIT.json",
+    "sha256": "e7778458af72284a91404ed2cb216e84a2ec124275684af1a16f8bca63a67a3f"
+  },
+  "author_actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu02/ACTUAL_TOOL_WAIT_V1.json",
+    "sha256": "6524efd57943f138c4ac9470eb24fe4feb4f091934e2abaa4d7da95cfaa00233"
+  },
+  "author_actual_worker_exits": [
+    0,
+    0,
+    0
+  ],
+  "author_actual_outer_exit": 0,
+  "author_actual_tool_exit": 0,
+  "author35_checks_verified": true,
+  "source_before_after_sha_equal": true,
+  "source_unchanged_count": 30,
+  "serial_closed_receipts": 42,
+  "serial_PIDSTARTs": 171,
+  "typed_phase_pairs": 5,
+  "same32_related_not_new_IID": true,
+  "all32_reservations_preserved": true,
+  "original_scientific_operational_keys_preserved": [
+    "cases",
+    "cohort",
+    "original_cohort",
+    "registered_denominator",
+    "original_denominator_preserved",
+    "prefix_microsteps",
+    "max_wall_seconds",
+    "policy_actions",
+    "formal_holdout",
+    "bank_allowed",
+    "resource",
+    "SSD_operational_reserve_bytes",
+    "min_NAS_free_bytes",
+    "camera_schedule",
+    "visibility_mutation_allowed",
+    "camera_supplement",
+    "freshness_seconds",
+    "single_owned_Kit",
+    "gpu_binding",
+    "runtime_reference",
+    "freshness_protocol"
+  ],
+  "actual_failed_predecessor": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_intake_v1/campaign_v1/actual_native01/PARENT_ACTUAL_NATIVE_FAILED_CLOSED_V1.json",
+    "sha256": "4bcca58b887de76b7bac12d305af700831c2c8499aba3589f81268e647d74549"
+  },
+  "first_failed_helper_source": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/SOURCE_GRAPH_V1.json",
+    "sha256": "0a5b7b957b5e7209a99a52c0df651d9e6dcc40bc22e0b82190ba94798aeb51d0"
+  },
+  "first_failed_helper_contract_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu01_driver/contract/ACTUAL_WAIT.json",
+    "sha256": "b14e43aa4153b931e4296e1a2daa18176116fc047afdb77fb6ffbe9ec66098ba"
+  },
+  "first_failed_helper_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu01/external/ACTUAL_WAIT.json",
+    "sha256": "626f27c1040cb4e5390cd8a4065bf865f8b68643ca7ce9ee6fbeb633c134bb31"
+  },
+  "first_failed_helper_tool": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/CPU/actual_cpu01/ACTUAL_TOOL_WAIT_V1.json",
+    "sha256": "8333b15b31c53ab81539e74f4986dd5a94821d1bc19c38480f81b25876b6624c"
+  },
+  "conditions": [
+    "This SOURCE/CPU verdict allows parent metadata prepare only after supplying exact independent helper peer, immutable current PROGRESS, complete updated supplemental usage/catalog and explicit parent declarations.",
+    "Preserve actual failed4bcca native0/ENTRYfailed/outer1/tool1, old helper loader failure1/outer2/tool2, all reservations, historical UNKNOWN statuses and same32 related identity. Reconcile any later attempts before prepare.",
+    "Parent separately authors/reviews the exact frozen native request and real execution authorization; helper emits no PARENT_REVIEW or parent_execute_authorized.",
+    "Any later collection additionally requires fresh <=30s complete owned serial history, one NAS Kit lease and original actual GPU0/resource/camera/physics gates; this receipt asserts neither present GPU readiness nor launch permission.",
+    "Actual collection and independent RAW/camera DATA verification remain future work; SOURCE status is not physical safety, Drive/wrench evidence, global model bound, bank admission or holdout acceptance."
+  ],
+  "limitations": [
+    "Bounded selected source and metadata review; no whole old graph/500 scan, physical RAW/NPZ/model matrix decode, Kit/GPU/network/Git or source edits.",
+    "Existing history remains the pinned historical baseline plus parent-declared additions. New activity must be reconciled; fresh checks are not a global-process or GPU lease attestation.",
+    "Memory-only deterministic payload plan checked; actual prepare/campaign write and native execution were not called.",
+    "Graph descriptive NAS owned_roots mismatch is the minor finding; enforce runtime namespace, not that typo."
+  ],
+  "real_prepare_called": false,
+  "parent_authorization_emitted": false,
+  "native_launches": 0,
+  "GPU_queries": 0,
+  "bank_count": 0,
+  "physical_safety_pass": false,
+  "created_utc": "2026-10-10T21:23:55.362917+00:00"
+}

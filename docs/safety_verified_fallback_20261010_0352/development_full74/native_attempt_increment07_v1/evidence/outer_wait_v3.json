@@ -1,0 +1,56 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "EXTERNAL_WRAPPER_OBSERVER_NOT_NATIVE_OR_CPU_ONLY_WORKLOAD",
+  "child_pid": 1035250,
+  "waited_pid": 1035250,
+  "waitpid_observed": true,
+  "raw_wait_status": 256,
+  "actual_wait_exit": 1,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T20:48:46.182505+00:00",
+  "closed_utc": "2026-10-10T20:50:51.295364+00:00",
+  "elapsed_seconds": 125.11284892610274,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 1035250,
+      "ppid": 1035229,
+      "pgid": 1035250,
+      "sid": 1035250,
+      "startticks": 178821260,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 1035229
+      },
+      "live": false
+    }
+  ],
+  "signals": [],
+  "child_max_rss_KiB": 24576912,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v3/native_external/parent_native01/child.log",
+  "log_sha256": "82e348fbdfb65f72da612de4920ef6caa585038b589bdf9409d0df2cbddc711c",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v3/native_external/parent_native01/resources.jsonl",
+  "outer_monitor_sha256": "ab8db9722c1244098d862a261a93802aa8ba0ca05549d962448cca316a7648ee",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v3/parent_harness_v1.py",
+    "--execute-reviewed",
+    "--request",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_intake_v1/campaign_v1/FROZEN_NATIVE_REQUEST_V1.json",
+    "--request-sha256",
+    "15fa87308c7b4af36866a7fe1abc3f95c6b572c998f455513161cf74aa3d7404",
+    "--review",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_intake_v1/campaign_v1/PARENT_REVIEW_V1.json",
+    "--review-sha256",
+    "bafcd52c82bc5602e0f6407b47ab9afe2230824e2452b16a65d0a417aaa6cfa7",
+    "--serial-inventory",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_intake_v1/serial_inventory/parent_history01.json",
+    "--serial-inventory-sha256",
+    "ec0ceb7b873a9007820e17a7f28bfba43b07b0a595054f2d0083d26d76c245cf"
+  ],
+  "observer_scope": "DIRECT_WRAPPER_ROOT_ONLY; native exact ownership/deadline/resources belong to reviewed harness",
+  "native_acceptance": false
+}
