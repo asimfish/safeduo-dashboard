@@ -1,0 +1,128 @@
+{
+  "status": "CLOSED_ORIGINAL_AXIS_AND_CONTACT_RESPONSE_DIAGNOSTIC",
+  "root_cause_established": false,
+  "axis_binding": [
+    {
+      "joint": "right_thumb_3_joint",
+      "original_authored_axis": "",
+      "measured_native_axis_in_joint_frame": "X",
+      "USD_parent_axis": [
+        2.220446049250313e-16,
+        5.1448790499707305e-12,
+        1.0
+      ],
+      "original_URDF_parent_axis": [
+        3.4988922977080356e-16,
+        -1.9778558131566815e-16,
+        1.0000000000000002
+      ],
+      "axis_error": 5.145076841931742e-12,
+      "zero_rotation_error_rad": 2.0807270287116074e-08,
+      "source_URDF_mimic": {
+        "joint": "right_thumb_2_joint",
+        "multiplier": "0.7222",
+        "offset": "0"
+      },
+      "inference": "Explicit X matches original URDF via the authored local rotations. Changing it to Z would change intended kinematics. Mimic is not claimed active in the native USD scene."
+    },
+    {
+      "joint": "right_thumb_4_joint",
+      "original_authored_axis": "",
+      "measured_native_axis_in_joint_frame": "X",
+      "USD_parent_axis": [
+        -0.08715572201955546,
+        -8.694157223158893e-05,
+        0.9961946961113641
+      ],
+      "original_URDF_parent_axis": [
+        -0.0871557427476452,
+        -8.69415779645902e-05,
+        0.996194694297891
+      ],
+      "axis_error": 2.0807268494260905e-08,
+      "zero_rotation_error_rad": 0.0,
+      "source_URDF_mimic": {
+        "joint": "right_thumb_3_joint",
+        "multiplier": "0.69754",
+        "offset": "0"
+      },
+      "inference": "Explicit X matches original URDF via the authored local rotations. Changing it to Z would change intended kinematics. Mimic is not claimed active in the native USD scene."
+    }
+  ],
+  "native_observation": {
+    "first_positive_right_hand_contact_event": 1125,
+    "first_hard_limit_failure_event": 1159,
+    "q_at_first_contact_rad": 0.23120683431625366,
+    "q_at_failure_rad": -0.0023346866946667433,
+    "hard_lower_rad": 0.0,
+    "failure_applied_target_rad": 0.28543272614479065,
+    "target_always_within_hard_limits": true,
+    "right_hand_force_at_failure_N": 2.3432387709617615,
+    "active_hand_gains": {
+      "stiffness": 5.0,
+      "damping": 0.5,
+      "max_force": 2.0
+    },
+    "extra_effort_at_failure": 0.0,
+    "measured_total_PD_torque_available": false,
+    "scalar_PD_arithmetic_is_not_measured_implicit_solver_torque": true
+  },
+  "hypothesis_test": {
+    "prospective_native_version": 13,
+    "single_variable": "solve_articulation_contact_last False->True",
+    "unchanged": [
+      "target path",
+      "hand gains",
+      "4s close ramp",
+      "64/4 iterations",
+      "all original physical and task gates"
+    ]
+  },
+  "source_SHA256": {
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/diagnose_contact_drive_v1.py": "bd56b1d5f2155bbf948c43fc9ff13e940b2af6b1960661ab2240b2e4d112b4b2",
+    "/home/liyufeng/safeduo/assets_real/usd/combined/fr3_f2_right_v5.usd": "b5c24e25f71736cd51024d3d2314ed5e8a85802aeba46354d44d66b2e389838b",
+    "/home/liyufeng/safeduo/assets_real/inspire_RH56F2/inspire_RH56F2/urdf/RH56F2_ws/RH56F2_R/urdf/RH56F2_R.urdf": "2dfa011010e81f46e30c8456ab9bf9e662d1964f1a2548d51244a25de2cca66a",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/native_parameters.npz": "fdac20479b9d0926c0e015e596f6c74a22fa13ced542ddc3493259a58044e0db",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/native_task_identity.json": "aeb8b6ca5358a56a456367e4163415ef723bdae54d83aa5edb2a1e52765ea4f8",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00000_00032.npz": "2e9869a3851847d30446bf82a56fdd0b1c1e400f436d969abb821095c63844d8",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00032_00064.npz": "80e268433e283d51ca125873764c7e983d3ea9b6f44175f7d4b95b2f579da004",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00064_00096.npz": "1b7b12170804a57f5fa66cd17eab83876d7509ffd4693eafe5d5e3b8e5ad2f45",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00096_00128.npz": "3d6e82cc9b7434de59c35797eb8153f4a3cd039bed26295ccbee30b3e8974cab",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00128_00160.npz": "e16ecc1bd0f33b1715f16ce3e587ca2d7b443e896ea98bbbf84eae04a7ba2703",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00160_00192.npz": "d0242e81a4bf70df3c9ef84b65457f301d9f9800b4a34fc03a4a21f10d5559a7",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00192_00224.npz": "53a5c1da86cd535ba0681b64771e0582bb5c1d94613eba8dbfdb98f9376beace",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00224_00256.npz": "abcf2df250da83cd1717c212a9d83b6e8848adb5f2e33de811a2772e68faf03c",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00256_00288.npz": "f59c9b748bc4b27e33adb6365c520d705b0f60916934283e833b672ab141d3e5",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00288_00320.npz": "540574622778b330df81456a87edfc8cd27a4904a72463221305d439a5cb583c",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00320_00352.npz": "033fbb220f01c46d585c4c9e4cee258be70618b6f6eaa514b792459e9359a364",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00352_00384.npz": "81c72891b57a3cca94f11a7d295cbe9d03088285433e31c51752d84b7f3a115b",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00384_00416.npz": "3d3e87b960843aa2de8fdea157a47708578c5ab13fd31994c6e264d8e751d159",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00416_00448.npz": "fa64bc9654404a5d3682dbbc6b69e787c50f0690bf037f310a53b6275225a6b6",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00448_00480.npz": "c79b403f00c148fee0ff19699a1e0e5255b3922804a01db94b3e9054c33f761c",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00480_00512.npz": "107cecd404e575f3735372d9cd53b3582b08010866c6137383718151da07704f",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00512_00544.npz": "7655873be4918533451bc03916cfa5a2315de99dcc448d8e1a045a0f41551d2c",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00544_00576.npz": "db97741508c7e91779e8c99ddcb8646bf9582e92d8b4ddedd03dd3000e5a449a",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00576_00608.npz": "6e2d1762507403d33e4c7adf625c25567b26c327c1969c463f1c21d58e7bc22a",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00608_00640.npz": "50d14b002347b5e214387573c6dd68a2d55afabcff769c8dea292be8bf98a5fc",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00640_00672.npz": "71e7e56d37d74b8751d6577cb136d46009bb23e70c2a38eeaa45e180fc07154f",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00672_00704.npz": "812307835088812b0687c99d740e7234c6c2051082f188d50e15aaa3b8815fd8",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00704_00736.npz": "2a8bf73f35013858c1441fc8a73ffb153dd1858492b91961ebb5b5d001c53798",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00736_00768.npz": "0008a44a92accc8eab16ea27ce5a46d3938fa5103405ab86e59654cc91daa9c7",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00768_00800.npz": "4c532c1f242e29d20ec6f919f78f048b7013795446ff598fab6edf4adfd4eeaf",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00800_00832.npz": "bc69ef60fddfac91a82fce8946a821b9acdc551ecc3745b25270fbc0ada2f8b3",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00832_00864.npz": "1d19b3f8d8c93c4a47546fe3be4bd43f04c0c0096d7cb8536e34e538b50e8f24",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00864_00896.npz": "defed8b6bd343f41f561ecf4617c39b69682b1ddd71b0432887fe1cd34ba4a12",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00896_00928.npz": "52869d3b5cba71001cf0612faf9b1863160430e377d617801d4ec1d194b69ef1",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00928_00960.npz": "6d85f6dc873056e1747177555f4de0f88e229a26aa07591ca467064ce55d990d",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00960_00992.npz": "bb77d8d5a3c4a9d1fd15e0baaff9093dd545f88d9647a4a1dcdf9e5c09157418",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_00992_01024.npz": "f026c54d5fad2dbb47cf5db2d05f75c9176197a0c6b3740fbb20575dac567ac3",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_01024_01056.npz": "6dee1544a278a1fd4e4186bb6a775dc858dd675ccbb55a1a36ddf737dd6f9167",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_01056_01088.npz": "b9794db5b7861ae366114cb75fba18e2f81a2e30e6cc7fd21c32670c9b440b4f",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_01088_01120.npz": "6e185682a6915d2dee9330b255470fd95947992115cd522df8bd07480a35e392",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_01120_01152.npz": "d59157b9047b90111242d51a83a3a72884288500128291b3d1842f9eac195592",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v12/native_case23/physics_01152_01160.npz": "e8529eeebb0ba8d0d9c846fb35e8318f6dcd607f94732ac9dd7f44ef561aeab4",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v12/INDEPENDENT_CAPTURE_AUDIT_V1.json": "a48721a792c91f090e8814e553eadf5b04b3795652a41fe4bc17ee1f8c4914c8",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v13/REGISTRATION_V1.json": "ae80c2588e6d5cc3c28e06e31080ead093685aa7eb6ee7f7d0658ac75831da6e"
+  },
+  "fullSystem0_accepted": false
+}
