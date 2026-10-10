@@ -1,0 +1,171 @@
+{
+  "schema": "astra.full74.per_state.proposals.v2",
+  "identity": {
+    "schema": "astra.full74.per_state.prospective_development_identity.v1",
+    "status": "PROPOSED_NOT_FROZEN_NOT_MATERIALIZED",
+    "namespace": "astra.full74.per_state.DEVELOPMENT.20261010.v1",
+    "seeds": [
+      184338193042594902455074254679771687128,
+      303703893251727812656824808438381575467,
+      116845173107327662314863910461945883848,
+      164745544146155286094240798832443180548
+    ],
+    "purpose": "DEVELOPMENT_ONLY",
+    "formal_holdout": false,
+    "interpretation": "Literal four NEW numeric development seeds, distinct from old8192 seeds and reserved four holdout seeds. Parent must ratify this identity; no proposal array generated here.",
+    "derivation": "first128bits_big_endian(SHA256(namespace + / + decimal seed_index))",
+    "proposal_rng": "PCG64(SeedSequence([seed_integer, proposal_id]))",
+    "prior_development_seeds": [
+      42526719980585707814350353708226887393,
+      269395023837534310748506249852727112906,
+      157759244189633422849281315844397635769,
+      272350087645494323109066279902152435849
+    ],
+    "reserved_holdout_seeds_excluded": [
+      630104762881,
+      731208563947,
+      832309674013,
+      933410785079
+    ],
+    "old8192_cohort_preserved": {
+      "manifest": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_screen_development_v1/cohort_v1/PROPOSALS.json",
+      "sha256": "4168677c51de9952ba9e4aff9cd999b7a9cf5239b5fe93b8c0907e1f450e46c3",
+      "status": "UNCHANGED_PRIOR_DEVELOPMENT_SEPARATE_DENOMINATOR_NO_V9_RECLASSIFICATION",
+      "reuse_as_fresh": false
+    },
+    "future_cohort_proposals": 8192,
+    "per_seed": 2048,
+    "first_window_per_seed": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "pilot_scheduled_states": 128,
+    "pilot_unscheduled_retained_states": 8064,
+    "global_row_rule": "seed_index*2048 + proposal_id",
+    "first_window_global_ranges": [
+      [
+        0,
+        31
+      ],
+      [
+        2048,
+        2079
+      ],
+      [
+        4096,
+        4127
+      ],
+      [
+        6144,
+        6175
+      ]
+    ],
+    "sampling_families": [
+      "independent_uniform74",
+      "beta_0p35_position74",
+      "single_coordinate_position_exact_and_adjacent_faces",
+      "single_coordinate_velocity_exact_and_adjacent_faces"
+    ],
+    "family_rule": "proposal_id % 4",
+    "first_window_family_counts_per_seed": [
+      8,
+      8,
+      8,
+      8
+    ],
+    "future_generation_boundary": "NEW external sampler registration only after parent approval; old sample_batch rejects new seeds and is not changed/monkeypatched.",
+    "support": "controlled26 hard/soft intersection; hand48 full hard; all74 velocities [-native_vmax,+native_vmax]",
+    "position_distribution_and_face_schedule": "same arithmetic/family schedule as source-bound screen_core_v1.sample_batch, new identity only",
+    "velocity_fraction_of_native_max": {
+      "controlled26": 1.0,
+      "hand48": 1.0
+    },
+    "old_V2_caps": {
+      "controlled26": 0.5,
+      "hand48": 0.25
+    },
+    "pilot_coverage_limit": "First32 has8 members/family and targeted lower-position/negative-velocity faces only for full74 columns0..7. It does not cover all74 +/- exact/adjacent faces; random support is not empirical coverage.",
+    "no_adaptive_resampling": true,
+    "no_policy_outcome_sampling": true,
+    "generated_arrays": 0,
+    "native_executions": 0
+  },
+  "purpose": "DEVELOPMENT_ONLY",
+  "files": {
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_state_development_v4/cohort_v1/q74.npy": "34eaf53cb3aab3694a107b7437124443bc93ac9bdcb1fced2b76dff7f2e6e451",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_state_development_v4/cohort_v1/qd74.npy": "ab55a17a9983e15f176df393a1cecc3774fcf730153effd1785b0dc9b8e88867",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_state_development_v4/cohort_v1/family.npy": "e9cfaf259951d4206d97cca08a0445bda2c0e0d616a04dcd05bbc3b6ae97d436"
+  },
+  "parameter_sha256": "13ef2ceee82aa9aa8a435be85124e7dc8559ba7189c167eb1e0d5eda966e9273",
+  "adoption_review": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_full74_per_state_v4_runner_v1/campaign_v1/ADOPTION_V1.json",
+  "adoption_sha256": "cd1661328d581e0b31898a6f27d03435e68ee684681ecc8eed44dfbf9ad2b40d",
+  "selected": 0,
+  "native_completed": 0,
+  "formal_holdout": 0,
+  "scheduled_native_ids_per_seed": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "unscheduled": 8064,
+  "no_outcome_resampling": true
+}
