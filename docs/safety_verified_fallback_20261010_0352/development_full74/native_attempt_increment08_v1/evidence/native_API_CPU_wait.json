@@ -1,0 +1,57 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "CPU_REQUEST_CHECK_ONLY",
+  "child_pid": 1279306,
+  "waited_pid": 1279306,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T21:36:36.329077+00:00",
+  "closed_utc": "2026-10-10T21:36:38.979479+00:00",
+  "elapsed_seconds": 2.6504231488797814,
+  "max_wall_seconds": 120,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 1279306,
+      "ppid": 1279183,
+      "pgid": 1279306,
+      "sid": 1279306,
+      "startticks": 179108275,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 1279183
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 161652,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/cpu_check/child.log",
+  "log_sha256": "21c50ce36f101234a3531eac3c6f332934a9a2676656cad36412dffedebc322a",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/cpu_check/resources.jsonl",
+  "outer_monitor_sha256": "3fcb90cb4aea57b9ea5df925cccbccbd0ac53e34872a53e28efc8dd1ef3b1814",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_entry_v1.py",
+    "--request",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/FROZEN_NATIVE_REQUEST_V1.json",
+    "--request-sha256",
+    "9fd9091297d882d0a27bb9aa360346ffb5fd31f622cba6d68d59c52e20a77b7f",
+    "--review",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/PARENT_REVIEW_V1.json",
+    "--review-sha256",
+    "900ed7f4641465ad2a6fdee363e8adb240264204961384865bdce5924b9ff33f",
+    "--check-cpu"
+  ]
+}

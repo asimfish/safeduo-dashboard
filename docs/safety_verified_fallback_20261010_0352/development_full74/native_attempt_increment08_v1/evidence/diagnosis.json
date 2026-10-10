@@ -1,0 +1,823 @@
+{
+  "schema": "independent.supplement32.crash_diagnosis.v1",
+  "status": "BLOCKED_ROOT_CAUSE_UNKNOWN_OBSERVATION_COMPLETE",
+  "debugging_verdict": "BLOCKED",
+  "evidence_rung": "observation-only plus source-bound durable boundary localization",
+  "failure_contract": {
+    "observed": "Natural native SIGSEGV -11 during partial initial camera capture; no ENTRY or PRODUCER; no committed physical advance",
+    "expected": "Closed source-bound all32 initial capture,12 physical micros/all alarms/all32 final and explicit ENTRY/PRODUCER or durable managed denial",
+    "native_root": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1",
+    "request": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/FROZEN_NATIVE_REQUEST_V1.json",
+      "sha256": "9fd9091297d882d0a27bb9aa360346ffb5fd31f622cba6d68d59c52e20a77b7f"
+    },
+    "parent_review": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/PARENT_REVIEW_V1.json",
+      "sha256": "900ed7f4641465ad2a6fdee363e8adb240264204961384865bdce5924b9ff33f"
+    },
+    "registered32": 32,
+    "related_same32": true,
+    "code_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/SOURCE_GRAPH_V1.json",
+      "sha256": "284923f1c5cce317bf398a4cf141f94a9f3cc1b6f4aa2aa7b2a408ba44574847"
+    },
+    "first_bad_transition": "No durable third-render AFTER snapshot for env023 wide attempt19; exact crash instruction unknown",
+    "actual_invocation": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_entry_v1.py",
+      "--request",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/FROZEN_NATIVE_REQUEST_V1.json",
+      "--request-sha256",
+      "9fd9091297d882d0a27bb9aa360346ffb5fd31f622cba6d68d59c52e20a77b7f",
+      "--review",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/PARENT_REVIEW_V1.json",
+      "--review-sha256",
+      "900ed7f4641465ad2a6fdee363e8adb240264204961384865bdce5924b9ff33f",
+      "--execute-native-screen",
+      "--permit",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/LIVE_PERMIT_V4.json",
+      "--permit-sha256",
+      "37efe17e45d4d959be247f3dc643e0774f30bd5d8145f5fd40427ba621698161",
+      "--headless",
+      "--enable_cameras",
+      "--device",
+      "cuda:0"
+    ],
+    "reproduction": "NOT_EXECUTED_NO_NATIVE_AUTHORITY_IN_THIS_REVIEW"
+  },
+  "actual_native_closed": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/actual_native01/PARENT_ACTUAL_NATIVE_FAILED_CLOSED_V1.json",
+    "sha256": "a60dd2c1c26b0e78d6b1c922ba488692ce4e171ee2aab04b23a0f8d1c787677d"
+  },
+  "actual_native_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/ACTUAL_WAIT.json",
+    "sha256": "842de78783113ed3798eea654ca18b38a367c5d3b4ac1c1e7efc177cd19f949b"
+  },
+  "actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_external/parent_native01/ACTUAL_WAIT.json",
+    "sha256": "58545b7b6892f65bb433c1eea3ca80e4b5c937f95367aa8297c83d638460c1cb"
+  },
+  "actual_parent_tool": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/actual_native01/ACTUAL_TOOL_CLOSURE_V1.json",
+    "sha256": "6457336c87523ee09172ed34752434cac6b163c14a918b51187321f62e8ec05c"
+  },
+  "native_exit": -11,
+  "raw_wait_status": 139,
+  "outer_exit": 1,
+  "parent_tool_exit": 1,
+  "native_elapsed_s": 1086.5235147180501,
+  "native_max_wall_s": 1200,
+  "supervisor_resource_abort": null,
+  "supervisor_error": null,
+  "supervisor_signals": [],
+  "parent_owned244_fresh_absence_receipt_verified": true,
+  "owned_absence_scope": "Inherited actual parent closure evidence; no foreign process inspection",
+  "last_camera_boundary": {
+    "env": 23,
+    "view": "wide",
+    "attempt": 19,
+    "indexed_render": 2,
+    "stage": "Between render2 BEFORE evidence and unavailable AFTER evidence",
+    "present": [
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.before.npz",
+          "sha256": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822"
+        },
+        "bytes": 96896,
+        "mtime_ns": 1791669285991257300,
+        "npz_decoded": false
+      },
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render0.before.npz",
+          "sha256": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822"
+        },
+        "bytes": 96896,
+        "mtime_ns": 1791669286055394300,
+        "npz_decoded": false
+      },
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render0.after.npz",
+          "sha256": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822"
+        },
+        "bytes": 96896,
+        "mtime_ns": 1791669286121616700,
+        "npz_decoded": false
+      },
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render1.before.npz",
+          "sha256": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822"
+        },
+        "bytes": 96896,
+        "mtime_ns": 1791669286120927600,
+        "npz_decoded": false
+      },
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render1.after.npz",
+          "sha256": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822"
+        },
+        "bytes": 96896,
+        "mtime_ns": 1791669286247476600,
+        "npz_decoded": false
+      },
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render2.before.npz",
+          "sha256": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822"
+        },
+        "bytes": 96896,
+        "mtime_ns": 1791669286247172500,
+        "npz_decoded": false
+      }
+    ],
+    "missing": [
+      "wide_attempt_19.render2.after.npz",
+      "wide_attempt_19.after.npz",
+      "wide_attempt_19.outputs.npz",
+      "wide_attempt_19.attempt.json"
+    ],
+    "previous_complete_attempt": {
+      "source": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_18.attempt.json",
+        "sha256": "e9f2570897ebf1df4e493fd38af0fcbe1b2c1932d2dff25c841c2dde0df874ea"
+      },
+      "summary": {
+        "status": "rejected",
+        "reasons": [
+          "foreign_context_pixels"
+        ],
+        "rendered": true,
+        "attempt": 18,
+        "sensor_frame_before": [
+          919
+        ],
+        "sensor_frame_after": [
+          920
+        ],
+        "render_calls": 3,
+        "native_invariant": {
+          "status": "pass",
+          "all_64_bitwise_equal": false,
+          "environment_count": 32,
+          "all_registered_lanes": true,
+          "all_registered_bitwise_equal": true,
+          "comparison": "dtype+shape+C-order bytes",
+          "fields": [
+            "environment_origins",
+            "simulation_time_s",
+            "simulation_time_step_index",
+            "F_L_native_q",
+            "F_L_native_qd",
+            "F_L_native_root_xyzw",
+            "F_L_native_root_velocity",
+            "F_L_native_link_transforms_xyzw",
+            "F_L_native_position_targets",
+            "F_R_native_q",
+            "F_R_native_qd",
+            "F_R_native_root_xyzw",
+            "F_R_native_root_velocity",
+            "F_R_native_link_transforms_xyzw",
+            "F_R_native_position_targets",
+            "U_L_native_q",
+            "U_L_native_qd",
+            "U_L_native_root_xyzw",
+            "U_L_native_root_velocity",
+            "U_L_native_link_transforms_xyzw",
+            "U_L_native_position_targets",
+            "U_R_native_q",
+            "U_R_native_qd",
+            "U_R_native_root_xyzw",
+            "U_R_native_root_velocity",
+            "U_R_native_link_transforms_xyzw",
+            "U_R_native_position_targets"
+          ]
+        },
+        "native_baseline_after": {
+          "status": "pass",
+          "all_64_bitwise_equal": false,
+          "environment_count": 32,
+          "all_registered_lanes": true,
+          "all_registered_bitwise_equal": true,
+          "comparison": "dtype+shape+C-order bytes",
+          "fields": [
+            "environment_origins",
+            "simulation_time_s",
+            "simulation_time_step_index",
+            "F_L_native_q",
+            "F_L_native_qd",
+            "F_L_native_root_xyzw",
+            "F_L_native_root_velocity",
+            "F_L_native_link_transforms_xyzw",
+            "F_L_native_position_targets",
+            "F_R_native_q",
+            "F_R_native_qd",
+            "F_R_native_root_xyzw",
+            "F_R_native_root_velocity",
+            "F_R_native_link_transforms_xyzw",
+            "F_R_native_position_targets",
+            "U_L_native_q",
+            "U_L_native_qd",
+            "U_L_native_root_xyzw",
+            "U_L_native_root_velocity",
+            "U_L_native_link_transforms_xyzw",
+            "U_L_native_position_targets",
+            "U_R_native_q",
+            "U_R_native_qd",
+            "U_R_native_root_xyzw",
+            "U_R_native_root_velocity",
+            "U_R_native_link_transforms_xyzw",
+            "U_R_native_position_targets"
+          ]
+        }
+      }
+    },
+    "temporal_limit": "mtime is filesystem wall time; source program order establishes boundary. Missing AFTER does not distinguish sim.render from finally readback/write."
+  },
+  "python_stack": {
+    "source": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_initialization_diagnostics_v4/python_stacks.log",
+      "sha256": "2f704583682b44246e3f9d45cd320ce3ea78cf3a9dd6f6dfbd26777ea5c74801"
+    },
+    "timeout_dump_count": 18,
+    "fatal_header_count": 0,
+    "last_main_thread": "0x000075005e62d480 (most recent call first):\n  File \"/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.syntheticdata-0.6.13+69cbf6ad.lx64.r.cp311/omni/syntheticdata/scripts/SyntheticData.py\", line 1504 in _post_process_graph_tick\n  File ",
+    "tail_incomplete": true,
+    "fatal_CPP_instruction_pointer": "UNKNOWN",
+    "timing": "60s periodic dump only; no per-dump timestamp. Last nominal trigger inferred from DIAGNOSTICS_READY, not a crash-time stack."
+  },
+  "phases": {
+    "source": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_initialization_diagnostics_v4/phases.jsonl",
+      "sha256": "aea0f82fbd8a0eda71e49a300a7a73e3b8c8b5f0830acc439a19078ccd544adc"
+    },
+    "events": [
+      {
+        "phase": "DIAGNOSTICS_READY",
+        "pid": 1279926,
+        "utc": "2026-10-10T21:36:45.099007+00:00",
+        "monotonic_seconds": 1791091.523623904,
+        "process_cpu_seconds": 1.721641771,
+        "diagnostic_only": true
+      },
+      {
+        "phase": "BEFORE_APP_LAUNCH",
+        "pid": 1279926,
+        "utc": "2026-10-10T21:36:45.102634+00:00",
+        "monotonic_seconds": 1791091.527245057,
+        "process_cpu_seconds": 1.721780769,
+        "diagnostic_only": true
+      },
+      {
+        "phase": "AFTER_APP_LAUNCH",
+        "pid": 1279926,
+        "utc": "2026-10-10T21:37:29.578390+00:00",
+        "monotonic_seconds": 1791136.003013384,
+        "process_cpu_seconds": 42.05851412,
+        "diagnostic_only": true
+      },
+      {
+        "phase": "BEFORE_ENV_CREATE",
+        "pid": 1279926,
+        "utc": "2026-10-10T21:37:33.478919+00:00",
+        "monotonic_seconds": 1791139.903538494,
+        "process_cpu_seconds": 45.119396015,
+        "diagnostic_only": true
+      },
+      {
+        "phase": "AFTER_ENV_CREATE",
+        "pid": 1279926,
+        "utc": "2026-10-10T21:38:21.450314+00:00",
+        "monotonic_seconds": 1791187.874936217,
+        "process_cpu_seconds": 93.073569021,
+        "diagnostic_only": true
+      }
+    ]
+  },
+  "logs": [
+    {
+      "source": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/logs/kit.log",
+        "sha256": "38543dc85646541d49059e697d2fe44c666aa63d94b778a6438a491151e77742"
+      },
+      "bytes": 8877983,
+      "fatal_markers": [],
+      "startup_ABI_error_count": 54,
+      "ABI_error_examples": [
+        {
+          "line": 2331,
+          "text": "2026-10-10T21:36:47Z [2,275ms] [Error] [omni.ext._impl.custom_importer] Failed to import python module omni.kit.test. Error: /lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/lib-dynload/../.././libicui18n.so.78). Traceback:"
+        }
+      ],
+      "tail_lines": [
+        "2026-10-10T21:38:19Z [93,438ms] [Info] [omni.usd] Status (secondary thread): in _OpenAsset at line 360 of /builds/omniverse/usd-resolver/source/library/OmniUsdResolver_Ar2.cpp -- OmniUsdResolver: Opening filesystem asset 'file:/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/kit/mdl/core/Volume/OmniVolumeDensity.mdl' for read",
+        "",
+        "2026-10-10T21:38:19Z [93,440ms] [Info] [rtx.neuraylib.plugin] FileWatcher: Started watching: 'mdl::Z73file_3A::home::liyufeng::miniforge3::envs::safeduo::lib::Z0Dpython3_2E11::ZC9site_2Dpackages::isaacsim::kit::mdl::core::Volume::OmniVolumeDensity'",
+        "2026-10-10T21:39:03Z [138,301ms] [Warning] [carb] Client gpu.foundation.plugin has acquired [gpu::unstable::IMemoryBudgetManagerFactory v0.1] 100 times. Consider accessing this interface with carb::getCachedInterface() (Performance warning)"
+      ]
+    },
+    {
+      "source": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/child.log",
+        "sha256": "3e3a1a22478e61dedec2619693dfb1183ee8b1e1f0fa0c7be206cb82e8eb45f7"
+      },
+      "bytes": 283019,
+      "fatal_markers": [],
+      "startup_ABI_error_count": 54,
+      "ABI_error_examples": [
+        {
+          "line": 49,
+          "text": "2026-10-10T21:36:47Z [2,275ms] [Error] [omni.ext._impl.custom_importer] Failed to import python module omni.kit.test. Error: /lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.15' not found (required by /home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/lib-dynload/../.././libicui18n.so.78). Traceback:"
+        }
+      ],
+      "tail_lines": [
+        "\u001b[36m\u001b[1m[INFO][IsaacLab]: Logging to file: /mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/tmp/isaaclab/logs/isaaclab_2026-10-11_05-37-33.log\u001b[0m",
+        "\u001b[36m======================================================================================================================================================================================================================\u001b[0m",
+        "",
+        "\u001b[33m05:37:33 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.\u001b[0m"
+      ]
+    },
+    {
+      "source": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/tmp/isaaclab/logs/isaaclab_2026-10-11_05-37-33.log",
+        "sha256": "7fc8fc54f3535068c81ce0e540c1a13a3955b6bd8bb67fa9d82132c0096bf339"
+      },
+      "bytes": 36308,
+      "fatal_markers": [],
+      "startup_ABI_error_count": 0,
+      "ABI_error_examples": [],
+      "tail_lines": [
+        "|   16  | right_thumb_3_joint  |   5.000   |  0.500  |  0.000   |      0.000      |      0.000       |      0.000       |  [0.000, 0.607] |      6.280      |     2.000     |",
+        "|   17  | right_thumb_4_joint  |   5.000   |  0.500  |  0.000   |      0.000      |      0.000       |      0.000       |  [0.000, 0.431] |      6.280      |     2.000     |",
+        "+-------+----------------------+-----------+---------+----------+-----------------+------------------+------------------+-----------------+-----------------+---------------+",
+        "2026-10-11 05:37:59 [xform_prim_view.py:141] DEBUG: Using Fabric for the XFormPrimView over '/World/viz_cam' on device 'cuda:0'."
+      ]
+    }
+  ],
+  "crash_files": {
+    "matches": [],
+    "directories_checked": 19,
+    "filename_entries_checked": 40,
+    "max_depth": 7,
+    "scope": "Only owned tmp/data/cache/logs/diagnostics; native payload tree and warp/cuda/torch cache pruned. No global core storage/system journal inspected."
+  },
+  "last_presigsegv_resource": {
+    "rows": [
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/resources/000920.json",
+          "sha256": "d509ca90b050883c48cbb1f457e90d94c496aea4c7907e9b18755680aa6b9cac"
+        },
+        "observation": {
+          "GPU_free_MiB": 8079,
+          "owned_GPU_MiB": 7341,
+          "host_available_MiB": 23595,
+          "owned_RSS_MiB": 24037,
+          "SSD_free_bytes": 168136744960,
+          "NAS_free_bytes": 5990344425472,
+          "ownership_scope": "SELF_PID_ONLY",
+          "owned_identity": {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "provenance": "/proc/self/stat field22"
+          },
+          "observation_time_unix_s": 1791669283.9220288
+        },
+        "recorded_queries_only": true,
+        "no_current_GPU_query": true
+      },
+      {
+        "source": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/resources/000921.json",
+          "sha256": "cb30843632b18dd15255bf58866437a28b059451948bd860ed73c448f91263fe"
+        },
+        "observation": {
+          "GPU_free_MiB": 8077,
+          "owned_GPU_MiB": 7341,
+          "host_available_MiB": 23590,
+          "owned_RSS_MiB": 24037,
+          "SSD_free_bytes": 168140935168,
+          "NAS_free_bytes": 5990344425472,
+          "ownership_scope": "SELF_PID_ONLY",
+          "owned_identity": {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "provenance": "/proc/self/stat field22"
+          },
+          "observation_time_unix_s": 1791669284.945327
+        },
+        "recorded_queries_only": true,
+        "no_current_GPU_query": true
+      }
+    ],
+    "headroom_MiB": {
+      "GPU_free_MiB": 5577,
+      "owned_GPU_MiB": 5159,
+      "host_available_MiB": 11590,
+      "owned_host_RSS_MiB": 21963
+    },
+    "gap_until_wait_close_s": 3.2883188724517822,
+    "wait_max_RSS_KiB": 24995424,
+    "scope": "Recorded self PID/startticks and actual global-free observations only; no queries executed. Within samples, not a proof of absence of later OOM/driver error.",
+    "nearest_guardian_live_nonzero_sample": {
+      "observed_utc": "2026-10-10T21:54:45.096502+00:00",
+      "owned_root": [
+        {
+          "pid": 1279926,
+          "startticks": 179108813,
+          "state": "S",
+          "live": true
+        }
+      ],
+      "GPU_free_MiB": 8077,
+      "owned_GPU_MiB": 7341,
+      "owned_RSS_MiB": 24037,
+      "host_available_MiB": 23619
+    },
+    "guardian_sample_to_wait_close_s": 3.137143850326538
+  },
+  "outer_monitor": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/resources.jsonl",
+    "file_bytes": 237476295,
+    "read_offset": 233281991,
+    "read_length": 4194304,
+    "suffix_sha256": "a0ceb6d7df764f7ddd4880c31a0e56212b436b5d1390f1380aecf549f83d9659",
+    "receipt_declared_full_sha256": "6bd0c124e1d4ded5fdf3997294cb49ad444184a9e1694e6f16005f0fb5c7536a",
+    "full_SHA_recomputed": false,
+    "full_scan": false,
+    "last_events": [
+      {
+        "event": "RESOURCE"
+      },
+      {
+        "event": "RESOURCE"
+      },
+      {
+        "event": "RESOURCE"
+      },
+      {
+        "event": "ACTUAL_WAIT",
+        "resource_abort": null,
+        "signals": [],
+        "actual_wait_exit": -11,
+        "raw_wait_status": 139
+      }
+    ],
+    "guardian_tail_resources": [
+      {
+        "observed_utc": "2026-10-10T21:54:44.763128+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 24037,
+        "host_available_MiB": 23593
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:45.096502+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 24037,
+        "host_available_MiB": 23619
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:45.452056+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 24221
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:45.808286+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 27662
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:46.157951+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 31107
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:46.491895+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 34237
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:46.825111+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 38104
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:47.174849+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 7341,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 41890
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:47.863236+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": true
+          }
+        ],
+        "GPU_free_MiB": 8077,
+        "owned_GPU_MiB": 3657,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 45360
+      },
+      {
+        "observed_utc": "2026-10-10T21:54:48.211455+00:00",
+        "owned_root": [
+          {
+            "pid": 1279926,
+            "startticks": 179108813,
+            "state": "S",
+            "live": false
+          }
+        ],
+        "GPU_free_MiB": 15449,
+        "owned_GPU_MiB": 0,
+        "owned_RSS_MiB": 0,
+        "host_available_MiB": 46166
+      }
+    ],
+    "nearest_retained_nonzero_live_sample": {
+      "observed_utc": "2026-10-10T21:54:45.096502+00:00",
+      "owned_root": [
+        {
+          "pid": 1279926,
+          "startticks": 179108813,
+          "state": "S",
+          "live": true
+        }
+      ],
+      "GPU_free_MiB": 8077,
+      "owned_GPU_MiB": 7341,
+      "owned_RSS_MiB": 24037,
+      "host_available_MiB": 23619
+    },
+    "zero_after_sample_policy": "Zero RSS is not pre-crash memory evidence, even in rows still marked live; live/queries/RSS sampling are not treated as atomic. Final21:54:48.211 livefalse/GPU0/RSS0 is explicitly post-exit."
+  },
+  "source_callpath": [
+    {
+      "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/protocol_v1.py",
+      "line": 73,
+      "call": "all32 initial cameras before advance(1)"
+    },
+    {
+      "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py",
+      "line": 130,
+      "call": "_capture_wide"
+    },
+    {
+      "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+      "line": 967,
+      "call": "_render_candidate"
+    },
+    {
+      "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+      "line": 750,
+      "call": "env.sim.render"
+    },
+    {
+      "file": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+      "line": 753,
+      "call": "finally native_snapshot then render.after NPZ"
+    }
+  ],
+  "selected_source_refs": [
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+      "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py",
+      "sha256": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/hand_views_v2.py",
+      "sha256": "0b8d75466297fc93768dca85b6118ecc919d8c67de0e08fd442e245f9605e1f8"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/phase_trace_mechanism_v1.py",
+      "sha256": "91b72b8522ba9525da5614963661b15792771e9f73a779c0db1de8eda0ff5203"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/protocol_v1.py",
+      "sha256": "b2c99eacafd607584d9feb71ed7780ac272fdc23ba6fa3f835b4246173ddf008"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_port_v1.py",
+      "sha256": "ca619a5c1d72294424c9af1df07d10fe77b6dc3a1b8a7f5f48ff34d1723c321b"
+    },
+    {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_entry_v1.py",
+      "sha256": "3e53b81108e4fa0bb8cf1b08b6a05d13ee819ea54f807af8f73f5a8e5fd4d6c3"
+    }
+  ],
+  "hypotheses": [
+    {
+      "rank": 1,
+      "hypothesis": "Native render/SyntheticData graph failure during or downstream of the third held render",
+      "support": "render2.before exists; render2.after absent. Closest periodic Python sample in SyntheticData _post_process_graph_tick.",
+      "limit": "No fault-time native stack; sample and filesystem absence do not identify the faulting C++ frame.",
+      "prediction": "A source-reviewed future trace closes render-call entry but not return; a native stack resolves a matching render/SyntheticData frame.",
+      "probe": "Durable monotonic render-enter/render-return/post-native-snapshot-enter/write-complete checkpoints plus owned native crash dump in a future authorized exact replay."
+    },
+    {
+      "rank": 2,
+      "hypothesis": "Native tensor snapshot/readback or post-render evidence path failure",
+      "support": "Post-render native snapshot occurs in finally before render2.after is written; earlier periodic sample in get_root_transforms.",
+      "limit": "Missing after file also fits a render failure; no tensor error or invariant failure proves this cause.",
+      "prediction": "Future trace records render-return then stops in native_snapshot or evidence write; native stack or captured exception distinguishes it.",
+      "probe": "Add checkpoint boundaries around existing readback and file write without adding getters, refreshes or renders."
+    },
+    {
+      "rank": 3,
+      "hypothesis": "Resource transient, driver fault, or lifecycle accumulation not seen in the last sample",
+      "support": "Long repeated render path and incomplete run.",
+      "limit": "Last recorded runtime resources have headroom; no OOM/CUDA/VK fatal marker and no supervisor abort. Samples leave a 3.29s unobserved interval.",
+      "prediction": "Native stack/owned diagnostics or recorded resource timeline shows a discriminating fault before termination.",
+      "probe": "Capture only already-authorized self/global-free resource observations and per-attempt latency; no foreign census or signals."
+    },
+    {
+      "rank": 4,
+      "hypothesis": "Startup CXXABI test-import errors caused this later SIGSEGV",
+      "support": "CXXABI_1.3.15 test-import errors are present around21:36:52-53.",
+      "limit": "Environment creation and many subsequent camera renders succeeded; no chain to the faulting frame. Not established as immediate cause.",
+      "prediction": "A native fault stack would need to connect the incompatible loaded component to the crash; startup error alone cannot distinguish this.",
+      "probe": "Document loaded-module identities in a future owned crash artifact; no ABI/library replacement based only on startup logs."
+    }
+  ],
+  "next_reproduction_profiling_plan": [
+    "No replay executed here. Parent/author first prepare a NEW diagnostic-only source with exact invariance peer; preserve original FULL strongcameraV3, all32 initial/all alarms/final, held27,3 renders/candidate,450 budget,12 micros,1200s/GPU0 floors and same32 related identities.",
+    "Add durable monotonic + wall checkpoints at existing render enter/return, post-render native_snapshot enter/return, after-NPZ complete, sensor update and outputs complete. Do not insert extra physical/render/getter/refresh actions. Profile latency by boundary alongside existing observations.",
+    "Arrange fault-time native C++ stack/minidump in the owned new namespace after validating installed runtime crash-handler configuration; periodic dump_traceback_later alone is not fatal-signal capture. Review handler interaction before changing it.",
+    "Only a separate real parent review with fresh serial/resource/lease gates may authorize a single controlled exact replay. First keep the full path and fixed ordering; do not jump directly to env023 or skip prior renders as an equivalent reproduction.",
+    "Predeclare RED=SIGSEGV -11, incomplete same-boundary evidence or any native/clock/invariance denial; GREEN=closed native/outer/tool plus complete scheduled observations and unchanged invariants. One noncrashing rerun does not prove cause or production safety. After full-path reproduction, minimize one variable at a time in diagnostic scope only."
+  ],
+  "root_cause": "UNKNOWN",
+  "fix": "NOT_AUTHORIZED_AND_NOT_PROPOSED_AS_PROVEN",
+  "reproduction_rerun": false,
+  "native_launches": 0,
+  "Kit_imports": 0,
+  "GPU_queries": 0,
+  "attach_calls": 0,
+  "signals_sent": 0,
+  "source_edits": 0,
+  "bank_count": 0,
+  "physical_safety_pass": false,
+  "claim_limits": [
+    "No proximal native fatal stack/minidump found in bounded owned locations; full global core locations deliberately not inspected.",
+    "Periodic Python traceback is observation, not fault-time call stack; final partial line does not identify the crashing C++ instruction.",
+    "Initial24 directories do not constitute state/group commits or camera qualification. Prior rejected attempt foreign_context_pixels is a retained camera rejection, not evidence of a physical crash cause.",
+    "Held27 native state-field assertions in prior attempt receipt are producer evidence; no new full RAW/camera DATA qualification performed.",
+    "First rg filename enumeration was too broad within the owned native tree; no scientific payload content was decoded. Subsequent reads were explicitly selected/capped.",
+    "Guardian liveTrue+RSS0 rows from21:54:45.452 onward are not valid pre-crash memory-free evidence; exact termination vs observation timing remains unresolved. Final livefalse/GPU0/RSS0 is post-exit. The selected nearest nonzero live guardian sample is21:54:45.096502; source self sample is21:54:44.945327."
+  ],
+  "source_and_evidence_before": {
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/actual_native01/PARENT_ACTUAL_NATIVE_FAILED_CLOSED_V1.json": "a60dd2c1c26b0e78d6b1c922ba488692ce4e171ee2aab04b23a0f8d1c787677d",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/ACTUAL_WAIT.json": "842de78783113ed3798eea654ca18b38a367c5d3b4ac1c1e7efc177cd19f949b",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_external/parent_native01/ACTUAL_WAIT.json": "58545b7b6892f65bb433c1eea3ca80e4b5c937f95367aa8297c83d638460c1cb",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/actual_native01/ACTUAL_TOOL_CLOSURE_V1.json": "6457336c87523ee09172ed34752434cac6b163c14a918b51187321f62e8ec05c",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/FROZEN_NATIVE_REQUEST_V1.json": "9fd9091297d882d0a27bb9aa360346ffb5fd31f622cba6d68d59c52e20a77b7f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/SOURCE_GRAPH_V1.json": "284923f1c5cce317bf398a4cf141f94a9f3cc1b6f4aa2aa7b2a408ba44574847",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/hand_views_v2.py": "0b8d75466297fc93768dca85b6118ecc919d8c67de0e08fd442e245f9605e1f8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/phase_trace_mechanism_v1.py": "91b72b8522ba9525da5614963661b15792771e9f73a779c0db1de8eda0ff5203",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/protocol_v1.py": "b2c99eacafd607584d9feb71ed7780ac272fdc23ba6fa3f835b4246173ddf008",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_port_v1.py": "ca619a5c1d72294424c9af1df07d10fe77b6dc3a1b8a7f5f48ff34d1723c321b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_entry_v1.py": "3e53b81108e4fa0bb8cf1b08b6a05d13ee819ea54f807af8f73f5a8e5fd4d6c3",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_initialization_diagnostics_v4/python_stacks.log": "2f704583682b44246e3f9d45cd320ce3ea78cf3a9dd6f6dfbd26777ea5c74801",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_initialization_diagnostics_v4/phases.jsonl": "aea0f82fbd8a0eda71e49a300a7a73e3b8c8b5f0830acc439a19078ccd544adc",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/logs/kit.log": "38543dc85646541d49059e697d2fe44c666aa63d94b778a6438a491151e77742",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/child.log": "3e3a1a22478e61dedec2619693dfb1183ee8b1e1f0fa0c7be206cb82e8eb45f7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/tmp/isaaclab/logs/isaaclab_2026-10-11_05-37-33.log": "7fc8fc54f3535068c81ce0e540c1a13a3955b6bd8bb67fa9d82132c0096bf339",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/resources/000920.json": "d509ca90b050883c48cbb1f457e90d94c496aea4c7907e9b18755680aa6b9cac",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/resources/000921.json": "cb30843632b18dd15255bf58866437a28b059451948bd860ed73c448f91263fe",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render0.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render0.after.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render1.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render1.after.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render2.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_18.attempt.json": "e9f2570897ebf1df4e493fd38af0fcbe1b2c1932d2dff25c841c2dde0df874ea"
+  },
+  "CPU_limit_AS_bytes": 1073741824,
+  "CPU_limit_seconds": 45,
+  "worker_required_wall_s": 60,
+  "reviewer_config": {
+    "requested_model": "parent-default",
+    "model_override": false,
+    "actual_backend": "HIDDEN_UNVERIFIABLE"
+  },
+  "source_and_evidence_after": {
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/actual_native01/PARENT_ACTUAL_NATIVE_FAILED_CLOSED_V1.json": "a60dd2c1c26b0e78d6b1c922ba488692ce4e171ee2aab04b23a0f8d1c787677d",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/ACTUAL_WAIT.json": "842de78783113ed3798eea654ca18b38a367c5d3b4ac1c1e7efc177cd19f949b",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_external/parent_native01/ACTUAL_WAIT.json": "58545b7b6892f65bb433c1eea3ca80e4b5c937f95367aa8297c83d638460c1cb",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/actual_native01/ACTUAL_TOOL_CLOSURE_V1.json": "6457336c87523ee09172ed34752434cac6b163c14a918b51187321f62e8ec05c",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_retry_intake_v1/campaign_v1/FROZEN_NATIVE_REQUEST_V1.json": "9fd9091297d882d0a27bb9aa360346ffb5fd31f622cba6d68d59c52e20a77b7f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/SOURCE_GRAPH_V1.json": "284923f1c5cce317bf398a4cf141f94a9f3cc1b6f4aa2aa7b2a408ba44574847",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/hand_views_v2.py": "0b8d75466297fc93768dca85b6118ecc919d8c67de0e08fd442e245f9605e1f8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/phase_trace_mechanism_v1.py": "91b72b8522ba9525da5614963661b15792771e9f73a779c0db1de8eda0ff5203",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/protocol_v1.py": "b2c99eacafd607584d9feb71ed7780ac272fdc23ba6fa3f835b4246173ddf008",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_port_v1.py": "ca619a5c1d72294424c9af1df07d10fe77b6dc3a1b8a7f5f48ff34d1723c321b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v4/release4/native_entry_v1.py": "3e53b81108e4fa0bb8cf1b08b6a05d13ee819ea54f807af8f73f5a8e5fd4d6c3",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_initialization_diagnostics_v4/python_stacks.log": "2f704583682b44246e3f9d45cd320ce3ea78cf3a9dd6f6dfbd26777ea5c74801",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_initialization_diagnostics_v4/phases.jsonl": "aea0f82fbd8a0eda71e49a300a7a73e3b8c8b5f0830acc439a19078ccd544adc",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/logs/kit.log": "38543dc85646541d49059e697d2fe44c666aa63d94b778a6438a491151e77742",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native_process/child.log": "3e3a1a22478e61dedec2619693dfb1183ee8b1e1f0fa0c7be206cb82e8eb45f7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/tmp/isaaclab/logs/isaaclab_2026-10-11_05-37-33.log": "7fc8fc54f3535068c81ce0e540c1a13a3955b6bd8bb67fa9d82132c0096bf339",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/resources/000920.json": "d509ca90b050883c48cbb1f457e90d94c496aea4c7907e9b18755680aa6b9cac",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/resources/000921.json": "cb30843632b18dd15255bf58866437a28b059451948bd860ed73c448f91263fe",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render0.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render0.after.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render1.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render1.after.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_19.render2.before.npz": "74ab3ba2f5982e2fb44ff14b0fdaba11d8cdb885fd9c7b9ce183df6014d24822",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v4/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_023/wide_attempt_18.attempt.json": "e9f2570897ebf1df4e493fd38af0fcbe1b2c1932d2dff25c841c2dde0df874ea"
+  },
+  "source_and_evidence_unchanged": true
+}
