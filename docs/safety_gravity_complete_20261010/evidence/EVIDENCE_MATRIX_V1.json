@@ -1,0 +1,103 @@
+{
+  "schema": "safeduo.full_requirements.evidence_matrix.v1",
+  "created_utc": "2026-10-09T16:33:32.213009+00:00",
+  "fullSystem0_accepted": false,
+  "hardware_certification_in_scope": false,
+  "rows": [
+    {
+      "id": "holding",
+      "requirement": "回退保持在原始非零速度和延迟下持续安全",
+      "gate": "所有128输入全部原生几何/接触/限位/速度通过完整480控制周期；正式独立集另验",
+      "status": "SHORT_DEVELOPMENT_PASS_LONG_RUNNING",
+      "evidence": "gravity_hold128_v1/GRAVITY_HOLD128_RESULT_V1.json",
+      "measured": "短程16控制周期：关闭118/128，开启128/128；全部10条救回，新增失败0",
+      "missing": "长程480正在运行；独立留出与运行时制动/未来保持未验证"
+    },
+    {
+      "id": "effective_motion",
+      "requirement": "保留操作意图并有实际四臂运动",
+      "gate": "冻结门槛：平均路径与各分层比例>=0.9、四臂运动比例>=0.9、全部26关节平均运动范围>=0.001rad；暂停非威胁臂继续和恢复及任务完成联合验收",
+      "status": "FAIL",
+      "evidence": "strong_long128_v1/STRONG_LONG128_RESULT_V1.json",
+      "measured": "旧长程保持路径/原始路径中位数0.118622%；全部61440次控制回退；没有任务",
+      "missing": "可执行目标生成、延迟队列到达预测、选择性干预与恢复；新保持通过仍不能满足"
+    },
+    {
+      "id": "random_support",
+      "requirement": "强随机、大范围操作空间与定向危害覆盖",
+      "gate": "记录采样分布、全26DOF和速度支持、覆盖图、所有拒绝及分层；不得将筛选集当无条件全空间",
+      "status": "PARTIAL_DEVELOPMENT",
+      "evidence": "strong_random_preparation_v1/GEOMETRIC32000_RESULT_V1.json",
+      "measured": "32000个全软限位提案；963几何合格，512物理短测，263完整合格；16组合各8输入共128；速度0/0.5/0.75/1",
+      "missing": "手指动作、布局/桌子变化、物体质量摩擦、感知噪声、延迟与故障、定向碰撞及长时覆盖"
+    },
+    {
+      "id": "frozen_generalization",
+      "requirement": "科学规范的冻结协议、独立多种子、留出与不确定性报告",
+      "gate": "机制/判据冻结后使用至少两套独立新种子；全部登记窗口与失败保留；无结果后调参；报告最坏种子和适用统计上界",
+      "status": "NOT_ACCEPTED",
+      "evidence": "gravity_hold128_v1/REGISTRATION_V1.json",
+      "measured": "本轮同128开发集上的前登记反事实；不是独立留出",
+      "missing": "修复机制后登记新矩阵并执行；不得由相关窗口推导全局概率"
+    },
+    {
+      "id": "objects",
+      "requirement": "物体位置、姿态、大小、速度、可达性进入明确规划与安全输入",
+      "gate": "逐帧实际对象状态绑定、坐标/尺度校验、可达与拥挤判定、过时/缺失状态安全处理；视觉接口另独立校验",
+      "status": "PARTIAL",
+      "evidence": "https://asimfish.github.io/safeduo-dashboard/docs/safety_object_binding_20261006/",
+      "measured": "旧物体21字段输入记录，只有位置/朝向用于初始参考调整；未改神经观测；非在线视觉验证",
+      "missing": "在线对象反馈、支持确认、姿态/速度稳定、缺失与噪声、物体危害判据"
+    },
+    {
+      "id": "grasp",
+      "requirement": "真实物理夹持、抬升、搬运、放置和释放",
+      "gate": "正式100mm抬升、>=2s稳定持物准入；摩擦接触驱动，无reset后物体写位姿、parenting或固定关节替代摩擦夹持；指定手接触和阶段成功联合判定",
+      "status": "FAIL",
+      "evidence": "https://asimfish.github.io/safeduo-dashboard/docs/safety_object_binding_20261006/",
+      "measured": "旧固定轨迹1/4、位姿绑定1/4达旧门槛；6/8失败；通过槽3/6的U抬升仅退离阶段出现，无双手同时归因接触",
+      "missing": "反馈式夹持、支撑确认、稳定释放；100mm/2s准入与四手共同持物未通过"
+    },
+    {
+      "id": "cooperative_task",
+      "requirement": "真实四臂共同任务且有安全与不安全的同输入对照",
+      "gate": "同一raw/S0外生命令初态对象资产；cross/self/table各危害；选择性暂停、另一臂移开、恢复、任务成功和零违规全部通过",
+      "status": "NOT_ACCEPTED",
+      "evidence": "https://asimfish.github.io/safeduo-dashboard/docs/safety_object_binding_20261006/",
+      "measured": "已有F双臂和U双臂各搬一物体的并行任务；四臂共持或交接同一物体未验证",
+      "missing": "共同任务参考、危害注入、原生全事件状态/接触与独立危害判据"
+    },
+    {
+      "id": "native_oracle",
+      "requirement": "完整原生观测和独立危害判据，无漏测或单看画面",
+      "gate": "9021球对与82碰撞刚体原生接触每个物理子步，全74关节/实际目标/FIFO、对象风险；非有限数据或分母缺失即拒绝",
+      "status": "PASS_BOUNDED_ROBOT_DIAGNOSTICS_TASK_ORACLE_PENDING",
+      "evidence": "gravity_hold128_v1/FINISH_EXECUTION_V1.json",
+      "measured": "短程32子步/全128的几何、点接触、全关节、力矩命令读回独审通过；不等于全网格/摩擦/对象安全证书",
+      "missing": "对象全阶段危害和全任务接触；正式冻结集再校验"
+    },
+    {
+      "id": "visual_delivery",
+      "requirement": "网页可审阅的安全对照、完整视角和证据归档",
+      "gate": "俯视/正视/侧视及需要的局部视角正确缩放，原生状态与视频绑定，暂停/恢复/任务侧车；主站链接、实际部署和公共字节回读通过",
+      "status": "PARTIAL_PUBLISHED",
+      "evidence": "https://asimfish.github.io/safeduo-dashboard/",
+      "measured": "旧128随机视频4视角可播放；最新因子诊断全10失败/128行已公开且SHA回读通过；当前重力实验无新视频",
+      "missing": "新机制长轨迹和完整四臂任务的连续原生多视角视频，不可将旧视频标作本轮效果"
+    }
+  ],
+  "source_sha256": {
+    "/mnt/nas/data/lyf/double_hand/PROJECT_PLAN.md": "92203f5ee03c9596743c66c41d48c8e3a95ca242f2009e3db6f96860e7a1c5d8",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/ACCEPTANCE_CRITERIA.json": "01a5b45d1ada7635946f15c1b2e0cee141e8128266bdbed423844cf833c054a3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/gravity_hold128_v1/GRAVITY_HOLD128_RESULT_V1.json": "cfbe3d1e0b4c342301ff0248606455c4034630dbcb9661ec9427df7af4e40add",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/strong_long128_v1/STRONG_LONG128_RESULT_V1.json": "8e658950dda518f1096b64c5f5da252c547e4755c844682ea508cdb6c4686234",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/FINAL_CLOSURE.json": "0b472e5a68ab9e3b273c4fd77416446513b9e21a5dbc13680655155e7565942a",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/RESULTS.md": "8b65438e3885a0e99f09f928368b530f109a47583743d55a71485f55e1c6e1b0"
+  },
+  "asset_scope": {
+    "current_diagnostic": "SafeDuo v7: two FR3/F2 and two UR5/DFX; frozen current experiments",
+    "canonical_NAS_plan": "two FR3 + two JAKA Zu7 + four RH56F2",
+    "canonical_promotion": false,
+    "note": "NAS plan safety and task criteria are reused as requirements; experimental v7 evidence does not certify the different canonical asset profile."
+  }
+}

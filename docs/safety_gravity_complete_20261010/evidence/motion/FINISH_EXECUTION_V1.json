@@ -1,0 +1,50 @@
+{
+  "status": "complete",
+  "started_utc": "2026-10-10T09:51:24.616965+00:00",
+  "steps": [
+    {
+      "label": "native",
+      "argv": [
+        "/usr/bin/python3",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/execute_physical_plan_v1.py",
+        "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/QUEUE_RESPONSE128_PLAN_V7.json"
+      ],
+      "status": "complete",
+      "started_utc": "2026-10-10T09:51:24.617079+00:00",
+      "actual_exit": 0,
+      "closed_utc": "2026-10-10T09:52:18.313178+00:00",
+      "log_sha256": "71cb487b4b855619cd8e256779c5ca9293d2d3c30fecad3dd57f54ea54c28cf7"
+    },
+    {
+      "label": "audit_batch1_queue_projection",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/queue_response128_v2/analyse_completed_jobs_v6.py",
+        "1",
+        "queue_projection"
+      ],
+      "status": "complete",
+      "started_utc": "2026-10-10T09:52:18.313560+00:00",
+      "actual_exit": 0,
+      "closed_utc": "2026-10-10T09:52:21.714641+00:00",
+      "log_sha256": "780790c32c2ac4e9bb663ea5bf7e5b613aa47dfa025fdc116d5874321d215e8b"
+    },
+    {
+      "label": "aggregate",
+      "argv": [
+        "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+        "-B",
+        "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/queue_response128_v2/analyse_completed_jobs_v6.py"
+      ],
+      "status": "complete",
+      "started_utc": "2026-10-10T09:52:21.714975+00:00",
+      "actual_exit": 0,
+      "closed_utc": "2026-10-10T09:52:22.032575+00:00",
+      "log_sha256": "075f743cc70ce86d7c6c63b0b76b95cd579a4b22d7328b4259903a44036f5171"
+    }
+  ],
+  "result_sha256": "7747d3c0c0b94ef4a1fd148b0d5dd4d434574d9d7ea75774954db420bffa46e6",
+  "closed_utc": "2026-10-10T09:52:22.033055+00:00"
+}
