@@ -1,0 +1,149 @@
+{
+  "schema": "astra.single_case.independent_release_review.v7",
+  "review_verdict": "BLOCKED",
+  "tests_run": 2,
+  "failures": [],
+  "errors": [],
+  "tests_pass_mean": "Source/closure checks and exact blocking defect reproduction completed; NOT candidate admission.",
+  "unresolved_material_findings": [
+    {
+      "id": "V7_KIT_ACTIVE_TOKEN_MISMATCH",
+      "severity": "Major",
+      "blocking": true,
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/parent_runtime_v2.py",
+      "line": 87,
+      "source_sha256": "206043c4efa8c37710f27ebf6250cc01287f373282923fc72c515d905dd3ae39",
+      "actual_helper_value": "Yes: 0",
+      "required_validator_value": "Yes:0",
+      "consequence": "Valid actual GPU identity cannot close either negative or positive products.",
+      "minimum_fix": "Align the validator with the exact helper active representation and test the real helper output, without lowering UUID/index/bus/settings checks.",
+      "parent_closed_release": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/CLOSED_RELEASE_V7.json",
+        "sha256": "65328645e0bdb68c83a30f88796b4fd60221d5630bec00aeb8351b06dcb36dde"
+      },
+      "actual_CPU_reproduction": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "V7_KIT_ACTIVE_TOKEN_MISMATCH",
+      "severity": "Major",
+      "blocking": true,
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/parent_runtime_v2.py",
+      "line": 87,
+      "source_sha256": "206043c4efa8c37710f27ebf6250cc01287f373282923fc72c515d905dd3ae39",
+      "actual_helper_value": "Yes: 0",
+      "required_validator_value": "Yes:0",
+      "consequence": "Valid actual GPU identity cannot close either negative or positive products.",
+      "minimum_fix": "Align the validator with the exact helper active representation and test the real helper output, without lowering UUID/index/bus/settings checks.",
+      "parent_closed_release": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/CLOSED_RELEASE_V7.json",
+        "sha256": "65328645e0bdb68c83a30f88796b4fd60221d5630bec00aeb8351b06dcb36dde"
+      },
+      "actual_CPU_reproduction": true
+    }
+  ],
+  "resolved_finding": null,
+  "plan": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/PARENT_PLAN_DRAFT_V2.json",
+    "sha256": "3b9a0816b695e1ab152435bed4b48df8a6a0481f9092ccefac186825b0a62873"
+  },
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/SOURCE_GRAPH_V2.json",
+    "sha256": "ccacac896ac925bca86529252e406f59925fd7a653835cf221c1536942c62a5f"
+  },
+  "parent_reaped_closure": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/REAPED_CLOSURE_V7.json",
+    "sha256": "dd2a06ef51fbf52410b69e4bac9e51880ca03f7161ca7355f22522757dd73ce4"
+  },
+  "cleanup_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/native_camera_repair_CPU_v7/cleanup_negative_tests2/ACTUAL_WAIT.json",
+    "sha256": "acb20bc099b63b6bf56a954fc650b93544d2f59c608034a1af26eae6ad7d43e3"
+  },
+  "prepare_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/native_camera_repair_CPU_v7/prepare1/ACTUAL_WAIT.json",
+    "sha256": "2d43a581bcacfc380741fef8206da23f4ab7cfab4fd989c1390d76748d64c889"
+  },
+  "hooke_closed_handoff": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/CLOSED_RELEASE_V7.json",
+    "sha256": "65328645e0bdb68c83a30f88796b4fd60221d5630bec00aeb8351b06dcb36dde"
+  },
+  "source_refs": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/PARENT_PLAN_DRAFT_V2.json": "3b9a0816b695e1ab152435bed4b48df8a6a0481f9092ccefac186825b0a62873",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/REAPED_CLOSURE_V7.json": "dd2a06ef51fbf52410b69e4bac9e51880ca03f7161ca7355f22522757dd73ce4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/SOURCE_GRAPH_V2.json": "ccacac896ac925bca86529252e406f59925fd7a653835cf221c1536942c62a5f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/gpu_selection_v5.py": "22ecb894a8a13f682c759c79576a42e227a5a6a46ee04199609f76594682c523",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/parent_runtime_v2.py": "206043c4efa8c37710f27ebf6250cc01287f373282923fc72c515d905dd3ae39",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v7/repair_common_v2.py": "ac22b30f77f94cf2a53128528b3e29e77d7eadbde6a0610eb983e1552bc25650",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/owned_discovery_independent_review_v1/INDEPENDENT_DISCOVERY_REVIEW_V1.json": "e75a502586032ebd2e31c63d453829b2e5c30ac3b3093a98f61d6dc1f5814559"
+  },
+  "tests_evidence": {
+    "source_binding": {
+      "source_graph_files": 695,
+      "request_sources": 697,
+      "original500": 500,
+      "candidate_V3": 10,
+      "preserved_V6": 19,
+      "core9_cleanup10_not_rerun": true,
+      "core_independent5_reused": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/owned_discovery_independent_review_v1/INDEPENDENT_DISCOVERY_REVIEW_V1.json",
+        "sha256": "e75a502586032ebd2e31c63d453829b2e5c30ac3b3093a98f61d6dc1f5814559"
+      }
+    },
+    "loader_wiring": {
+      "actual_module_imported": true,
+      "exact_new_core": true,
+      "frozen_runtime_module_not_replaced": true,
+      "loader_SHA_tamper_rejected": true,
+      "resource_limits_unchanged": true
+    },
+    "negative_gate": {
+      "native0_or_expected1_intent_supported": true,
+      "blocked_by_actual_Kit_adapter": true,
+      "missing_ENTRY_not_waived": true,
+      "coverage_negative_never_qualified": true
+    }
+  },
+  "native_launch_authorized": false,
+  "native_pass": false,
+  "safety_acceptance": false,
+  "per_state_gate_released": false,
+  "native_executions": 0,
+  "status": "CLOSED_INDEPENDENT_RELEASE_REVIEW_CPU_ONLY",
+  "real_CPU_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/single_case_camera_reader_v7/release_review_v7/cpu_attempt1/ACTUAL_WAIT.json",
+    "sha256": "2ef0442325ca1de60bf43398a966c4917348012d912f2ff42602fee7fc1f2c99"
+  },
+  "child_pid": 700598,
+  "startticks": 173297991,
+  "actual_wait_exit": 0,
+  "raw_wait_status": 0,
+  "log_sha256": "fd98d90e3905f5dd9705550f73ba45b51b451390273485472e1ca523dfad7d0b",
+  "reader_source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/actual_angle_oracle.py": "f92febb5708378c035be081c3bd4ae89ddfc94d7f4ccf5363610b2df578562eb",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/camera_adapter.py": "50ae4efdd37abe37e9cce8ee456457a991f772d9986a0df5c538ba85dbbff69c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/camera_optics.py": "358a6f02e39b89331ce668e79dfe2d4c6e17ae809b8ad777fcd8bac55acdb2e9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/camera_oracle.py": "27a1cf6f0a48f61522fda432053fc6e0a4c6d4a844761feae182bd0490c8e860",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/closed_waits_v4.py": "46010c796e3301132c5a002bf99ef00fe5015a4dfdb8f3b74f18c29c5238c4e2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/evidence_io.py": "2ba7a72610d55290cec41a2387ab7190a52335216c406465c31af73bc27084c6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/json_stream.py": "089c614c8a1562328b9f8abe530714c0f8af3c994f5eea7ebf45219c6f58f61c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/receipt_schema.py": "1356ec5eb17239a5184e2bfe131728737fa60b21de3f7544eb6bd20e259dd151",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/root_restore_reader.py": "61e3216c99357fb49c3261acf3d0572fbc59dc1e07b5ec64fa3cb1dd67eb74ee",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/science.py": "4c6b22b2a28db1cc26af71cc542874b35aa190f2a53293b049453bd1c133e259",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/single_camera.py": "f833011833b2b3fd67aaa868c554aa12d6aabe37bfb9048cdd1662059180c814",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/single_reader.py": "af19dd92e1912bdb91f3a9945ae08a69df71a1c57e2284a96f0c2ce8e508cf24",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/single_state.py": "2434ecad97bfb02b69432eed1f02938d64310ae66c40206c875455fcec7da007",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/terminal_numbers.py": "a309024f97a21db4c35abf7251411bd717395fb81d57528728035c999c7f2aaa",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v4/thread_assertion.py": "aa3177357f79fe9b9033d7842371b6e2c8da3c705a256f4ea14556e41776c212",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v5/REUSED_SOURCES_V5.json": "a351c89f3c45e67763c93d02961e82b4a896d5fdcaf5246a3e765ab429ab0dfc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v5/anchors.json": "a382e9c8c6b3d36bcbec834e8b45f06946f49c353c85e3d9307c9a021b87a205",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v5/cpu_supervisor.py": "18050b184e9560dd4770ffb1e881bd769e48edba563179eab11428b1494f9aea",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v5/evidence_io.py": "b6a9d435956ca30c5b0125a912ad089699697340db47bc7c08ec943185041536",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_single_case_camera_reader_v5/reuse_v5.py": "8a7909e9ec313774051e855cf9c6764cd78290b36a1a1edb292dde339c087b82",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/camera_release_review_v7_v1/REUSE.json": "6ff90885f4a86cf224e0ecbf3d344346def28ec8ebd8bebc40a82d537a65d908",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/camera_release_review_v7_v1/REVIEW_INPUTS.json": "64acc0ac81623da1f17ff8be89d8514823ce4cfce25196fb887d2498c8f5bc0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/camera_release_review_v7_v1/review_v3.py": "33b1df0b47d13371328e1eb45003162ec98c004fd341f1bb3c69a271347bab2a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/camera_release_review_v7_v1/supervisor.py": "eeaea2674022ff329eea6e0d7e066e84ec2526c49518afcae2a96fe5aaabf09d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/camera_release_review_v7_v1/support.py": "0fe31cd752683e89cef1e901502c5a4a2419a5fe8faa878c6a2d478412f0daeb"
+  }
+}

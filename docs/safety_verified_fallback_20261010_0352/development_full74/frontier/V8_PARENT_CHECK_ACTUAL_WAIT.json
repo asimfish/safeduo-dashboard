@@ -1,0 +1,57 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "CPU_REVIEW_ONLY",
+  "child_pid": 750686,
+  "waited_pid": 750686,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T05:39:43.681806+00:00",
+  "closed_utc": "2026-10-10T05:39:44.132050+00:00",
+  "elapsed_seconds": 0.45027036406099796,
+  "max_wall_seconds": 120,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 750686,
+      "ppid": 750685,
+      "pgid": 750686,
+      "sid": 750686,
+      "startticks": 173367011,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 750685
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 45020,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_camera_repair_review_v8/parent_check_v1/child.log",
+  "log_sha256": "c9fc5d3159107f0703fb1a6d68c224ac0b6838ddac7b7f92a8367593319ff904",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_camera_repair_review_v8/parent_check_v1/resources.jsonl",
+  "outer_monitor_sha256": "867f585d99fd3821e9aaf8cc39dc8a48b6296320587e94ba0418df8708870c95",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v8/parent_runtime_v2.py",
+    "--plan",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v8/PARENT_PLAN_DRAFT_V2.json",
+    "--plan-sha256",
+    "783e6e8e78ee84ff5bdc145490b737dc655facfc3ef103c55d01ca4bf06ef993",
+    "--approval",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_camera_repair_review_v8/PARENT_APPROVAL_V2.json",
+    "--approval-sha256",
+    "5b96d0f36c871ee69a5868fee80809e14907fa08822033ecf8b8e13c6c26670e",
+    "--check-review-cpu"
+  ]
+}

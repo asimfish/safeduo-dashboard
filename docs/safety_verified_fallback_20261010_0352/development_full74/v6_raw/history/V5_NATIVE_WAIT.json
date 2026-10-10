@@ -1,0 +1,119 @@
+{
+  "schema": "astra.full74.parent_native_wait.v1",
+  "backend": "isaac_physx_native",
+  "child_pid": 495790,
+  "waited_pid": 495790,
+  "waitpid_observed": true,
+  "raw_wait_status": 9,
+  "actual_wait_exit": -9,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T04:47:00.989942+00:00",
+  "closed_utc": "2026-10-10T04:53:48.780478+00:00",
+  "elapsed_seconds": 407.79056200012565,
+  "max_wall_seconds": 3600,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 495790,
+      "ppid": 495706,
+      "pgid": 495790,
+      "sid": 495790,
+      "startticks": 173050741,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 495706
+      },
+      "live": false
+    },
+    {
+      "pid": 495927,
+      "ppid": 495790,
+      "pgid": 495790,
+      "sid": 495790,
+      "startticks": 173050888,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_ppid",
+        "parent_identity": {
+          "pid": 495790,
+          "ppid": 495706,
+          "pgid": 495790,
+          "sid": 495790,
+          "startticks": 173050741,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-10T04:47:02.633087+00:00",
+        "task_children_path": "/proc/495790/task/495871/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 497829,
+      "ppid": 495790,
+      "pgid": 495790,
+      "sid": 495790,
+      "startticks": 173052774,
+      "state": "Z",
+      "enrollment": {
+        "kind": "proc_task_children_and_ppid",
+        "parent_identity": {
+          "pid": 495790,
+          "ppid": 495706,
+          "pgid": 495790,
+          "sid": 495790,
+          "startticks": 173050741,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-10T04:47:21.633944+00:00",
+        "task_children_path": "/proc/495790/task/495790/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [
+    {
+      "pid": 495927,
+      "startticks": 173050888,
+      "previous_session": [
+        495790,
+        495790
+      ],
+      "current_session": [
+        495927,
+        495790
+      ],
+      "utc": "2026-10-10T04:47:03.068027+00:00",
+      "ownership_basis": "unchanged enrolled PID/startticks and retained pidfd; session is telemetry, never enrollment authority"
+    }
+  ],
+  "signals": [],
+  "child_max_rss_KiB": 24354872,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/native_process/child.log",
+  "log_sha256": "a5d81d5b2cfac00088e6a336a9a9e2e8a51f695b05982c7ff81bfcf4d2a97752",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/native_process/resources.jsonl",
+  "outer_monitor_sha256": "e561f824e52a9fcb1b7024d90d282d417eb1f0a61d895b6348e27ac612c3c1df",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v5/native_camera_repair_entry_v2.py",
+    "--request",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/FROZEN_CAMERA_REPAIR_REQUEST_V2.json",
+    "--request-sha256",
+    "764142753c729e9aa5763f8e1e7774b43fc510148c9144995fe85a1f1013cf8d",
+    "--review",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/BOUND_PARENT_REVIEW_V2.json",
+    "--review-sha256",
+    "df5c5eeb526b802250fc49d04ee39b1e20cd3ba5ec9f506361f41ba5f36e6319",
+    "--execute-native-diagnostic",
+    "--permit",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/NATIVE_LIVE_PERMIT_V1.json",
+    "--permit-sha256",
+    "d6b875b5ef1443fafee7c377975fe352925c8f2045a0980f4d1d38da973f6d5f",
+    "--headless",
+    "--enable_cameras",
+    "--device",
+    "cuda:1"
+  ]
+}

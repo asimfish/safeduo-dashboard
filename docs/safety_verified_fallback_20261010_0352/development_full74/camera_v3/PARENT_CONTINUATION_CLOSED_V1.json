@@ -1,0 +1,160 @@
+{
+  "status": "failed",
+  "started_utc": "2026-10-10T04:27:56.471669+00:00",
+  "parent_identity": {
+    "pid": 397477,
+    "ppid": 397441,
+    "pgid": 397477,
+    "sid": 397477,
+    "startticks": 172936231,
+    "state": "R"
+  },
+  "request_frozen": true,
+  "native_launched": true,
+  "cpu_check_actual_wait": {
+    "schema": "astra.full74.owned_cpu_wait.v1",
+    "backend": "CPU_REQUEST_CHECK_ONLY",
+    "child_pid": 397612,
+    "waited_pid": 397612,
+    "waitpid_observed": true,
+    "raw_wait_status": 0,
+    "actual_wait_exit": 0,
+    "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+    "started_utc": "2026-10-10T04:27:56.484484+00:00",
+    "closed_utc": "2026-10-10T04:27:57.043196+00:00",
+    "elapsed_seconds": 0.5587344970554113,
+    "max_wall_seconds": 120,
+    "resource_abort": null,
+    "error": null,
+    "owned_identities": [
+      {
+        "pid": 397612,
+        "ppid": 397477,
+        "pgid": 397612,
+        "sid": 397612,
+        "startticks": 172936291,
+        "state": "S",
+        "enrollment": {
+          "kind": "direct_fork_handshake",
+          "parent_pid": 397477
+        },
+        "live": false
+      }
+    ],
+    "owned_session_transitions": [],
+    "signals": [],
+    "child_max_rss_KiB": 43568,
+    "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/cpu_check/child.log",
+    "log_sha256": "117e81bc4f43d7b8b7e9eb4e0e9865b2b43cd54e6058236cafff05d3bddbea1f",
+    "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/cpu_check/resources.jsonl",
+    "outer_monitor_sha256": "d39f2eaae6a64ba762a16f77a53549a42d2cbc540fd3df7b79910c5702fa72ee",
+    "argv": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/native_camera_repair_entry_v2.py",
+      "--request",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/FROZEN_CAMERA_REPAIR_REQUEST_V2.json",
+      "--request-sha256",
+      "6dce37d9d5f011ff5fa6ebcc125b51f84ed274d4a9ffbb8022c05e0743f72208",
+      "--review",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/BOUND_PARENT_REVIEW_V2.json",
+      "--review-sha256",
+      "442f9469deb203900d0d0331a66ba74b6dcb16a719b76898bd2099c31dec66e0",
+      "--check-cpu"
+    ]
+  },
+  "native_actual_wait": {
+    "schema": "astra.full74.parent_native_wait.v1",
+    "backend": "isaac_physx_native",
+    "child_pid": 397784,
+    "waited_pid": 397784,
+    "waitpid_observed": true,
+    "raw_wait_status": 256,
+    "actual_wait_exit": 1,
+    "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+    "started_utc": "2026-10-10T04:27:57.605873+00:00",
+    "closed_utc": "2026-10-10T04:27:58.379924+00:00",
+    "elapsed_seconds": 0.7740666531026363,
+    "max_wall_seconds": 3600,
+    "resource_abort": null,
+    "error": null,
+    "owned_identities": [
+      {
+        "pid": 397784,
+        "ppid": 397477,
+        "pgid": 397784,
+        "sid": 397784,
+        "startticks": 172936403,
+        "state": "S",
+        "enrollment": {
+          "kind": "direct_fork_handshake",
+          "parent_pid": 397477
+        },
+        "live": false
+      }
+    ],
+    "owned_session_transitions": [],
+    "signals": [],
+    "child_max_rss_KiB": 43176,
+    "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/native_process/child.log",
+    "log_sha256": "70b7fdf3ba0185e7cbf910e42512c6b6337db77c4ed2c5f8b4a0195db1217386",
+    "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/native_process/resources.jsonl",
+    "outer_monitor_sha256": "787803dd5ee77d2a500197eab83e4d9c6e605b8488801243d8b7f75caa0fbcfb",
+    "argv": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/native_camera_repair_entry_v2.py",
+      "--request",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/FROZEN_CAMERA_REPAIR_REQUEST_V2.json",
+      "--request-sha256",
+      "6dce37d9d5f011ff5fa6ebcc125b51f84ed274d4a9ffbb8022c05e0743f72208",
+      "--review",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/BOUND_PARENT_REVIEW_V2.json",
+      "--review-sha256",
+      "442f9469deb203900d0d0331a66ba74b6dcb16a719b76898bd2099c31dec66e0",
+      "--execute-native-diagnostic",
+      "--permit",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/NATIVE_LIVE_PERMIT_V1.json",
+      "--permit-sha256",
+      "861974dd7552108ee5f7c3c0f479a29f7e23a64edb30dfb264fd719004be5456",
+      "--headless",
+      "--enable_cameras",
+      "--device",
+      "cuda:0"
+    ]
+  },
+  "error": "ValueError: real reaped wait0 required",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/parent_runtime_v2.py\", line 138, in execute\n    result=validate_products(root,rs,wait);write(root/'NATIVE_DIAGNOSTIC_CLOSED_V1.json',result)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/parent_runtime_v2.py\", line 64, in validate_products\n    successful_wait(wait)\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/repair_common_v2.py\", line 95, in successful_wait\n    require(wait.get('actual_wait_exit')==0 and wait.get('raw_wait_status')==0 and\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_runtime_identity_v4/runtime_core_v4.py\", line 36, in require\n    raise ValueError(why)\nValueError: real reaped wait0 required\n",
+  "closed_utc": "2026-10-10T04:27:58.405367+00:00",
+  "final_serial_lease": {
+    "schema": "astra.full74.continuous_serial_lease.v3",
+    "owner_pid": 397477,
+    "owner_startticks": 172936231,
+    "locked_epoch": 1791606476.2274723,
+    "elapsed_seconds": 2.178045018808916,
+    "kernel_lock": {
+      "fd": 3,
+      "device": 60,
+      "inode": 208607645,
+      "mount_id": 1886,
+      "link": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_screen_native_v2/.parent_owned_native_serial_v2.lock",
+      "flags": "02500002",
+      "lock_record": [
+        "1:",
+        "FLOCK",
+        "ADVISORY",
+        "WRITE",
+        "397477",
+        "00:3c:208607645",
+        "0",
+        "EOF"
+      ],
+      "evidence_source": "/proc/397477/fdinfo/3"
+    },
+    "flock_acquisitions": 1,
+    "duplicate_flock_calls": 0,
+    "pathname_inode_equality_used": false,
+    "checked_utc": "2026-10-10T04:27:58.405519+00:00",
+    "scope": "retained private FD + kernel FLOCK WRITE owner; parent must never replace shared lock path"
+  }
+}

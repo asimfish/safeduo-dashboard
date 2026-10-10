@@ -1,0 +1,4105 @@
+{
+  "schema": "astra.camera_angle_diagnostic.v1",
+  "status": "CLOSED_READONLY_ANGLE_CAUSAL_REPLAY_ONLY",
+  "CPU_oracles": {
+    "tests_run": 14,
+    "passed": [
+      "wrap359_to001",
+      "wrap001_to359",
+      "same_angle_plus360",
+      "exact30_separation_unchanged",
+      "below30_rejected",
+      "quaternion_roundtrip_[0, 0, 0, 1]",
+      "quaternion_roundtrip_[1, 0, 0, 0]",
+      "quaternion_roundtrip_[0, 1, 0, 0]",
+      "quaternion_roundtrip_[0, 0, 1, 0]",
+      "quaternion_roundtrip_[0.2, 0.3, 0.4, 0.5]",
+      "float32_eye_0.0",
+      "float32_eye_8.0",
+      "float32_eye_16.0",
+      "float32_eye_32.0"
+    ],
+    "native_pass": false,
+    "safety_acceptance": false
+  },
+  "scope": "all32 initial hand camera metadata only; no raw pixel audit or updated acceptance",
+  "native_original_actual_exit": -9,
+  "original_reader_threshold_deg": 0.0001,
+  "minimum_view_separation_deg": 30.0,
+  "frozen_reader_pose_AST": {
+    "camera_optics.py": {
+      "original": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_failed_camera_diagnostic_v2/camera_optics.py",
+      "original_sha256": "358a6f02e39b89331ce668e79dfe2d4c6e17ae809b8ad777fcd8bac55acdb2e9",
+      "copy_sha256": "358a6f02e39b89331ce668e79dfe2d4c6e17ae809b8ad777fcd8bac55acdb2e9",
+      "AST_identical": true
+    },
+    "camera_adapter.py": {
+      "original": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_failed_camera_diagnostic_v2/camera_adapter.py",
+      "original_sha256": "50ae4efdd37abe37e9cce8ee456457a991f772d9986a0df5c538ba85dbbff69c",
+      "copy_sha256": "50ae4efdd37abe37e9cce8ee456457a991f772d9986a0df5c538ba85dbbff69c",
+      "AST_identical": true
+    }
+  },
+  "hand_attempts_with_camera": 732,
+  "angle_gate_failure_count": 16,
+  "parent_reported_cases": [
+    {
+      "env_id": 0,
+      "arm": "F_L",
+      "attempt": 1,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_000/F_L_attempt_01.attempt.json",
+        "sha256": "9e8b4c3b8a28297fb1202547938c4dda57a8621102df6ca5b3abda7e6078d7d0"
+      },
+      "metrics": {
+        "declared_deg": 209.70649481802266,
+        "world_direction_deg": 209.70649481802266,
+        "requested_eye_minus_center_deg": 209.70649481802246,
+        "actual_eye_minus_native_center_deg": 209.70665941428715,
+        "frozen_reader_deg": 209.70665941428715,
+        "signed_error_deg": 0.0001645962644829524,
+        "absolute_error_deg": 0.0001645962644829524,
+        "float32_eye_counterfactual_deg": 209.70665941428715,
+        "float32_eye_and_target_direction_deg": 209.70677154448876,
+        "matrix_optical_back_axis_deg": 209.7067716868667,
+        "matrix_axis_vs_declared_deg": 0.00027686884402555734,
+        "actual_eye_world_m": [
+          12.173421859741211,
+          -8.565698623657227,
+          1.264589786529541
+        ],
+        "requested_eye_world_m": [
+          12.173421431714434,
+          -8.56569816791491,
+          1.2645897666791766
+        ],
+        "native_target_world_m": [
+          12.357237815856934,
+          -8.46082353591919,
+          0.7507961690425873
+        ],
+        "actual_eye_minus_requested_m": [
+          4.280267766887391e-07,
+          -4.5574231677392163e-07,
+          1.9850364463280812e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          4.76837158203125e-07,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.21162960509058806,
+        "distance_m": 0.5556716396588262,
+        "inverse_horizontal_baseline_per_m": 4.725236809717383,
+        "azimuth_condition_relative_to_3D_direction": 2.625680085831899,
+        "elevation_deg": 67.61342660118521,
+        "first_order_position_error_prediction_deg": 0.00016459615117008552,
+        "position_error_angular_bound_deg": 0.0001692712416970673,
+        "producer_pose_position_max_error_m": 4.5574231677392163e-07,
+        "producer_pose_axis_max_error": 1.6896668611487975e-06,
+        "matrix_orthogonality_max_error": 3.92558092865525e-17,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.1678636223077774,
+          -0.0974896773695946,
+          -0.49266126751899714,
+          0.8482938421317576
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 209.70677165030062,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 0,
+      "arm": "F_L",
+      "attempt": 4,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_000/F_L_attempt_04.attempt.json",
+        "sha256": "85dd1a3fc7b88f3d740c2af591d3d7fd37f127f89eb4de9267f6280f2a2fa9a9"
+      },
+      "metrics": {
+        "declared_deg": 29.70649481802268,
+        "world_direction_deg": 29.706494818022687,
+        "requested_eye_minus_center_deg": 29.706494818022875,
+        "actual_eye_minus_native_center_deg": 29.706359244387272,
+        "frozen_reader_deg": 29.706359244387272,
+        "signed_error_deg": -0.00013557363541849554,
+        "absolute_error_deg": 0.00013557363541849554,
+        "float32_eye_counterfactual_deg": 29.706359244387272,
+        "float32_eye_and_target_direction_deg": 29.706247543275136,
+        "matrix_optical_back_axis_deg": 29.706249985415123,
+        "matrix_axis_vs_declared_deg": -0.0002448326075636942,
+        "actual_eye_world_m": [
+          12.54176139831543,
+          -8.355545997619629,
+          0.23502695560455322
+        ],
+        "requested_eye_world_m": [
+          12.541760999866021,
+          -8.35554564620382,
+          0.23502696271389
+        ],
+        "native_target_world_m": [
+          12.357237815856934,
+          -8.46082353591919,
+          0.7507961690425873
+        ],
+        "actual_eye_minus_requested_m": [
+          3.984494085784718e-07,
+          -3.5141580845277076e-07,
+          -7.1093367859376144e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          4.76837158203125e-07,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.21244366913074356,
+        "distance_m": 0.5578083847381834,
+        "inverse_horizontal_baseline_per_m": 4.707130149331836,
+        "azimuth_condition_relative_to_3D_direction": 2.6256766653511954,
+        "elevation_deg": -67.61339585747363,
+        "first_order_position_error_prediction_deg": -0.00013557374532977812,
+        "position_error_angular_bound_deg": 0.0001432847642892836,
+        "producer_pose_position_max_error_m": 3.984494085784718e-07,
+        "producer_pose_axis_max_error": 1.465716789272875e-06,
+        "matrix_orthogonality_max_error": 1.1102230246251565e-15,
+        "matrix_determinant": 1.0000000000000013,
+        "derived_quaternion_xyzw": [
+          0.49266511590657175,
+          0.8482916422078053,
+          0.16786304248722286,
+          0.09749037027359006
+        ],
+        "quaternion_reconstruction_residual": 6.661338147750939e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 29.70624978904558,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 3,
+      "arm": "U_R",
+      "attempt": 2,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_003/U_R_attempt_02.attempt.json",
+        "sha256": "da31c485652973d3d3ca1e18ad488b6279321d6eda210e2baa5f49a0d3cce3cf"
+      },
+      "metrics": {
+        "declared_deg": 76.6466257592137,
+        "world_direction_deg": 76.6466257592137,
+        "requested_eye_minus_center_deg": 76.64662575921406,
+        "actual_eye_minus_native_center_deg": 76.64683053014475,
+        "frozen_reader_deg": 76.64683053014475,
+        "signed_error_deg": 0.0002047709310488699,
+        "absolute_error_deg": 0.0002047709310488699,
+        "float32_eye_counterfactual_deg": 76.64683053014475,
+        "float32_eye_and_target_direction_deg": 76.64681755280378,
+        "matrix_optical_back_axis_deg": 76.64681758222332,
+        "matrix_axis_vs_declared_deg": 0.00019182300962938825,
+        "actual_eye_world_m": [
+          11.248993873596191,
+          3.7405271530151367,
+          2.0914533138275146
+        ],
+        "requested_eye_world_m": [
+          11.24899431621449,
+          3.740527136671521,
+          2.0914532785609046
+        ],
+        "native_target_world_m": [
+          11.22092056274414,
+          3.622259020805359,
+          1.606453776359558
+        ],
+        "actual_eye_minus_requested_m": [
+          -4.426182993455541e-07,
+          1.6343615794056632e-08,
+          3.526661007668963e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.12155435771121231,
+        "distance_m": 0.5000000132227169,
+        "inverse_horizontal_baseline_per_m": 8.226772111089513,
+        "azimuth_condition_relative_to_3D_direction": 4.113386164325036,
+        "elevation_deg": 75.92990818621846,
+        "first_order_position_error_prediction_deg": 0.00020477078527610036,
+        "position_error_angular_bound_deg": 0.00020877429360874114,
+        "producer_pose_position_max_error_m": 4.426182993455541e-07,
+        "producer_pose_axis_max_error": 8.828543324665428e-07,
+        "matrix_orthogonality_max_error": 1.5543122344752192e-15,
+        "matrix_determinant": 1.0000000000000013,
+        "derived_quaternion_xyzw": [
+          0.014239704323351324,
+          0.12164571210526288,
+          0.9857407272457431,
+          0.11538964509963963
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 76.6468175418169,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 3,
+      "arm": "U_R",
+      "attempt": 6,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_003/U_R_attempt_06.attempt.json",
+        "sha256": "55d8b68a4b9385f38ff45199b4a8d8dd4f8ed40468ea3923f5e07193fc149678"
+      },
+      "metrics": {
+        "declared_deg": 256.6466257592137,
+        "world_direction_deg": 256.6466257592137,
+        "requested_eye_minus_center_deg": 256.6466257592141,
+        "actual_eye_minus_native_center_deg": 256.64683053014477,
+        "frozen_reader_deg": 256.64683053014477,
+        "signed_error_deg": 0.0002047709310772916,
+        "absolute_error_deg": 0.0002047709310772916,
+        "float32_eye_counterfactual_deg": 256.64683053014477,
+        "float32_eye_and_target_direction_deg": 256.64684350746097,
+        "matrix_optical_back_axis_deg": 256.64684332804234,
+        "matrix_axis_vs_declared_deg": 0.0002175688286456534,
+        "actual_eye_world_m": [
+          11.19284725189209,
+          3.503990888595581,
+          1.1214542388916016
+        ],
+        "requested_eye_world_m": [
+          11.19284680927379,
+          3.503990904939197,
+          1.1214542741582114
+        ],
+        "native_target_world_m": [
+          11.22092056274414,
+          3.622259020805359,
+          1.606453776359558
+        ],
+        "actual_eye_minus_requested_m": [
+          4.426182993455541e-07,
+          -1.6343615794056632e-08,
+          -3.5266609854645026e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.12155435771121231,
+        "distance_m": 0.5000000132227169,
+        "inverse_horizontal_baseline_per_m": 8.226772111089513,
+        "azimuth_condition_relative_to_3D_direction": 4.113386164325036,
+        "elevation_deg": -75.92990818621846,
+        "first_order_position_error_prediction_deg": 0.00020477078527610036,
+        "position_error_angular_bound_deg": 0.00020877429360874114,
+        "producer_pose_position_max_error_m": 4.426182993455541e-07,
+        "producer_pose_axis_max_error": 8.859628718715928e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999998,
+        "derived_quaternion_xyzw": [
+          0.9857407249620912,
+          -0.11538942201959418,
+          -0.01423970335903982,
+          0.12164594233036025
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 256.64684335312074,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 6,
+      "arm": "U_L",
+      "attempt": 3,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_006/U_L_attempt_03.attempt.json",
+        "sha256": "999a5ac5472626bc5753c69fd1438e994523704cb2119c9180b41fd5e2319679"
+      },
+      "metrics": {
+        "declared_deg": 244.7693431024865,
+        "world_direction_deg": 244.76934310248646,
+        "requested_eye_minus_center_deg": 244.76934310248734,
+        "actual_eye_minus_native_center_deg": 244.7692261510309,
+        "frozen_reader_deg": 244.7692261510309,
+        "signed_error_deg": -0.00011695145559542652,
+        "absolute_error_deg": 0.00011695145559542652,
+        "float32_eye_counterfactual_deg": 244.7692261510309,
+        "float32_eye_and_target_direction_deg": 244.7691156000987,
+        "matrix_optical_back_axis_deg": 244.76911489748548,
+        "matrix_axis_vs_declared_deg": -0.00022820500100806385,
+        "actual_eye_world_m": [
+          7.217382431030273,
+          -3.3062264919281006,
+          0.9953432083129883
+        ],
+        "requested_eye_world_m": [
+          7.217382531611163,
+          -3.3062264045915195,
+          0.9953432074175927
+        ],
+        "native_target_world_m": [
+          7.22860860824585,
+          -3.2824028730392456,
+          0.4960372745990753
+        ],
+        "actual_eye_minus_requested_m": [
+          -1.0058088939501886e-07,
+          -8.733658107829001e-08,
+          8.953955354940035e-10
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.026336132438855357,
+        "distance_m": 0.5000000073137594,
+        "inverse_horizontal_baseline_per_m": 37.9706474487741,
+        "azimuth_condition_relative_to_3D_direction": 18.98532400209523,
+        "elevation_deg": 86.9807043643504,
+        "first_order_position_error_prediction_deg": -0.00011695199766760466,
+        "position_error_angular_bound_deg": 0.0002898016005111894,
+        "producer_pose_position_max_error_m": 1.0058088939501886e-07,
+        "producer_pose_axis_max_error": 1.9937215907719907e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 1.0,
+        "derived_quaternion_xyzw": [
+          0.025709139183163608,
+          -0.005753949750214808,
+          -0.21833044290542572,
+          0.9755192206847866
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 244.7691151380547,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 6,
+      "arm": "U_L",
+      "attempt": 5,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_006/U_L_attempt_05.attempt.json",
+        "sha256": "1d156a76e8b4a9cfd3ce9263ce96580bddd54cf7acc0c70f7c80e77da699fa22"
+      },
+      "metrics": {
+        "declared_deg": 64.76934310248649,
+        "world_direction_deg": 64.76934310248649,
+        "requested_eye_minus_center_deg": 64.76934310248733,
+        "actual_eye_minus_native_center_deg": 64.7692261510309,
+        "frozen_reader_deg": 64.7692261510309,
+        "signed_error_deg": -0.00011695145559542652,
+        "absolute_error_deg": 0.00011695145559542652,
+        "float32_eye_counterfactual_deg": 64.7692261510309,
+        "float32_eye_and_target_direction_deg": 64.76933670105778,
+        "matrix_optical_back_axis_deg": 64.76933534877058,
+        "matrix_axis_vs_declared_deg": -7.75371591998919e-06,
+        "actual_eye_world_m": [
+          7.239834785461426,
+          -3.2585792541503906,
+          -0.003268658183515072
+        ],
+        "requested_eye_world_m": [
+          7.239834684880536,
+          -3.2585793414869717,
+          -0.0032686582194421665
+        ],
+        "native_target_world_m": [
+          7.22860860824585,
+          -3.2824028730392456,
+          0.4960372745990753
+        ],
+        "actual_eye_minus_requested_m": [
+          1.0058088939501886e-07,
+          8.733658107829001e-08,
+          3.592709463262622e-11
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.026336132438855357,
+        "distance_m": 0.5000000063837295,
+        "inverse_horizontal_baseline_per_m": 37.9706474487741,
+        "azimuth_condition_relative_to_3D_direction": 18.985323966781394,
+        "elevation_deg": -86.98070435872913,
+        "first_order_position_error_prediction_deg": -0.00011695199766760466,
+        "position_error_angular_bound_deg": 0.0002898016005111894,
+        "producer_pose_position_max_error_m": 1.0058088939501886e-07,
+        "producer_pose_axis_max_error": 4.094976021329355e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.21832857483936144,
+          0.9755196329136754,
+          0.025709362062239657,
+          0.0057539474219081435
+        ],
+        "quaternion_reconstruction_residual": 1.1102230246251565e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 64.76933565197263,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 8,
+      "arm": "F_R",
+      "attempt": 2,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_008/F_R_attempt_02.attempt.json",
+        "sha256": "f49261fc9a2c277311cf9e1cc1c34368f3418bb9c69b486f0bb7e81fc0e87a09"
+      },
+      "metrics": {
+        "declared_deg": 43.520302532671245,
+        "world_direction_deg": 43.52030253267124,
+        "requested_eye_minus_center_deg": 43.52030253267118,
+        "actual_eye_minus_native_center_deg": 43.52020191729014,
+        "frozen_reader_deg": 43.52020191729014,
+        "signed_error_deg": -0.00010061538111472146,
+        "absolute_error_deg": 0.00010061538111472146,
+        "float32_eye_counterfactual_deg": 43.52020191729014,
+        "float32_eye_and_target_direction_deg": 43.52025707959351,
+        "matrix_optical_back_axis_deg": 43.52025727456933,
+        "matrix_axis_vs_declared_deg": -4.525810192035351e-05,
+        "actual_eye_world_m": [
+          9.269773483276367,
+          5.2943949699401855,
+          1.4643118381500244
+        ],
+        "requested_eye_world_m": [
+          9.269773060749234,
+          5.294395003565224,
+          1.464311833225945
+        ],
+        "native_target_world_m": [
+          9.13956069946289,
+          5.170740365982056,
+          0.9976703524589539
+        ],
+        "actual_eye_minus_requested_m": [
+          4.225271332813918e-07,
+          -3.362503875337097e-08,
+          4.924079366475098e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.1795712397587574,
+        "distance_m": 0.5000001063164554,
+        "inverse_horizontal_baseline_per_m": 5.568820493434454,
+        "azimuth_condition_relative_to_3D_direction": 2.7844108387744826,
+        "elevation_deg": 68.95246259012254,
+        "first_order_position_error_prediction_deg": -0.0001006155397398653,
+        "position_error_angular_bound_deg": 0.00013524213508802932,
+        "producer_pose_position_max_error_m": 4.225271332813918e-07,
+        "producer_pose_axis_max_error": 7.451755804077642e-07,
+        "matrix_orthogonality_max_error": 1.751313393103789e-16,
+        "matrix_determinant": 1.0000000000000002,
+        "derived_quaternion_xyzw": [
+          0.07206775157102054,
+          0.16782402780456623,
+          0.9034049992993631,
+          0.3879442512989045
+        ],
+        "quaternion_reconstruction_residual": 2.7755575615628914e-17,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 43.52025753672805,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 8,
+      "arm": "F_R",
+      "attempt": 6,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_008/F_R_attempt_06.attempt.json",
+        "sha256": "4e9c7ca33b0c322060d862e75891184b6cae5b1c14cfa70fad48cbd8d9347002"
+      },
+      "metrics": {
+        "declared_deg": 223.52030253267125,
+        "world_direction_deg": 223.52030253267122,
+        "requested_eye_minus_center_deg": 223.52030253267117,
+        "actual_eye_minus_native_center_deg": 223.52020191729014,
+        "frozen_reader_deg": 223.52020191729014,
+        "signed_error_deg": -0.00010061538111472146,
+        "absolute_error_deg": 0.00010061538111472146,
+        "float32_eye_counterfactual_deg": 223.52020191729014,
+        "float32_eye_and_target_direction_deg": 223.52014675488587,
+        "matrix_optical_back_axis_deg": 223.52014687844607,
+        "matrix_axis_vs_declared_deg": -0.00015565422518193373,
+        "actual_eye_world_m": [
+          9.009347915649414,
+          5.047085762023926,
+          0.5310288667678833
+        ],
+        "requested_eye_world_m": [
+          9.009348338176547,
+          5.047085728398887,
+          0.5310288716919627
+        ],
+        "native_target_world_m": [
+          9.13956069946289,
+          5.170740365982056,
+          0.9976703524589539
+        ],
+        "actual_eye_minus_requested_m": [
+          -4.225271332813918e-07,
+          3.362503875337097e-08,
+          -4.924079366475098e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.1795712397587574,
+        "distance_m": 0.5000001063164554,
+        "inverse_horizontal_baseline_per_m": 5.568820493434454,
+        "azimuth_condition_relative_to_3D_direction": 2.7844108387744826,
+        "elevation_deg": -68.95246259012254,
+        "first_order_position_error_prediction_deg": -0.0001006155397398653,
+        "position_error_angular_bound_deg": 0.00013524213508802932,
+        "producer_pose_position_max_error_m": 4.225271332813918e-07,
+        "producer_pose_axis_max_error": 8.137684165965275e-07,
+        "matrix_orthogonality_max_error": 5.551115123125783e-16,
+        "matrix_determinant": 0.9999999999999996,
+        "derived_quaternion_xyzw": [
+          0.9034046702877134,
+          -0.38794515696784976,
+          -0.07206779380244664,
+          0.16782368719577792
+        ],
+        "quaternion_reconstruction_residual": 2.220446049250313e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 223.5201461289684,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 9,
+      "arm": "F_R",
+      "attempt": 3,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_009/F_R_attempt_03.attempt.json",
+        "sha256": "ab4f7b54ece7fa9171e315458a5a92f350021ddef6c0cabb9988d55058e21fce"
+      },
+      "metrics": {
+        "declared_deg": 47.05191424673458,
+        "world_direction_deg": 47.05191424673459,
+        "requested_eye_minus_center_deg": 47.05191424673463,
+        "actual_eye_minus_native_center_deg": 47.05201612535804,
+        "frozen_reader_deg": 47.05201612535804,
+        "signed_error_deg": 0.00010187862346811016,
+        "absolute_error_deg": 0.00010187862346811016,
+        "float32_eye_counterfactual_deg": 47.05201612535804,
+        "float32_eye_and_target_direction_deg": 47.05205185216855,
+        "matrix_optical_back_axis_deg": 47.052050714765386,
+        "matrix_axis_vs_declared_deg": 0.00013646803080291647,
+        "actual_eye_world_m": [
+          9.635282516479492,
+          8.092609405517578,
+          1.3775763511657715
+        ],
+        "requested_eye_world_m": [
+          9.63528288240272,
+          8.09260911876272,
+          1.3775763762830355
+        ],
+        "native_target_world_m": [
+          9.457786560058594,
+          7.901921510696411,
+          0.9508056044578552
+        ],
+        "actual_eye_minus_requested_m": [
+          -3.659232277186675e-07,
+          2.867548580809398e-07,
+          -2.511726404641479e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.2605123562848755,
+        "distance_m": 0.49999995802272856,
+        "inverse_horizontal_baseline_per_m": 3.8385895174449223,
+        "azimuth_condition_relative_to_3D_direction": 1.919294597588947,
+        "elevation_deg": 58.5989847434065,
+        "first_order_position_error_prediction_deg": 0.00010187860799162134,
+        "position_error_angular_bound_deg": 0.00010224684475313556,
+        "producer_pose_position_max_error_m": 3.659232277186675e-07,
+        "producer_pose_axis_max_error": 1.0482289644064835e-06,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.09906420372874195,
+          0.2518245346191466,
+          0.8958631990147701,
+          0.35241994261741644
+        ],
+        "quaternion_reconstruction_residual": 2.220446049250313e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 47.05205020008351,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    }
+  ],
+  "all_failure_cases": [
+    {
+      "env_id": 0,
+      "arm": "F_L",
+      "attempt": 1,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_000/F_L_attempt_01.attempt.json",
+        "sha256": "9e8b4c3b8a28297fb1202547938c4dda57a8621102df6ca5b3abda7e6078d7d0"
+      },
+      "metrics": {
+        "declared_deg": 209.70649481802266,
+        "world_direction_deg": 209.70649481802266,
+        "requested_eye_minus_center_deg": 209.70649481802246,
+        "actual_eye_minus_native_center_deg": 209.70665941428715,
+        "frozen_reader_deg": 209.70665941428715,
+        "signed_error_deg": 0.0001645962644829524,
+        "absolute_error_deg": 0.0001645962644829524,
+        "float32_eye_counterfactual_deg": 209.70665941428715,
+        "float32_eye_and_target_direction_deg": 209.70677154448876,
+        "matrix_optical_back_axis_deg": 209.7067716868667,
+        "matrix_axis_vs_declared_deg": 0.00027686884402555734,
+        "actual_eye_world_m": [
+          12.173421859741211,
+          -8.565698623657227,
+          1.264589786529541
+        ],
+        "requested_eye_world_m": [
+          12.173421431714434,
+          -8.56569816791491,
+          1.2645897666791766
+        ],
+        "native_target_world_m": [
+          12.357237815856934,
+          -8.46082353591919,
+          0.7507961690425873
+        ],
+        "actual_eye_minus_requested_m": [
+          4.280267766887391e-07,
+          -4.5574231677392163e-07,
+          1.9850364463280812e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          4.76837158203125e-07,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.21162960509058806,
+        "distance_m": 0.5556716396588262,
+        "inverse_horizontal_baseline_per_m": 4.725236809717383,
+        "azimuth_condition_relative_to_3D_direction": 2.625680085831899,
+        "elevation_deg": 67.61342660118521,
+        "first_order_position_error_prediction_deg": 0.00016459615117008552,
+        "position_error_angular_bound_deg": 0.0001692712416970673,
+        "producer_pose_position_max_error_m": 4.5574231677392163e-07,
+        "producer_pose_axis_max_error": 1.6896668611487975e-06,
+        "matrix_orthogonality_max_error": 3.92558092865525e-17,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.1678636223077774,
+          -0.0974896773695946,
+          -0.49266126751899714,
+          0.8482938421317576
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 209.70677165030062,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 0,
+      "arm": "F_L",
+      "attempt": 4,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_000/F_L_attempt_04.attempt.json",
+        "sha256": "85dd1a3fc7b88f3d740c2af591d3d7fd37f127f89eb4de9267f6280f2a2fa9a9"
+      },
+      "metrics": {
+        "declared_deg": 29.70649481802268,
+        "world_direction_deg": 29.706494818022687,
+        "requested_eye_minus_center_deg": 29.706494818022875,
+        "actual_eye_minus_native_center_deg": 29.706359244387272,
+        "frozen_reader_deg": 29.706359244387272,
+        "signed_error_deg": -0.00013557363541849554,
+        "absolute_error_deg": 0.00013557363541849554,
+        "float32_eye_counterfactual_deg": 29.706359244387272,
+        "float32_eye_and_target_direction_deg": 29.706247543275136,
+        "matrix_optical_back_axis_deg": 29.706249985415123,
+        "matrix_axis_vs_declared_deg": -0.0002448326075636942,
+        "actual_eye_world_m": [
+          12.54176139831543,
+          -8.355545997619629,
+          0.23502695560455322
+        ],
+        "requested_eye_world_m": [
+          12.541760999866021,
+          -8.35554564620382,
+          0.23502696271389
+        ],
+        "native_target_world_m": [
+          12.357237815856934,
+          -8.46082353591919,
+          0.7507961690425873
+        ],
+        "actual_eye_minus_requested_m": [
+          3.984494085784718e-07,
+          -3.5141580845277076e-07,
+          -7.1093367859376144e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          4.76837158203125e-07,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.21244366913074356,
+        "distance_m": 0.5578083847381834,
+        "inverse_horizontal_baseline_per_m": 4.707130149331836,
+        "azimuth_condition_relative_to_3D_direction": 2.6256766653511954,
+        "elevation_deg": -67.61339585747363,
+        "first_order_position_error_prediction_deg": -0.00013557374532977812,
+        "position_error_angular_bound_deg": 0.0001432847642892836,
+        "producer_pose_position_max_error_m": 3.984494085784718e-07,
+        "producer_pose_axis_max_error": 1.465716789272875e-06,
+        "matrix_orthogonality_max_error": 1.1102230246251565e-15,
+        "matrix_determinant": 1.0000000000000013,
+        "derived_quaternion_xyzw": [
+          0.49266511590657175,
+          0.8482916422078053,
+          0.16786304248722286,
+          0.09749037027359006
+        ],
+        "quaternion_reconstruction_residual": 6.661338147750939e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 29.70624978904558,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 3,
+      "arm": "U_R",
+      "attempt": 2,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_003/U_R_attempt_02.attempt.json",
+        "sha256": "da31c485652973d3d3ca1e18ad488b6279321d6eda210e2baa5f49a0d3cce3cf"
+      },
+      "metrics": {
+        "declared_deg": 76.6466257592137,
+        "world_direction_deg": 76.6466257592137,
+        "requested_eye_minus_center_deg": 76.64662575921406,
+        "actual_eye_minus_native_center_deg": 76.64683053014475,
+        "frozen_reader_deg": 76.64683053014475,
+        "signed_error_deg": 0.0002047709310488699,
+        "absolute_error_deg": 0.0002047709310488699,
+        "float32_eye_counterfactual_deg": 76.64683053014475,
+        "float32_eye_and_target_direction_deg": 76.64681755280378,
+        "matrix_optical_back_axis_deg": 76.64681758222332,
+        "matrix_axis_vs_declared_deg": 0.00019182300962938825,
+        "actual_eye_world_m": [
+          11.248993873596191,
+          3.7405271530151367,
+          2.0914533138275146
+        ],
+        "requested_eye_world_m": [
+          11.24899431621449,
+          3.740527136671521,
+          2.0914532785609046
+        ],
+        "native_target_world_m": [
+          11.22092056274414,
+          3.622259020805359,
+          1.606453776359558
+        ],
+        "actual_eye_minus_requested_m": [
+          -4.426182993455541e-07,
+          1.6343615794056632e-08,
+          3.526661007668963e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.12155435771121231,
+        "distance_m": 0.5000000132227169,
+        "inverse_horizontal_baseline_per_m": 8.226772111089513,
+        "azimuth_condition_relative_to_3D_direction": 4.113386164325036,
+        "elevation_deg": 75.92990818621846,
+        "first_order_position_error_prediction_deg": 0.00020477078527610036,
+        "position_error_angular_bound_deg": 0.00020877429360874114,
+        "producer_pose_position_max_error_m": 4.426182993455541e-07,
+        "producer_pose_axis_max_error": 8.828543324665428e-07,
+        "matrix_orthogonality_max_error": 1.5543122344752192e-15,
+        "matrix_determinant": 1.0000000000000013,
+        "derived_quaternion_xyzw": [
+          0.014239704323351324,
+          0.12164571210526288,
+          0.9857407272457431,
+          0.11538964509963963
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 76.6468175418169,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 3,
+      "arm": "U_R",
+      "attempt": 6,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_003/U_R_attempt_06.attempt.json",
+        "sha256": "55d8b68a4b9385f38ff45199b4a8d8dd4f8ed40468ea3923f5e07193fc149678"
+      },
+      "metrics": {
+        "declared_deg": 256.6466257592137,
+        "world_direction_deg": 256.6466257592137,
+        "requested_eye_minus_center_deg": 256.6466257592141,
+        "actual_eye_minus_native_center_deg": 256.64683053014477,
+        "frozen_reader_deg": 256.64683053014477,
+        "signed_error_deg": 0.0002047709310772916,
+        "absolute_error_deg": 0.0002047709310772916,
+        "float32_eye_counterfactual_deg": 256.64683053014477,
+        "float32_eye_and_target_direction_deg": 256.64684350746097,
+        "matrix_optical_back_axis_deg": 256.64684332804234,
+        "matrix_axis_vs_declared_deg": 0.0002175688286456534,
+        "actual_eye_world_m": [
+          11.19284725189209,
+          3.503990888595581,
+          1.1214542388916016
+        ],
+        "requested_eye_world_m": [
+          11.19284680927379,
+          3.503990904939197,
+          1.1214542741582114
+        ],
+        "native_target_world_m": [
+          11.22092056274414,
+          3.622259020805359,
+          1.606453776359558
+        ],
+        "actual_eye_minus_requested_m": [
+          4.426182993455541e-07,
+          -1.6343615794056632e-08,
+          -3.5266609854645026e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.12155435771121231,
+        "distance_m": 0.5000000132227169,
+        "inverse_horizontal_baseline_per_m": 8.226772111089513,
+        "azimuth_condition_relative_to_3D_direction": 4.113386164325036,
+        "elevation_deg": -75.92990818621846,
+        "first_order_position_error_prediction_deg": 0.00020477078527610036,
+        "position_error_angular_bound_deg": 0.00020877429360874114,
+        "producer_pose_position_max_error_m": 4.426182993455541e-07,
+        "producer_pose_axis_max_error": 8.859628718715928e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999998,
+        "derived_quaternion_xyzw": [
+          0.9857407249620912,
+          -0.11538942201959418,
+          -0.01423970335903982,
+          0.12164594233036025
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 256.64684335312074,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 6,
+      "arm": "U_L",
+      "attempt": 3,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_006/U_L_attempt_03.attempt.json",
+        "sha256": "999a5ac5472626bc5753c69fd1438e994523704cb2119c9180b41fd5e2319679"
+      },
+      "metrics": {
+        "declared_deg": 244.7693431024865,
+        "world_direction_deg": 244.76934310248646,
+        "requested_eye_minus_center_deg": 244.76934310248734,
+        "actual_eye_minus_native_center_deg": 244.7692261510309,
+        "frozen_reader_deg": 244.7692261510309,
+        "signed_error_deg": -0.00011695145559542652,
+        "absolute_error_deg": 0.00011695145559542652,
+        "float32_eye_counterfactual_deg": 244.7692261510309,
+        "float32_eye_and_target_direction_deg": 244.7691156000987,
+        "matrix_optical_back_axis_deg": 244.76911489748548,
+        "matrix_axis_vs_declared_deg": -0.00022820500100806385,
+        "actual_eye_world_m": [
+          7.217382431030273,
+          -3.3062264919281006,
+          0.9953432083129883
+        ],
+        "requested_eye_world_m": [
+          7.217382531611163,
+          -3.3062264045915195,
+          0.9953432074175927
+        ],
+        "native_target_world_m": [
+          7.22860860824585,
+          -3.2824028730392456,
+          0.4960372745990753
+        ],
+        "actual_eye_minus_requested_m": [
+          -1.0058088939501886e-07,
+          -8.733658107829001e-08,
+          8.953955354940035e-10
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.026336132438855357,
+        "distance_m": 0.5000000073137594,
+        "inverse_horizontal_baseline_per_m": 37.9706474487741,
+        "azimuth_condition_relative_to_3D_direction": 18.98532400209523,
+        "elevation_deg": 86.9807043643504,
+        "first_order_position_error_prediction_deg": -0.00011695199766760466,
+        "position_error_angular_bound_deg": 0.0002898016005111894,
+        "producer_pose_position_max_error_m": 1.0058088939501886e-07,
+        "producer_pose_axis_max_error": 1.9937215907719907e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 1.0,
+        "derived_quaternion_xyzw": [
+          0.025709139183163608,
+          -0.005753949750214808,
+          -0.21833044290542572,
+          0.9755192206847866
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 244.7691151380547,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 6,
+      "arm": "U_L",
+      "attempt": 5,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_006/U_L_attempt_05.attempt.json",
+        "sha256": "1d156a76e8b4a9cfd3ce9263ce96580bddd54cf7acc0c70f7c80e77da699fa22"
+      },
+      "metrics": {
+        "declared_deg": 64.76934310248649,
+        "world_direction_deg": 64.76934310248649,
+        "requested_eye_minus_center_deg": 64.76934310248733,
+        "actual_eye_minus_native_center_deg": 64.7692261510309,
+        "frozen_reader_deg": 64.7692261510309,
+        "signed_error_deg": -0.00011695145559542652,
+        "absolute_error_deg": 0.00011695145559542652,
+        "float32_eye_counterfactual_deg": 64.7692261510309,
+        "float32_eye_and_target_direction_deg": 64.76933670105778,
+        "matrix_optical_back_axis_deg": 64.76933534877058,
+        "matrix_axis_vs_declared_deg": -7.75371591998919e-06,
+        "actual_eye_world_m": [
+          7.239834785461426,
+          -3.2585792541503906,
+          -0.003268658183515072
+        ],
+        "requested_eye_world_m": [
+          7.239834684880536,
+          -3.2585793414869717,
+          -0.0032686582194421665
+        ],
+        "native_target_world_m": [
+          7.22860860824585,
+          -3.2824028730392456,
+          0.4960372745990753
+        ],
+        "actual_eye_minus_requested_m": [
+          1.0058088939501886e-07,
+          8.733658107829001e-08,
+          3.592709463262622e-11
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -1.1920928955078125e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.026336132438855357,
+        "distance_m": 0.5000000063837295,
+        "inverse_horizontal_baseline_per_m": 37.9706474487741,
+        "azimuth_condition_relative_to_3D_direction": 18.985323966781394,
+        "elevation_deg": -86.98070435872913,
+        "first_order_position_error_prediction_deg": -0.00011695199766760466,
+        "position_error_angular_bound_deg": 0.0002898016005111894,
+        "producer_pose_position_max_error_m": 1.0058088939501886e-07,
+        "producer_pose_axis_max_error": 4.094976021329355e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.21832857483936144,
+          0.9755196329136754,
+          0.025709362062239657,
+          0.0057539474219081435
+        ],
+        "quaternion_reconstruction_residual": 1.1102230246251565e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 64.76933565197263,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 8,
+      "arm": "F_R",
+      "attempt": 2,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_008/F_R_attempt_02.attempt.json",
+        "sha256": "f49261fc9a2c277311cf9e1cc1c34368f3418bb9c69b486f0bb7e81fc0e87a09"
+      },
+      "metrics": {
+        "declared_deg": 43.520302532671245,
+        "world_direction_deg": 43.52030253267124,
+        "requested_eye_minus_center_deg": 43.52030253267118,
+        "actual_eye_minus_native_center_deg": 43.52020191729014,
+        "frozen_reader_deg": 43.52020191729014,
+        "signed_error_deg": -0.00010061538111472146,
+        "absolute_error_deg": 0.00010061538111472146,
+        "float32_eye_counterfactual_deg": 43.52020191729014,
+        "float32_eye_and_target_direction_deg": 43.52025707959351,
+        "matrix_optical_back_axis_deg": 43.52025727456933,
+        "matrix_axis_vs_declared_deg": -4.525810192035351e-05,
+        "actual_eye_world_m": [
+          9.269773483276367,
+          5.2943949699401855,
+          1.4643118381500244
+        ],
+        "requested_eye_world_m": [
+          9.269773060749234,
+          5.294395003565224,
+          1.464311833225945
+        ],
+        "native_target_world_m": [
+          9.13956069946289,
+          5.170740365982056,
+          0.9976703524589539
+        ],
+        "actual_eye_minus_requested_m": [
+          4.225271332813918e-07,
+          -3.362503875337097e-08,
+          4.924079366475098e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.1795712397587574,
+        "distance_m": 0.5000001063164554,
+        "inverse_horizontal_baseline_per_m": 5.568820493434454,
+        "azimuth_condition_relative_to_3D_direction": 2.7844108387744826,
+        "elevation_deg": 68.95246259012254,
+        "first_order_position_error_prediction_deg": -0.0001006155397398653,
+        "position_error_angular_bound_deg": 0.00013524213508802932,
+        "producer_pose_position_max_error_m": 4.225271332813918e-07,
+        "producer_pose_axis_max_error": 7.451755804077642e-07,
+        "matrix_orthogonality_max_error": 1.751313393103789e-16,
+        "matrix_determinant": 1.0000000000000002,
+        "derived_quaternion_xyzw": [
+          0.07206775157102054,
+          0.16782402780456623,
+          0.9034049992993631,
+          0.3879442512989045
+        ],
+        "quaternion_reconstruction_residual": 2.7755575615628914e-17,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 43.52025753672805,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 8,
+      "arm": "F_R",
+      "attempt": 6,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_008/F_R_attempt_06.attempt.json",
+        "sha256": "4e9c7ca33b0c322060d862e75891184b6cae5b1c14cfa70fad48cbd8d9347002"
+      },
+      "metrics": {
+        "declared_deg": 223.52030253267125,
+        "world_direction_deg": 223.52030253267122,
+        "requested_eye_minus_center_deg": 223.52030253267117,
+        "actual_eye_minus_native_center_deg": 223.52020191729014,
+        "frozen_reader_deg": 223.52020191729014,
+        "signed_error_deg": -0.00010061538111472146,
+        "absolute_error_deg": 0.00010061538111472146,
+        "float32_eye_counterfactual_deg": 223.52020191729014,
+        "float32_eye_and_target_direction_deg": 223.52014675488587,
+        "matrix_optical_back_axis_deg": 223.52014687844607,
+        "matrix_axis_vs_declared_deg": -0.00015565422518193373,
+        "actual_eye_world_m": [
+          9.009347915649414,
+          5.047085762023926,
+          0.5310288667678833
+        ],
+        "requested_eye_world_m": [
+          9.009348338176547,
+          5.047085728398887,
+          0.5310288716919627
+        ],
+        "native_target_world_m": [
+          9.13956069946289,
+          5.170740365982056,
+          0.9976703524589539
+        ],
+        "actual_eye_minus_requested_m": [
+          -4.225271332813918e-07,
+          3.362503875337097e-08,
+          -4.924079366475098e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.1795712397587574,
+        "distance_m": 0.5000001063164554,
+        "inverse_horizontal_baseline_per_m": 5.568820493434454,
+        "azimuth_condition_relative_to_3D_direction": 2.7844108387744826,
+        "elevation_deg": -68.95246259012254,
+        "first_order_position_error_prediction_deg": -0.0001006155397398653,
+        "position_error_angular_bound_deg": 0.00013524213508802932,
+        "producer_pose_position_max_error_m": 4.225271332813918e-07,
+        "producer_pose_axis_max_error": 8.137684165965275e-07,
+        "matrix_orthogonality_max_error": 5.551115123125783e-16,
+        "matrix_determinant": 0.9999999999999996,
+        "derived_quaternion_xyzw": [
+          0.9034046702877134,
+          -0.38794515696784976,
+          -0.07206779380244664,
+          0.16782368719577792
+        ],
+        "quaternion_reconstruction_residual": 2.220446049250313e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 223.5201461289684,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 9,
+      "arm": "F_R",
+      "attempt": 3,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_009/F_R_attempt_03.attempt.json",
+        "sha256": "ab4f7b54ece7fa9171e315458a5a92f350021ddef6c0cabb9988d55058e21fce"
+      },
+      "metrics": {
+        "declared_deg": 47.05191424673458,
+        "world_direction_deg": 47.05191424673459,
+        "requested_eye_minus_center_deg": 47.05191424673463,
+        "actual_eye_minus_native_center_deg": 47.05201612535804,
+        "frozen_reader_deg": 47.05201612535804,
+        "signed_error_deg": 0.00010187862346811016,
+        "absolute_error_deg": 0.00010187862346811016,
+        "float32_eye_counterfactual_deg": 47.05201612535804,
+        "float32_eye_and_target_direction_deg": 47.05205185216855,
+        "matrix_optical_back_axis_deg": 47.052050714765386,
+        "matrix_axis_vs_declared_deg": 0.00013646803080291647,
+        "actual_eye_world_m": [
+          9.635282516479492,
+          8.092609405517578,
+          1.3775763511657715
+        ],
+        "requested_eye_world_m": [
+          9.63528288240272,
+          8.09260911876272,
+          1.3775763762830355
+        ],
+        "native_target_world_m": [
+          9.457786560058594,
+          7.901921510696411,
+          0.9508056044578552
+        ],
+        "actual_eye_minus_requested_m": [
+          -3.659232277186675e-07,
+          2.867548580809398e-07,
+          -2.511726404641479e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.2605123562848755,
+        "distance_m": 0.49999995802272856,
+        "inverse_horizontal_baseline_per_m": 3.8385895174449223,
+        "azimuth_condition_relative_to_3D_direction": 1.919294597588947,
+        "elevation_deg": 58.5989847434065,
+        "first_order_position_error_prediction_deg": 0.00010187860799162134,
+        "position_error_angular_bound_deg": 0.00010224684475313556,
+        "producer_pose_position_max_error_m": 3.659232277186675e-07,
+        "producer_pose_axis_max_error": 1.0482289644064835e-06,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.09906420372874195,
+          0.2518245346191466,
+          0.8958631990147701,
+          0.35241994261741644
+        ],
+        "quaternion_reconstruction_residual": 2.220446049250313e-16,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 47.05205020008351,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      },
+      "parent_reported_case": true
+    },
+    {
+      "env_id": 12,
+      "arm": "F_L",
+      "attempt": 3,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_012/F_L_attempt_03.attempt.json",
+        "sha256": "3c9508494eb780eea60264f75983af5a9c86667c0fe1784344790b9569867d3b"
+      },
+      "metrics": {
+        "declared_deg": 113.8982463217139,
+        "world_direction_deg": 113.8982463217139,
+        "requested_eye_minus_center_deg": 113.8982463217141,
+        "actual_eye_minus_native_center_deg": 113.89837282654445,
+        "frozen_reader_deg": 113.89837282654445,
+        "signed_error_deg": 0.0001265048305469918,
+        "absolute_error_deg": 0.0001265048305469918,
+        "float32_eye_counterfactual_deg": 113.89837282654445,
+        "float32_eye_and_target_direction_deg": 113.8983750248281,
+        "matrix_optical_back_axis_deg": 113.89837499937379,
+        "matrix_axis_vs_declared_deg": 0.00012867765988744395,
+        "actual_eye_world_m": [
+          5.059883117675781,
+          -0.19132351875305176,
+          1.8968560695648193
+        ],
+        "requested_eye_world_m": [
+          5.059883309515845,
+          -0.19132352293912003,
+          1.8968560922438087
+        ],
+        "native_target_world_m": [
+          5.0917534828186035,
+          -0.26324860006570816,
+          1.4030838012695312
+        ],
+        "actual_eye_minus_requested_m": [
+          -1.9184006383454744e-07,
+          4.1860682697958396e-09,
+          -2.2678989353153156e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          7.450580596923828e-09,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.0786698004075837,
+        "distance_m": 0.4999999904336429,
+        "inverse_horizontal_baseline_per_m": 12.711358041066045,
+        "azimuth_condition_relative_to_3D_direction": 6.355678898931633,
+        "elevation_deg": 80.94748909990061,
+        "first_order_position_error_prediction_deg": 0.00012650496147964928,
+        "position_error_angular_bound_deg": 0.00013975189716001842,
+        "producer_pose_position_max_error_m": 1.9184006383454744e-07,
+        "producer_pose_axis_max_error": 3.8076516251095427e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 1.0000000000000002,
+        "derived_quaternion_xyzw": [
+          0.016339076561762998,
+          -0.07720592560736625,
+          -0.9752804564633456,
+          0.20639842748641998
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 113.89837491331177,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    },
+    {
+      "env_id": 15,
+      "arm": "U_R",
+      "attempt": 1,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_015/U_R_attempt_01.attempt.json",
+        "sha256": "54bbd4b9b8de33fa35e0a282a3d367fcacf00de582553e669e47ee4b761e585e"
+      },
+      "metrics": {
+        "declared_deg": 138.88586275873337,
+        "world_direction_deg": 138.8858627587334,
+        "requested_eye_minus_center_deg": 138.88586275873368,
+        "actual_eye_minus_native_center_deg": 138.88597080372668,
+        "frozen_reader_deg": 138.88597080372668,
+        "signed_error_deg": 0.00010804499331129591,
+        "absolute_error_deg": 0.00010804499331129591,
+        "float32_eye_counterfactual_deg": 138.88597080372668,
+        "float32_eye_and_target_direction_deg": 138.88597080372668,
+        "matrix_optical_back_axis_deg": 138.88597062285274,
+        "matrix_axis_vs_declared_deg": 0.00010786411937147022,
+        "actual_eye_world_m": [
+          -0.9679877161979675,
+          -8.26193618774414,
+          1.2197880744934082
+        ],
+        "requested_eye_world_m": [
+          -0.9679877350172329,
+          -8.26193590364132,
+          1.2197880368839151
+        ],
+        "native_target_world_m": [
+          -0.887415885925293,
+          -8.332258224487305,
+          0.7313589751720428
+        ],
+        "actual_eye_minus_requested_m": [
+          1.8819265368286153e-08,
+          -2.8410282126856146e-07,
+          3.760949307540784e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          0.0,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.10694395113888205,
+        "distance_m": 0.4999999937490757,
+        "inverse_horizontal_baseline_per_m": 9.350692482844183,
+        "azimuth_condition_relative_to_3D_direction": 4.67534618297162,
+        "elevation_deg": 77.64970868243499,
+        "first_order_position_error_prediction_deg": 0.00010804478995541213,
+        "position_error_angular_bound_deg": 0.00015254285409381204,
+        "producer_pose_position_max_error_m": 2.8410282126856146e-07,
+        "producer_pose_axis_max_error": 5.520172193795858e-07,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 1.0000000000000002,
+        "derived_quaternion_xyzw": [
+          0.044510343088570825,
+          -0.09792714765726536,
+          -0.9050912445613448,
+          0.41138660907745384
+        ],
+        "quaternion_reconstruction_residual": 2.7755575615628914e-17,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 138.88597106307185,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    },
+    {
+      "env_id": 15,
+      "arm": "U_R",
+      "attempt": 4,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_015/U_R_attempt_04.attempt.json",
+        "sha256": "6775913fbab8db57ebae6856d8841b60ff7f8bef9ab2b618dd4fdefa89c5ab07"
+      },
+      "metrics": {
+        "declared_deg": 318.88586275873337,
+        "world_direction_deg": 318.88586275873337,
+        "requested_eye_minus_center_deg": 318.88586275873365,
+        "actual_eye_minus_native_center_deg": 318.8859708037267,
+        "frozen_reader_deg": 318.8859708037267,
+        "signed_error_deg": 0.00010804499333971762,
+        "absolute_error_deg": 0.00010804499333971762,
+        "float32_eye_counterfactual_deg": 318.8859708037267,
+        "float32_eye_and_target_direction_deg": 318.8859708037267,
+        "matrix_optical_back_axis_deg": 318.8859714323299,
+        "matrix_axis_vs_declared_deg": 0.00010867359651456354,
+        "actual_eye_world_m": [
+          -0.8068440556526184,
+          -8.402580261230469,
+          0.24292992055416107
+        ],
+        "requested_eye_world_m": [
+          -0.806844036833353,
+          -8.40258054533329,
+          0.24292991346017062
+        ],
+        "native_target_world_m": [
+          -0.887415885925293,
+          -8.332258224487305,
+          0.7313589751720428
+        ],
+        "actual_eye_minus_requested_m": [
+          -1.8819265368286153e-08,
+          2.8410282126856146e-07,
+          7.093990450623977e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          0.0,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.10694395113888205,
+        "distance_m": 0.49999995008011083,
+        "inverse_horizontal_baseline_per_m": 9.350692482844183,
+        "azimuth_condition_relative_to_3D_direction": 4.675345774636559,
+        "elevation_deg": -77.64970758676372,
+        "first_order_position_error_prediction_deg": 0.00010804478995541213,
+        "position_error_angular_bound_deg": 0.00015254285409381204,
+        "producer_pose_position_max_error_m": 2.8410282126856146e-07,
+        "producer_pose_axis_max_error": 5.567217210844522e-07,
+        "matrix_orthogonality_max_error": 8.881784197001252e-16,
+        "matrix_determinant": 1.000000000000001,
+        "derived_quaternion_xyzw": [
+          0.9050912415856164,
+          0.4113866161156348,
+          0.044510342942231225,
+          0.09792714565992357
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 318.88597106307185,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    },
+    {
+      "env_id": 25,
+      "arm": "U_L",
+      "attempt": 3,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_025/U_L_attempt_03.attempt.json",
+        "sha256": "1eaa278f6f5d5bc5f0e0cc1e29f4a7872d491cca73620104e589160c23dac402"
+      },
+      "metrics": {
+        "declared_deg": 316.7413129668701,
+        "world_direction_deg": 316.7413129668701,
+        "requested_eye_minus_center_deg": 316.7413129668645,
+        "actual_eye_minus_native_center_deg": 316.73930182695074,
+        "frozen_reader_deg": 316.73930182695074,
+        "signed_error_deg": -0.002011139919375182,
+        "absolute_error_deg": 0.002011139919375182,
+        "float32_eye_counterfactual_deg": 316.73930182695074,
+        "float32_eye_and_target_direction_deg": 316.74433768137646,
+        "matrix_optical_back_axis_deg": 316.7443386592438,
+        "matrix_axis_vs_declared_deg": 0.0030256923736828867,
+        "actual_eye_world_m": [
+          -9.027908325195312,
+          -7.584267616271973,
+          1.4120818376541138
+        ],
+        "requested_eye_world_m": [
+          -9.027908198515052,
+          -7.584267461071881,
+          1.4120818858433233
+        ],
+        "native_target_world_m": [
+          -9.032054424285889,
+          -7.580365896224976,
+          0.8877500891685486
+        ],
+        "actual_eye_minus_requested_m": [
+          -1.2668026094786455e-07,
+          -1.5520009188918493e-07,
+          -4.8189209511662057e-08
+        ],
+        "float32_target_minus_declared_m": [
+          -4.76837158203125e-07,
+          -2.384185791015625e-07,
+          0.0
+        ],
+        "horizontal_baseline_m": 0.005693290524293959,
+        "distance_m": 0.5243626569721799,
+        "inverse_horizontal_baseline_per_m": 175.64534880714046,
+        "azimuth_condition_relative_to_3D_direction": 92.10186178531747,
+        "elevation_deg": 89.37789634006315,
+        "first_order_position_error_prediction_deg": -0.002011144895555364,
+        "position_error_angular_bound_deg": 0.002016145001778544,
+        "producer_pose_position_max_error_m": 1.5520009188918493e-07,
+        "producer_pose_axis_max_error": 6.685952616321961e-07,
+        "matrix_orthogonality_max_error": 5.048108879833757e-17,
+        "matrix_determinant": 1.0,
+        "derived_quaternion_xyzw": [
+          0.004983561579138043,
+          0.002153706271201374,
+          0.39669620990753196,
+          0.9179338988774103
+        ],
+        "quaternion_reconstruction_residual": 8.673617379884035e-19,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 316.7443390591636,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    },
+    {
+      "env_id": 25,
+      "arm": "U_R",
+      "attempt": 2,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_025/U_R_attempt_02.attempt.json",
+        "sha256": "d197d5a4f62e0e49abafdf7e02753c9a17c73b5ebe7484725bf7c756b8611b8b"
+      },
+      "metrics": {
+        "declared_deg": 306.8553121648633,
+        "world_direction_deg": 306.8553121648633,
+        "requested_eye_minus_center_deg": 306.8553121648635,
+        "actual_eye_minus_native_center_deg": 306.85499512007317,
+        "frozen_reader_deg": 306.85499512007317,
+        "signed_error_deg": -0.0003170447901084117,
+        "absolute_error_deg": 0.0003170447901084117,
+        "float32_eye_counterfactual_deg": 306.85499512007317,
+        "float32_eye_and_target_direction_deg": 306.85483493403683,
+        "matrix_optical_back_axis_deg": 306.85483284199927,
+        "matrix_axis_vs_declared_deg": -0.00047932286400964585,
+        "actual_eye_world_m": [
+          -8.55799674987793,
+          -8.208563804626465,
+          1.4030113220214844
+        ],
+        "requested_eye_world_m": [
+          -8.557996291999883,
+          -8.208563471695141,
+          1.4030112737592344
+        ],
+        "native_target_world_m": [
+          -8.619354248046875,
+          -8.126709461212158,
+          0.8626912534236908
+        ],
+        "actual_eye_minus_requested_m": [
+          -4.578780465891441e-07,
+          -3.3293132339906606e-07,
+          4.826224997422912e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          4.76837158203125e-07,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.10229797709309492,
+        "distance_m": 0.5499187691349184,
+        "inverse_horizontal_baseline_per_m": 9.77536436610045,
+        "azimuth_condition_relative_to_3D_direction": 5.375656340051301,
+        "elevation_deg": 79.2791722003742,
+        "first_order_position_error_prediction_deg": -0.00031704476483061404,
+        "position_error_angular_bound_deg": 0.00031707833444151505,
+        "producer_pose_position_max_error_m": 4.578780465891441e-07,
+        "producer_pose_axis_max_error": 1.4437609648643157e-06,
+        "matrix_orthogonality_max_error": 2.220446049250313e-16,
+        "matrix_determinant": 0.9999999999999999,
+        "derived_quaternion_xyzw": [
+          0.08863062411546706,
+          0.0295305959880352,
+          0.3147206306457519,
+          0.9445758206811322
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 306.8548323778744,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    },
+    {
+      "env_id": 25,
+      "arm": "U_R",
+      "attempt": 6,
+      "producer_status": "rejected",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_025/U_R_attempt_06.attempt.json",
+        "sha256": "b8f74171921402c35d953ed956c632838463447449eae03dd704a8ca0d81d658"
+      },
+      "metrics": {
+        "declared_deg": 126.85531216486329,
+        "world_direction_deg": 126.85531216486329,
+        "requested_eye_minus_center_deg": 126.85531216486335,
+        "actual_eye_minus_native_center_deg": 126.85546891996772,
+        "frozen_reader_deg": 126.85546891996772,
+        "signed_error_deg": 0.0001567551044274751,
+        "absolute_error_deg": 0.0001567551044274751,
+        "float32_eye_counterfactual_deg": 126.85546891996772,
+        "float32_eye_and_target_direction_deg": 126.85562859451532,
+        "matrix_optical_back_axis_deg": 126.8556281060698,
+        "matrix_axis_vs_declared_deg": 0.0003159412065087963,
+        "actual_eye_world_m": [
+          -8.680910110473633,
+          -8.044591903686523,
+          0.32063043117523193
+        ],
+        "requested_eye_world_m": [
+          -8.680909886120842,
+          -8.044591734860022,
+          0.3206304391680571
+        ],
+        "native_target_world_m": [
+          -8.619354248046875,
+          -8.126709461212158,
+          0.8626912534236908
+        ],
+        "actual_eye_minus_requested_m": [
+          -2.2435279056765012e-07,
+          -1.6882650122340692e-07,
+          -7.992825179492513e-09
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          4.76837158203125e-07,
+          2.9802322387695312e-08
+        ],
+        "horizontal_baseline_m": 0.1026275667307662,
+        "distance_m": 0.5516904498627406,
+        "inverse_horizontal_baseline_per_m": 9.74397066845993,
+        "azimuth_condition_relative_to_3D_direction": 5.3756555615320085,
+        "elevation_deg": -79.27917062937297,
+        "first_order_position_error_prediction_deg": 0.00015675510356801672,
+        "position_error_angular_bound_deg": 0.00015675537343241302,
+        "producer_pose_position_max_error_m": 2.2435279056765012e-07,
+        "producer_pose_axis_max_error": 1.1544897187687475e-06,
+        "matrix_orthogonality_max_error": 4.440892098500626e-16,
+        "matrix_determinant": 1.0000000000000004,
+        "derived_quaternion_xyzw": [
+          0.3147272144042944,
+          -0.944573692760711,
+          -0.08862978893101407,
+          0.0295310001820326
+        ],
+        "quaternion_reconstruction_residual": 0.0,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 126.85562796659167,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    },
+    {
+      "env_id": 29,
+      "arm": "U_R",
+      "attempt": 3,
+      "producer_status": "qualified",
+      "attempt_reference": {
+        "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_029/U_R_attempt_03.attempt.json",
+        "sha256": "dafae707f10b2ce26f3fd95a4ff951856761edf00046dfd7270a6ed7b034fd97"
+      },
+      "metrics": {
+        "declared_deg": 324.3036756501679,
+        "world_direction_deg": 324.3036756501679,
+        "requested_eye_minus_center_deg": 324.30367565016775,
+        "actual_eye_minus_native_center_deg": 324.3035685498751,
+        "frozen_reader_deg": 324.3035685498751,
+        "signed_error_deg": -0.00010710029283700351,
+        "absolute_error_deg": 0.00010710029283700351,
+        "float32_eye_counterfactual_deg": 324.3035685498751,
+        "float32_eye_and_target_direction_deg": 324.3034832171532,
+        "matrix_optical_back_axis_deg": 324.3034828942859,
+        "matrix_axis_vs_declared_deg": -0.00019275588203981897,
+        "actual_eye_world_m": [
+          -8.546475410461426,
+          7.157060623168945,
+          1.0190398693084717
+        ],
+        "requested_eye_world_m": [
+          -8.54647524043699,
+          7.157060800246716,
+          1.0190398226651491
+        ],
+        "native_target_world_m": [
+          -8.652056694030762,
+          7.2329185009002686,
+          0.5254487842321396
+        ],
+        "actual_eye_minus_requested_m": [
+          -1.7002443541969114e-07,
+          -1.7707777111297673e-07,
+          4.664332253767611e-08
+        ],
+        "float32_target_minus_declared_m": [
+          0.0,
+          2.384185791015625e-07,
+          1.4901161193847656e-08
+        ],
+        "horizontal_baseline_m": 0.1300070192491502,
+        "distance_m": 0.510425297493061,
+        "inverse_horizontal_baseline_per_m": 7.69189237454605,
+        "azimuth_condition_relative_to_3D_direction": 3.926136453562275,
+        "elevation_deg": 75.24399365716187,
+        "first_order_position_error_prediction_deg": -0.00010710026407404541,
+        "position_error_angular_bound_deg": 0.00010819015414782037,
+        "producer_pose_position_max_error_m": 1.7707777111297673e-07,
+        "producer_pose_axis_max_error": 7.975501458701295e-07,
+        "matrix_orthogonality_max_error": 1.1102230246251565e-16,
+        "matrix_determinant": 1.0,
+        "derived_quaternion_xyzw": [
+          0.11426380276679994,
+          0.058602012693882,
+          0.4525702893733979,
+          0.8824339752423265
+        ],
+        "quaternion_reconstruction_residual": 2.7755575615628914e-17,
+        "derived_quaternion_float32_roundtrip_axis_angle_deg": 324.30348353604757,
+        "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+        "identity": {
+          "declared_matches_direction": true,
+          "declared_matches_requested_eye": true,
+          "actual_eye_equals_float32_requested_eye": true,
+          "float32_position_counterfactual_reproduces_actual_angle": true,
+          "producer_pose_component_gate_pass": true,
+          "frozen_reader_angle_gate_pass": false,
+          "circular_wrap_already_applied": true,
+          "removing_only_eye_rounding_restores_angle": true
+        }
+      }
+    }
+  ],
+  "all_selected_group_separations": [
+    {
+      "env_id": 0,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        14,
+        4,
+        6
+      ],
+      "minimum_declared_separation_deg": 34.12348111736611,
+      "minimum_actual_separation_deg": 34.12338652103642,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 0,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        2,
+        8
+      ],
+      "minimum_declared_separation_deg": 56.38601549649758,
+      "minimum_actual_separation_deg": 56.386006964786134,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 0,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        9,
+        3,
+        1
+      ],
+      "minimum_declared_separation_deg": 33.419795852142784,
+      "minimum_actual_separation_deg": 33.41978125719709,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 0,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        7,
+        8,
+        6
+      ],
+      "minimum_declared_separation_deg": 49.63480428328597,
+      "minimum_actual_separation_deg": 49.63476837326874,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 1,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        6,
+        7
+      ],
+      "minimum_declared_separation_deg": 84.75026904069045,
+      "minimum_actual_separation_deg": 84.75021237784739,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 1,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 35.05755550361718,
+      "minimum_actual_separation_deg": 35.057504447430915,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 1,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        8,
+        6
+      ],
+      "minimum_declared_separation_deg": 56.939681478719066,
+      "minimum_actual_separation_deg": 56.93968216941005,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 1,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        3,
+        7
+      ],
+      "minimum_declared_separation_deg": 36.390873683360695,
+      "minimum_actual_separation_deg": 36.390849490597645,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 2,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 30.080928050202573,
+      "minimum_actual_separation_deg": 30.080940972889096,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 2,
+      "arm": "F_R",
+      "producer_status": "failed",
+      "selected_attempts": [
+        6,
+        18,
+        1
+      ],
+      "minimum_declared_separation_deg": 36.0536430722064,
+      "minimum_actual_separation_deg": 36.05362662203589,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 2,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        9,
+        17,
+        4
+      ],
+      "minimum_declared_separation_deg": 59.99999999999994,
+      "minimum_actual_separation_deg": 60.0000410623756,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 2,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 76.68190366132126,
+      "minimum_actual_separation_deg": 76.68196996921353,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 3,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 40.38235840239955,
+      "minimum_actual_separation_deg": 40.382374042215474,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 3,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        4,
+        3
+      ],
+      "minimum_declared_separation_deg": 52.15683167970941,
+      "minimum_actual_separation_deg": 52.156843896111525,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 3,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        3,
+        4
+      ],
+      "minimum_declared_separation_deg": 37.05623482400989,
+      "minimum_actual_separation_deg": 37.056216112201696,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 3,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        3,
+        7
+      ],
+      "minimum_declared_separation_deg": 79.80654456357007,
+      "minimum_actual_separation_deg": 79.80651325379694,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 4,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 42.295381213426936,
+      "minimum_actual_separation_deg": 42.2953548853647,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 4,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        1
+      ],
+      "minimum_declared_separation_deg": 36.29509517187549,
+      "minimum_actual_separation_deg": 36.29511975949339,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 4,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 44.834679145920745,
+      "minimum_actual_separation_deg": 44.834717761211465,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 4,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        13,
+        4
+      ],
+      "minimum_declared_separation_deg": 49.315460206201124,
+      "minimum_actual_separation_deg": 49.315442735439944,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 5,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 52.16737341840491,
+      "minimum_actual_separation_deg": 52.16732013489718,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 5,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 60.08497467231433,
+      "minimum_actual_separation_deg": 60.084935361259625,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 5,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        1
+      ],
+      "minimum_declared_separation_deg": 30.16719998724011,
+      "minimum_actual_separation_deg": 30.167204210260877,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 5,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        7,
+        3
+      ],
+      "minimum_declared_separation_deg": 37.73712517386491,
+      "minimum_actual_separation_deg": 37.73700770585191,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 6,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 30.066925951369853,
+      "minimum_actual_separation_deg": 30.066945728886537,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 6,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        4,
+        7
+      ],
+      "minimum_declared_separation_deg": 47.7987537342521,
+      "minimum_actual_separation_deg": 47.79871893492833,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 6,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        8,
+        2
+      ],
+      "minimum_declared_separation_deg": 58.465576130148435,
+      "minimum_actual_separation_deg": 58.46557728335284,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 6,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 46.31022357758468,
+      "minimum_actual_separation_deg": 46.310264369472804,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 7,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 39.93038122252267,
+      "minimum_actual_separation_deg": 39.93033201707814,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 7,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        4,
+        6
+      ],
+      "minimum_declared_separation_deg": 65.221060267447,
+      "minimum_actual_separation_deg": 65.2210464037424,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 7,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        7,
+        5
+      ],
+      "minimum_declared_separation_deg": 45.91880077670362,
+      "minimum_actual_separation_deg": 45.91881572694348,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 7,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 32.608289012247155,
+      "minimum_actual_separation_deg": 32.608290134091334,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 8,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 32.164401908700256,
+      "minimum_actual_separation_deg": 32.16437404445648,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 8,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        2,
+        7
+      ],
+      "minimum_declared_separation_deg": 43.52030253267125,
+      "minimum_actual_separation_deg": 43.52024055463306,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 8,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        13
+      ],
+      "minimum_declared_separation_deg": 75.55166961825421,
+      "minimum_actual_separation_deg": 75.5516679386701,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 8,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        4,
+        3
+      ],
+      "minimum_declared_separation_deg": 48.48386821057542,
+      "minimum_actual_separation_deg": 48.48382555438553,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 9,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        4,
+        2
+      ],
+      "minimum_declared_separation_deg": 56.538077390632225,
+      "minimum_actual_separation_deg": 56.53803844204168,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 9,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 47.84560089142093,
+      "minimum_actual_separation_deg": 47.84557162803219,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 9,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        1
+      ],
+      "minimum_declared_separation_deg": 36.30503148277319,
+      "minimum_actual_separation_deg": 36.305024387310624,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 9,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        4,
+        2
+      ],
+      "minimum_declared_separation_deg": 65.86283455048664,
+      "minimum_actual_separation_deg": 65.86280270087752,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 10,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 36.0008962082307,
+      "minimum_actual_separation_deg": 36.00090627917166,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 10,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        1
+      ],
+      "minimum_declared_separation_deg": 60.20810331645487,
+      "minimum_actual_separation_deg": 60.208012064837135,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 10,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 54.257676491278005,
+      "minimum_actual_separation_deg": 54.257654509071926,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 10,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 58.83549432996219,
+      "minimum_actual_separation_deg": 58.83547501344316,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 11,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        3,
+        4
+      ],
+      "minimum_declared_separation_deg": 30.145104308015334,
+      "minimum_actual_separation_deg": 30.145162504280364,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 11,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 36.35065241507863,
+      "minimum_actual_separation_deg": 36.35062562320468,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 11,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        6,
+        5
+      ],
+      "minimum_declared_separation_deg": 37.95988440653451,
+      "minimum_actual_separation_deg": 37.959893970551406,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 11,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        7,
+        8,
+        5
+      ],
+      "minimum_declared_separation_deg": 82.63034021343476,
+      "minimum_actual_separation_deg": 82.63038214213344,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 12,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        4
+      ],
+      "minimum_declared_separation_deg": 46.40626619021725,
+      "minimum_actual_separation_deg": 46.40635442376234,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 12,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        7,
+        3
+      ],
+      "minimum_declared_separation_deg": 33.15216776381175,
+      "minimum_actual_separation_deg": 33.15218917769613,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 12,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        6,
+        13
+      ],
+      "minimum_declared_separation_deg": 31.099710673138134,
+      "minimum_actual_separation_deg": 31.09971851079979,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 12,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        6,
+        8
+      ],
+      "minimum_declared_separation_deg": 80.28573405901827,
+      "minimum_actual_separation_deg": 80.28574453936622,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 13,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 42.636490250435656,
+      "minimum_actual_separation_deg": 42.636545287724005,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 13,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 30.83529126361711,
+      "minimum_actual_separation_deg": 30.835268638606266,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 13,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        7,
+        1
+      ],
+      "minimum_declared_separation_deg": 31.483292876431676,
+      "minimum_actual_separation_deg": 31.483351875818926,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 13,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        4,
+        3
+      ],
+      "minimum_declared_separation_deg": 60.73001405926098,
+      "minimum_actual_separation_deg": 60.730020830718715,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 14,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 33.45817352676556,
+      "minimum_actual_separation_deg": 33.45818147731421,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 14,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 55.671207803913376,
+      "minimum_actual_separation_deg": 55.671185177169605,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 14,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        3,
+        4
+      ],
+      "minimum_declared_separation_deg": 34.24112683411789,
+      "minimum_actual_separation_deg": 34.241152645378634,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 14,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        18,
+        13,
+        14
+      ],
+      "minimum_declared_separation_deg": 60.0,
+      "minimum_actual_separation_deg": 59.99997577163606,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 15,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 46.88507905903532,
+      "minimum_actual_separation_deg": 46.885065422632294,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 15,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        4,
+        3
+      ],
+      "minimum_declared_separation_deg": 68.67725397738018,
+      "minimum_actual_separation_deg": 68.67723131402508,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 15,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        7,
+        9
+      ],
+      "minimum_declared_separation_deg": 99.98511220154097,
+      "minimum_actual_separation_deg": 99.98511464370398,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 15,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        5,
+        13
+      ],
+      "minimum_declared_separation_deg": 41.11413724126663,
+      "minimum_actual_separation_deg": 41.11402919627329,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 16,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 30.56709627842349,
+      "minimum_actual_separation_deg": 30.567095137251385,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 16,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 53.21031707685796,
+      "minimum_actual_separation_deg": 53.210339135838126,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 16,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        8,
+        3
+      ],
+      "minimum_declared_separation_deg": 53.67117588780616,
+      "minimum_actual_separation_deg": 53.67117952029892,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 16,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        6,
+        7
+      ],
+      "minimum_declared_separation_deg": 65.03577631402845,
+      "minimum_actual_separation_deg": 65.03573935227001,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 17,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        4,
+        2
+      ],
+      "minimum_declared_separation_deg": 33.39457987838867,
+      "minimum_actual_separation_deg": 33.39458581852173,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 17,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        3,
+        4
+      ],
+      "minimum_declared_separation_deg": 53.374572695442225,
+      "minimum_actual_separation_deg": 53.37456708022381,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 17,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        1,
+        7
+      ],
+      "minimum_declared_separation_deg": 49.31212471343247,
+      "minimum_actual_separation_deg": 49.31212792146897,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 17,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 48.51168549227492,
+      "minimum_actual_separation_deg": 48.5116750469424,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 18,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        4,
+        8
+      ],
+      "minimum_declared_separation_deg": 49.33091763401319,
+      "minimum_actual_separation_deg": 49.3309213335896,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 18,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 37.05399497117031,
+      "minimum_actual_separation_deg": 37.053980393678245,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 18,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        8,
+        4
+      ],
+      "minimum_declared_separation_deg": 42.35379423153768,
+      "minimum_actual_separation_deg": 42.35380793871536,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 18,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 45.65258453613052,
+      "minimum_actual_separation_deg": 45.6525847547361,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 19,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        4,
+        3
+      ],
+      "minimum_declared_separation_deg": 49.28073357344613,
+      "minimum_actual_separation_deg": 49.28071106405582,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 19,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        4,
+        2
+      ],
+      "minimum_declared_separation_deg": 31.864743166133735,
+      "minimum_actual_separation_deg": 31.864774700216458,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 19,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        5,
+        7
+      ],
+      "minimum_declared_separation_deg": 35.86823015534719,
+      "minimum_actual_separation_deg": 35.86827927410752,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 19,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        3,
+        5
+      ],
+      "minimum_declared_separation_deg": 30.47871960083006,
+      "minimum_actual_separation_deg": 30.478715245257774,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 20,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 32.871270018789176,
+      "minimum_actual_separation_deg": 32.87136009565364,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 20,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        5
+      ],
+      "minimum_declared_separation_deg": 35.96129421052353,
+      "minimum_actual_separation_deg": 35.96132141415001,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 20,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        15,
+        13,
+        11
+      ],
+      "minimum_declared_separation_deg": 59.99999999999994,
+      "minimum_actual_separation_deg": 59.999963941402655,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 20,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 49.68096309771147,
+      "minimum_actual_separation_deg": 49.68093041420582,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 21,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 43.95521805773302,
+      "minimum_actual_separation_deg": 43.95518143612844,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 21,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        6,
+        7
+      ],
+      "minimum_declared_separation_deg": 82.25097646065228,
+      "minimum_actual_separation_deg": 82.2509520395297,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 21,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        2,
+        5
+      ],
+      "minimum_declared_separation_deg": 51.71932327217104,
+      "minimum_actual_separation_deg": 51.71931996131116,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 21,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        8,
+        7
+      ],
+      "minimum_declared_separation_deg": 57.499514155858094,
+      "minimum_actual_separation_deg": 57.49951041702221,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 22,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        4,
+        3
+      ],
+      "minimum_declared_separation_deg": 34.05684515165666,
+      "minimum_actual_separation_deg": 34.056840525556595,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 22,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        1
+      ],
+      "minimum_declared_separation_deg": 70.7607432767712,
+      "minimum_actual_separation_deg": 70.76073823819274,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 22,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        5,
+        2
+      ],
+      "minimum_declared_separation_deg": 53.44871209985388,
+      "minimum_actual_separation_deg": 53.44873351886423,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 22,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        8,
+        3
+      ],
+      "minimum_declared_separation_deg": 62.23230999035053,
+      "minimum_actual_separation_deg": 62.23230673247269,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 23,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        1
+      ],
+      "minimum_declared_separation_deg": 60.56401778603299,
+      "minimum_actual_separation_deg": 60.5640673914113,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 23,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 34.935468662388985,
+      "minimum_actual_separation_deg": 34.93542973967726,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 23,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 74.80296634415481,
+      "minimum_actual_separation_deg": 74.80298733563308,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 23,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 56.455621051477834,
+      "minimum_actual_separation_deg": 56.45562299463484,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 24,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        6,
+        1
+      ],
+      "minimum_declared_separation_deg": 37.556996554311695,
+      "minimum_actual_separation_deg": 37.557041460565216,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 24,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 44.18821009618864,
+      "minimum_actual_separation_deg": 44.18824418612675,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 24,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 31.209813906809586,
+      "minimum_actual_separation_deg": 31.209854723917772,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 24,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        3,
+        4
+      ],
+      "minimum_declared_separation_deg": 44.81961501765596,
+      "minimum_actual_separation_deg": 44.819549267102275,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 25,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        4,
+        2
+      ],
+      "minimum_declared_separation_deg": 60.644245113091785,
+      "minimum_actual_separation_deg": 60.644232977314786,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 25,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        7,
+        5
+      ],
+      "minimum_declared_separation_deg": 62.09183090696487,
+      "minimum_actual_separation_deg": 62.0918864221554,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 25,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 45.01431081458992,
+      "minimum_actual_separation_deg": 45.01229029799987,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 25,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        8,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 56.016743480195146,
+      "minimum_actual_separation_deg": 56.01708483010691,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 26,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 30.081043582255575,
+      "minimum_actual_separation_deg": 30.08102117646709,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 26,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        2
+      ],
+      "minimum_declared_separation_deg": 44.47995144700181,
+      "minimum_actual_separation_deg": 44.47994917508743,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 26,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 34.4832624584987,
+      "minimum_actual_separation_deg": 34.48327629107433,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 26,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        3,
+        1
+      ],
+      "minimum_declared_separation_deg": 32.58871509329822,
+      "minimum_actual_separation_deg": 32.588759922616475,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 27,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        4
+      ],
+      "minimum_declared_separation_deg": 48.616552548362506,
+      "minimum_actual_separation_deg": 48.61654969331522,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 27,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        3,
+        4
+      ],
+      "minimum_declared_separation_deg": 43.8247554260592,
+      "minimum_actual_separation_deg": 43.82474768839404,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 27,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        5,
+        7
+      ],
+      "minimum_declared_separation_deg": 44.89558593630494,
+      "minimum_actual_separation_deg": 44.89555793093132,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 27,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        6,
+        2,
+        8
+      ],
+      "minimum_declared_separation_deg": 89.75440422052264,
+      "minimum_actual_separation_deg": 89.75442009675089,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 28,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 36.51549735434554,
+      "minimum_actual_separation_deg": 36.51548365872844,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 28,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        9,
+        1,
+        4
+      ],
+      "minimum_declared_separation_deg": 75.64896271149843,
+      "minimum_actual_separation_deg": 75.64891039612877,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 28,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        4,
+        7
+      ],
+      "minimum_declared_separation_deg": 56.50764745203679,
+      "minimum_actual_separation_deg": 56.507692075430896,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 28,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        7,
+        5
+      ],
+      "minimum_declared_separation_deg": 50.20780983766491,
+      "minimum_actual_separation_deg": 50.20777685111739,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 29,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 34.135775002469444,
+      "minimum_actual_separation_deg": 34.13575064747735,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 29,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 64.1908175556627,
+      "minimum_actual_separation_deg": 64.19079895374381,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 29,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        2,
+        3,
+        1
+      ],
+      "minimum_declared_separation_deg": 30.842807398359128,
+      "minimum_actual_separation_deg": 30.842819395165492,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 29,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        1,
+        3
+      ],
+      "minimum_declared_separation_deg": 30.27341671033429,
+      "minimum_actual_separation_deg": 30.27350969439533,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 30,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        2,
+        1
+      ],
+      "minimum_declared_separation_deg": 33.836684740463056,
+      "minimum_actual_separation_deg": 33.8366730992978,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 30,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        1,
+        2
+      ],
+      "minimum_declared_separation_deg": 43.83352666765987,
+      "minimum_actual_separation_deg": 43.83348480194181,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 30,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        3,
+        4,
+        1
+      ],
+      "minimum_declared_separation_deg": 34.85729203636754,
+      "minimum_actual_separation_deg": 34.85738611942338,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 30,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        3,
+        7
+      ],
+      "minimum_declared_separation_deg": 38.28180584452889,
+      "minimum_actual_separation_deg": 38.28181822051144,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 31,
+      "arm": "F_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        1,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 30.002944737344393,
+      "minimum_actual_separation_deg": 30.002937019107264,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 31,
+      "arm": "F_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        4,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 40.34195919557067,
+      "minimum_actual_separation_deg": 40.341973728654295,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 31,
+      "arm": "U_L",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        3,
+        8
+      ],
+      "minimum_declared_separation_deg": 59.12824431484506,
+      "minimum_actual_separation_deg": 59.1282386183708,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    },
+    {
+      "env_id": 31,
+      "arm": "U_R",
+      "producer_status": "qualified",
+      "selected_attempts": [
+        5,
+        2,
+        3
+      ],
+      "minimum_declared_separation_deg": 35.95992801914184,
+      "minimum_actual_separation_deg": 35.95998925153509,
+      "declared_ge30": true,
+      "actual_ge30": true,
+      "threshold_unchanged_deg": 30.0
+    }
+  ],
+  "declared_ge30_but_actual_below30": [],
+  "largest_angle_error": {
+    "env_id": 25,
+    "arm": "U_L",
+    "attempt": 3,
+    "producer_status": "qualified",
+    "attempt_reference": {
+      "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_025/U_L_attempt_03.attempt.json",
+      "sha256": "1eaa278f6f5d5bc5f0e0cc1e29f4a7872d491cca73620104e589160c23dac402"
+    },
+    "metrics": {
+      "declared_deg": 316.7413129668701,
+      "world_direction_deg": 316.7413129668701,
+      "requested_eye_minus_center_deg": 316.7413129668645,
+      "actual_eye_minus_native_center_deg": 316.73930182695074,
+      "frozen_reader_deg": 316.73930182695074,
+      "signed_error_deg": -0.002011139919375182,
+      "absolute_error_deg": 0.002011139919375182,
+      "float32_eye_counterfactual_deg": 316.73930182695074,
+      "float32_eye_and_target_direction_deg": 316.74433768137646,
+      "matrix_optical_back_axis_deg": 316.7443386592438,
+      "matrix_axis_vs_declared_deg": 0.0030256923736828867,
+      "actual_eye_world_m": [
+        -9.027908325195312,
+        -7.584267616271973,
+        1.4120818376541138
+      ],
+      "requested_eye_world_m": [
+        -9.027908198515052,
+        -7.584267461071881,
+        1.4120818858433233
+      ],
+      "native_target_world_m": [
+        -9.032054424285889,
+        -7.580365896224976,
+        0.8877500891685486
+      ],
+      "actual_eye_minus_requested_m": [
+        -1.2668026094786455e-07,
+        -1.5520009188918493e-07,
+        -4.8189209511662057e-08
+      ],
+      "float32_target_minus_declared_m": [
+        -4.76837158203125e-07,
+        -2.384185791015625e-07,
+        0.0
+      ],
+      "horizontal_baseline_m": 0.005693290524293959,
+      "distance_m": 0.5243626569721799,
+      "inverse_horizontal_baseline_per_m": 175.64534880714046,
+      "azimuth_condition_relative_to_3D_direction": 92.10186178531747,
+      "elevation_deg": 89.37789634006315,
+      "first_order_position_error_prediction_deg": -0.002011144895555364,
+      "position_error_angular_bound_deg": 0.002016145001778544,
+      "producer_pose_position_max_error_m": 1.5520009188918493e-07,
+      "producer_pose_axis_max_error": 6.685952616321961e-07,
+      "matrix_orthogonality_max_error": 5.048108879833757e-17,
+      "matrix_determinant": 1.0,
+      "derived_quaternion_xyzw": [
+        0.004983561579138043,
+        0.002153706271201374,
+        0.39669620990753196,
+        0.9179338988774103
+      ],
+      "quaternion_reconstruction_residual": 8.673617379884035e-19,
+      "derived_quaternion_float32_roundtrip_axis_angle_deg": 316.7443390591636,
+      "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+      "identity": {
+        "declared_matches_direction": true,
+        "declared_matches_requested_eye": true,
+        "actual_eye_equals_float32_requested_eye": true,
+        "float32_position_counterfactual_reproduces_actual_angle": true,
+        "producer_pose_component_gate_pass": true,
+        "frozen_reader_angle_gate_pass": false,
+        "circular_wrap_already_applied": true,
+        "removing_only_eye_rounding_restores_angle": true
+      }
+    }
+  },
+  "largest_condition": {
+    "env_id": 25,
+    "arm": "U_L",
+    "attempt": 3,
+    "producer_status": "qualified",
+    "attempt_reference": {
+      "path": "qualified_views/initial/step_-001_sub_none_capture_000000/env_025/U_L_attempt_03.attempt.json",
+      "sha256": "1eaa278f6f5d5bc5f0e0cc1e29f4a7872d491cca73620104e589160c23dac402"
+    },
+    "metrics": {
+      "declared_deg": 316.7413129668701,
+      "world_direction_deg": 316.7413129668701,
+      "requested_eye_minus_center_deg": 316.7413129668645,
+      "actual_eye_minus_native_center_deg": 316.73930182695074,
+      "frozen_reader_deg": 316.73930182695074,
+      "signed_error_deg": -0.002011139919375182,
+      "absolute_error_deg": 0.002011139919375182,
+      "float32_eye_counterfactual_deg": 316.73930182695074,
+      "float32_eye_and_target_direction_deg": 316.74433768137646,
+      "matrix_optical_back_axis_deg": 316.7443386592438,
+      "matrix_axis_vs_declared_deg": 0.0030256923736828867,
+      "actual_eye_world_m": [
+        -9.027908325195312,
+        -7.584267616271973,
+        1.4120818376541138
+      ],
+      "requested_eye_world_m": [
+        -9.027908198515052,
+        -7.584267461071881,
+        1.4120818858433233
+      ],
+      "native_target_world_m": [
+        -9.032054424285889,
+        -7.580365896224976,
+        0.8877500891685486
+      ],
+      "actual_eye_minus_requested_m": [
+        -1.2668026094786455e-07,
+        -1.5520009188918493e-07,
+        -4.8189209511662057e-08
+      ],
+      "float32_target_minus_declared_m": [
+        -4.76837158203125e-07,
+        -2.384185791015625e-07,
+        0.0
+      ],
+      "horizontal_baseline_m": 0.005693290524293959,
+      "distance_m": 0.5243626569721799,
+      "inverse_horizontal_baseline_per_m": 175.64534880714046,
+      "azimuth_condition_relative_to_3D_direction": 92.10186178531747,
+      "elevation_deg": 89.37789634006315,
+      "first_order_position_error_prediction_deg": -0.002011144895555364,
+      "position_error_angular_bound_deg": 0.002016145001778544,
+      "producer_pose_position_max_error_m": 1.5520009188918493e-07,
+      "producer_pose_axis_max_error": 6.685952616321961e-07,
+      "matrix_orthogonality_max_error": 5.048108879833757e-17,
+      "matrix_determinant": 1.0,
+      "derived_quaternion_xyzw": [
+        0.004983561579138043,
+        0.002153706271201374,
+        0.39669620990753196,
+        0.9179338988774103
+      ],
+      "quaternion_reconstruction_residual": 8.673617379884035e-19,
+      "derived_quaternion_float32_roundtrip_axis_angle_deg": 316.7443390591636,
+      "original_camera_quaternion_bytes": "NOT_PERSISTED; derived quaternion is not native evidence",
+      "identity": {
+        "declared_matches_direction": true,
+        "declared_matches_requested_eye": true,
+        "actual_eye_equals_float32_requested_eye": true,
+        "float32_position_counterfactual_reproduces_actual_angle": true,
+        "producer_pose_component_gate_pass": true,
+        "frozen_reader_angle_gate_pass": false,
+        "circular_wrap_already_applied": true,
+        "removing_only_eye_rounding_restores_angle": true
+      }
+    }
+  },
+  "parent9_float32_translation_cause_exactly_reproduced": true,
+  "original_camera_quaternions": "UNAVAILABLE; derived matrix quaternion only, no original-quaternion attribution",
+  "changes_to_producer_reader_or_thresholds": false,
+  "raw_mask_findings": "NOT_EVALUATED",
+  "native_pass": false,
+  "stage_pass": false,
+  "safety_acceptance": false,
+  "max_rss_KiB": 84400,
+  "address_space_bytes": 1073741824
+}

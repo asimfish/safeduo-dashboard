@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/parent_runtime_v2.py", line 161, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/parent_runtime_v2.py", line 159, in main
+    execute(args)
+  File "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/parent_runtime_v2.py", line 138, in execute
+    result=validate_products(root,rs,wait);write(root/'NATIVE_DIAGNOSTIC_CLOSED_V1.json',result)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/parent_runtime_v2.py", line 64, in validate_products
+    successful_wait(wait)
+  File "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/repair_common_v2.py", line 95, in successful_wait
+    require(wait.get('actual_wait_exit')==0 and wait.get('raw_wait_status')==0 and
+  File "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_runtime_identity_v4/runtime_core_v4.py", line 36, in require
+    raise ValueError(why)
+ValueError: real reaped wait0 required

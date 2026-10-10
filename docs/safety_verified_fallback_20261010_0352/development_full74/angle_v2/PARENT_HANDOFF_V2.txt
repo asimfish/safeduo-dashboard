@@ -1,0 +1,28 @@
+READ-ONLY CAMERA ANGLE REVIEW; NO PRODUCER REPAIR APPLIED
+
+V2 actual2/raw512 remains FAILED_DIAGNOSTIC_INTEGRITY. All16 angle errors exactly reproduce float32 eye translation; all732 translations match float32(requested_eye).
+Prospective candidate qualified_views_fullsphere_v1.py:850 records requested angle; :888-891 overwrites final camera/geometry without updating azimuth.
+
+Minimum prospective delta: preserve requested_azimuth_deg; after FINAL camera readback compute actual_azimuth_deg relative to one fixed native framing-point AABB center; set selection-facing azimuth_deg to actual. Keep >=30deg,1e-4deg identity and all pixel/native gates unchanged. Adaptive optical targets must not move the angular reference. Freeze NEW worker/entry/request/source bindings before native.
+
+All16 signed actual-minus-requested errors (degrees); baseline mm; direction condition; eye error micrometers:
+env00 F_L attempt01: +0.000164596264; 211.629605091; 2.625680086; 0.455742317
+env00 F_L attempt04: -0.000135573635; 212.443669131; 2.625676665; 0.398449409
+env03 U_R attempt02: +0.000204770931; 121.554357711; 4.113386164; 0.442618299
+env03 U_R attempt06: +0.000204770931; 121.554357711; 4.113386164; 0.442618299
+env06 U_L attempt03: -0.000116951456; 26.336132439; 18.985324002; 0.100580889
+env06 U_L attempt05: -0.000116951456; 26.336132439; 18.985323967; 0.100580889
+env08 F_R attempt02: -0.000100615381; 179.571239759; 2.784410839; 0.422527133
+env08 F_R attempt06: -0.000100615381; 179.571239759; 2.784410839; 0.422527133
+env09 F_R attempt03: +0.000101878623; 260.512356285; 1.919294598; 0.365923228
+env12 F_L attempt03: +0.000126504831; 78.669800408; 6.355678899; 0.191840064
+env15 U_R attempt01: +0.000108044993; 106.943951139; 4.675346183; 0.284102821
+env15 U_R attempt04: +0.000108044993; 106.943951139; 4.675345775; 0.284102821
+env25 U_L attempt03: -0.002011139919; 5.693290524; 92.101861785; 0.155200092
+env25 U_R attempt02: -0.000317044790; 102.297977093; 5.375656340; 0.457878047
+env25 U_R attempt06: +0.000156755104; 102.627566731; 5.375655562; 0.224352791
+env29 U_R attempt03: -0.000107100293; 130.007019249; 3.926136454; 0.177077771
+
+128 declared selected trios: minimum actual separation30.002937019107264deg. No retrospective qualification or mask/safety claim.
+Original runtime camera quaternion absent; derived matrix quaternion is diagnostic only.
+Independent CPU14 oracles plus732 captured RED/expected-value replays actual0/raw0; exact16 V2 errors retained. Full proof/SHAs in READONLY_REVIEW_V2.json and PACKAGE_CLOSED_ANGLE_ORACLE_V2.json.

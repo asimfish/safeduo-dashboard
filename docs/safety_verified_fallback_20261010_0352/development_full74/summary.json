@@ -14,7 +14,7 @@
   "strict_failed": 14,
   "physical_safety_status": "FAILED_NOT_ACCEPTED",
   "task_acceptance": "FAILED_NOT_ACCEPTED",
-  "independent_failed_raw_reader": "PENDING",
+  "independent_failed_raw_reader": "FAILED_DIAGNOSTIC_INTEGRITY",
   "native_actual_wait_exit": -9,
   "raw_samples": 16,
   "camera_upgrade_CPU_tests": 33,
@@ -29,5 +29,1350 @@
   "independent_diagnostic_first_actual_exit": 2,
   "independent_camera_recomputation_complete": false,
   "actual_parameter_readbacks": "UNKNOWN",
-  "native_geometry_identity": "UNKNOWN"
+  "native_geometry_identity": "UNKNOWN",
+  "independent_diagnostic_v2_actual_exit": 2,
+  "independent_camera_records_decoded": 858,
+  "independent_camera_groups_visited": 32,
+  "independent_camera_integrity_complete": false,
+  "independent_angle_error_states": [
+    0,
+    3,
+    6,
+    8,
+    9,
+    12,
+    15,
+    25,
+    29
+  ],
+  "independent_angle_errors": 16,
+  "angle_identity_threshold_deg": 0.0001,
+  "largest_angle_error_deg": 0.002011139919375182,
+  "old_selected_minimum_actual_separation_deg": 30.002937019107264,
+  "future": {
+    "camera_version": "V8",
+    "actual_result": "CLOSED_COVERAGE_NEGATIVE",
+    "independent_review": "CLOSED_CPU_ONLY",
+    "independent_raw": "CLOSED_NEGATIVE_AUDIT",
+    "qualification": false,
+    "wait_for_new_native": false
+  },
+  "revision_publication": "READY_FOR_PARENT_FAILED_SNAPSHOT_REVIEW_NOT_PUBLISHED",
+  "latest_native_camera_diagnostic": {
+    "schema": "safeduo.development_full74.closed_V8_negative_snapshot.v1",
+    "snapshot_updated_utc": "2026-10-10T05:50:19.549050+00:00",
+    "version": "V8",
+    "actual_result": "CLOSED_COVERAGE_NEGATIVE",
+    "native_actual_exit": 0,
+    "native_raw_status": 0,
+    "parent_actual_exit": 0,
+    "parent_raw_status": 0,
+    "native_closed_utc": "2026-10-10T05:43:07.472603+00:00",
+    "reader_closed_utc": "2026-10-10T05:49:07.619492+00:00",
+    "independent_audit_status": "CLOSED_EXPECTED_STRONG_CAMERA_NEGATIVE",
+    "independent_audit_actual_exit": 0,
+    "entry_status": "failed",
+    "failure_scope": "STRICT_COVERAGE_ONLY",
+    "cleanup_errors": [],
+    "measurement_bytes_verified": true,
+    "measurements": {
+      "parameters": {
+        "before": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/PARAMETER_READBACK_BEFORE_V1.npz",
+          "sha256": "6cc297686efc6c6fac9c6856f4db04feaeef0a90b303fa28d04dbf14b4c74cae"
+        },
+        "after": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/PARAMETER_READBACK_AFTER_V1.npz",
+          "sha256": "6cc297686efc6c6fac9c6856f4db04feaeef0a90b303fa28d04dbf14b4c74cae"
+        },
+        "bytes_each": 19222,
+        "same_SHA": true
+      },
+      "geometry": {
+        "before": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/GEOMETRY_BEFORE_V1.json",
+          "sha256": "0d85ec059cd6cb90014dd2978f241644dacae26cfe2ce575a516830e9ec58de3"
+        },
+        "after": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/GEOMETRY_AFTER_V1.json",
+          "sha256": "0d85ec059cd6cb90014dd2978f241644dacae26cfe2ce575a516830e9ec58de3"
+        },
+        "bytes_each": 502689,
+        "same_SHA": true
+      }
+    },
+    "actual_cuda_identity": {
+      "physical_gpu_index": 1,
+      "cuda_device": "cuda:0",
+      "expected_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+      "actual_cuda_uuid": "828bb172-121c-cc55-7f4f-ef09a2bd7599",
+      "cuda_visible_devices": "1",
+      "multi_gpu": false,
+      "active_renderer_gpu": 1,
+      "physics_logical_gpu": 0
+    },
+    "actual_kit_identity": {
+      "actual_settings": {
+        "/renderer/activeGpu": 1,
+        "/physics/cudaDevice": 0,
+        "/renderer/multiGpu/enabled": false
+      },
+      "active_renderer": {
+        "renderer_index": 1,
+        "active": "Yes: 0",
+        "uuid_prefix": "828bb172",
+        "pci_bus_hex": "81"
+      },
+      "actual_rows": [
+        {
+          "renderer_index": 0,
+          "active": "",
+          "uuid_prefix": "b129224c",
+          "pci_bus_hex": "41"
+        },
+        {
+          "renderer_index": 1,
+          "active": "Yes: 0",
+          "uuid_prefix": "828bb172",
+          "pci_bus_hex": "81"
+        }
+      ],
+      "actual_table": "| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |\n|     |                                  |        |     |            | Device-ID | UUID       |\n|     |                                  |        |     |            | Bus-ID    |            |\n|---------------------------------------------------------------------------------------------|\n| 0   | NVIDIA GeForce RTX 5090          |        |     | 32607   MB | 10de      | 0          |\n|     |                                  |        |     |            | 2b85      | b129224c.. |\n|     |                                  |        |     |            | 41        |            |\n|---------------------------------------------------------------------------------------------|\n| 1   | NVIDIA GeForce RTX 5090          | Yes: 0 |     | 32607   MB | 10de      | 0          |\n|     |                                  |        |     |            | 2b85      | 828bb172.. |\n|     |                                  |        |     |            | 81        |            |\n|=============================================================================================|\n| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic\n| Processor: AMD Ryzen Threadripper 7960X 24-Cores\n| Cores: 24 | Logical Cores: 48\n|---------------------------------------------------------------------------------------------|",
+      "actual_table_sha256": "59eaada7343570ef4982c338c66c8df1f4a897f68dffd97285c31ba0ba6b95a4"
+    },
+    "case_count": 1,
+    "camera_attempts": 96,
+    "selected_attempts": [
+      76,
+      7,
+      1
+    ],
+    "little_peak": 84,
+    "pinky2_peak": 0,
+    "native_population": {
+      "old_initial_states": 32,
+      "replayed_existing_lanes": 32,
+      "new_fresh_states": 0,
+      "unique_initial_states": 32
+    },
+    "native_diagnostic_closed": true,
+    "native_completed": 0,
+    "physical_steps": 0,
+    "policy_actions": 0,
+    "prefix_qualified": false,
+    "formal_holdout": 0,
+    "qualification": false,
+    "task_accepted": false,
+    "physical_safety_certified": false,
+    "old_V6_missing_receipts_preserved": true,
+    "independent_audit_report": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/single_case_camera_reader_v8/raw_reader_v8_v2/raw_attempt1/INDEPENDENT_RAW_AUDIT_V8.json",
+      "sha256": "545d2595254157a29497b7cbf1ff6ce59499d9f0397498d7cb65fd3b277c5b90"
+    },
+    "independent_audit_wait": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/single_case_camera_reader_v8/raw_reader_v8_v2/raw_attempt1/ACTUAL_WAIT.json",
+      "sha256": "177419c8ef98ff621205f8a4f88a1ead95e209537d85b3738064fedfb97014d7"
+    },
+    "public_raw_images_scope": "EXISTING_V6_IMAGES_UNCHANGED"
+  },
+  "prior_preparation_snapshot_v3": {
+    "schema": "safeduo.development_full74.next_snapshot.v3",
+    "utc": "2026-10-10T04:39:03.146113+00:00",
+    "publication": "HELD",
+    "old_raw": {
+      "actual_exit": 2,
+      "decoded_records": 858,
+      "error_states": 9,
+      "angle_errors": 16,
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/development_full74_panel_revision_v2/release02/build_02/overlay/revision/audit_summary_v2.json",
+        "sha256": "412d3b62608cd914e1eed94f1c0d652b3f7c852dc8bba33fb4bab1266bcc9a2f"
+      }
+    },
+    "camera_v3": {
+      "native_actual_exit": 1,
+      "outer_actual_exit": 1,
+      "native_pid": 397784,
+      "outer_pid": 397477,
+      "all_owned_reaped": true,
+      "new_RGB_count": 0,
+      "new_completed_cases": 0,
+      "failure": "EULA_BOOTSTRAP_EOF",
+      "native_wait": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v3_attempt1/native_process/ACTUAL_WAIT.json",
+        "sha256": "d745404a90ab28b5dd439fdcba9c183a566963dd1b75f3710d276060b7ff89f8"
+      },
+      "outer_wait": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_camera_repair_review_v3/parent_native_v1/ACTUAL_WAIT.json",
+        "sha256": "9c3eb875d9109ca15c64c378972369706d1acb9f95659025b065219600055f1f"
+      }
+    },
+    "camera_v4_cpu": {
+      "actual_tests": 3,
+      "actual_exit": 0,
+      "prepare_actual_exit": 0,
+      "camera_algorithm_changed": false,
+      "native_cases_added": 0,
+      "reused_V3_tests": {
+        "integration": 31,
+        "angle": 14,
+        "helper": 4
+      },
+      "environment_flag": {
+        "OMNI_KIT_ACCEPT_EULA": "YES"
+      },
+      "source_graph": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v4/SOURCE_GRAPH_V2.json",
+        "sha256": "176f1583d7ffd453961e15bf56eb70d7c3ee418f878b77a0c6f121af3ae0b1f8"
+      },
+      "closure": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v4/REAPED_CLOSURE_V4.json",
+        "sha256": "80dfbe5727793560e16543e12a0097819499cb326dbdbe8419b94e16bb2f333b"
+      }
+    },
+    "v4_case_fields": {
+      "schema": "safeduo.development.camera_v4.pending_case.v1",
+      "status": "PENDING_ACTUAL_CASE",
+      "case_identity": {
+        "env_id": 2,
+        "arm": "F_R",
+        "development_only": true
+      },
+      "source_graph": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v4/SOURCE_GRAPH_V2.json",
+        "sha256": "176f1583d7ffd453961e15bf56eb70d7c3ee418f878b77a0c6f121af3ae0b1f8"
+      },
+      "source_graph_status": "CPU_CLOSED_INDEPENDENT_REVIEW_PENDING",
+      "frozen_request": null,
+      "parent_approval": null,
+      "original_state_source": null,
+      "native_actual_wait": null,
+      "parent_actual_wait": null,
+      "producer_lifecycle_closure": null,
+      "original_state_rgb": [],
+      "original_state_masks": [],
+      "camera_metadata": [],
+      "original_state_replay": {
+        "status": "PENDING",
+        "reference": null,
+        "actual_before": null,
+        "actual_after": null,
+        "all27_state_binding": null,
+        "independent_report": null
+      },
+      "parameters": {
+        "status": "PENDING",
+        "before": null,
+        "after": null,
+        "independent_comparison": null
+      },
+      "geometry": {
+        "status": "PENDING",
+        "before": null,
+        "after": null,
+        "identity_comparison": null,
+        "independent_report": null
+      },
+      "independent_reader": {
+        "status": "PENDING",
+        "source_graph": null,
+        "actual_wait": null,
+        "report": null
+      },
+      "actual_native_exit": null,
+      "actual_reader_exit": null,
+      "native_image_count": null,
+      "newly_completed_native_cases": null,
+      "failure_stage": null,
+      "failure_reason": null,
+      "admitted_new_native_cases": 0,
+      "formal_holdout": 0,
+      "physical_safety_certified": false,
+      "task_accepted": false,
+      "publication": "HELD",
+      "original16_samples_reused_unchanged": true,
+      "absent_field_rule": "Retain null/PENDING until source-bound actual evidence; a closed failure may explicitly mark NOT_PRODUCED with a source-bound reason. Never fill absent state/image/parameter/geometry data with zero arrays.",
+      "closed_failure_rule": "Preserve nonzero native and reader exits; review failure evidence without promoting it to PASS. Parent notification and review precede final snapshot.",
+      "artifact_reference_shape": {
+        "path": "absolute original immutable file path",
+        "sha256": "exact SHA256",
+        "bytes": "actual byte count"
+      },
+      "wait_reference_rule": "Bind actual wait PID/startticks, raw status, exact log/source SHA and producer/observer closure graph; exit0 alone is insufficient"
+    },
+    "counts": {
+      "generated": 8192,
+      "seeds": 4,
+      "old_native_initial": 32,
+      "prefix_controls": 0,
+      "new_native_completed": 0,
+      "formal_holdout": 0
+    },
+    "physical_safety_status": "FAILED_NOT_ACCEPTED",
+    "task_acceptance": "FAILED_NOT_ACCEPTED",
+    "storage": {
+      "external_free_observation_bytes": 182469963776,
+      "external_free_observation_source": "PARENT_REPORTED; not a fresh measurement by this panel builder",
+      "external_free_observation_cause": "UNKNOWN",
+      "external_free_attributed_to_owned_relocations": false,
+      "objects_reclaimed_bytes": 2863720825,
+      "headless_reclaimed_bytes": 336010568,
+      "lib_reclaimed_bytes": 0,
+      "native_prelaunch_minimum_bytes": 20401094656,
+      "storage_actions_by_this_panel_builder": 0
+    }
+  },
+  "snapshot_updated_utc": "2026-10-10T05:50:19.549050+00:00",
+  "native_population": {
+    "old_initial_states": 32,
+    "replayed_existing_lanes": 32,
+    "new_fresh_states": 0,
+    "unique_initial_states": 32
+  },
+  "legacy_top_level_scope": "V9 initial/858 records; V6 is explicitly under latest_native_camera_diagnostic, with same32 replay and fresh0",
+  "historical_V6_camera_diagnostic": {
+    "schema": "safeduo.panel_v6_closed_failed_snapshot.v2",
+    "observed_utc": "2026-10-10T05:19:43.657498+00:00",
+    "case_count": 1,
+    "env_id": 2,
+    "arm": "F_R",
+    "native_point": 0,
+    "camera_attempt_count": 96,
+    "selected_attempts": [
+      76,
+      7,
+      1
+    ],
+    "published_raw_views": 3,
+    "all96_raw_public": false,
+    "producer_status": "FAILED",
+    "strict_group": {
+      "status": "failed",
+      "reasons": [
+        "group_finger_family_visibility_insufficient",
+        "strict_native_hand_body_visibility_insufficient"
+      ],
+      "policy": {
+        "schema": "safeduo.strict_observation_policy.development.v2",
+        "resolution": [
+          1280,
+          720
+        ],
+        "minimum_base_same_rigid_pixels_exclusive": 200,
+        "minimum_palm_visual_pixels_in_one_group_view": 2048,
+        "minimum_each_finger_family_pixels_in_one_group_view": 512,
+        "native_body_observed_reporting_threshold": 64,
+        "required_views": 3,
+        "minimum_pairwise_azimuth_deg": 30.0,
+        "all_native_hand_bodies_enumerated": true,
+        "all_native_hand_bodies_visibility_required": true,
+        "all_native_hand_body_visibility_separate_report": true,
+        "wide_required_views": 3,
+        "wide_minimum_each_arm_pixels_in_one_group_view": 1024,
+        "wide_minimum_each_table_pixels_in_one_group_view": 1024,
+        "critical_body_reporting_threshold": 128,
+        "full_mesh_coverage_certified": false,
+        "occlusion_free_certified": false,
+        "physical_safety_certified": false
+      },
+      "palm_visual_peak_pixels": 15952,
+      "finger_family_peak_pixels": {
+        "thumb": 10213,
+        "index": 5603,
+        "middle": 2997,
+        "ring": 2836,
+        "little": 84
+      },
+      "missing_finger_families": [
+        "little"
+      ],
+      "per_native_body_peak_pixels": {
+        "/World/envs/env_2/F_R/f2_hand/right_hand_base": 25890,
+        "/World/envs/env_2/F_R/f2_hand/right_index_1": 2511,
+        "/World/envs/env_2/F_R/f2_hand/right_index_2": 3165,
+        "/World/envs/env_2/F_R/f2_hand/right_middle_1": 661,
+        "/World/envs/env_2/F_R/f2_hand/right_middle_2": 2336,
+        "/World/envs/env_2/F_R/f2_hand/right_pinky_1": 84,
+        "/World/envs/env_2/F_R/f2_hand/right_pinky_2": 0,
+        "/World/envs/env_2/F_R/f2_hand/right_ring_1": 289,
+        "/World/envs/env_2/F_R/f2_hand/right_ring_2": 2547,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_1": 730,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_2": 5191,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_3": 2645,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_4": 3222
+      },
+      "native_body_visibility_gaps": [
+        "/World/envs/env_2/F_R/f2_hand/right_pinky_2"
+      ],
+      "all_native_hand_bodies_observed": false,
+      "group_union_definition": "Each required anatomical region is observed in at least one of the three views; counts are per-view maxima, never a false cross-view surface union.",
+      "full_mesh_coverage_certified": false,
+      "occlusion_free_certified": false,
+      "physical_safety_certified": false
+    },
+    "aggregate_acceptance": false,
+    "physical_steps": 0,
+    "policy_actions": 0,
+    "native_completed": 0,
+    "formal_holdout": 0,
+    "task_accepted": false,
+    "outer_actual_exit": -15,
+    "outer_raw_wait_status": 15,
+    "outer_abort": "ValueError: descendant ancestry changed",
+    "outer_wait": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_camera_repair_review_v6/parent_native_v1/ACTUAL_WAIT.json",
+      "sha256": "ed5f2a204cb73d3edbd2d8931d54cc6b54e0a7dda9020e3d6197d1fa275e362a"
+    },
+    "all_owned_reaped": true,
+    "native_actual_exit": null,
+    "native_wait_status": "MISSING",
+    "entry_receipt_status": "MISSING",
+    "missing_paths": [
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/native_process/ACTUAL_WAIT.json",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/entry/ENTRY_RECEIPT_V1.json"
+    ],
+    "independent_raw_reader": "CLOSED_FAILED_DIAGNOSTIC",
+    "independent_raw_PASS": false,
+    "completeness": {
+      "native27": {
+        "before_present": true,
+        "after_present": true,
+        "before": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/native/camera_repair_env002_F_R/native_before_all32.npz",
+          "sha256": "0995b1b93dc57f45c017c777b29087778c0b5c0660951f84081a891c25964fe5"
+        },
+        "after": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/native/camera_repair_env002_F_R/native_after_all32.npz",
+          "sha256": "0995b1b93dc57f45c017c777b29087778c0b5c0660951f84081a891c25964fe5"
+        },
+        "same_file_sha256": true,
+        "NPZ_member_count": 27,
+        "independent_verdict": "RAW_REPLAY_AND_HELD_SNAPSHOTS_BITWISE",
+        "held_snapshot_comparisons": 772
+      },
+      "parameters": {
+        "before_present": true,
+        "after_present": true,
+        "before": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/entry/PARAMETER_READBACK_BEFORE_V1.npz",
+          "sha256": "6cc297686efc6c6fac9c6856f4db04feaeef0a90b303fa28d04dbf14b4c74cae"
+        },
+        "after": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/entry/PARAMETER_READBACK_AFTER_V1.npz",
+          "sha256": "6cc297686efc6c6fac9c6856f4db04feaeef0a90b303fa28d04dbf14b4c74cae"
+        },
+        "same_file_sha256": true,
+        "NPZ_member_count": 64,
+        "independent_verdict": "RAW_ARTIFACT_MATCHES_FROZEN_ONLY",
+        "bytes_each": 19222,
+        "measurement_lifecycle_provenance": "UNKNOWN_MISSING_ENTRY"
+      },
+      "geometry": {
+        "before_present": true,
+        "after_present": true,
+        "before": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/entry/GEOMETRY_BEFORE_V1.json",
+          "sha256": "0d85ec059cd6cb90014dd2978f241644dacae26cfe2ce575a516830e9ec58de3"
+        },
+        "after": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v6_attempt1/entry/GEOMETRY_AFTER_V1.json",
+          "sha256": "0d85ec059cd6cb90014dd2978f241644dacae26cfe2ce575a516830e9ec58de3"
+        },
+        "same_file_sha256": true,
+        "NPZ_member_count": null,
+        "independent_verdict": "RAW_ARTIFACT_MATCHES_FROZEN_ONLY",
+        "bytes_each": 502689,
+        "measurement_lifecycle_provenance": "UNKNOWN_MISSING_ENTRY"
+      }
+    },
+    "attempt_inventory": [
+      {
+        "attempt": 1,
+        "producer_status": "qualified",
+        "little_pixels": 84,
+        "pinky2_pixels": 0,
+        "selected": true,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_01.attempt.json"
+      },
+      {
+        "attempt": 2,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_02.attempt.json"
+      },
+      {
+        "attempt": 3,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_03.attempt.json"
+      },
+      {
+        "attempt": 4,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_04.attempt.json"
+      },
+      {
+        "attempt": 5,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_05.attempt.json"
+      },
+      {
+        "attempt": 6,
+        "producer_status": "rejected",
+        "little_pixels": 29,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_06.attempt.json"
+      },
+      {
+        "attempt": 7,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": true,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_07.attempt.json"
+      },
+      {
+        "attempt": 8,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_08.attempt.json"
+      },
+      {
+        "attempt": 9,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_09.attempt.json"
+      },
+      {
+        "attempt": 10,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_10.attempt.json"
+      },
+      {
+        "attempt": 11,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_11.attempt.json"
+      },
+      {
+        "attempt": 12,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_12.attempt.json"
+      },
+      {
+        "attempt": 13,
+        "producer_status": "rejected",
+        "little_pixels": 10,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_13.attempt.json"
+      },
+      {
+        "attempt": 14,
+        "producer_status": "rejected",
+        "little_pixels": 24,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_14.attempt.json"
+      },
+      {
+        "attempt": 15,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_15.attempt.json"
+      },
+      {
+        "attempt": 16,
+        "producer_status": "rejected",
+        "little_pixels": 1,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_16.attempt.json"
+      },
+      {
+        "attempt": 17,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_17.attempt.json"
+      },
+      {
+        "attempt": 18,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_18.attempt.json"
+      },
+      {
+        "attempt": 19,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_19.attempt.json"
+      },
+      {
+        "attempt": 20,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_20.attempt.json"
+      },
+      {
+        "attempt": 21,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_21.attempt.json"
+      },
+      {
+        "attempt": 22,
+        "producer_status": "qualified",
+        "little_pixels": 40,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_22.attempt.json"
+      },
+      {
+        "attempt": 23,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_23.attempt.json"
+      },
+      {
+        "attempt": 24,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_24.attempt.json"
+      },
+      {
+        "attempt": 25,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_25.attempt.json"
+      },
+      {
+        "attempt": 26,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_26.attempt.json"
+      },
+      {
+        "attempt": 27,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_27.attempt.json"
+      },
+      {
+        "attempt": 28,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_28.attempt.json"
+      },
+      {
+        "attempt": 29,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_29.attempt.json"
+      },
+      {
+        "attempt": 30,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_30.attempt.json"
+      },
+      {
+        "attempt": 31,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_31.attempt.json"
+      },
+      {
+        "attempt": 32,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_32.attempt.json"
+      },
+      {
+        "attempt": 33,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_33.attempt.json"
+      },
+      {
+        "attempt": 34,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_34.attempt.json"
+      },
+      {
+        "attempt": 35,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_35.attempt.json"
+      },
+      {
+        "attempt": 36,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_36.attempt.json"
+      },
+      {
+        "attempt": 37,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_37.attempt.json"
+      },
+      {
+        "attempt": 38,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_38.attempt.json"
+      },
+      {
+        "attempt": 39,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_39.attempt.json"
+      },
+      {
+        "attempt": 40,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_40.attempt.json"
+      },
+      {
+        "attempt": 41,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_41.attempt.json"
+      },
+      {
+        "attempt": 42,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_42.attempt.json"
+      },
+      {
+        "attempt": 43,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_43.attempt.json"
+      },
+      {
+        "attempt": 44,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_44.attempt.json"
+      },
+      {
+        "attempt": 45,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_45.attempt.json"
+      },
+      {
+        "attempt": 46,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_46.attempt.json"
+      },
+      {
+        "attempt": 47,
+        "producer_status": "rejected",
+        "little_pixels": 30,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_47.attempt.json"
+      },
+      {
+        "attempt": 48,
+        "producer_status": "rejected",
+        "little_pixels": 12,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_48.attempt.json"
+      },
+      {
+        "attempt": 49,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_49.attempt.json"
+      },
+      {
+        "attempt": 50,
+        "producer_status": "qualified",
+        "little_pixels": 49,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_50.attempt.json"
+      },
+      {
+        "attempt": 51,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_51.attempt.json"
+      },
+      {
+        "attempt": 52,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_52.attempt.json"
+      },
+      {
+        "attempt": 53,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_53.attempt.json"
+      },
+      {
+        "attempt": 54,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_54.attempt.json"
+      },
+      {
+        "attempt": 55,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_55.attempt.json"
+      },
+      {
+        "attempt": 56,
+        "producer_status": "qualified",
+        "little_pixels": 14,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_56.attempt.json"
+      },
+      {
+        "attempt": 57,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_57.attempt.json"
+      },
+      {
+        "attempt": 58,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_58.attempt.json"
+      },
+      {
+        "attempt": 59,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_59.attempt.json"
+      },
+      {
+        "attempt": 60,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_60.attempt.json"
+      },
+      {
+        "attempt": 61,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_61.attempt.json"
+      },
+      {
+        "attempt": 62,
+        "producer_status": "qualified",
+        "little_pixels": 40,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_62.attempt.json"
+      },
+      {
+        "attempt": 63,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_63.attempt.json"
+      },
+      {
+        "attempt": 64,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_64.attempt.json"
+      },
+      {
+        "attempt": 65,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_65.attempt.json"
+      },
+      {
+        "attempt": 66,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_66.attempt.json"
+      },
+      {
+        "attempt": 67,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_67.attempt.json"
+      },
+      {
+        "attempt": 68,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_68.attempt.json"
+      },
+      {
+        "attempt": 69,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_69.attempt.json"
+      },
+      {
+        "attempt": 70,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_70.attempt.json"
+      },
+      {
+        "attempt": 71,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_71.attempt.json"
+      },
+      {
+        "attempt": 72,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_72.attempt.json"
+      },
+      {
+        "attempt": 73,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_73.attempt.json"
+      },
+      {
+        "attempt": 74,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_74.attempt.json"
+      },
+      {
+        "attempt": 75,
+        "producer_status": "rejected",
+        "little_pixels": 21,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_75.attempt.json"
+      },
+      {
+        "attempt": 76,
+        "producer_status": "qualified",
+        "little_pixels": 54,
+        "pinky2_pixels": 0,
+        "selected": true,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_76.attempt.json"
+      },
+      {
+        "attempt": 77,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_77.attempt.json"
+      },
+      {
+        "attempt": 78,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_78.attempt.json"
+      },
+      {
+        "attempt": 79,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_79.attempt.json"
+      },
+      {
+        "attempt": 80,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_80.attempt.json"
+      },
+      {
+        "attempt": 81,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_81.attempt.json"
+      },
+      {
+        "attempt": 82,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_82.attempt.json"
+      },
+      {
+        "attempt": 83,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_83.attempt.json"
+      },
+      {
+        "attempt": 84,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_84.attempt.json"
+      },
+      {
+        "attempt": 85,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_85.attempt.json"
+      },
+      {
+        "attempt": 86,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_86.attempt.json"
+      },
+      {
+        "attempt": 87,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_87.attempt.json"
+      },
+      {
+        "attempt": 88,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_88.attempt.json"
+      },
+      {
+        "attempt": 89,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_89.attempt.json"
+      },
+      {
+        "attempt": 90,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_90.attempt.json"
+      },
+      {
+        "attempt": 91,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_91.attempt.json"
+      },
+      {
+        "attempt": 92,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_92.attempt.json"
+      },
+      {
+        "attempt": 93,
+        "producer_status": "qualified",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_93.attempt.json"
+      },
+      {
+        "attempt": 94,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_94.attempt.json"
+      },
+      {
+        "attempt": 95,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_95.attempt.json"
+      },
+      {
+        "attempt": 96,
+        "producer_status": "rejected",
+        "little_pixels": 0,
+        "pinky2_pixels": 0,
+        "selected": false,
+        "public_metadata": "v6_raw/native/camera_repair_env002_F_R/F_R_attempt_96.attempt.json"
+      }
+    ],
+    "original_beforeafter_meaning": "Independent failed diagnostic confirms raw artifact correspondence; missing ENTRY keeps measurement lifecycle and actual GPU UNKNOWN",
+    "old_comparison": {
+      "attempts": 24,
+      "little_peak": 83,
+      "pinky2_peak": 0,
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v1/V9_FAILURE_AND_RAW_MASK_ANALYSIS_V1.json",
+        "sha256": "23570079cfec4b81a7556343318e5ad5f873ed53cb18d71b718cb5a202df0c99"
+      }
+    },
+    "publication": "READY_FOR_PARENT_FAILED_SNAPSHOT_REVIEW_NOT_PUBLISHED",
+    "physical_safety_certified": false,
+    "snapshot_updated_utc": "2026-10-10T05:42:22.783417+00:00",
+    "outer_closed_utc": "2026-10-10T05:09:31.096362+00:00",
+    "reader_closed_utc": "2026-10-10T05:19:03.928602+00:00",
+    "reader_actual_exit": 0,
+    "reader_status": "FAILED_DIAGNOSTIC",
+    "independent_reader_report": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/single_case_camera_failed_reader_v6_v1/raw_attempt1/FAILED_DIAGNOSTIC.json",
+      "sha256": "1e7a88044a596f1567b14e3151fd4618b3350c8c01377cbad23597b002a2fa01"
+    },
+    "independent_reader_wait": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/single_case_camera_failed_reader_v6_v1/raw_attempt1/ACTUAL_WAIT.json",
+      "sha256": "3110a8028d8b1d7c72fbe334e401843a46aaca9dbcb232c9ebade5001d80ea93"
+    },
+    "measurement_verified": "UNKNOWN_MISSING_ENTRY",
+    "actual_CUDA_identity": "UNKNOWN",
+    "actual_Kit_identity": "UNKNOWN",
+    "all96_metadata_scan": {
+      "count": 96,
+      "scope": "ALL_96_ATTEMPTS",
+      "little_peak": 84,
+      "pinky2_peak": 0
+    },
+    "all96_maxima": {
+      "body_gaps_below64": [
+        "/World/envs/env_2/F_R/f2_hand/right_pinky_2"
+      ],
+      "family_gaps_below512": [
+        "little"
+      ],
+      "finger_family_peaks": {
+        "index": 7631,
+        "little": 84,
+        "middle": 3616,
+        "ring": 2902,
+        "thumb": 11398
+      },
+      "palm_peak": 20482,
+      "per_native_body_peaks": {
+        "/World/envs/env_2/F_R/f2_hand/right_hand_base": 29270,
+        "/World/envs/env_2/F_R/f2_hand/right_index_1": 3932,
+        "/World/envs/env_2/F_R/f2_hand/right_index_2": 3699,
+        "/World/envs/env_2/F_R/f2_hand/right_middle_1": 1392,
+        "/World/envs/env_2/F_R/f2_hand/right_middle_2": 2572,
+        "/World/envs/env_2/F_R/f2_hand/right_pinky_1": 84,
+        "/World/envs/env_2/F_R/f2_hand/right_pinky_2": 0,
+        "/World/envs/env_2/F_R/f2_hand/right_ring_1": 680,
+        "/World/envs/env_2/F_R/f2_hand/right_ring_2": 2547,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_1": 1219,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_2": 6620,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_3": 2645,
+        "/World/envs/env_2/F_R/f2_hand/right_thumb_4": 3222
+      },
+      "qualification": false,
+      "scope": "EXPLORATORY_ALL_RECORDED_96_PER_VIEW_MAXIMA_NO_RESELECTION",
+      "universal_visibility_claim": false
+    },
+    "selected_body_peaks": {
+      "/World/envs/env_2/F_R/f2_hand/right_hand_base": 25890,
+      "/World/envs/env_2/F_R/f2_hand/right_index_1": 2511,
+      "/World/envs/env_2/F_R/f2_hand/right_index_2": 3165,
+      "/World/envs/env_2/F_R/f2_hand/right_middle_1": 661,
+      "/World/envs/env_2/F_R/f2_hand/right_middle_2": 2336,
+      "/World/envs/env_2/F_R/f2_hand/right_pinky_1": 84,
+      "/World/envs/env_2/F_R/f2_hand/right_pinky_2": 0,
+      "/World/envs/env_2/F_R/f2_hand/right_ring_1": 289,
+      "/World/envs/env_2/F_R/f2_hand/right_ring_2": 2547,
+      "/World/envs/env_2/F_R/f2_hand/right_thumb_1": 730,
+      "/World/envs/env_2/F_R/f2_hand/right_thumb_2": 5191,
+      "/World/envs/env_2/F_R/f2_hand/right_thumb_3": 2645,
+      "/World/envs/env_2/F_R/f2_hand/right_thumb_4": 3222
+    },
+    "native_population": {
+      "old_initial_states": 32,
+      "replayed_existing_lanes": 32,
+      "new_fresh_states": 0,
+      "unique_initial_states": 32
+    },
+    "future": {
+      "camera_version": "V8",
+      "actual_result": "RUNNING",
+      "independent_review": "CLOSED_CPU_ONLY",
+      "native_launches": 1,
+      "native_actual_exit": null,
+      "V7_actual_result": "BLOCKED_NEVER_LAUNCHED",
+      "V7_native_launches": 0,
+      "V7_native_actual_exit": null,
+      "V7_blocking_finding": "V7_KIT_ACTIVE_TOKEN_MISMATCH",
+      "V7_actual_helper_token": "Yes: 0",
+      "V7_expected_validator_token": "Yes:0",
+      "V7_closed_source_unchanged": true,
+      "V8_change": "EXACT_KIT_ACTIVE_TOKEN_FIX_ONLY",
+      "V8_helper_CPU_tests": 3,
+      "V8_helper_CPU_actual_exit": 0,
+      "V8_prepare_attempt": 2,
+      "V8_prepare_CPU_actual_exit": 0,
+      "blocks_V6_failure_publication": false,
+      "status_as_of_utc": "2026-10-10T05:42:22.783417+00:00",
+      "independent_review_verdict": "CONDITIONAL_PASS",
+      "independent_review_tests": 3,
+      "native_pid_parent_reported": 751911,
+      "native_attempt_root": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1",
+      "final_ENTRY": "PENDING",
+      "native_wait": "PENDING",
+      "independent_raw": "PENDING",
+      "native_status_source": "PARENT_REPORTED_TOOL_3361",
+      "native_status_as_of_utc": "2026-10-10T05:39:54+00:00"
+    }
+  }
 }

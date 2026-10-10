@@ -1,0 +1,87 @@
+{
+  "schema": "safeduo.camera_repair_parent_entry.v1",
+  "status": "failed",
+  "request_sha256": "e0fe6f3a0562f6fc9f2702c2cf8a8555fd7816db9148f4f6d27ae6aa3ee89b6f",
+  "review_sha256": "145ce60eeb9ce5fe98a707493e2b9edef83618d0ff8952e01a5bd279970af748",
+  "scope": "SINGLE_CASE_DEVELOPMENT_CAMERA_DIAGNOSTIC_ONLY",
+  "physical_steps": 0,
+  "policy_actions": 0,
+  "prefix_qualification": false,
+  "aggregate_acceptance": false,
+  "hidden_solver_state_restored": false,
+  "CONTACT": "UNKNOWN",
+  "ACTUAL_DRIVE_TORQUE": "UNKNOWN",
+  "TERMINAL_SET": "UNKNOWN",
+  "cleanup_errors": [],
+  "actual_cuda_identity": {
+    "physical_gpu_index": 1,
+    "cuda_device": "cuda:0",
+    "expected_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+    "actual_cuda_uuid": "828bb172-121c-cc55-7f4f-ef09a2bd7599",
+    "cuda_visible_devices": "1",
+    "multi_gpu": false,
+    "active_renderer_gpu": 1,
+    "physics_logical_gpu": 0
+  },
+  "actual_kit_identity": {
+    "actual_settings": {
+      "/renderer/activeGpu": 1,
+      "/physics/cudaDevice": 0,
+      "/renderer/multiGpu/enabled": false
+    },
+    "active_renderer": {
+      "renderer_index": 1,
+      "active": "Yes: 0",
+      "uuid_prefix": "828bb172",
+      "pci_bus_hex": "81"
+    },
+    "actual_rows": [
+      {
+        "renderer_index": 0,
+        "active": "",
+        "uuid_prefix": "b129224c",
+        "pci_bus_hex": "41"
+      },
+      {
+        "renderer_index": 1,
+        "active": "Yes: 0",
+        "uuid_prefix": "828bb172",
+        "pci_bus_hex": "81"
+      }
+    ],
+    "actual_table": "| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |\n|     |                                  |        |     |            | Device-ID | UUID       |\n|     |                                  |        |     |            | Bus-ID    |            |\n|---------------------------------------------------------------------------------------------|\n| 0   | NVIDIA GeForce RTX 5090          |        |     | 32607   MB | 10de      | 0          |\n|     |                                  |        |     |            | 2b85      | b129224c.. |\n|     |                                  |        |     |            | 41        |            |\n|---------------------------------------------------------------------------------------------|\n| 1   | NVIDIA GeForce RTX 5090          | Yes: 0 |     | 32607   MB | 10de      | 0          |\n|     |                                  |        |     |            | 2b85      | 828bb172.. |\n|     |                                  |        |     |            | 81        |            |\n|=============================================================================================|\n| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic\n| Processor: AMD Ryzen Threadripper 7960X 24-Cores\n| Cores: 24 | Logical Cores: 48\n|---------------------------------------------------------------------------------------------|",
+    "actual_table_sha256": "59eaada7343570ef4982c338c66c8df1f4a897f68dffd97285c31ba0ba6b95a4"
+  },
+  "error": "ValueError: single-case strict camera search insufficient; retained and fail closed",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v8/parent_app_integration_v2.py\", line 29, in run_in_existing_parent_app\n    state['diagnostic']=collector.run()\n                        ^^^^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/camera_repair_diagnostic_v2.py\", line 168, in run\n    require(passed,'single-case strict camera search insufficient; retained and fail closed')\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/camera_repair_diagnostic_v2.py\", line 32, in require\n    if not test:raise ValueError(message)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: single-case strict camera search insufficient; retained and fail closed\n",
+  "measurement_boundary": {
+    "before": {
+      "parameters": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/PARAMETER_READBACK_BEFORE_V1.npz",
+        "sha256": "6cc297686efc6c6fac9c6856f4db04feaeef0a90b303fa28d04dbf14b4c74cae"
+      },
+      "geometry": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/GEOMETRY_BEFORE_V1.json",
+        "sha256": "0d85ec059cd6cb90014dd2978f241644dacae26cfe2ce575a516830e9ec58de3"
+      }
+    },
+    "after": {
+      "parameters": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/PARAMETER_READBACK_AFTER_V1.npz",
+        "sha256": "6cc297686efc6c6fac9c6856f4db04feaeef0a90b303fa28d04dbf14b4c74cae"
+      },
+      "geometry": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v8_attempt1/entry/GEOMETRY_AFTER_V1.json",
+        "sha256": "0d85ec059cd6cb90014dd2978f241644dacae26cfe2ce575a516830e9ec58de3"
+      }
+    },
+    "phase": "NATIVE_MEASUREMENT_COMPLETE_BEFORE_RENDER_OVERLAY_ENV_APP_TEARDOWN"
+  },
+  "measurement_bytes_verified": true,
+  "progress_phase": "BEFORE_CAMERA_AND_ENVIRONMENT_CLEANUP",
+  "camera_closure": {
+    "status": "closed",
+    "errors": []
+  },
+  "receipt_phase": "AFTER_ENV_CLOSE_BEFORE_APP_CLOSE_REQUIRES_PARENT_ACTUAL_WAIT"
+}

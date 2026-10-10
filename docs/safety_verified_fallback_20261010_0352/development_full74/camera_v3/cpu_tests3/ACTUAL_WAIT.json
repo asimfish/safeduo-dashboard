@@ -1,0 +1,109 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "CPU_ONLY_NO_NATIVE_AUTHORITY",
+  "child_pid": 316395,
+  "waited_pid": 316395,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T04:11:18.284487+00:00",
+  "closed_utc": "2026-10-10T04:11:21.640154+00:00",
+  "elapsed_seconds": 3.3556983550079167,
+  "max_wall_seconds": 120,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 316395,
+      "ppid": 316388,
+      "pgid": 316395,
+      "sid": 316395,
+      "startticks": 172836472,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 316388
+      },
+      "live": false
+    },
+    {
+      "pid": 316508,
+      "ppid": 316395,
+      "pgid": 316508,
+      "sid": 316508,
+      "startticks": 172836629,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_ppid",
+        "parent_identity": {
+          "pid": 316395,
+          "ppid": 316388,
+          "pgid": 316395,
+          "sid": 316395,
+          "startticks": 172836472,
+          "state": "S"
+        },
+        "observed_utc": "2026-10-10T04:11:20.073672+00:00",
+        "task_children_path": "/proc/316395/task/316395/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 316610,
+      "ppid": 316395,
+      "pgid": 316610,
+      "sid": 316610,
+      "startticks": 172836694,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_ppid",
+        "parent_identity": {
+          "pid": 316395,
+          "ppid": 316388,
+          "pgid": 316395,
+          "sid": 316395,
+          "startticks": 172836472,
+          "state": "S"
+        },
+        "observed_utc": "2026-10-10T04:11:20.574823+00:00",
+        "task_children_path": "/proc/316395/task/316395/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 316626,
+      "ppid": 316395,
+      "pgid": 316626,
+      "sid": 316626,
+      "startticks": 172836761,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_ppid",
+        "parent_identity": {
+          "pid": 316395,
+          "ppid": 316388,
+          "pgid": 316395,
+          "sid": 316395,
+          "startticks": 172836472,
+          "state": "S"
+        },
+        "observed_utc": "2026-10-10T04:11:21.326703+00:00",
+        "task_children_path": "/proc/316395/task/316395/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "child_max_rss_KiB": 48444,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/native_camera_repair_CPU_v3/tests3/child.log",
+  "log_sha256": "1936998dc4284c91d471f3ff8da94151169b51d46e93a4999d1c8d0bddfba628",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/native_camera_repair_CPU_v3/tests3/resources.jsonl",
+  "outer_monitor_sha256": "649781e0a6e91918688835bb2e38800b900e6a0a1e82a73c15f1cef2899b79de",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v3/test_native_camera_repair_v2.py"
+  ]
+}

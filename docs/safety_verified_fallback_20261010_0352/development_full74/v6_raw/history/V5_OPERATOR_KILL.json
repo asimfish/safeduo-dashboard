@@ -1,0 +1,111 @@
+{
+  "schema": "safeduo.camera_v5.owned_Fabric_operator_abort.v1",
+  "status": "SIGKILL_SENT_AFTER_TERM_GRACE_ORIGINAL_PARENT_MUST_REAP_ACTUAL_WAIT",
+  "signal": 9,
+  "identity": {
+    "pid": 495790,
+    "ppid": 495706,
+    "pgid": 495790,
+    "sid": 495790,
+    "startticks": 173050741,
+    "state": "S",
+    "enrollment": {
+      "kind": "direct_fork_handshake",
+      "parent_pid": 495706
+    },
+    "live": true
+  },
+  "parent_identity": {
+    "pid": 495706,
+    "ppid": 495696,
+    "pgid": 495706,
+    "sid": 495706,
+    "startticks": 173050553,
+    "state": "R"
+  },
+  "parent_enrollment": {
+    "event": "OWNED_ENROLLED",
+    "identities": [
+      {
+        "pid": 495706,
+        "ppid": 495696,
+        "pgid": 495706,
+        "sid": 495706,
+        "startticks": 173050553,
+        "state": "S",
+        "enrollment": {
+          "kind": "direct_fork_handshake",
+          "parent_pid": 495696
+        },
+        "live": true
+      }
+    ],
+    "argv": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v5/parent_runtime_v2.py",
+      "--plan",
+      "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v5/PARENT_PLAN_DRAFT_V2.json",
+      "--plan-sha256",
+      "75bfe4c0f6bb8b14eae9a809cc34ec8664aeb2619d6dffd3585543f4dd390f42",
+      "--approval",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_camera_repair_review_v5/PARENT_APPROVAL_V2.json",
+      "--approval-sha256",
+      "86c614f8a339a39776f1c89ebb32e4964c2c759dfe7861cdbaef84f811df4bd8",
+      "--execute-after-parent-review"
+    ],
+    "utc": "2026-10-10T04:46:59.107844+00:00"
+  },
+  "native_enrollment": {
+    "event": "OWNED_ENROLLED",
+    "identities": [
+      {
+        "pid": 495790,
+        "ppid": 495706,
+        "pgid": 495790,
+        "sid": 495790,
+        "startticks": 173050741,
+        "state": "S",
+        "enrollment": {
+          "kind": "direct_fork_handshake",
+          "parent_pid": 495706
+        },
+        "live": true
+      }
+    ],
+    "argv": [
+      "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+      "-B",
+      "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/native_camera_repair_v5/native_camera_repair_entry_v2.py",
+      "--request",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/FROZEN_CAMERA_REPAIR_REQUEST_V2.json",
+      "--request-sha256",
+      "764142753c729e9aa5763f8e1e7774b43fc510148c9144995fe85a1f1013cf8d",
+      "--review",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/BOUND_PARENT_REVIEW_V2.json",
+      "--review-sha256",
+      "df5c5eeb526b802250fc49d04ee39b1e20cd3ba5ec9f506361f41ba5f36e6319",
+      "--execute-native-diagnostic",
+      "--permit",
+      "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_camera_repair_development_v1/env002_FR_native_entry_v5_attempt1/NATIVE_LIVE_PERMIT_V1.json",
+      "--permit-sha256",
+      "d6b875b5ef1443fafee7c377975fe352925c8f2045a0980f4d1d38da973f6d5f",
+      "--headless",
+      "--enable_cameras",
+      "--device",
+      "cuda:1"
+    ],
+    "utc": "2026-10-10T04:47:00.996294+00:00"
+  },
+  "observed_utc": "2026-10-10T04:53:45.836258+00:00",
+  "reason": "Installed Usdrt SelectPrims rejects cuda:1; repeated camera reset stacks, no native observations",
+  "log_snapshot_sha256": "a5d81d5b2cfac00088e6a336a9a9e2e8a51f695b05982c7ff81bfcf4d2a97752",
+  "stack_snapshot_sha256": "a9fde8ac42b44a2b84176803cd542670b48512f4c136e97e63440c48675de73b",
+  "source_sha256": "d1896dc535920f34172d51189da35770c408d133105661b32c19805e77dffa2c",
+  "signal_method": "retained identity-checked pidfd only",
+  "numeric_PID_signals": false,
+  "foreign_signals": false,
+  "all_owned_reaped": false,
+  "native_qualification": false,
+  "physical_safety_certified": false
+}
