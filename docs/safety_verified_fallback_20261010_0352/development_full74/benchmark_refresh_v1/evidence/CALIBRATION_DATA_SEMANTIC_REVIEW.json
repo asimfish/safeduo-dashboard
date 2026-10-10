@@ -1,0 +1,329 @@
+{
+  "schema": "astra.implicit_drive.actual_data_semantic_review.v8_gpu0",
+  "reviewer": "Desc",
+  "status": "PASS_ACTUAL_DATA_SEMANTICS_ONLY",
+  "verdict": "PASS_DATA_ONLY",
+  "blocking_findings": [],
+  "data_semantic_valid": true,
+  "raw_arithmetic_valid_scope": "All76 reported rows algebraically and semantically crosschecked after authentic actual reader wait0/tool0; original NPZ not reopened",
+  "actual_raw_report": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_raw_audit_v8_gpu0/actual_raw_attempt1/INDEPENDENT_RAW_AUDIT_V8_GPU0.json",
+    "sha256": "3c42f4d4713e32835debe9355c2a73618d6f96111d450c00fa4ed068295a5009"
+  },
+  "parent_actual_closure": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_raw_intake_v1/PARENT_ACTUAL_RAW_CLOSED_V1.json",
+    "sha256": "7926d88c7935c9824a80a88fbe62d4d85ebadfd25d32ae912d59cd0f1fa3f921"
+  },
+  "reused_source_peer": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/implicit_drive_raw_v8_gpu0_independent_review_v1/RAW_INDEPENDENT_REVIEW_V8_GPU0.json",
+    "sha256": "e323eeff43bc936c12a38b7ee7964d2c138335c374f14f7796ab5e169eb61589"
+  },
+  "evidence": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_implicit_drive_raw_v8_actual_data_semantic_review_v1/SEMANTIC_EVIDENCE_V1.json",
+    "sha256": "d68ed0b470067de39386cc1a6808bfd7c020dbc3d6764a7351f2d26d465fb013"
+  },
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_implicit_drive_raw_v8_actual_data_semantic_review_v1/worker/ACTUAL_WAIT.json",
+    "sha256": "dc5a974e5012a35ed77145c6498289919a0e9cc02a7c622072fd381b451022cc"
+  },
+  "actual_tool_wait": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/implicit_drive_raw_v8_actual_data_semantic_review_v1/ACTUAL_TOOL_WAIT_V1.json",
+    "sha256": "c95a553782b759aa2e5f49ba6da92493fe60a0ecf45fd32009ca95a241e92f7f"
+  },
+  "review_buffer_sha256": "a34edd481e08d483db7535f392409440c5d6256cf8df1f3eb098dd1ce3f38f73",
+  "review_buffer_location": "Exact source buffer preserved as actual wait argv[3], no source file written",
+  "actual_reader_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_independent_reader_v1/implicit_drive_raw_audit_v8_gpu0/actual_raw_attempt1/ACTUAL_WAIT.json",
+    "sha256": "4ae6ce7de629e030c5cbec826f521c9a5d4b9163501a28b405ff9d61e55d1d6b"
+  },
+  "actual_reader_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_raw_intake_v1/PARENT_RAW_TOOL_CLOSURE_V1.json",
+    "sha256": "ec1e1828d276a9eec45780b10e3e343735833cee3d07eede2ee97469f96cb6ba"
+  },
+  "actual_native_closure": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_calibration_v8_gpu0_intake_v1/PARENT_NATIVE_MEASURED_CLOSED_V8_GPU0.json",
+    "sha256": "3ed31444eac08a6399154781f92cfe2c60ca7213fe513e216d27b22bfca89743"
+  },
+  "counts": {
+    "control_conditions": 19,
+    "sequential_dependent_steps_per_condition": 4,
+    "rows": 76,
+    "npz_packets": 10,
+    "fields_per_packet": 24,
+    "zero_drive_rows": 44,
+    "zero_drive_controls": 11,
+    "zero_drive_counterexample_rows": 18,
+    "zero_drive_counterexample_controls": 6,
+    "clean_fixture_precondition_rows": 44,
+    "passive_or_load_response_rows": 20,
+    "projection_momentum_agreement_rows": 66,
+    "projection_momentum_disagreement_rows": 10,
+    "zero_and_clean_overlap_rows": 12
+  },
+  "metrics": {
+    "zero_drive_by_readback": 44,
+    "zero_drive_channel_counterexample": 18,
+    "clean_fixture_preconditions": 44,
+    "passive_or_load_response_observed": 20,
+    "projection_agrees": 76,
+    "projection_matches_momentum": 66,
+    "explicit_getter_matches_command": 76
+  },
+  "report_safe_conclusions": [
+    "One isolated calibration run contains19 fixed control conditions with four sequential dependent transitions each (76 rows), not76 independent trials.",
+    "Independent RAW arithmetic is valid for all76 recorded transitions; this is evidence validity, not universal control-response agreement or physical/task acceptance.",
+    "Pure-drive modest means are approximately +/-0.0357491 Nm; saturating pure-drive means approximately +/-0.2 Nm. Explicit-only commands +/-0.04 Nm produce corresponding incoming projections while drive gains are zero.",
+    "Eighteen nonzero zero-drive projected-channel rows occur in six conditions: explicit-only +/- (eight rows), stop +/- first-step only (two rows), friction +/- (eight rows). This disproves treating that observed projected channel as exclusively implicit drive.",
+    "Combined controls have approximately +/-0.16 or +/-0.24 Nm net momentum means and conditional residuals approximately +/-0.2 Nm, contingent on clean toy assumptions and unverified command-to-applied-impulse equality.",
+    "Incoming projection matches momentum within the original diagnostic tolerance in66 rows, and disagrees in10: both velocity-clamp first steps plus all eight body-load steps. All contrary/zero/absent responses remain in the table.",
+    "Stop first-step projected values are approximately +/-0.8 Nm with drive gains zero and drive cap0.2 Nm; the cap is not a bound on mixed constraint reaction. This is an observed recorded value, not a within-micro peak measurement.",
+    "Body-load +/-0.04 Nm commands yield approximately +/-0.04 Nm momentum means while incoming projections stay near zero; motion and the reported incoming channel must remain distinct observables.",
+    "Initial wrench freshness, actual applied explicit impulse, production implicit-drive torque/peak,within-micro peak and global error bound remain UNKNOWN. Formal holdout and bank selection remain0; task and safety acceptance remain false."
+  ],
+  "counterexamples": [
+    {
+      "case_id": "B_EXPLICIT_-1",
+      "step": 0,
+      "projected_Nm": -0.040000010281801224,
+      "momentum_step_average_Nm": -0.040000021457672126,
+      "explicit_readback_Nm": -0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_+1",
+      "step": 0,
+      "projected_Nm": 0.03999999910593033,
+      "momentum_step_average_Nm": 0.04000002443790437,
+      "explicit_readback_Nm": 0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_STOP_-1",
+      "step": 0,
+      "projected_Nm": 0.7999999523162842,
+      "momentum_step_average_Nm": 0.8000000238418552,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_-1",
+      "step": 0,
+      "projected_Nm": 0.02439023368060589,
+      "momentum_step_average_Nm": 0.024390268325805667,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_STOP_+1",
+      "step": 0,
+      "projected_Nm": -0.7999999523162842,
+      "momentum_step_average_Nm": -0.8000000238418552,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_+1",
+      "step": 0,
+      "projected_Nm": -0.02439023368060589,
+      "momentum_step_average_Nm": -0.024390268325805667,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_-1",
+      "step": 1,
+      "projected_Nm": -0.04000000283122063,
+      "momentum_step_average_Nm": -0.040000009536743174,
+      "explicit_readback_Nm": -0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_+1",
+      "step": 1,
+      "projected_Nm": 0.04000001773238182,
+      "momentum_step_average_Nm": 0.040000042319297796,
+      "explicit_readback_Nm": 0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_-1",
+      "step": 1,
+      "projected_Nm": 0.02379535138607025,
+      "momentum_step_average_Nm": 0.02379531860351563,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_+1",
+      "step": 1,
+      "projected_Nm": -0.02379535138607025,
+      "momentum_step_average_Nm": -0.02379531860351563,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_-1",
+      "step": 2,
+      "projected_Nm": -0.040000010281801224,
+      "momentum_step_average_Nm": -0.04000003337860108,
+      "explicit_readback_Nm": -0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_+1",
+      "step": 2,
+      "projected_Nm": 0.040000028908252716,
+      "momentum_step_average_Nm": 0.04000004529953004,
+      "explicit_readback_Nm": 0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_-1",
+      "step": 2,
+      "projected_Nm": 0.023214977234601974,
+      "momentum_step_average_Nm": 0.023214960098266606,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_+1",
+      "step": 2,
+      "projected_Nm": -0.023214977234601974,
+      "momentum_step_average_Nm": -0.023214960098266606,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_-1",
+      "step": 3,
+      "projected_Nm": -0.040000010281801224,
+      "momentum_step_average_Nm": -0.04000003337860108,
+      "explicit_readback_Nm": -0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "B_EXPLICIT_+1",
+      "step": 3,
+      "projected_Nm": 0.04000000283122063,
+      "momentum_step_average_Nm": 0.040000009536743174,
+      "explicit_readback_Nm": 0.03999999910593033,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_-1",
+      "step": 3,
+      "projected_Nm": 0.022648757323622704,
+      "momentum_step_average_Nm": 0.022648763656616215,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    },
+    {
+      "case_id": "D_FRICTION_+1",
+      "step": 3,
+      "projected_Nm": -0.022648759186267853,
+      "momentum_step_average_Nm": -0.022648763656616215,
+      "explicit_readback_Nm": 0.0,
+      "abs_comparison_tolerance_Nm": 3.220703125e-05
+    }
+  ],
+  "momentum_mismatches": [
+    {
+      "case_id": "D_CLAMP_-1",
+      "step": 0,
+      "projected_Nm": -1.036783363253053e-27,
+      "momentum_step_average_Nm": 0.6000000000000001
+    },
+    {
+      "case_id": "D_BODY_LOAD_-1",
+      "step": 0,
+      "projected_Nm": 3.725290076417309e-09,
+      "momentum_step_average_Nm": -0.039999979734420786
+    },
+    {
+      "case_id": "D_CLAMP_+1",
+      "step": 0,
+      "projected_Nm": 1.036783363253053e-27,
+      "momentum_step_average_Nm": -0.6000000000000001
+    },
+    {
+      "case_id": "D_BODY_LOAD_+1",
+      "step": 0,
+      "projected_Nm": -3.725290076417309e-09,
+      "momentum_step_average_Nm": 0.039999979734420786
+    },
+    {
+      "case_id": "D_BODY_LOAD_-1",
+      "step": 1,
+      "projected_Nm": 8.034895774743577e-16,
+      "momentum_step_average_Nm": -0.0399999737739563
+    },
+    {
+      "case_id": "D_BODY_LOAD_+1",
+      "step": 1,
+      "projected_Nm": -8.034895774743577e-16,
+      "momentum_step_average_Nm": 0.0399999737739563
+    },
+    {
+      "case_id": "D_BODY_LOAD_-1",
+      "step": 2,
+      "projected_Nm": -9.64557604015532e-16,
+      "momentum_step_average_Nm": -0.03999996781349183
+    },
+    {
+      "case_id": "D_BODY_LOAD_+1",
+      "step": 2,
+      "projected_Nm": 9.64557604015532e-16,
+      "momentum_step_average_Nm": 0.03999996781349183
+    },
+    {
+      "case_id": "D_BODY_LOAD_-1",
+      "step": 3,
+      "projected_Nm": 4.166874028388104e-16,
+      "momentum_step_average_Nm": -0.040000009536743174
+    },
+    {
+      "case_id": "D_BODY_LOAD_+1",
+      "step": 3,
+      "projected_Nm": -4.166874028388104e-16,
+      "momentum_step_average_Nm": 0.040000009536743174
+    }
+  ],
+  "table19": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_implicit_drive_raw_v8_actual_data_semantic_review_v1/CONTROL_RESPONSE_TABLE_19_V1.json",
+    "sha256": "3770b61629912108e8139f510ab9a5128a69fad13e330fd49dc4c08acf075387"
+  },
+  "all76auditedrows": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_implicit_drive_raw_v8_actual_data_semantic_review_v1/ALL_76_AUDITED_ROWS_V1.json",
+    "sha256": "ef77f8334a0ce97625cb5d8774a19d239e4334ffff2208c8acbc66924101d56b"
+  },
+  "manuscript_caveats": [
+    "Keep19 conditions and four dependent transitions distinct;18 is a row count in six conditions, not18 cases or independent trials; no IID rate or confidence interval.",
+    "Incoming-wrench projection is a mixed diagnostic channel; observations show both nonzero projection with drive gains zero and momentum changes without corresponding projection. Never label it isolated actual implicit-drive torque.",
+    "Conditional clean-toy step averages and +/-0.16 or +/-0.24 combined responses cannot certify production peak,within-micro peak or a global bound. Explicit getter is command/readback; actual applied explicit impulse remains UNKNOWN.",
+    "All19 conditions,zeros,negative controls and10 contrary responses must remain visible. Do not select only matching controls or erase prior failed attempts.",
+    "DATA validity and true closure do not qualify any state/bank or certify task/physical safety."
+  ],
+  "unknowns": {
+    "initial_wrench_freshness": "UNKNOWN",
+    "actual_applied_explicit_impulse": "UNKNOWN",
+    "production_actualDriveTorque": "UNKNOWN",
+    "production_drive_peak": "UNKNOWN",
+    "within_micro_peak": "UNKNOWN",
+    "global_certified_error_bound": "UNKNOWN"
+  },
+  "source_writes": 0,
+  "source_mutations": 0,
+  "numeric_packets_opened": 0,
+  "generic_fixtures_rerun": 0,
+  "new_measurements": 0,
+  "native_launches": 0,
+  "old500_818_rescan": false,
+  "native_pass": false,
+  "qualification": false,
+  "bank_selected": 0,
+  "formal_holdout_trials": 0,
+  "task_acceptance": false,
+  "safety_acceptance": false,
+  "child_max_rss_KiB": 20736,
+  "elapsed_seconds": 0.28147389995865524
+}

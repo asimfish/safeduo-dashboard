@@ -1,0 +1,605 @@
+{
+  "status": "failed",
+  "cleanup_errors": [],
+  "request_sha256": "6db583f5ba02d69aea9a487a71110bfa35cb225ed5a3345515055e87a87e61a2",
+  "actual_gpu_identity": {
+    "actual_cuda": {
+      "physical_gpu_index": 0,
+      "cuda_device": "cuda:0",
+      "expected_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+      "actual_cuda_uuid": "b129224c-c735-a03f-de6c-185d2a2724b1",
+      "cuda_visible_devices": "0",
+      "multi_gpu": false,
+      "active_renderer_gpu": 0,
+      "physics_logical_gpu": 0
+    },
+    "actual_kit": {
+      "actual_settings": {
+        "/renderer/activeGpu": 0,
+        "/physics/cudaDevice": 0,
+        "/renderer/multiGpu/enabled": false
+      },
+      "active_renderer": {
+        "renderer_index": 0,
+        "active": "Yes: 0",
+        "uuid_prefix": "b129224c",
+        "pci_bus_hex": "41"
+      },
+      "actual_rows": [
+        {
+          "renderer_index": 0,
+          "active": "Yes: 0",
+          "uuid_prefix": "b129224c",
+          "pci_bus_hex": "41"
+        },
+        {
+          "renderer_index": 1,
+          "active": "",
+          "uuid_prefix": "828bb172",
+          "pci_bus_hex": "81"
+        }
+      ],
+      "actual_table": "| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |\n|     |                                  |        |     |            | Device-ID | UUID       |\n|     |                                  |        |     |            | Bus-ID    |            |\n|---------------------------------------------------------------------------------------------|\n| 0   | NVIDIA GeForce RTX 5090          | Yes: 0 |     | 32607   MB | 10de      | 0          |\n|     |                                  |        |     |            | 2b85      | b129224c.. |\n|     |                                  |        |     |            | 41        |            |\n|---------------------------------------------------------------------------------------------|\n| 1   | NVIDIA GeForce RTX 5090          |        |     | 32607   MB | 10de      | 0          |\n|     |                                  |        |     |            | 2b85      | 828bb172.. |\n|     |                                  |        |     |            | 81        |            |\n|=============================================================================================|\n| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic\n| Processor: AMD Ryzen Threadripper 7960X 24-Cores\n| Cores: 24 | Logical Cores: 48\n|---------------------------------------------------------------------------------------------|",
+      "actual_table_sha256": "56cd4f59111c055b1c314976e32bfc1fbfc1e0972cf3f288e79f2e4c10870cad"
+    },
+    "parent_helper_source": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v5_telemetry/gpu_parent_v3.py",
+      "sha256": "1e4b6d0718f67d7a009a1c10a1319fad5584ed91441addd604b1f6bc58f75cbc"
+    },
+    "scope": "DEVICE_IDENTITY_ONLY_NOT_CAMERA_OR_NATIVE_COMPATIBILITY_PASS",
+    "native_pass": false
+  },
+  "error": "unexpected live coupling: do not silently reinterpret URDF experiment",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v5_telemetry/integration_v1.py\", line 21, in run_in_existing_parent_app\n    env=env_factory();state['producer']=run(env,q,request_sha256,out,resource_probe,b,OLD)\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v5_telemetry/collector_v1.py\", line 117, in run\n    if error is not None:raise error\n                         ^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v5_telemetry/collector_v1.py\", line 56, in run\n    need(not inv['unsupported'] and not native_relations,'unexpected live coupling: do not silently reinterpret URDF experiment')\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v5_telemetry/constraint_model_v1.py\", line 6, in need\n    if not v:raise ValueError(s)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: unexpected live coupling: do not silently reinterpret URDF experiment\n",
+  "receipt_phase": "AFTER_ENV_CLOSE_BEFORE_APP_CLOSE_REQUIRES_PARENT_ACTUAL_WAIT",
+  "telemetry_startup_v5": {
+    "schema": "astra.constraint.mechanism.telemetry_startup_readback.v5",
+    "excluded": [
+      "omni.kit.telemetry"
+    ],
+    "structured_log_enabled": false,
+    "anonymous_data_enabled": false,
+    "enabled_extension_id": null,
+    "disable_anonymous_environment": "1",
+    "native_wait_waiver": false
+  },
+  "schema": "astra.constraint.mechanism.entry.v1",
+  "review_sha256": "7bbfe0d7c2c7119a589ede7501f1242f23500f0a7011c41be224f59fe6ee43e8",
+  "policy_actions": 0,
+  "acceptance": false,
+  "pre_app_proof_v4": {
+    "status": "PRELAUNCH_BINDING_CHECKED_NOT_NATIVE_PASS",
+    "request_sha256": "6db583f5ba02d69aea9a487a71110bfa35cb225ed5a3345515055e87a87e61a2",
+    "permit_sha256": "47e12fc8fa3d86b3fe0e231734e49a261dee36a229122e341fa27b755a48dcd9",
+    "gpu_binding": {
+      "CUDA_VISIBLE_DEVICES": "0",
+      "logical_device": "cuda:0",
+      "multi_GPU": false,
+      "physical_index": 0,
+      "physical_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+      "physics_gpu_logical": 0,
+      "renderer_kit_index": 0,
+      "renderer_pci_bus_hex": "41",
+      "renderer_uuid_prefix": "b129224c"
+    },
+    "child_identity": {
+      "pid": 3941119,
+      "ppid": 3941037,
+      "pgid": 3941119,
+      "sid": 3941119,
+      "startticks": 177078943,
+      "state": "R"
+    },
+    "fresh_prelaunch_observation": {
+      "schema": "astra.full74.resource_observation.v2",
+      "gpu_index": 0,
+      "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+      "GPU_free_MiB": 16045,
+      "owned_GPU_MiB": 0,
+      "host_available_MiB": 62695,
+      "owned_RSS_MiB": 58,
+      "SSD_free_bytes": 186802384896,
+      "NAS_free_bytes": 6023999389696,
+      "ownership_scope": "SELF_PID_ONLY",
+      "owned_identity": {
+        "pid": 3941119,
+        "startticks": 177078943,
+        "provenance": "/proc/self/stat field22"
+      },
+      "process_observations": [
+        {
+          "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+          "pid": 3627645,
+          "used_memory_raw": "11916",
+          "used_memory_MiB": 11916,
+          "selected_gpu": true,
+          "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+          "counted_in_owned_GPU_MiB": false
+        },
+        {
+          "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+          "pid": 3929977,
+          "used_memory_raw": "3662",
+          "used_memory_MiB": 3662,
+          "selected_gpu": true,
+          "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+          "counted_in_owned_GPU_MiB": false
+        },
+        {
+          "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+          "pid": 3627645,
+          "used_memory_raw": "504",
+          "used_memory_MiB": 504,
+          "selected_gpu": false,
+          "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+          "counted_in_owned_GPU_MiB": false
+        },
+        {
+          "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+          "pid": 3831706,
+          "used_memory_raw": "7091",
+          "used_memory_MiB": 7091,
+          "selected_gpu": false,
+          "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+          "counted_in_owned_GPU_MiB": false
+        },
+        {
+          "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+          "pid": 3929977,
+          "used_memory_raw": "7036",
+          "used_memory_MiB": 7036,
+          "selected_gpu": false,
+          "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+          "counted_in_owned_GPU_MiB": false
+        }
+      ],
+      "raw_queries": [
+        {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=index,uuid,memory.free",
+            "--format=csv,noheader,nounits"
+          ],
+          "returncode": 0,
+          "stdout": "0, GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 16045\n1, GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 17380\n",
+          "stderr": "",
+          "observed_unix_s": 1791647903.8157842
+        },
+        {
+          "argv": [
+            "nvidia-smi",
+            "--query-compute-apps=gpu_uuid,pid,used_memory",
+            "--format=csv,noheader,nounits"
+          ],
+          "returncode": 0,
+          "stdout": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3627645, 11916\nGPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3929977, 3662\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3627645, 504\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3831706, 7091\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3929977, 7036\n",
+          "stderr": "",
+          "observed_unix_s": 1791647903.8495097
+        }
+      ],
+      "observation_time_unix_s": 1791647903.8539362,
+      "process_group_accounting": "NOT_IMPLEMENTED_NO_DESCENDANT_CLAIM",
+      "serial_scope": "PARENT_OWNED_NATIVE_JOBS_ONLY",
+      "serial_enforcement": "parent serial queue; this observation is not proof of queue state",
+      "nonself_process_policy": "observe only; their effect enters the measured global free; no signals or registry access"
+    },
+    "checked_unix_s": 1791647903.898501,
+    "boundary_v4": {
+      "evidence": {
+        "schema": "astra.pre_app.boundary_evidence.v1",
+        "grant": {
+          "child_identity": {
+            "pid": 3941119,
+            "startticks": 177078943
+          },
+          "context_digest": "f4cf7fb0c0d08e3d68190fdcedd4f89ddf23bb337d2b256a78c864bb316558bc",
+          "cpu_test_only": false,
+          "dispatch_permit": {
+            "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/LIVE_PERMIT_V4.json",
+            "sha256": "47e12fc8fa3d86b3fe0e231734e49a261dee36a229122e341fa27b755a48dcd9"
+          },
+          "freshness_seconds": 30,
+          "gpu_binding": {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "logical_device": "cuda:0",
+            "multi_GPU": false,
+            "physical_index": 0,
+            "physical_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+            "physics_gpu_logical": 0,
+            "renderer_kit_index": 0,
+            "renderer_pci_bus_hex": "41",
+            "renderer_uuid_prefix": "b129224c"
+          },
+          "guardian_deadline_monotonic_s": 1771989.429229986,
+          "issuer_is_main_thread": true,
+          "issuer_thread_id": 140313311057024,
+          "parent_authorized": true,
+          "parent_identity": {
+            "pid": 3941037,
+            "startticks": 177078757
+          },
+          "parent_observation": {
+            "GPU_free_MiB": 16045,
+            "NAS_free_bytes": 6023999389696,
+            "SSD_free_bytes": 186802384896,
+            "gpu_index": 0,
+            "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+            "host_available_MiB": 62798,
+            "observed_utc": "2026-10-10T15:58:23.748139+00:00",
+            "owned_GPU_MiB": 0,
+            "owned_RSS_MiB": 58,
+            "owned_identities": [
+              {
+                "enrollment": {
+                  "kind": "direct_fork_handshake",
+                  "parent_pid": 3941037
+                },
+                "live": true,
+                "pgid": 3941119,
+                "pid": 3941119,
+                "ppid": 3941037,
+                "sid": 3941119,
+                "startticks": 177078943,
+                "state": "S"
+              }
+            ],
+            "owned_session_evidence": {
+              "observations": [
+                {
+                  "ancestry_proof": {
+                    "kind": "direct_fork_handshake",
+                    "parent_pid": 3941037
+                  },
+                  "current_identity": {
+                    "pgid": 3941119,
+                    "pid": 3941119,
+                    "ppid": 3941037,
+                    "sid": 3941119,
+                    "startticks": 177078943,
+                    "state": "S"
+                  },
+                  "enrolled_identity": {
+                    "pgid": 3941119,
+                    "pid": 3941119,
+                    "ppid": 3941037,
+                    "sid": 3941119,
+                    "startticks": 177078943,
+                    "state": "S"
+                  }
+                }
+              ],
+              "transitions": []
+            },
+            "ownership": "FORK_ROOT_AND_PROVEN_DESCENDANTS_ONLY",
+            "process_observations": [
+              {
+                "attribution": "UNATTRIBUTED",
+                "counted_in_owned": false,
+                "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+                "memory_raw": "11916",
+                "pid": 3627645
+              },
+              {
+                "attribution": "UNATTRIBUTED",
+                "counted_in_owned": false,
+                "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+                "memory_raw": "3662",
+                "pid": 3929977
+              },
+              {
+                "attribution": "UNATTRIBUTED",
+                "counted_in_owned": false,
+                "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+                "memory_raw": "504",
+                "pid": 3627645
+              },
+              {
+                "attribution": "UNATTRIBUTED",
+                "counted_in_owned": false,
+                "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+                "memory_raw": "7091",
+                "pid": 3831706
+              },
+              {
+                "attribution": "UNATTRIBUTED",
+                "counted_in_owned": false,
+                "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+                "memory_raw": "7036",
+                "pid": 3929977
+              }
+            ],
+            "queries": [
+              {
+                "actual_exit": 0,
+                "argv": [
+                  "nvidia-smi",
+                  "--query-gpu=index,uuid,memory.free",
+                  "--format=csv,noheader,nounits"
+                ],
+                "stderr": "",
+                "stdout": "0, GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 16045\n1, GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 17380\n"
+              },
+              {
+                "actual_exit": 0,
+                "argv": [
+                  "nvidia-smi",
+                  "--query-compute-apps=gpu_uuid,pid,used_memory",
+                  "--format=csv,noheader,nounits"
+                ],
+                "stderr": "",
+                "stdout": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3627645, 11916\nGPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3929977, 3662\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3627645, 504\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3831706, 7091\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3929977, 7036\n"
+              }
+            ]
+          },
+          "ready_digest": "5b5c5bd1b07c967ff2918acf5490d17e27579da72db1f20769338ca9ee074682",
+          "ready_packet": {
+            "body": {
+              "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/READY.json",
+              "sha256": "9cd438ea23cb24c9d6d58f3b053082165f104e918cd99cc2207d009b30dc8a34"
+            },
+            "commit": {
+              "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/READY.COMMIT.json",
+              "sha256": "bda3948794d5cf7ed966c089de43baa64708f9e93aa777042fb5d35c1d3dd846"
+            },
+            "commit_record": {
+              "body": {
+                "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/READY.json",
+                "sha256": "9cd438ea23cb24c9d6d58f3b053082165f104e918cd99cc2207d009b30dc8a34"
+              },
+              "body_write_finished": [
+                1791647903.524007,
+                1770789.94861344
+              ],
+              "body_write_started": [
+                1791647903.5183442,
+                1770789.942949874
+              ]
+            }
+          },
+          "request": {
+            "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v5/FROZEN_REQUEST_V5.json",
+            "sha256": "6db583f5ba02d69aea9a487a71110bfa35cb225ed5a3345515055e87a87e61a2"
+          },
+          "review": {
+            "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_native_constraint_mechanism_v5/PARENT_REVIEW_V5.json",
+            "sha256": "7bbfe0d7c2c7119a589ede7501f1242f23500f0a7011c41be224f59fe6ee43e8"
+          },
+          "sample_finished_monotonic_s": 1770790.172845684,
+          "sample_finished_unix_s": 1791647903.7482398,
+          "sample_started_monotonic_s": 1770790.108962154,
+          "sample_started_unix_s": 1791647903.6843565,
+          "schema": "astra.pre_app.resource_grant.v1",
+          "serial_lease": {
+            "checked_utc": "2026-10-10T15:58:23.748323+00:00",
+            "duplicate_flock_calls": 0,
+            "elapsed_seconds": 1.7550839260220528,
+            "flock_acquisitions": 1,
+            "kernel_lock": {
+              "device": 60,
+              "evidence_source": "/proc/3941037/fdinfo/3",
+              "fd": 3,
+              "flags": "02500002",
+              "inode": 616200760,
+              "link": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_screen_native_v2/.parent_owned_native_serial_v2.lock",
+              "lock_record": [
+                "1:",
+                "FLOCK",
+                "ADVISORY",
+                "WRITE",
+                "3941037",
+                "00:3c:616200760",
+                "0",
+                "EOF"
+              ],
+              "mount_id": 1886
+            },
+            "locked_epoch": 1791647901.9932368,
+            "owner_pid": 3941037,
+            "owner_startticks": 177078757,
+            "pathname_inode_equality_used": false,
+            "schema": "astra.full74.continuous_serial_lease.v3",
+            "scope": "retained private FD + kernel FLOCK WRITE owner; parent must never replace shared lock path"
+          },
+          "source_graph": {
+            "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_native_constraint_mechanism_v5_telemetry/SOURCE_GRAPH_V4.json",
+            "sha256": "f12557676faf048f0763086804f3980de5d451e4432418a01572cfd4f6643267"
+          }
+        },
+        "ready_digest": "5b5c5bd1b07c967ff2918acf5490d17e27579da72db1f20769338ca9ee074682",
+        "child_observation": {
+          "schema": "astra.full74.resource_observation.v2",
+          "gpu_index": 0,
+          "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+          "GPU_free_MiB": 16045,
+          "owned_GPU_MiB": 0,
+          "host_available_MiB": 62695,
+          "owned_RSS_MiB": 58,
+          "SSD_free_bytes": 186802384896,
+          "NAS_free_bytes": 6023999389696,
+          "ownership_scope": "SELF_PID_ONLY",
+          "owned_identity": {
+            "pid": 3941119,
+            "startticks": 177078943,
+            "provenance": "/proc/self/stat field22"
+          },
+          "process_observations": [
+            {
+              "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+              "pid": 3627645,
+              "used_memory_raw": "11916",
+              "used_memory_MiB": 11916,
+              "selected_gpu": true,
+              "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+              "counted_in_owned_GPU_MiB": false
+            },
+            {
+              "gpu_uuid": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1",
+              "pid": 3929977,
+              "used_memory_raw": "3662",
+              "used_memory_MiB": 3662,
+              "selected_gpu": true,
+              "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+              "counted_in_owned_GPU_MiB": false
+            },
+            {
+              "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+              "pid": 3627645,
+              "used_memory_raw": "504",
+              "used_memory_MiB": 504,
+              "selected_gpu": false,
+              "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+              "counted_in_owned_GPU_MiB": false
+            },
+            {
+              "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+              "pid": 3831706,
+              "used_memory_raw": "7091",
+              "used_memory_MiB": 7091,
+              "selected_gpu": false,
+              "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+              "counted_in_owned_GPU_MiB": false
+            },
+            {
+              "gpu_uuid": "GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599",
+              "pid": 3929977,
+              "used_memory_raw": "7036",
+              "used_memory_MiB": 7036,
+              "selected_gpu": false,
+              "attribution": "UNATTRIBUTED_OUTSIDE_SELF_SCOPE",
+              "counted_in_owned_GPU_MiB": false
+            }
+          ],
+          "raw_queries": [
+            {
+              "argv": [
+                "nvidia-smi",
+                "--query-gpu=index,uuid,memory.free",
+                "--format=csv,noheader,nounits"
+              ],
+              "returncode": 0,
+              "stdout": "0, GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 16045\n1, GPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 17380\n",
+              "stderr": "",
+              "observed_unix_s": 1791647903.8157842
+            },
+            {
+              "argv": [
+                "nvidia-smi",
+                "--query-compute-apps=gpu_uuid,pid,used_memory",
+                "--format=csv,noheader,nounits"
+              ],
+              "returncode": 0,
+              "stdout": "GPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3627645, 11916\nGPU-b129224c-c735-a03f-de6c-185d2a2724b1, 3929977, 3662\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3627645, 504\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3831706, 7091\nGPU-828bb172-121c-cc55-7f4f-ef09a2bd7599, 3929977, 7036\n",
+              "stderr": "",
+              "observed_unix_s": 1791647903.8495097
+            }
+          ],
+          "observation_time_unix_s": 1791647903.8539362,
+          "process_group_accounting": "NOT_IMPLEMENTED_NO_DESCENDANT_CLAIM",
+          "serial_scope": "PARENT_OWNED_NATIVE_JOBS_ONLY",
+          "serial_enforcement": "parent serial queue; this observation is not proof of queue state",
+          "nonself_process_policy": "observe only; their effect enters the measured global free; no signals or registry access"
+        },
+        "child_sample_started_unix_s": 1791647903.7902753,
+        "child_sample_started_monotonic_s": 1770790.214881034,
+        "status": "PRECONSUMPTION_NOT_APP_PASS"
+      },
+      "persisted_evidence": {
+        "body": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/PRECONSUMPTION.json",
+          "sha256": "bdc7e41f8d4b99ddad5716a58334c05d99df3bd6ddd9ef3c9dbfe503c8605459"
+        },
+        "commit": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/PRECONSUMPTION.COMMIT.json",
+          "sha256": "754a22d82dcf21b7a8b188fc5524193ae813d8de7a0b55fc04d58accecc00694"
+        },
+        "commit_finished": [
+          1791647903.8982816,
+          1770790.322887702
+        ]
+      },
+      "consumed_unix_s": 1791647903.898501,
+      "consumed_monotonic_s": 1770790.32310659,
+      "status": "FRESH_RESOURCE_GATE_CONSUMED_BEFORE_APP_NOT_NATIVE_PASS"
+    },
+    "ready_packet": {
+      "body": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/READY.json",
+        "sha256": "9cd438ea23cb24c9d6d58f3b053082165f104e918cd99cc2207d009b30dc8a34"
+      },
+      "commit": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/READY.COMMIT.json",
+        "sha256": "bda3948794d5cf7ed966c089de43baa64708f9e93aa777042fb5d35c1d3dd846"
+      },
+      "commit_finished": [
+        1791647903.5289965,
+        1770789.953602333
+      ]
+    },
+    "grant_packet": {
+      "body": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/GRANT.json",
+        "sha256": "c93e80dfde0b8f22272421d78b97392b7d520c5704ac56c43102c8c65ddd9bb4"
+      },
+      "commit": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/GRANT.COMMIT.json",
+        "sha256": "5aad49ae7398840f69fb7bbdaf1ba56d9cabd6e18dd8bef706c8afc4f4aba974"
+      },
+      "commit_record": {
+        "body": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/app_boundary_v4/GRANT.json",
+          "sha256": "c93e80dfde0b8f22272421d78b97392b7d520c5704ac56c43102c8c65ddd9bb4"
+        },
+        "body_write_finished": [
+          1791647903.7723913,
+          1770790.196998185
+        ],
+        "body_write_started": [
+          1791647903.7484682,
+          1770790.173074067
+        ]
+      }
+    }
+  },
+  "pre_app_phase_refs": [
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/000_BEFORE_BOOTSTRAP.json",
+      "sha256": "881d0db0452169b808966aff193f6e4b4cbf6fcf7b4062a2d55e0befa0dd6e37"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/001_AFTER_BOOTSTRAP.json",
+      "sha256": "8a7bc3c9b5a69872f6bd2739a82c79158fc6cf1561965a910940ff27aff4dc25"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/002_BEFORE_RUNTIME_LOAD.json",
+      "sha256": "602be43dd5204b44cbe0a4fc330a54738fffc4397882e96239576ad42ba2affd"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/003_AFTER_RUNTIME_LOAD.json",
+      "sha256": "af60b9d9cb7160f8409300eb9a1620582b650d3b5e9ac2687912493b63bbcd52"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/004_DISPATCH_PARENT_LEASE_VERIFIED.json",
+      "sha256": "a5aa5294ce83013e3a247621bcfe7968862a38e615b1ab47787809459deecb4a"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/005_BEFORE_APP_LAUNCHER_IMPORT.json",
+      "sha256": "13d80894ced37beff3dea4a7ccb914cc168c5a69f0ff1b4701c190eeac84dbea"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/006_AFTER_APP_LAUNCHER_IMPORT.json",
+      "sha256": "c12b06c193df3b862099e4ce55f4bd5feb99ce33f5735759ffb282bfb7210285"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/007_BEFORE_APP_CONFIG.json",
+      "sha256": "0dec0ee27d51183a1cb319e1e25fa2dd6c2704a033355b46b07b9b88032d860f"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/008_AFTER_APP_CONFIG.json",
+      "sha256": "0dda38cfab5d77296af07a9e1181b383b82b09612e4c5ca9a54d4e92c80c7b01"
+    },
+    {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_native_constraint_mechanism_v5_telemetry/native_attempt1/pre_app_timing_v4/009_VALIDATION_AND_APP_CONFIG_COMPLETE.json",
+      "sha256": "e9fbc519ee52ddc0c51b4747c95094fa07b7959029d0c96c8125584ada66f366"
+    }
+  ]
+}

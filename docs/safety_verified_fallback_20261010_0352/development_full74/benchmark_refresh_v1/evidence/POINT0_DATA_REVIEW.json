@@ -1,0 +1,187 @@
+{
+  "schema": "independent.point0.actual_data_review.v1",
+  "status": "PASS",
+  "blocking_findings": [],
+  "findings": [],
+  "manual_semantic_verdict": "PASS for the actual lossless point0 byte projection only. Provisional with null frame binding; this is not calibration, native admission, or safety acceptance.",
+  "data_only": true,
+  "provisional": true,
+  "frame_binding": null,
+  "frame_binding_status": "UNKNOWN_PENDING_ACTUAL_FRAME_PEER",
+  "consumer_finalization_ready": false,
+  "reviewer": {
+    "configuration": "inherited default session",
+    "author": "Astra exporter (user-declared)",
+    "actual_serving_model": "UNKNOWN / not publicly disclosed",
+    "specific_serving_model_difference_verified": false,
+    "new_agents": 0,
+    "independence": "Independent compare oracle uses NumPy/YAML directly and never imports exporter/projection code."
+  },
+  "scope": {
+    "states": 128,
+    "seeds": 4,
+    "point_micro": 0,
+    "NPY_files": 104,
+    "NPZ_files": 4,
+    "fields_compared": 112,
+    "read_bytes_of_unique_selected_array_files": 21777640,
+    "other_point_rows_read": 0,
+    "whole_cohort_array_reads": 0,
+    "camera_reads": 0,
+    "native_launches": 0,
+    "GPU_queries": 0,
+    "old13_RAW_reader_reruns": 0,
+    "full500_or879_scan": false,
+    "Git_operations": 0,
+    "network_operations": 0,
+    "actual8192_runs": 0,
+    "calibration_replays": 0
+  },
+  "manual_evidence": [
+    {
+      "claim": "Exact original fixed A128 point0 identity",
+      "evidence": "Four batches of32 with proposal IDs64..95/512..543/672..703/1120..1151 and original seed*2048 offsets. Manifest/intake/seed records/selected source refs match the closed source authority. Each actual q74/qd74/target74 is bitwise equal to the original requested q/qd leaf."
+    },
+    {
+      "claim": "Lossless selected field projection",
+      "evidence": "All28 exported fields per seed have exact dtype/shape/element-byte comparisons with original leaves or the specified exact conversion/metadata arithmetic. WORLD82 22+22+19+19 poses, all roots and root velocities, origins, clock/freshness, IDs, exemption mask are unchanged. Original raw9021 float32 is preserved; float64 output equals exact widening, with f32 roundtrip, full signbits and negative mask unchanged. No origin subtraction, quaternion normalization, geometry recomputation, exclusion filtering or replacement of failed states."
+    },
+    {
+      "claim": "Original table provenance",
+      "evidence": "Both actual table fields match independent original-layout arithmetic with float32 rounding. The layout is SHA-bound to the original RAW ledger. These are original configuration-derived oracle boxes, not new native table getter evidence."
+    },
+    {
+      "claim": "Real actual export and original history",
+      "evidence": "Actual EXPORT worker/wrapper native-domain-independent CPU waits were checked with os.wait4 ownership, closed logs, recorded PID/startticks absence and actual parent relation. Parent tool0 is bound through its original closure receipt. Original native outer exits remain [1,0,0,0]. The previous distinct source/provenance review and original13-row RAW audits/independent peers are reused; no13-row arrays or physical reader rerun."
+    },
+    {
+      "claim": "Null frame and failure scope",
+      "evidence": "Per-seed consumer fields raw_audit/native_wait/point0_export/all13_full74_raw9021_scalar82_verified/source_artifacts are retained, with all13 verification explicitly inherited from the closed RAW proof. frame_binding remains null. Point0 is micro0 at the original clock and not fresh contact evidence. Original native_pass=false/bank0 remain; all27 denotes registered held native state fields, not camera count."
+    }
+  ],
+  "limitations": [
+    "Only the selected point0 projection fields were compared. The original64-field point0 CLOSED inventory and later rows001..012 were not fully rescanned.",
+    "all13_full74_raw9021_scalar82_verified=true inherits exact closed original RAW proofs plus their independent reviews; this task did not remeasure all13 contacts or rebuild geometry.",
+    "Actual joint/model frame binding is UNKNOWN and null. Native frame production, topology/runtime identity, model consistency and calibration replay are outside this data review.",
+    "Existing negative raw states and all128 point0 states remain in the data denominator; this is not128 independent trials or new eligibility/safety evidence.",
+    "CONTACT, ACTUAL_DRIVE_TORQUE, TERMINAL_SET and global_error_bound remain UNKNOWN. No native/production safety, bank, holdout or certified bound claim follows."
+  ],
+  "next_derived_review_rule": {
+    "rewrite_existing_review": false,
+    "create_new_bound_review_only_after_true_frame_peer": true,
+    "required_extensions": [
+      "exact immutable base per-seed data review reference",
+      "actual native-frame binding and distinct frame peer chain",
+      "unchanged raw_audit/native_wait/point0_export/source_artifacts identities"
+    ],
+    "current_finalization_held": true
+  },
+  "completed_utc": "2026-10-10T15:36:03.058372+00:00",
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full8192_point0_exporter_v1/SOURCE_GRAPH_V1.json",
+    "sha256": "d687daa18135a58ebf9d0437803876a50b93b04d8bb28e0c0376573de432be31"
+  },
+  "export_manifest": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export1/EXPORT_MANIFEST_V1.json",
+    "sha256": "2ac5d1d80225c12656b79529561dda0d2268c0f8bc3de66a46de90874181ef08"
+  },
+  "parent_export_closure": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/PARENT_ACTUAL_EXPORT_CLOSED_V1.json",
+    "sha256": "d2d55b70d2fd4f4bb6a86676ba0471dfe92069023df092dd04ed9ec2433fe250"
+  },
+  "prior_source_review": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_independent_review_v1/REVIEW_V1.json",
+    "sha256": "332cd951d215cc39172c697fb231e54c58869528bb6063bbbd183c19d21dde4f"
+  },
+  "per_seed_reviews": [
+    {
+      "seed": 0,
+      "review": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/SEED_0_DATA_REVIEW_V1.json",
+        "sha256": "ac9ce724f0eee681217db15d1caf9496ca850c10789519a4669021fcb71748e9"
+      },
+      "status": "PASS",
+      "frame_binding": null
+    },
+    {
+      "seed": 1,
+      "review": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/SEED_1_DATA_REVIEW_V1.json",
+        "sha256": "9875e276d447ede6b5f0330f9d8f449b6ae02b8df36a417203d1c223c285f249"
+      },
+      "status": "PASS",
+      "frame_binding": null
+    },
+    {
+      "seed": 2,
+      "review": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/SEED_2_DATA_REVIEW_V1.json",
+        "sha256": "459e1d0eb910356ec025d5656897e788e37c280406ecf407c74062d2528773d8"
+      },
+      "status": "PASS",
+      "frame_binding": null
+    },
+    {
+      "seed": 3,
+      "review": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/SEED_3_DATA_REVIEW_V1.json",
+        "sha256": "941f92d9daee4818effcda89e421acf3af5b2fba0d159ba89de7626db439a261"
+      },
+      "status": "PASS",
+      "frame_binding": null
+    }
+  ],
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/worker/ACTUAL_WAIT.json",
+    "sha256": "abb9642719c6c0e0c2b2b5cfc3d99f5a65ddc87a5fa0109732567f0bec13f974"
+  },
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/ACTUAL_TOOL_WAIT_V1.json",
+    "sha256": "6e2fc6daafc716d5e7d95f25ea75376256f6fa8b5b0e6aeaeca3ec1c027c0f40"
+  },
+  "actual_worker_exit": 0,
+  "actual_tool_exit": 0,
+  "all_owned_closed": true,
+  "pending_workers": [],
+  "pending_tool_sessions": [],
+  "source_data_unchanged": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/SOURCE_DATA_UNCHANGED_V1.json",
+    "sha256": "9a7d9982e56a9dd01320e2dcc0761bcb7d515fdd03287644d0675bf7ab338e1e"
+  },
+  "bounded_data_compare": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_actual_data_review_v1/BOUNDED_DATA_COMPARE_V1.json",
+    "sha256": "214db585b355deff5d3bcbefef4a29a4900807d29f5882c65389406c7fac9341"
+  },
+  "protected_count": 185,
+  "source_data_before_after_unchanged": true,
+  "original_native_outer_exits": [
+    1,
+    0,
+    0,
+    0
+  ],
+  "actual_export_wait_checks": [
+    {
+      "ref": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/wrapper/ACTUAL_WAIT.json",
+        "sha256": "d9d4bd635b5db396eb4500999fbccc6c93ef07597bd2e8b5ad619f5a104044aa"
+      },
+      "actual_exit": 0,
+      "pid": 3792695,
+      "waited_pid": 3792695,
+      "all_owned_absent": true,
+      "wait_mechanism": "os.wait4(owned_pid, WNOHANG)"
+    },
+    {
+      "ref": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/worker/ACTUAL_WAIT.json",
+        "sha256": "0ec7e7132cec7a6ba3ea9bc888ca951c60f2dfdc97811ed0ff6ccf7bc53f3795"
+      },
+      "actual_exit": 0,
+      "pid": 3792699,
+      "waited_pid": 3792699,
+      "all_owned_absent": true,
+      "wait_mechanism": "os.wait4(owned_pid, WNOHANG)"
+    }
+  ]
+}

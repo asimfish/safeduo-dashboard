@@ -1,0 +1,98 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "POINT0_EXTERNAL_CPU_WRAPPER",
+  "child_pid": 3792695,
+  "waited_pid": 3792695,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-10T15:26:03.919775+00:00",
+  "closed_utc": "2026-10-10T15:26:06.928137+00:00",
+  "elapsed_seconds": 3.0083897709846497,
+  "max_wall_seconds": 620,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 3792695,
+      "ppid": 3792686,
+      "pgid": 3792695,
+      "sid": 3792695,
+      "startticks": 176885034,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 3792686
+      },
+      "live": false
+    },
+    {
+      "pid": 3792699,
+      "ppid": 3792695,
+      "pgid": 3792699,
+      "sid": 3792699,
+      "startticks": 176885040,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 3792695,
+          "ppid": 3792686,
+          "pgid": 3792695,
+          "sid": 3792695,
+          "startticks": 176885034,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 3792699,
+          "ppid": 3792695,
+          "pgid": 3792699,
+          "sid": 3792699,
+          "startticks": 176885040,
+          "state": "R"
+        },
+        "candidate_final": {
+          "pid": 3792699,
+          "ppid": 3792695,
+          "pgid": 3792699,
+          "sid": 3792699,
+          "startticks": 176885040,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-10T15:26:04.180866+00:00",
+        "task_children_path": "/proc/3792695/task/3792695/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 55680,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/wrapper/child.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/wrapper/resources.jsonl",
+  "outer_monitor_sha256": "14f9576f8d19ca4ce3f803d7c56eef678126ab83e909694604f28b36a3931ea9",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full8192_point0_exporter_v1/observe_cpu_v1.py",
+    "--out",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/actual_export_wait1/worker",
+    "--max-wall",
+    "600",
+    "--",
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full8192_point0_exporter_v1/export_point0_v1.py",
+    "--authority",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full8192_point0_exporter_v1/PARENT_EXPORT_AUTHORITY_V1.json",
+    "--authority-sha256",
+    "703e1cf4ce6b5fdc267b360ba6c1ac988a42207ec67ee4b51a199c952d49baa4"
+  ]
+}
