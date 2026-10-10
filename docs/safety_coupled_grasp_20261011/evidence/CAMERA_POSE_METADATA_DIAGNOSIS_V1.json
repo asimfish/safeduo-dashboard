@@ -1,0 +1,30 @@
+{
+  "status": "SOURCE_AND_RECORDED_BUFFER_EVIDENCE_OF_STALE_CAMERA_POSE_METADATA",
+  "utc": "2026-10-10T18:19:38.275699+00:00",
+  "records": [
+    {
+      "version": 19,
+      "frames": 100,
+      "camera_position_metadata_matches_requested_eyes": false,
+      "maximum_position_discrepancy_m": 4.277849927241488,
+      "camera_frames_SHA256": "9aaace78d148d332553492bf84d215dee9fbb9359344f87685417c050d13ec21",
+      "physical_native_video_modified": false
+    },
+    {
+      "version": 20,
+      "frames": 100,
+      "camera_position_metadata_matches_requested_eyes": false,
+      "maximum_position_discrepancy_m": 4.277849927241488,
+      "camera_frames_SHA256": "740ec0adebaa57aaed588c31efee197a8173ec94113c2ffd08978dba4b9b6b85",
+      "physical_native_video_modified": false
+    }
+  ],
+  "installed_camera_source": "/home/liyufeng/IsaacLab/source/isaaclab/isaaclab/sensors/camera/camera.py",
+  "installed_camera_source_SHA256": "c6ed990ac0050a511e91a4547f4b88e6d5f423b2733419cee6cf8f16c44c238b",
+  "cause": "Installed Camera setters mutate XFormPrim but do not update CameraData poses; reset calls _update_poses. Candidate recorded CameraData after set/update without reset.",
+  "image_pose_or_pixel_fault_proven": false,
+  "framing_acceptance": false,
+  "proposed_repair": "Call public camera.reset after each pose setter and independently record USD world transform, compare pose and requested eye. No physics step or object mutation.",
+  "running21_frozen_source_left_unchanged": true,
+  "fullSystem0_accepted": false
+}
