@@ -1,0 +1,291 @@
+{
+  "schema": "astra.v7.UR04.otherhand_mask_taxonomy_diagnosis.v1",
+  "status": "DIAGNOSED_METRIC_DEFINITION_DIFFERENCE_PARTIAL_UNQUALIFIED",
+  "producer_mask_bug_reproduced": false,
+  "needsfix_to_reproduce_existing_frozen_gate": false,
+  "conclusion": "All601 are same-env0 F_L hand pixels. Original producer rejects foreign ENV hand pixels, not other ARM hand pixels in the same env. NoHide forbids visibility mutation, not appearance of other hands. The >200 exact target rigid intersection gate replays qualified with43323. This is not group or full camera qualification.",
+  "producer_mask_replay_exact": true,
+  "producer_single_attempt_label": "qualified",
+  "producer_single_attempt_reasons": [],
+  "producer_complete_render_frustum_held27_independently_revalidated": false,
+  "producer_mask_replay": {
+    "status": "qualified",
+    "reasons": [],
+    "observed_hand_pixels": 43323,
+    "same_arm_intersection_pixels": 43323,
+    "pixel_identity_contract": "instance native rigid ancestor equals unique semantic native rigid path",
+    "required_pixels_strictly_greater_than": 200,
+    "scope": "observed_visible_hand"
+  },
+  "per_stream_foreign_pixels": {
+    "instance_segmentation_fast": 0,
+    "semantic_segmentation": 0
+  },
+  "observed_other_hand_native_body_counts": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_v7_ur04_otherhand_taxonomy_diagnosis_v1/actual01/data/OTHER_HAND_NATIVE_BODY_COUNTS_V1.csv",
+    "sha256": "77a13141f2fe96be20600e4d21d33047f1c69294d75422360d28354d851ce06f"
+  },
+  "observed_other_hand_ID_paths": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_v7_ur04_otherhand_taxonomy_diagnosis_v1/actual01/data/OTHER_HAND_ID_PATHS_V1.json",
+    "sha256": "c457923b3ed7ef48713e4e8c30c9fa17e3640e0f839ecd186cb9fb044a4b6008"
+  },
+  "mask_coordinate_agreement": {
+    "other_hand_instance_pixels": 601,
+    "other_hand_semantic_pixels": 601,
+    "other_hand_intersection_pixels": 601,
+    "other_hand_union_pixels": 601,
+    "other_hand_coordinate_disagreements": 0,
+    "target_intersection_pixels": 43323,
+    "target_union_pixels": 43323,
+    "target_coordinate_disagreements": 0
+  },
+  "predicate_comparison": {
+    "label": "DIAGNOSTIC_PREDICATE_COMPARISON_ONLY_NOT_AN_ADOPTED_GATE",
+    "existing_foreign_hand_predicate": "identity.hand and identity.env_id != slot",
+    "target_hand_predicate": "identity.hand and (identity.env_id,identity.arm)==(slot,arm)",
+    "all_other_hands_predicate": "identity.hand and (identity.env_id,identity.arm)!=(slot,arm)",
+    "existing_foreign_hand_pixels": 0,
+    "all_other_hand_pixels": 601,
+    "existing_mask_status": "qualified",
+    "all_other_hand_absence_predicate_would_reject": true,
+    "source_or_threshold_modified": false
+  },
+  "wrist_taxonomy": {
+    "target_wrist3_actual_native_hand": true,
+    "target_wrist3_pixels": 29264,
+    "target_wrist2_actual_native_nonhand": true,
+    "target_wrist2_instance_pixels": 12066,
+    "other_hand601_not_wrist_or_arm_misclassification": true
+  },
+  "target_native_body_intersections": {
+    "/World/envs/env_0/U_R/wrist_3_link": 29264,
+    "/World/envs/env_0/U_R/right_index_1": 838,
+    "/World/envs/env_0/U_R/right_little_1": 1201,
+    "/World/envs/env_0/U_R/right_middle_1": 414,
+    "/World/envs/env_0/U_R/right_ring_1": 792,
+    "/World/envs/env_0/U_R/right_thumb_1": 281,
+    "/World/envs/env_0/U_R/right_index_2": 1009,
+    "/World/envs/env_0/U_R/right_little_2": 825,
+    "/World/envs/env_0/U_R/right_middle_2": 964,
+    "/World/envs/env_0/U_R/right_ring_2": 1163,
+    "/World/envs/env_0/U_R/right_thumb_2": 4146,
+    "/World/envs/env_0/U_R/right_thumb_3": 1688,
+    "/World/envs/env_0/U_R/right_thumb_4": 738
+  },
+  "semantic_nonhand_native_identity_UNKNOWN_pixels": 66647,
+  "semantic_missing_annotation_ID_pixels": 0,
+  "semantic_UNKNOWN_definition": "Existing semantic hand resolver returns None for nonhand class labels; annotation IDs exist. This does not mean an unlabelled hand or validated nonhand semantic body ownership.",
+  "source_locations": [
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "path_identity",
+      "line": 428,
+      "end_line": 437
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "_label_identity",
+      "line": 454,
+      "end_line": 484
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "mask_evidence",
+      "line": 487,
+      "end_line": 513
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "qualify_masks",
+      "line": 516,
+      "end_line": 550
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "_visibility",
+      "line": 763,
+      "end_line": 777
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "_attempt",
+      "line": 817,
+      "end_line": 915
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py",
+        "sha256": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c"
+      },
+      "name": "capture",
+      "line": 1026,
+      "end_line": 1184
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py",
+        "sha256": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e"
+      },
+      "name": "_visibility",
+      "line": 10,
+      "end_line": 11
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py",
+        "sha256": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e"
+      },
+      "name": "_attempt",
+      "line": 16,
+      "end_line": 18
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py",
+        "sha256": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e"
+      },
+      "name": "capture",
+      "line": 24,
+      "end_line": 184
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/release2/reader/cameras.py",
+        "sha256": "3fd345d896a1b08a2c3d56b02a55e1a02be118d406317f68cd2094af593d7280"
+      },
+      "name": "counts_for_lane",
+      "line": 31,
+      "end_line": 47
+    },
+    {
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/_base_hand_views_v3_v2.py",
+        "sha256": "f528619765eb46235f5e31fdb03701ed94a60a6cc69d7f4bb625033fc03e4fb9"
+      },
+      "name": "hand_coverage",
+      "line": 56,
+      "end_line": 90
+    }
+  ],
+  "exact_pure_AST_executed": [
+    {
+      "name": "hand_label",
+      "line": 114,
+      "end_line": 115,
+      "exact_ast_sha256": "789785ee128db09f779b7094b0632d6294f16d727bfddd6018fc69d1f7635e91"
+    },
+    {
+      "name": "_token_paths",
+      "line": 119,
+      "end_line": 123,
+      "exact_ast_sha256": "9fe47d896134b0be23a2c3fd96d41e689cf617034b05ad86adb6e369369dfb01"
+    },
+    {
+      "name": "path_identity",
+      "line": 428,
+      "end_line": 437,
+      "exact_ast_sha256": "72e4e8217ea44b8bb3db3c45fd5af5f6af22689bf2f8c5010cb158abd0fe0c95"
+    },
+    {
+      "name": "_id_map",
+      "line": 440,
+      "end_line": 451,
+      "exact_ast_sha256": "3e5a441d9e902e2f149e8000aec8ece28afefb106ac5e56a17d8993a5ec6e3c9"
+    },
+    {
+      "name": "_label_identity",
+      "line": 454,
+      "end_line": 484,
+      "exact_ast_sha256": "4f67dc9d15316766ca4f85aea9846b1fde0d471758f4de77219f6837e9db2840"
+    },
+    {
+      "name": "mask_evidence",
+      "line": 487,
+      "end_line": 513,
+      "exact_ast_sha256": "1c745a68046850b6d865d734c7ac1ccada573c0866c3387801c4fc997fb2d7f0"
+    },
+    {
+      "name": "qualify_masks",
+      "line": 516,
+      "end_line": 550,
+      "exact_ast_sha256": "95ccf84932cd96cc037c7a2898ea7d67f2bf5b822d1fa26b22de92fc26da1e06"
+    }
+  ],
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/v7_ur04_otherhand_taxonomy_diagnosis_v1/SOURCE_GRAPH_V1.json",
+    "sha256": "ae41f61cbb88345d0812b05b82f07190a0b08fd072b643304b5f4381decd4361"
+  },
+  "parent_closure": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/campaign_ssd_v7_retry02/actual_native01/PARENT_ACTUAL_NATIVE_CLOSED_V7.json",
+    "sha256": "f287da00259fa736096a00bf3b0c5e4e2f1eab5f1a589d7a29061c8a7ca32a44"
+  },
+  "actual03_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_supplement32_v7_partial_gallery_candidate_v1/actual03/PARENT_HANDOFF_UR04_V1.json",
+    "sha256": "f2d3924e7cb70e6c1d383bbf85c3bd400923f518f2a52afb71b93810c3ea1724"
+  },
+  "original_camera": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.attempt.json",
+    "sha256": "4eb18027123aeb3b5851fb1e351ab9c9d88a19135eaa210ca795ae96e5ea185d"
+  },
+  "original_mask": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.mask.json",
+    "sha256": "29f92fe68427188126e98eb2101af9bf334885e9f286d5e988a0965a16c3d2dc"
+  },
+  "original_outputs": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.outputs.npz",
+    "sha256": "b1665d74e898f4f3bb232feeb9d47334f82d88c47d6fafb323d2c98d7bbfb518"
+  },
+  "native_inventory": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/native_path_mapping.json",
+    "sha256": "f60f06ddab9ebd6b4ad86a22058add84bc81a9b9947b311be05eaa5b837eca3c"
+  },
+  "qualification": false,
+  "stage": "PARTIAL_INITIAL_ONLY",
+  "scope": "PARTIAL_UNQUALIFIED_ONE_CLOSED_VIEW_ONLY",
+  "completed_camera_groups": 0,
+  "held27_group": "UNKNOWN",
+  "latest42": "UNKNOWN",
+  "full_RAW_math_recomputed": false,
+  "bank_count": 0,
+  "new_IID": 0,
+  "native_calls": 0,
+  "PNG_decoded": 0,
+  "selected_mask_packets": 1,
+  "whole548_scan": false,
+  "source_unchanged": true,
+  "old_closed_data_unchanged": true,
+  "input_SHA": {
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/campaign_ssd_v7_retry02/actual_native01/PARENT_ACTUAL_NATIVE_CLOSED_V7.json": "f287da00259fa736096a00bf3b0c5e4e2f1eab5f1a589d7a29061c8a7ca32a44",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/campaign_ssd_v7_retry02/FROZEN_NATIVE_REQUEST_V1.json": "586aa4d7f7f633344442ce645f4b07ac8e13a4406d877ede33554e96a840b0f0",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_supplement32_v7_partial_gallery_candidate_v1/actual03/PARENT_HANDOFF_UR04_V1.json": "f2d3924e7cb70e6c1d383bbf85c3bd400923f518f2a52afb71b93810c3ea1724",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_supplement32_v7_partial_gallery_candidate_v1/actual03/data/UR04_CANDIDATE_V1.json": "adc8a2cfaac711ea99dd3e56837bc581f542377ca0b6c1d10e9e70dba693848b",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_supplement32_v7_partial_gallery_candidate_v1/actual03/worker/ACTUAL_WAIT.json": "bea5c2c67cdf98b62a73d03a24d7d6e03bd26da51f9f84fe87ae6f7672c04ed8",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_supplement32_v7_partial_gallery_candidate_v1/actual03/external/ACTUAL_WAIT.json": "013ed9c482528c5e16dd4c7a1e2fdb03b8d8191c04f3d13be32330b67d48a3d4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/native_path_mapping.json": "f60f06ddab9ebd6b4ad86a22058add84bc81a9b9947b311be05eaa5b837eca3c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.attempt.json": "4eb18027123aeb3b5851fb1e351ab9c9d88a19135eaa210ca795ae96e5ea185d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.mask.json": "29f92fe68427188126e98eb2101af9bf334885e9f286d5e988a0965a16c3d2dc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.info.json": "fd47d80bf0cdfae72571ffc2dfa99c3ef32d46073cde4a3e20c728cf59fdd279",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_supplement32_v7_partial_gallery_candidate_v1/actual03/assets/U_R_attempt_04.NATIVE_PATHS_V1.json": "99a24481f91736233b09211784e14da3bf0479f7a3ae58ac432120bcdf8df9d2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v7_ssd/evidence/native_attempt1/native/qualified_views/initial/step_-001_sub_none_capture_000000/env_000/U_R_attempt_04.outputs.npz": "b1665d74e898f4f3bb232feeb9d47334f82d88c47d6fafb323d2c98d7bbfb518"
+  },
+  "closed_utc": "2026-10-11T03:06:30.513356+00:00"
+}
