@@ -1,0 +1,48 @@
+{
+  "frozen_utc": "2026-10-11T12:42:51.266302+00:00",
+  "baseline": 77,
+  "candidates": {
+    "78": {
+      "position_iterations": 32,
+      "velocity_iterations": 0,
+      "scene_velocity_cap": 0,
+      "external_forces_every_iteration": true,
+      "registration_sha256": "28669095167db8fb67478f00deed85b03cccdbcbdcc2159f64ed89cff9ac8eec"
+    },
+    "79": {
+      "position_iterations": 128,
+      "velocity_iterations": 0,
+      "scene_velocity_cap": 0,
+      "external_forces_every_iteration": true,
+      "registration_sha256": "50fc37e58c55a6594cf5b5b62dd4989a83d06fc88ffb0478d7dd55e76c2ac349"
+    }
+  },
+  "maximum_physics_events": 64,
+  "maximum_native_wall_seconds": 600,
+  "all77_native_parameter_arrays_and13_seed_fields_must_equal71": true,
+  "original_full50_controller_and_target_tape_unchanged": true,
+  "original_q_and_qd_tolerance": 0.0001,
+  "all_original_physical_gates_unchanged": true,
+  "diagnostic_weak_contact_persistence": {
+    "F_L_normal_gt_N": 0.005,
+    "continuous_physics_events_ge": 20
+  },
+  "candidate79_conditional": {
+    "original_model_failed78": true,
+    "maximum_qd_ratio78_over77_le": 0.125,
+    "original_physical_pass78": true,
+    "maximum_F_L_normal_N_gt": 0.005
+  },
+  "advance_to79_if_short78_pass": false,
+  "prior_external_force_application_tested": true,
+  "prior_context": "Native26/27/38 and42 already compared this flag in different earlier full-path,8-microstep/128velocity contexts and failed original model gates. This is a new single-factor test on the restored weak-contact seed and32position/zero-scene-velocity context; never count it as a new independent input.",
+  "primary_documentation": "https://nvidia-omniverse.github.io/PhysX/physx/5.5.1/docs/RigidBodyDynamics.html#tgs-force-application",
+  "hypothesis": "Applying the unchanged net force impulse progressively may reduce mimic/contact transient velocity error in the position-only stage. The original hard model and physical gates remain the outcome oracle.",
+  "installed_binary_exact_source_identity_not_proven": true,
+  "no_SDK_patch": true,
+  "decision_checker_sha256": "ce81074941d67977ec6714c086493a770a9f67e8bba9c8c0f7b47a2ad4896cec",
+  "fulltask_acceptance": false,
+  "new_independent_random_cases": 0,
+  "formal_holdout_count": 0,
+  "fullSystem0_accepted": false
+}

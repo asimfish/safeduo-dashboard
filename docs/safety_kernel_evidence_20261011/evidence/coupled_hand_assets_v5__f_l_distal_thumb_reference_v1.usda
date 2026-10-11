@@ -1,0 +1,24 @@
+#usda 1.0
+(
+    defaultPrim = "Robot"
+    subLayers = [@/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/coupled_hand_assets_v3/f_l_root_reference_v1.usda@]
+)
+over "Robot" {
+    over "f2_hand" {
+        over "joints" {
+            over "left_thumb_4_joint" (delete apiSchemas = ["PhysxMimicJointAPI:rotZ"]) {}
+            over "left_thumb_2_joint" (prepend apiSchemas = ["PhysxMimicJointAPI:rotZ"]) {
+                float physxMimicJoint:rotZ:gearing = -1.9850589062657329
+                float physxMimicJoint:rotZ:offset = 0
+                rel physxMimicJoint:rotZ:referenceJoint = </Robot/f2_hand/joints/left_thumb_4_joint>
+                uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+            }
+            over "left_thumb_3_joint" {
+                float physxMimicJoint:rotZ:gearing = -1.4336095421051123
+                float physxMimicJoint:rotZ:offset = -0
+                rel physxMimicJoint:rotZ:referenceJoint = </Robot/f2_hand/joints/left_thumb_4_joint>
+                uniform token physxMimicJoint:rotZ:referenceJointAxis = "rotZ"
+            }
+        }
+    }
+}
