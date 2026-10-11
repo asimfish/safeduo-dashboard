@@ -1,0 +1,83 @@
+{
+  "schema": "astra.metadata_peer.final_owned_absence.v1",
+  "owned_identities": [
+    {
+      "pid": 2071197,
+      "ppid": 2071196,
+      "pgid": 2071196,
+      "sid": 2071196,
+      "startticks": 180006040,
+      "state": "R"
+    },
+    {
+      "pid": 2071200,
+      "ppid": 2071197,
+      "pgid": 2071200,
+      "sid": 2071200,
+      "startticks": 180006055,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 2071197
+      },
+      "live": false
+    },
+    {
+      "pid": 2071201,
+      "ppid": 2071200,
+      "pgid": 2071201,
+      "sid": 2071201,
+      "startticks": 180006064,
+      "state": "D",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 2071200,
+          "ppid": 2071197,
+          "pgid": 2071200,
+          "sid": 2071200,
+          "startticks": 180006055,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 2071201,
+          "ppid": 2071200,
+          "pgid": 2071201,
+          "sid": 2071201,
+          "startticks": 180006064,
+          "state": "D"
+        },
+        "candidate_final": {
+          "pid": 2071201,
+          "ppid": 2071200,
+          "pgid": 2071201,
+          "sid": 2071201,
+          "startticks": 180006064,
+          "state": "D"
+        },
+        "observed_utc": "2026-10-11T00:06:14.403234+00:00",
+        "task_children_path": "/proc/2071200/task/2071200/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 2072749,
+      "ppid": 3874395,
+      "pgid": 2072749,
+      "sid": 2072749,
+      "startticks": 180008494,
+      "state": "R"
+    }
+  ],
+  "all_registered_fresh_absent": true,
+  "own_only": true,
+  "actual_proc_check": {
+    "chunk_id": "4299c8",
+    "wall_time_seconds": 0.000007852,
+    "exit_code": 0,
+    "original_token_count": 25,
+    "output": "2071197:180006040 ABSENT\n2071200:180006055 ABSENT\n2071201:180006064 ABSENT\n2072749:180008494 ABSENT\n"
+  },
+  "signals_sent": [],
+  "parent127_absence_already_checked_in_review_and_closer": true
+}
