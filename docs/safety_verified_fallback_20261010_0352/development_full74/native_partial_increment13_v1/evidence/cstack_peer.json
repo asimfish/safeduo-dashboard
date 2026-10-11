@@ -1,0 +1,231 @@
+{
+  "schema": "independent.cstack.release6_delta_review.v1",
+  "status": "COND_PASS",
+  "verdict": "COND_PASS_SOURCE_ONLY",
+  "manual_source_verdict": "COND_PASS",
+  "blocking_findings": [],
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "CSTACK-MAJOR-001",
+      "status": "RESOLVED_FOR_SELECTED_SOURCE_DELTA",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/parent_session_v1.py",
+        "sha256": "0867a285203b2af41e4f24a92172fafcf8df8052a27315ceff2bfd64fb022497",
+        "line": 119
+      },
+      "evidence": "Failed freshness denies all signals, harvests actual direct-child wait within3s, finally closes pidfd before log/read/write operations, saves real wait or UNREAPED_WAIT_UNKNOWN. Authenticated real fork RED old source fails; GREEN new source reaps7 with error retained and no signals. Independent API oracles confirm exit-race, immutable UNKNOWN->separate simulated4, durable write failure, log hash failure."
+    },
+    {
+      "id": "CSTACK-MINOR-002",
+      "status": "RESOLVED_LABEL_ONLY",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_worker_v1.py",
+        "sha256": "3e5cae581997261c028ff65ad19ed5553837ba2fe3b090515ae91504241ed912",
+        "line": 107
+      },
+      "evidence": "Summary now uses after_attach_lower_bound_seconds and separate observed_attach_call_through_detach_seconds. No exact pause/native bound claim."
+    }
+  ],
+  "scope": "Minimal FINAL release6 close-race/failure-finally and pause-label delta; inherited release5 observation implementation proof, no native integration acceptance",
+  "reviewer": {
+    "requested_model": "parent-default",
+    "model_override": false,
+    "actual_serving_model": "HIDDEN_UNVERIFIABLE",
+    "author": "Desc",
+    "different_author": true,
+    "author_configuration": "User-relayed Astra xhigh; actual backend difference not verified"
+  },
+  "author_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/FINAL_SOURCE_HANDOFF_V6.json",
+    "sha256": "85a78a7e45a4b4d72e825a98e4840340d17702d4e4a0481998efc9a39c4b97b4"
+  },
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/SOURCE_GRAPH_V1.json",
+    "sha256": "ff9ccf8d734d9fd8e50466bf9193062b8e1cb47ca26710519d620ea19919c397"
+  },
+  "author_closed_CPU_release": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CLOSED_SOURCE_CPU_RELEASE_V6.json",
+    "sha256": "f056730c64cf96a5940a1edab6bfcd188769effc84e769fd0e3340cf25725ce0"
+  },
+  "author_closed_delivery_supplement": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CLOSED_DELIVERY_SUPPLEMENT_V6.json",
+    "sha256": "6270d7ce6ea38216ed2bb041d47bd823da403a7b5024b9ab633bc2b7ee2a1bc6"
+  },
+  "author_actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/close_race_worker01/ACTUAL_WAIT.json",
+    "sha256": "f9b1ba4711401837bb3f294c8956624a5b38881d2e2dbf130475466df4df8436"
+  },
+  "author_actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_RACE_WRAPPER_WAIT_V1.json",
+    "sha256": "818373c1a78e0435b65c7a843ac4a8e00f486abba000aed4b43e147bead3652e"
+  },
+  "author_actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_CPU_TOOL_WAIT_V1.json",
+    "sha256": "33f0c03d81cfdcc03137371a25daf313e41be3232d6e89325761b0626a2085b4"
+  },
+  "author_actual_delivery_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/actual_seal01/ACTUAL_WAIT.json",
+    "sha256": "5ce0a52916da6ac1ceece518f2cab19f2dbc0aac8b829c2cca9e11f104d4c742"
+  },
+  "author_actual_delivery_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_DELIVERY_TOOL_WAIT_V6.json",
+    "sha256": "a09246b166849cfb99e6da61c29618a13040691adcf83e5b7cc2f403afaca085"
+  },
+  "previous_NEEDS_FIX": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_independent_source_review_v1/REVIEW_V1.json",
+    "sha256": "e5c5f8c0e67269ebdacc34a69c27a86253c507d7034a7b401468660700300540"
+  },
+  "previous_review_unchanged": true,
+  "original_failure_evidence_preserved": true,
+  "author_real_fork_CPU_result": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/CPU_RACE_RESULT_V1.json",
+    "sha256": "f78247085f2772db8bfb14193be6eccce3f6fe52f1a1b6fc880600dd02ac2e8a"
+  },
+  "author_real_child_exits": [
+    7,
+    7,
+    4
+  ],
+  "author_worker_outer_tool_exits": [
+    0,
+    0,
+    0
+  ],
+  "independent_CPU_audit": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_independent_source_review_v2/SOURCE_CPU_DELTA_AUDIT_V1.json",
+    "sha256": "cfc0e8104b8b5eeff49fcb39190026482d5ce9d1186f6d76636e0979ff57081d"
+  },
+  "reviewer_source": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_independent_source_review_v2/delta_cpu_audit_v1.py",
+    "sha256": "45f0bf04d86238b9729614deb07abe3f65db18d77ac9e2578caa5519452e93ad"
+  },
+  "actual_worker_wait": null,
+  "actual_outer_wait": null,
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_independent_source_review_v2/ACTUAL_TOOL_CLOSURE_V1.json",
+    "sha256": "3ecef40f690e1bbec0ef2c1f62631a1e88dd5724be5cb8eeff74f3d2a9c0476d"
+  },
+  "independent_direct_tool_exit": 0,
+  "independent_API_oracle_count": 4,
+  "all_owned_closed": true,
+  "source_unchanged": true,
+  "selected_before": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_independent_source_review_v2/delta_cpu_audit_v1.py": "45f0bf04d86238b9729614deb07abe3f65db18d77ac9e2578caa5519452e93ad",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/FINAL_SOURCE_HANDOFF_V6.json": "85a78a7e45a4b4d72e825a98e4840340d17702d4e4a0481998efc9a39c4b97b4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/SOURCE_GRAPH_V1.json": "ff9ccf8d734d9fd8e50466bf9193062b8e1cb47ca26710519d620ea19919c397",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/bootstrap_v1.py": "b570281a2a2a346b0597c14a0a9464819a3a1215873379523a533ec21815f8f8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/render_hang_common_v1.py": "ef216e56deb9a1b4accab20d9e1df240156f42fbaf197e5051b2e87a5a5dfb81",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/hang_gate_v1.py": "3191f01db5208c310be0b4891a64f6617fe41bff009716cf28b9757aa207a1bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/native_grant_v1.py": "86965ddad71d936dac9019ea44987753b57d93370371972c3d521f0c61edb3f1",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/parent_session_v1.py": "0867a285203b2af41e4f24a92172fafcf8df8052a27315ceff2bfd64fb022497",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/gdb_observe_v1.py": "22d3c53633a3148ea249c84cec550a61b1ecd4bd6e4d06a5c4b137f84da411d2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_blocking_target_v1.py": "2e58ee3b1cc1aec854a8ac315be89ca0883407972a6b11911f67ed78ab5ca2a6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_worker_v1.py": "3e5cae581997261c028ff65ad19ed5553837ba2fe3b090515ae91504241ed912",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/run_cpu_v1.py": "c3db89b2f5f74bd6c524ea4f35507f6eb2faef64d2c9968a0531e7735fc60006",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/runtime_core_discovery_v1.py": "82c5ed80a8e1e4f875e2314fc7c2fa465916269311102dfc1549088504260626",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/parent_supervision_v1/pidfd_compat_v1.py": "e8256a5a7c105bdcee57a301052e6bc702ae71fd7734cbda6c3648885f143302",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_race_worker_v1.py": "e58526b4b3d2d6674088de508831620eac3fbeca795c0d7e7573ba302d149519",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/run_cpu_race_v1.py": "68296694b3fa5b4b06acf51c1a76b1167a03d89397d87b689c3d3f20a5dde37b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/parent_session_v1.py": "d199c81b0b7c11de8ab8f1a8641f49c5d6f1df7921b8393da6e1e151e4dd3e0a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_independent_source_review_v1/REVIEW_V1.json": "e5c5f8c0e67269ebdacc34a69c27a86253c507d7034a7b401468660700300540",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/SOURCE_GRAPH_V1.json": "61fc250dfd2c69065eb38ba17c81036225881ad4e6af9a1aedadcf98ccd9af05",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/hang_gate_v1.py": "3191f01db5208c310be0b4891a64f6617fe41bff009716cf28b9757aa207a1bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/native_grant_v1.py": "86965ddad71d936dac9019ea44987753b57d93370371972c3d521f0c61edb3f1",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/gdb_observe_v1.py": "22d3c53633a3148ea249c84cec550a61b1ecd4bd6e4d06a5c4b137f84da411d2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/cpu_blocking_target_v1.py": "2e58ee3b1cc1aec854a8ac315be89ca0883407972a6b11911f67ed78ab5ca2a6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/run_cpu_v1.py": "c3db89b2f5f74bd6c524ea4f35507f6eb2faef64d2c9968a0531e7735fc60006",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CLOSED_SOURCE_CPU_RELEASE_V6.json": "f056730c64cf96a5940a1edab6bfcd188769effc84e769fd0e3340cf25725ce0",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/DELIVERY_SOURCE_GRAPH_V6.json": "e04f40e831dff1f4cc06b08c1f0e57dc78640084260b0ed21fd289ec674713cf",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/SOURCE_CONTRACT_V6.json": "6c8ac527eb19045e9e96b62e0f08a2b5e47886a961b6f6a77189a86dd776f3ea",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/PARENT_COMMANDS_V6.json": "e9308c49998ca3c6c1fa0f6dcaed0142f909630b837cb929ce5e858b3cbe19a4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/seal_release_v6.py": "81e9fd67a4e47365515afa7bfe44edaaf011c87ff46e0a1593dd64c9593e273f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/close_race_worker01/ACTUAL_WAIT.json": "f9b1ba4711401837bb3f294c8956624a5b38881d2e2dbf130475466df4df8436",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_RACE_WRAPPER_WAIT_V1.json": "818373c1a78e0435b65c7a843ac4a8e00f486abba000aed4b43e147bead3652e",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_CPU_TOOL_WAIT_V1.json": "33f0c03d81cfdcc03137371a25daf313e41be3232d6e89325761b0626a2085b4",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/CPU_RACE_RESULT_V1.json": "f78247085f2772db8bfb14193be6eccce3f6fe52f1a1b6fc880600dd02ac2e8a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/old_red/RACE_PROOF.json": "ad4489b1a5e1975c809a6773ae77078ac9dee5e53eeb0ad0e29c04b57a028354",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/new_green/RACE_PROOF.json": "8989cbc4454ccdefec9cbe569ea09138957aaf61813d620fb287aac4444d0261",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/unreaped_denied/DEBUGGER_ACTUAL_WAIT.json": "4e37407e7c4b9d3d2d7ba6fbfd9508acd0a6ea6b1df6369ba6997256e41254a6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/unreaped_denied/ACTUAL_FIXTURE_LATER_WAIT.json": "c282a3d0cd812fabd6478c45631d55cfb2db2bcd6f9850d2de353504974529dd",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CLOSED_DELIVERY_SUPPLEMENT_V6.json": "6270d7ce6ea38216ed2bb041d47bd823da403a7b5024b9ab633bc2b7ee2a1bc6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/actual_seal01/ACTUAL_WAIT.json": "5ce0a52916da6ac1ceece518f2cab19f2dbc0aac8b829c2cca9e11f104d4c742",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_DELIVERY_TOOL_WAIT_V6.json": "a09246b166849cfb99e6da61c29618a13040691adcf83e5b7cc2f403afaca085",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/PRESERVED_DELIVERY_BOOKKEEPING_ERROR_V1.json": "789ed569389c501eb057970addbcfd6d3663ef474e49bf710d915c359725e5d2",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/FINAL_SOURCE_HANDOFF_V1.json": "6debfa007b575cda243d0cd4aa974ea9fa4c3188370886f9dc4a822d147b5afb"
+  },
+  "selected_after": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_independent_source_review_v2/delta_cpu_audit_v1.py": "45f0bf04d86238b9729614deb07abe3f65db18d77ac9e2578caa5519452e93ad",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/FINAL_SOURCE_HANDOFF_V6.json": "85a78a7e45a4b4d72e825a98e4840340d17702d4e4a0481998efc9a39c4b97b4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/SOURCE_GRAPH_V1.json": "ff9ccf8d734d9fd8e50466bf9193062b8e1cb47ca26710519d620ea19919c397",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/bootstrap_v1.py": "b570281a2a2a346b0597c14a0a9464819a3a1215873379523a533ec21815f8f8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/render_hang_common_v1.py": "ef216e56deb9a1b4accab20d9e1df240156f42fbaf197e5051b2e87a5a5dfb81",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/hang_gate_v1.py": "3191f01db5208c310be0b4891a64f6617fe41bff009716cf28b9757aa207a1bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/native_grant_v1.py": "86965ddad71d936dac9019ea44987753b57d93370371972c3d521f0c61edb3f1",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/parent_session_v1.py": "0867a285203b2af41e4f24a92172fafcf8df8052a27315ceff2bfd64fb022497",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/gdb_observe_v1.py": "22d3c53633a3148ea249c84cec550a61b1ecd4bd6e4d06a5c4b137f84da411d2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_blocking_target_v1.py": "2e58ee3b1cc1aec854a8ac315be89ca0883407972a6b11911f67ed78ab5ca2a6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_worker_v1.py": "3e5cae581997261c028ff65ad19ed5553837ba2fe3b090515ae91504241ed912",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/run_cpu_v1.py": "c3db89b2f5f74bd6c524ea4f35507f6eb2faef64d2c9968a0531e7735fc60006",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/runtime_core_discovery_v1.py": "82c5ed80a8e1e4f875e2314fc7c2fa465916269311102dfc1549088504260626",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/parent_supervision_v1/pidfd_compat_v1.py": "e8256a5a7c105bdcee57a301052e6bc702ae71fd7734cbda6c3648885f143302",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/cpu_race_worker_v1.py": "e58526b4b3d2d6674088de508831620eac3fbeca795c0d7e7573ba302d149519",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/run_cpu_race_v1.py": "68296694b3fa5b4b06acf51c1a76b1167a03d89397d87b689c3d3f20a5dde37b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/parent_session_v1.py": "d199c81b0b7c11de8ab8f1a8641f49c5d6f1df7921b8393da6e1e151e4dd3e0a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_independent_source_review_v1/REVIEW_V1.json": "e5c5f8c0e67269ebdacc34a69c27a86253c507d7034a7b401468660700300540",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/SOURCE_GRAPH_V1.json": "61fc250dfd2c69065eb38ba17c81036225881ad4e6af9a1aedadcf98ccd9af05",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/hang_gate_v1.py": "3191f01db5208c310be0b4891a64f6617fe41bff009716cf28b9757aa207a1bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/native_grant_v1.py": "86965ddad71d936dac9019ea44987753b57d93370371972c3d521f0c61edb3f1",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/gdb_observe_v1.py": "22d3c53633a3148ea249c84cec550a61b1ecd4bd6e4d06a5c4b137f84da411d2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/cpu_blocking_target_v1.py": "2e58ee3b1cc1aec854a8ac315be89ca0883407972a6b11911f67ed78ab5ca2a6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release5/run_cpu_v1.py": "c3db89b2f5f74bd6c524ea4f35507f6eb2faef64d2c9968a0531e7735fc60006",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CLOSED_SOURCE_CPU_RELEASE_V6.json": "f056730c64cf96a5940a1edab6bfcd188769effc84e769fd0e3340cf25725ce0",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/DELIVERY_SOURCE_GRAPH_V6.json": "e04f40e831dff1f4cc06b08c1f0e57dc78640084260b0ed21fd289ec674713cf",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/SOURCE_CONTRACT_V6.json": "6c8ac527eb19045e9e96b62e0f08a2b5e47886a961b6f6a77189a86dd776f3ea",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/PARENT_COMMANDS_V6.json": "e9308c49998ca3c6c1fa0f6dcaed0142f909630b837cb929ce5e858b3cbe19a4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_render_hang_cstack_observer_candidate_v1/release6/seal_release_v6.py": "81e9fd67a4e47365515afa7bfe44edaaf011c87ff46e0a1593dd64c9593e273f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/close_race_worker01/ACTUAL_WAIT.json": "f9b1ba4711401837bb3f294c8956624a5b38881d2e2dbf130475466df4df8436",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_RACE_WRAPPER_WAIT_V1.json": "818373c1a78e0435b65c7a843ac4a8e00f486abba000aed4b43e147bead3652e",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_CPU_TOOL_WAIT_V1.json": "33f0c03d81cfdcc03137371a25daf313e41be3232d6e89325761b0626a2085b4",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/CPU_RACE_RESULT_V1.json": "f78247085f2772db8bfb14193be6eccce3f6fe52f1a1b6fc880600dd02ac2e8a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/old_red/RACE_PROOF.json": "ad4489b1a5e1975c809a6773ae77078ac9dee5e53eeb0ad0e29c04b57a028354",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/new_green/RACE_PROOF.json": "8989cbc4454ccdefec9cbe569ea09138957aaf61813d620fb287aac4444d0261",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/unreaped_denied/DEBUGGER_ACTUAL_WAIT.json": "4e37407e7c4b9d3d2d7ba6fbfd9508acd0a6ea6b1df6369ba6997256e41254a6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CPU/close_race01/unreaped_denied/ACTUAL_FIXTURE_LATER_WAIT.json": "c282a3d0cd812fabd6478c45631d55cfb2db2bcd6f9850d2de353504974529dd",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/CLOSED_DELIVERY_SUPPLEMENT_V6.json": "6270d7ce6ea38216ed2bb041d47bd823da403a7b5024b9ab633bc2b7ee2a1bc6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/actual_seal01/ACTUAL_WAIT.json": "5ce0a52916da6ac1ceece518f2cab19f2dbc0aac8b829c2cca9e11f104d4c742",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/ACTUAL_DELIVERY_TOOL_WAIT_V6.json": "a09246b166849cfb99e6da61c29618a13040691adcf83e5b7cc2f403afaca085",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/release6/PRESERVED_DELIVERY_BOOKKEEPING_ERROR_V1.json": "789ed569389c501eb057970addbcfd6d3663ef474e49bf710d915c359725e5d2",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_render_hang_cstack_observer_candidate_v1/FINAL_SOURCE_HANDOFF_V1.json": "6debfa007b575cda243d0cd4aa974ea9fa4c3188370886f9dc4a822d147b5afb"
+  },
+  "unchanged_byte_mapping": {
+    "hang_gate_v1.py": "BYTEEXACT",
+    "native_grant_v1.py": "BYTEEXACT",
+    "gdb_observe_v1.py": "BYTEEXACT",
+    "cpu_blocking_target_v1.py": "BYTEEXACT",
+    "run_cpu_v1.py": "BYTEEXACT"
+  },
+  "unchanged_parent_methods_except_close": true,
+  "conditions": [
+    "SOURCE-only future observation primitive admission. NEW full native entry/harness plus real parent authority/continuous original1200 lease and resource monitor/sidecarRSS require separate independent review before adoption. No V9 changes or native authorization.",
+    "Consumer must distinguish CLOSED_ACTUAL_WAIT from exit0/clean. Require genuine wait/reaping and exact owned absence; retain nonzero/error/fd cleanup failures, failed detach and UNKNOWN. Old pending receipt remains immutable; a later actual wait is a separate record.",
+    "No pause bound or SDK noninterference inference. Existing after-attach values are lower bounds; numeric-PID attach race, synchronous ptrace/NAS blocking and uninterruptible detach remain unproven. Unresolved observer/target closure blocks clean successor adoption."
+  ],
+  "limitations": [
+    "Author real exit7/4 proofs are CPU-owned private-pipe children, not GDB/SDK kernel detach. This repair launched no debugger/native.",
+    "Independent oracles simulate process wait/filesystem APIs and close actual reviewer-owned dummy FDs. Their 7/4 receipt values are explicitly simulated, not new real child waits.",
+    "Actual four release5 GDB CPU capture proofs are inherited only from pinned6deb handoff; no repeat attach tests or broad historical scans.",
+    "PID identity checks do not prove atomic pidfd-to-GDB attach. Actual SDK pause and effects remain UNKNOWN; physical/camera/Drive/rootcause unqualified.",
+    "If NAS receipt durability fails, finally preserves pidfd cleanup and last_close_receipt, then propagates failure; no saved receipt is claimed.",
+    "Minor label repair is checked against final source buffer; old CPU result bytes/labels remain frozen as historical evidence."
+  ],
+  "nonzero_and_UNKNOWN_preserved": true,
+  "native_runs": 0,
+  "attach_attempts": 0,
+  "real_signals": 0,
+  "SDK_calls": 0,
+  "bank": 0,
+  "qualification": false
+}

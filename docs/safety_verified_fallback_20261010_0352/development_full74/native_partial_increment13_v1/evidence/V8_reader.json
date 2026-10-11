@@ -1,0 +1,71 @@
+{
+  "status": "CLOSED_ACTUAL_READER_RECEIPTS_ONLY_NOT_RAW_QUALIFIED",
+  "reader_result": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_v8_ssd_independent_reader_v1/actual_closed01/INDEPENDENT_MIXED32_RAW_V1.json",
+    "sha256": "821ee538e96a72c54daf354ae080e641861e324c618c9d9dc41f21c180e73ba8"
+  },
+  "reader_status": "CLOSED_FAILED_NATIVE_RECEIPTS_ONLY",
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_v8_ssd_reader_adapter_v1/release1/SOURCE_GRAPH_V1.json",
+    "sha256": "54b0a0410f3d6c9e47a6f403de19a5cc98c0e618dafb732a6b0989d38605f3fc"
+  },
+  "source_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_v8_ssd_reader_adapter_independent_review_v1/REVIEW_V1.json",
+    "sha256": "bc13fcf4b7d7c7a9d2b20cff98353e3d5e1d1576968a89301a98bc4bf744353c"
+  },
+  "binding": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/V8_closed_failure_reader_binding01/ACTUAL_CLOSED_FAILURE_BINDING_V8.json",
+    "sha256": "1746868e20b5e4127f3b1f0bb7ec037cc15c759fe8f1ddf472925a26f12c647d"
+  },
+  "authority": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/V8_closed_failure_reader_binding01/PARENT_READER_AUTHORIZATION_V8.json",
+    "sha256": "68d639850bf6524df7d2b42873553ca5c252317d78020cea8a350548b81e4c1f"
+  },
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/CPU/parent_ssd_v8_reader01/worker/ACTUAL_WAIT.json",
+    "sha256": "548f4a67308f2facac575e39c78e7e6b3d31ec66d277c054f85f7a7476ed68b4"
+  },
+  "actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/CPU/parent_ssd_v8_reader01/external/ACTUAL_WAIT.json",
+    "sha256": "413de2d6abf35a861b5ad0561d8822e291bece6e1dcfc5d496f427f937e7470f"
+  },
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/CPU/parent_ssd_v8_reader01/ACTUAL_TOOL_CLOSURE_V1.json",
+    "sha256": "cf1314e33b5f291bf67b93f773aab8d4e83da6a6bc152011a90ab38cdf4f775c"
+  },
+  "actual_exits": [
+    2,
+    2,
+    2
+  ],
+  "all_owned_closed": true,
+  "source_selected_operation_files_unchanged": true,
+  "source_selected_operation_file_count": 22,
+  "owned_identity_rows": 3,
+  "entry": null,
+  "producer": null,
+  "physical_data": "NO_DURABLE_PRODUCER_RECEIPT",
+  "eligible": 0,
+  "bank_count": 0,
+  "safety_acceptance": false,
+  "task_acceptance": false,
+  "formal_holdout_opened": false,
+  "actual_NATIVE_RAW_qualification": false,
+  "preserved_parent_preflight_failures": [
+    {
+      "chunk_id": "40610f",
+      "wall_time_seconds": 1.0506e-05,
+      "exit_code": 1,
+      "original_token_count": 193,
+      "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 15, in <module>\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/release4/intake_common_v1.py\", line 47, in raw\n    need(len(b)<=limit and hashlib.sha256(b).hexdigest()==rr['sha256'],'bounded same-buffer SHA '+rr['path'])\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/release4/intake_common_v1.py\", line 10, in need\n    if not v:raise ValueError(message)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: bounded same-buffer SHA /mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/shard_raw_v1/batch0_shard0_raw/native_contact_identity.json\n"
+    },
+    {
+      "chunk_id": "a33d5d",
+      "wall_time_seconds": 0.365228422,
+      "exit_code": 1,
+      "original_token_count": 279,
+      "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 15, in <module>\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/release4/intake_common_v1.py\", line 45, in raw\n    fd=read_fd(rr['path'])\n       ^^^^^^^^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/release4/intake_common_v1.py\", line 32, in read_fd\n    p=canonical(p);parent=directory_fd(p.parent)\n      ^^^^^^^^^^^^\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/release4/intake_common_v1.py\", line 13, in canonical\n    need(p.is_relative_to(OUT) if output else (p.is_relative_to(H) or p.is_relative_to(R)),'own metadata root')\n  File \"/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/release4/intake_common_v1.py\", line 10, in need\n    if not v:raise ValueError(message)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: own metadata root\n"
+    }
+  ],
+  "utc": "2026-10-11T03:36:37.336404+00:00"
+}

@@ -1,0 +1,243 @@
+{
+  "schema": "independent.foreign_render_geometry.source_review.v1",
+  "status": "NEEDS_FIX",
+  "verdict": "NEEDS_FIX_SOURCE_ONLY",
+  "manual_source_verdict": "NEEDS_FIX",
+  "scope": "Bound FINAL proposed observation contract and host-only primitive plus separately SHA-bound cached-pose note; no acquisition/integration/native authority",
+  "reviewer": {
+    "requested_model": "parent-default",
+    "model_override": false,
+    "actual_serving_model": "HIDDEN_UNVERIFIABLE",
+    "author": "Hooke",
+    "different_author": true
+  },
+  "author_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/CLOSED_SOURCE_HANDOFF_V1.json",
+    "sha256": "1fc206092c1c96ebcbb2009b5932c1b4cd15418cc6e17ae1a698dbb4dd412263"
+  },
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/SOURCE_GRAPH_V1.json",
+    "sha256": "4a29dc7638b39bb02ba4aeb4eb20e59c06bd71156ef4cc0249ee55f1344e5545"
+  },
+  "author_closure_source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CLOSURE_SOURCE_GRAPH_V2.json",
+    "sha256": "2947d5692c9db2696c36ba0ef5cfaa784ff0071719aaa81f81165b7481dd688e"
+  },
+  "interface_note": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CACHED_POSE_ORDER_INTERFACE_V1.md",
+    "sha256": "1147a645191a0ac816477ae4ee3720c7dc58fe5d6d38e62f5fd5b5701b4eb21a"
+  },
+  "author_actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/worker/ACTUAL_WAIT.json",
+    "sha256": "5b48279fbc43a8fe71cb86098c4d48e492ec09f0c5c77f5d40dbfa0284ea41da"
+  },
+  "author_actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/external/ACTUAL_WAIT.json",
+    "sha256": "8d61ca91487090b37cc413f4f5a95299b3352a557bce990fa335e8c15d22bdc7"
+  },
+  "author_actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/ACTUAL_TOOL_CLOSURE_V1.json",
+    "sha256": "209e03cacbc5e0153fe4c08905c27720aeda2e1565b0e24c8f47b5b979d87650"
+  },
+  "author_CPU_report": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/data/CPU_REPORT_V1.json",
+    "sha256": "3d1cc007059f232cd6fee0fb38009d162daa8d6106a77d7e88da754dac4ce4d3"
+  },
+  "author_preserved_closer_failure": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/PRESERVED_CLOSER_FAILURE_V1.json",
+    "sha256": "58698e5c8479e20d2570496d8031a98e660d6eb8eb562d4dd1ad4a0caea96333"
+  },
+  "blocking_findings": [
+    {
+      "id": "FOREIGN-GEO-MAJOR-001",
+      "severity": "major",
+      "blocking": true,
+      "title": "UNKNOWN risk changes order despite original-search fallback contract",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/foreign_geometry_proxy_v1.py",
+        "sha256": "ffaf0390cfc1bcfe3271280cb3ce0698d686d6f5137be37e27dcd19642223df5",
+        "line": 195
+      },
+      "contract": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/OBSERVATION_CONTRACT_V1.json",
+        "sha256": "2be02a0a4cb9623723e5f5dab4a247e667c36d10057ab2016674cc5d650133a4"
+      },
+      "interface_note": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CACHED_POSE_ORDER_INTERFACE_V1.md",
+        "sha256": "1147a645191a0ac816477ae4ee3720c7dc58fe5d6d38e62f5fd5b5701b4eb21a"
+      },
+      "evidence": "permute_fixed56 sorts by (risk is None, risk or0, id). The bound unsupported_policy requires ORIGINAL_SEARCH_ORDER_FALLBACK; the cached interface says missing/Unsupported geometry or optics means original-order search.",
+      "reproduction": "Pure host synthetic56 original objects; id1 risk=None, other risks57-id: actual output56,55,...,2,1 instead of1..56. All objects/bytes remain unchanged, yet UNKNOWN is actively deprioritized.",
+      "impact": "Current exposed primitive is not faithful to the proposed fallback contract. With finite original candidate caps, reordering uncertain candidates can affect which attempts complete; no full geometry/pixel qualification or runtime effect was measured.",
+      "minimal_repair": "In a NEW release bind ordering eligibility to complete/supported current geometry+epoch and optics. If scores or global context are UNKNOWN/incomplete, retain the original un-emitted occurrence order and explicit UNKNOWN diagnostics. Add mixed-None and incomplete-registry ordering negatives; keep all56 objects plus original lazy late10, caps and gates unchanged.",
+      "oracle_ref": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_independent_source_review_v1/SOURCE_CPU_AUDIT_V1.json",
+        "sha256": "2010dc0144e367a583528268f9b3bc7b0368c3e77ecbf1c60b9bd2330fdb5013"
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "FOREIGN-GEO-MAJOR-001",
+      "severity": "major",
+      "blocking": true,
+      "title": "UNKNOWN risk changes order despite original-search fallback contract",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/foreign_geometry_proxy_v1.py",
+        "sha256": "ffaf0390cfc1bcfe3271280cb3ce0698d686d6f5137be37e27dcd19642223df5",
+        "line": 195
+      },
+      "contract": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/OBSERVATION_CONTRACT_V1.json",
+        "sha256": "2be02a0a4cb9623723e5f5dab4a247e667c36d10057ab2016674cc5d650133a4"
+      },
+      "interface_note": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CACHED_POSE_ORDER_INTERFACE_V1.md",
+        "sha256": "1147a645191a0ac816477ae4ee3720c7dc58fe5d6d38e62f5fd5b5701b4eb21a"
+      },
+      "evidence": "permute_fixed56 sorts by (risk is None, risk or0, id). The bound unsupported_policy requires ORIGINAL_SEARCH_ORDER_FALLBACK; the cached interface says missing/Unsupported geometry or optics means original-order search.",
+      "reproduction": "Pure host synthetic56 original objects; id1 risk=None, other risks57-id: actual output56,55,...,2,1 instead of1..56. All objects/bytes remain unchanged, yet UNKNOWN is actively deprioritized.",
+      "impact": "Current exposed primitive is not faithful to the proposed fallback contract. With finite original candidate caps, reordering uncertain candidates can affect which attempts complete; no full geometry/pixel qualification or runtime effect was measured.",
+      "minimal_repair": "In a NEW release bind ordering eligibility to complete/supported current geometry+epoch and optics. If scores or global context are UNKNOWN/incomplete, retain the original un-emitted occurrence order and explicit UNKNOWN diagnostics. Add mixed-None and incomplete-registry ordering negatives; keep all56 objects plus original lazy late10, caps and gates unchanged.",
+      "oracle_ref": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_independent_source_review_v1/SOURCE_CPU_AUDIT_V1.json",
+        "sha256": "2010dc0144e367a583528268f9b3bc7b0368c3e77ecbf1c60b9bd2330fdb5013"
+      }
+    },
+    {
+      "id": "FOREIGN-GEO-MINOR-002",
+      "severity": "minor",
+      "blocking": false,
+      "title": "OBSERVED acquisition errors replaced by generic validation message",
+      "source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/foreign_geometry_proxy_v1.py",
+        "sha256": "ffaf0390cfc1bcfe3271280cb3ce0698d686d6f5137be37e27dcd19642223df5",
+        "line": 128
+      },
+      "catch_source": {
+        "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/foreign_geometry_proxy_v1.py",
+        "sha256": "ffaf0390cfc1bcfe3271280cb3ce0698d686d6f5137be37e27dcd19642223df5",
+        "line": 155
+      },
+      "evidence": "row.errors nonempty raises observation errors; catch appends errors=[str(exc)], losing original acquisition text from returned gap diagnostics. Author coverage tests only statusUNSUPPORTED preserves original errors.",
+      "reproduction": "Synthetic original visible-only mesh error supplied on an OBSERVED row; output is UNSUPPORTED/errors=[observation errors]. Input remains immutable; this finding concerns returned diagnostics, not proof that a durable native error was deleted.",
+      "minimal_repair": "Retain original row.errors verbatim, with separate validation diagnostics, for every unsupported/error path. Do not promote the row or invent a bound.",
+      "oracle_ref": {
+        "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_independent_source_review_v1/SOURCE_CPU_AUDIT_V1.json",
+        "sha256": "2010dc0144e367a583528268f9b3bc7b0368c3e77ecbf1c60b9bd2330fdb5013"
+      }
+    }
+  ],
+  "independent_CPU_audit": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_independent_source_review_v1/SOURCE_CPU_AUDIT_V1.json",
+    "sha256": "2010dc0144e367a583528268f9b3bc7b0368c3e77ecbf1c60b9bd2330fdb5013"
+  },
+  "reviewer_source": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_independent_source_review_v1/source_cpu_audit_v1.py",
+    "sha256": "8efa7fe7fe53f8acc7558433a86eb97191d39e3530a2d04ea0b2f06febe9908d"
+  },
+  "actual_worker_wait": null,
+  "actual_outer_wait": null,
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_independent_source_review_v1/ACTUAL_TOOL_CLOSURE_V1.json",
+    "sha256": "b2a8d0ce728ed29262805264363ed88939386ce17d65f31b1a4e3c55981a3129"
+  },
+  "independent_direct_tool_exit": 0,
+  "all_owned_closed": true,
+  "source_unchanged": true,
+  "selected_before": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_independent_source_review_v1/source_cpu_audit_v1.py": "8efa7fe7fe53f8acc7558433a86eb97191d39e3530a2d04ea0b2f06febe9908d",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/CLOSED_SOURCE_HANDOFF_V1.json": "1fc206092c1c96ebcbb2009b5932c1b4cd15418cc6e17ae1a698dbb4dd412263",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/SOURCE_GRAPH_V1.json": "4a29dc7638b39bb02ba4aeb4eb20e59c06bd71156ef4cc0249ee55f1344e5545",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/ADR_V1.md": "80641e2b3d730a3d898518700f16019037f3067df68c59b6bafa55f1141fea66",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/foreign_geometry_proxy_v1.py": "ffaf0390cfc1bcfe3271280cb3ce0698d686d6f5137be37e27dcd19642223df5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/test_proxy_v1.py": "ca4dfcd6a11a40e72a4e4b97892669996d307cd653a0aab7fdc9357bc6461981",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/run_cpu_v1.py": "78f1a1bdc574b6f4964dfcdd37735309a49bd71e656bf8619c6b59dd3a21783d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/close_v1.py": "456ebf1051b8ed39a66ceff4eb677044881303386f34c37c6ef841106aacac06",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/build_release_v1.py": "efc9f59155eb796b956f64879988cb7ee4f5aa8127d0701178d91d55ed104633",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/OBSERVATION_CONTRACT_V1.json": "2be02a0a4cb9623723e5f5dab4a247e667c36d10057ab2016674cc5d650133a4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/runtime_core_discovery_v1.py": "82c5ed80a8e1e4f875e2314fc7c2fa465916269311102dfc1549088504260626",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/parent_supervision_v1/pidfd_compat_v1.py": "e8256a5a7c105bdcee57a301052e6bc702ae71fd7734cbda6c3648885f143302",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v9_ssd/release1/camera_order_integration_v8.py": "c51187bae1f57f91194c0c5bc21ed919f2867135a9809b873b6dcbe807e74689",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/_base_hand_views_v3_v2.py": "f528619765eb46235f5e31fdb03701ed94a60a6cc69d7f4bb625033fc03e4fb9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/hand_views_strict_v2.py": "8e3bd2e11732628e1df537260fe42bcad233711694cd1493b21279d1c975b6a0",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/hand_views_v2.py": "0b8d75466297fc93768dca85b6118ecc919d8c67de0e08fd442e245f9605e1f8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_pose_order_candidate_v1/camera_order_v1.py": "05a493a7f0bf2d25eb3a61c74c12e364a6e485309100ff758814b3a0441d4ec7",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py": "5dd16f8a37eccc94ac82338d6c1127e785cccf761cae1f6f18ef03d55b0f325f",
+    "/home/liyufeng/IsaacLab/source/isaaclab/isaaclab/assets/articulation/articulation.py": "891c27ccb9f80a46fc44da9c6ea213ccb0432b8b6ca20d796a4656fa75b98dcc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v9_ssd/release1/NATIVE_REQUEST_TEMPLATE_V9_SSD.json": "f9d7d6f6ccae323c0f5d351ed6ec8bf7b2eb03a204c638c23acd4a787edc563b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/CAMERA_SUFFICIENCY_ACCEPTANCE_SUPPLEMENT_V3.json": "1069d1ed2a5be3683821d268cb5daa3cd48a8b9bb7dc056f7350ca7d1a688d58",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_cached_foreign_bounds_source_feasibility_v1/actual03/PARENT_HANDOFF_V1.json": "3e6d50d84ec16532f03c3d9a0c3886d01d0fb1008da97d4c14aff62371901d30",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CLOSURE_SOURCE_GRAPH_V2.json": "2947d5692c9db2696c36ba0ef5cfaa784ff0071719aaa81f81165b7481dd688e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/close_v2.py": "afd6638836d9635722706b83c3a4e005d179abb6c07a493a548ea626a1f8951b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CACHED_POSE_ORDER_INTERFACE_V1.md": "1147a645191a0ac816477ae4ee3720c7dc58fe5d6d38e62f5fd5b5701b4eb21a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/worker/ACTUAL_WAIT.json": "5b48279fbc43a8fe71cb86098c4d48e492ec09f0c5c77f5d40dbfa0284ea41da",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/external/ACTUAL_WAIT.json": "8d61ca91487090b37cc413f4f5a95299b3352a557bce990fa335e8c15d22bdc7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/ACTUAL_TOOL_CLOSURE_V1.json": "209e03cacbc5e0153fe4c08905c27720aeda2e1565b0e24c8f47b5b979d87650",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/PRESERVED_CLOSER_FAILURE_V1.json": "58698e5c8479e20d2570496d8031a98e660d6eb8eb562d4dd1ad4a0caea96333",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/data/CPU_REPORT_V1.json": "3d1cc007059f232cd6fee0fb38009d162daa8d6106a77d7e88da754dac4ce4d3"
+  },
+  "selected_after": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_independent_source_review_v1/source_cpu_audit_v1.py": "8efa7fe7fe53f8acc7558433a86eb97191d39e3530a2d04ea0b2f06febe9908d",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/CLOSED_SOURCE_HANDOFF_V1.json": "1fc206092c1c96ebcbb2009b5932c1b4cd15418cc6e17ae1a698dbb4dd412263",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/SOURCE_GRAPH_V1.json": "4a29dc7638b39bb02ba4aeb4eb20e59c06bd71156ef4cc0249ee55f1344e5545",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/ADR_V1.md": "80641e2b3d730a3d898518700f16019037f3067df68c59b6bafa55f1141fea66",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/foreign_geometry_proxy_v1.py": "ffaf0390cfc1bcfe3271280cb3ce0698d686d6f5137be37e27dcd19642223df5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/test_proxy_v1.py": "ca4dfcd6a11a40e72a4e4b97892669996d307cd653a0aab7fdc9357bc6461981",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/run_cpu_v1.py": "78f1a1bdc574b6f4964dfcdd37735309a49bd71e656bf8619c6b59dd3a21783d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/close_v1.py": "456ebf1051b8ed39a66ceff4eb677044881303386f34c37c6ef841106aacac06",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/build_release_v1.py": "efc9f59155eb796b956f64879988cb7ee4f5aa8127d0701178d91d55ed104633",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/OBSERVATION_CONTRACT_V1.json": "2be02a0a4cb9623723e5f5dab4a247e667c36d10057ab2016674cc5d650133a4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/runtime_core_discovery_v1.py": "82c5ed80a8e1e4f875e2314fc7c2fa465916269311102dfc1549088504260626",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/parent_supervision_v1/pidfd_compat_v1.py": "e8256a5a7c105bdcee57a301052e6bc702ae71fd7734cbda6c3648885f143302",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v9_ssd/release1/camera_order_integration_v8.py": "c51187bae1f57f91194c0c5bc21ed919f2867135a9809b873b6dcbe807e74689",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/qualified_views_fullsphere_v2.py": "cfdb496b30c062d018dbc1ca33b90e1c3075594ab41751f468e67f933e4aba0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/_base_hand_views_v3_v2.py": "f528619765eb46235f5e31fdb03701ed94a60a6cc69d7f4bb625033fc03e4fb9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_upgrade_v3/hand_views_strict_v2.py": "8e3bd2e11732628e1df537260fe42bcad233711694cd1493b21279d1c975b6a0",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/adaptation32/hand_views_v2.py": "0b8d75466297fc93768dca85b6118ecc919d8c67de0e08fd442e245f9605e1f8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_admissible_pilot_fresh_resume_v4/producer/camera_nohide_v1.py": "116d16adebe304b21a3989202ddd667d78ef3534904a1f53e35a6240e3074c5e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_camera_pose_order_candidate_v1/camera_order_v1.py": "05a493a7f0bf2d25eb3a61c74c12e364a6e485309100ff758814b3a0441d4ec7",
+    "/home/liyufeng/miniforge3/envs/safeduo/lib/python3.11/site-packages/isaacsim/extscache/omni.physics.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/omni/physics/tensors/impl/api.py": "5dd16f8a37eccc94ac82338d6c1127e785cccf761cae1f6f18ef03d55b0f325f",
+    "/home/liyufeng/IsaacLab/source/isaaclab/isaaclab/assets/articulation/articulation.py": "891c27ccb9f80a46fc44da9c6ea213ccb0432b8b6ca20d796a4656fa75b98dcc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v9_ssd/release1/NATIVE_REQUEST_TEMPLATE_V9_SSD.json": "f9d7d6f6ccae323c0f5d351ed6ec8bf7b2eb03a204c638c23acd4a787edc563b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/CAMERA_SUFFICIENCY_ACCEPTANCE_SUPPLEMENT_V3.json": "1069d1ed2a5be3683821d268cb5daa3cd48a8b9bb7dc056f7350ca7d1a688d58",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_cached_foreign_bounds_source_feasibility_v1/actual03/PARENT_HANDOFF_V1.json": "3e6d50d84ec16532f03c3d9a0c3886d01d0fb1008da97d4c14aff62371901d30",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CLOSURE_SOURCE_GRAPH_V2.json": "2947d5692c9db2696c36ba0ef5cfaa784ff0071719aaa81f81165b7481dd688e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/close_v2.py": "afd6638836d9635722706b83c3a4e005d179abb6c07a493a548ea626a1f8951b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_foreign_render_geometry_observation_contract_v1/CACHED_POSE_ORDER_INTERFACE_V1.md": "1147a645191a0ac816477ae4ee3720c7dc58fe5d6d38e62f5fd5b5701b4eb21a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/worker/ACTUAL_WAIT.json": "5b48279fbc43a8fe71cb86098c4d48e492ec09f0c5c77f5d40dbfa0284ea41da",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/external/ACTUAL_WAIT.json": "8d61ca91487090b37cc413f4f5a95299b3352a557bce990fa335e8c15d22bdc7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/ACTUAL_TOOL_CLOSURE_V1.json": "209e03cacbc5e0153fe4c08905c27720aeda2e1565b0e24c8f47b5b979d87650",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/PRESERVED_CLOSER_FAILURE_V1.json": "58698e5c8479e20d2570496d8031a98e660d6eb8eb562d4dd1ad4a0caea96333",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_foreign_render_geometry_observation_contract_v1/actual01/data/CPU_REPORT_V1.json": "3d1cc007059f232cd6fee0fb38009d162daa8d6106a77d7e88da754dac4ce4d3"
+  },
+  "verified": [
+    "Nine author synthetic CPU groups and genuine worker/outer/tool0 authenticated; old closer actual1 retained with its exact traceback and closure-delta graph.",
+    "ADR requires all actual imageable/render-boundable scene owners, instance proxies/prototypes, visual-only noncollision meshes, visibility/purpose/loaded exclusions and renderer-only limitations. Native-body registry alone is not complete rendered context.",
+    "Actual ComputeUntransformedBound aligned matrix before actor/link XYZW; actual64 per-path world-table bounds, no COM/origin/sphere/table translation substitution. Unsupported scales/shear/deformation/dynamic world sync retained UNKNOWN.",
+    "Cached pose note uses actual existing baseline argument and exact arm/env/body_index/native_link_path, explicit shape/no duplicate/no holes proof pending the actual observer; not self._current_baseline.",
+    "Per-held-state epoch binds scene/visibility/composition/notices/timecode/native27/params/geometry/clock. Two fresh independent BBoxCaches and paired original27 typed bytes required; altered epoch rejects pure host intake.",
+    "Prospective B2624 two-pass5248 local/128 world-table/5376 aligned and exact-path queries declared; total native pair48 PhysX+6 field reads matches selected native_snapshot4arms*6getter source. Actual before reuse may reduce incremental counts only with separate accounting, AFTER remains required.",
+    "Original GPU/resource/profiling/wall1200 fields exactly match pinned V9 request template; no current V9 edits or execution. Same56 occurrences, late10, hand96/wide66/lane450/held3, actual strong angle/pixel/native criteria are contractual invariants."
+  ],
+  "limitations": [
+    "CACHED_POSE_ORDER_INTERFACE_V1.md was appended after original handoff and is outside original4a29 graph; this review binds its exact bytes separately, never claims original graph covered it.",
+    "No actual USD/SDK observer exists. Support/frame/unit/completeness flags and declared hashes are host intake assertions requiring future actual DATA corroboration.",
+    "Initial pose freshness stays UNKNOWN despite bitwise hold. Actor vs USD local-frame/unit/root scale and renderer/Fabric sync must be independently validated before risk use.",
+    "USD extent plugins/procedural render objects/instancer visibility/composition effects and performance are unmeasured; upstream docs are not installed binary proof.",
+    "Only bounded synthetic host oracles executed here; author9 groups reused. No original RAW/NPZ/pixels/live payload or entire historical graph rescanned.",
+    "Six-plane/segment/box-area scores are supplied-box proxies, not mesh visibility, mask purity, camera acceptance, contact/drive/wrench/global safety evidence.",
+    "After repairs a NEW full SDK/source seam, distinct peer and parent request remain required. Source verdict does not authorize current V9 mutation or native launch."
+  ],
+  "original_V9_unchanged": true,
+  "native_executions": 0,
+  "actual_SDK_calls": 0,
+  "RAW_reads": 0,
+  "pixels_read": 0,
+  "qualification": false,
+  "bank_count": 0
+}
