@@ -1,0 +1,346 @@
+{
+  "schema": "desc.task_bank_snapshot.major002_focused_repair_SOURCE_review.v3",
+  "status": "CONDITIONAL_PASS",
+  "verdict": "CONDITIONAL_PASS",
+  "reviewer": "Desc",
+  "blocking_findings": [],
+  "non_blocking_improvements": [],
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/SOURCE_GRAPH_V1.json",
+    "sha256": "cd860f1bfcb15eeccd3fdad45b07142f2382b600017aa21cbba6f1e8449b4e68"
+  },
+  "author_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair06/FINAL_TYPED_HANDOFF_V3.json",
+    "sha256": "37fdcc7790e5f600072d3cdf8095604c90f3a08a6ca9008e25327696e001e5d2"
+  },
+  "author_final_metadata": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair06/FINAL_TYPED_METADATA_CLOSED_V3.json",
+    "sha256": "3ad116060bd9d6bc04a5c2855962cd4223677b29ea480f5d021d4a07b1bbeeb0"
+  },
+  "own_source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_independent_source_review_v1/release3/SOURCE_GRAPH_V1.json",
+    "sha256": "f1658540aa195807e7c661a0dce2556205e68873b7dd523f2c7065a16fc20573"
+  },
+  "original_review": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/FINAL_TYPED_REVIEW_HANDOFF_V2.json",
+    "sha256": "ef1851287a804b9d818b87524b9b232a31d13ca9390323dceafb0795a657bea6"
+  },
+  "original_counterexample": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/driver/worker/POST_VALIDATION_CLOCK_ALIAS_COUNTEREXAMPLE_V2.json",
+    "sha256": "72bbb794c3b6a75263fba653e848f2294019cd6c37a625d0a380537793d68e78"
+  },
+  "repaired_finding": "TASKSNAP-MAJOR-002",
+  "original_post_live_clock_alias_denied_before_model_and_push": true,
+  "repaired_evidence": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair02/driver/worker/POST_VALIDATION_CLOCK_ALIAS_DENIED_V3.json",
+    "sha256": "2302360e01d31805fec71027bce8f2cb08ccdba1f2e463ee51519fd27c018835"
+  },
+  "independent_checks": [
+    {
+      "name": "exact_original_suffix_FIFO_source_and_canonical_consumption_SOURCE",
+      "status": "PASS_REVIEW_ORACLE",
+      "evidence": {
+        "policy_proof": {
+          "original_policy": {
+            "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/queue74_native_issue_v4.py",
+            "sha256": "60f82d2dc4b3f775b9dbbba705bbba6b045e8962979afdd1f6b933d80040c2cd"
+          },
+          "scientific_suffix_AST_sha256": "f32c13e151a842cdab84d17e24429c23cf4cc3833fc2983767b89fd909dda884",
+          "replaced": [
+            "caller-validated frozen capture and epoch tick after exact duplicate checks",
+            "final consumption recheck instead of independently writable packet clock read"
+          ],
+          "original_policy_globals_mutated": false,
+          "native_dispatch_supported": false,
+          "scientific_search_executed": false
+        },
+        "caller_proof": {
+          "original_caller": {
+            "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_caller32_source_candidate_v1/release1/task_caller32_v1.py",
+            "sha256": "26fc1ec008ce8bfca6df8b563821f4a5b9d1af75638ec33be1244490d7d597bd"
+          },
+          "original_buffer_sha256": "26fc1ec008ce8bfca6df8b563821f4a5b9d1af75638ec33be1244490d7d597bd",
+          "original_methods_unmodified": true,
+          "original_live_calls_per_control": 1,
+          "extra_SDK_calls": 0,
+          "caller_scoped_epoch_and_full_capture_required": true,
+          "native_dispatch_supported": false
+        },
+        "native_queue_source": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/native_queue_v1.py",
+          "sha256": "4c15ccc9e8a67e09bfaf0bc0bc8bef8189a035acbbc9987ae401f6969430fa5c"
+        },
+        "protocol": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/TASK_ACCEPTANCE_PROTOCOL_V4.json",
+          "sha256": "399fa6795d1f28d588b406aea97c38340ef8c0181aa4ecf101857d03eb94fd03"
+        },
+        "provenance_erratum": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair06/PROVENANCE_ERRATUM_V3.json",
+          "sha256": "e18ab5bb75fdd2f4a619dc33e3d04512a6bea610eaafdf3d8bb0b8dfef983965"
+        }
+      }
+    },
+    {
+      "name": "valid_same_snapshot_original_tick_signedzero_FIFO_and_exception_cleanup",
+      "status": "PASS_REVIEW_ORACLE",
+      "evidence": {
+        "model_input": {
+          "native_step": 3,
+          "native_time_s": 0.02500000223517418,
+          "dt_s": 0.008333,
+          "native_clock_tick_s": 0.008333333767950535,
+          "fifo_same": true,
+          "all_q_qd_target_bytes_same": true,
+          "canonical_capture_identity": true,
+          "canonical_tick_exact": true,
+          "all_native_arrays_readonly": true
+        },
+        "original_BaseException_identity": true,
+        "context_revoked": true,
+        "sticky_failure": true,
+        "push_calls": 0,
+        "real_policy_search_executed": false
+      }
+    },
+    {
+      "name": "exact_prior_post_live_0125_scalar_drift_denied_before_model_push",
+      "status": "PASS_REVIEW_ORACLE",
+      "evidence": {
+        "repaired_evidence": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair02/driver/worker/POST_VALIDATION_CLOCK_ALIAS_DENIED_V3.json",
+          "sha256": "2302360e01d31805fec71027bce8f2cb08ccdba1f2e463ee51519fd27c018835"
+        },
+        "reason": "packet clock alias drift"
+      }
+    },
+    {
+      "name": "same_family_clock_time_and_signedzero_state_aliases_denied",
+      "status": "PASS_REVIEW_ORACLE",
+      "evidence": {
+        "snapshot_time": {
+          "reason": "caller/packet complete capture differs",
+          "model_entry_calls": 0,
+          "push_calls": 0
+        },
+        "qd_signedzero": {
+          "reason": "caller/packet native bytes differ: qd74",
+          "model_entry_calls": 0,
+          "push_calls": 0
+        },
+        "tick_dtype": {
+          "reason": "packet clock alias drift",
+          "model_entry_calls": 0,
+          "push_calls": 0
+        }
+      }
+    },
+    {
+      "name": "final_consumption_recheck_and_earliest_callback_exception_cleanup",
+      "status": "PASS_REVIEW_ORACLE",
+      "evidence": {
+        "late_alias_reason": "packet clock alias drift",
+        "model_entry_calls": 0,
+        "push_calls": 0,
+        "earliest_BaseException_identity": true,
+        "context_revoked": true
+      }
+    }
+  ],
+  "independent_check_count": 5,
+  "source_before": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/TASK_ACCEPTANCE_PROTOCOL_V4.json": "399fa6795d1f28d588b406aea97c38340ef8c0181aa4ecf101857d03eb94fd03",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/QUEUE74_PREFLIGHT_PLAN_V4.json": "2542ebce705ba12fcc8092eca3bd095a5356be490d78b11b31b1288199b3f868",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/QUEUE74_FULL_PLAN_V4.json": "af740f9cf224720627af22c1f18367e344f05f6a155d3d7d3520d88f2ceadcfc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/NATIVE_QUEUE_REGISTRATION_V4.json": "42e34696dc4899e8faabdb1fc372e0831fcc7d04467353195060cff81ec6f3ec",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/queue74_native_issue_v4.py": "60f82d2dc4b3f775b9dbbba705bbba6b045e8962979afdd1f6b933d80040c2cd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/native_bridge_v1.py": "a49967c7ad75c77ead4c694b7c01f39a621cc7c15164be9bf593c6b7204d2470",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/native_queue_v1.py": "4c15ccc9e8a67e09bfaf0bc0bc8bef8189a035acbbc9987ae401f6969430fa5c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/eligibility_v1.py": "2b37b838a46d32e292e7931f42485247c66cb09c8069d6afe0ff375e5d8a82e7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/select_bank_v1.py": "4822581be79a35a142f5f656d10e0624b9b27b31e4ddab197a1103ab8f02f998",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/READER_SCHEMA_DRAFT_V4.json": "a6020ce79a8886f0b68fd55b957690fb6f1775bf01a1d391d7a449351ac28f0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_caller32_source_candidate_v1/release1/task_caller32_v1.py": "26fc1ec008ce8bfca6df8b563821f4a5b9d1af75638ec33be1244490d7d597bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_caller32_source_candidate_v1/release1/SOURCE_GRAPH_V1.json": "355def7c043e71e5528af3cea20c0dbe8245883a786ff5935f51dbfcd0373968",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_inputs32_binding_candidate_v1/release2/bind_task_inputs32.py": "a278c2cc9d4e0b25fc123b156adfa17a84a9e59be1e406a6a5c88651d3e6f10e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/policy_retry_supervision_v1/release_v3_candidate_01/sources/policy_serial_lease_v2.py": "69afdf2dc6fd2e5042e4df930a8bc2b52374610b8606a437c35b620f3c191ff8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_clock3_reader_operations_v1/common_v1.py": "4f8f6f698e1e62c2ecea0c9177f05e6962d677d1b652eccfce44b9b2442e33ca",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v13_init_return_host_diagnostic_v1/analyze_v1.py": "5cdc6299badf12c70d5d5f3d54d089429060746131546699c57a8e3a73aab367",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/runtime_core_discovery_v1.py": "82c5ed80a8e1e4f875e2314fc7c2fa465916269311102dfc1549088504260626",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/parent_supervision_v1/pidfd_compat_v1.py": "e8256a5a7c105bdcee57a301052e6bc702ae71fd7734cbda6c3648885f143302",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_v11_ssd_reader_adapter_v1/release1/adapter_v1.py": "a6444090cf8f1d086bc6d2410e8215a819c4f7b9f61f6e912d9d547ae2c10757",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/boundary_v1.py": "5b55a08100c6b44af9fdfd550045d2e2823051f1f42e9fe5e6873d83b970cf17",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_caller32_source_candidate_v1/resume_closeout01/FINAL_RESUME_HANDOFF_V1.json": "edd8e4b6c3f64f18c1fc98a86ede5305e479d4262149232a53abe683fd8714d7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_caller32_independent_source_review_v1/actual02/REVIEW_V1.json": "8653804a2ca41610f5e61084b1a07f4bdc888d6985aed6ea42206111ace7d1af",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/CONSUMER_SOURCE_INTERFACE_V1.json": "c9f7711b5073907c24b508f6459cbaa6ad8218dff3aa488025587bef46b7b349",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/consumer_v1.py": "24faa0915d0a244c6cf755d74deb7323efcc144e9572299696593ef08c21e4d3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/run_cpu_v1.py": "dfcb72df7e7c022839c17d760eac9fcb0d5cf6b4c12d9f70a51031f7f3ce802f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/test_consumer_v1.py": "ffa2369bb0290306472465deff75f51bd4ed8c4c198ca6a0a94b1fc5af7fbefd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/SOURCE_GRAPH_V1.json": "683e7bf32c26a2569d9540be90aa42696c273fa24195721b247f986ecd907a08",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual01/FINAL_TYPED_REVIEW_HANDOFF_V1.json": "9712864171aca1ea0c4fb1a38966ab257850ef9c60d6ce020baa70eb236d9e68",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual01/driver/worker/REVIEW_V1.json": "ee27b60235d610d319a6a7d5bfb6e8aa189091af6145be931ab9a97b17f50cb7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual01/driver/worker/CLOCK_PACKET_CALLER_COUNTEREXAMPLE_V1.json": "19a1bca9f80db16dc9807be8b418cded8bd9a7b97411c61ee7fa84e35c6c7209",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/test_repair_v2.py": "155fec33f866c245a6e46cebe78b098c6d7be81f71c6b06bcb9e323a06c2a03a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/SOURCE_GRAPH_V1.json": "9e24f6396c7c38f46fae5bb4be180c2f7bf86bda36135020c86b20739e283eca",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/PARENT_COMMANDS_V2.json": "880fecb6e895d3f78adacbbc50766c7c2b0e117460ada95464acd58c4036f1bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/consumer_v2.py": "887da1795a3d51dcb60c2325297b1bd64bfe99b0f1bacc78a1c91981544c032b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/run_cpu_v2.py": "2b4f90ffba7df79848f17d154243d0abf9d9981a4cd0b31ee62824ec0a2d7bae",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/failed_repair02_prechild/ACTUAL_FAILED_TOOL_V2.json": "1f2c1632b866141807e2740331a85179f659b447447db953685ef3deac7c8b8c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/test_repair_v2.py": "155fec33f866c245a6e46cebe78b098c6d7be81f71c6b06bcb9e323a06c2a03a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/SOURCE_GRAPH_V1.json": "b3df2ed5a352d678a60246e44eff7c19666ebc7ee11b7a9ee604e6ac1a62d9a7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/PARENT_COMMANDS_V2.json": "681035509a61903091654e79565fc87e77a448939538439747a5d809bc02991b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/consumer_v2.py": "887da1795a3d51dcb60c2325297b1bd64bfe99b0f1bacc78a1c91981544c032b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/run_cpu_v2.py": "068f5eca57f00e8f1b48867be93e759014ac95c21a05b758a28f1016d26b254a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair03/PRESERVED_ACTUAL_CPU_FAILURE_V3.json": "165b21fcc9febf2b96ce3deb4e56db1ea6191edae23198210d0129af7ec9a653",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/test_repair_v2.py": "07e0d45b1e513bdabb966a566fddb36bd41ddc1d70af519668e8548daaf68c47",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/SOURCE_GRAPH_V1.json": "0e9af6cf3d4710d6b22cf501ab7c51f2cdce60f3a3a5812b82c226168c11649c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/PARENT_COMMANDS_V2.json": "2914f9595d7ae932810a53cac12d532db226b11af04857de5c412c8dd171b925",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/consumer_v2.py": "5461327a37a319037b1a714048e07fe9b22324827a19f8457fccb71b84c12855",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/run_cpu_v2.py": "7b159e51188b0af76d68656bef8f66ec905c2e7bbc62ada775e69afb934d840b",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair04/PRESERVED_ACTUAL_CPU_FAILURE_V4.json": "c08f92963b091dcb839841279514d8691fe69f99db872f15b787430ad45d06d9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/consumer_v2.py": "5461327a37a319037b1a714048e07fe9b22324827a19f8457fccb71b84c12855",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/run_cpu_v2.py": "92e50fe73b6ee4872ab8dd6886802bfb2f96132399eaf715be9ee967888ea629",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/test_repair_v2.py": "073a4c2ef665b19c0b03f695d76ce774580c60828aad78835f8869489bdfb1a3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/SOURCE_GRAPH_V1.json": "7f1c496187f4d912bd349ba57e80ffa7e03d4197df139ba1c9087f9924850560",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/PARENT_COMMANDS_V2.json": "726cb860b346ffe64625bc436bf730d03533552a86e908480cecda466de47a02",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair05/FINAL_TYPED_HANDOFF_V2.json": "8ed897d54d2ff587b0928078fd22b2c4463ba597ba14d3abec1b1d82864cf682",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair05/FINAL_TYPED_METADATA_CLOSED_V2.json": "49952c6324a897293406179afd5c7ffe921f473ef430bfdd0943375094a6815f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/FINAL_TYPED_REVIEW_HANDOFF_V2.json": "ef1851287a804b9d818b87524b9b232a31d13ca9390323dceafb0795a657bea6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/driver/worker/REVIEW_V2.json": "93ffedd2c85106924cfe1a860e18b7b335fbad621cb9c3106f5aadceaad6239f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/driver/worker/POST_VALIDATION_CLOCK_ALIAS_COUNTEREXAMPLE_V2.json": "72bbb794c3b6a75263fba653e848f2294019cd6c37a625d0a380537793d68e78",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/CONSUMER_SOURCE_INTERFACE_V3.json": "c6f646142e64dd4ba2d0c86147e7884299bc48d178fa26c30d6b1607db02b317",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/consumer_v2.py": "470a3796da706a9d9b201e25f9b1ff43c11bb78cfb9c703c1b139f0df3eff6a4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/run_cpu_v2.py": "269d7d7854734c752e1bf73bcf5d34a9619f158a8241f4e0ba90d11c9201f5ed",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/test_alias_repair_v3.py": "516afd48d4d22549927e35bb039c358a54117f0d96de9de9392f5b69851ea77f"
+  },
+  "source_after": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/TASK_ACCEPTANCE_PROTOCOL_V4.json": "399fa6795d1f28d588b406aea97c38340ef8c0181aa4ecf101857d03eb94fd03",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/QUEUE74_PREFLIGHT_PLAN_V4.json": "2542ebce705ba12fcc8092eca3bd095a5356be490d78b11b31b1288199b3f868",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/QUEUE74_FULL_PLAN_V4.json": "af740f9cf224720627af22c1f18367e344f05f6a155d3d7d3520d88f2ceadcfc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/NATIVE_QUEUE_REGISTRATION_V4.json": "42e34696dc4899e8faabdb1fc372e0831fcc7d04467353195060cff81ec6f3ec",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/queue74_native_issue_v4.py": "60f82d2dc4b3f775b9dbbba705bbba6b045e8962979afdd1f6b933d80040c2cd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/native_bridge_v1.py": "a49967c7ad75c77ead4c694b7c01f39a621cc7c15164be9bf593c6b7204d2470",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/next_mechanism/native_queue_v1.py": "4c15ccc9e8a67e09bfaf0bc0bc8bef8189a035acbbc9987ae401f6969430fa5c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/eligibility_v1.py": "2b37b838a46d32e292e7931f42485247c66cb09c8069d6afe0ff375e5d8a82e7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/select_bank_v1.py": "4822581be79a35a142f5f656d10e0624b9b27b31e4ddab197a1103ab8f02f998",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen_per_state_v4/READER_SCHEMA_DRAFT_V4.json": "a6020ce79a8886f0b68fd55b957690fb6f1775bf01a1d391d7a449351ac28f0c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_caller32_source_candidate_v1/release1/task_caller32_v1.py": "26fc1ec008ce8bfca6df8b563821f4a5b9d1af75638ec33be1244490d7d597bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_caller32_source_candidate_v1/release1/SOURCE_GRAPH_V1.json": "355def7c043e71e5528af3cea20c0dbe8245883a786ff5935f51dbfcd0373968",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_inputs32_binding_candidate_v1/release2/bind_task_inputs32.py": "a278c2cc9d4e0b25fc123b156adfa17a84a9e59be1e406a6a5c88651d3e6f10e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/policy_retry_supervision_v1/release_v3_candidate_01/sources/policy_serial_lease_v2.py": "69afdf2dc6fd2e5042e4df930a8bc2b52374610b8606a437c35b620f3c191ff8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_clock3_reader_operations_v1/common_v1.py": "4f8f6f698e1e62c2ecea0c9177f05e6962d677d1b652eccfce44b9b2442e33ca",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v13_init_return_host_diagnostic_v1/analyze_v1.py": "5cdc6299badf12c70d5d5f3d54d089429060746131546699c57a8e3a73aab367",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/runtime_core_discovery_v1.py": "82c5ed80a8e1e4f875e2314fc7c2fa465916269311102dfc1549088504260626",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_screen/parent_supervision_v1/pidfd_compat_v1.py": "e8256a5a7c105bdcee57a301052e6bc702ae71fd7734cbda6c3648885f143302",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_v11_ssd_reader_adapter_v1/release1/adapter_v1.py": "a6444090cf8f1d086bc6d2410e8215a819c4f7b9f61f6e912d9d547ae2c10757",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/boundary_v1.py": "5b55a08100c6b44af9fdfd550045d2e2823051f1f42e9fe5e6873d83b970cf17",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_caller32_source_candidate_v1/resume_closeout01/FINAL_RESUME_HANDOFF_V1.json": "edd8e4b6c3f64f18c1fc98a86ede5305e479d4262149232a53abe683fd8714d7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_caller32_independent_source_review_v1/actual02/REVIEW_V1.json": "8653804a2ca41610f5e61084b1a07f4bdc888d6985aed6ea42206111ace7d1af",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/CONSUMER_SOURCE_INTERFACE_V1.json": "c9f7711b5073907c24b508f6459cbaa6ad8218dff3aa488025587bef46b7b349",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/consumer_v1.py": "24faa0915d0a244c6cf755d74deb7323efcc144e9572299696593ef08c21e4d3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/run_cpu_v1.py": "dfcb72df7e7c022839c17d760eac9fcb0d5cf6b4c12d9f70a51031f7f3ce802f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/test_consumer_v1.py": "ffa2369bb0290306472465deff75f51bd4ed8c4c198ca6a0a94b1fc5af7fbefd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release1/SOURCE_GRAPH_V1.json": "683e7bf32c26a2569d9540be90aa42696c273fa24195721b247f986ecd907a08",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual01/FINAL_TYPED_REVIEW_HANDOFF_V1.json": "9712864171aca1ea0c4fb1a38966ab257850ef9c60d6ce020baa70eb236d9e68",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual01/driver/worker/REVIEW_V1.json": "ee27b60235d610d319a6a7d5bfb6e8aa189091af6145be931ab9a97b17f50cb7",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual01/driver/worker/CLOCK_PACKET_CALLER_COUNTEREXAMPLE_V1.json": "19a1bca9f80db16dc9807be8b418cded8bd9a7b97411c61ee7fa84e35c6c7209",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/test_repair_v2.py": "155fec33f866c245a6e46cebe78b098c6d7be81f71c6b06bcb9e323a06c2a03a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/SOURCE_GRAPH_V1.json": "9e24f6396c7c38f46fae5bb4be180c2f7bf86bda36135020c86b20739e283eca",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/PARENT_COMMANDS_V2.json": "880fecb6e895d3f78adacbbc50766c7c2b0e117460ada95464acd58c4036f1bd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/consumer_v2.py": "887da1795a3d51dcb60c2325297b1bd64bfe99b0f1bacc78a1c91981544c032b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release2/run_cpu_v2.py": "2b4f90ffba7df79848f17d154243d0abf9d9981a4cd0b31ee62824ec0a2d7bae",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/failed_repair02_prechild/ACTUAL_FAILED_TOOL_V2.json": "1f2c1632b866141807e2740331a85179f659b447447db953685ef3deac7c8b8c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/test_repair_v2.py": "155fec33f866c245a6e46cebe78b098c6d7be81f71c6b06bcb9e323a06c2a03a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/SOURCE_GRAPH_V1.json": "b3df2ed5a352d678a60246e44eff7c19666ebc7ee11b7a9ee604e6ac1a62d9a7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/PARENT_COMMANDS_V2.json": "681035509a61903091654e79565fc87e77a448939538439747a5d809bc02991b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/consumer_v2.py": "887da1795a3d51dcb60c2325297b1bd64bfe99b0f1bacc78a1c91981544c032b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release3/run_cpu_v2.py": "068f5eca57f00e8f1b48867be93e759014ac95c21a05b758a28f1016d26b254a",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair03/PRESERVED_ACTUAL_CPU_FAILURE_V3.json": "165b21fcc9febf2b96ce3deb4e56db1ea6191edae23198210d0129af7ec9a653",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/test_repair_v2.py": "07e0d45b1e513bdabb966a566fddb36bd41ddc1d70af519668e8548daaf68c47",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/SOURCE_GRAPH_V1.json": "0e9af6cf3d4710d6b22cf501ab7c51f2cdce60f3a3a5812b82c226168c11649c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/PARENT_COMMANDS_V2.json": "2914f9595d7ae932810a53cac12d532db226b11af04857de5c412c8dd171b925",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/consumer_v2.py": "5461327a37a319037b1a714048e07fe9b22324827a19f8457fccb71b84c12855",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release4/run_cpu_v2.py": "7b159e51188b0af76d68656bef8f66ec905c2e7bbc62ada775e69afb934d840b",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair04/PRESERVED_ACTUAL_CPU_FAILURE_V4.json": "c08f92963b091dcb839841279514d8691fe69f99db872f15b787430ad45d06d9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/CONSUMER_SOURCE_INTERFACE_V2.json": "bd8c267f59e36be8703b22781d0b9096c223049d12ebee5a88e16883050596df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/consumer_v2.py": "5461327a37a319037b1a714048e07fe9b22324827a19f8457fccb71b84c12855",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/run_cpu_v2.py": "92e50fe73b6ee4872ab8dd6886802bfb2f96132399eaf715be9ee967888ea629",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/test_repair_v2.py": "073a4c2ef665b19c0b03f695d76ce774580c60828aad78835f8869489bdfb1a3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/SOURCE_GRAPH_V1.json": "7f1c496187f4d912bd349ba57e80ffa7e03d4197df139ba1c9087f9924850560",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release5/PARENT_COMMANDS_V2.json": "726cb860b346ffe64625bc436bf730d03533552a86e908480cecda466de47a02",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair05/FINAL_TYPED_HANDOFF_V2.json": "8ed897d54d2ff587b0928078fd22b2c4463ba597ba14d3abec1b1d82864cf682",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_candidate_v1/actual_repair05/FINAL_TYPED_METADATA_CLOSED_V2.json": "49952c6324a897293406179afd5c7ffe921f473ef430bfdd0943375094a6815f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/FINAL_TYPED_REVIEW_HANDOFF_V2.json": "ef1851287a804b9d818b87524b9b232a31d13ca9390323dceafb0795a657bea6",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/driver/worker/REVIEW_V2.json": "93ffedd2c85106924cfe1a860e18b7b335fbad621cb9c3106f5aadceaad6239f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_task_bank_snapshot_consumer_independent_source_review_v1/actual_repair01/driver/worker/POST_VALIDATION_CLOCK_ALIAS_COUNTEREXAMPLE_V2.json": "72bbb794c3b6a75263fba653e848f2294019cd6c37a625d0a380537793d68e78",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/CONSUMER_SOURCE_INTERFACE_V3.json": "c6f646142e64dd4ba2d0c86147e7884299bc48d178fa26c30d6b1607db02b317",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/FROZEN_PROTOCOL_CONTRACT_V1.json": "5437e19049fc357f3dcc789d5dea5acdb4f0c18ed01b2f932e604143a126a016",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/PRODUCTION_SCHEMA_GAP_V1.json": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/consumer_v2.py": "470a3796da706a9d9b201e25f9b1ff43c11bb78cfb9c703c1b139f0df3eff6a4",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/run_cpu_v2.py": "269d7d7854734c752e1bf73bcf5d34a9619f158a8241f4e0ba90d11c9201f5ed",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/test_alias_repair_v3.py": "516afd48d4d22549927e35bb039c358a54117f0d96de9de9392f5b69851ea77f"
+  },
+  "source_unchanged": true,
+  "inherited_author20_41_22_oldpeers_caller19_peer4_not_rerun": true,
+  "production_schema_gap": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_task_bank_snapshot_consumer_candidate_v1/release6/PRODUCTION_SCHEMA_GAP_V1.json",
+    "sha256": "82b70e78c9ed9b7741cd2b6e2d8a7934833bb4521e90367715d98624459b8c3d"
+  },
+  "production_qualified_bank32_schema": "MISSING",
+  "actual_bank_count": 0,
+  "SDK_calls": 0,
+  "native_runs": 0,
+  "task_runs": 0,
+  "holdout_opened": false,
+  "native_dispatch_supported": false,
+  "task_acceptance": false,
+  "safety_acceptance": false,
+  "actual_drive_effort": "UNKNOWN",
+  "SDK_atomicity": "UNKNOWN",
+  "world_bound": "UNKNOWN",
+  "requested_model": "gpt6astra",
+  "requested_reasoning": "exhigh",
+  "backend_attestation": "NOT_ATTESTED",
+  "conditions": [
+    "SOURCE fixture domain only; production qualified-bank32/live SDK provider and final adoption absent",
+    "No real policy search/native setter/task acceptance/holdout action was executed",
+    "Contact freshness, actual implicit drive effort and physical/global bounds remain UNKNOWN"
+  ],
+  "dimensions": {
+    "functional_achievement": "Pass focused repair: prior consumed clock drift denied",
+    "correctness_reliability": "Pass focused scalar/state alias and original exception cleanup checks",
+    "architecture": "Conditional: real bank/provider schema remains absent",
+    "API_design": "Pass focused canonical caller capture/epoch consumption and final recheck",
+    "style_maintainability": "Pass within focused scope",
+    "performance": "Unable to determine; no benchmark or native gain claim"
+  }
+}
