@@ -1,0 +1,47 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "EXTERNAL_WRAPPER_OBSERVER_NOT_NATIVE_OR_CPU_ONLY_WORKLOAD",
+  "child_pid": 2069015,
+  "waited_pid": 2069015,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-11T00:05:43.686237+00:00",
+  "closed_utc": "2026-10-11T00:05:44.456926+00:00",
+  "elapsed_seconds": 0.7707023140974343,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 2069015,
+      "ppid": 2069005,
+      "pgid": 2069015,
+      "sid": 2069015,
+      "startticks": 180003011,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 2069005
+      },
+      "live": false
+    }
+  ],
+  "signals": [],
+  "child_max_rss_KiB": 44160,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/camera_snapshot_storage_benchmark_v1/actual_cpu_v1/actual01/external/child.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/camera_snapshot_storage_benchmark_v1/actual_cpu_v1/actual01/external/resources.jsonl",
+  "outer_monitor_sha256": "67fb469defb5d24d567a7e2a211e68d65ec3fbb8fce7bd41a467e6bafa6e9a2b",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/camera_snapshot_storage_benchmark_v1/actual_cpu_v1/run_actual_v1.py",
+    "--role",
+    "driver",
+    "--source-graph-sha256",
+    "54b649e026fdf00e1db7d60a917714159fca94336f508ee1f0f4a6a0a714b013"
+  ],
+  "observer_scope": "DIRECT_WRAPPER_ROOT_ONLY; native exact ownership/deadline/resources belong to reviewed harness",
+  "native_acceptance": false
+}

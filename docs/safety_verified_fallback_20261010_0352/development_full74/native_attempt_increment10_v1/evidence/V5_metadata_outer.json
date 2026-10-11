@@ -1,0 +1,87 @@
+{
+  "schema": "astra.full74.owned_cpu_wait.v1",
+  "backend": "V5_TIMEOUT_FAILED_METADATA_REVIEW_CPU_OUTER",
+  "child_pid": 2071200,
+  "waited_pid": 2071200,
+  "waitpid_observed": true,
+  "raw_wait_status": 0,
+  "actual_wait_exit": 0,
+  "wait_mechanism": "os.wait4(owned_pid, WNOHANG)",
+  "started_utc": "2026-10-11T00:06:14.116331+00:00",
+  "closed_utc": "2026-10-11T00:06:15.601867+00:00",
+  "elapsed_seconds": 1.4855554830282927,
+  "max_wall_seconds": 180,
+  "resource_abort": null,
+  "error": null,
+  "owned_identities": [
+    {
+      "pid": 2071200,
+      "ppid": 2071197,
+      "pgid": 2071200,
+      "sid": 2071200,
+      "startticks": 180006055,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 2071197
+      },
+      "live": false
+    },
+    {
+      "pid": 2071201,
+      "ppid": 2071200,
+      "pgid": 2071201,
+      "sid": 2071201,
+      "startticks": 180006064,
+      "state": "D",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 2071200,
+          "ppid": 2071197,
+          "pgid": 2071200,
+          "sid": 2071200,
+          "startticks": 180006055,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 2071201,
+          "ppid": 2071200,
+          "pgid": 2071201,
+          "sid": 2071201,
+          "startticks": 180006064,
+          "state": "D"
+        },
+        "candidate_final": {
+          "pid": 2071201,
+          "ppid": 2071200,
+          "pgid": 2071201,
+          "sid": 2071201,
+          "startticks": 180006064,
+          "state": "D"
+        },
+        "observed_utc": "2026-10-11T00:06:14.403234+00:00",
+        "task_children_path": "/proc/2071200/task/2071200/children"
+      },
+      "live": false
+    }
+  ],
+  "owned_session_transitions": [],
+  "signals": [],
+  "discovery_rejections": {
+    "total_rejected": 0,
+    "retained_limit": 64,
+    "last_rejections": []
+  },
+  "child_max_rss_KiB": 26836,
+  "log": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplement_native_semantic_camera_peer_v1/v5_timeout_failed_metadata_peer_v1/actual01/external/child.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "outer_monitor": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplement_native_semantic_camera_peer_v1/v5_timeout_failed_metadata_peer_v1/actual01/external/resources.jsonl",
+  "outer_monitor_sha256": "0c701540974b2530c9d0cedf9094e6cb1d23a7b85758c382de4a912ff38b5036",
+  "argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplement_native_semantic_camera_peer_v1/v5_timeout_failed_metadata_peer_v1/verify_v1.py",
+    "--outer"
+  ]
+}
