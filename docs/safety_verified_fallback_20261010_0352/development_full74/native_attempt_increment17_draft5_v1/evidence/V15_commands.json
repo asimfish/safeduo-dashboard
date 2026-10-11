@@ -1,0 +1,110 @@
+{
+  "source_only": true,
+  "native_launch_authorized": false,
+  "API_check_argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_parent_refresh_v1.py",
+    "--caller-source-graph-sha256",
+    "PARENT_REAL_GRAPH_SHA",
+    "--request",
+    "PARENT_FROZEN_Q",
+    "--request-sha256",
+    "PARENT_Q_SHA",
+    "--review",
+    "PARENT_REVIEW",
+    "--review-sha256",
+    "PARENT_REVIEW_SHA",
+    "--check-cpu"
+  ],
+  "future_native_argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_parent_refresh_v1.py",
+    "--caller-source-graph-sha256",
+    "PARENT_REAL_GRAPH_SHA",
+    "--request",
+    "PARENT_FROZEN_Q",
+    "--request-sha256",
+    "PARENT_Q_SHA",
+    "--review",
+    "PARENT_REVIEW",
+    "--review-sha256",
+    "PARENT_REVIEW_SHA",
+    "--execute-reviewed",
+    "--serial-inventory",
+    "PARENT_COMPLETE_INPUT",
+    "--serial-inventory-sha256",
+    "PARENT_INPUT_SHA",
+    "--serial-refresh-authorization",
+    "PARENT_EXPLICIT_AUTH",
+    "--serial-refresh-authorization-sha256",
+    "PARENT_AUTH_SHA"
+  ],
+  "authorization_schema": "astra.parent_serial_refresh.explicit_parent_authorization.v1",
+  "authorization_fields": [
+    "parent_execute_refresh_authorized true",
+    "cpu_test_only false",
+    "request/review/old_registration/source_graph exact refs",
+    "independent_full_SOURCE_peer exactref",
+    "complete_history_binding actual digest",
+    "original_source_graph request.source_graph",
+    "full_input_request requestref",
+    "output_base exact V15 parent_serial_registrations",
+    "exclusive_output_name"
+  ],
+  "authorization_created": false,
+  "native_executions": 0,
+  "source_request_template": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/NATIVE_REQUEST_TEMPLATE_V15_SSD.json",
+    "sha256": "12e0105d9d5b8db47fd7de39d7bedaca723304a40f4139872c8da8da6580b27c"
+  },
+  "full_SOURCE_peer_required": true,
+  "parent_private570_environment_required": true,
+  "future_complete_static_registration": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/following_V13_static_parent_adoption01/PARENT_COMPLETE_CLOSED_INPUT_REGISTRATION_76_V15.json",
+    "sha256": "5aa18359fad992210c316f18b4bbc1b708cd5dcd1c95964b27c6cd0ba36b70d1"
+  },
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/SOURCE_GRAPH_V1.json",
+    "sha256": "8dbc72b2cd69b3bace4898964a85ea61e5f6af1e814bcc9873a78e18518ad8f4"
+  },
+  "CPU_source_bindings": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/CPU_SOURCE_BINDINGS_V1.json",
+    "sha256": "2c32b12cb6b167e02d20ea9a631370a47e69878eed30dbde704e8faeac431da7"
+  },
+  "actual_CPU_environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "BLIS_NUM_THREADS": "1",
+    "NUMBA_NUM_THREADS": "1",
+    "OMP_THREAD_LIMIT": "1"
+  },
+  "CPU_wall_seconds": {
+    "worker": 180,
+    "outer": 210
+  },
+  "AS_bytes": 1073741824,
+  "CUDA_VISIBLE_DEVICES": "",
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "commands_excluded_from_source_graph_to_avoid_cycle": true,
+  "actual_CPU_argv": null,
+  "actual_parent_registration": null,
+  "current_formal_STATIC_history": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_following_v14_static_history_v1/actual_static01/products/STATIC_HISTORY_79REFS_1665ROWS_V1.json",
+    "sha256": "f83fa2cb8c77f7480436290111e02cfa81d4181da286d137ca03dd90e80fa21c"
+  },
+  "readonly_sigaction_distinct_peer_pending": false,
+  "CPU_delta_argv": [
+    "/home/liyufeng/miniforge3/envs/safeduo/bin/python",
+    "-B",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_cpu_v15.py",
+    "--role",
+    "outer",
+    "--source-sha256",
+    "8dbc72b2cd69b3bace4898964a85ea61e5f6af1e814bcc9873a78e18518ad8f4"
+  ]
+}

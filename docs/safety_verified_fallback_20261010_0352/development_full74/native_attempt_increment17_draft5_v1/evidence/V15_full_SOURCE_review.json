@@ -1,0 +1,503 @@
+{
+  "schema": "independent.V15.full_FACTORY_SOURCE.review.v1",
+  "status": "NEEDS_FIX",
+  "scope": "SOURCE_ONLY",
+  "blocking_findings": [
+    {
+      "id": "F1",
+      "severity": "HIGH",
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_harness_refresh_v1.py",
+      "line": 9,
+      "problem": "SOURCE caller HERE still points checkpoint-only release6; native-entry file absent",
+      "minimum_repair": "Bind dispatch and loader/import directory to exact current native release; preserve all original gates",
+      "dispatch_line": 113,
+      "loader_source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_parent_refresh_v1.py",
+      "loader_line": 9
+    },
+    {
+      "id": "F2",
+      "severity": "HIGH",
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_serial_refresh_v1.py",
+      "line": 340,
+      "problem": "Runtime public binder reads source_graph[contract], absent in integrated graph; exact full peer contract cannot pass",
+      "minimum_repair": "Bind validator to exact parent_serial_refresh_contract reference or include exact alias; full JSON comparison stays mandatory"
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "F3",
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/PARENT_COMMANDS_V15.json",
+      "field": "future_complete_static_registration",
+      "problem": "Old 76-entry V15-rerooted reference absent; current catalog is79/1665",
+      "minimum_repair": "Bind exact current79 input; do not mint fresh permit"
+    }
+  ],
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/SOURCE_GRAPH_V1.json",
+    "sha256": "8dbc72b2cd69b3bace4898964a85ea61e5f6af1e814bcc9873a78e18518ad8f4"
+  },
+  "request_contract": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/REQUEST_CONTRACT_V1.json",
+    "sha256": "015dc8f26d263523bb66077622b96c8ee70849dd23663a402103f83ea2368c50"
+  },
+  "author_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/FINAL_CLOSED_AUTHOR_FULL_SOURCE_HANDOFF_V15.json",
+    "sha256": "948812a3415f02c4dec25efead39777b7c6e7755ebec4991da58b4899d379760"
+  },
+  "diagnostic_observation_v15": {
+    "schema": "default.mixed32.provisional_readonly_sigaction.v15",
+    "baseline": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/SOURCE_GRAPH_V1.json",
+      "sha256": "4f634d7cd521ae45ee4d5a666d87b9f3ef56b5bd47b9490750c4e4a66ead8017"
+    },
+    "checkpoint_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_lane_provisional_camera_checkpoint_candidate_v1/release4/SOURCE_GRAPH_V1.json",
+      "sha256": "32217077eb6000377a23298d1cc213f44975d27b9e73d5c33c6ecae3da8199b8"
+    },
+    "checkpoint_runtime": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_lane_provisional_camera_checkpoint_candidate_v1/release4/lane_provisional_v1.py",
+      "sha256": "0be19802609e0cb4c92a3095bc57bab312ac7d6178b95bc4e8898dc364337131"
+    },
+    "checkpoint_author_handoff": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_lane_provisional_camera_checkpoint_candidate_v1/release4/FINAL_CLOSED_AUTHOR_SOURCE_HANDOFF_V1.json",
+      "sha256": "1c9f30c2953c3d05170e9baf068a67838f186d690dffd0c4b1062625d1a756da"
+    },
+    "checkpoint_distinct_SOURCE_peer": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_lane_provisional_checkpoint_franklin_source_peer_v1/actual01/FINAL_CLOSED_SOURCE_PEER_HANDOFF_V2.json",
+      "sha256": "1d8bdf1af33b041c6c732f2c337065b3ed757f3783c276d9456c0cce15760084"
+    },
+    "checkpoint_MAIN_adoption": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/lane_provisional_component_SOURCE_parent_adoption01/PARENT_LANE_PROVISIONAL_COMPONENT_SOURCE_ADOPTED_V1.json",
+      "sha256": "c44b10e29df1ec00f57e8ab2e29aaa5a483f5ca1d781aee7f7e2945accd058f3"
+    },
+    "sigaction_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_readonly_sigaction_observation_candidate_v1/release2/SOURCE_GRAPH_V1.json",
+      "sha256": "b36dd1b5f3412aab9ae1d31a988583a81802db2bb8b4d966be8930a5c2f74ea5"
+    },
+    "sigaction_runtime": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_readonly_sigaction_observation_candidate_v1/release2/observe_sigaction_v1.py",
+      "sha256": "bc10baf15815e769da07e93b1a628b393cf233277ded3aac135decfbd0ae8d1f"
+    },
+    "sigaction_compiled_library": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_observation_candidate_v1/release2/actual_delta01/abi8.so",
+      "sha256": "0176057350662dd1c24a0ce572a33541d30253ce1dd5f29792090b76468b9baa"
+    },
+    "sigaction_author_handoff": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_observation_candidate_v1/release2/actual_delta01/FINAL_CLOSED_SOURCE_CPU_HANDOFF_RELEASE2_V1.json",
+      "sha256": "5d8f3ae8bc3b91e3c02ba2ed7d2e4797cd52798f7e470944818414ebbd90a094"
+    },
+    "sigaction_distinct_SOURCE_peer": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_franklin_source_peer_v1/repair_release2/actual01/FINAL_CLOSED_REPAIR_DELTA_SOURCE_PEER_HANDOFF_V2.json",
+      "sha256": "eb62d19acde31677a82df4a2be2e04c2a47c4b42158fe9c39cf7d9e84b6f3869"
+    },
+    "sigaction_MAIN_adoption": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/readonly_sigaction_release2_SOURCE_parent_adoption01/PARENT_READONLY_SIGACTION_REPAIR_SOURCE_ADOPTED_V1.json",
+      "sha256": "fd0e2124691ffb90caa4a4076fa328692d6e1e2e128710463844468ffecc3dce"
+    },
+    "integration": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/diagnostic_integration_v15.py",
+      "sha256": "bf3a503d5001e542d05e4d2ddd3f47122f2c7f1c625a2845fbb69640f59ef8ab"
+    },
+    "binding": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/diagnostic_binding_v15.py",
+      "sha256": "895ede0c5d79acbd5bdb3f50ba8aca4f4de24d3daa58c923cb2c89963858bc08"
+    },
+    "checkpoint": "LOCAL_PROVISIONAL_AFTER_STATES_APPEND_NOT_STATE_JSON_PASS",
+    "global_final_invariant": "ORIGINAL_BATCH_FINAL_REQUIRED_UNKNOWN_UNTIL_REACHED",
+    "pending_writer": "SAME_ORIGINAL_FUTURE_JOIN_NO_CALLBACK_REINVOKE",
+    "OS_query": "FIVE_DISPOSITIONS_BEFORE_AND_AFTER_ONE_ORIGINAL_ENABLE_NONATOMIC",
+    "observer_cleanup": "EXPLICIT_OWN_CLOSE_AFTER_ORIGINAL_FILES_NO_PRIVATE_FUNCTION_REFERENCES_NO_SWALLOWED_FAILURE",
+    "symbol_maps_cap_lifecycle_under_SDK": "UNKNOWN_FAIL_ABORT",
+    "added_OS_handler_writes": 0,
+    "added_signals": 0,
+    "ptrace": false,
+    "extra_SDK_getters_setters_renders_steps": 0,
+    "original27": true,
+    "original12": true,
+    "original_camera_limits": {
+      "hand": 96,
+      "wide": 66,
+      "lane": 450,
+      "held_renders": 3
+    },
+    "native_wall_seconds": 1200,
+    "original_grace_seconds": 10,
+    "V14_overlap_crash_cause": "UNKNOWN",
+    "native_gain": "UNKNOWN",
+    "bank_allowed": false
+  },
+  "readonly_sigaction_SOURCE_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_franklin_source_peer_v1/repair_release2/actual01/FINAL_CLOSED_REPAIR_DELTA_SOURCE_PEER_HANDOFF_V2.json",
+    "sha256": "eb62d19acde31677a82df4a2be2e04c2a47c4b42158fe9c39cf7d9e84b6f3869"
+  },
+  "checkpoint_SOURCE_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_lane_provisional_checkpoint_franklin_source_peer_v1/actual01/REVIEW_V1.json",
+    "sha256": "8a64974b2ff99bb90e74b9eca84837356073578cb1e3c6a162251783bc5bbda2"
+  },
+  "parent_serial_refresh_contract": {
+    "schema": "astra.parent_serial_refresh.source_contract.v2",
+    "baseline_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/SOURCE_GRAPH_V1.json",
+      "sha256": "4f634d7cd521ae45ee4d5a666d87b9f3ef56b5bd47b9490750c4e4a66ead8017"
+    },
+    "seam": "AFTER_BOOTSTRAP_LOAD_RUNTIME_WITHIN_ORIGINAL_SERIAL_LEASE_BEFORE_FIRST_FRESH_CHECK_OR_RESOURCES_ROOT_SDK",
+    "original_inventory_checker": "ENTIRE_UNCHANGED_CODE_TWICE_FRESH_FALSE_THEN_TRUE",
+    "parent_only_explicit_new_authorization": true,
+    "distinct_full_SOURCE_peer_required": true,
+    "complete_history": "CURRENT_PARENT_COMPLETE_SUPERSET_OF_EXACT_76_WAIT_REFS; preserve all1583 raw rows and later closures; never a fresh permit",
+    "freshness_seconds": 30,
+    "clock": "ACTUAL_TIME_TIME_AND_MONOTONIC; NO_INJECTED_CLOCK_RESTAMP_OR_RETRY",
+    "old_registration": "IMMUTABLE_CLOSED_INPUT_NOT_A_FRESH_GPU_NATIVE_PERMIT",
+    "storage": "NEW_EXCLUSIVE_NAS_DIR_OPENAT_O_NOFOLLOW_EVERY_ANCESTOR_AND_PAYLOAD_FSYNC_DIRECTORY_FSYNC_POSTOPEN_IDENTITY",
+    "parent_identity": "EXACT_PID_STARTTICKS_PPID_PGID_SID_AND_ONE_ORIGINAL_KERNEL_FLOCK_REMAIN_HELD",
+    "failures": "ANY_CHECK_OR_WRITE_FAILURE_RAISES; PARTIAL_BYTES_RETAINED_UNKNOWN; NO_NATIVE_CONTINUATION",
+    "original_science_camera_resource_guards_native1200": "UNCHANGED_RELEASE4",
+    "SDK_calls_added_removed": 0,
+    "foreign_census": false,
+    "signals": [],
+    "native_executions": 0,
+    "parent_authority": false,
+    "bank_count": 0,
+    "FD_cleanup": "INDEPENDENT_LEAF_AND_PARENT_SINGLE_CLOSE_ATTEMPTS; EXACT_FIRST_OPERATIONAL_EXCEPTION_OBJECT_RETAINED_WITH_STRUCTURED_CLEANUP_REPORT; CLEANUP_ONLY_FAILURE_RAISES_NO_NATIVE_CONTINUATION; NO_CLOSE_RETRY_OR_ASSUMED_CLOSURE",
+    "new_native_SOURCE_request_contract": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/REQUEST_CONTRACT_V1.json",
+      "sha256": "015dc8f26d263523bb66077622b96c8ee70849dd23663a402103f83ea2368c50"
+    },
+    "namespace_only_rebind": "V13 directory and exclusive registration output; every renewal/cleanup/lease/freshness operation identical to closed release2",
+    "minimum_required_wait_refs": 79,
+    "future_actual_complete_registration": null,
+    "registration_output": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/parent_serial_registrations",
+    "actual_complete_static_registration": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/following_V14_static_parent_adoption01/PARENT_COMPLETE_CLOSED_INPUT_REGISTRATION_79_V15.json",
+      "sha256": "a0ac888218a67867fef607857ddf902f9ceff84907b303cbedd3e743265dd178"
+    },
+    "complete_static_raw_identity_rows": 1665,
+    "current_formal_STATIC_history": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_following_v14_static_history_v1/actual_static01/products/STATIC_HISTORY_79REFS_1665ROWS_V1.json",
+      "sha256": "f83fa2cb8c77f7480436290111e02cfa81d4181da286d137ca03dd90e80fa21c"
+    }
+  },
+  "all_post_app_paths_use_lifecycle_v2": true,
+  "checks": [
+    {
+      "name": "exact_author15_new_checks_realwaits0_and_no_inherited_tests_rerun",
+      "passed": true,
+      "evidence": {
+        "author": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/FINAL_CLOSED_AUTHOR_FULL_SOURCE_HANDOFF_V15.json",
+          "sha256": "948812a3415f02c4dec25efead39777b7c6e7755ebec4991da58b4899d379760"
+        },
+        "author_registered_absence_count": 4
+      }
+    },
+    {
+      "name": "complete1486_pin_map_preserves_every_inherited_nonlocal_identity_ownbytes_exact",
+      "passed": true,
+      "evidence": {
+        "graph_total": 1486,
+        "own_file_count": 52,
+        "old_unchanged_large_payloads_NOT_reopened": true
+      }
+    },
+    {
+      "name": "strict_generic_raw_guard_and_dedicated_external_SDK_pin_preserved",
+      "passed": true,
+      "evidence": {
+        "generic_selected_count": 484,
+        "sdk": {
+          "path": "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py",
+          "sha256": "d95f2eaa138b4fff845ac72439caa2eca5deab4f0d5609e06f163d20eef4df93"
+        },
+        "external_compiler_headers_remain_sigaction_component_specific": true,
+        "fullgeneric_payloadloop_NOT_rerun": true
+      }
+    },
+    {
+      "name": "same32_q_qd_physics_camera_FIFO_full12_held27_original1200_and_READY30_byte_source_preserved",
+      "passed": true,
+      "evidence": {
+        "template_diff_keys": [
+          "artifact_pipeline",
+          "attempt_root",
+          "diagnostic_observation_v15",
+          "evidence_storage",
+          "init_boundary_observation",
+          "out",
+          "readonly_sigaction_SOURCE_peer",
+          "same32_pre_challenge_retry",
+          "wide_pairhist_count_only"
+        ],
+        "unchanged_runtime_files": [
+          "native_port_v1.py",
+          "protocol_v1.py",
+          "selection_v1.py",
+          "cohort_v1.py",
+          "native_inventory_v1.py",
+          "integration_v1.py",
+          "runtime_mechanism_v1.py",
+          "fresh_exchange_mechanism_v1.py",
+          "cleanup_owner_v4.py",
+          "artifact_integration_v14.py",
+          "pairhist_integration_v12.py",
+          "minimal_pre_render_compat_v10.py",
+          "camera_order_integration_v8.py",
+          "pre_render_integration_v9.py"
+        ],
+        "geometry_cohort_numeric_payloads_NOT_read": true
+      }
+    },
+    {
+      "name": "all79_required_receipt_SHA_catalog_1665rawrows_and_lease_check_AST_keep30",
+      "passed": true,
+      "evidence": {
+        "wait_count": 79,
+        "raw_rows": 1665,
+        "static_is_NOT_freshpermit": true,
+        "old_failure_payloads_NOT_read": true
+      }
+    },
+    {
+      "name": "original_parent_inventory_whole_checker_READY_App_lease_logic_unchanged",
+      "passed": true,
+      "evidence": {
+        "full79_verifier_unchanged": true,
+        "continuous_lease_original": true,
+        "known_wrong_dispatch_directory_NOT_waived": true
+      }
+    },
+    {
+      "name": "real_integrated_cleanup_original_error_identity_priority_and_close_attempt",
+      "passed": true,
+      "evidence": {
+        "own_HOST_cleanup_boundary": true,
+        "SDKhandler_writes": 0
+      }
+    },
+    {
+      "name": "observer_cleanup_only_failure_aborts_no_FALSE_closed_claim",
+      "passed": true,
+      "evidence": {
+        "cleanup_failure_not_swallowed": true
+      }
+    },
+    {
+      "name": "whole_capture_inverse_AST_source_equals_trueclosed_preparation_no45rerun",
+      "passed": true,
+      "evidence": {
+        "preparation": {
+          "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release6/CLOSED_CHECKPOINT_FACTORY_SOURCE_CPU_PREPARATION_V1.json",
+          "sha256": "a1f120aa124f3d0f721f50cfdd6c503c12682d1014c58f3932e5d9bef3687f4b"
+        },
+        "original_final_snapshot_commit_unchanged_SOURCE": true,
+        "full_native_MRO_NOT_executed_after_preApp_blocker": true
+      }
+    },
+    {
+      "name": "two_actual_preApp_counterexamples_bind_exactsealed_fullcandidate",
+      "passed": true,
+      "evidence": {
+        "counterexamples": {
+          "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual01/PREFLIGHT_COUNTEREXAMPLES_V1.json",
+          "sha256": "6c7b294dce9c8bd12b95171d8f85be3930cbc074f79efb04cad78ee043b80227"
+        },
+        "actual_preflight_tool": {
+          "chunk_id": "cfdd81",
+          "exit_code": 0,
+          "session_closed": true
+        },
+        "minimum_repair": [
+          "currentrelease dispatch/import paths",
+          "full refresh contract graph-key alignment without weakening full-JSON comparison"
+        ]
+      }
+    }
+  ],
+  "checks_count": 10,
+  "actual_preflight_counterexamples": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual01/PREFLIGHT_COUNTEREXAMPLES_V1.json",
+    "sha256": "6c7b294dce9c8bd12b95171d8f85be3930cbc074f79efb04cad78ee043b80227"
+  },
+  "author15_NOT_new_independent_checks": true,
+  "inherited_76_72_45_3_5plus1_NOT_rerun": true,
+  "full1486_pin_map_compared": true,
+  "inherited_large_payload_hash_verification_reused_NOT_rehashed": true,
+  "current_own_SOURCE_bytes_verified": true,
+  "external_SDK_dedicated_source_pin": {
+    "path": "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py",
+    "sha256": "d95f2eaa138b4fff845ac72439caa2eca5deab4f0d5609e06f163d20eef4df93"
+  },
+  "strict_generic_raw_unchanged": true,
+  "all_original_scientific_SDK_order_and_budget_SOURCE_unchanged": true,
+  "original_grace10_inherited_unmodified_core": true,
+  "observer_cleanup_actual_negative_oracles": true,
+  "checkpoint_whole_inverse_AST_equals_actualclosed_preparation": true,
+  "fullfactory_native_runtime_not_attempted": true,
+  "source_unchanged": true,
+  "source_read_ledger": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v15_nativefactory_franklin_source_peer_v1/release2/full_source_gate_v1.py": "ac5bc62e2a75a1f2ceb985981a5a4ccab89fcf4c7406cb3b45c24751b7df9715",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/owned_discovery_race_v1/load_reviewed_core_v1.py": "8c237366a9cc5a7ab7857472858806ea5c1645263bde5f6ed7e24b5f54a33512",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/FINAL_CLOSED_AUTHOR_FULL_SOURCE_HANDOFF_V15.json": "948812a3415f02c4dec25efead39777b7c6e7755ebec4991da58b4899d379760",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/SOURCE_GRAPH_V1.json": "8dbc72b2cd69b3bace4898964a85ea61e5f6af1e814bcc9873a78e18518ad8f4",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/worker/ACTUAL_WAIT.json": "20bc24a52853ccedac8966cc57858fa9d78b8e008e0fffa19546d01d54c5d366",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/external/ACTUAL_WAIT.json": "f18b68b403de045c34b01d824838ea678e52ba50783d9c5a431b3b83de8ea99e",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/ACTUAL_TOOL_CLOSURE_V1.json": "b8da3a6c765a8d21ab4856588018f923ceb64235fd051aed0b58a2daee488426",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/ACTUAL_METADATA_TOOL_CLOSURE_V1.json": "3ba189fc3d0fade6bb59e68bd1d637c7d5d6d4b1faa4e56893e7f3b266430c26",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/SOURCE_GRAPH_V1.json": "4f634d7cd521ae45ee4d5a666d87b9f3ef56b5bd47b9490750c4e4a66ead8017",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/common_v1.py": "816901dd2b6009959bb5a202b6dbb96910ef78034a1ca626d098bfb5efb0fb08",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_parent_refresh_v1.py": "16f099480330bc71403be3d567eacc282daad952ca45b89d4504b06bbff9ffb9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/retry_v4.py": "2ab9426fb16b261616b9e2444d399024d915e19cb13fc9432fb317f0a8c102f7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/integration_v1.py": "d7891dd4f40b17afd314d82c5bddbe8924d8d79f048b6eaf9dc531c275977f54",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/runtime_mechanism_v1.py": "d669da7f8cd5a47e3c6c2266cd28d0ca3c5da4cb45828522e2575062863d35c5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/artifact_binding_v14.py": "6c2083ec2d445917082c3fde2ef09b4c7f879df75015085543d2ed7232160e53",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/gpu_parent_v3.py": "1e4b6d0718f67d7a009a1c10a1319fad5584ed91441addd604b1f6bc58f75cbc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/fresh_exchange_mechanism_v1.py": "e3aaa9dab5d28cff3c539166fca79789568f3cb8344fb3a9f75714798d2074df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/diagnostic_binding_v15.py": "895ede0c5d79acbd5bdb3f50ba8aca4f4de24d3daa58c923cb2c89963858bc08",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/protocol_v1.py": "b2c99eacafd607584d9feb71ed7780ac272fdc23ba6fa3f835b4246173ddf008",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/model_intake_v1.py": "849ccfa738cc56688d647efc7af6f90f1ff6ad29865b41d2eab5f5f230625468",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/artifact_integration_v14.py": "712730c04d64058686177178b14b2d6cb5624c4543ba400e625521e0f65435df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_harness_refresh_v1.py": "86e3f281211bc75a52f7adc8670b867b62409e93b0e24951b24254e6cb2ef31a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/minimal_profile_binding_v10.py": "615e0bedd8d6841286c9ce90361fdcc03389d5cd6e6665a57efdba7a910662e8",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/camera_order_integration_v8.py": "c51187bae1f57f91194c0c5bc21ed919f2867135a9809b873b6dcbe807e74689",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/pairhist_binding_v12.py": "171a4f70a610f6ab66ad921842036517be88b9e4271606430ab74003e40d8a22",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/screen_data_intake_v1.py": "f4bc581cba9773052ee7ab7d05013de7a9f3ccf3b2f666f690410716977b00fe",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/prepare_source_v15.py": "9fb9a4a457352b2aaf70abfa2fa3a45544f5ea9f86ca2b3f12d919364d28718b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/phase_trace_mechanism_v1.py": "dd96eb7679c8efad0c241dcb78f8cf1a950d11affae2ff2b1213508980e14fe9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/test_delta_v15.py": "a5feb7a7a5857eb170302b19ed4dd11b736861ba827774dd2831a875e271a5b5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/pre_render_integration_v9.py": "cd5572c2400c9917f0279678678dea96b862a9a3b851c36e23ca3dcb2a98ef9f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/minimal_pre_render_compat_v10.py": "4d473bd1ea88cbd1ee428f95cdc5943dfd383743ddbaf8aa90db0ce1a42818fc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/cpu_guard_v1.py": "68c083ea90dee84ccc9529a7d3445164cbba4f91f6356178c68505296f430808",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/cleanup_owner_v4.py": "a62318ba904f4010af1c21f754104a37d5b8cdceb83162aa67fcf227363b32d6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/evidence_paths_v6.py": "0c96cef30dcf966b2b48738bfa47750e5a5d5615759a742cd6c8472f8b137f99",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/native_port_v1.py": "c987c775fee83d82d9f7b9ea8344e6924bc998ef0b9021f1991e57f25be124cb",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_serial_refresh_v1.py": "d66f02b6e4066ba53736063c7a0336827fa0933ee2faba5ebe38486d482151a5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/mechanism_gpu_binding_v4.py": "4e2594c4702aa891e224d7cef3f0c6ef805fa481c2f98cf26db2ac7caf95723f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_harness_v1.py": "17da6be35e113956379c818065db8ee7ee06e47044c21b8336d4400c2cc5595b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/profile_runtime_v5.py": "f5eafd48fb1584945f341bc246d878975468f7185d587011adf84182c270aedc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/constraint_model_v1.py": "4a57306dc1258b704a3d5fc1da471006b899c10838a9bb5adf94e64428b01177",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/cohort_v1.py": "badda58fd59fe3aed1c2bded12862e90eb45e8a28e4df1ca97f150b2991d7583",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/pairhist_integration_v12.py": "ea2bedd2600ae5527e8a4dcc9ffec6f0493c9f45afca221e84660c00152c1093",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/failure_binding_v15.py": "94e0da50451ee81528f92f7b474ad32e275fa81e2b51fc8e0ce33d0907ce5413",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/selection_v1.py": "f34f4ff083c69fcf73f7b73be018789c692ffeefea5bd61171b1fedc6490476c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/native_entry_v1.py": "357bdb183f9a4a8b03e751b1275735d40d0351f93ff395d93f4dca16d7c98af2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/native_inventory_v1.py": "9a41ba8a5f99d9940122ca1e41f9971117d924d814f048d79cef975afe987b86",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/telemetry_startup_v5.py": "e0c9992f5e48f44f59607c2f2837fcdd4606e33e42919dbc8d5f2f0ccf09d67a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/mechanism_bootstrap_v1.py": "6f84211866d8e5306403c738f280ab95d95117c96ed81fe398d67589bba13662",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/observe_native_v1.py": "233c3e433855dcba433934e16fa847dd45319b6b89f103bd27dd42652810c2eb",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/diagnostic_integration_v15.py": "bf3a503d5001e542d05e4d2ddd3f47122f2c7f1c625a2845fbb69640f59ef8ab",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_cpu_v15.py": "6850092931492aef6e45bcf7756e44d6977ab5ec1b879a641a032243de78a3bf",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/init_boundary_binding_v13.py": "64531e5898a314c062ea421b48a75dac5e93a34e426df8f41ef50a9bba950c2f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/request_contract_v1.py": "1340c32ffed905ddd95c721d86baff5a40bfe94cb2a89c9e84ea271426daa10c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/SAME32_RETRY_DESCRIPTOR_V15.json": "035c477ce38f4159f2076639d7b6ac3cfe3cd5f2ec1f0668ef4aff45f37277cb",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/PARENT_USAGE_INTERFACE_V15.json": "3de27c0c79074d44cb399e8e01be33e4d49ea7fd31604f3f5b037b3d98e153ca",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/PARENT_INTAKE_INTERFACE_V15_SSD.json": "9a4e9a83506bc4ec0e1b3b0752f019484c79321deb3af53b800938b283c4ddab",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/PARENT_SERIAL_REFRESH_CONTRACT_V1.json": "9bffd29703b32a32c2dacd2a15660d6f16bded7aaed4b3d663d53f454f428ff9",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/DERIVATION_V15.json": "5fb10d3927d96dc0da23ff90fa1056a31271a13b152087ab7fe5704f551361ac",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/READ_PINS_V1.json": "c7869fbc6861564855db491b6126038c8456dacb1634be0dd31d9a1f6c47dffd",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/REQUEST_CONTRACT_V1.json": "015dc8f26d263523bb66077622b96c8ee70849dd23663a402103f83ea2368c50",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/NATIVE_REQUEST_TEMPLATE_V15_SSD.json": "12e0105d9d5b8db47fd7de39d7bedaca723304a40f4139872c8da8da6580b27c",
+    "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py": "d95f2eaa138b4fff845ac72439caa2eca5deab4f0d5609e06f163d20eef4df93",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/common_v1.py": "586bfb1a52cbbbbed9aa0820df355076a5dab96f01d004080ef3dac90c0b92d3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/NATIVE_REQUEST_TEMPLATE_V14_SSD.json": "4bdf5dc5a73e701f177ed7fac909df019b0e3327da2cc60df9a43d371a475550",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/native_port_v1.py": "c987c775fee83d82d9f7b9ea8344e6924bc998ef0b9021f1991e57f25be124cb",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/protocol_v1.py": "b2c99eacafd607584d9feb71ed7780ac272fdc23ba6fa3f835b4246173ddf008",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/selection_v1.py": "f34f4ff083c69fcf73f7b73be018789c692ffeefea5bd61171b1fedc6490476c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/cohort_v1.py": "badda58fd59fe3aed1c2bded12862e90eb45e8a28e4df1ca97f150b2991d7583",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/native_inventory_v1.py": "9a41ba8a5f99d9940122ca1e41f9971117d924d814f048d79cef975afe987b86",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/integration_v1.py": "d7891dd4f40b17afd314d82c5bddbe8924d8d79f048b6eaf9dc531c275977f54",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/runtime_mechanism_v1.py": "d669da7f8cd5a47e3c6c2266cd28d0ca3c5da4cb45828522e2575062863d35c5",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/fresh_exchange_mechanism_v1.py": "e3aaa9dab5d28cff3c539166fca79789568f3cb8344fb3a9f75714798d2074df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/cleanup_owner_v4.py": "a62318ba904f4010af1c21f754104a37d5b8cdceb83162aa67fcf227363b32d6",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/artifact_integration_v14.py": "712730c04d64058686177178b14b2d6cb5624c4543ba400e625521e0f65435df",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/pairhist_integration_v12.py": "ea2bedd2600ae5527e8a4dcc9ffec6f0493c9f45afca221e84660c00152c1093",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/minimal_pre_render_compat_v10.py": "4d473bd1ea88cbd1ee428f95cdc5943dfd383743ddbaf8aa90db0ce1a42818fc",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/camera_order_integration_v8.py": "c51187bae1f57f91194c0c5bc21ed919f2867135a9809b873b6dcbe807e74689",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/pre_render_integration_v9.py": "cd5572c2400c9917f0279678678dea96b862a9a3b851c36e23ca3dcb2a98ef9f",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/following_V14_static_parent_adoption01/PARENT_COMPLETE_CLOSED_INPUT_REGISTRATION_79_V15.json": "a0ac888218a67867fef607857ddf902f9ceff84907b303cbedd3e743265dd178",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/parent_harness_refresh_v1.py": "0ee7b0979af3b3c5f2999313f2878d6c6bb5e54e5ff6e5da4c6cb51523ec9110",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/native_entry_v1.py": "ccd890474ca66ee615db070f82c213a8e444f1b1956b685141ac710227f707ed",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release6/CLOSED_CHECKPOINT_FACTORY_SOURCE_CPU_PREPARATION_V1.json": "a1f120aa124f3d0f721f50cfdd6c503c12682d1014c58f3932e5d9bef3687f4b",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release6/checkpoint_factory_v15.py": "a597b8a493b1d156a4ec72a740c4f80f3ab4d2f64a47317cbac5ea924a4bc79c",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual01/CPU_PREFLIGHT_REVIEW_V1.json": "7c307850bba0003702a159885470a7423f8403980bca61c236d30c2dca1de364",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual01/PREFLIGHT_COUNTEREXAMPLES_V1.json": "6c7b294dce9c8bd12b95171d8f85be3930cbc074f79efb04cad78ee043b80227",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual01/outer_wait/ACTUAL_WAIT.json": "d3a0721d73ffa6f6a1afda78a2a3405c1c9b86d7b3dacbe27ba8e764f8aaa736",
+    "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual01/worker_wait/ACTUAL_WAIT.json": "be410cf72f2ce3a1eecb9917577a1471102effd867cab2df55f0319a5787ab6a"
+  },
+  "author_registered_fresh_absence": [
+    {
+      "pid": 275588,
+      "startticks": 185696999,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 275594,
+      "startticks": 185697009,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 275596,
+      "startticks": 185697015,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 288321,
+      "startticks": 185707992,
+      "exact_registered_fresh_absent": true
+    }
+  ],
+  "reviewer": "Franklin",
+  "reviewer_SELECTED_BY_PARENT": true,
+  "reviewer_USER_NAMED": false,
+  "backend": "NOT_ATTESTED",
+  "native_permission": "NONE",
+  "SDK_calls": 0,
+  "native_runs": 0,
+  "RAW_PNG_reads": false,
+  "parent_authority": false,
+  "V14_crash_cause": "UNKNOWN",
+  "native_gain": "UNKNOWN",
+  "bank_count": 0,
+  "dimensions": {
+    "functional": "Fail parent dispatch and auth binder",
+    "correctness": "Fail source/contract mechanical binding",
+    "architecture": "Risk current integration blocked",
+    "API": "Fail actual fullcontract validator",
+    "maintainability": "Pass scoped SOURCE",
+    "performance": "Unable to determine"
+  },
+  "limitations": [
+    "No PASS/COND_PASS or native authorization while F1/F2 exist",
+    "Actual full SDK/native class/MRO/signal interposition/camera behavior untested",
+    "Strict1486 graph inherited identities checked, old multi-GiB payloads not rehashed",
+    "Author SOURCE15 real0/old failed releases preserved; source tests cannot prove native rootcause"
+  ],
+  "closure_pending_actual_tool": false,
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/worker_wait/ACTUAL_WAIT.json",
+    "sha256": "2cbba5c98bfb0a4d0f3f06fc86ce5b13e733994fbc0111613bbc77f4b22c8e6a"
+  },
+  "actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/outer_wait/ACTUAL_WAIT.json",
+    "sha256": "227fe4317a192b6277cc6d1f82979a41f89657424bc6776ada7f773b2368cafd"
+  },
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/ACTUAL_CPU_TOOL_CLOSED_V1.json",
+    "sha256": "13a95177655811fc3721cedccd06439e2173a554d327b12c7fa435a4078be9ad"
+  },
+  "genuine_worker_and_outer0": true,
+  "actual_tool_exit": 0,
+  "all_completed_registered_review_CPU_owned_closed": true,
+  "own_source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v15_nativefactory_franklin_source_peer_v1/release2/SOURCE_GRAPH_V1.json",
+    "sha256": "d4612c08dede4fe1f3cbb3711a0a2f9d0aa7003016feb2973b64757c418b83fb"
+  },
+  "metadata_pending_external_terminal": true,
+  "MAIN_independent_path_counterexample": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/v15_parent_entry_path_SOURCE_FINDING01/PARENT_ACTUAL_V15_FUTURE_ENTRY_PATH_NEEDS_FIX_V1.json",
+    "sha256": "7a7691f0711a6b777e1faf3e8190c0f5f13b78af23e222d3d008426b0125db1f"
+  },
+  "independent_review_totals": {
+    "new_fullSOURCE_checks": 10,
+    "new_preApp_counterexamples": 2,
+    "author15_inherited_NOT_newchecks": true
+  }
+}

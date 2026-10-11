@@ -1,0 +1,147 @@
+{
+  "schema": "astra.V14.incomplete.reader.actual_step_closed.v1",
+  "step": "merge",
+  "status": "CLOSED_ACTUAL_MERGE",
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/SOURCE_GRAPH_V1.json",
+    "sha256": "fdf84df2dd8bace89451db1667f7fc7ee7da66cbaf2d0787ad0275dfe379a917"
+  },
+  "result": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_v14_incomplete_initial_independent_reader_v1/actual_merge02/INDEPENDENT_INCOMPLETE_INITIAL_V14.json",
+    "sha256": "022a95c52faff31785c4f3d338430d5a2d5983c9458133feecbbb5569ff35e05"
+  },
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v14_incomplete_initial_reader_adapter_v1/CPU/actual_merge02/driver/worker/ACTUAL_WAIT.json",
+    "sha256": "6559556aaca9b522e0e23b1874151ba5e2adeb2fac44aa60c144444a8d29ed04"
+  },
+  "actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v14_incomplete_initial_reader_adapter_v1/CPU/actual_merge02/external/observer/ACTUAL_WAIT.json",
+    "sha256": "813725a63920d244885edf837761bdfbd14d924d3bd9c2977fcc16c0978dc77d"
+  },
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v14_incomplete_initial_reader_adapter_v1/CPU/actual_merge02/ACTUAL_TOOL_CLOSURE_V1.json",
+    "sha256": "7083e1d382c2bd71f00064a465b54bd900424eb0c341da74f5b314ee990ccdf3"
+  },
+  "actual_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "all_owned_fresh_absent": true,
+  "owned_identities": [
+    {
+      "pid": 556225,
+      "ppid": 556221,
+      "pgid": 556225,
+      "sid": 556225,
+      "startticks": 185934835,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 556221
+      },
+      "live": false
+    },
+    {
+      "pid": 556221,
+      "ppid": 556209,
+      "pgid": 556221,
+      "sid": 556221,
+      "startticks": 185934824,
+      "state": "S",
+      "enrollment": {
+        "kind": "direct_fork_handshake",
+        "parent_pid": 556209
+      },
+      "live": false
+    },
+    {
+      "pid": 556225,
+      "ppid": 556221,
+      "pgid": 556225,
+      "sid": 556225,
+      "startticks": 185934835,
+      "state": "R",
+      "enrollment": {
+        "kind": "proc_task_children_and_current_ppid_pidfd",
+        "parent_identity": {
+          "pid": 556221,
+          "ppid": 556209,
+          "pgid": 556221,
+          "sid": 556221,
+          "startticks": 185934824,
+          "state": "S"
+        },
+        "candidate_first": {
+          "pid": 556225,
+          "ppid": 556221,
+          "pgid": 556225,
+          "sid": 556225,
+          "startticks": 185934835,
+          "state": "D"
+        },
+        "candidate_final": {
+          "pid": 556225,
+          "ppid": 556221,
+          "pgid": 556225,
+          "sid": 556225,
+          "startticks": 185934835,
+          "state": "R"
+        },
+        "observed_utc": "2026-10-11T16:34:22.080583+00:00",
+        "task_children_path": "/proc/556221/task/556221/children"
+      },
+      "live": false
+    },
+    {
+      "pid": 556209,
+      "ppid": 261237,
+      "pgid": 556209,
+      "sid": 556209,
+      "startticks": 185934806,
+      "state": "R"
+    }
+  ],
+  "source_before": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/entry_v1.py": "e8563ac6f8d06eb8880851110e9b833e334e69ce514dcc797fe6e260b12cb25f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/inherited_v1.py": "53ec1a337fdc6acd3f40be379bd5586e4cdc79cf7ae952a930c02983a283a620",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/run_cpu_v1.py": "54d44b57c758f6e06731fb45a8754f036ddddee822b5b662fa78fa1acc0c6375",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/boundary_v1.py": "5b55a08100c6b44af9fdfd550045d2e2823051f1f42e9fe5e6873d83b970cf17",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/checks_v1.py": "ce5adf844b93872ded9564f2b44b1810f8b42eb1040cc48eda3a3d530a03ce1e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/partial_v14.py": "cac72990f88beb86d9a1223a1aabe52e2bfe9b3a2c37fb384bbab6b5f33a76d7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/close_cpu_v1.py": "4316ca85a11e427731f1f5ef575e9dd27975a7b473123eaba8df0d2a2c9e12f2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/INPUT_BINDINGS_V1.json": "787e580deba007aa62b7816bb1663b15fa9e86bf7f58511fc94c99d653074cd3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/FUTURE_MAIN_AUTHORITY_TEMPLATE_V1.json": "9a7ec33cc4d5b1a65379da02522c59ba8d168e52c8eea2d548dc641dc5d67e62",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/cap_delta_check_v2.py": "40dcafd03c3a77ea8b15a15347267247dbaa1c7194f28fef75b5f9f2dfcf152a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/run_cap_delta_v2.py": "17623c6582a0e876605154ee897b72ff6d2e4d0fb01a2777a0ce7a0728cfe42a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/FIXED_FREEZE_PREDECESSOR_BINDING_V3.json": "1b93f07ffde5669ff484cc0b8eddf8f56774c63088464d40d031e2f99484fd41",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/freeze_predecessor_v3.py": "58376faf65e930d2a761062b688f73a95f8c129253e2dcc9efa1c9b9d4489a79",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/freeze_binding_check_v3.py": "08fd578c780a62a8eca70abad0077f415fd6f5ddd74ce738f9e8f6afbcf5c99c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/run_binding_delta_v3.py": "ce289813fd0e99bc83dbed872a0cdbbb0e2f8022a651925247c4de6814d1ed0f"
+  },
+  "source_after": {
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/entry_v1.py": "e8563ac6f8d06eb8880851110e9b833e334e69ce514dcc797fe6e260b12cb25f",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/inherited_v1.py": "53ec1a337fdc6acd3f40be379bd5586e4cdc79cf7ae952a930c02983a283a620",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/run_cpu_v1.py": "54d44b57c758f6e06731fb45a8754f036ddddee822b5b662fa78fa1acc0c6375",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/boundary_v1.py": "5b55a08100c6b44af9fdfd550045d2e2823051f1f42e9fe5e6873d83b970cf17",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/checks_v1.py": "ce5adf844b93872ded9564f2b44b1810f8b42eb1040cc48eda3a3d530a03ce1e",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/partial_v14.py": "cac72990f88beb86d9a1223a1aabe52e2bfe9b3a2c37fb384bbab6b5f33a76d7",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/close_cpu_v1.py": "4316ca85a11e427731f1f5ef575e9dd27975a7b473123eaba8df0d2a2c9e12f2",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/INPUT_BINDINGS_V1.json": "787e580deba007aa62b7816bb1663b15fa9e86bf7f58511fc94c99d653074cd3",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/FUTURE_MAIN_AUTHORITY_TEMPLATE_V1.json": "9a7ec33cc4d5b1a65379da02522c59ba8d168e52c8eea2d548dc641dc5d67e62",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/cap_delta_check_v2.py": "40dcafd03c3a77ea8b15a15347267247dbaa1c7194f28fef75b5f9f2dfcf152a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/run_cap_delta_v2.py": "17623c6582a0e876605154ee897b72ff6d2e4d0fb01a2777a0ce7a0728cfe42a",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/FIXED_FREEZE_PREDECESSOR_BINDING_V3.json": "1b93f07ffde5669ff484cc0b8eddf8f56774c63088464d40d031e2f99484fd41",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/freeze_predecessor_v3.py": "58376faf65e930d2a761062b688f73a95f8c129253e2dcc9efa1c9b9d4489a79",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/freeze_binding_check_v3.py": "08fd578c780a62a8eca70abad0077f415fd6f5ddd74ce738f9e8f6afbcf5c99c",
+    "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v14_incomplete_initial_reader_adapter_v1/release3/run_binding_delta_v3.py": "ce289813fd0e99bc83dbed872a0cdbbb0e2f8022a651925247c4de6814d1ed0f"
+  },
+  "source_unchanged": true,
+  "native_allowed": false,
+  "bank_count": 0,
+  "full12": false,
+  "DATA_authority": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/v14_reader_R3_SOURCE_REPAIR_parent_adoption01/PARENT_ACTUAL_R3_MERGE_CPU_AUTHORITY_V1.json",
+    "sha256": "e309746e5a42d0e4255577755dc2f5719c91793e8942c67d0f55d0c4bf626bb3"
+  }
+}

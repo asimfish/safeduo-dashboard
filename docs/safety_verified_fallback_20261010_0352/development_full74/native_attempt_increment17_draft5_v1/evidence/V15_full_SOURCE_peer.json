@@ -1,0 +1,320 @@
+{
+  "schema": "independent.V15.whole_FACTORY_SOURCE.final_closed.v2",
+  "status": "NEEDS_FIX",
+  "scope": "SOURCE_ONLY",
+  "blocking_findings": [
+    {
+      "id": "F1",
+      "severity": "HIGH",
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_harness_refresh_v1.py",
+      "line": 9,
+      "problem": "SOURCE caller HERE still points checkpoint-only release6; native-entry file absent",
+      "minimum_repair": "Bind dispatch and loader/import directory to exact current native release; preserve all original gates",
+      "dispatch_line": 113,
+      "loader_source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/run_parent_refresh_v1.py",
+      "loader_line": 9
+    },
+    {
+      "id": "F2",
+      "severity": "HIGH",
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/parent_serial_refresh_v1.py",
+      "line": 340,
+      "problem": "Runtime public binder reads source_graph[contract], absent in integrated graph; exact full peer contract cannot pass",
+      "minimum_repair": "Bind validator to exact parent_serial_refresh_contract reference or include exact alias; full JSON comparison stays mandatory"
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "F3",
+      "source": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/PARENT_COMMANDS_V15.json",
+      "field": "future_complete_static_registration",
+      "problem": "Old 76-entry V15-rerooted reference absent; current catalog is79/1665",
+      "minimum_repair": "Bind exact current79 input; do not mint fresh permit"
+    }
+  ],
+  "review": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/REVIEW_V15_FULL_SOURCE_V1.json",
+    "sha256": "577cbe2dfebbe7a3e18e441259e99acb8a274bde75a19d345c8019a6c50913b2"
+  },
+  "source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/SOURCE_GRAPH_V1.json",
+    "sha256": "8dbc72b2cd69b3bace4898964a85ea61e5f6af1e814bcc9873a78e18518ad8f4"
+  },
+  "request_contract": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/REQUEST_CONTRACT_V1.json",
+    "sha256": "015dc8f26d263523bb66077622b96c8ee70849dd23663a402103f83ea2368c50"
+  },
+  "author_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/CPU/release10/actual_delta01/FINAL_CLOSED_AUTHOR_FULL_SOURCE_HANDOFF_V15.json",
+    "sha256": "948812a3415f02c4dec25efead39777b7c6e7755ebec4991da58b4899d379760"
+  },
+  "own_source_graph": {
+    "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_v15_nativefactory_franklin_source_peer_v1/release2/SOURCE_GRAPH_V1.json",
+    "sha256": "d4612c08dede4fe1f3cbb3711a0a2f9d0aa7003016feb2973b64757c418b83fb"
+  },
+  "diagnostic_observation_v15": {
+    "schema": "default.mixed32.provisional_readonly_sigaction.v15",
+    "baseline": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/SOURCE_GRAPH_V1.json",
+      "sha256": "4f634d7cd521ae45ee4d5a666d87b9f3ef56b5bd47b9490750c4e4a66ead8017"
+    },
+    "checkpoint_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_lane_provisional_camera_checkpoint_candidate_v1/release4/SOURCE_GRAPH_V1.json",
+      "sha256": "32217077eb6000377a23298d1cc213f44975d27b9e73d5c33c6ecae3da8199b8"
+    },
+    "checkpoint_runtime": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_lane_provisional_camera_checkpoint_candidate_v1/release4/lane_provisional_v1.py",
+      "sha256": "0be19802609e0cb4c92a3095bc57bab312ac7d6178b95bc4e8898dc364337131"
+    },
+    "checkpoint_author_handoff": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_lane_provisional_camera_checkpoint_candidate_v1/release4/FINAL_CLOSED_AUTHOR_SOURCE_HANDOFF_V1.json",
+      "sha256": "1c9f30c2953c3d05170e9baf068a67838f186d690dffd0c4b1062625d1a756da"
+    },
+    "checkpoint_distinct_SOURCE_peer": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_lane_provisional_checkpoint_franklin_source_peer_v1/actual01/FINAL_CLOSED_SOURCE_PEER_HANDOFF_V2.json",
+      "sha256": "1d8bdf1af33b041c6c732f2c337065b3ed757f3783c276d9456c0cce15760084"
+    },
+    "checkpoint_MAIN_adoption": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/lane_provisional_component_SOURCE_parent_adoption01/PARENT_LANE_PROVISIONAL_COMPONENT_SOURCE_ADOPTED_V1.json",
+      "sha256": "c44b10e29df1ec00f57e8ab2e29aaa5a483f5ca1d781aee7f7e2945accd058f3"
+    },
+    "sigaction_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_readonly_sigaction_observation_candidate_v1/release2/SOURCE_GRAPH_V1.json",
+      "sha256": "b36dd1b5f3412aab9ae1d31a988583a81802db2bb8b4d966be8930a5c2f74ea5"
+    },
+    "sigaction_runtime": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_readonly_sigaction_observation_candidate_v1/release2/observe_sigaction_v1.py",
+      "sha256": "bc10baf15815e769da07e93b1a628b393cf233277ded3aac135decfbd0ae8d1f"
+    },
+    "sigaction_compiled_library": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_observation_candidate_v1/release2/actual_delta01/abi8.so",
+      "sha256": "0176057350662dd1c24a0ce572a33541d30253ce1dd5f29792090b76468b9baa"
+    },
+    "sigaction_author_handoff": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_observation_candidate_v1/release2/actual_delta01/FINAL_CLOSED_SOURCE_CPU_HANDOFF_RELEASE2_V1.json",
+      "sha256": "5d8f3ae8bc3b91e3c02ba2ed7d2e4797cd52798f7e470944818414ebbd90a094"
+    },
+    "sigaction_distinct_SOURCE_peer": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_franklin_source_peer_v1/repair_release2/actual01/FINAL_CLOSED_REPAIR_DELTA_SOURCE_PEER_HANDOFF_V2.json",
+      "sha256": "eb62d19acde31677a82df4a2be2e04c2a47c4b42158fe9c39cf7d9e84b6f3869"
+    },
+    "sigaction_MAIN_adoption": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/readonly_sigaction_release2_SOURCE_parent_adoption01/PARENT_READONLY_SIGACTION_REPAIR_SOURCE_ADOPTED_V1.json",
+      "sha256": "fd0e2124691ffb90caa4a4076fa328692d6e1e2e128710463844468ffecc3dce"
+    },
+    "integration": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/diagnostic_integration_v15.py",
+      "sha256": "bf3a503d5001e542d05e4d2ddd3f47122f2c7f1c625a2845fbb69640f59ef8ab"
+    },
+    "binding": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/diagnostic_binding_v15.py",
+      "sha256": "895ede0c5d79acbd5bdb3f50ba8aca4f4de24d3daa58c923cb2c89963858bc08"
+    },
+    "checkpoint": "LOCAL_PROVISIONAL_AFTER_STATES_APPEND_NOT_STATE_JSON_PASS",
+    "global_final_invariant": "ORIGINAL_BATCH_FINAL_REQUIRED_UNKNOWN_UNTIL_REACHED",
+    "pending_writer": "SAME_ORIGINAL_FUTURE_JOIN_NO_CALLBACK_REINVOKE",
+    "OS_query": "FIVE_DISPOSITIONS_BEFORE_AND_AFTER_ONE_ORIGINAL_ENABLE_NONATOMIC",
+    "observer_cleanup": "EXPLICIT_OWN_CLOSE_AFTER_ORIGINAL_FILES_NO_PRIVATE_FUNCTION_REFERENCES_NO_SWALLOWED_FAILURE",
+    "symbol_maps_cap_lifecycle_under_SDK": "UNKNOWN_FAIL_ABORT",
+    "added_OS_handler_writes": 0,
+    "added_signals": 0,
+    "ptrace": false,
+    "extra_SDK_getters_setters_renders_steps": 0,
+    "original27": true,
+    "original12": true,
+    "original_camera_limits": {
+      "hand": 96,
+      "wide": 66,
+      "lane": 450,
+      "held_renders": 3
+    },
+    "native_wall_seconds": 1200,
+    "original_grace_seconds": 10,
+    "V14_overlap_crash_cause": "UNKNOWN",
+    "native_gain": "UNKNOWN",
+    "bank_allowed": false
+  },
+  "readonly_sigaction_SOURCE_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_readonly_sigaction_franklin_source_peer_v1/repair_release2/actual01/FINAL_CLOSED_REPAIR_DELTA_SOURCE_PEER_HANDOFF_V2.json",
+    "sha256": "eb62d19acde31677a82df4a2be2e04c2a47c4b42158fe9c39cf7d9e84b6f3869"
+  },
+  "checkpoint_SOURCE_peer": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_per_lane_provisional_checkpoint_franklin_source_peer_v1/actual01/REVIEW_V1.json",
+    "sha256": "8a64974b2ff99bb90e74b9eca84837356073578cb1e3c6a162251783bc5bbda2"
+  },
+  "parent_serial_refresh_contract": {
+    "schema": "astra.parent_serial_refresh.source_contract.v2",
+    "baseline_source_graph": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v14_artifact_pipeline/release6/SOURCE_GRAPH_V1.json",
+      "sha256": "4f634d7cd521ae45ee4d5a666d87b9f3ef56b5bd47b9490750c4e4a66ead8017"
+    },
+    "seam": "AFTER_BOOTSTRAP_LOAD_RUNTIME_WITHIN_ORIGINAL_SERIAL_LEASE_BEFORE_FIRST_FRESH_CHECK_OR_RESOURCES_ROOT_SDK",
+    "original_inventory_checker": "ENTIRE_UNCHANGED_CODE_TWICE_FRESH_FALSE_THEN_TRUE",
+    "parent_only_explicit_new_authorization": true,
+    "distinct_full_SOURCE_peer_required": true,
+    "complete_history": "CURRENT_PARENT_COMPLETE_SUPERSET_OF_EXACT_76_WAIT_REFS; preserve all1583 raw rows and later closures; never a fresh permit",
+    "freshness_seconds": 30,
+    "clock": "ACTUAL_TIME_TIME_AND_MONOTONIC; NO_INJECTED_CLOCK_RESTAMP_OR_RETRY",
+    "old_registration": "IMMUTABLE_CLOSED_INPUT_NOT_A_FRESH_GPU_NATIVE_PERMIT",
+    "storage": "NEW_EXCLUSIVE_NAS_DIR_OPENAT_O_NOFOLLOW_EVERY_ANCESTOR_AND_PAYLOAD_FSYNC_DIRECTORY_FSYNC_POSTOPEN_IDENTITY",
+    "parent_identity": "EXACT_PID_STARTTICKS_PPID_PGID_SID_AND_ONE_ORIGINAL_KERNEL_FLOCK_REMAIN_HELD",
+    "failures": "ANY_CHECK_OR_WRITE_FAILURE_RAISES; PARTIAL_BYTES_RETAINED_UNKNOWN; NO_NATIVE_CONTINUATION",
+    "original_science_camera_resource_guards_native1200": "UNCHANGED_RELEASE4",
+    "SDK_calls_added_removed": 0,
+    "foreign_census": false,
+    "signals": [],
+    "native_executions": 0,
+    "parent_authority": false,
+    "bank_count": 0,
+    "FD_cleanup": "INDEPENDENT_LEAF_AND_PARENT_SINGLE_CLOSE_ATTEMPTS; EXACT_FIRST_OPERATIONAL_EXCEPTION_OBJECT_RETAINED_WITH_STRUCTURED_CLEANUP_REPORT; CLEANUP_ONLY_FAILURE_RAISES_NO_NATIVE_CONTINUATION; NO_CLOSE_RETRY_OR_ASSUMED_CLOSURE",
+    "new_native_SOURCE_request_contract": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_supplemental_mixed32_native_v15_provisional_sigaction/release10/REQUEST_CONTRACT_V1.json",
+      "sha256": "015dc8f26d263523bb66077622b96c8ee70849dd23663a402103f83ea2368c50"
+    },
+    "namespace_only_rebind": "V13 directory and exclusive registration output; every renewal/cleanup/lease/freshness operation identical to closed release2",
+    "minimum_required_wait_refs": 79,
+    "future_actual_complete_registration": null,
+    "registration_output": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v15_provisional_sigaction/parent_serial_registrations",
+    "actual_complete_static_registration": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/following_V14_static_parent_adoption01/PARENT_COMPLETE_CLOSED_INPUT_REGISTRATION_79_V15.json",
+      "sha256": "a0ac888218a67867fef607857ddf902f9ceff84907b303cbedd3e743265dd178"
+    },
+    "complete_static_raw_identity_rows": 1665,
+    "current_formal_STATIC_history": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_following_v14_static_history_v1/actual_static01/products/STATIC_HISTORY_79REFS_1665ROWS_V1.json",
+      "sha256": "f83fa2cb8c77f7480436290111e02cfa81d4181da286d137ca03dd90e80fa21c"
+    }
+  },
+  "all_post_app_paths_use_lifecycle_v2": true,
+  "new_independent_fullSOURCE_checks": 10,
+  "new_independent_preApp_counterexamples": 2,
+  "full1486_pin_map_compared": true,
+  "currentownSOURCE_byteSHAs_verified": true,
+  "largeinheritedpayload_NOT_rehashed": true,
+  "actual_worker_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/worker_wait/ACTUAL_WAIT.json",
+    "sha256": "2cbba5c98bfb0a4d0f3f06fc86ce5b13e733994fbc0111613bbc77f4b22c8e6a"
+  },
+  "actual_outer_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/outer_wait/ACTUAL_WAIT.json",
+    "sha256": "227fe4317a192b6277cc6d1f82979a41f89657424bc6776ada7f773b2368cafd"
+  },
+  "actual_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/ACTUAL_CPU_TOOL_CLOSED_V1.json",
+    "sha256": "13a95177655811fc3721cedccd06439e2173a554d327b12c7fa435a4078be9ad"
+  },
+  "actual_tool_exit": 0,
+  "genuine_worker_and_outer0": true,
+  "source_unchanged": true,
+  "CPU_registered_fresh_absence": [
+    {
+      "pid": 300996,
+      "startticks": 185718425,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 300997,
+      "startticks": 185718433,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 301001,
+      "startticks": 185718441,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 326875,
+      "startticks": 185739437,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 326890,
+      "startticks": 185739443,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 326902,
+      "startticks": 185739448,
+      "exact_registered_fresh_absent": true
+    }
+  ],
+  "metadata_writer_identity": {
+    "pid": 332399,
+    "ppid": 332398,
+    "pgid": 332398,
+    "sid": 332398,
+    "startticks": 185744581,
+    "state": "R"
+  },
+  "metadata_pending_external_terminal": false,
+  "MAIN_independent_path_counterexample": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/parent_supplement_native32_profile_intake_v1/v15_parent_entry_path_SOURCE_FINDING01/PARENT_ACTUAL_V15_FUTURE_ENTRY_PATH_NEEDS_FIX_V1.json",
+    "sha256": "7a7691f0711a6b777e1faf3e8190c0f5f13b78af23e222d3d008426b0125db1f"
+  },
+  "old_failure_SOURCE_and_components_preserved": true,
+  "originaltests_NOT_rerun": true,
+  "native_permission": "NONE",
+  "native_allowed": false,
+  "parent_authority": false,
+  "SDK_calls": 0,
+  "native_runs": 0,
+  "RAW_PNG_reads": false,
+  "V14_crash_cause": "UNKNOWN",
+  "native_gain": "UNKNOWN",
+  "backend": "NOT_ATTESTED",
+  "reviewer_SELECTED_BY_PARENT": true,
+  "reviewer_USER_NAMED": false,
+  "limitations": [
+    "No PASS/COND_PASS or native authorization while F1/F2 exist",
+    "Actual full SDK/native class/MRO/signal interposition/camera behavior untested",
+    "Strict1486 graph inherited identities checked, old multi-GiB payloads not rehashed",
+    "Author SOURCE15 real0/old failed releases preserved; source tests cannot prove native rootcause"
+  ],
+  "prior_handoff": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/CLOSED_V15_FULL_SOURCE_PEER_HANDOFF_V1.json",
+    "sha256": "0b3815294735e450db20f4dfb6a8fb0c7c69d4d6b5771747aaec12f7e52054bd"
+  },
+  "actual_metadata_tool_wait": {
+    "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v15_nativefactory_franklin_source_peer_v1/actual02/ACTUAL_METADATA_TOOL_CLOSED_V1.json",
+    "sha256": "d95a55be482f3fc740cf11cdbbc5f052b0d3821e9b5420a20c7d2f867bf49e6d"
+  },
+  "all_completed_review_CPU_metadata_registered_owned_closed": true,
+  "registered_fresh_absence": [
+    {
+      "pid": 300996,
+      "startticks": 185718425,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 300997,
+      "startticks": 185718433,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 301001,
+      "startticks": 185718441,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 326875,
+      "startticks": 185739437,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 326890,
+      "startticks": 185739443,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 326902,
+      "startticks": 185739448,
+      "exact_registered_fresh_absent": true
+    },
+    {
+      "pid": 332399,
+      "startticks": 185744581,
+      "exact_registered_fresh_absent": true
+    }
+  ],
+  "external_closure_recorder_excluded_from_ownclosed_claim": true
+}
