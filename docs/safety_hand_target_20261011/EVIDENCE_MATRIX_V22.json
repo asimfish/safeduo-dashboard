@@ -1,0 +1,421 @@
+{
+  "schema": "safeduo.full_requirements.evidence_matrix.v6",
+  "created_utc": "2026-10-10T10:06:29.246684+00:00",
+  "fullSystem0_accepted": false,
+  "hardware_certification_in_scope": false,
+  "rows": [
+    {
+      "id": "holding",
+      "requirement": "回退保持在原始非零速度和延迟下持续安全",
+      "gate": "所有128输入全部原生几何/接触/限位/速度通过完整480控制周期；正式独立集另验",
+      "status": "DEVELOPMENT_LONG128_PASS_FORMAL_PENDING",
+      "evidence": "evidence/long/GRAVITY_LONG128_RESULT_V1.json",
+      "measured": "128条×480周期开发集保持通过；仍非有效操作，正式独立960周期未验收",
+      "missing": "独立冻结多种子与运行时未来安全/制动认证",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "effective_motion",
+      "requirement": "保留操作意图并有实际四臂运动",
+      "gate": "冻结门槛：平均路径与各分层比例>=0.9、四臂运动比例>=0.9、全部26关节平均运动范围>=0.001rad；暂停非威胁臂继续和恢复及任务完成联合验收",
+      "status": "FAIL",
+      "evidence": "strong_long128_v1/STRONG_LONG128_RESULT_V1.json",
+      "measured": "v4安全123/128且四臂指令运动66/128；v5安全116/128且运动128/128。分层路径90%门槛仍失败",
+      "missing": "漏检碰撞和FIFO到达/未来保持；选择性暂停、恢复及任务完成",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "random_support",
+      "requirement": "强随机、大范围操作空间与定向危害覆盖",
+      "gate": "记录采样分布、全26DOF和速度支持、覆盖图、所有拒绝及分层；不得将筛选集当无条件全空间",
+      "status": "PARTIAL_DEVELOPMENT_FULL50_IID_INPUTS_NATIVE_AND_FAULT_STRATA_PENDING",
+      "evidence": "evidence/full_motor_domain/FULL_MOTOR_DOMAIN_V1.json",
+      "measured": {
+        "prior_revision20": {
+          "prior_measured": "20,000个新开发提案覆盖26臂关节+24独立手指电机，映射48手指坐标；16,000均匀+4,000边界，原74限位/24关系软件校验通过。未运行其原生轨迹，不能替代旧固定手指开发集",
+          "revision20": {
+            "new_development_proposals": 40000,
+            "pure_per_motor_IID": 32000,
+            "boundary": 4000,
+            "mixed_per_motor_speed": 4000,
+            "original74_limit_and24_relation_oracle_actual_exit": 0,
+            "joint_distribution_audit_actual_exit": 0,
+            "native_proposal_trajectories": 0,
+            "safe_or_reachable_volume_not_measured": true,
+            "producer_actual_outer_exit": null
+          }
+        },
+        "revision21": {
+          "new_development_proposals": 40000,
+          "pure_IID_per_motor": 32000,
+          "boundary": 4000,
+          "mixed_per_motor": 4000,
+          "independent_input_and_original74_mapping_audits_pass": true,
+          "report_public_delivery_pass": true,
+          "native_proposal_trajectories": 0,
+          "full50_reachable_or_safe_volume_not_measured": true,
+          "formal_holdout_count": 0
+        }
+      },
+      "missing": "实际原生手指/全50电机联合随机轨迹、几何拒绝率、对象布局和故障分层；至少两批独立正式960周期",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "frozen_generalization",
+      "requirement": "科学规范的冻结协议、独立多种子、留出与不确定性报告",
+      "gate": "机制/判据冻结后使用至少两套独立新种子；全部登记窗口与失败保留；无结果后调参；报告最坏种子和适用统计上界",
+      "status": "NOT_ACCEPTED",
+      "evidence": "gravity_hold128_v1/REGISTRATION_V1.json",
+      "measured": "当前全部为已知开发样本；正式独立留出验收0",
+      "missing": "候选修复后冻结至少两套独立新种子；保留所有失败，报告最坏种子",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "objects",
+      "requirement": "物体位置、姿态、大小、速度、可达性进入明确规划与安全输入",
+      "gate": "逐帧实际对象状态绑定、坐标/尺度校验、可达与拥挤判定、过时/缺失状态安全处理；视觉接口另独立校验",
+      "status": "PARTIAL_FRESH_NATIVE_GROUND_TRUTH_BINDING_VISION_AND_FAULTS_PENDING",
+      "evidence": "comparison.json",
+      "measured": {
+        "prior_revision20": "CPU46真实点受力记录与运动字段绑定已验证；GPU49原始模型位置0.0001718253 rad、速度2.2671812 rad/s均失败。74关节新增原生静态摩擦及驱动属性全部为0，不能作为轨迹安全样本。完整感知和标准硬件推广未验收。",
+        "revision21": "Native54 records fresh native object pose/velocity and registered size each microstep. Vision, stale/missing-state handling and canonical profile remain unqualified."
+      },
+      "missing": "完整受载模型、真实感知与陈旧状态故障、活动烘焙形状认证、标准资产推广",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "grasp",
+      "requirement": "真实物理夹持、抬升、搬运、放置和释放",
+      "gate": "正式100mm抬升、>=2s稳定持物准入；摩擦接触驱动，无reset后物体写位姿、parenting或固定关节替代摩擦夹持；指定手接触和阶段成功联合判定",
+      "status": "FAIL_NATIVE55_ORIGINAL_MODEL_OR_PHYSICAL_GATES",
+      "evidence": "fourhand_native_probe_v49/INDEPENDENT_CAPTURE_AUDIT_V1.json",
+      "measured": {
+        "prior_revision21": {
+          "prior_revision20": {
+            "prior_measured": "GPU49四手共同接触仅0.00624975秒，小于0.25秒，无100mm/2秒稳定抬升；完整搬运失败。夹持恢复阈值候选仅5项单元测试通过，12组已记录轨迹均未出现该保持区间，不是当前失败的已证实根因。",
+            "revision20": {
+              "native51_four_hand_contact_s": 0,
+              "grasp_lift_carry_place_release_retreat": false
+            }
+          },
+          "revision21": {
+            "first3_original_admissions_pass": true,
+            "hand_payload_peak_N": 57.93172836303711,
+            "original_hand_limit_N": 30.0,
+            "four_hand_sustained_contact_s": 0.0,
+            "stable_lift_s": 0.0,
+            "original_model_position_error_rad": 0.00018596649169921875,
+            "original_model_velocity_error_rad_s": 0.028346464037895203,
+            "original_q_AND_qd_tolerance": 0.0001,
+            "fulltask_not_run_due_prerequisite_failure": true
+          }
+        },
+        "revision22": {
+          "native_version": 55,
+          "controls": 599,
+          "physics_events": 9584,
+          "original_position_error_rad": 0.00038226693868637085,
+          "original_velocity_error_rad_s": 0.6868297457695007,
+          "original_model_window_pass": false,
+          "physical_gates_pass": false,
+          "maximum_hand_normal_N": 120.01704359054565,
+          "four_hand_contact_s": 0.0,
+          "stable_lift_s": 0.0,
+          "fulltask_pass": false,
+          "all77_native_arrays_exact54": true,
+          "only_hand_target_cadence_changed": true,
+          "canonical_qualified": false,
+          "formal_holdout_count": 0,
+          "learned_system0_tested": false
+        }
+      },
+      "missing": "原q与qd<=0.0001受载模型、全部原生接触观测、持续四手真实夹持与抬升/搬运/放置/释放/脱离退回全部联合通过",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "cooperative_task",
+      "requirement": "真实四臂共同任务且有安全与不安全的同输入对照",
+      "gate": "同一raw/S0外生命令初态对象资产；cross/self/table各危害；选择性暂停、另一臂移开、恢复、任务成功和零违规全部通过",
+      "status": "FAIL_NATIVE55_ORIGINAL_MODEL_OR_PHYSICAL_GATES",
+      "evidence": "fourhand_native_v21/fourhand_protocol.json",
+      "measured": {
+        "prior_revision21": {
+          "prior_revision20": {
+            "prior_measured": "GPU49改变接触求解顺序后原模型q与qd均失败，已拒绝；GPU51仅8→64物理子步的预注册对照正在运行，不纳入结果。学习策略和System0均关闭，完整任务与正式同输入安全开关对照未验收。",
+            "revision20": {
+              "native51_original_model_pass_unloaded_only": true,
+              "zero_hand_payload_contact": true,
+              "System0_tested": false,
+              "formal_holdout_count": 0
+            }
+          },
+          "revision21": {
+            "native54_system0_active": false,
+            "trained_actor": false,
+            "complete_task_pass": false,
+            "formal_holdout_count": 0,
+            "native55_running_excluded": true
+          }
+        },
+        "revision22": {
+          "native_version": 55,
+          "controls": 599,
+          "physics_events": 9584,
+          "original_position_error_rad": 0.00038226693868637085,
+          "original_velocity_error_rad_s": 0.6868297457695007,
+          "original_model_window_pass": false,
+          "physical_gates_pass": false,
+          "maximum_hand_normal_N": 120.01704359054565,
+          "four_hand_contact_s": 0.0,
+          "stable_lift_s": 0.0,
+          "fulltask_pass": false,
+          "all77_native_arrays_exact54": true,
+          "only_hand_target_cadence_changed": true,
+          "canonical_qualified": false,
+          "formal_holdout_count": 0,
+          "learned_system0_tested": false
+        }
+      },
+      "missing": "完整协作成功及同输入System0开关配对",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "native_oracle",
+      "requirement": "完整原生观测和独立危害判据，无漏测或单看画面",
+      "gate": "9021球对与82碰撞刚体原生接触每个物理子步，全74关节/实际目标/FIFO、对象风险；非有限数据或分母缺失即拒绝",
+      "status": "FAIL_NATIVE55_ORIGINAL_MODEL_OR_PHYSICAL_GATES",
+      "evidence": "native_v45/COMPACT_PUBLIC_CUSTODY_V1.json",
+      "measured": {
+        "prior_revision21": {
+          "prior_revision20": {
+            "prior_measured": "GPU49全部77类物理参数与38逐位相同；接触顺序候选q与qd均失败。GPU50新增静态属性均为0、0轨迹样本。CPU46物体报告及独立不睡眠夹具校准通过，但全82类持续受力/睡眠新鲜度与规范资产仍未联合通过。",
+            "revision20": {
+              "native51_actual_exit": 0,
+              "all30784_events_captured": true,
+              "all_native77_arrays_same_as42_except_physics_dt": true,
+              "admission_clock_stale_by_factor8": true,
+              "loaded_model_qualified": false
+            }
+          },
+          "revision21": {
+            "native54_actual_outer_exit": 0,
+            "physics_events": 9568,
+            "all9021_all74_all82_capture_integrity_pass": true,
+            "all77_native_parameter_arrays_exact53": true,
+            "original_admission_clock_and_dwell_verified": true,
+            "original_model_pass": false,
+            "physical_gates_pass": false,
+            "native55_excluded": true
+          }
+        },
+        "revision22": {
+          "native_version": 55,
+          "controls": 599,
+          "physics_events": 9584,
+          "original_position_error_rad": 0.00038226693868637085,
+          "original_velocity_error_rad_s": 0.6868297457695007,
+          "original_model_window_pass": false,
+          "physical_gates_pass": false,
+          "maximum_hand_normal_N": 120.01704359054565,
+          "four_hand_contact_s": 0.0,
+          "stable_lift_s": 0.0,
+          "fulltask_pass": false,
+          "all77_native_arrays_exact54": true,
+          "only_hand_target_cadence_changed": true,
+          "canonical_qualified": false,
+          "formal_holdout_count": 0,
+          "learned_system0_tested": false
+        }
+      },
+      "missing": "活动烘焙形状、延迟到达/负载预测、正式广域随机与视觉输入完整验收",
+      "joint_requirement_accepted": false
+    },
+    {
+      "id": "visual_delivery",
+      "requirement": "网页可审阅的安全对照、完整视角和证据归档",
+      "gate": "俯视/正视/侧视及需要的局部视角正确缩放，原生状态与视频绑定，暂停/恢复/任务侧车；主站链接、实际部署和公共字节回读通过",
+      "status": "FAIL_NATIVE55_ORIGINAL_MODEL_OR_PHYSICAL_GATES",
+      "evidence": "comparison.json",
+      "measured": {
+        "prior_revision21": {
+          "prior_revision20": {
+            "prior_measured": "已发布41–45共20个四视角视频及9项验收表，457文件在线字节验证通过；HTTP/1浏览器范围通过。默认传输手机播放未联合通过；未发布的本地候选2冷启动同步通过，但手机后段跳转失败，未替换线上页面。",
+            "revision20": {
+              "player_public_all60_default_transport_pass": true,
+              "desktop_mobile_nojs": true,
+              "cold_four_view_sync_and_native_control": true,
+              "player_delivery_scope_only": true,
+              "new_random_report_public_pending": true
+            }
+          },
+          "revision21": {
+            "player_all60_default_transport_pass": true,
+            "desktop_mobile_nojs": true,
+            "random_report_all28_public_bytes_and3_browser_journeys_pass": true,
+            "exact_public_commit": "203c35bf71a086ad456818b3dc39537643f11ded",
+            "native54_all4_camera_cadence_and_manipulation3_view_source_frustum_pass": true,
+            "successful_task_and_learned_safety_pairs_not_available": true
+          }
+        },
+        "revision22": {
+          "native_version": 55,
+          "controls": 599,
+          "physics_events": 9584,
+          "original_position_error_rad": 0.00038226693868637085,
+          "original_velocity_error_rad_s": 0.6868297457695007,
+          "original_model_window_pass": false,
+          "physical_gates_pass": false,
+          "maximum_hand_normal_N": 120.01704359054565,
+          "four_hand_contact_s": 0.0,
+          "stable_lift_s": 0.0,
+          "fulltask_pass": false,
+          "all77_native_arrays_exact54": true,
+          "only_hand_target_cadence_changed": true,
+          "canonical_qualified": false,
+          "formal_holdout_count": 0,
+          "learned_system0_tested": false
+        }
+      },
+      "missing": "真实成功四臂完整任务、学习System0同输入开关配对与两批正式广域留出联合验收",
+      "joint_requirement_accepted": false
+    }
+  ],
+  "source_sha256": {
+    "/mnt/nas/data/lyf/double_hand/PROJECT_PLAN.md": "92203f5ee03c9596743c66c41d48c8e3a95ca242f2009e3db6f96860e7a1c5d8",
+    "/home/liyufeng/safeduo/artifacts/safety_native_acceptance_20261007_2307/ACCEPTANCE_CRITERIA.json": "01a5b45d1ada7635946f15c1b2e0cee141e8128266bdbed423844cf833c054a3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/gravity_hold128_v1/GRAVITY_HOLD128_RESULT_V1.json": "cfbe3d1e0b4c342301ff0248606455c4034630dbcb9661ec9427df7af4e40add",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/strong_long128_v1/STRONG_LONG128_RESULT_V1.json": "8e658950dda518f1096b64c5f5da252c547e4755c844682ea508cdb6c4686234",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/FINAL_CLOSURE.json": "0b472e5a68ab9e3b273c4fd77416446513b9e21a5dbc13680655155e7565942a",
+    "/home/liyufeng/safeduo/artifacts/safety_object_binding_20261006/RESULTS.md": "8b65438e3885a0e99f09f928368b530f109a47583743d55a71485f55e1c6e1b0",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/alpha_barrier128_v4/ALPHA_BARRIER128_RESULT_V4.json": "cb7bbd9b78da0addd143be34a21357fd0940dbf7b34d7b0fdea6a1d8229e9def",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/alpha_barrier128_v5/ALPHA_BARRIER128_RESULT_V5.json": "2beef235009ee85a0c0a8313ff3d2224db97d3f1439ae6517e80dd2ce52cc0ed",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v3/INDEPENDENT_CAPTURE_AUDIT_V1.json": "d5a7f88336113625d3fc6e16e57c25f103a3e3adcce24b3f726ef46846a3487b",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v3/ACTUAL_COMPLETION_EXIT_V3.json": "31426183f49e1d69e40faec16cbd36e82ec2a7e336e35b19b70de2c64a1e5bdc",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v3/video_evidence_v3/VIDEO_CUSTODY_V1.json": "73abebb6f801955c2d107426f315de8cbd4003d281323c11bead35ba9563c6bd",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v6/INDEPENDENT_CAPTURE_AUDIT_V1.json": "bd65d9facf60a93801aee50a07853968c04ba5f0263df135f8d55f69caa3a6ba",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v6/INDEPENDENT_AUDIT_ACTUAL_EXIT_V1.json": "68f7b032d0b0e257ca6e79e26bf32c09d70448b696a3ede24fddf05747f02852",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v6/ACTUAL_COMPLETION_EXIT_V6.json": "18cfb472094d9cdab29fca8af20ec3ebc9ed352cba50ed31c5e5701283eed154",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v7/REGISTRATION_V1.json": "616ecc6d8a9dc4e39d0c4e59c7090f50ea1e0ca3fb7e0c7ac666b0bff971aaae",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v6/video_webm_v1/VIDEO_CUSTODY_V1.json": "1940700f13727c9ef6696ad3fa22b89386b09cd40ebbd0252aec4032a2a9ab9f",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v7/INDEPENDENT_CAPTURE_AUDIT_V1.json": "082ee1e611d467b039921d4e17beab514d9993312bbcfda0411a2bf6ebb91b01",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v7/INDEPENDENT_AUDIT_ACTUAL_EXIT_V1.json": "78f7d865f025b659bcbe827cb5c2fdfe4651384c78c49d8588d9bf220bf544ee",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v7/ACTUAL_COMPLETION_EXIT_V7.json": "278a5fbc0f4ca0777187506989a7fa3b22c394a3e458033e06f00fb62b128789",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v8/REGISTRATION_V1.json": "5b46099f4a6f9024d375dbd43dea022f5f8fea1bbc05e1ed5ae2df78fe119736",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v7/video_webm_v1/VIDEO_CUSTODY_V1.json": "fb6012620c0411863a7384a7a29c781904c968549cb8258d4156a613a6af59cd",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v8/INDEPENDENT_CAPTURE_AUDIT_V1.json": "b9f353d63fce81b9f7a4cc85dd0ee4229703af28d8fc5a0561636037b1d8cb79",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v8/INDEPENDENT_PHASE_ADMISSION_V1.json": "3d3beb92c9723717a125c43114f3c3391e0c643955ed9615e85a3fd3c170112a",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v8/ACTUAL_COMPLETION_EXIT_V8.json": "1020c0b84572a18a8c329bfe582a71f6b6534a1d78ed629440becc7ddde7ba8b",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v8/video_webm_v1/VIDEO_CUSTODY_V1.json": "cfd891057d68be88aeafe4df1fe580b125bf4eeb518a811b9608a63e803793e2",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v9/INDEPENDENT_CAPTURE_AUDIT_V1.json": "00d492eb00d4ec01f6429b4f124df922ece026049a2e682d7cf81289c47cf1da",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v9/INDEPENDENT_PHASE_ADMISSION_V1.json": "e861eab3ddadaf817fdd321241690081b5ed693ca5093ee7162a51d496c2d807",
+    "/home/liyufeng/safeduo-dashboard-grasp-continuity-20261010/docs/safety_alpha_motion_20261010/grasp_geometry_v1/BUNDLE_RECEIPT_V1.json": "1da4a0f4f9f40c3ac3825e9646ebacf445b4689d79dc782935c7ed787dfd04ed",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v14/INDEPENDENT_CAPTURE_AUDIT_V1.json": "ee8d6ac10505fda63dbcbda09c50bb1d6b555de50f8f63697f89f0caf55f0926",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v14/INDEPENDENT_FEEDBACK_GRIP_AUDIT_V1.json": "0453dc107659196e45df5e639aabf731d4dd9bc8b87cd488f2e6b3fe47ec6820",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/random_joint_support_v4/RANDOM_JOINT_SUPPORT_V4.json": "6ef3d16688c1261a69c77f0a9233d32ed86bc0cabde5a5fcce3860164c5c6d20",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v16/INDEPENDENT_CAPTURE_AUDIT_V1.json": "725b9c56d6be4bc7d32881a49b5b070f66cc9f25742c3e35b4dbc95aa745601d",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v16/INDEPENDENT_FEEDBACK_GRIP_AUDIT_V2.json": "dcd43164d7ed133f93a12e8a11409d3c0ab506c6a5563eb3f3b6d03026044e11",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v16/INDEPENDENT_PRELIFT_ADMISSION_V1.json": "3b783c6e10c7ce63d772239d46759209276a0617338408115651269260cda338",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/mimic_provenance_v1/MIMIC_PROVENANCE_V1.json": "460f89407566e914e7b836de9ae5b81b1c21b9af8e288cb7ae193f4e8183c7d2",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/coupled_pregrasp_qualification_v2/MESH_CORRECTED_PREGRASP_RESULT_V1.json": "09d8696b3803b31a85e10b02505875d598576bbfcd6d10e7073ea197debf03cb",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v21/INDEPENDENT_CAPTURE_AUDIT_V1.json": "ad826af1e76a12cee19aa1a13adf6f1ce9456a253bb8354f8e91b8cb68844027",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v21/INDEPENDENT_NATIVE_MIMIC_FULLWINDOW_V2.json": "57efb306e5525cebe5cba76002fbec6c5b9fcc361223f38b2611218c37669a6b",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v21/INDEPENDENT_PRELIFT_ADMISSION_V1.json": "4c4501d13c0b9b1dd6d48fc8797544a18960271ff62775b6488ff79d2d015113",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_requirements_v1/EVIDENCE_MATRIX_V10.json": "c501136f952b95f71a76502f3a8b882f64acc66c46c38a855abde96d598e96ab",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/loaded_mimic_basis_option_comparison_v1/COMPARISON_RESULT_V1.json": "64b0c76cfad91c154306349c7b7b817a7d72e53bb92134c6d19c302931ba9a6e",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/coupled_physics_delivery_v1/FINAL_DELIVERY_GATE_V1.json": "97020dee838ae07ba7d5fd85c9842a5956a6b8bfded8013402c0ba3e831360c6",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/ACTUAL_COMPLETION_EXIT_V36.json": "14fe23687a0bbd4809ff7e9919b40c05d05fe346c540370bc0dcc49be089bf7c",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/INDEPENDENT_CAPTURE_AUDIT_V1.json": "15a4543a3d488cbdb3029f0974f101cb4e3190e70a8af633afe8548657a89a56",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json": "9e2a1774143551c511d308c5798fd0141f2410eabbf2a7d472a29a34dfc3efa5",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/INDEPENDENT_FULL_MOTOR_EFFORT_V1.json": "3b2ed75dfa9e15a04845577d5136f1c6765fd7b60cbdf4c759e2b5a9484c329d",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/INDEPENDENT_VELOCITY_COORDINATE_BINDING_V2.json": "86d8dd0624c4740dfb630a50876932f4ca41718554445d3911bdeff49e58e83e",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/ARMATURE_COUNTERFACTUAL_DIAGNOSIS_V1.json": "644db4460492a313d39f4d6f861ffc93617ac922c3b4431d0376ce2505ab66bc",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v36/MISSING_INERTIA_REGRESSION_V1.json": "c2765b8c2725166db26ef670bd08a87f798eec2980da93575f5d03faa309ba69",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v46/ACTUAL_COMPLETION_EXIT_V46.json": "7d430f41e8a3680ec255a927e9b2ef3707421a4cfa92d042e5dacc23000edcd7",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v46/INDEPENDENT_CAPTURE_AUDIT_V1.json": "6a1539d1e43c51a7e380bf0926360b2afb1589d91c9a664cc5c731fc2c09f6ad",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v46/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json": "53b3a59e12445c00626a3816c5af8fc9cb42a8c165013eb7038a5aedbaa7d582",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v46/REGISTRATION_V1.json": "ab94e5fbaad6f427a162a635411812a709b3b99b5093f0b2fa3a29a003623f69",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v46/INDEPENDENT_FULL_MOTOR_EFFORT_V2.json": "3e99aea29ccc26eb4ddb17b7da2ea40e786c2e10a54c22ac321d5d54811a8c76",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v48/ACTUAL_COMPLETION_EXIT_V48.json": "e77ed7100d4621c4fea55761889875d22f2dc026d4f82e385c115da2593596f4",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v48/INDEPENDENT_CAPTURE_AUDIT_V1.json": "ed4da2919e3a9858969f5fe00a817749d572c70b1f4fca11c2f2bb65a5ea9ce3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v48/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json": "ac29acb402958e6bb2efd20f2537ad8e32d370ad38214e16851678981ac06ab7",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v48/REGISTRATION_V1.json": "9fcdaac3d3825674c71f20e652b0dab1fcbe13cc92ee29ec387d0b23b93cc529",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v48/INDEPENDENT_FULL_MOTOR_EFFORT_V2.json": "cadafd2fb522a851bf81b34b45cae79b8f737489712e13925e6ceeb4dbb12df8",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_requirements_v1/EVIDENCE_MATRIX_V17.json": "5ccf05d389f7d7305caeece2408d39210d5ed2f591de3272f3385cad8bb33792",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v46/OBSERVER_TRAJECTORY_COMPARISON_V1.json": "f78c509c576bd64401049280cb8e285125e05391b0efceba17cc6debcd1dab6b",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/native_solver_grid_delivery_v1/FINAL_DELIVERY_GATE_V3.json": "cb68c4dc4ceb8550bab5e2213a082be21b54bced006c64ffe96958d73572192b",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_requirements_v1/EVIDENCE_MATRIX_V18.json": "ed5272ddaeb6417299212b2102a80c424290ef33f4a7a70c6e9d90c0381e083d",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v49/ACTUAL_COMPLETION_EXIT_V49.json": "c8b086c3103ea62e2c22fd16065b86755a66f989aa9b4a196348e85a0bdb1c56",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v49/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json": "9a0ad02d93a2de5e5eb8fce96faf064934699919034f422ed90ad11488b96936",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v49/INDEPENDENT_CAPTURE_AUDIT_V1.json": "340699e986e4c16a89b8f5a5628be01184d07de64d9811e9e9cf6c20a2f26424",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v50/INDEPENDENT_STATIC_READBACK_V1.json": "d8939ec773ef25a509b6d5add82286a5c6a43e38228f9142af459d972b74b2b0",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v50/ACTUAL_COMPLETION_EXIT_V50.json": "23e26545a82b2d4047eabde8fda52622289b6b26f30fd17ce467bde8f51ff7e7",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v51/REGISTRATION_V1.json": "f37f2ef37ce8cc52c6ab112b20edad61e592ad73293453ba03011df95ae58309",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/grip_resume_margin_v1/RECORDED_HOLD_RESUME_GAP_V1.json": "44a87dd773fc289cafd26737016d4ec83834820b5b54bfaea36f59f00c558e9f",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/grip_resume_margin_v1/ACTUAL_UNIT_TEST_EXIT_V1.json": "ccc32dde8bcce899ba115f0e12af0d1630f95aa23a21b7f2adf5064b7603f4d3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/media_transport_repair_v1/LOCAL_BROWSER_ACTUAL_EXIT_V2.json": "1551323946ac288e441d4ffda569e6aa5b2c0f5e0ffd050b3d4abac55c11b68d",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_requirements_v1/EVIDENCE_MATRIX_V19.json": "9ef88eb402fdca4775e606503dc8d39d9d3dd2ae211c9409441c3e734f8785e8",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/media_transport_repair_v1/FINAL_PLAYER_DELIVERY_GATE_V1.json": "d95e3580940ade4181f73906803979483120a6e4e60f23b75dbd48b88bbdbbc1",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/media_transport_repair_v1/FINAL_PLAYER_DELIVERY_GATE_ACTUAL_EXIT_V1.json": "1dd73a75280e31310ff34e68e9a398f5b913c524f7f8068025785c2f95a5d4a5",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v51/STALE_SETTLE_CLOCK_DIAGNOSIS_V1.json": "8d187d4edb52525d78f7461b0636fc1673e0715ff8410c1e3873995fc266a0ae",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v51/STALE_SETTLE_CLOCK_DIAGNOSIS_ACTUAL_EXIT_V1.json": "3f9545a58bcca89aa551b6bba3fbd398619aa2a930946dc7070882dce2d2de32",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_motor_operating_domain_v2/INDEPENDENT_PROPOSAL_ORACLE_V2.json": "10c0d7fd8ecd9194c36cf0ecd8ee436f3ce76538b0a809e3e7222c92fc79343d",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_motor_operating_domain_v2/JOINT_SAMPLING_SUPPORT_AUDIT_V2.json": "4ab5f1100511582c28243ea9175008cae6b57bda8244bcc013c69de46e42de1a",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v53/REGISTRATION_V1.json": "350f4d8c142ec4e17fb4f1babcfff9b0a4ecd46be4b313eeba8d9667d06cfbf3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/build_evidence_matrix_v21.py": "da2a3d3cae1d56e5ce4d4b8642adb45e47781b16b0f53a63a3dea05aceefa741",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_requirements_v1/EVIDENCE_MATRIX_V20.json": "b0191b12283ae6e6dcf79d63399a147f104065cbe88564b8bd5b562540aa7369",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/ACTUAL_COMPLETION_EXIT_V54.json": "7e29f4e7428a4d1c4c75e37870396fe57310699eb7954ac4332d95034855173c",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_AUDIT_ACTUAL_EXIT_V1.json": "4d0acaae10b854f705fc49ba0559bd84630f17d778560f4380118b5bdab1f65b",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6_ACTUAL_EXIT.json": "9989a68082bac4d58662f02783a2fd72d310b2c4054a98047c603b77128b37b7",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_FULL_MOTOR_EFFORT_V2_ACTUAL_EXIT.json": "e87c8b01ecba2cf61acc0b80cedab243f68927c0081015f362786551911130c0",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_POSITION_ITERATION_COUNTERFACTUAL_V1_ACTUAL_EXIT.json": "709c2656e48c963fed483e1178d8ef9a3ce24378516c9ccb5f5251f4997311d9",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_CAMERA_FRAMING_V2_ACTUAL_EXIT.json": "29decc17cc38593ab3dfc2b1847de143069a160bf9711cc63b9b3065e29d67ee",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/random_domain_delivery_v1/FINAL_DELIVERY_GATE_ACTUAL_EXIT_V1.json": "b7a2cbc40f3178cf426dd0591a8d85230a4090246498610caa434e85ea0ed19e",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_CAPTURE_AUDIT_V1.json": "33c92329947aeccc462519a79f7755dc1b6c5450d6e5e979df92975d468fe426",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json": "778316c902dbed1cdd04092a57ddfb06a579c2ee0edf6867149d587df0a1aae3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_POSITION_ITERATION_COUNTERFACTUAL_V1.json": "4f4b3128e37475a2fc82e5e675f49cdc856b2b8a3cce6b4391ff1100e50c851f",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/INDEPENDENT_CAMERA_FRAMING_V2.json": "c4ad1d199f450e1d1c50680154a065eaddf5bf7035c9e7dce66bedf7579d9ed1",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/REJECTION_V1.json": "35f281a17ecf640343fb3e66022a506abee5e547a4137b4f137d98e6b723c8bf",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v54/FORCE_SAMPLING_DIAGNOSIS_V1.json": "5d9271272cb1987089b85c4e8101dfd2d17aaa756b4811dd2826ba580e43563f",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v53/FREE_RESPONSE_DIAGNOSIS_V3.json": "aaf4d3bb0bbdda24849a078c97fbae77f7e5d5f18ceac491285d95d00972d1cc",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v55/REGISTRATION_V1.json": "8c851ba8d20f4645741db5ed1bcd638ae40966a3d2bbe8556b91b41fcc1879e7",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/random_domain_delivery_v1/FINAL_DELIVERY_GATE_V1.json": "3aba242894298b56ebb846b0dcf3589fe894ee984084d889cec2bd7ed4d00ab7",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/build_evidence_matrix_v22.py": "0ebdca0d347762232fa31221d723700cf2a4bcd4f7dd88a8c9e5144365ad148c",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/full_requirements_v1/EVIDENCE_MATRIX_V21.json": "0b15e385eafd70340df3ae82a9ef4b6f68c1edcd6510643eaaa268489e189fb3",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v55/ACTUAL_COMPLETION_EXIT_V55.json": "f62b558f34a28df22d03a7db6d835143e2d6ff87267e22bcef9b2231d4daf1ff",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v55/INDEPENDENT_CAPTURE_AUDIT_V1.json": "86c862107ed9f56f52840d48c7b68c311245273fa2e29db6e14906fb9920944f",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v55/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json": "68b0f8c7177abeed6cdf73a657f93b3620a900cbe40b5869a496944ebb1c8c40",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v55/INDEPENDENT_MICROSTEP_HAND_TARGET_COUNTERFACTUAL_V1.json": "04509046e2b1c577cec79fe7bb0e3de5b8af7a748181dc1dce26bd0e2c8720b4",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v55/INDEPENDENT_COUPLED_HAND_TARGETS_V3.json": "cc7f0a83ce8aa8ab6331cd05a8ceb1ffd38939950573ecfd76ce4c97826d59cf"
+  },
+  "asset_scope": {
+    "current_diagnostic": "SafeDuo v7: two FR3/F2 and two UR5/DFX; frozen current experiments",
+    "canonical_NAS_plan": "two FR3 + two JAKA Zu7 + four RH56F2",
+    "canonical_promotion": false,
+    "note": "NAS plan safety and task criteria are reused as requirements; experimental v7 evidence does not certify the different canonical asset profile."
+  },
+  "revision": 22,
+  "all_gates_unchanged": true,
+  "all9_joint_requirements_required": true,
+  "formal_holdout_acceptance_count": 0,
+  "updated_utc": "2026-10-11T07:08:03.071111+00:00",
+  "active_native_excluded": [],
+  "every_required_row_jointly_accepted": false,
+  "latest_development_frontier": {
+    "native_version": 55,
+    "controls": 599,
+    "physics_events": 9584,
+    "original_position_error_rad": 0.00038226693868637085,
+    "original_velocity_error_rad_s": 0.6868297457695007,
+    "original_model_window_pass": false,
+    "physical_gates_pass": false,
+    "maximum_hand_normal_N": 120.01704359054565,
+    "four_hand_contact_s": 0.0,
+    "stable_lift_s": 0.0,
+    "fulltask_pass": false,
+    "all77_native_arrays_exact54": true,
+    "only_hand_target_cadence_changed": true,
+    "canonical_qualified": false,
+    "formal_holdout_count": 0,
+    "learned_system0_tested": false
+  }
+}
