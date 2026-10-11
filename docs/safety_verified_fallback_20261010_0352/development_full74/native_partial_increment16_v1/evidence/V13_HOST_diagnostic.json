@@ -1,0 +1,292 @@
+{
+  "schema": "astra.v13.init_return.HOST_actual_diagnostic.v1",
+  "reviewer": "Desc",
+  "status": "PASS_HOST_DIAGNOSTIC_ONLY",
+  "blocking_findings": [],
+  "observed_utc": "2026-10-11T11:49:10.881069+00:00",
+  "scope": "DURABLE_ORIGINAL_CONSTRUCTOR_BOUNDARIES_AND_PHASES_ONLY",
+  "original_inputs": {
+    "boundary_journal": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v13_init_boundary/native_attempt1/ENV_RESET_RENDER_BOUNDARIES_V1.jsonl",
+      "sha256": "b7f75a2d3b4e9f26976331b2538dde1ad2c0a4c2ee4ad486408d8fedcaa821ca"
+    },
+    "phase_journal": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_supplemental_mixed32_native_v13_init_boundary/native_attempt1/native_initialization_diagnostics_v4/phases.jsonl",
+      "sha256": "ebf462f20955fa5dac4eabbaa6b15ceeff02dec7711cacbd708845de883dcc1f"
+    }
+  },
+  "immutable_snapshots": {
+    "boundary_journal": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v13_init_return_host_diagnostic_v1/actual_host01/driver/worker/products/BOUNDARY_JOURNAL_SNAPSHOT_V1.jsonl",
+      "sha256": "b7f75a2d3b4e9f26976331b2538dde1ad2c0a4c2ee4ad486408d8fedcaa821ca"
+    },
+    "phase_journal": {
+      "path": "/mnt/nas/data/lyf/double_hand/safety_verified_fallback_20261010_0352/astra_full74_v13_init_return_host_diagnostic_v1/actual_host01/driver/worker/products/PHASE_JOURNAL_SNAPSHOT_V1.jsonl",
+      "sha256": "ebf462f20955fa5dac4eabbaa6b15ceeff02dec7711cacbd708845de883dcc1f"
+    }
+  },
+  "input_bytes": {
+    "boundary_journal": 6011,
+    "phase_journal": 958
+  },
+  "input_before_after_byteexact": true,
+  "original_native_PID_from_records": 2593380,
+  "event_count": 14,
+  "event_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "matched_call_ids": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "matched_calls": [
+    {
+      "call_id": 1,
+      "parent_call_id": null,
+      "name": "VisibleDuoEnv.constructor",
+      "source_line": 22,
+      "before_event_index": 1,
+      "after_event_index": 12,
+      "before_monotonic_ns": 1841420643074285,
+      "after_monotonic_ns": 1841520307695589,
+      "after_BEGIN_fsync_monotonic_ns": 1841420650880815,
+      "HOST_before_to_after_ns": 99664621304,
+      "HOST_after_BEGIN_fsync_to_after_stamp_ns": 99656814774,
+      "outcome": "RETURNED",
+      "exception_type": null
+    },
+    {
+      "call_id": 2,
+      "parent_call_id": 1,
+      "name": "SimulationContext.reset",
+      "source_line": 512,
+      "before_event_index": 2,
+      "after_event_index": 11,
+      "before_monotonic_ns": 1841486172674009,
+      "after_monotonic_ns": 1841519805848211,
+      "after_BEGIN_fsync_monotonic_ns": 1841486180314790,
+      "HOST_before_to_after_ns": 33633174202,
+      "HOST_after_BEGIN_fsync_to_after_stamp_ns": 33625533421,
+      "outcome": "RETURNED",
+      "exception_type": null
+    },
+    {
+      "call_id": 3,
+      "parent_call_id": 2,
+      "name": "SimulationContext.render",
+      "source_line": 585,
+      "before_event_index": 3,
+      "after_event_index": 6,
+      "before_monotonic_ns": 1841519218052794,
+      "after_monotonic_ns": 1841519745491683,
+      "after_BEGIN_fsync_monotonic_ns": 1841519224131088,
+      "HOST_before_to_after_ns": 527438889,
+      "HOST_after_BEGIN_fsync_to_after_stamp_ns": 521360595,
+      "outcome": "RETURNED",
+      "exception_type": null
+    },
+    {
+      "call_id": 4,
+      "parent_call_id": 3,
+      "name": "app.update",
+      "source_line": 626,
+      "before_event_index": 4,
+      "after_event_index": 5,
+      "before_monotonic_ns": 1841519479680452,
+      "after_monotonic_ns": 1841519740292563,
+      "after_BEGIN_fsync_monotonic_ns": 1841519486441416,
+      "HOST_before_to_after_ns": 260612111,
+      "HOST_after_BEGIN_fsync_to_after_stamp_ns": 253851147,
+      "outcome": "RETURNED",
+      "exception_type": null
+    },
+    {
+      "call_id": 5,
+      "parent_call_id": 2,
+      "name": "SimulationContext.render",
+      "source_line": 585,
+      "before_event_index": 7,
+      "after_event_index": 10,
+      "before_monotonic_ns": 1841519750320097,
+      "after_monotonic_ns": 1841519802916010,
+      "after_BEGIN_fsync_monotonic_ns": 1841519755951036,
+      "HOST_before_to_after_ns": 52595913,
+      "HOST_after_BEGIN_fsync_to_after_stamp_ns": 46964974,
+      "outcome": "RETURNED",
+      "exception_type": null
+    },
+    {
+      "call_id": 6,
+      "parent_call_id": 5,
+      "name": "app.update",
+      "source_line": 626,
+      "before_event_index": 8,
+      "after_event_index": 9,
+      "before_monotonic_ns": 1841519756826135,
+      "after_monotonic_ns": 1841519800101792,
+      "after_BEGIN_fsync_monotonic_ns": 1841519759926417,
+      "HOST_before_to_after_ns": 43275657,
+      "HOST_after_BEGIN_fsync_to_after_stamp_ns": 40175375,
+      "outcome": "RETURNED",
+      "exception_type": null
+    }
+  ],
+  "unmatched_before_ids": [],
+  "exception_events": 0,
+  "observer_close_active_calls": [],
+  "constructor_observed_return": true,
+  "SDK_binding_guard": {
+    "status": "MANDATORY_GUARD_PATH_REACHED_BEFORE_CALL1",
+    "basis": "SOURCE_BOUND_CONTROL_FLOW_AND_DURABLE_CALL1_NOT_OBJECT_SNAPSHOT",
+    "observer_source": {
+      "path": "/home/liyufeng/safeduo/artifacts/safety_verified_fallback_20261010_0352/astra/full74_env_reset_render_boundary_diagnostic_v1/release3/source_seam_v1.py",
+      "sha256": "df7a6b41396e282e86574d447913357e74eea43162e9a27a525ad5de9e19a79d"
+    },
+    "loaded_session_source_lines": [
+      167,
+      173
+    ],
+    "compiled_method_guard_source_lines": [
+      126,
+      137
+    ],
+    "constructor_scope_source_lines": [
+      176,
+      184
+    ],
+    "module_path_class_origin_source_hash_code_attributes_namespace_checked": true,
+    "loaded_class_object_snapshot_retained": false,
+    "SDK_source_or_runtime_object_read_by_this_worker": false,
+    "dedicated_SDK_source_pin": {
+      "path": "/home/liyufeng/safeduo_isaaclab/source/isaaclab/isaaclab/sim/simulation_context.py",
+      "sha256": "d95f2eaa138b4fff845ac72439caa2eca5deab4f0d5609e06f163d20eef4df93"
+    }
+  },
+  "original_app_update_sites": {
+    "line617": {
+      "status": "NOT_CALLED",
+      "calls": 0,
+      "duration_ns": null
+    },
+    "line626": {
+      "status": "TWO_CALLS_RETURNED",
+      "call_ids": [
+        4,
+        6
+      ]
+    }
+  },
+  "phases": [
+    {
+      "phase": "DIAGNOSTICS_READY",
+      "pid": 2593380,
+      "utc": "2026-10-11T11:34:38.721409+00:00",
+      "monotonic_seconds": 1841365.146030691,
+      "process_cpu_seconds": 13.361778711,
+      "diagnostic_only": true
+    },
+    {
+      "phase": "BEFORE_APP_LAUNCH",
+      "pid": 2593380,
+      "utc": "2026-10-11T11:34:38.725045+00:00",
+      "monotonic_seconds": 1841365.149660498,
+      "process_cpu_seconds": 13.361989266,
+      "diagnostic_only": true
+    },
+    {
+      "phase": "AFTER_APP_LAUNCH",
+      "pid": 2593380,
+      "utc": "2026-10-11T11:35:15.919111+00:00",
+      "monotonic_seconds": 1841402.343729593,
+      "process_cpu_seconds": 49.823175574,
+      "diagnostic_only": true
+    },
+    {
+      "phase": "BEFORE_ENV_CREATE",
+      "pid": 2593380,
+      "utc": "2026-10-11T11:35:33.885276+00:00",
+      "monotonic_seconds": 1841420.309897988,
+      "process_cpu_seconds": 62.242607612,
+      "diagnostic_only": true
+    },
+    {
+      "phase": "AFTER_ENV_CREATE",
+      "pid": 2593380,
+      "utc": "2026-10-11T11:37:15.235448+00:00",
+      "monotonic_seconds": 1841521.660067753,
+      "process_cpu_seconds": 115.51250946,
+      "diagnostic_only": true
+    }
+  ],
+  "phase_intervals": [
+    {
+      "name": "APP_PHASE",
+      "before_phase": "BEFORE_APP_LAUNCH",
+      "after_phase": "AFTER_APP_LAUNCH",
+      "HOST_monotonic_interval_s": 37.19406909518875,
+      "process_CPU_interval_s": 36.461186307999995,
+      "pure_SDK_or_GPU_cost": false
+    },
+    {
+      "name": "ENV_PHASE",
+      "before_phase": "BEFORE_ENV_CREATE",
+      "after_phase": "AFTER_ENV_CREATE",
+      "HOST_monotonic_interval_s": 101.35016976483166,
+      "process_CPU_interval_s": 53.269901848,
+      "pure_SDK_or_GPU_cost": false
+    }
+  ],
+  "unassigned_HOST_windows": {
+    "constructor_before_to_reset_before_ns": 65529599724,
+    "reset_before_to_first_render_before_ns": 33045378785
+  },
+  "timing_contract": {
+    "clock": "HOST_MONOTONIC",
+    "nested_intervals_must_not_be_added": true,
+    "BEGIN_to_AFTER_includes_BEGIN_durable_write": true,
+    "after_BEGIN_fsync_window_excludes_own_BEGIN_fsync": true,
+    "AFTER_stamp_precedes_own_END_durable_write": true,
+    "nested_logging_source_guard_and_possible_SDK_GPU_wait_included": true,
+    "pure_IO_time": "UNKNOWN",
+    "GPU_time": "NOT_COLLECTED"
+  },
+  "native_execution": {
+    "parent_reported_running_at_delivery_request": true,
+    "actual_wait_read": false,
+    "terminal_status": "UNKNOWN_NOT_A_NATIVE_CLOSURE",
+    "native_closed_by_this_delivery": false
+  },
+  "claims": {
+    "root_cause_fixed": false,
+    "native_hang_root_cause_known": false,
+    "camera_qualified": false,
+    "full12_completed": false,
+    "native_physical_safety_pass": false,
+    "task_acceptance": false,
+    "bank_authorized": false,
+    "holdout_used": false
+  },
+  "observations_are_constructor_scoped_only": true,
+  "SDK_calls_added_by_this_worker": 0,
+  "RAW_reads": 0,
+  "native_repeats": 0,
+  "process_census": false,
+  "native_getters_setters_renders": 0
+}
