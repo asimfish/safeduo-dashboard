@@ -1,0 +1,32 @@
+{
+  "frozen_utc": "2026-10-11T12:15:15.179165+00:00",
+  "baseline": 71,
+  "candidate": 76,
+  "change": "TGS velocity iterations128->0; position32 and all original physical/controller/model parameters fixed",
+  "maximum_physics_events": 64,
+  "maximum_native_wall_seconds": 600,
+  "all77_native_parameter_arrays_and13_initial_state_fields_must_equal71": true,
+  "every_original_submitted_target_must_match_fixture": true,
+  "both_original_model_tolerances": 0.0001,
+  "diagnostic_weak_contact_persistence": {
+    "F_L_normal_gt_N": 0.005,
+    "continuous_physics_events_ge": 20
+  },
+  "require_complete64_original_model_original_physical_and_contact_persistence": true,
+  "native_scene_metadata_min_velocity_zero_previously_observed": true,
+  "actual_binary_iteration_execution_count_not_directly_observed": true,
+  "primary_documentation": "https://nvidia-omniverse.github.io/PhysX/physx/5.5.1/docs/RigidBodyDynamics.html",
+  "primary_source": "https://github.com/NVIDIA-Omniverse/PhysX/blob/5ca9f472105a90d70d957c243cb0ef36fe251a9f/physx/source/gpusolver/src/PxgTGSCudaSolverCore.cpp#L1524",
+  "rationale": "Official documentation distinguishes biased position and unbiased velocity iterations and permits TGS without velocity iterations in suitable scenes. Existing primary GPU source comments describe a changed solver objective in velocity iterations. This motivates an isolated native test, without asserting that the installed binary shares that exact source or that removing the stage is a safe fix.",
+  "installed_binary_exact_source_identity_not_proven": true,
+  "no_SDK_patch": true,
+  "fulltask_acceptance": false,
+  "new_independent_random_cases": 0,
+  "formal_holdout_count": 0,
+  "fullSystem0_accepted": false,
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/prepare_tgs_velocity_stage_isolation_v76.py": "721b28f36162d469859d1169c00e7bcfd6f9fa48a04559d2dfc272a74845c2e8",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/fourhand_native_probe_v76/REGISTRATION_V1.json": "e1f15e532ba64a91bf65ecf0ad576d17cf9dda18a54c99aebd840cd3daca6453",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/gpu_mimic_solver_source_v1/PxgTGSCudaSolverCore.cpp": "53755a50bfb09a3c047bad4c1845ff9af01118fcce59f515c36fe39d531f6c7f"
+  }
+}

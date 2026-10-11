@@ -1,0 +1,47 @@
+{
+  "frozen_utc": "2026-10-11T12:05:39.201640+00:00",
+  "baseline": 71,
+  "candidates": {
+    "74": {
+      "isolated_zero_PD_motor": {
+        "arm": "F_L",
+        "joint": "left_thumb_2_joint"
+      },
+      "registration_sha256": "4653e84fe4dc9c7afffb1bcdd9ff63b8b2bf2deac3fc754970c0f25c9083e2a4",
+      "worker_sha256": "f71d48eececbc1865d826ba71e1b605c542894efb9fac82346d9a0fe9107cd70"
+    },
+    "75": {
+      "isolated_zero_PD_motor": {
+        "arm": "F_L",
+        "joint": "left_thumb_1_joint"
+      },
+      "registration_sha256": "b8e7e29aeb0d07cb9a1040f822f32bf44fb47e387d3fc61ab2a9f600132594f7",
+      "worker_sha256": "f71d48eececbc1865d826ba71e1b605c542894efb9fac82346d9a0fe9107cd70"
+    }
+  },
+  "launch_serially": true,
+  "selected_GPU": 1,
+  "all77_native_parameter_arrays_and_initial_states_must_equal71": true,
+  "submitted_full_target_tape_must_match_original_reproducer": true,
+  "maximum_physics_events": 64,
+  "maximum_native_wall_seconds": 600,
+  "both_original_model_tolerances": 0.0001,
+  "all_original_physical_gates_unchanged": true,
+  "diagnostic_weak_contact_persistence": {
+    "F_L_normal_gt_N": 0.005,
+    "continuous_physics_events_ge": 20
+  },
+  "require_complete64_and_original_model_and_physical_and_persistence_for_short_diagnostic_pass": true,
+  "no_fulltask_grasp_or_safe_stop_qualification_from_this_short_diagnostic": true,
+  "inference_scope": "Known precontact seed, hidden solver warm starts not restored. Tests isolate necessity of each original thumb PD term, not sufficient full-load safety.",
+  "causal_hypothesis": "Determine whether original thumb2 flexion PD or thumb1 opposition PD is necessary for short weak-contact mimic velocity failure. Preserve the other motor rather than pausing all6 hand motors.",
+  "frozen_decision_checker": "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/audit_single_thumb_pd_decision_v1.py",
+  "decision_checker_sha256": "99112c59d0a3965e12de332e49fda8ada642148a876b1ed3a0c9be75b4b2e182",
+  "new_independent_random_cases": 0,
+  "formal_holdout_count": 0,
+  "fullSystem0_accepted": false,
+  "source_sha256": {
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/prepare_single_thumb_pd_isolation_v74.py": "9a44f4579fc0e3cda4eff00ce271992a76770b9d5da8fdc63c51d6ca26d652dd",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/audit_single_thumb_pd_effort_v1.py": "9361ef4aba367b044a0afd60d9bf0e85715c42375b1b927c550d30a5d80dd1af"
+  }
+}
