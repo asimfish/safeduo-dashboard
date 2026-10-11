@@ -1,0 +1,192 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SafeDuo负载预测与真实夹持验收</title><style>body{margin:0;background:#f3f6f8;color:#182e3a;font:16px/1.65 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:28px}h1{font-size:clamp(25px,4vw,38px)}h2{margin-top:35px;font-size:23px}a{color:#145788}.warn{padding:18px;border-left:5px solid #a83432;background:#fff1ee}.scope{padding:16px;background:#e7eef3}.views{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}figure{margin:0;background:white;padding:10px}img,video{display:block;width:100%;max-width:100%;height:auto}button{font:inherit;padding:9px 14px;cursor:pointer}.scroll{overflow:auto}table{border-collapse:collapse;background:white;width:100%;font-size:14px}td,th{padding:10px;border:1px solid #d6dde2;text-align:left;vertical-align:top;min-width:95px}@media(max-width:700px){main{padding:16px}.views{grid-template-columns:1fr}h2{font-size:20px}}</style></head><body><main>
+<p><a href="../../#scientific">返回主面板</a> · <a href="../safety_hand_target_20261011/">前轮手指目标对照</a> · <a href="../safety_random_scope_20261011/">随机范围与覆盖缺口</a></p>
+<h1>负载预测与真实夹持验收</h1><div class="warn"><strong>九项要求尚未全部达标，System 0正式留出验收仍为0。</strong><p>两轮均未通过原安全门槛，尚无完整四手任务成功。下面保留全部记录和失败，不把指标下降作为安全验收。</p></div>
+<p class="scope">同一条已知开发输入，资产2 FR3/F2 + 2 UR5/DFX；标准2 FR3 + 2 JAKA ZU7 + 4 RH56F2未取得资格。学习策略与System 0均关闭。两轮不是两个独立随机样本，也不是System 0开关对照。反馈会改变后续实际目标，两轮持续时间不同。</p>
+<h2>新增机制与实际结果</h2><p>V55使用自由运动隐式预测。V57执行科学候选V56，使用上一物理步的实际关节速度、质量矩阵、已截断施加力矩、有效重力和科里奥利项估计手部广义扰动，再进入隐式预测。机械臂不加入该扰动补偿。残差同时可能含约束与数值误差，不能视为独立测得的物体接触力。</p>
+<p>全部77项原生参数、控制增益、摩擦和质量保持，手指目标均逐物理步推进，16物理步/控制周期、六周期机械臂延迟及求解配置保持。原位置和速度联动误差均须≤0.0001；单手接触力≤30 N。四手持续夹持≥0.25秒、100 mm抬升并稳定≥2秒，以及搬运、放置、释放和退回门槛保留。</p>
+<p>V57最大接触力36.586094 N，超过30 N；位置误差0.000235021 rad、速度误差0.01545909 rad/s也超标。首次接触约0.260179 N时，速度联动误差即超过0.0001。没有达到持续四手夹持，候选拒绝采用。峰值比V55低不能证明其他输入、长任务或System 0安全。</p>
+<p><a href="native_v57/FIRST_CONTACT_MODEL_ERROR_DIAGNOSIS_V2.json">首次接触与联动超限事件</a> · <a href="native_v57/ADOPTION_PHYSICAL_PREREQUISITES_V1.json">负载与完整任务资格拒绝</a> · <a href="native_v57/INDEPENDENT_FULL_MOTOR_EFFORT_V3.json">独立全50电机控制方程核验</a></p>
+<h2>全部记录窗口与原门槛</h2><div class="scroll"><table id="comparison"><thead><tr><th>版本</th><th>预测方式</th><th>控制 / 物理步</th><th>位置误差rad</th><th>速度误差rad/s</th><th>最大单手接触N</th><th>物理门槛</th><th>持续四手接触秒</th><th>完整任务</th></tr></thead><tbody><tr><td>V55</td><td>自由运动预测</td><td>599 / 9584</td><td>0.000382266939</td><td>0.686829746</td><td>120.017044</td><td>失败</td><td>0</td><td>未完成</td></tr><tr><td>V57</td><td>手部扰动预测（科学候选V56，执行V57）</td><td>586 / 9376</td><td>0.000235021114</td><td>0.0154590905</td><td>36.5860939</td><td>失败</td><td>0</td><td>未完成</td></tr></tbody></table></div>
+<figure><a href="native_contact_predictor_counterfactual.png"><img src="native_contact_predictor_counterfactual.png" alt="两轮完整原生记录的手指目标增量、接触力和原联动误差，保留原始门槛"></a></figure>
+<section class="capture" id="capture55"><h2>V55：自由运动预测</h2><div class="sync-controls" hidden><button class="play-all">同步播放四路</button> <button class="pause-all">暂停</button> <button class="restart-all">从头播放</button></div><div class="views"><figure><figcaption>俯视</figcaption><video controls playsinline preload="none" poster="../safety_hand_target_20261011/native_v55/top_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/top.webm" type="video/webm"><source src="../safety_hand_target_20261011/native_v55/top.mp4" type="video/mp4"></video><a href="../safety_hand_target_20261011/native_v55/top.mp4">下载MP4</a></figure><figure><figcaption>正视</figcaption><video controls playsinline preload="none" poster="../safety_hand_target_20261011/native_v55/front_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/front.webm" type="video/webm"><source src="../safety_hand_target_20261011/native_v55/front.mp4" type="video/mp4"></video><a href="../safety_hand_target_20261011/native_v55/front.mp4">下载MP4</a></figure><figure><figcaption>侧视</figcaption><video controls playsinline preload="none" poster="../safety_hand_target_20261011/native_v55/side_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/side.webm" type="video/webm"><source src="../safety_hand_target_20261011/native_v55/side.mp4" type="video/mp4"></video><a href="../safety_hand_target_20261011/native_v55/side.mp4">下载MP4</a></figure><figure><figcaption>全景</figcaption><video controls playsinline preload="none" poster="../safety_hand_target_20261011/native_v55/overview_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/overview.webm" type="video/webm"><source src="../safety_hand_target_20261011/native_v55/overview.mp4" type="video/mp4"></video><a href="../safety_hand_target_20261011/native_v55/overview.mp4">下载MP4</a></figure></div><p><a href="../safety_hand_target_20261011/native_v55/INDEPENDENT_CAPTURE_AUDIT_V1.json">接触、物理与任务核验</a> · <a href="../safety_hand_target_20261011/native_v55/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json">原联动逐步核验</a> · <a href="../safety_hand_target_20261011/native_v55/SELECTED_EVERY_STEP_NATIVE_FIELDS_V2.npz">每个物理步的关节、目标与力记录</a> · <a href="../safety_hand_target_20261011/native_v55/COMPACT_PUBLIC_CUSTODY_V2.json">数据和视频索引</a></p><p>记录9.982934秒；完整质量矩阵、9021对几何和82刚体点受力保存在NAS。视频尾帧的显示时长不增加物理采样。</p></section><section class="capture" id="capture57"><h2>V57：手部扰动预测（科学候选V56，执行V57）</h2><div class="sync-controls" hidden><button class="play-all">同步播放四路</button> <button class="pause-all">暂停</button> <button class="restart-all">从头播放</button></div><div class="views"><figure><figcaption>俯视</figcaption><video controls playsinline preload="none" poster="native_v57/top_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/top.webm" type="video/webm"><source src="native_v57/top.mp4" type="video/mp4"></video><a href="native_v57/top.mp4">下载MP4</a></figure><figure><figcaption>正视</figcaption><video controls playsinline preload="none" poster="native_v57/front_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/front.webm" type="video/webm"><source src="native_v57/front.mp4" type="video/mp4"></video><a href="native_v57/front.mp4">下载MP4</a></figure><figure><figcaption>侧视</figcaption><video controls playsinline preload="none" poster="native_v57/side_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/side.webm" type="video/webm"><source src="native_v57/side.mp4" type="video/mp4"></video><a href="native_v57/side.mp4">下载MP4</a></figure><figure><figcaption>全景</figcaption><video controls playsinline preload="none" poster="native_v57/overview_last.png"><source src="https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/overview.webm" type="video/webm"><source src="native_v57/overview.mp4" type="video/mp4"></video><a href="native_v57/overview.mp4">下载MP4</a></figure></div><p><a href="native_v57/INDEPENDENT_CAPTURE_AUDIT_V1.json">接触、物理与任务核验</a> · <a href="native_v57/INDEPENDENT_NATIVE_MIMIC_WINDOW_V6.json">原联动逐步核验</a> · <a href="native_v57/SELECTED_EVERY_STEP_NATIVE_FIELDS_V3.npz">每个物理步的关节、目标与力记录</a> · <a href="native_v57/COMPACT_PUBLIC_CUSTODY_V4.json">数据和视频索引</a></p><p>记录9.766276秒；完整质量矩阵、9021对几何和82刚体点受力保存在NAS。视频尾帧的显示时长不增加物理采样。</p></section>
+<h2>执行记录与数据边界</h2><p>V56首次执行被中断，只记录未接触物体的部分窗口，未计为通过或失败的完整试验。V57使用相同科学代码重新执行，原生进程、有限监督器和启动器持久退出记录均为0，全部物理记录完整且自有子进程已回收。外层工具输出截断，外层退出回执未知，未补写为0；原审计器因该回执缺口拒绝，保留失败记录。后续有界核验只确认数据与方程，未授予候选资格。</p>
+<p><a href="native_v57/ACTUAL_COMPLETION_EXIT_V57.json">实际退出与未知回执</a> · <a href="native_v57/ORIGINAL_TRANSPORT_GUARD_FAILURES_V1.json">原审计器拒绝记录</a> · <a href="native_v57/INDEPENDENT_CONTACT_DISTURBANCE_COUNTERFACTUAL_V2.json">参数与原判据核验（后续有界核验）</a></p>
+<h2>原九项联合验收</h2><div class="scroll"><table id="matrix"><thead><tr><th>要求</th><th>原判据</th><th>状态</th></tr></thead><tbody><tr><td>回退保持在原始非零速度和延迟下持续安全</td><td>所有128输入全部原生几何/接触/限位/速度通过完整480控制周期；正式独立集另验</td><td>联合未验收</td></tr><tr><td>保留操作意图并有实际四臂运动</td><td>冻结门槛：平均路径与各分层比例&gt;=0.9、四臂运动比例&gt;=0.9、全部26关节平均运动范围&gt;=0.001rad；暂停非威胁臂继续和恢复及任务完成联合验收</td><td>联合未验收</td></tr><tr><td>强随机、大范围操作空间与定向危害覆盖</td><td>记录采样分布、全26DOF和速度支持、覆盖图、所有拒绝及分层；不得将筛选集当无条件全空间</td><td>联合未验收</td></tr><tr><td>科学规范的冻结协议、独立多种子、留出与不确定性报告</td><td>机制/判据冻结后使用至少两套独立新种子；全部登记窗口与失败保留；无结果后调参；报告最坏种子和适用统计上界</td><td>联合未验收</td></tr><tr><td>物体位置、姿态、大小、速度、可达性进入明确规划与安全输入</td><td>逐帧实际对象状态绑定、坐标/尺度校验、可达与拥挤判定、过时/缺失状态安全处理；视觉接口另独立校验</td><td>联合未验收</td></tr><tr><td>真实物理夹持、抬升、搬运、放置和释放</td><td>正式100mm抬升、&gt;=2s稳定持物准入；摩擦接触驱动，无reset后物体写位姿、parenting或固定关节替代摩擦夹持；指定手接触和阶段成功联合判定</td><td>联合未验收</td></tr><tr><td>真实四臂共同任务且有安全与不安全的同输入对照</td><td>同一raw/S0外生命令初态对象资产；cross/self/table各危害；选择性暂停、另一臂移开、恢复、任务成功和零违规全部通过</td><td>联合未验收</td></tr><tr><td>完整原生观测和独立危害判据，无漏测或单看画面</td><td>9021球对与82碰撞刚体原生接触每个物理子步，全74关节/实际目标/FIFO、对象风险；非有限数据或分母缺失即拒绝</td><td>联合未验收</td></tr><tr><td>网页可审阅的安全对照、完整视角和证据归档</td><td>俯视/正视/侧视及需要的局部视角正确缩放，原生状态与视频绑定，暂停/恢复/任务侧车；主站链接、实际部署和公共字节回读通过</td><td>联合未验收</td></tr></tbody></table></div>
+<p><a href="EVIDENCE_MATRIX_V24.json">九项证据矩阵</a> · <a href="ASSET_MANIFEST_V1.json">证据文件哈希</a> · <a href="PUBLIC_MANIFEST_V1.json">网页文件索引</a></p>
+<p>本对照没有新增独立随机覆盖或正式留出验收。4万新随机提案仍未运行原生轨迹；完整50维可达/安全体积、物体布局与噪声/陈旧状态/故障分层，以及真正学习System 0的同输入安全对照仍待完成。</p>
+<script>const sourceMedia = {"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/top.webm":{"bytes":1443757,"sha256":"60e6386df81b6ff63e64cc7d7ba74fdaedafcc957694e1c39a7f9e1dd72eab8c"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/front.webm":{"bytes":2269782,"sha256":"2916c8848e0731a376174bff1f658fc39ddaccd30d8bad0702dd5d75a0191672"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/side.webm":{"bytes":2351574,"sha256":"07aa3dee4e083cad0152bd55dc39be4e0d70136c18546bc8d284e7191b340b14"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/614eed568b862c26782aaacced736498dbbe64bc/docs/safety_hand_target_20261011/native_v55/overview.webm":{"bytes":2246130,"sha256":"1beac398e07639357e5b4aa31c87bbbc1610336491209816d502156f302ab1c8"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/top.webm":{"bytes":1418959,"sha256":"bb7a6fc63375a6c60439b68ef54bb53a35fe97a622e19cdf4ef371d6e0437f41"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/front.webm":{"bytes":2229921,"sha256":"4439891a4baf8a08ee8d419e5fa388da08e104d6fa9d4649f1780bdc1cefd373"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/side.webm":{"bytes":2296887,"sha256":"5dbeb1b19d52e9b0a5b178bf49df81123b001f3f86f0f940beb03d304d937116"},"https://raw.githubusercontent.com/asimfish/safeduo-dashboard/6fbfc1ae735fa95fd69d2bd13d17de09aa68e5cd/docs/safety_contact_predictor_20261011/native_v57/overview.webm":{"bytes":2175131,"sha256":"3344e2b019ecae34a9af77a97b0f7ce9a4ab83bda067887dffe656e15292db78"}};
+const mediaState = new WeakMap();
+const objectURLs = new Set();
+let activeFetches = 0;
+const fetchQueue = [];
+async function fetchSlot() {
+  if (activeFetches < 4) {activeFetches++; return;}
+  await new Promise(resolve => fetchQueue.push(resolve));
+}
+function freeFetchSlot() {
+  const next = fetchQueue.shift();
+  if (next) next();
+  else activeFetches--;
+}
+async function completeMedia(video) {
+  const state = mediaState.get(video);
+  if (state.url) return;
+  if (state.pending) return state.pending;
+  state.pending = (async () => {
+    await fetchSlot();
+    const abort = new AbortController();
+    const timer = setTimeout(() => abort.abort(), 45000);
+    let reader;
+    try {
+      const response = await fetch(state.source, {mode:'cors', credentials:'omit', signal:abort.signal});
+      if (!response.ok || !response.body) throw new Error('Video could not load');
+      reader = response.body.getReader();
+      let length = 0;
+      const chunks = [];
+      while (true) {
+        const {done, value} = await reader.read();
+        if (done) break;
+        length += value.byteLength;
+        if (length > state.expected.bytes) throw new Error('Unexpected media length');
+        chunks.push(value);
+      }
+      if (length !== state.expected.bytes) throw new Error('Incomplete media');
+      const bytes = new Uint8Array(length);
+      let offset = 0;
+      for (const chunk of chunks) {bytes.set(chunk, offset); offset += chunk.byteLength;}
+      const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)))
+        .map(value => value.toString(16).padStart(2,'0')).join('');
+      if (digest !== state.expected.sha256) throw new Error('Media verification failed');
+      const url = URL.createObjectURL(new Blob([bytes], {type:'video/webm'}));
+      state.url = url;
+      objectURLs.add(url);
+      video.src = url;
+      video.load();
+    } finally {
+      clearTimeout(timer);
+      abort.abort();
+      if (reader) {try {await reader.cancel();} catch (_) {}}
+      freeFetchSlot();
+    }
+  })();
+  try {await state.pending;} finally {state.pending = null;}
+}
+window.addEventListener('pagehide', event => {
+  if (event.persisted) return;
+  for (const url of objectURLs) URL.revokeObjectURL(url);
+  objectURLs.clear();
+});
+document.querySelectorAll('.capture').forEach(section => {
+  const videos = [...section.querySelectorAll('video')];
+  const controls = section.querySelector('.sync-controls');
+  const play = section.querySelector('.play-all');
+  const restart = section.querySelector('.restart-all');
+  const status = document.createElement('span');
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  controls.append(status);
+  controls.hidden = false;
+  let ticket = 0;
+  function ready(video) {
+    if (video.readyState >= 2) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => finish(new Error('Video load deadline exceeded')), 15000);
+      function finish(error) {
+        clearTimeout(timer);
+        video.removeEventListener('loadeddata', success);
+        video.removeEventListener('error', failure);
+        error ? reject(error) : resolve();
+      }
+      function success() {finish();}
+      function failure() {finish(new Error('Video could not decode'));}
+      video.addEventListener('loadeddata', success, {once:true});
+      video.addEventListener('error', failure, {once:true});
+    });
+  }
+  async function loaded(video) {await completeMedia(video); await ready(video);}
+  for (const video of videos) {
+    const source = video.querySelector('source[type="video/webm"]').src;
+    const expected = sourceMedia[source];
+    if (!expected) throw new Error('Unregistered media');
+    const state = {source, expected, url:null, pending:null, requested:false, serial:0};
+    mediaState.set(video, state);
+    const nativePlay = video.play.bind(video), nativePause = video.pause.bind(video);
+    video.play = async () => {
+      const serial = ++state.serial;
+      state.requested = true;
+      await loaded(video);
+      if (state.requested && serial === state.serial) return nativePlay();
+    };
+    video.pause = () => {state.requested=false; ++state.serial; nativePause();};
+    function requestView() {
+      status.textContent = ' 正在载入视频…';
+      video.play().then(() => {
+        if (state.requested) status.textContent = ' 播放中';
+      }).catch(() => {status.textContent=' 视频暂未载入，请重试或使用下载链接。';});
+    }
+    video.addEventListener('pointerdown', () => {if (!state.url) requestView();});
+    video.addEventListener('keydown', event => {
+      if (!state.url && (event.key === ' ' || event.key === 'Enter')) {
+        event.preventDefault(); requestView();
+      }
+    });
+    video.addEventListener('play', () => {
+      if (state.url) return;
+      nativePause();
+      status.textContent = ' 正在载入视频…';
+      video.play().then(() => {
+        if (state.requested) status.textContent=' 播放中';
+      }).catch(() => {status.textContent=' 视频暂未载入，请重试或使用下载链接。';});
+    });
+  }
+  function seek(video, time) {
+    if (Math.abs(video.currentTime - time) < .001 && !video.seeking) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => finish(new Error('Video seek deadline exceeded')), 15000);
+      function finish(error) {
+        clearTimeout(timer);
+        video.removeEventListener('seeked', success);
+        video.removeEventListener('error', failure);
+        error ? reject(error) : resolve();
+      }
+      function success() {finish();}
+      function failure() {finish(new Error('Video seek failed'));}
+      video.addEventListener('seeked', success, {once:true});
+      video.addEventListener('error', failure, {once:true});
+      video.currentTime = time;
+    });
+  }
+  async function start(time) {
+    const ownTicket = ++ticket;
+    videos.forEach(video => video.pause());
+    play.disabled = restart.disabled = true;
+    status.textContent = ' 正在载入四个视角…';
+    try {
+      await Promise.all(videos.map(loaded));
+      if (ownTicket !== ticket) return;
+      await Promise.all(videos.map(async video => {await video.play(); video.pause();}));
+      if (ownTicket !== ticket) return;
+      await Promise.all(videos.map(video => seek(video, time)));
+      if (ownTicket !== ticket) return;
+      await Promise.all(videos.map(video => video.play()));
+      if (ownTicket !== ticket) {videos.forEach(video => video.pause()); return;}
+      status.textContent = ' 播放中';
+    } catch (_) {
+      if (ownTicket === ticket) {
+        videos.forEach(video => video.pause());
+        status.textContent = ' 视频暂未载入，请重试或使用下载链接。';
+      }
+    } finally {
+      if (ownTicket === ticket) play.disabled = restart.disabled = false;
+    }
+  }
+  play.onclick = () => start(videos[0].currentTime);
+  restart.onclick = () => start(0);
+  section.querySelector('.pause-all').onclick = () => {
+    ++ticket;
+    videos.forEach(video => video.pause());
+    play.disabled = restart.disabled = false;
+    status.textContent = ' 已暂停';
+  };
+});
+</script></main></body></html>
