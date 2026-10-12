@@ -1,0 +1,11 @@
+{
+  "behavior": "all74 measured/predicted coordinates affect their corresponding actual moving link transforms; all9021 original sphere pair/radius/table semantics preserved",
+  "impact": "ignore fingers can allow harmful intents into the online guard",
+  "inputs": "each4arms full N\u00d7nativeDOF coordinate arrays; original body/joint names and URDF hash; fixed base config",
+  "observable": "body transforms, sphere centers and all9021 ordered pair gaps",
+  "failure": "invalid shape/nonfinite/missing original finger coordinates rejected without mutating input",
+  "oracle": "original native body transforms and all9021 raw gaps from4closed development cases; compare independent original URDF geometry with full-state input against prior arm-only provider",
+  "randomness": "development replay; no statistical independent safety trials or fresh formalholdout",
+  "thresholds": "position/gap<=100micrometers, rotation<=0.001rad; accuracy qualification only, no physicalgate tolerance change",
+  "first_regression": "finger-only joint variation must change corresponding body positions and distances; zeroing hand input should fail this behavior"
+}
