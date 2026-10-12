@@ -1,0 +1,106 @@
+{
+  "status": "CLOSED_RECORDED_RANDOM_MOTION_FAILURE_DIAGNOSIS",
+  "rows": [
+    {
+      "version": 107,
+      "events": 176,
+      "maximum_native_speed_exceedance_rad_s": 6.094430446624756,
+      "first_speed_violation": {
+        "arm": "F_L",
+        "joint": "left_index_1_joint",
+        "event": 160,
+        "time_s": 0.16770833333333332,
+        "actual_speed_rad_s": 7.940688133239746,
+        "original_speed_limit_rad_s": 6.28000020980835
+      },
+      "worst_speed_violation": {
+        "arm": "U_L",
+        "joint": "left_little_2_joint",
+        "event": 165,
+        "actual_speed_rad_s": 12.374430656433105,
+        "original_speed_limit_rad_s": 6.28000020980835,
+        "exceedance_rad_s": 6.094430446624756
+      },
+      "source_prediction_at_actual_q_minimum_m": 0.0014567896723747253,
+      "source_prediction_at_submitted_target_minimum_m": -0.41142505407333374,
+      "native_recorded_proxy_minimum_m": 0.0014567077159881592,
+      "same_state_source_vs_runtime_maximum_pair_gap_difference_m": 0.09559565782546997,
+      "first_native_proxy_failure": null,
+      "same_actual_arm_state_source_predictor_misses_runtime_proxy_failure": false,
+      "pure_delay_explanation_insufficient": false,
+      "source_hand_model_is_open_fixed_geometry": true,
+      "current_native_hands_are_articulated_held_close": true,
+      "critical_source_vs_runtime_gap_difference_m": null,
+      "command_state_positivity_does_not_transfer_to_actual_state": false,
+      "closed_hand_source_difference_not_proven_cause_of_this_critical_pair": true,
+      "actual_vs_submitted_maximum_arm_tracking_error_rad": {
+        "F_L": 2.7895689010620117,
+        "F_R": 1.5632405281066895,
+        "U_L": 4.808271408081055,
+        "U_R": 4.980040073394775
+      },
+      "precise_hand_body_frame_or_shape_root_cause_not_yet_proven": true,
+      "no_native_collision_or_hardware_unsafe_claim_from_negative_proxy_alone": true
+    },
+    {
+      "version": 108,
+      "events": 320,
+      "maximum_native_speed_exceedance_rad_s": 0.0,
+      "first_speed_violation": null,
+      "worst_speed_violation": null,
+      "source_prediction_at_actual_q_minimum_m": -0.00011201947927474976,
+      "source_prediction_at_submitted_target_minimum_m": 2.966076135635376e-05,
+      "native_recorded_proxy_minimum_m": -0.00011216104030609131,
+      "same_state_source_vs_runtime_maximum_pair_gap_difference_m": 0.0954955518245697,
+      "first_native_proxy_failure": {
+        "event": 311,
+        "time_s": 0.325,
+        "recorded_minimum_m": -1.2442469596862793e-05,
+        "source_at_same_actual_arm_q_minimum_m": -1.224130392074585e-05,
+        "source_at_same_submitted_arm_target_minimum_m": 2.966076135635376e-05,
+        "critical_pair_index": 8974,
+        "source_value_at_that_pair": -1.224130392074585e-05
+      },
+      "same_actual_arm_state_source_predictor_misses_runtime_proxy_failure": false,
+      "pure_delay_explanation_insufficient": false,
+      "source_hand_model_is_open_fixed_geometry": true,
+      "current_native_hands_are_articulated_held_close": true,
+      "critical_source_vs_runtime_gap_difference_m": 2.0116567611694336e-07,
+      "command_state_positivity_does_not_transfer_to_actual_state": true,
+      "closed_hand_source_difference_not_proven_cause_of_this_critical_pair": true,
+      "actual_vs_submitted_maximum_arm_tracking_error_rad": {
+        "F_L": 0.004865169525146484,
+        "F_R": 0.0046727657318115234,
+        "U_L": 0.004264473915100098,
+        "U_R": 0.004631996154785156
+      },
+      "precise_hand_body_frame_or_shape_root_cause_not_yet_proven": true,
+      "no_native_collision_or_hardware_unsafe_claim_from_negative_proxy_alone": true
+    }
+  ],
+  "next_required_intervention": "Replace command-only positivity with a gate using actual state, actual velocity and real FIFO history plus a validated tracking/stopping reserve. On108 the source predictor at actual q reproduces the critical negative runtime gap within0.21 micrometre, while the submitted target remains positive; closed-hand source discrepancies elsewhere are not established as the cause of this failure. Rebind full articulated geometry for broader scope; do not hide the failure by relaxing the original zero-gap threshold.",
+  "native_reruns": 0,
+  "threshold_changes": 0,
+  "formal_holdout_count": 0,
+  "fullSystem0_accepted": false,
+  "source_sha256": {
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v107_dispatch0/native_case23/physics_00000_00032.npz": "caca11b2abcf666ee092a21a58dbe3a19587620d23fa68682d04191bd1678e1e",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v107_dispatch0/native_case23/physics_00032_00064.npz": "f9c2cd0cc3876533fc0044aa47081a5187b912d6e6ebded0c811c89e0881f1dd",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v107_dispatch0/native_case23/physics_00064_00096.npz": "96414ce4c75fbdc868e0edbd79ac92f3de5743c28ee7756610b2f96c9116387f",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v107_dispatch0/native_case23/physics_00096_00128.npz": "c5f221fe9c1c1a5290681a00b47200535063c094b484a5b3bc5d227f79a417d8",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v107_dispatch0/native_case23/physics_00128_00160.npz": "c06ebf1abc06bb8c2625bcc871ea6b4d489ee8b9a64d18bb70f2d47db70a8fc4",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v107_dispatch0/native_case23/physics_00160_00176.npz": "888267b2596d7ce7133d9315b29a480c4c10ae951c4e7f07790718f7a86b41f0",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00000_00032.npz": "5ccdd0d47a7220e046ad9b110634df30425bbfa13bab4b532a19f9925a04403c",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00032_00064.npz": "e7f677e1e602ff8952f7173f20f7e879dcb57e5cf093a05fc8bf244e73baa783",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00064_00096.npz": "7a9e8e93b4b375125524df7ec0c7fa72682f28697660c8efab2069343b232271",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00096_00128.npz": "efce5ad7c221e45cd388832a3936b3323417e7a60695722b65089a5bb7967461",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00128_00160.npz": "e872c079d063f0fea9d2db73c0e82a201f3c2ef074c5b8350050f7137578ed2c",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00160_00192.npz": "629ca1fd5154de5c81fb214b9e479ab91ee3b0d6c61fa8e0cbe090a85dca7538",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00192_00224.npz": "a9f5f9f3cfc7812957c6cd2dc7ee3a951694f187b5c2fdf2fdfbe996887d72a9",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00224_00256.npz": "cfaff8560fec9f798234ff9cb7925f390fd4f35e3be7e31bf75ca460fa73ae19",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00256_00288.npz": "21d63b3899ea1178b0b9da1e37c6def43f89a69c1e1ba1d9e42d9ae5d200a9d5",
+    "/mnt/nas/data/lyf/double_hand/safety_physical_qualified_random_20261009_1613/strong_random_recipe_v1/fourhand_native_probe_v108_dispatch0/native_case23/physics_00288_00320.npz": "50d00a67a4cd646bd887a16a81a576865f3bda369973b01d328fd2324d1dcc80",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/analyze_random_motion_pair_frontier_v2.py": "0cbab188a0e1f70438e51371ee2c0f3fd311bf160d54e946a12528b4ee5f49b0",
+    "/home/liyufeng/safeduo/artifacts/safety_physical_qualified_random_20261009_1613/prepare_random_arm_pair107_108_v1.py": "8e0196283f1695f9abc5f0261f8b9177b364bce70493004699c57753c1862095"
+  }
+}
