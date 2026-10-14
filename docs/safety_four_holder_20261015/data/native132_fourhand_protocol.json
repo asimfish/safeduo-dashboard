@@ -1,0 +1,138 @@
+{
+  "status": "complete",
+  "task_status": "PHYSICAL_GATE_FAILED",
+  "method": "RECORDED_NATIVE131_ISSUED_FULL50_INPUT_PALM_APPROXIMATION_COUNTERFACTUAL",
+  "trained_actor": false,
+  "system0_active": false,
+  "objects": 1,
+  "arms": 4,
+  "hands": 4,
+  "common_object": true,
+  "physical_profile": "Experimental v7:2FR3/F2+2UR5/DFX",
+  "maximum_controls": 190,
+  "physics_events": 32,
+  "completed_controls": 1,
+  "no_runtime_object_state_writes": true,
+  "no_attachment_joints": true,
+  "fullSystem0_accepted": false,
+  "invalid_right_F2_axes_explicitly_canonicalized_to_recorded_X": true,
+  "last_setup_stage": "initial_robot_states_written",
+  "native_solver_profile": {
+    "position_iterations": 32,
+    "velocity_iterations": 4,
+    "native_verified": true
+  },
+  "actual_control_dt_s": 0.016666666666666666,
+  "actual_physics_dt_s": 0.0005208333333333333,
+  "actual_physics_substeps_per_control": 32,
+  "target_producer": "Native point-contact feedback controls CLOSE/LIFT/CARRY/PLACE/RELEASE/RETREAT through actual full50FIFO6 and actual74 guard",
+  "initial_state_source_event": 8191,
+  "synthetic_operator": true,
+  "human_teleoperation_tested": false,
+  "random_test": false,
+  "task_family": "four_shared_colift",
+  "task_roles": [
+    "F_L",
+    "F_R",
+    "U_L",
+    "U_R"
+  ],
+  "approach_tested": false,
+  "initial_seed_is_exact_previous_native_capture": false,
+  "initial_only_source_IK_arm_raise_m": 0.0,
+  "initial_unloaded_preshape": true,
+  "all74_initial_qd_zero": true,
+  "initial_target_equal_actual_q": true,
+  "cold_loaded_contact_reconstruction": false,
+  "inactive_U_initial_only_IK_raise_m": 0.0,
+  "all_four_holders_active": true,
+  "static_world_input": "Public native poses of all4 support bodies and authored dimensions",
+  "extra_world_proxy_pairs": 568,
+  "initial_native_world_admission": true,
+  "object_state_input": "Privileged native ground truth",
+  "task_observer_authority": "PayloadTaskWorldV2",
+  "legacy_feedback_is_not_task_authority": true,
+  "staged_release_requires_all4_actual_arm_settling": true,
+  "diagnostic_only": true,
+  "complete_physical_task_test": false,
+  "independent_task_pass_claimed": false,
+  "unsafe_events": [
+    {
+      "event": 0,
+      "type": "UNINTENDED_NATIVE_CONTACT",
+      "sensor": "/World/envs/env_0/U_R/right_thumb_2",
+      "partner": "/World/envs/env_0/U_R/wrist_3_link",
+      "normal_N": 140866.40838623047
+    }
+  ],
+  "phase_transitions": [
+    {
+      "from_phase": "CLOSE",
+      "to_phase": "FAILED",
+      "time_s": 0.016666666666666666
+    }
+  ],
+  "feedback_failure": null,
+  "grasp_settle_gate": {
+    "position_error_max_rad": 0.005,
+    "speed_max_rad_s": 0.02,
+    "applied_error_max_rad": 1e-06,
+    "dwell_s": 0.3,
+    "timeout_s": 8.0,
+    "physics_dt_s": 0.0005208333333333333
+  },
+  "last_grasp_settle_status": {
+    "ready": false,
+    "timed_out": false,
+    "valid": false,
+    "continuous_settled_s": 0.0
+  },
+  "pregrasp_settle_status": {
+    "ready": false,
+    "timed_out": false,
+    "valid": false,
+    "continuous_settled_s": 0.0
+  },
+  "preshape_settle_status": {
+    "ready": false,
+    "timed_out": false,
+    "valid": false,
+    "continuous_settled_s": 0.0
+  },
+  "retreat_settle_status": {
+    "ready": false,
+    "timed_out": false,
+    "valid": false,
+    "continuous_settled_s": 0.0
+  },
+  "retreat_endpoint_required": true,
+  "preshape_hand_error_max_rad": 0.02,
+  "four_hand_task_development_pass": false,
+  "continuous_native_frames": true,
+  "video_rate_Hz": 15.0,
+  "frames": 8,
+  "new_native_video": false,
+  "all74_all9021_and_all82_point_contact_observed_each_microstep": true,
+  "object_state_input_kind": "Fresh native ground truth with full pose, velocity and registered size; vision model not tested",
+  "learned_safety_or_formal_holdout_tested": false,
+  "model_qualification_failure": {
+    "event": 0,
+    "time_s": 0.0005208333333333333,
+    "phase": "CLOSE",
+    "max_q_residual_rad": 6.319582457336992e-08,
+    "max_qd_residual_rad_s": 0.00014611511230466778
+  },
+  "fulltask_phase_ceiling": "FAILED",
+  "pair_task_transitions": [
+    {
+      "from": "CLOSE",
+      "to": "FAILED",
+      "time_s": 0.0005208333333333333
+    }
+  ],
+  "pair_task_observer_failure": "invalid_or_wrong_native_object",
+  "pair_task_producer_done": false,
+  "operator_stop_requested": false,
+  "coupling_loaded_validated": false,
+  "canonical_asset_profile_validated": false
+}
