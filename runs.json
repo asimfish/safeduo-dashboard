@@ -1,29 +1,29 @@
 {
- "updated": "2026-10-15T16:42:30",
+ "updated": "2026-10-15T16:52:46",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "32.95",
+ "load": "24.97",
  "ncpu": 48,
- "uptime": "16:42:27 up 25 days,  4:37, 51 users,  load average: 32.95, 32.25, 76.47",
+ "uptime": "16:52:45 up 25 days,  4:47, 51 users,  load average: 24.97, 26.21, 51.81",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 10614,
+   "used_mb": 23031,
    "total_mb": 32607,
    "util": 3,
    "procs": [
+    {
+     "pid": 651521,
+     "mem_mb": 14994,
+     "tag": "other",
+     "label": "serve_robomme_reference.py"
+    },
     {
      "pid": 305075,
      "mem_mb": 7606,
      "tag": "chembench",
      "label": "chembench"
-    },
-    {
-     "pid": 651521,
-     "mem_mb": 2578,
-     "tag": "other",
-     "label": "serve_robomme_reference.py"
     }
    ],
    "mine": false
@@ -31,18 +31,24 @@
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 7693,
+   "used_mb": 12578,
    "total_mb": 32607,
-   "util": 1,
+   "util": 3,
    "procs": [
     {
      "pid": 174348,
      "mem_mb": 7614,
      "tag": "chembench",
      "label": "chembench"
+    },
+    {
+     "pid": 713746,
+     "mem_mb": 4846,
+     "tag": "safeduo",
+     "label": "probe.py"
     }
    ],
-   "mine": false
+   "mine": true
   }
  ],
  "tmux": [
@@ -496,31 +502,31 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-10-15T16:42:27",
+   "updated": "2026-10-15T16:52:45",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "32.95",
+   "load": "24.97",
    "ncpu": 48,
-   "uptime": "16:42:27 up 25 days,  4:37, 51 users,  load average: 32.95, 32.25, 76.47",
+   "uptime": "16:52:45 up 25 days,  4:47, 51 users,  load average: 24.97, 26.21, 51.81",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 10614,
+     "used_mb": 23031,
      "total_mb": 32607,
      "util": 3,
      "procs": [
+      {
+       "pid": 651521,
+       "mem_mb": 14994,
+       "tag": "other",
+       "label": "serve_robomme_reference.py"
+      },
       {
        "pid": 305075,
        "mem_mb": 7606,
        "tag": "chembench",
        "label": "chembench"
-      },
-      {
-       "pid": 651521,
-       "mem_mb": 2578,
-       "tag": "other",
-       "label": "serve_robomme_reference.py"
       }
      ],
      "mine": false
@@ -528,18 +534,24 @@
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 7693,
+     "used_mb": 12578,
      "total_mb": 32607,
-     "util": 1,
+     "util": 3,
      "procs": [
       {
        "pid": 174348,
        "mem_mb": 7614,
        "tag": "chembench",
        "label": "chembench"
+      },
+      {
+       "pid": 713746,
+       "mem_mb": 4846,
+       "tag": "safeduo",
+       "label": "probe.py"
       }
      ],
-     "mine": false
+     "mine": true
     }
    ],
    "tmux": [
@@ -993,17 +1005,17 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-10-15T16:42:30",
+   "updated": "2026-10-15T16:52:46",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "14.61",
+   "load": "14.02",
    "ncpu": 128,
-   "uptime": "16:42:30 up 88 days, 23:15,  0 users,  load average: 14.61, 15.47, 15.88",
+   "uptime": "16:52:46 up 88 days, 23:25,  0 users,  load average: 14.02, 14.38, 15.35",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 537,
+     "used_mb": 553,
      "total_mb": 81920,
      "util": 0,
      "procs": [
@@ -1019,10 +1031,22 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 538,
+     "used_mb": 1315,
      "total_mb": 81920,
      "util": 0,
      "procs": [
+      {
+       "pid": 3535619,
+       "mem_mb": 762,
+       "tag": "other",
+       "label": "run_robomme_reference_rollouts.py"
+      },
+      {
+       "pid": 3535619,
+       "mem_mb": 762,
+       "tag": "other",
+       "label": "run_robomme_reference_rollouts.py"
+      },
       {
        "pid": 2182831,
        "mem_mb": 528,
@@ -1037,7 +1061,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 21373,
      "total_mb": 81920,
-     "util": 65,
+     "util": 69,
      "procs": [
       {
        "pid": 1211486,
@@ -1069,7 +1093,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 21373,
      "total_mb": 81920,
-     "util": 89,
+     "util": 82,
      "procs": [
       {
        "pid": 1285902,
@@ -1085,7 +1109,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 21373,
      "total_mb": 81920,
-     "util": 68,
+     "util": 89,
      "procs": [
       {
        "pid": 1285903,
@@ -1101,7 +1125,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 21239,
      "total_mb": 81920,
-     "util": 50,
+     "util": 82,
      "procs": [
       {
        "pid": 2175053,
@@ -1117,7 +1141,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 21235,
      "total_mb": 81920,
-     "util": 54,
+     "util": 48,
      "procs": [
       {
        "pid": 2175056,
