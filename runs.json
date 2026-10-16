@@ -1,17 +1,17 @@
 {
- "updated": "2026-10-16T12:38:22",
+ "updated": "2026-10-16T12:48:36",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "19.12",
+ "load": "21.51",
  "ncpu": 48,
- "uptime": "12:38:21 up 26 days, 33 min, 49 users,  load average: 19.12, 20.05, 20.47",
+ "uptime": "12:48:35 up 26 days, 43 min, 48 users,  load average: 21.51, 22.21, 21.35",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 23074,
+   "used_mb": 23071,
    "total_mb": 32607,
-   "util": 9,
+   "util": 2,
    "procs": [
     {
      "pid": 3840556,
@@ -31,10 +31,16 @@
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 7761,
+   "used_mb": 24702,
    "total_mb": 32607,
-   "util": 55,
+   "util": 67,
    "procs": [
+    {
+     "pid": 4097080,
+     "mem_mb": 16932,
+     "tag": "other",
+     "label": "serve_robomme_absorption.py"
+    },
     {
      "pid": 3951735,
      "mem_mb": 7682,
@@ -496,19 +502,19 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-10-16T12:38:21",
+   "updated": "2026-10-16T12:48:35",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "19.12",
+   "load": "21.51",
    "ncpu": 48,
-   "uptime": "12:38:21 up 26 days, 33 min, 49 users,  load average: 19.12, 20.05, 20.47",
+   "uptime": "12:48:35 up 26 days, 43 min, 48 users,  load average: 21.51, 22.21, 21.35",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 23074,
+     "used_mb": 23071,
      "total_mb": 32607,
-     "util": 9,
+     "util": 2,
      "procs": [
       {
        "pid": 3840556,
@@ -528,10 +534,16 @@
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 7761,
+     "used_mb": 24702,
      "total_mb": 32607,
-     "util": 55,
+     "util": 67,
      "procs": [
+      {
+       "pid": 4097080,
+       "mem_mb": 16932,
+       "tag": "other",
+       "label": "serve_robomme_absorption.py"
+      },
       {
        "pid": 3951735,
        "mem_mb": 7682,
@@ -993,32 +1005,20 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-10-16T12:38:22",
+   "updated": "2026-10-16T12:48:36",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "10.47",
+   "load": "10.05",
    "ncpu": 128,
-   "uptime": "12:38:22 up 89 days, 19:11,  0 users,  load average: 10.47, 11.82, 13.20",
+   "uptime": "12:48:36 up 89 days, 19:21,  0 users,  load average: 10.05, 9.59, 11.30",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 1360,
+     "used_mb": 568,
      "total_mb": 81920,
-     "util": 1,
+     "util": 0,
      "procs": [
-      {
-       "pid": 1361086,
-       "mem_mb": 767,
-       "tag": "other",
-       "label": "qualify_robomme_failure_expert.py"
-      },
-      {
-       "pid": 1361086,
-       "mem_mb": 767,
-       "tag": "other",
-       "label": "qualify_robomme_failure_expert.py"
-      },
       {
        "pid": 2163531,
        "mem_mb": 528,
@@ -1031,10 +1031,22 @@
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 538,
+     "used_mb": 1315,
      "total_mb": 81920,
      "util": 0,
      "procs": [
+      {
+       "pid": 1383017,
+       "mem_mb": 762,
+       "tag": "other",
+       "label": "run_robomme_validation_continuation.py"
+      },
+      {
+       "pid": 1383017,
+       "mem_mb": 762,
+       "tag": "other",
+       "label": "run_robomme_validation_continuation.py"
+      },
       {
        "pid": 2182831,
        "mem_mb": 528,
@@ -1056,6 +1068,28 @@
     {
      "idx": 3,
      "name": "NVIDIA A100-SXM4-80GB",
+     "used_mb": 781,
+     "total_mb": 81920,
+     "util": 0,
+     "procs": [
+      {
+       "pid": 1383431,
+       "mem_mb": 762,
+       "tag": "other",
+       "label": "evaluate_robomme_absorption.py"
+      },
+      {
+       "pid": 1383431,
+       "mem_mb": 762,
+       "tag": "other",
+       "label": "evaluate_robomme_absorption.py"
+      }
+     ],
+     "mine": false
+    },
+    {
+     "idx": 4,
+     "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 1,
      "total_mb": 81920,
      "util": 0,
@@ -1063,47 +1097,12 @@
      "mine": false
     },
     {
-     "idx": 4,
-     "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 781,
-     "total_mb": 81920,
-     "util": 0,
-     "procs": [
-      {
-       "pid": 1361730,
-       "mem_mb": 762,
-       "tag": "other",
-       "label": "qualify_robomme_failure_expert.py"
-      },
-      {
-       "pid": 1361730,
-       "mem_mb": 762,
-       "tag": "other",
-       "label": "qualify_robomme_failure_expert.py"
-      }
-     ],
-     "mine": false
-    },
-    {
      "idx": 5,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 782,
+     "used_mb": 1,
      "total_mb": 81920,
-     "util": 1,
-     "procs": [
-      {
-       "pid": 1364443,
-       "mem_mb": 762,
-       "tag": "other",
-       "label": "qualify_robomme_failure_expert.py"
-      },
-      {
-       "pid": 1364443,
-       "mem_mb": 762,
-       "tag": "other",
-       "label": "qualify_robomme_failure_expert.py"
-      }
-     ],
+     "util": 0,
+     "procs": [],
      "mine": false
     },
     {
