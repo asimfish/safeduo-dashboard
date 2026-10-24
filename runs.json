@@ -1,23 +1,29 @@
 {
- "updated": "2026-10-24T14:45:07",
+ "updated": "2026-10-24T14:55:22",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "60.51",
+ "load": "53.82",
  "ncpu": 48,
- "uptime": "14:45:05 up 17:13, 29 users,  load average: 60.51, 61.26, 71.08",
+ "uptime": "14:55:18 up 17:23, 29 users,  load average: 53.82, 66.26, 72.44",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 15752,
+   "used_mb": 23353,
    "total_mb": 32607,
    "util": 78,
    "procs": [
     {
      "pid": 1526387,
-     "mem_mb": 10472,
+     "mem_mb": 10772,
      "tag": "chembench",
      "label": "chembench"
+    },
+    {
+     "pid": 1766045,
+     "mem_mb": 7261,
+     "tag": "safeduo",
+     "label": "isaaclab.py"
     },
     {
      "pid": 1665199,
@@ -44,32 +50,32 @@
      "label": "vrwebhelper"
     }
    ],
-   "mine": false
+   "mine": true
   },
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 26954,
+   "used_mb": 27231,
    "total_mb": 32607,
    "util": 67,
    "procs": [
     {
-     "pid": 1648058,
+     "pid": 1835581,
      "mem_mb": 11873,
      "tag": "safeduo",
      "label": "isaaclab.py"
+    },
+    {
+     "pid": 1665199,
+     "mem_mb": 7436,
+     "tag": "chembench",
+     "label": "chembench"
     },
     {
      "pid": 1662037,
      "mem_mb": 7261,
      "tag": "safeduo",
      "label": "isaaclab.py"
-    },
-    {
-     "pid": 1665199,
-     "mem_mb": 7160,
-     "tag": "chembench",
-     "label": "chembench"
     },
     {
      "pid": 1526387,
@@ -533,25 +539,31 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-10-24T14:45:05",
+   "updated": "2026-10-24T14:55:18",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "60.51",
+   "load": "53.82",
    "ncpu": 48,
-   "uptime": "14:45:05 up 17:13, 29 users,  load average: 60.51, 61.26, 71.08",
+   "uptime": "14:55:18 up 17:23, 29 users,  load average: 53.82, 66.26, 72.44",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 15752,
+     "used_mb": 23353,
      "total_mb": 32607,
      "util": 78,
      "procs": [
       {
        "pid": 1526387,
-       "mem_mb": 10472,
+       "mem_mb": 10772,
        "tag": "chembench",
        "label": "chembench"
+      },
+      {
+       "pid": 1766045,
+       "mem_mb": 7261,
+       "tag": "safeduo",
+       "label": "isaaclab.py"
       },
       {
        "pid": 1665199,
@@ -578,32 +590,32 @@
        "label": "vrwebhelper"
       }
      ],
-     "mine": false
+     "mine": true
     },
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 26954,
+     "used_mb": 27231,
      "total_mb": 32607,
      "util": 67,
      "procs": [
       {
-       "pid": 1648058,
+       "pid": 1835581,
        "mem_mb": 11873,
        "tag": "safeduo",
        "label": "isaaclab.py"
+      },
+      {
+       "pid": 1665199,
+       "mem_mb": 7436,
+       "tag": "chembench",
+       "label": "chembench"
       },
       {
        "pid": 1662037,
        "mem_mb": 7261,
        "tag": "safeduo",
        "label": "isaaclab.py"
-      },
-      {
-       "pid": 1665199,
-       "mem_mb": 7160,
-       "tag": "chembench",
-       "label": "chembench"
       },
       {
        "pid": 1526387,
@@ -1067,19 +1079,19 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-10-24T14:45:07",
+   "updated": "2026-10-24T14:55:22",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "105.21",
+   "load": "109.65",
    "ncpu": 128,
-   "uptime": "14:45:07 up 98 days, 12:18,  0 users,  load average: 105.21, 103.47, 101.37",
+   "uptime": "14:55:22 up 98 days, 12:28,  0 users,  load average: 109.65, 101.38, 102.00",
    "gpus": [
     {
      "idx": 0,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 27007,
+     "used_mb": 37209,
      "total_mb": 81920,
-     "util": 100,
+     "util": 85,
      "procs": [
       {
        "pid": 1491561,
@@ -1092,6 +1104,18 @@
        "mem_mb": 23493,
        "tag": "other",
        "label": "eval_planner_dag.py"
+      },
+      {
+       "pid": 1586893,
+       "mem_mb": 10157,
+       "tag": "safeduo",
+       "label": "native_entry_bridge.py"
+      },
+      {
+       "pid": 1586893,
+       "mem_mb": 10157,
+       "tag": "safeduo",
+       "label": "native_entry_bridge.py"
       },
       {
        "pid": 1496663,
@@ -1112,14 +1136,14 @@
        "label": "controller_v4_pixel_runtime.py"
       }
      ],
-     "mine": false
+     "mine": true
     },
     {
      "idx": 1,
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 26886,
      "total_mb": 81920,
-     "util": 35,
+     "util": 11,
      "procs": [
       {
        "pid": 1491559,
@@ -1159,7 +1183,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 26353,
      "total_mb": 81920,
-     "util": 84,
+     "util": 26,
      "procs": [
       {
        "pid": 1491562,
@@ -1193,7 +1217,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 26354,
      "total_mb": 81920,
-     "util": 71,
+     "util": 35,
      "procs": [
       {
        "pid": 1491572,
@@ -1227,7 +1251,7 @@
      "name": "NVIDIA A100-SXM4-80GB",
      "used_mb": 26353,
      "total_mb": 81920,
-     "util": 0,
+     "util": 100,
      "procs": [
       {
        "pid": 1491570,
@@ -1259,13 +1283,13 @@
     {
      "idx": 5,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 55218,
+     "used_mb": 55258,
      "total_mb": 81920,
-     "util": 37,
+     "util": 100,
      "procs": [
       {
        "pid": 1483126,
-       "mem_mb": 28860,
+       "mem_mb": 28900,
        "tag": "other",
        "label": "VLLM::EngineCore"
       },
@@ -1333,9 +1357,9 @@
     {
      "idx": 7,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 44622,
+     "used_mb": 44888,
      "total_mb": 81920,
-     "util": 61,
+     "util": 21,
      "procs": [
       {
        "pid": 1491582,
@@ -1351,18 +1375,18 @@
       },
       {
        "pid": 1477019,
-       "mem_mb": 18264,
+       "mem_mb": 18528,
        "tag": "other",
        "label": "serve_planner_dag.py"
       },
       {
-       "pid": 1496523,
-       "mem_mb": 1416,
+       "pid": 1496526,
+       "mem_mb": 1418,
        "tag": "other",
        "label": "python"
       },
       {
-       "pid": 1496526,
+       "pid": 1496523,
        "mem_mb": 1416,
        "tag": "other",
        "label": "python"
