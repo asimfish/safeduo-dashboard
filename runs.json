@@ -1,17 +1,17 @@
 {
- "updated": "2026-10-25T09:11:44",
+ "updated": "2026-10-25T09:22:01",
  "node": "bjxy_5090",
  "host": "ubuntu-TRX50-AI-TOP",
- "load": "35.94",
+ "load": "34.72",
  "ncpu": 48,
- "uptime": "09:11:41 up 1 day,  8:39, 53 users,  load average: 35.94, 31.85, 35.41",
+ "uptime": "09:21:57 up 1 day,  8:50, 53 users,  load average: 34.72, 28.47, 31.31",
  "gpus": [
   {
    "idx": 0,
    "name": "RTX 5090",
-   "used_mb": 17889,
+   "used_mb": 24999,
    "total_mb": 32607,
-   "util": 78,
+   "util": 92,
    "procs": [
     {
      "pid": 85825,
@@ -21,9 +21,15 @@
     },
     {
      "pid": 243953,
-     "mem_mb": 3825,
+     "mem_mb": 6817,
      "tag": "safeduo",
      "label": "isaaclab.py"
+    },
+    {
+     "pid": 330219,
+     "mem_mb": 4029,
+     "tag": "other",
+     "label": "collect_four.py"
     },
     {
      "pid": 1495395,
@@ -55,15 +61,21 @@
   {
    "idx": 1,
    "name": "RTX 5090",
-   "used_mb": 3912,
+   "used_mb": 10001,
    "total_mb": 32607,
-   "util": 1,
+   "util": 34,
    "procs": [
     {
      "pid": 243971,
-     "mem_mb": 3841,
+     "mem_mb": 6817,
      "tag": "safeduo",
      "label": "isaaclab.py"
+    },
+    {
+     "pid": 330219,
+     "mem_mb": 3106,
+     "tag": "other",
+     "label": "collect_four.py"
     }
    ],
    "mine": true
@@ -521,19 +533,19 @@
  "snap_file": "runs_5090.json",
  "servers": [
   {
-   "updated": "2026-10-25T09:11:41",
+   "updated": "2026-10-25T09:21:57",
    "node": "bjxy_5090",
    "host": "ubuntu-TRX50-AI-TOP",
-   "load": "35.94",
+   "load": "34.72",
    "ncpu": 48,
-   "uptime": "09:11:41 up 1 day,  8:39, 53 users,  load average: 35.94, 31.85, 35.41",
+   "uptime": "09:21:57 up 1 day,  8:50, 53 users,  load average: 34.72, 28.47, 31.31",
    "gpus": [
     {
      "idx": 0,
      "name": "RTX 5090",
-     "used_mb": 17889,
+     "used_mb": 24999,
      "total_mb": 32607,
-     "util": 78,
+     "util": 92,
      "procs": [
       {
        "pid": 85825,
@@ -543,9 +555,15 @@
       },
       {
        "pid": 243953,
-       "mem_mb": 3825,
+       "mem_mb": 6817,
        "tag": "safeduo",
        "label": "isaaclab.py"
+      },
+      {
+       "pid": 330219,
+       "mem_mb": 4029,
+       "tag": "other",
+       "label": "collect_four.py"
       },
       {
        "pid": 1495395,
@@ -577,15 +595,21 @@
     {
      "idx": 1,
      "name": "RTX 5090",
-     "used_mb": 3912,
+     "used_mb": 10001,
      "total_mb": 32607,
-     "util": 1,
+     "util": 34,
      "procs": [
       {
        "pid": 243971,
-       "mem_mb": 3841,
+       "mem_mb": 6817,
        "tag": "safeduo",
        "label": "isaaclab.py"
+      },
+      {
+       "pid": 330219,
+       "mem_mb": 3106,
+       "tag": "other",
+       "label": "collect_four.py"
       }
      ],
      "mine": true
@@ -1043,12 +1067,12 @@
    "snap_file": "runs_5090.json"
   },
   {
-   "updated": "2026-10-25T09:11:44",
+   "updated": "2026-10-25T09:22:01",
    "node": "tianyiyun-30109",
    "host": "ide-650ef93f23324f04881bde87cf05d6c1-0f2fcc",
-   "load": "101.57",
+   "load": "104.53",
    "ncpu": 128,
-   "uptime": "09:11:44 up 99 days,  3:44,  0 users,  load average: 101.57, 102.21, 109.95",
+   "uptime": "09:22:01 up 99 days,  3:55,  0 users,  load average: 104.53, 100.90, 105.33",
    "gpus": [
     {
      "idx": 0,
@@ -1112,10 +1136,17 @@
     {
      "idx": 5,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 5,
+     "used_mb": 28725,
      "total_mb": 81920,
      "util": 0,
-     "procs": [],
+     "procs": [
+      {
+       "pid": 3768013,
+       "mem_mb": 28714,
+       "tag": "other",
+       "label": "VLLM::EngineCore"
+      }
+     ],
      "mine": false
     },
     {
@@ -1130,10 +1161,17 @@
     {
      "idx": 7,
      "name": "NVIDIA A100-SXM4-80GB",
-     "used_mb": 5,
+     "used_mb": 17437,
      "total_mb": 81920,
      "util": 0,
-     "procs": [],
+     "procs": [
+      {
+       "pid": 3763308,
+       "mem_mb": 17426,
+       "tag": "other",
+       "label": "serve_planner_dag.py"
+      }
+     ],
      "mine": false
     }
    ],
